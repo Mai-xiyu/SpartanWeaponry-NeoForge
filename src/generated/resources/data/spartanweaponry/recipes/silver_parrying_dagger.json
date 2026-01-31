@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "spartanweaponry:type_disabled",
+      "disabled": [
+        "parrying_dagger",
+        "silver"
+      ]
+    },
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:tag_empty",
+        "tag": "forge:ingots/silver"
+      }
+    }
+  ],
+  "group": "spartanweaponry:parrying_dagger",
+  "key": {
+    "#": {
+      "tag": "forge:ingots/silver"
+    },
+    "|": {
+      "item": "spartanweaponry:handle"
+    }
+  },
+  "pattern": [
+    " #",
+    "#|"
+  ],
+  "result": {
+    "item": "spartanweaponry:silver_parrying_dagger"
+  }
+}

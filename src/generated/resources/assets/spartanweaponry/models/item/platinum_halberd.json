@@ -1,0 +1,22 @@
+{
+  "parent": "spartanweaponry:item/base/halberd",
+  "loader": "spartanweaponry:oil_coated_item",
+  "overrides": [
+    {
+      "model": "spartanweaponry:item/platinum_halberd_blocking",
+      "predicate": {
+        "spartanweaponry:blocking": 1.0
+      }
+    },
+    {
+      "model": "spartanweaponry:item/platinum_halberd_throwing",
+      "predicate": {
+        "spartanweaponry:throwing": 1.0
+      }
+    }
+  ],
+  "textures": {
+    "coating": "spartanweaponry:item/coating/halberd",
+    "layer0": "spartanweaponry:item/platinum_halberd"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "spartanweaponry:type_disabled",
+      "disabled": [
+        "boomerang",
+        "bronze"
+      ]
+    },
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:tag_empty",
+        "tag": "forge:ingots/bronze"
+      }
+    }
+  ],
+  "group": "spartanweaponry:boomerang",
+  "key": {
+    "#": {
+      "tag": "forge:ingots/bronze"
+    },
+    "P": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "pattern": [
+    "#PP",
+    "P  ",
+    "P  "
+  ],
+  "result": {
+    "item": "spartanweaponry:bronze_boomerang"
+  }
+}

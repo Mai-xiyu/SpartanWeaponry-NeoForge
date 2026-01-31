@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "spartanweaponry:type_disabled",
+      "disabled": [
+        "spear"
+      ]
+    }
+  ],
+  "group": "spartanweaponry:spear",
+  "key": {
+    "#": {
+      "tag": "minecraft:planks"
+    },
+    "/": {
+      "tag": "spartanweaponry:poles"
+    }
+  },
+  "pattern": [
+    "#",
+    "/"
+  ],
+  "result": {
+    "item": "spartanweaponry:wooden_spear"
+  }
+}

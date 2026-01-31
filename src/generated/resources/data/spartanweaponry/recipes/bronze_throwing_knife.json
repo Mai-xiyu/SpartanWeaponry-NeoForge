@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "spartanweaponry:type_disabled",
+      "disabled": [
+        "throwing_knife",
+        "bronze"
+      ]
+    },
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:tag_empty",
+        "tag": "forge:ingots/bronze"
+      }
+    }
+  ],
+  "group": "spartanweaponry:throwing_knife",
+  "key": {
+    "#": {
+      "tag": "forge:ingots/bronze"
+    },
+    "|": {
+      "tag": "spartanweaponry:handles"
+    }
+  },
+  "pattern": [
+    "|#"
+  ],
+  "result": {
+    "item": "spartanweaponry:bronze_throwing_knife"
+  }
+}

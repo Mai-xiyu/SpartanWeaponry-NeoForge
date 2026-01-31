@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "spartanweaponry:type_disabled",
+      "disabled": [
+        "tomahawk",
+        "copper"
+      ]
+    },
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:tag_empty",
+        "tag": "forge:ingots/copper"
+      }
+    }
+  ],
+  "group": "spartanweaponry:tomahawk",
+  "key": {
+    "#": {
+      "tag": "forge:ingots/copper"
+    },
+    "|": {
+      "item": "spartanweaponry:handle"
+    }
+  },
+  "pattern": [
+    "|#",
+    " #"
+  ],
+  "result": {
+    "item": "spartanweaponry:copper_tomahawk"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "spartanweaponry:type_disabled",
+      "disabled": [
+        "tomahawk",
+        "invar"
+      ]
+    },
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:tag_empty",
+        "tag": "forge:ingots/invar"
+      }
+    }
+  ],
+  "group": "spartanweaponry:tomahawk",
+  "key": {
+    "#": {
+      "tag": "forge:ingots/invar"
+    },
+    "|": {
+      "item": "spartanweaponry:handle"
+    }
+  },
+  "pattern": [
+    "|#",
+    " #"
+  ],
+  "result": {
+    "item": "spartanweaponry:invar_tomahawk"
+  }
+}

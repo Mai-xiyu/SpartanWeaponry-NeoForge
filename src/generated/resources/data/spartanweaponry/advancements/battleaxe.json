@@ -1,0 +1,37 @@
+{
+  "parent": "spartanweaponry:root",
+  "criteria": {
+    "has_battleaxe": {
+      "conditions": {
+        "items": [
+          {
+            "tag": "spartanweaponry:battleaxes"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.spartanweaponry.craft_battleaxe.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "spartanweaponry:diamond_battleaxe",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.spartanweaponry.craft_battleaxe.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_battleaxe"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

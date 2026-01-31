@@ -1,0 +1,108 @@
+{
+  "type": "spartanweaponry:tag_blasting",
+  "category": "misc",
+  "cookingtime": 100,
+  "disabled_types": [
+    "copper"
+  ],
+  "experience": 0.1,
+  "ingredient": [
+    {
+      "disabled_type": "dagger",
+      "item": "spartanweaponry:copper_dagger"
+    },
+    {
+      "disabled_type": "parrying_dagger",
+      "item": "spartanweaponry:copper_parrying_dagger"
+    },
+    {
+      "disabled_type": "longsword",
+      "item": "spartanweaponry:copper_longsword"
+    },
+    {
+      "disabled_type": "katana",
+      "item": "spartanweaponry:copper_katana"
+    },
+    {
+      "disabled_type": "saber",
+      "item": "spartanweaponry:copper_saber"
+    },
+    {
+      "disabled_type": "rapier",
+      "item": "spartanweaponry:copper_rapier"
+    },
+    {
+      "disabled_type": "greatsword",
+      "item": "spartanweaponry:copper_greatsword"
+    },
+    {
+      "disabled_type": "battle_hammer",
+      "item": "spartanweaponry:copper_battle_hammer"
+    },
+    {
+      "disabled_type": "warhammer",
+      "item": "spartanweaponry:copper_warhammer"
+    },
+    {
+      "disabled_type": "spear",
+      "item": "spartanweaponry:copper_spear"
+    },
+    {
+      "disabled_type": "halberd",
+      "item": "spartanweaponry:copper_halberd"
+    },
+    {
+      "disabled_type": "pike",
+      "item": "spartanweaponry:copper_pike"
+    },
+    {
+      "disabled_type": "lance",
+      "item": "spartanweaponry:copper_lance"
+    },
+    {
+      "disabled_type": "longbow",
+      "item": "spartanweaponry:copper_longbow"
+    },
+    {
+      "disabled_type": "heavy_crossbow",
+      "item": "spartanweaponry:copper_heavy_crossbow"
+    },
+    {
+      "disabled_type": "throwing_knife",
+      "item": "spartanweaponry:copper_throwing_knife"
+    },
+    {
+      "disabled_type": "tomahawk",
+      "item": "spartanweaponry:copper_tomahawk"
+    },
+    {
+      "disabled_type": "javelin",
+      "item": "spartanweaponry:copper_javelin"
+    },
+    {
+      "disabled_type": "boomerang",
+      "item": "spartanweaponry:copper_boomerang"
+    },
+    {
+      "disabled_type": "battleaxe",
+      "item": "spartanweaponry:copper_battleaxe"
+    },
+    {
+      "disabled_type": "flanged_mace",
+      "item": "spartanweaponry:copper_flanged_mace"
+    },
+    {
+      "disabled_type": "glaive",
+      "item": "spartanweaponry:copper_glaive"
+    },
+    {
+      "disabled_type": "quarterstaff",
+      "item": "spartanweaponry:copper_quarterstaff"
+    },
+    {
+      "disabled_type": "scythe",
+      "item": "spartanweaponry:copper_scythe"
+    }
+  ],
+  "result_tag": "forge:nuggets/copper"
+}

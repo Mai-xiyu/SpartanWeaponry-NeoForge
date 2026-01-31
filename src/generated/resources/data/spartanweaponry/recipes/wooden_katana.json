@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "spartanweaponry:type_disabled",
+      "disabled": [
+        "katana"
+      ]
+    }
+  ],
+  "group": "spartanweaponry:katana",
+  "key": {
+    "#": {
+      "tag": "minecraft:planks"
+    },
+    "|": {
+      "item": "spartanweaponry:handle"
+    }
+  },
+  "pattern": [
+    "  #",
+    " # ",
+    "|  "
+  ],
+  "result": {
+    "item": "spartanweaponry:wooden_katana"
+  }
+}

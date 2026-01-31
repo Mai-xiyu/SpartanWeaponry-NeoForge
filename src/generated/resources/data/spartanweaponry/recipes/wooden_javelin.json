@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "spartanweaponry:type_disabled",
+      "disabled": [
+        "javelin"
+      ]
+    }
+  ],
+  "group": "spartanweaponry:javelin",
+  "key": {
+    "#": {
+      "tag": "minecraft:planks"
+    },
+    "/": {
+      "item": "spartanweaponry:pole"
+    }
+  },
+  "pattern": [
+    "/#"
+  ],
+  "result": {
+    "item": "spartanweaponry:wooden_javelin"
+  }
+}

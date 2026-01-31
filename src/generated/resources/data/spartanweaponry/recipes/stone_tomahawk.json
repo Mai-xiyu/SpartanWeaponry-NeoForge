@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "spartanweaponry:type_disabled",
+      "disabled": [
+        "tomahawk"
+      ]
+    }
+  ],
+  "group": "spartanweaponry:tomahawk",
+  "key": {
+    "#": {
+      "tag": "forge:cobblestone"
+    },
+    "|": {
+      "item": "spartanweaponry:handle"
+    }
+  },
+  "pattern": [
+    "|#",
+    " #"
+  ],
+  "result": {
+    "item": "spartanweaponry:stone_tomahawk"
+  }
+}

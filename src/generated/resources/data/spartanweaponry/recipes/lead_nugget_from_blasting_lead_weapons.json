@@ -1,0 +1,108 @@
+{
+  "type": "spartanweaponry:tag_blasting",
+  "category": "misc",
+  "cookingtime": 100,
+  "disabled_types": [
+    "lead"
+  ],
+  "experience": 0.1,
+  "ingredient": [
+    {
+      "disabled_type": "dagger",
+      "item": "spartanweaponry:lead_dagger"
+    },
+    {
+      "disabled_type": "parrying_dagger",
+      "item": "spartanweaponry:lead_parrying_dagger"
+    },
+    {
+      "disabled_type": "longsword",
+      "item": "spartanweaponry:lead_longsword"
+    },
+    {
+      "disabled_type": "katana",
+      "item": "spartanweaponry:lead_katana"
+    },
+    {
+      "disabled_type": "saber",
+      "item": "spartanweaponry:lead_saber"
+    },
+    {
+      "disabled_type": "rapier",
+      "item": "spartanweaponry:lead_rapier"
+    },
+    {
+      "disabled_type": "greatsword",
+      "item": "spartanweaponry:lead_greatsword"
+    },
+    {
+      "disabled_type": "battle_hammer",
+      "item": "spartanweaponry:lead_battle_hammer"
+    },
+    {
+      "disabled_type": "warhammer",
+      "item": "spartanweaponry:lead_warhammer"
+    },
+    {
+      "disabled_type": "spear",
+      "item": "spartanweaponry:lead_spear"
+    },
+    {
+      "disabled_type": "halberd",
+      "item": "spartanweaponry:lead_halberd"
+    },
+    {
+      "disabled_type": "pike",
+      "item": "spartanweaponry:lead_pike"
+    },
+    {
+      "disabled_type": "lance",
+      "item": "spartanweaponry:lead_lance"
+    },
+    {
+      "disabled_type": "longbow",
+      "item": "spartanweaponry:lead_longbow"
+    },
+    {
+      "disabled_type": "heavy_crossbow",
+      "item": "spartanweaponry:lead_heavy_crossbow"
+    },
+    {
+      "disabled_type": "throwing_knife",
+      "item": "spartanweaponry:lead_throwing_knife"
+    },
+    {
+      "disabled_type": "tomahawk",
+      "item": "spartanweaponry:lead_tomahawk"
+    },
+    {
+      "disabled_type": "javelin",
+      "item": "spartanweaponry:lead_javelin"
+    },
+    {
+      "disabled_type": "boomerang",
+      "item": "spartanweaponry:lead_boomerang"
+    },
+    {
+      "disabled_type": "battleaxe",
+      "item": "spartanweaponry:lead_battleaxe"
+    },
+    {
+      "disabled_type": "flanged_mace",
+      "item": "spartanweaponry:lead_flanged_mace"
+    },
+    {
+      "disabled_type": "glaive",
+      "item": "spartanweaponry:lead_glaive"
+    },
+    {
+      "disabled_type": "quarterstaff",
+      "item": "spartanweaponry:lead_quarterstaff"
+    },
+    {
+      "disabled_type": "scythe",
+      "item": "spartanweaponry:lead_scythe"
+    }
+  ],
+  "result_tag": "forge:nuggets/lead"
+}

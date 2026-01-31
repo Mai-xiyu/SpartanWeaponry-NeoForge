@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "tag": "forge:ingots/netherite"
+  },
+  "base": {
+    "item": "spartanweaponry:diamond_saber"
+  },
+  "result": {
+    "item": "spartanweaponry:netherite_saber"
+  },
+  "template": {
+    "item": "minecraft:netherite_upgrade_smithing_template"
+  }
+}

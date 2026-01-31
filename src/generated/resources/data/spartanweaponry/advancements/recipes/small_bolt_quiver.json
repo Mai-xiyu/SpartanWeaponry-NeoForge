@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_bolt": {
+      "conditions": {
+        "items": [
+          {
+            "tag": "spartanweaponry:bolts"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "spartanweaponry:small_bolt_quiver"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_bolt",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "spartanweaponry:small_bolt_quiver"
+    ]
+  },
+  "sends_telemetry_event": true
+}

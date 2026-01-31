@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "spartanweaponry:type_disabled",
+      "disabled": [
+        "scythe",
+        "platinum"
+      ]
+    },
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:tag_empty",
+        "tag": "forge:ingots/platinum"
+      }
+    }
+  ],
+  "group": "spartanweaponry:scythe",
+  "key": {
+    "#": {
+      "tag": "forge:ingots/platinum"
+    },
+    "/": {
+      "item": "spartanweaponry:pole"
+    }
+  },
+  "pattern": [
+    "## ",
+    "  #",
+    " / "
+  ],
+  "result": {
+    "item": "spartanweaponry:platinum_scythe"
+  }
+}

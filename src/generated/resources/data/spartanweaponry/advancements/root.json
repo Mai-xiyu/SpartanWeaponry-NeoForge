@@ -1,0 +1,52 @@
+{
+  "criteria": {
+    "has_handle": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spartanweaponry:handle"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_pole": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spartanweaponry:pole"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "background": "minecraft:textures/block/anvil.png",
+    "description": {
+      "translate": "advancement.spartanweaponry.root.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "spartanweaponry:diamond_longsword",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancement.spartanweaponry.root.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_handle",
+      "has_pole"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

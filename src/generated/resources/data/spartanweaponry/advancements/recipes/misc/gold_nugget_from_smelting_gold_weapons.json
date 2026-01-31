@@ -1,0 +1,22 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "spartanweaponry:gold_nugget_from_smelting_gold_weapons"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "spartanweaponry:gold_nugget_from_smelting_gold_weapons"
+    ]
+  },
+  "sends_telemetry_event": false
+}
