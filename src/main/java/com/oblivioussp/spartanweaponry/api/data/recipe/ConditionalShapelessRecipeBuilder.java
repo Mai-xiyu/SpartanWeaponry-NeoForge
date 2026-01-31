@@ -132,7 +132,7 @@ public class ConditionalShapelessRecipeBuilder
 	public void save(RecipeOutput output, String save)
 	{
 		ResourceLocation resultLoc = BuiltInRegistries.ITEM.getKey(result.getItem());
-		ResourceLocation saveLoc = ResourceLocation.tryBuild(save);
+		ResourceLocation saveLoc = ResourceLocation.parse(save);
 		if(saveLoc.equals(resultLoc))
 			throw new IllegalStateException("Shapeless recipe " + save + " save argument is redundant as it's the same as the item id!");
 		else
@@ -149,7 +149,7 @@ public class ConditionalShapelessRecipeBuilder
 		CraftingBookCategory bookCategory = RecipeBuilder.determineBookCategory(category);
 		ItemStack outputStack = result.copy();
 		outputStack.setCount(count);
-		NonNullList<Ingredient> ingredientList = NonNullList.copyOf(Ingredient.EMPTY, ingredients.toArray(new Ingredient[0]));
+		NonNullList<Ingredient> ingredientList = NonNullList.copyOf(ingredients);
 		ShapelessRecipe recipe = new ShapelessRecipe(group == null ? "" : group, bookCategory, outputStack, ingredientList);
 
 		ResourceLocation advancementId = id.withPrefix("recipes/" + category.getFolderName() + "/");

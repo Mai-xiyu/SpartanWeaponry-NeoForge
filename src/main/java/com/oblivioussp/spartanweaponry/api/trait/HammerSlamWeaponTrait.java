@@ -11,6 +11,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.decoration.ArmorStand;
@@ -54,7 +55,8 @@ public class HammerSlamWeaponTrait extends WeaponTrait implements IActionTraitCa
 					final float halfPi = (float)Math.PI / 180.0f;
 					entity.knockback(1.0f, Mth.sin(yRot * halfPi), -Mth.cos(yRot * halfPi));
 					entity.hurt(player.damageSources().playerAttack(player), (float)(player.getAttributeValue(Attributes.ATTACK_DAMAGE) / 2.0d));
-					weapon.hurtAndBreak(1, player, (playerIn) -> playerIn.broadcastBreakEvent(contextIn.getHand()));
+					EquipmentSlot slot = contextIn.getHand() == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND;
+					weapon.hurtAndBreak(1, (ServerLevel)level, player, (item) -> player.onEquippedItemBroken(item, slot));
 				}
 			}
 			player.swing(contextIn.getHand(), true);

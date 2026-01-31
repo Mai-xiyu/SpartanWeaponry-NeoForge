@@ -9,7 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.client.model.generators.ModelFile.ExistingModelFile;
-import net.neoforged.neoforge.registries.NeoForgeRegistries;
+import net.minecraft.core.registries.BuiltInRegistries;
 
 /**
  * Contains helper methods to generate customised model files based off items from Spartan Weaponry.<br>
@@ -69,7 +69,7 @@ public class ModelGenerator
 	{
 		ResourceLocation parentPath = parent != null ? parent : itemModelProvider.mcLoc("item/generated");
 		String texturePath = textureFolderPath.isEmpty() ? "item/" : "item/" + textureFolderPath + "/";
-		String itemPath = NeoForgeRegistries.ITEMS.getKey(item).getPath();
+		String itemPath = BuiltInRegistries.ITEM.getKey(item).getPath();
 		return itemModelProvider.withExistingParent(itemPath, parentPath).texture("layer0", texturePath + itemPath).getLocation();
 	}
 	
@@ -96,7 +96,7 @@ public class ModelGenerator
 	public ResourceLocation createMeleeWeaponModels(Item item, ResourceLocation baseModel, ResourceLocation coatingTexture, String textureFolderPath)
 	{
 		String texturePath = textureFolderPath.isEmpty() ? "item/" : "item/" + textureFolderPath + "/";
-		String itemPath = NeoForgeRegistries.ITEMS.getKey(item).getPath();
+		String itemPath = BuiltInRegistries.ITEM.getKey(item).getPath();
 		ResourceLocation blockingModel = itemModelProvider.withExistingParent(itemPath + "_blocking", ResourceLocation.tryBuild(baseModel.getNamespace(), baseModel.getPath() + "_blocking")).
 				customLoader(OilCoatingItemModelBuilder::new).end().
 				texture("layer0", texturePath + itemPath).
@@ -139,7 +139,7 @@ public class ModelGenerator
 	public ResourceLocation createCestusModels(Item item, ResourceLocation baseModel, ResourceLocation coatingTexture, String textureFolderPath)
 	{
 		String texturePath = textureFolderPath.isEmpty() ? "item/" : "item/" + textureFolderPath + "/";
-		String itemPath = NeoForgeRegistries.ITEMS.getKey(item).getPath();
+		String itemPath = BuiltInRegistries.ITEM.getKey(item).getPath();
 		ResourceLocation blockingModel = itemModelProvider.withExistingParent(itemPath + "_blocking", ResourceLocation.tryBuild(baseModel.getNamespace(), baseModel.getPath() + "_blocking")).
 				texture("layer0", texturePath + itemPath).
 				getLocation();
@@ -178,7 +178,7 @@ public class ModelGenerator
 	public ResourceLocation createThrowingWeaponModels(Item item, ResourceLocation baseModel, ResourceLocation baseThrowingModel, ResourceLocation emptyModel, String textureFolderPath)
 	{
 		String texturePath = textureFolderPath.isEmpty() ? "item/" : "item/" + textureFolderPath + "/";
-		String itemPath = NeoForgeRegistries.ITEMS.getKey(item).getPath();
+		String itemPath = BuiltInRegistries.ITEM.getKey(item).getPath();
 		ResourceLocation throwingModel = itemModelProvider.withExistingParent(itemPath + "_throwing", baseThrowingModel).texture("layer0", texturePath + itemPath).getLocation();
 		return itemModelProvider.withExistingParent(itemPath, baseModel).texture("layer0", texturePath + itemPath).
 				override().predicate(ModelOverrides.THROWING, 1.0f).predicate(ModelOverrides.EMPTY, 0.0f).model(new ExistingModelFile(throwingModel, itemModelProvider.existingFileHelper)).end().
@@ -193,7 +193,7 @@ public class ModelGenerator
 	 */
 	public ResourceLocation createVanillaSwordModels(Item item)
 	{
-		String itemPath = NeoForgeRegistries.ITEMS.getKey(item).getPath();
+		String itemPath = BuiltInRegistries.ITEM.getKey(item).getPath();
 		return itemModelProvider.withExistingParent(itemPath, "minecraft:item/handheld").
 				customLoader(OilCoatingItemModelBuilder::new).end().
 				texture("layer0", "minecraft:item/" + itemPath).
@@ -535,7 +535,7 @@ public class ModelGenerator
 	public ResourceLocation createLongbowModels(Item item, String textureFolderPath)
 	{
 		String texturePath = textureFolderPath.isEmpty() ? "item/" : "item/" + textureFolderPath + "/";
-		String itemPath = NeoForgeRegistries.ITEMS.getKey(item).getPath();
+		String itemPath = BuiltInRegistries.ITEM.getKey(item).getPath();
 		ResourceLocation pulling0 = itemModelProvider.withExistingParent(itemPath + "_pulling_0", BaseModels.LONGBOW_PULLING).texture("layer0", texturePath + itemPath + "_pulling_0").getLocation();
 		ResourceLocation pulling1 = itemModelProvider.withExistingParent(itemPath + "_pulling_1", BaseModels.LONGBOW_PULLING).texture("layer0", texturePath + itemPath + "_pulling_1").getLocation();
 		ResourceLocation pulling2 = itemModelProvider.withExistingParent(itemPath + "_pulling_2", BaseModels.LONGBOW_PULLING).texture("layer0", texturePath + itemPath + "_pulling_2").getLocation();
@@ -565,7 +565,7 @@ public class ModelGenerator
 	public ResourceLocation createHeavyCrossbowModels(Item item, String textureFolderPath)
 	{
 		String texturePath = textureFolderPath.isEmpty() ? "item/" : "item/" + textureFolderPath + "/";
-		String itemPath = NeoForgeRegistries.ITEMS.getKey(item).getPath();
+		String itemPath = BuiltInRegistries.ITEM.getKey(item).getPath();
 		ResourceLocation pulling0 = itemModelProvider.withExistingParent(itemPath + "_pulling_0", BaseModels.HEAVY_CROSSBOW_PULLING).texture("layer0", texturePath + itemPath + "_pulling_0").getLocation();
 		ResourceLocation pulling1 = itemModelProvider.withExistingParent(itemPath + "_pulling_1", BaseModels.HEAVY_CROSSBOW_PULLING).texture("layer0", texturePath + itemPath + "_pulling_1").getLocation();
 		ResourceLocation pulling2 = itemModelProvider.withExistingParent(itemPath + "_pulling_2", BaseModels.HEAVY_CROSSBOW_PULLING).texture("layer0", texturePath + itemPath + "_pulling_2").getLocation();

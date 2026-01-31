@@ -121,7 +121,7 @@ public class ConditionalShapedRecipeBuilder
 	public void save(RecipeOutput output, String save)
 	{
 		ResourceLocation resultLoc = BuiltInRegistries.ITEM.getKey(result);
-		ResourceLocation saveLoc = ResourceLocation.tryBuild(save);
+		ResourceLocation saveLoc = ResourceLocation.parse(save);
 		if(saveLoc.equals(resultLoc))
 			throw new IllegalStateException("Shaped recipe " + save + " save argument is redundant as it's the same as the item id!");
 		else

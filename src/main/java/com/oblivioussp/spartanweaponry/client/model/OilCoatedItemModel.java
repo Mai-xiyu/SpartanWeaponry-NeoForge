@@ -58,8 +58,7 @@ public class OilCoatedItemModel implements IUnbakedGeometry<OilCoatedItemModel>
 
 	@Override
 	public BakedModel bake(IGeometryBakingContext context, ModelBaker baker,
-			Function<Material, TextureAtlasSprite> spriteGetter, ModelState modelState, ItemOverrides overrides,
-			ResourceLocation modelLocation) 
+			Function<Material, TextureAtlasSprite> spriteGetter, ModelState modelState, ItemOverrides overrides) 
 	{
 		if(textures == null)
 		{
@@ -92,8 +91,8 @@ public class OilCoatedItemModel implements IUnbakedGeometry<OilCoatedItemModel>
 		for(int i = 0; i < textures.size(); i++)
 		{
 			TextureAtlasSprite sprite = spriteGetter.apply(textures.get(i));
-			List<BlockElement> unbakedElements = UnbakedGeometryHelper.createUnbakedItemElements(i, sprite.contents(), faceData.get(i));
-			List<BakedQuad> bakedQuads = UnbakedGeometryHelper.bakeElements(unbakedElements, mat -> sprite, modelState, modelLocation);
+			List<BlockElement> unbakedElements = UnbakedGeometryHelper.createUnbakedItemElements(i, sprite, faceData.get(i));
+			List<BakedQuad> bakedQuads = UnbakedGeometryHelper.bakeElements(unbakedElements, mat -> sprite, modelState);
 			ResourceLocation renderTypeName = renderTypeNames.get(i);
 			RenderTypeGroup renderTypes = renderTypeName != null ? context.getRenderType(renderTypeName) : normalRenderTypes;
 			builder.addQuads(renderTypes, bakedQuads);
@@ -104,8 +103,8 @@ public class OilCoatedItemModel implements IUnbakedGeometry<OilCoatedItemModel>
 		{
 			final int coatingLayer = 100;
 			TextureAtlasSprite sprite = spriteGetter.apply(coatingTexture);
-			List<BlockElement> unbakedElements = UnbakedGeometryHelper.createUnbakedItemElements(coatingLayer, sprite.contents(), faceData.get(coatingLayer));
-			List<BakedQuad> bakedQuads = UnbakedGeometryHelper.bakeElements(unbakedElements, mat -> sprite, modelState, modelLocation);
+			List<BlockElement> unbakedElements = UnbakedGeometryHelper.createUnbakedItemElements(coatingLayer, sprite, faceData.get(coatingLayer));
+			List<BakedQuad> bakedQuads = UnbakedGeometryHelper.bakeElements(unbakedElements, mat -> sprite, modelState);
 			ResourceLocation renderTypeName = renderTypeNames.get(coatingLayer);
 			RenderTypeGroup renderTypes = renderTypeName != null ? context.getRenderType(renderTypeName) : normalRenderTypes;
 			builder.addCoatedQuads(renderTypes, bakedQuads);

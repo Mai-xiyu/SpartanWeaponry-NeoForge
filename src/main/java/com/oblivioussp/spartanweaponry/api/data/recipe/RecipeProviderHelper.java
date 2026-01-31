@@ -16,7 +16,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
-import net.neoforged.neoforge.registries.NeoForgeRegistries;
+import net.minecraft.core.registries.BuiltInRegistries;
 
 /**
  * Helper functions for making recipes for addon weapons using the data generator<br>
@@ -37,7 +37,7 @@ public class RecipeProviderHelper
 	public static void smithingRecipe(RecipeOutput consumer, ItemLike base, TagKey<Item> additionTag, ItemLike result, String hasItemCriterionName)
 	{
 		SmithingTransformRecipeBuilder.smithing(Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE), Ingredient.of(base), Ingredient.of(additionTag), RecipeCategory.MISC, result.asItem()).unlocks(hasItemCriterionName, hasItem(additionTag)).
-			save(consumer, NeoForgeRegistries.ITEMS.getKey(result.asItem()) + "_smithing");
+			save(consumer, BuiltInRegistries.ITEM.getKey(result.asItem()) + "_smithing");
 	}
 	
 	/**
