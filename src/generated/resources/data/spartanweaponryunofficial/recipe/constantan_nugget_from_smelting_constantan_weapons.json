@@ -1,0 +1,79 @@
+{
+  "type": "spartanweaponryunofficial:tag_smelting",
+  "experience": 0.1,
+  "ingredient": [
+    {
+      "item": "spartanweaponryunofficial:constantan_dagger"
+    },
+    {
+      "item": "spartanweaponryunofficial:constantan_parrying_dagger"
+    },
+    {
+      "item": "spartanweaponryunofficial:constantan_longsword"
+    },
+    {
+      "item": "spartanweaponryunofficial:constantan_katana"
+    },
+    {
+      "item": "spartanweaponryunofficial:constantan_saber"
+    },
+    {
+      "item": "spartanweaponryunofficial:constantan_rapier"
+    },
+    {
+      "item": "spartanweaponryunofficial:constantan_greatsword"
+    },
+    {
+      "item": "spartanweaponryunofficial:constantan_battle_hammer"
+    },
+    {
+      "item": "spartanweaponryunofficial:constantan_warhammer"
+    },
+    {
+      "item": "spartanweaponryunofficial:constantan_spear"
+    },
+    {
+      "item": "spartanweaponryunofficial:constantan_halberd"
+    },
+    {
+      "item": "spartanweaponryunofficial:constantan_pike"
+    },
+    {
+      "item": "spartanweaponryunofficial:constantan_lance"
+    },
+    {
+      "item": "spartanweaponryunofficial:constantan_longbow"
+    },
+    {
+      "item": "spartanweaponryunofficial:constantan_heavy_crossbow"
+    },
+    {
+      "item": "spartanweaponryunofficial:constantan_throwing_knife"
+    },
+    {
+      "item": "spartanweaponryunofficial:constantan_tomahawk"
+    },
+    {
+      "item": "spartanweaponryunofficial:constantan_javelin"
+    },
+    {
+      "item": "spartanweaponryunofficial:constantan_boomerang"
+    },
+    {
+      "item": "spartanweaponryunofficial:constantan_battleaxe"
+    },
+    {
+      "item": "spartanweaponryunofficial:constantan_flanged_mace"
+    },
+    {
+      "item": "spartanweaponryunofficial:constantan_glaive"
+    },
+    {
+      "item": "spartanweaponryunofficial:constantan_quarterstaff"
+    },
+    {
+      "item": "spartanweaponryunofficial:constantan_scythe"
+    }
+  ],
+  "result_tag": "c:nuggets/constantan"
+}

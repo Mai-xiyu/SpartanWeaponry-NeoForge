@@ -1,0 +1,26 @@
+{
+  "parent": "spartanweaponryunofficial:root",
+  "criteria": {
+    "has_brewed_oil": {
+      "trigger": "spartanweaponryunofficial:brew_oil"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.spartanweaponryunofficial.brew_oil.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "spartanweaponryunofficial:weapon_oil"
+    },
+    "title": {
+      "translate": "advancement.spartanweaponryunofficial.brew_oil.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_brewed_oil"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

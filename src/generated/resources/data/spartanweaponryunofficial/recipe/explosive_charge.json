@@ -1,0 +1,30 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "spartanweaponryunofficial:type_disabled",
+      "disabled": [
+        "explosives"
+      ]
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "spartanweaponryunofficial:explosive",
+  "key": {
+    "#": {
+      "tag": "c:gunpowders"
+    },
+    "-": {
+      "tag": "c:nuggets/iron"
+    }
+  },
+  "pattern": [
+    "###",
+    "---",
+    "###"
+  ],
+  "result": {
+    "count": 4,
+    "id": "spartanweaponryunofficial:explosive_charge"
+  }
+}

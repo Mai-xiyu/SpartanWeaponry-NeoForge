@@ -1,0 +1,21 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "spartanweaponryunofficial:nickel_nugget_from_blasting_nickel_weapons"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "spartanweaponryunofficial:nickel_nugget_from_blasting_nickel_weapons"
+    ]
+  }
+}

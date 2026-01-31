@@ -90,10 +90,22 @@ public class BoomerangEntity extends ThrowingWeaponEntity
 	public void tick() 
 	{
 		Level level = level();
+		Entity owner = getOwner();
+		
+		// Check for spectator BEFORE calling super.tick() to prevent parent class from interfering
+		if(owner != null && owner.isSpectator())
+		{
+			// Owner is spectating - stop all returning behavior and let it drop
+			if(isNoGravity())
+				setNoGravity(false);
+			isReturning = false;
+			returnPos = null;
+			// Still need to call super.tick() for basic physics, but we've cleared the return state
+		}
 		
 		super.tick();
 		
-		// Do nothing if the Boomerang is in the ground
+		// Do nothing more if the Boomerang is in the ground
 		if(inGround)
 		{
 			xRotO = getXRot();
@@ -101,8 +113,14 @@ public class BoomerangEntity extends ThrowingWeaponEntity
 			return;
 		}
 		
+		// Skip return logic if owner is spectator (double check after super.tick)
+		if(owner != null && owner.isSpectator())
+		{
+			return;
+		}
+		
 		// Update the return position, accounting the player's movement
-		setReturnPosition(getOwner());
+		setReturnPosition(owner);
 		
 		// Get the distance between this entity and the shooter
 		double distance = -1.0d;

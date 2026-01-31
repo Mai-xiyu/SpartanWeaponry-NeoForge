@@ -1,0 +1,30 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "spartanweaponryunofficial:type_disabled",
+      "disabled": [
+        "saber"
+      ]
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "spartanweaponryunofficial:saber",
+  "key": {
+    "#": {
+      "tag": "c:ingots/gold"
+    },
+    "|": {
+      "item": "spartanweaponryunofficial:handle"
+    }
+  },
+  "pattern": [
+    " #",
+    " #",
+    "#|"
+  ],
+  "result": {
+    "count": 1,
+    "id": "spartanweaponryunofficial:golden_saber"
+  }
+}

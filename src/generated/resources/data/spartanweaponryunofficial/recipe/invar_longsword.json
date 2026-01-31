@@ -1,0 +1,38 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "spartanweaponryunofficial:type_disabled",
+      "disabled": [
+        "longsword",
+        "invar"
+      ]
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/invar"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "spartanweaponryunofficial:longsword",
+  "key": {
+    "#": {
+      "tag": "c:ingots/invar"
+    },
+    "|": {
+      "item": "spartanweaponryunofficial:handle"
+    }
+  },
+  "pattern": [
+    " # ",
+    " # ",
+    "#|#"
+  ],
+  "result": {
+    "count": 1,
+    "id": "spartanweaponryunofficial:invar_longsword"
+  }
+}

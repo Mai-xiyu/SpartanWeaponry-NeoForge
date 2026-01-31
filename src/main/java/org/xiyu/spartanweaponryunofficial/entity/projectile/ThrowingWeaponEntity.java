@@ -114,15 +114,18 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
 		if(waterInertia == 0.0f)
 			waterInertia = ModEnchantments.getLevel(level.registryAccess(), ModEnchantments.HYDRODYNAMIC, getWeaponItem()) == 1 ? 0.98f : -1.0f;
 		
-		Entity thrower = getOwner();			//func_234616_v_();
-		if((inGroundTime > 4 || isReturning) && thrower != null)
+		Entity thrower = getOwner();
+		int returnLevel = getEntityData().get(DATA_RETURN);
+		
+		// Only process return logic if the weapon has Loyalty enchantment
+		if(returnLevel > 0 && thrower != null)
 		{
-			int returnLevel = getEntityData().get(DATA_RETURN);
-			if(returnLevel > 0)
+			// Check if we should start returning (after being in ground for a short time, or already returning)
+			if(inGroundTime > 4 || isReturning)
 			{
-				if(thrower != null && thrower.isAlive() && (!(thrower instanceof ServerPlayer) || !thrower.isSpectator()))
+				if(thrower.isAlive() && (!(thrower instanceof ServerPlayer) || !thrower.isSpectator()))
 				{
-					// Return to thrower
+					// Return to thrower - ensure we're in the returning state
 					if(!isReturning)
 					{
 						setNoPhysics(true);
@@ -130,7 +133,16 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
 						isReturning = true;
 						setNoGravity(true);
 					}
-//					Vec3 distance = new Vec3(thrower.getX() - getX(), thrower.getEyeY() - getY(), thrower.getZ() - getZ());
+					
+					// Keep forcing these states while returning to prevent position conflicts
+					if(isReturning)
+					{
+						if(inGround)
+							inGround = false;
+						if(!isNoPhysics())
+							setNoPhysics(true);
+					}
+					
 					Vec3 distance = thrower.getEyePosition().subtract(position());
 					setPosRaw(getX(), getY() + distance.y * 0.015 * (double)returnLevel, getZ());
 					if(level.isClientSide)
@@ -147,17 +159,25 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
 						playedReturnSound = true;
 					}
 				}
-				else if(!thrower.isAlive())
+				else if(!thrower.isAlive() || thrower.isSpectator())
 				{
-					setNoPhysics(false);
-					isReturning = false;
-					setNoGravity(false);
-					getEntityData().set(DATA_RETURN, (byte)0);
+					// Thrower is dead or spectating - stop returning and drop naturally
+					if(isReturning)
+					{
+						setNoPhysics(false);
+						isReturning = false;
+						setNoGravity(false);
+						playedReturnSound = false;
+					}
 				}
 			}
 		}
 		
 		super.tick();
+		
+		// Post-tick: ensure returning state is maintained (fix for position snap-back issues)
+		if(isReturning && inGround)
+			inGround = false;
 		
 		if(!inGround)
 			++ticksInAir;

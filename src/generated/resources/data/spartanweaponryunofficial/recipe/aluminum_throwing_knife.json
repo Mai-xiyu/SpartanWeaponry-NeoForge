@@ -1,0 +1,36 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "spartanweaponryunofficial:type_disabled",
+      "disabled": [
+        "throwing_knife",
+        "aluminum"
+      ]
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "spartanweaponryunofficial:ingots/aluminum"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "spartanweaponryunofficial:throwing_knife",
+  "key": {
+    "#": {
+      "tag": "spartanweaponryunofficial:ingots/aluminum"
+    },
+    "|": {
+      "tag": "spartanweaponryunofficial:handles"
+    }
+  },
+  "pattern": [
+    "|#"
+  ],
+  "result": {
+    "count": 1,
+    "id": "spartanweaponryunofficial:aluminum_throwing_knife"
+  }
+}

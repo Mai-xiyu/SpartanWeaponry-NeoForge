@@ -1,0 +1,36 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "spartanweaponryunofficial:type_disabled",
+      "disabled": [
+        "longbow"
+      ]
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "spartanweaponryunofficial:longbow",
+  "key": {
+    "#": {
+      "tag": "c:gems/diamond"
+    },
+    "/": {
+      "tag": "c:rods/wooden"
+    },
+    "|": {
+      "item": "spartanweaponryunofficial:handle"
+    },
+    "~": {
+      "tag": "c:strings"
+    }
+  },
+  "pattern": [
+    "|/#",
+    "/ ~",
+    "#~~"
+  ],
+  "result": {
+    "count": 1,
+    "id": "spartanweaponryunofficial:diamond_longbow"
+  }
+}

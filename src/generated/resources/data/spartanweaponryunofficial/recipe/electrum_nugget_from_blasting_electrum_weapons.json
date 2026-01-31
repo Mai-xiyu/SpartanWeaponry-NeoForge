@@ -1,0 +1,79 @@
+{
+  "type": "spartanweaponryunofficial:tag_blasting",
+  "experience": 0.1,
+  "ingredient": [
+    {
+      "item": "spartanweaponryunofficial:electrum_dagger"
+    },
+    {
+      "item": "spartanweaponryunofficial:electrum_parrying_dagger"
+    },
+    {
+      "item": "spartanweaponryunofficial:electrum_longsword"
+    },
+    {
+      "item": "spartanweaponryunofficial:electrum_katana"
+    },
+    {
+      "item": "spartanweaponryunofficial:electrum_saber"
+    },
+    {
+      "item": "spartanweaponryunofficial:electrum_rapier"
+    },
+    {
+      "item": "spartanweaponryunofficial:electrum_greatsword"
+    },
+    {
+      "item": "spartanweaponryunofficial:electrum_battle_hammer"
+    },
+    {
+      "item": "spartanweaponryunofficial:electrum_warhammer"
+    },
+    {
+      "item": "spartanweaponryunofficial:electrum_spear"
+    },
+    {
+      "item": "spartanweaponryunofficial:electrum_halberd"
+    },
+    {
+      "item": "spartanweaponryunofficial:electrum_pike"
+    },
+    {
+      "item": "spartanweaponryunofficial:electrum_lance"
+    },
+    {
+      "item": "spartanweaponryunofficial:electrum_longbow"
+    },
+    {
+      "item": "spartanweaponryunofficial:electrum_heavy_crossbow"
+    },
+    {
+      "item": "spartanweaponryunofficial:electrum_throwing_knife"
+    },
+    {
+      "item": "spartanweaponryunofficial:electrum_tomahawk"
+    },
+    {
+      "item": "spartanweaponryunofficial:electrum_javelin"
+    },
+    {
+      "item": "spartanweaponryunofficial:electrum_boomerang"
+    },
+    {
+      "item": "spartanweaponryunofficial:electrum_battleaxe"
+    },
+    {
+      "item": "spartanweaponryunofficial:electrum_flanged_mace"
+    },
+    {
+      "item": "spartanweaponryunofficial:electrum_glaive"
+    },
+    {
+      "item": "spartanweaponryunofficial:electrum_quarterstaff"
+    },
+    {
+      "item": "spartanweaponryunofficial:electrum_scythe"
+    }
+  ],
+  "result_tag": "c:nuggets/electrum"
+}

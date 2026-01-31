@@ -86,7 +86,8 @@ public class OilCoatedItemModel implements IUnbakedGeometry<OilCoatedItemModel>
 		if(!transform.isIdentity())
 			modelState = UnbakedGeometryHelper.composeRootTransformIntoModelState(modelState, transform);
 		
-		RenderTypeGroup normalRenderTypes = new RenderTypeGroup(RenderType.translucent(), RenderType.translucent());
+		RenderTypeGroup normalRenderTypes = new RenderTypeGroup(RenderType.cutout(), RenderType.cutout());
+		RenderTypeGroup coatingRenderTypes = new RenderTypeGroup(RenderType.translucent(), RenderType.translucent());
 		OilCoatingItemBakedModel.Builder builder = OilCoatingItemBakedModel.makeBuilder(context, particleSprite, overrides, context.getTransforms());
 		
 		for(int i = 0; i < textures.size(); i++)
@@ -107,7 +108,7 @@ public class OilCoatedItemModel implements IUnbakedGeometry<OilCoatedItemModel>
 			List<BlockElement> unbakedElements = UnbakedGeometryHelper.createUnbakedItemElements(coatingLayer, sprite, faceData.get(coatingLayer));
 			List<BakedQuad> bakedQuads = UnbakedGeometryHelper.bakeElements(unbakedElements, mat -> sprite, modelState);
 			ResourceLocation renderTypeName = renderTypeNames.get(coatingLayer);
-			RenderTypeGroup renderTypes = renderTypeName != null ? context.getRenderType(renderTypeName) : normalRenderTypes;
+			RenderTypeGroup renderTypes = renderTypeName != null ? context.getRenderType(renderTypeName) : coatingRenderTypes;
 			builder.addCoatedQuads(renderTypes, bakedQuads);
 		}
 		

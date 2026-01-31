@@ -1,0 +1,38 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "spartanweaponryunofficial:type_disabled",
+      "disabled": [
+        "boomerang",
+        "aluminum"
+      ]
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "spartanweaponryunofficial:ingots/aluminum"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "spartanweaponryunofficial:boomerang",
+  "key": {
+    "#": {
+      "tag": "spartanweaponryunofficial:ingots/aluminum"
+    },
+    "P": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "pattern": [
+    "#PP",
+    "P  ",
+    "P  "
+  ],
+  "result": {
+    "count": 1,
+    "id": "spartanweaponryunofficial:aluminum_boomerang"
+  }
+}

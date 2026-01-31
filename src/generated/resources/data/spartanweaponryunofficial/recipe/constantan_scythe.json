@@ -1,0 +1,38 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "spartanweaponryunofficial:type_disabled",
+      "disabled": [
+        "scythe",
+        "constantan"
+      ]
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/constantan"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "spartanweaponryunofficial:scythe",
+  "key": {
+    "#": {
+      "tag": "c:ingots/constantan"
+    },
+    "/": {
+      "item": "spartanweaponryunofficial:pole"
+    }
+  },
+  "pattern": [
+    "## ",
+    "  #",
+    " / "
+  ],
+  "result": {
+    "count": 1,
+    "id": "spartanweaponryunofficial:constantan_scythe"
+  }
+}

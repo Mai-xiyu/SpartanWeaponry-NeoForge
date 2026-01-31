@@ -1,0 +1,30 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "spartanweaponryunofficial:type_disabled",
+      "disabled": [
+        "boomerang"
+      ]
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "spartanweaponryunofficial:boomerang",
+  "key": {
+    "#": {
+      "tag": "c:gems/diamond"
+    },
+    "P": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "pattern": [
+    "#PP",
+    "P  ",
+    "P  "
+  ],
+  "result": {
+    "count": 1,
+    "id": "spartanweaponryunofficial:diamond_boomerang"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "tag": "c:ingots/netherite"
+  },
+  "base": {
+    "item": "spartanweaponryunofficial:diamond_tomahawk"
+  },
+  "result": {
+    "count": 1,
+    "id": "spartanweaponryunofficial:netherite_tomahawk"
+  },
+  "template": {
+    "item": "minecraft:netherite_upgrade_smithing_template"
+  }
+}

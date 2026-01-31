@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "spartanweaponryunofficial:medium_quiver_brace"
+  },
+  "base": {
+    "item": "spartanweaponryunofficial:small_arrow_quiver"
+  },
+  "result": {
+    "count": 1,
+    "id": "spartanweaponryunofficial:medium_arrow_quiver"
+  },
+  "template": {
+    "item": "spartanweaponryunofficial:quiver_compartment"
+  }
+}
