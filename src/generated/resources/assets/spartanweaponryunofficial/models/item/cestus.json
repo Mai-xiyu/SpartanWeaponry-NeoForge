@@ -1,0 +1,20 @@
+{
+  "parent": "spartanweaponryunofficial:item/base/cestus",
+  "overrides": [
+    {
+      "model": "spartanweaponryunofficial:item/cestus_blocking",
+      "predicate": {
+        "spartanweaponryunofficial:blocking": 1.0
+      }
+    },
+    {
+      "model": "spartanweaponryunofficial:item/cestus_throwing",
+      "predicate": {
+        "spartanweaponryunofficial:throwing": 1.0
+      }
+    }
+  ],
+  "textures": {
+    "layer0": "spartanweaponryunofficial:item/cestus"
+  }
+}

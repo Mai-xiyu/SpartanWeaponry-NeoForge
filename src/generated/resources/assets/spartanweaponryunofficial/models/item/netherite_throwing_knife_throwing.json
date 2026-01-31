@@ -1,0 +1,6 @@
+{
+  "parent": "spartanweaponryunofficial:item/base/throwing_knife_throwing",
+  "textures": {
+    "layer0": "spartanweaponryunofficial:item/netherite_throwing_knife"
+  }
+}

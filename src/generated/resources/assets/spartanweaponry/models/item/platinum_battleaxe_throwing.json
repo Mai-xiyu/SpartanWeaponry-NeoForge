@@ -1,8 +1,0 @@
-{
-  "parent": "spartanweaponry:item/base/battleaxe_throwing",
-  "loader": "spartanweaponry:oil_coated_item",
-  "textures": {
-    "coating": "spartanweaponry:item/coating/battleaxe",
-    "layer0": "spartanweaponry:item/platinum_battleaxe"
-  }
-}

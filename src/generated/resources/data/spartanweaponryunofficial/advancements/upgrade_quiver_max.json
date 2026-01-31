@@ -1,0 +1,36 @@
+{
+  "parent": "spartanweaponryunofficial:upgrade_quiver",
+  "criteria": {
+    "has_max_upgraded_quiver": {
+      "conditions": {
+        "items": [
+          {
+            "tag": "spartanweaponryunofficial:upgraded_quivers_max"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.spartanweaponryunofficial.upgrade_quiver_max.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "spartanweaponryunofficial:huge_arrow_quiver"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.spartanweaponryunofficial.upgrade_quiver_max.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_max_upgraded_quiver"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,39 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "spartanweaponryunofficial:type_disabled",
+      "disabled": [
+        "lance",
+        "bronze"
+      ]
+    },
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:tag_empty",
+        "tag": "forge:ingots/bronze"
+      }
+    }
+  ],
+  "group": "spartanweaponryunofficial:lance",
+  "key": {
+    "#": {
+      "tag": "forge:ingots/bronze"
+    },
+    "/": {
+      "item": "spartanweaponryunofficial:pole"
+    },
+    "|": {
+      "item": "spartanweaponryunofficial:handle"
+    }
+  },
+  "pattern": [
+    "  #",
+    "#/ ",
+    "|# "
+  ],
+  "result": {
+    "item": "spartanweaponryunofficial:bronze_lance"
+  }
+}

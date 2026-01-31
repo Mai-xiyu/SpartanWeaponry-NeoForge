@@ -1,8 +1,0 @@
-{
-  "parent": "spartanweaponry:item/base/greatsword_blocking",
-  "loader": "spartanweaponry:oil_coated_item",
-  "textures": {
-    "coating": "spartanweaponry:item/coating/greatsword",
-    "layer0": "spartanweaponry:item/tin_greatsword"
-  }
-}

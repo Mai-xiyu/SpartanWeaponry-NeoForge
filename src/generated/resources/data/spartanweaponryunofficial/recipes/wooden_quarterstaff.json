@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "spartanweaponryunofficial:type_disabled",
+      "disabled": [
+        "quarterstaff"
+      ]
+    }
+  ],
+  "group": "spartanweaponryunofficial:quarterstaff",
+  "key": {
+    "#": {
+      "tag": "minecraft:planks"
+    },
+    "/": {
+      "item": "spartanweaponryunofficial:pole"
+    }
+  },
+  "pattern": [
+    "  #",
+    " / ",
+    "#  "
+  ],
+  "result": {
+    "item": "spartanweaponryunofficial:wooden_quarterstaff"
+  }
+}

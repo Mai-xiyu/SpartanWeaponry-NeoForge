@@ -1,0 +1,8 @@
+{
+  "parent": "spartanweaponryunofficial:item/base/glaive_blocking",
+  "loader": "spartanweaponryunofficial:oil_coated_item",
+  "textures": {
+    "coating": "spartanweaponryunofficial:item/coating/glaive",
+    "layer0": "spartanweaponryunofficial:item/iron_glaive"
+  }
+}

@@ -1,8 +1,0 @@
-{
-  "parent": "spartanweaponry:item/base/saber_blocking",
-  "loader": "spartanweaponry:oil_coated_item",
-  "textures": {
-    "coating": "spartanweaponry:item/coating/saber",
-    "layer0": "spartanweaponry:item/nickel_saber"
-  }
-}

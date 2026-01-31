@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "spartanweaponryunofficial:type_disabled",
+      "disabled": [
+        "quarterstaff",
+        "electrum"
+      ]
+    },
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:tag_empty",
+        "tag": "forge:ingots/electrum"
+      }
+    }
+  ],
+  "group": "spartanweaponryunofficial:quarterstaff",
+  "key": {
+    "#": {
+      "tag": "forge:ingots/electrum"
+    },
+    "/": {
+      "item": "spartanweaponryunofficial:pole"
+    }
+  },
+  "pattern": [
+    "  #",
+    " / ",
+    "#  "
+  ],
+  "result": {
+    "item": "spartanweaponryunofficial:electrum_quarterstaff"
+  }
+}

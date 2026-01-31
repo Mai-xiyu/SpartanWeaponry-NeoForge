@@ -1,0 +1,37 @@
+{
+  "parent": "spartanweaponryunofficial:root",
+  "criteria": {
+    "has_dagger": {
+      "conditions": {
+        "items": [
+          {
+            "tag": "spartanweaponryunofficial:daggers"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.spartanweaponryunofficial.craft_dagger.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "spartanweaponryunofficial:stone_dagger",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.spartanweaponryunofficial.craft_dagger.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_dagger"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

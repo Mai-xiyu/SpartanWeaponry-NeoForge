@@ -1,0 +1,108 @@
+{
+  "type": "spartanweaponryunofficial:tag_blasting",
+  "category": "misc",
+  "cookingtime": 100,
+  "disabled_types": [
+    "electrum"
+  ],
+  "experience": 0.1,
+  "ingredient": [
+    {
+      "disabled_type": "dagger",
+      "item": "spartanweaponryunofficial:electrum_dagger"
+    },
+    {
+      "disabled_type": "parrying_dagger",
+      "item": "spartanweaponryunofficial:electrum_parrying_dagger"
+    },
+    {
+      "disabled_type": "longsword",
+      "item": "spartanweaponryunofficial:electrum_longsword"
+    },
+    {
+      "disabled_type": "katana",
+      "item": "spartanweaponryunofficial:electrum_katana"
+    },
+    {
+      "disabled_type": "saber",
+      "item": "spartanweaponryunofficial:electrum_saber"
+    },
+    {
+      "disabled_type": "rapier",
+      "item": "spartanweaponryunofficial:electrum_rapier"
+    },
+    {
+      "disabled_type": "greatsword",
+      "item": "spartanweaponryunofficial:electrum_greatsword"
+    },
+    {
+      "disabled_type": "battle_hammer",
+      "item": "spartanweaponryunofficial:electrum_battle_hammer"
+    },
+    {
+      "disabled_type": "warhammer",
+      "item": "spartanweaponryunofficial:electrum_warhammer"
+    },
+    {
+      "disabled_type": "spear",
+      "item": "spartanweaponryunofficial:electrum_spear"
+    },
+    {
+      "disabled_type": "halberd",
+      "item": "spartanweaponryunofficial:electrum_halberd"
+    },
+    {
+      "disabled_type": "pike",
+      "item": "spartanweaponryunofficial:electrum_pike"
+    },
+    {
+      "disabled_type": "lance",
+      "item": "spartanweaponryunofficial:electrum_lance"
+    },
+    {
+      "disabled_type": "longbow",
+      "item": "spartanweaponryunofficial:electrum_longbow"
+    },
+    {
+      "disabled_type": "heavy_crossbow",
+      "item": "spartanweaponryunofficial:electrum_heavy_crossbow"
+    },
+    {
+      "disabled_type": "throwing_knife",
+      "item": "spartanweaponryunofficial:electrum_throwing_knife"
+    },
+    {
+      "disabled_type": "tomahawk",
+      "item": "spartanweaponryunofficial:electrum_tomahawk"
+    },
+    {
+      "disabled_type": "javelin",
+      "item": "spartanweaponryunofficial:electrum_javelin"
+    },
+    {
+      "disabled_type": "boomerang",
+      "item": "spartanweaponryunofficial:electrum_boomerang"
+    },
+    {
+      "disabled_type": "battleaxe",
+      "item": "spartanweaponryunofficial:electrum_battleaxe"
+    },
+    {
+      "disabled_type": "flanged_mace",
+      "item": "spartanweaponryunofficial:electrum_flanged_mace"
+    },
+    {
+      "disabled_type": "glaive",
+      "item": "spartanweaponryunofficial:electrum_glaive"
+    },
+    {
+      "disabled_type": "quarterstaff",
+      "item": "spartanweaponryunofficial:electrum_quarterstaff"
+    },
+    {
+      "disabled_type": "scythe",
+      "item": "spartanweaponryunofficial:electrum_scythe"
+    }
+  ],
+  "result_tag": "forge:nuggets/electrum"
+}

@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "spartanweaponryunofficial:type_disabled",
+      "disabled": [
+        "glaive"
+      ]
+    }
+  ],
+  "group": "spartanweaponryunofficial:glaive",
+  "key": {
+    "#": {
+      "tag": "minecraft:planks"
+    },
+    "/": {
+      "item": "spartanweaponryunofficial:pole"
+    }
+  },
+  "pattern": [
+    " #",
+    " #",
+    " /"
+  ],
+  "result": {
+    "item": "spartanweaponryunofficial:wooden_glaive"
+  }
+}

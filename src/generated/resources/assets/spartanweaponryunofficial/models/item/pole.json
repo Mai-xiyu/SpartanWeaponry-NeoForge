@@ -1,0 +1,6 @@
+{
+  "parent": "spartanweaponryunofficial:item/base/pole",
+  "textures": {
+    "layer0": "spartanweaponryunofficial:item/pole"
+  }
+}

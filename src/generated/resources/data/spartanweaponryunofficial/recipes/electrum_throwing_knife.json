@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "spartanweaponryunofficial:type_disabled",
+      "disabled": [
+        "throwing_knife",
+        "electrum"
+      ]
+    },
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:tag_empty",
+        "tag": "forge:ingots/electrum"
+      }
+    }
+  ],
+  "group": "spartanweaponryunofficial:throwing_knife",
+  "key": {
+    "#": {
+      "tag": "forge:ingots/electrum"
+    },
+    "|": {
+      "tag": "spartanweaponryunofficial:handles"
+    }
+  },
+  "pattern": [
+    "|#"
+  ],
+  "result": {
+    "item": "spartanweaponryunofficial:electrum_throwing_knife"
+  }
+}

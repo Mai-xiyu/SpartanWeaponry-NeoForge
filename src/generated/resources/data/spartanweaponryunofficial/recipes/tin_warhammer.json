@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "spartanweaponryunofficial:type_disabled",
+      "disabled": [
+        "warhammer",
+        "tin"
+      ]
+    },
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:tag_empty",
+        "tag": "forge:ingots/tin"
+      }
+    }
+  ],
+  "group": "spartanweaponryunofficial:warhammer",
+  "key": {
+    "#": {
+      "tag": "forge:ingots/tin"
+    },
+    "|": {
+      "item": "spartanweaponryunofficial:handle"
+    }
+  },
+  "pattern": [
+    " #",
+    "##",
+    " |"
+  ],
+  "result": {
+    "item": "spartanweaponryunofficial:tin_warhammer"
+  }
+}

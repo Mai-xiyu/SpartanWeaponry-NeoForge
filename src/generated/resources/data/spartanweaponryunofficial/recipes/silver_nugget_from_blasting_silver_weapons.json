@@ -1,0 +1,108 @@
+{
+  "type": "spartanweaponryunofficial:tag_blasting",
+  "category": "misc",
+  "cookingtime": 100,
+  "disabled_types": [
+    "silver"
+  ],
+  "experience": 0.1,
+  "ingredient": [
+    {
+      "disabled_type": "dagger",
+      "item": "spartanweaponryunofficial:silver_dagger"
+    },
+    {
+      "disabled_type": "parrying_dagger",
+      "item": "spartanweaponryunofficial:silver_parrying_dagger"
+    },
+    {
+      "disabled_type": "longsword",
+      "item": "spartanweaponryunofficial:silver_longsword"
+    },
+    {
+      "disabled_type": "katana",
+      "item": "spartanweaponryunofficial:silver_katana"
+    },
+    {
+      "disabled_type": "saber",
+      "item": "spartanweaponryunofficial:silver_saber"
+    },
+    {
+      "disabled_type": "rapier",
+      "item": "spartanweaponryunofficial:silver_rapier"
+    },
+    {
+      "disabled_type": "greatsword",
+      "item": "spartanweaponryunofficial:silver_greatsword"
+    },
+    {
+      "disabled_type": "battle_hammer",
+      "item": "spartanweaponryunofficial:silver_battle_hammer"
+    },
+    {
+      "disabled_type": "warhammer",
+      "item": "spartanweaponryunofficial:silver_warhammer"
+    },
+    {
+      "disabled_type": "spear",
+      "item": "spartanweaponryunofficial:silver_spear"
+    },
+    {
+      "disabled_type": "halberd",
+      "item": "spartanweaponryunofficial:silver_halberd"
+    },
+    {
+      "disabled_type": "pike",
+      "item": "spartanweaponryunofficial:silver_pike"
+    },
+    {
+      "disabled_type": "lance",
+      "item": "spartanweaponryunofficial:silver_lance"
+    },
+    {
+      "disabled_type": "longbow",
+      "item": "spartanweaponryunofficial:silver_longbow"
+    },
+    {
+      "disabled_type": "heavy_crossbow",
+      "item": "spartanweaponryunofficial:silver_heavy_crossbow"
+    },
+    {
+      "disabled_type": "throwing_knife",
+      "item": "spartanweaponryunofficial:silver_throwing_knife"
+    },
+    {
+      "disabled_type": "tomahawk",
+      "item": "spartanweaponryunofficial:silver_tomahawk"
+    },
+    {
+      "disabled_type": "javelin",
+      "item": "spartanweaponryunofficial:silver_javelin"
+    },
+    {
+      "disabled_type": "boomerang",
+      "item": "spartanweaponryunofficial:silver_boomerang"
+    },
+    {
+      "disabled_type": "battleaxe",
+      "item": "spartanweaponryunofficial:silver_battleaxe"
+    },
+    {
+      "disabled_type": "flanged_mace",
+      "item": "spartanweaponryunofficial:silver_flanged_mace"
+    },
+    {
+      "disabled_type": "glaive",
+      "item": "spartanweaponryunofficial:silver_glaive"
+    },
+    {
+      "disabled_type": "quarterstaff",
+      "item": "spartanweaponryunofficial:silver_quarterstaff"
+    },
+    {
+      "disabled_type": "scythe",
+      "item": "spartanweaponryunofficial:silver_scythe"
+    }
+  ],
+  "result_tag": "forge:nuggets/silver"
+}

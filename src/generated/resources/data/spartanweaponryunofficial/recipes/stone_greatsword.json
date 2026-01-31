@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "spartanweaponryunofficial:type_disabled",
+      "disabled": [
+        "greatsword"
+      ]
+    }
+  ],
+  "group": "spartanweaponryunofficial:greatsword",
+  "key": {
+    "#": {
+      "tag": "forge:cobblestone"
+    },
+    "|": {
+      "item": "spartanweaponryunofficial:handle"
+    }
+  },
+  "pattern": [
+    " # ",
+    "###",
+    "#|#"
+  ],
+  "result": {
+    "item": "spartanweaponryunofficial:stone_greatsword"
+  }
+}

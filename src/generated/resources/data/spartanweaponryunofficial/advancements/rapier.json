@@ -1,0 +1,37 @@
+{
+  "parent": "spartanweaponryunofficial:saber",
+  "criteria": {
+    "has_rapier": {
+      "conditions": {
+        "items": [
+          {
+            "tag": "spartanweaponryunofficial:rapiers"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.spartanweaponryunofficial.craft_rapier.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "spartanweaponryunofficial:diamond_rapier",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.spartanweaponryunofficial.craft_rapier.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_rapier"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
