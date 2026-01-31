@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "spartanweaponryunofficial:type_disabled",
+      "disabled": [
+        "battle_hammer",
+        "tin"
+      ]
+    },
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:tag_empty",
+        "tag": "forge:ingots/tin"
+      }
+    }
+  ],
+  "group": "spartanweaponryunofficial:battle_hammer",
+  "key": {
+    "#": {
+      "tag": "forge:ingots/tin"
+    },
+    "|": {
+      "item": "spartanweaponryunofficial:handle"
+    }
+  },
+  "pattern": [
+    "###",
+    "###",
+    " | "
+  ],
+  "result": {
+    "item": "spartanweaponryunofficial:tin_battle_hammer"
+  }
+}

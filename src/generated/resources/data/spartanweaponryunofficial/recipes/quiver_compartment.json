@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "spartanweaponryunofficial:type_disabled",
+      "disabled": [
+        "quiver"
+      ]
+    }
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:leather"
+    },
+    "~": {
+      "tag": "forge:string"
+    }
+  },
+  "pattern": [
+    "#~#"
+  ],
+  "result": {
+    "item": "spartanweaponryunofficial:quiver_compartment"
+  }
+}

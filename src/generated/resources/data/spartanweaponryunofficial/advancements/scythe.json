@@ -1,0 +1,37 @@
+{
+  "parent": "spartanweaponryunofficial:glaive",
+  "criteria": {
+    "has_scythe": {
+      "conditions": {
+        "items": [
+          {
+            "tag": "spartanweaponryunofficial:scythes"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.spartanweaponryunofficial.craft_scythe.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "spartanweaponryunofficial:diamond_scythe",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.spartanweaponryunofficial.craft_scythe.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_scythe"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

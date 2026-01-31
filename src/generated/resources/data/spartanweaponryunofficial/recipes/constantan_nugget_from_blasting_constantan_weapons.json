@@ -1,0 +1,108 @@
+{
+  "type": "spartanweaponryunofficial:tag_blasting",
+  "category": "misc",
+  "cookingtime": 100,
+  "disabled_types": [
+    "constantan"
+  ],
+  "experience": 0.1,
+  "ingredient": [
+    {
+      "disabled_type": "dagger",
+      "item": "spartanweaponryunofficial:constantan_dagger"
+    },
+    {
+      "disabled_type": "parrying_dagger",
+      "item": "spartanweaponryunofficial:constantan_parrying_dagger"
+    },
+    {
+      "disabled_type": "longsword",
+      "item": "spartanweaponryunofficial:constantan_longsword"
+    },
+    {
+      "disabled_type": "katana",
+      "item": "spartanweaponryunofficial:constantan_katana"
+    },
+    {
+      "disabled_type": "saber",
+      "item": "spartanweaponryunofficial:constantan_saber"
+    },
+    {
+      "disabled_type": "rapier",
+      "item": "spartanweaponryunofficial:constantan_rapier"
+    },
+    {
+      "disabled_type": "greatsword",
+      "item": "spartanweaponryunofficial:constantan_greatsword"
+    },
+    {
+      "disabled_type": "battle_hammer",
+      "item": "spartanweaponryunofficial:constantan_battle_hammer"
+    },
+    {
+      "disabled_type": "warhammer",
+      "item": "spartanweaponryunofficial:constantan_warhammer"
+    },
+    {
+      "disabled_type": "spear",
+      "item": "spartanweaponryunofficial:constantan_spear"
+    },
+    {
+      "disabled_type": "halberd",
+      "item": "spartanweaponryunofficial:constantan_halberd"
+    },
+    {
+      "disabled_type": "pike",
+      "item": "spartanweaponryunofficial:constantan_pike"
+    },
+    {
+      "disabled_type": "lance",
+      "item": "spartanweaponryunofficial:constantan_lance"
+    },
+    {
+      "disabled_type": "longbow",
+      "item": "spartanweaponryunofficial:constantan_longbow"
+    },
+    {
+      "disabled_type": "heavy_crossbow",
+      "item": "spartanweaponryunofficial:constantan_heavy_crossbow"
+    },
+    {
+      "disabled_type": "throwing_knife",
+      "item": "spartanweaponryunofficial:constantan_throwing_knife"
+    },
+    {
+      "disabled_type": "tomahawk",
+      "item": "spartanweaponryunofficial:constantan_tomahawk"
+    },
+    {
+      "disabled_type": "javelin",
+      "item": "spartanweaponryunofficial:constantan_javelin"
+    },
+    {
+      "disabled_type": "boomerang",
+      "item": "spartanweaponryunofficial:constantan_boomerang"
+    },
+    {
+      "disabled_type": "battleaxe",
+      "item": "spartanweaponryunofficial:constantan_battleaxe"
+    },
+    {
+      "disabled_type": "flanged_mace",
+      "item": "spartanweaponryunofficial:constantan_flanged_mace"
+    },
+    {
+      "disabled_type": "glaive",
+      "item": "spartanweaponryunofficial:constantan_glaive"
+    },
+    {
+      "disabled_type": "quarterstaff",
+      "item": "spartanweaponryunofficial:constantan_quarterstaff"
+    },
+    {
+      "disabled_type": "scythe",
+      "item": "spartanweaponryunofficial:constantan_scythe"
+    }
+  ],
+  "result_tag": "forge:nuggets/constantan"
+}

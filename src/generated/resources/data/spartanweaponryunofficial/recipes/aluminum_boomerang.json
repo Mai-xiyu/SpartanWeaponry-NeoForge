@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "spartanweaponryunofficial:type_disabled",
+      "disabled": [
+        "boomerang",
+        "aluminum"
+      ]
+    },
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:tag_empty",
+        "tag": "spartanweaponryunofficial:ingots/aluminum"
+      }
+    }
+  ],
+  "group": "spartanweaponryunofficial:boomerang",
+  "key": {
+    "#": {
+      "tag": "spartanweaponryunofficial:ingots/aluminum"
+    },
+    "P": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "pattern": [
+    "#PP",
+    "P  ",
+    "P  "
+  ],
+  "result": {
+    "item": "spartanweaponryunofficial:aluminum_boomerang"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "spartanweaponryunofficial:type_disabled",
+      "disabled": [
+        "lance"
+      ]
+    }
+  ],
+  "group": "spartanweaponryunofficial:lance",
+  "key": {
+    "#": {
+      "tag": "forge:gems/diamond"
+    },
+    "/": {
+      "item": "spartanweaponryunofficial:pole"
+    },
+    "|": {
+      "item": "spartanweaponryunofficial:handle"
+    }
+  },
+  "pattern": [
+    "  #",
+    "#/ ",
+    "|# "
+  ],
+  "result": {
+    "item": "spartanweaponryunofficial:diamond_lance"
+  }
+}

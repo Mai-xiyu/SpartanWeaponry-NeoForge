@@ -1,0 +1,6 @@
+{
+  "parent": "spartanweaponryunofficial:item/base/javelin",
+  "textures": {
+    "layer0": "spartanweaponryunofficial:item/empty_javelin"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "spartanweaponryunofficial:type_disabled",
+      "disabled": [
+        "lance",
+        "invar"
+      ]
+    },
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:tag_empty",
+        "tag": "forge:ingots/invar"
+      }
+    }
+  ],
+  "group": "spartanweaponryunofficial:lance",
+  "key": {
+    "#": {
+      "tag": "forge:ingots/invar"
+    },
+    "/": {
+      "item": "spartanweaponryunofficial:pole"
+    },
+    "|": {
+      "item": "spartanweaponryunofficial:handle"
+    }
+  },
+  "pattern": [
+    "  #",
+    "#/ ",
+    "|# "
+  ],
+  "result": {
+    "item": "spartanweaponryunofficial:invar_lance"
+  }
+}

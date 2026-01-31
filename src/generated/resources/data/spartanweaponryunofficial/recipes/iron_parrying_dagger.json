@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "spartanweaponryunofficial:type_disabled",
+      "disabled": [
+        "parrying_dagger"
+      ]
+    }
+  ],
+  "group": "spartanweaponryunofficial:parrying_dagger",
+  "key": {
+    "#": {
+      "tag": "forge:ingots/iron"
+    },
+    "|": {
+      "item": "spartanweaponryunofficial:handle"
+    }
+  },
+  "pattern": [
+    " #",
+    "#|"
+  ],
+  "result": {
+    "item": "spartanweaponryunofficial:iron_parrying_dagger"
+  }
+}

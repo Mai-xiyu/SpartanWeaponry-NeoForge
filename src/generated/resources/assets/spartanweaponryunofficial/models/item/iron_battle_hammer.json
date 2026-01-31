@@ -1,0 +1,22 @@
+{
+  "parent": "spartanweaponryunofficial:item/base/battle_hammer",
+  "loader": "spartanweaponryunofficial:oil_coated_item",
+  "overrides": [
+    {
+      "model": "spartanweaponryunofficial:item/iron_battle_hammer_blocking",
+      "predicate": {
+        "spartanweaponryunofficial:blocking": 1.0
+      }
+    },
+    {
+      "model": "spartanweaponryunofficial:item/iron_battle_hammer_throwing",
+      "predicate": {
+        "spartanweaponryunofficial:throwing": 1.0
+      }
+    }
+  ],
+  "textures": {
+    "coating": "spartanweaponryunofficial:item/coating/battle_hammer",
+    "layer0": "spartanweaponryunofficial:item/iron_battle_hammer"
+  }
+}

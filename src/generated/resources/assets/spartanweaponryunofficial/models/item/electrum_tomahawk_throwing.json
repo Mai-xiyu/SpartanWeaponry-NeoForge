@@ -1,0 +1,6 @@
+{
+  "parent": "spartanweaponryunofficial:item/base/tomahawk_throwing",
+  "textures": {
+    "layer0": "spartanweaponryunofficial:item/electrum_tomahawk"
+  }
+}

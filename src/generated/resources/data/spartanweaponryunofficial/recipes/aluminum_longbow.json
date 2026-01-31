@@ -1,0 +1,42 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "spartanweaponryunofficial:type_disabled",
+      "disabled": [
+        "longbow",
+        "aluminum"
+      ]
+    },
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:tag_empty",
+        "tag": "spartanweaponryunofficial:ingots/aluminum"
+      }
+    }
+  ],
+  "group": "spartanweaponryunofficial:longbow",
+  "key": {
+    "#": {
+      "tag": "spartanweaponryunofficial:ingots/aluminum"
+    },
+    "/": {
+      "tag": "forge:rods/wooden"
+    },
+    "|": {
+      "item": "spartanweaponryunofficial:handle"
+    },
+    "~": {
+      "tag": "forge:string"
+    }
+  },
+  "pattern": [
+    "|/#",
+    "/ ~",
+    "#~~"
+  ],
+  "result": {
+    "item": "spartanweaponryunofficial:aluminum_longbow"
+  }
+}

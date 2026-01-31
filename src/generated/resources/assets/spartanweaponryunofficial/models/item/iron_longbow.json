@@ -1,0 +1,28 @@
+{
+  "parent": "spartanweaponryunofficial:item/base/longbow",
+  "overrides": [
+    {
+      "model": "spartanweaponryunofficial:item/iron_longbow_pulling_0",
+      "predicate": {
+        "spartanweaponryunofficial:pulling": 1.0
+      }
+    },
+    {
+      "model": "spartanweaponryunofficial:item/iron_longbow_pulling_1",
+      "predicate": {
+        "spartanweaponryunofficial:pull": 0.65,
+        "spartanweaponryunofficial:pulling": 1.0
+      }
+    },
+    {
+      "model": "spartanweaponryunofficial:item/iron_longbow_pulling_2",
+      "predicate": {
+        "spartanweaponryunofficial:pull": 0.9,
+        "spartanweaponryunofficial:pulling": 1.0
+      }
+    }
+  ],
+  "textures": {
+    "layer0": "spartanweaponryunofficial:item/iron_longbow_standby"
+  }
+}

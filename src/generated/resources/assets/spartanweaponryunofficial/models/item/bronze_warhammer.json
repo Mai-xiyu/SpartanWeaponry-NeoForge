@@ -1,0 +1,22 @@
+{
+  "parent": "spartanweaponryunofficial:item/base/warhammer",
+  "loader": "spartanweaponryunofficial:oil_coated_item",
+  "overrides": [
+    {
+      "model": "spartanweaponryunofficial:item/bronze_warhammer_blocking",
+      "predicate": {
+        "spartanweaponryunofficial:blocking": 1.0
+      }
+    },
+    {
+      "model": "spartanweaponryunofficial:item/bronze_warhammer_throwing",
+      "predicate": {
+        "spartanweaponryunofficial:throwing": 1.0
+      }
+    }
+  ],
+  "textures": {
+    "coating": "spartanweaponryunofficial:item/coating/warhammer",
+    "layer0": "spartanweaponryunofficial:item/bronze_warhammer"
+  }
+}

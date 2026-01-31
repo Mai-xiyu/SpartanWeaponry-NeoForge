@@ -1,0 +1,6 @@
+{
+  "parent": "spartanweaponryunofficial:item/base/boomerang",
+  "textures": {
+    "layer0": "spartanweaponryunofficial:item/empty_boomerang"
+  }
+}

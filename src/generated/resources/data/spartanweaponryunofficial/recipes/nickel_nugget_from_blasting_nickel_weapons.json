@@ -1,0 +1,108 @@
+{
+  "type": "spartanweaponryunofficial:tag_blasting",
+  "category": "misc",
+  "cookingtime": 100,
+  "disabled_types": [
+    "nickel"
+  ],
+  "experience": 0.1,
+  "ingredient": [
+    {
+      "disabled_type": "dagger",
+      "item": "spartanweaponryunofficial:nickel_dagger"
+    },
+    {
+      "disabled_type": "parrying_dagger",
+      "item": "spartanweaponryunofficial:nickel_parrying_dagger"
+    },
+    {
+      "disabled_type": "longsword",
+      "item": "spartanweaponryunofficial:nickel_longsword"
+    },
+    {
+      "disabled_type": "katana",
+      "item": "spartanweaponryunofficial:nickel_katana"
+    },
+    {
+      "disabled_type": "saber",
+      "item": "spartanweaponryunofficial:nickel_saber"
+    },
+    {
+      "disabled_type": "rapier",
+      "item": "spartanweaponryunofficial:nickel_rapier"
+    },
+    {
+      "disabled_type": "greatsword",
+      "item": "spartanweaponryunofficial:nickel_greatsword"
+    },
+    {
+      "disabled_type": "battle_hammer",
+      "item": "spartanweaponryunofficial:nickel_battle_hammer"
+    },
+    {
+      "disabled_type": "warhammer",
+      "item": "spartanweaponryunofficial:nickel_warhammer"
+    },
+    {
+      "disabled_type": "spear",
+      "item": "spartanweaponryunofficial:nickel_spear"
+    },
+    {
+      "disabled_type": "halberd",
+      "item": "spartanweaponryunofficial:nickel_halberd"
+    },
+    {
+      "disabled_type": "pike",
+      "item": "spartanweaponryunofficial:nickel_pike"
+    },
+    {
+      "disabled_type": "lance",
+      "item": "spartanweaponryunofficial:nickel_lance"
+    },
+    {
+      "disabled_type": "longbow",
+      "item": "spartanweaponryunofficial:nickel_longbow"
+    },
+    {
+      "disabled_type": "heavy_crossbow",
+      "item": "spartanweaponryunofficial:nickel_heavy_crossbow"
+    },
+    {
+      "disabled_type": "throwing_knife",
+      "item": "spartanweaponryunofficial:nickel_throwing_knife"
+    },
+    {
+      "disabled_type": "tomahawk",
+      "item": "spartanweaponryunofficial:nickel_tomahawk"
+    },
+    {
+      "disabled_type": "javelin",
+      "item": "spartanweaponryunofficial:nickel_javelin"
+    },
+    {
+      "disabled_type": "boomerang",
+      "item": "spartanweaponryunofficial:nickel_boomerang"
+    },
+    {
+      "disabled_type": "battleaxe",
+      "item": "spartanweaponryunofficial:nickel_battleaxe"
+    },
+    {
+      "disabled_type": "flanged_mace",
+      "item": "spartanweaponryunofficial:nickel_flanged_mace"
+    },
+    {
+      "disabled_type": "glaive",
+      "item": "spartanweaponryunofficial:nickel_glaive"
+    },
+    {
+      "disabled_type": "quarterstaff",
+      "item": "spartanweaponryunofficial:nickel_quarterstaff"
+    },
+    {
+      "disabled_type": "scythe",
+      "item": "spartanweaponryunofficial:nickel_scythe"
+    }
+  ],
+  "result_tag": "forge:nuggets/nickel"
+}

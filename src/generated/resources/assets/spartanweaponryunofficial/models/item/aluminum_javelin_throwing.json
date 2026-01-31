@@ -1,0 +1,6 @@
+{
+  "parent": "spartanweaponryunofficial:item/base/javelin_throwing",
+  "textures": {
+    "layer0": "spartanweaponryunofficial:item/aluminum_javelin"
+  }
+}

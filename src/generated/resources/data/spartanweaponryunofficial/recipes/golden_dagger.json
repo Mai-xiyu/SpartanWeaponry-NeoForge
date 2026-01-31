@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "spartanweaponryunofficial:type_disabled",
+      "disabled": [
+        "dagger"
+      ]
+    }
+  ],
+  "group": "spartanweaponryunofficial:dagger",
+  "key": {
+    "#": {
+      "tag": "forge:ingots/gold"
+    },
+    "|": {
+      "tag": "spartanweaponryunofficial:handles"
+    }
+  },
+  "pattern": [
+    "#",
+    "|"
+  ],
+  "result": {
+    "item": "spartanweaponryunofficial:golden_dagger"
+  }
+}

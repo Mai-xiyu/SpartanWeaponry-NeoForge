@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "spartanweaponryunofficial:type_disabled",
+      "disabled": [
+        "pike",
+        "platinum"
+      ]
+    },
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:tag_empty",
+        "tag": "forge:ingots/platinum"
+      }
+    }
+  ],
+  "group": "spartanweaponryunofficial:pike",
+  "key": {
+    "#": {
+      "tag": "forge:ingots/platinum"
+    },
+    "/": {
+      "item": "spartanweaponryunofficial:pole"
+    }
+  },
+  "pattern": [
+    "#",
+    "/",
+    "/"
+  ],
+  "result": {
+    "item": "spartanweaponryunofficial:platinum_pike"
+  }
+}

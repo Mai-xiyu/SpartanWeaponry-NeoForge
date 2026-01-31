@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "spartanweaponryunofficial:type_disabled",
+      "disabled": [
+        "spear"
+      ]
+    }
+  ],
+  "group": "spartanweaponryunofficial:spear",
+  "key": {
+    "#": {
+      "tag": "forge:ingots/gold"
+    },
+    "/": {
+      "tag": "spartanweaponryunofficial:poles"
+    }
+  },
+  "pattern": [
+    "#",
+    "/"
+  ],
+  "result": {
+    "item": "spartanweaponryunofficial:golden_spear"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "spartanweaponryunofficial:type_disabled",
+      "disabled": [
+        "halberd"
+      ]
+    }
+  ],
+  "group": "spartanweaponryunofficial:halberd",
+  "key": {
+    "#": {
+      "tag": "minecraft:planks"
+    },
+    "/": {
+      "item": "spartanweaponryunofficial:pole"
+    }
+  },
+  "pattern": [
+    " #",
+    "##",
+    "#/"
+  ],
+  "result": {
+    "item": "spartanweaponryunofficial:wooden_halberd"
+  }
+}

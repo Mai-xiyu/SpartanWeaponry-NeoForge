@@ -1,0 +1,6 @@
+{
+  "parent": "spartanweaponryunofficial:item/base/cestus_blocking",
+  "textures": {
+    "layer0": "spartanweaponryunofficial:item/cestus"
+  }
+}

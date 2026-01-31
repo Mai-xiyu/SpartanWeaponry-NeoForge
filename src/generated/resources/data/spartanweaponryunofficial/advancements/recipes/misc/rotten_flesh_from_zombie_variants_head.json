@@ -1,0 +1,37 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "spartanweaponryunofficial:rotten_flesh_from_zombie_variants_head"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_zombified_piglin_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spartanweaponryunofficial:zombified_piglin_head",
+              "spartanweaponryunofficial:husk_head",
+              "spartanweaponryunofficial:drowned_head"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_zombified_piglin_head",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "spartanweaponryunofficial:rotten_flesh_from_zombie_variants_head"
+    ]
+  },
+  "sends_telemetry_event": false
+}

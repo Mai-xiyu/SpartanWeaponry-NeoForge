@@ -1,0 +1,38 @@
+{
+  "parent": "minecraft:item/generated",
+  "overrides": [
+    {
+      "model": "spartanweaponryunofficial:item/huge_arrow_quiver_1",
+      "predicate": {
+        "spartanweaponryunofficial:arrow": 1.0
+      }
+    },
+    {
+      "model": "spartanweaponryunofficial:item/huge_arrow_quiver_2",
+      "predicate": {
+        "spartanweaponryunofficial:arrow": 2.0
+      }
+    },
+    {
+      "model": "spartanweaponryunofficial:item/huge_arrow_quiver_3",
+      "predicate": {
+        "spartanweaponryunofficial:arrow": 3.0
+      }
+    },
+    {
+      "model": "spartanweaponryunofficial:item/huge_arrow_quiver_4",
+      "predicate": {
+        "spartanweaponryunofficial:arrow": 4.0
+      }
+    },
+    {
+      "model": "spartanweaponryunofficial:item/huge_arrow_quiver_5",
+      "predicate": {
+        "spartanweaponryunofficial:arrow": 5.0
+      }
+    }
+  ],
+  "textures": {
+    "layer0": "spartanweaponryunofficial:item/huge_arrow_quiver_base"
+  }
+}

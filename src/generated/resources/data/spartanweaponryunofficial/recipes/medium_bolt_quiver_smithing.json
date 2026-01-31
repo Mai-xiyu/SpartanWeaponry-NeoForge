@@ -1,0 +1,15 @@
+{
+  "type": "spartanweaponryunofficial:quiver_upgrade_smithing",
+  "addition": {
+    "item": "spartanweaponryunofficial:medium_quiver_brace"
+  },
+  "base": {
+    "item": "spartanweaponryunofficial:small_bolt_quiver"
+  },
+  "result": {
+    "item": "spartanweaponryunofficial:medium_bolt_quiver"
+  },
+  "template": {
+    "item": "spartanweaponryunofficial:quiver_compartment"
+  }
+}

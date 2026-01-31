@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "spartanweaponryunofficial:item/small_arrow_quiver_2"
+  }
+}

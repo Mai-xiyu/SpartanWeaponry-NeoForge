@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "spartanweaponryunofficial:type_disabled",
+      "disabled": [
+        "battle_hammer"
+      ]
+    }
+  ],
+  "group": "spartanweaponryunofficial:battle_hammer",
+  "key": {
+    "#": {
+      "tag": "forge:ingots/iron"
+    },
+    "|": {
+      "item": "spartanweaponryunofficial:handle"
+    }
+  },
+  "pattern": [
+    "###",
+    "###",
+    " | "
+  ],
+  "result": {
+    "item": "spartanweaponryunofficial:iron_battle_hammer"
+  }
+}

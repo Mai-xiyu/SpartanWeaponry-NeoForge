@@ -1,0 +1,37 @@
+{
+  "parent": "spartanweaponryunofficial:root",
+  "criteria": {
+    "has_cestus": {
+      "conditions": {
+        "items": [
+          {
+            "tag": "spartanweaponryunofficial:cestusae"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.spartanweaponryunofficial.craft_cestus.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "spartanweaponryunofficial:cestus",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.spartanweaponryunofficial.craft_cestus.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_cestus"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

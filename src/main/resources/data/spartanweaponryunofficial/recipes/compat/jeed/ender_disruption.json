@@ -1,0 +1,28 @@
+{
+  "type": "jeed:effect_provider",
+  "effect": {
+    "id": "spartanweaponryunofficial:ender_disruption"
+  },
+  "providers": [
+    {
+      "item": "spartanweaponryunofficial:weapon_oil",
+      "nbt": "{Oil:{Effect:\"spartanweaponryunofficial:ender\"}}"
+    },
+    {
+      "item": "spartanweaponryunofficial:weapon_oil",
+      "nbt": "{Oil:{Effect:\"spartanweaponryunofficial:ender_strong\"}}"
+    }
+  ],
+  "conditions": [
+    {
+      "disabled": [
+        "oil"
+      ],
+      "type": "spartanweaponryunofficial:type_disabled"
+    },
+    {
+      "modid": "jeed",
+      "type": "forge:mod_loaded"
+    }
+  ]
+}
