@@ -1,0 +1,37 @@
+{
+  "parent": "spartanweaponry:battle_hammer",
+  "criteria": {
+    "has_warhammer": {
+      "conditions": {
+        "items": [
+          {
+            "tag": "spartanweaponry:warhammers"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.spartanweaponry.craft_warhammer.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "spartanweaponry:diamond_warhammer",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.spartanweaponry.craft_warhammer.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_warhammer"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "spartanweaponry:item/base/club_blocking",
+  "loader": "spartanweaponry:oil_coated_item",
+  "textures": {
+    "coating": "spartanweaponry:item/coating/club",
+    "layer0": "spartanweaponry:item/wooden_club"
+  }
+}

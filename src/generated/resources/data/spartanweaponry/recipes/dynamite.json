@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "spartanweaponry:type_disabled",
+      "disabled": [
+        "explosives"
+      ]
+    }
+  ],
+  "key": {
+    "#": {
+      "item": "spartanweaponry:explosive_charge"
+    },
+    "~": {
+      "tag": "forge:string"
+    }
+  },
+  "pattern": [
+    "  ~",
+    " # ",
+    "#  "
+  ],
+  "result": {
+    "count": 2,
+    "item": "spartanweaponry:dynamite"
+  }
+}

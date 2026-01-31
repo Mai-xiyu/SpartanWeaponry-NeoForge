@@ -1,0 +1,108 @@
+{
+  "type": "spartanweaponry:tag_blasting",
+  "category": "misc",
+  "cookingtime": 100,
+  "disabled_types": [
+    "platinum"
+  ],
+  "experience": 0.1,
+  "ingredient": [
+    {
+      "disabled_type": "dagger",
+      "item": "spartanweaponry:platinum_dagger"
+    },
+    {
+      "disabled_type": "parrying_dagger",
+      "item": "spartanweaponry:platinum_parrying_dagger"
+    },
+    {
+      "disabled_type": "longsword",
+      "item": "spartanweaponry:platinum_longsword"
+    },
+    {
+      "disabled_type": "katana",
+      "item": "spartanweaponry:platinum_katana"
+    },
+    {
+      "disabled_type": "saber",
+      "item": "spartanweaponry:platinum_saber"
+    },
+    {
+      "disabled_type": "rapier",
+      "item": "spartanweaponry:platinum_rapier"
+    },
+    {
+      "disabled_type": "greatsword",
+      "item": "spartanweaponry:platinum_greatsword"
+    },
+    {
+      "disabled_type": "battle_hammer",
+      "item": "spartanweaponry:platinum_battle_hammer"
+    },
+    {
+      "disabled_type": "warhammer",
+      "item": "spartanweaponry:platinum_warhammer"
+    },
+    {
+      "disabled_type": "spear",
+      "item": "spartanweaponry:platinum_spear"
+    },
+    {
+      "disabled_type": "halberd",
+      "item": "spartanweaponry:platinum_halberd"
+    },
+    {
+      "disabled_type": "pike",
+      "item": "spartanweaponry:platinum_pike"
+    },
+    {
+      "disabled_type": "lance",
+      "item": "spartanweaponry:platinum_lance"
+    },
+    {
+      "disabled_type": "longbow",
+      "item": "spartanweaponry:platinum_longbow"
+    },
+    {
+      "disabled_type": "heavy_crossbow",
+      "item": "spartanweaponry:platinum_heavy_crossbow"
+    },
+    {
+      "disabled_type": "throwing_knife",
+      "item": "spartanweaponry:platinum_throwing_knife"
+    },
+    {
+      "disabled_type": "tomahawk",
+      "item": "spartanweaponry:platinum_tomahawk"
+    },
+    {
+      "disabled_type": "javelin",
+      "item": "spartanweaponry:platinum_javelin"
+    },
+    {
+      "disabled_type": "boomerang",
+      "item": "spartanweaponry:platinum_boomerang"
+    },
+    {
+      "disabled_type": "battleaxe",
+      "item": "spartanweaponry:platinum_battleaxe"
+    },
+    {
+      "disabled_type": "flanged_mace",
+      "item": "spartanweaponry:platinum_flanged_mace"
+    },
+    {
+      "disabled_type": "glaive",
+      "item": "spartanweaponry:platinum_glaive"
+    },
+    {
+      "disabled_type": "quarterstaff",
+      "item": "spartanweaponry:platinum_quarterstaff"
+    },
+    {
+      "disabled_type": "scythe",
+      "item": "spartanweaponry:platinum_scythe"
+    }
+  ],
+  "result_tag": "forge:nuggets/platinum"
+}

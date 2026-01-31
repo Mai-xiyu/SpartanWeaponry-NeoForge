@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "spartanweaponry:type_disabled",
+      "disabled": [
+        "spear",
+        "tin"
+      ]
+    },
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:tag_empty",
+        "tag": "forge:ingots/tin"
+      }
+    }
+  ],
+  "group": "spartanweaponry:spear",
+  "key": {
+    "#": {
+      "tag": "forge:ingots/tin"
+    },
+    "/": {
+      "tag": "spartanweaponry:poles"
+    }
+  },
+  "pattern": [
+    "#",
+    "/"
+  ],
+  "result": {
+    "item": "spartanweaponry:tin_spear"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "spartanweaponry:type_disabled",
+      "disabled": [
+        "spear",
+        "lead"
+      ]
+    },
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:tag_empty",
+        "tag": "forge:ingots/lead"
+      }
+    }
+  ],
+  "group": "spartanweaponry:spear",
+  "key": {
+    "#": {
+      "tag": "forge:ingots/lead"
+    },
+    "/": {
+      "tag": "spartanweaponry:poles"
+    }
+  },
+  "pattern": [
+    "#",
+    "/"
+  ],
+  "result": {
+    "item": "spartanweaponry:lead_spear"
+  }
+}

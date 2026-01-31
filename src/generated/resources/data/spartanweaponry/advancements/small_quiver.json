@@ -1,0 +1,36 @@
+{
+  "parent": "spartanweaponry:longbow",
+  "criteria": {
+    "has_quiver": {
+      "conditions": {
+        "items": [
+          {
+            "tag": "spartanweaponry:small_quivers"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.spartanweaponry.craft_quiver.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "spartanweaponry:small_arrow_quiver"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.spartanweaponry.craft_quiver.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_quiver"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

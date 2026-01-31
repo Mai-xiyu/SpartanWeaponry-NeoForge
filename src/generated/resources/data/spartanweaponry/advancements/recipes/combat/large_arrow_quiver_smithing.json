@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_large_quiver_brace": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spartanweaponry:large_quiver_brace"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "spartanweaponry:large_arrow_quiver_smithing"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_large_quiver_brace",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "spartanweaponry:large_arrow_quiver_smithing"
+    ]
+  },
+  "sends_telemetry_event": false
+}

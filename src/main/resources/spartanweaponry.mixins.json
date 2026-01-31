@@ -1,0 +1,23 @@
+{
+	"required": true,
+	"package": "com.oblivioussp.spartanweaponry.mixin",
+	"compatibilityLevel": "JAVA_17",
+	"refmap": "spartanweaponry.mixins.refmap.json",
+	"mixins": [
+		"EntityMixin",
+		"ProjectileMixin",
+		"AbstractArrowMixin",
+		"LivingEntityMixin",
+		"PlayerMixin",
+		"MobMixin",
+		"AbstractSkeletonMixin",
+		"ZombieMixin",
+		"PiglinMixin",
+		"PiglinBruteMixin",
+		"WitherSkeletonMixin"
+	],
+	"client": [ 
+		"ItemModelGeneratorMixin"
+	],
+	"minVersion": "0.8"
+}

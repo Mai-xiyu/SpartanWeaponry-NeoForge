@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "spartanweaponry:pole",
+  "key": {
+    "#": {
+      "tag": "minecraft:wool"
+    },
+    "|": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "pattern": [
+    "|||",
+    "|||",
+    "||#"
+  ],
+  "result": {
+    "count": 4,
+    "item": "spartanweaponry:pole"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,108 @@
+{
+  "type": "spartanweaponry:tag_smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "disabled_types": [
+    "steel"
+  ],
+  "experience": 0.1,
+  "ingredient": [
+    {
+      "disabled_type": "dagger",
+      "item": "spartanweaponry:steel_dagger"
+    },
+    {
+      "disabled_type": "parrying_dagger",
+      "item": "spartanweaponry:steel_parrying_dagger"
+    },
+    {
+      "disabled_type": "longsword",
+      "item": "spartanweaponry:steel_longsword"
+    },
+    {
+      "disabled_type": "katana",
+      "item": "spartanweaponry:steel_katana"
+    },
+    {
+      "disabled_type": "saber",
+      "item": "spartanweaponry:steel_saber"
+    },
+    {
+      "disabled_type": "rapier",
+      "item": "spartanweaponry:steel_rapier"
+    },
+    {
+      "disabled_type": "greatsword",
+      "item": "spartanweaponry:steel_greatsword"
+    },
+    {
+      "disabled_type": "battle_hammer",
+      "item": "spartanweaponry:steel_battle_hammer"
+    },
+    {
+      "disabled_type": "warhammer",
+      "item": "spartanweaponry:steel_warhammer"
+    },
+    {
+      "disabled_type": "spear",
+      "item": "spartanweaponry:steel_spear"
+    },
+    {
+      "disabled_type": "halberd",
+      "item": "spartanweaponry:steel_halberd"
+    },
+    {
+      "disabled_type": "pike",
+      "item": "spartanweaponry:steel_pike"
+    },
+    {
+      "disabled_type": "lance",
+      "item": "spartanweaponry:steel_lance"
+    },
+    {
+      "disabled_type": "longbow",
+      "item": "spartanweaponry:steel_longbow"
+    },
+    {
+      "disabled_type": "heavy_crossbow",
+      "item": "spartanweaponry:steel_heavy_crossbow"
+    },
+    {
+      "disabled_type": "throwing_knife",
+      "item": "spartanweaponry:steel_throwing_knife"
+    },
+    {
+      "disabled_type": "tomahawk",
+      "item": "spartanweaponry:steel_tomahawk"
+    },
+    {
+      "disabled_type": "javelin",
+      "item": "spartanweaponry:steel_javelin"
+    },
+    {
+      "disabled_type": "boomerang",
+      "item": "spartanweaponry:steel_boomerang"
+    },
+    {
+      "disabled_type": "battleaxe",
+      "item": "spartanweaponry:steel_battleaxe"
+    },
+    {
+      "disabled_type": "flanged_mace",
+      "item": "spartanweaponry:steel_flanged_mace"
+    },
+    {
+      "disabled_type": "glaive",
+      "item": "spartanweaponry:steel_glaive"
+    },
+    {
+      "disabled_type": "quarterstaff",
+      "item": "spartanweaponry:steel_quarterstaff"
+    },
+    {
+      "disabled_type": "scythe",
+      "item": "spartanweaponry:steel_scythe"
+    }
+  ],
+  "result_tag": "forge:nuggets/steel"
+}
