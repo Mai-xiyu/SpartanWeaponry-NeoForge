@@ -6,6 +6,8 @@ import com.oblivioussp.spartanweaponry.entity.projectile.ThrowingWeaponEntity;
 import com.oblivioussp.spartanweaponry.init.ModEntities;
 import com.oblivioussp.spartanweaponry.init.ModSounds;
 
+import net.minecraft.core.RegistryAccess;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
@@ -15,6 +17,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 
@@ -65,20 +68,19 @@ public class ThrowableMeleeWeaponTrait extends WeaponTrait implements IActionTra
 	            thrown.shootFromRotation(player, player.xRotO, player.yRotO, 0.0F, 1.5f * (charge / 10.0f + 0.5f), 0.5f);
 	            thrown.setBaseDamage(attackDamage + 1.0f);
 	            
-	            // Apply enchantments as necessary
-	            int j = stackIn.getEnchantmentLevel(Enchantments.SHARPNESS);
+	            // Apply enchantments as necessary - using new 1.21 API
+	            RegistryAccess registryAccess = levelIn.registryAccess();
+	            int j = EnchantmentHelper.getItemEnchantmentLevel(registryAccess.registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantments.SHARPNESS), stackIn);
 	            if (j > 0)
 	            {
 	            	thrown.setBaseDamage(thrown.getBaseDamage() + j * 0.5d + 0.5d);
 	            }
-	            int k = stackIn.getEnchantmentLevel(Enchantments.KNOCKBACK);
-	            if (k > 0)
+	            // Knockback is handled in ThrowingWeaponEntity.onHitEntity by reading from weapon enchantments
+	            // Fire aspect - set entity on fire
+	            int fireAspect = EnchantmentHelper.getItemEnchantmentLevel(registryAccess.registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantments.FIRE_ASPECT), stackIn);
+	            if (fireAspect > 0)
 	            {
-	            	thrown.setKnockback(k);
-	            }
-	            if (stackIn.getEnchantmentLevel(Enchantments.FIRE_ASPECT) > 0)
-	            {
-	            	thrown.setSecondsOnFire(100);
+	            	thrown.setRemainingFireTicks(100 * 20); // 100 seconds in ticks
 	            }
 	            
 	            if(player.getAbilities().instabuild)

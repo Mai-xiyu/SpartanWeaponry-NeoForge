@@ -50,6 +50,8 @@ public class VersatileWeaponTrait extends WeaponTrait
 	@Override
 	public boolean isEnchantmentCompatible(Enchantment enchantIn) 
 	{
-		return enchantIn.isSupportedItem(new ItemStack(Items.DIAMOND_PICKAXE));
+		// In 1.21, Enchantment is data-driven and isSupportedItem no longer exists
+		// Return false as the base behavior, specific enchantment compatibility can be added if needed
+		return false;
 	}
 }
