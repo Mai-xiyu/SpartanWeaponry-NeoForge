@@ -86,11 +86,13 @@ public class ClientHelper
 	public static final LayeredDraw.Layer OIL_USES = HudOilUses::render;
 	public static final LayeredDraw.Layer NEW_CROSSHAIR = HudCrosshair::render;
 	
-	public static final ItemColor COLOR_TIPPED_PROJECTILE = (stack, idx) -> idx == 1 ? stack.getOrDefault(DataComponents.POTION_CONTENTS, PotionContents.EMPTY).getColor() : 0xFFFFFF;
+	public static final ItemColor COLOR_TIPPED_PROJECTILE = (stack, idx) -> idx == 1 ? stack.getOrDefault(DataComponents.POTION_CONTENTS, PotionContents.EMPTY).getColor() : -1;
 	public static final ItemColor COLOR_OIL = (stack, idx) ->
 		{
 			OilEffect oilEffect = OilHelper.getOilFromStack(stack);
-			return idx == 1 ? oilEffect.getColor(stack) : 0xFFFFFF;
+			// 确保颜色值包含完整的 alpha 通道 (0xFF000000 | color)
+			int color = oilEffect.getColor(stack);
+			return idx == 1 ? (0xFF000000 | color) : -1;
 		};
 	
 	@SubscribeEvent
