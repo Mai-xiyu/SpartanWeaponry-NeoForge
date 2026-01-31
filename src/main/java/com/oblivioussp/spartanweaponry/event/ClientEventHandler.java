@@ -36,8 +36,9 @@ import net.neoforged.fml.loading.FMLLoader;
 @EventBusSubscriber(modid = ModSpartanWeaponry.ID, bus = EventBusSubscriber.Bus.GAME, value = Dist.CLIENT)
 public class ClientEventHandler 
 {
+	// NeoForge 1.21: MouseButton is now abstract, must use Post subclass
 	@SubscribeEvent(priority = EventPriority.NORMAL, receiveCanceled = true)
-	public static void onMouseEvent(InputEvent.MouseButton ev)
+	public static void onMouseEvent(InputEvent.MouseButton.Post ev)
 	{
 		Minecraft mc = Minecraft.getInstance();
 		if(mc.level == null || mc.screen != null || mc.isPaused())

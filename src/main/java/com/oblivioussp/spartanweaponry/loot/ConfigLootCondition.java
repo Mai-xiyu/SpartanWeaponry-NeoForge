@@ -24,7 +24,8 @@ public class ConfigLootCondition implements LootItemCondition
 	@Override
 	public LootItemConditionType getType()
 	{
-		return ModLootModifiers.CONFIG_ENABLED;
+		// NeoForge 1.21: CONFIG_ENABLED is now a Supplier
+		return ModLootModifiers.CONFIG_ENABLED.get();
 	}
 	
 	public static LootItemCondition.Builder builder()

@@ -8,6 +8,8 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 
+import net.minecraft.world.item.ItemStack;
+
 public class JavelinEntity extends ThrowingWeaponEntity 
 {
 	public JavelinEntity(EntityType<? extends ThrowingWeaponEntity> type, Level level) 
@@ -15,9 +17,9 @@ public class JavelinEntity extends ThrowingWeaponEntity
 		super(type, level);
 	}
 
-	public JavelinEntity(Level level, LivingEntity shooter) 
+	public JavelinEntity(Level level, LivingEntity shooter, ItemStack weapon) 
 	{
-		super(ModEntities.JAVELIN.get(), shooter, level);
+		super(ModEntities.JAVELIN.get(), shooter, level, weapon);
 	}
 	
 	@Override

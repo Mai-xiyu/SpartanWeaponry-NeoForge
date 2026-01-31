@@ -62,19 +62,19 @@ public class BoltEntity extends AbstractArrow implements IEntityWithComplexSpawn
         super(type, level);
     }
 
-    public BoltEntity(EntityType<? extends BoltEntity> type, double x, double y, double z, Level level)
+    public BoltEntity(EntityType<? extends BoltEntity> type, double x, double y, double z, Level level, ItemStack pickupItemStack, ItemStack weaponStack)
     {
-		super(type, x, y, z, level, ItemStack.EMPTY, ItemStack.EMPTY);
+		super(type, x, y, z, level, pickupItemStack, weaponStack);
     }
     
-    public BoltEntity(EntityType<? extends BoltEntity> type, LivingEntity shooter, Level level)
+    public BoltEntity(EntityType<? extends BoltEntity> type, LivingEntity shooter, Level level, ItemStack pickupItemStack, ItemStack weaponStack)
     {
-		super(type, shooter, level, ItemStack.EMPTY, ItemStack.EMPTY);
+		super(type, shooter, level, pickupItemStack, weaponStack);
     }
 
-    public BoltEntity(LivingEntity shooter, Level level)
+    public BoltEntity(LivingEntity shooter, Level level, ItemStack boltStack, ItemStack weaponStack)
     {
-    	this(ModEntities.BOLT.get(), shooter, level);
+    	this(ModEntities.BOLT.get(), shooter, level, boltStack, weaponStack);
     }
     
 	
@@ -210,9 +210,12 @@ public class BoltEntity extends AbstractArrow implements IEntityWithComplexSpawn
 		super.doPostHurtEffects(living);
     	Level level = level();
 		
-		for(MobEffectInstance effect : potion.getEffects())
+		if(potion != null)
 		{
-			living.addEffect(new MobEffectInstance(effect.getEffect(), Math.max(effect.getDuration() / 8, 1), effect.getAmplifier(), effect.isAmbient(), effect.isVisible()));
+			for(MobEffectInstance effect : potion.getEffects())
+			{
+				living.addEffect(new MobEffectInstance(effect.getEffect(), Math.max(effect.getDuration() / 8, 1), effect.getAmplifier(), effect.isAmbient(), effect.isVisible()));
+			}
 		}
 		
 		Item arrowItem = getPickupItem().getItem();

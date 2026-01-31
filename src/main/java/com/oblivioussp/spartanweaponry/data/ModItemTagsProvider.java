@@ -31,7 +31,7 @@ public class ModItemTagsProvider extends ItemTagsProvider
 	@Override
 	protected void addTags(HolderLookup.Provider registry)
 	{
-		final TagKey<Item> WEAPONS = ItemTags.create(ResourceLocation.parse("forge:weapons"));
+		final TagKey<Item> WEAPONS = ItemTags.create(ResourceLocation.parse("c:tools/melee_weapons"));
 		final TagKey<Item> CURIOS_BACK = ItemTags.create(ResourceLocation.parse("curios:back"));
 		final TagKey<Item> CURIOS_QUIVER = ItemTags.create(ResourceLocation.parse("curios:quiver"));
 		

@@ -513,7 +513,7 @@ public class ThrowingWeaponItem extends Item implements IWeaponTraitContainer<Th
 	 */
 	public ThrowingWeaponEntity createThrowingWeaponEntity(Level levelIn, Player player, ItemStack stack, int charge)
 	{
-		return new ThrowingWeaponEntity(ModEntities.THROWING_WEAPON.get(), player, levelIn);
+		return new ThrowingWeaponEntity(ModEntities.THROWING_WEAPON.get(), player, levelIn, stack);
 	}
 	
 	protected SoundEvent getThrowingSound()
@@ -541,6 +541,8 @@ public class ThrowingWeaponItem extends Item implements IWeaponTraitContainer<Th
 	
 	public int getMaxAmmo(ItemStack stack, RegistryAccess access)
 	{
+		if(access == null)
+			return maxAmmo;
 		int level = ModEnchantments.getLevel(access, ModEnchantments.EXPANSE, stack);
 		// Find the value to increase by per level (if ammo increase is too small e.g. Boomerang; then use ammo + 1 per level instead)
 		int increasePerLevel = Math.max((int)(maxAmmo * 0.25f), 1);
@@ -549,7 +551,7 @@ public class ThrowingWeaponItem extends Item implements IWeaponTraitContainer<Th
 
 	public int getMaxAmmo(ItemStack stack, Level level)
 	{
-		return getMaxAmmo(stack, level.registryAccess());
+		return level != null ? getMaxAmmo(stack, level.registryAccess()) : maxAmmo;
 	}
 	
 	public int getMaxAmmoBase()
@@ -559,6 +561,8 @@ public class ThrowingWeaponItem extends Item implements IWeaponTraitContainer<Th
 	
 	public int getMaxChargeTicks(ItemStack stack, RegistryAccess access)
 	{
+		if(access == null)
+			return maxChargeTicks;
 		int chargeTicks = (int)(maxChargeTicks * (1 - ModEnchantments.getLevel(access, ModEnchantments.SUPERCHARGE, stack) * 0.2f));
 		if(traits != null)
 			for(WeaponTrait trait : traits)
@@ -572,7 +576,7 @@ public class ThrowingWeaponItem extends Item implements IWeaponTraitContainer<Th
 
 	public int getMaxChargeTicks(ItemStack stack, Level level)
 	{
-		return getMaxChargeTicks(stack, level.registryAccess());
+		return level != null ? getMaxChargeTicks(stack, level.registryAccess()) : maxChargeTicks;
 	}
     
     @Override

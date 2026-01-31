@@ -8,6 +8,8 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 
+import net.minecraft.world.item.ItemStack;
+
 public class ThrowingKnifeEntity extends ThrowingWeaponEntity 
 {
 	public ThrowingKnifeEntity(EntityType<? extends ThrowingWeaponEntity> type, Level level) 
@@ -15,9 +17,9 @@ public class ThrowingKnifeEntity extends ThrowingWeaponEntity
 		super(type, level);
 	}
 
-	public ThrowingKnifeEntity(Level level, LivingEntity shooter) 
+	public ThrowingKnifeEntity(Level level, LivingEntity shooter, ItemStack weapon) 
 	{
-		super(ModEntities.THROWING_KNIFE.get(), shooter, level);
+		super(ModEntities.THROWING_KNIFE.get(), shooter, level, weapon);
 	}
 	
 	@Override

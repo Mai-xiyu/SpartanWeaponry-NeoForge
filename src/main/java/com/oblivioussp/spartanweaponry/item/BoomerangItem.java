@@ -32,7 +32,7 @@ public class BoomerangItem extends ThrowingWeaponItem
 	@Override
 	public ThrowingWeaponEntity createThrowingWeaponEntity(Level levelIn, Player player, ItemStack stack, int charge)
 	{
-		BoomerangEntity boomerang = new BoomerangEntity(levelIn, player);
+		BoomerangEntity boomerang = new BoomerangEntity(levelIn, player, stack);
 		boomerang.setDistanceToReturn((charge / 5.0d) * (BoomerangEntity.DISTANCE_TO_RETURN - 3.0d) + 3.0d + 
 				ModEnchantments.getLevel(levelIn.registryAccess(), ModEnchantments.PROPEL, stack) * 3.0f);
 		return boomerang;

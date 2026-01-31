@@ -32,11 +32,11 @@ public class BoltItem extends Item
 		this.armorPiercingFactor = armorPiercingFactor;
 	}
 
-    public BoltEntity createBolt(Level level, ItemStack stack, LivingEntity shooter)
+    public BoltEntity createBolt(Level level, ItemStack stack, LivingEntity shooter, ItemStack weaponStack)
     {
-    	BoltEntity bolt = new BoltEntity(shooter, level);
     	ItemStack boltStack = stack.copy();
     	boltStack.setCount(1);
+    	BoltEntity bolt = new BoltEntity(shooter, level, boltStack, weaponStack);
     	bolt.initEntity(damageModifier, rangeModifier, armorPiercingFactor, boltStack);
     	if(bolt.isValid())
     		return bolt;

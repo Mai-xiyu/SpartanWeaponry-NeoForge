@@ -9,9 +9,8 @@ import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.neoforge.common.ModConfigSpec.BooleanValue;
 import net.neoforged.neoforge.common.ModConfigSpec.EnumValue;
 import net.neoforged.neoforge.common.ModConfigSpec.IntValue;
-import net.neoforged.fml.common.EventBusSubscriber;
 
-@EventBusSubscriber(modid = ModSpartanWeaponry.ID, bus = EventBusSubscriber.Bus.MOD)
+// NeoForge 1.21: Removed @EventBusSubscriber - this is a config class with no event handlers
 public class ClientConfig 
 {
 	public static final ClientConfig INSTANCE;

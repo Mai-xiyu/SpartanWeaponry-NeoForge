@@ -13,9 +13,9 @@ import net.minecraft.world.entity.EntityType;
  */
 public class ModEntityTypeTags 
 {
-	public static final TagKey<EntityType<?>> CREEPERS = createTag("forge:creepers");
-	public static final TagKey<EntityType<?>> HUMANOIDS = createTag("forge:humanoids");
-	public static final TagKey<EntityType<?>> ENDER = createTag("forge:ender");
+	public static final TagKey<EntityType<?>> CREEPERS = createTag("c:creepers");
+	public static final TagKey<EntityType<?>> HUMANOIDS = createTag("c:humanoids");
+	public static final TagKey<EntityType<?>> ENDER = createTag("c:ender");
 			
 	public static TagKey<EntityType<?>> createTag(String tagName)
 	{

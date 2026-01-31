@@ -49,7 +49,8 @@ public class TippedProjectileRecipeMaker
 				List<String> pattern = List.of("PPP", "PLP", "PPP");
 				
 	        	String potionId = BuiltInRegistries.POTION.getKey(potionType).getPath();
-	        	ResourceLocation recipeResLoc = ResourceLocation.fromNamespaceAndPath("spartanweaponry", "tipped_projectile." + BuiltInRegistries.ITEM.getKey(outputStack.getItem()).getPath() + ".effect." + potionId);
+	        	// Use '/' prefix to mark as synthetic recipe so EMI doesn't try to look it up in recipe manager
+	        	ResourceLocation recipeResLoc = ResourceLocation.fromNamespaceAndPath("spartanweaponry", "/tipped_projectile." + BuiltInRegistries.ITEM.getKey(outputStack.getItem()).getPath() + ".effect." + potionId);
 	        	ShapedRecipePattern recipePattern = ShapedRecipePattern.of(ingredientMap, pattern);
 	        	ShapedRecipe recipe = new ShapedRecipe(recipeGroup, CraftingBookCategory.MISC, recipePattern, outputStack);
 	        	list.add(new RecipeHolder<>(recipeResLoc, recipe));

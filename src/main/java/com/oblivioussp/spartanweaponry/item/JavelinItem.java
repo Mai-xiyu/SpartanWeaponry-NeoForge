@@ -31,7 +31,7 @@ public class JavelinItem extends ThrowingWeaponItem
 	@Override
 	public ThrowingWeaponEntity createThrowingWeaponEntity(Level level, Player player, ItemStack stack, int charge)
 	{
-		return new JavelinEntity(level, player);
+		return new JavelinEntity(level, player, stack);
 	}
 	
 	@Override

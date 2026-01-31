@@ -93,26 +93,26 @@ public class ModItemTags
 	public static final TagKey<Item> HAS_CUSTOM_CROSSHAIR = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":has_custom_crosshair"));
 	
 	// Materials for repairing weapons
-	public static final TagKey<Item> COBBLESTONE = ItemTags.create(ResourceLocation.parse("forge:cobblestone"));
-	public static final TagKey<Item> LEATHER = ItemTags.create(ResourceLocation.parse("forge:leather"));
-	public static final TagKey<Item> COPPER_INGOT = ItemTags.create(ResourceLocation.parse("forge:ingots/copper"));
-	public static final TagKey<Item> IRON_INGOT = ItemTags.create(ResourceLocation.parse("forge:ingots/iron"));
-	public static final TagKey<Item> GOLD_INGOT = ItemTags.create(ResourceLocation.parse("forge:ingots/gold"));
-	public static final TagKey<Item> DIAMOND = ItemTags.create(ResourceLocation.parse("forge:gems/diamond"));
-	public static final TagKey<Item> NETHERITE_INGOT = ItemTags.create(ResourceLocation.parse("forge:ingots/netherite"));
-	public static final TagKey<Item> TIN_INGOT = ItemTags.create(ResourceLocation.parse("forge:ingots/tin"));
-	public static final TagKey<Item> BRONZE_INGOT = ItemTags.create(ResourceLocation.parse("forge:ingots/bronze"));
-	public static final TagKey<Item> STEEL_INGOT = ItemTags.create(ResourceLocation.parse("forge:ingots/steel"));
-	public static final TagKey<Item> SILVER_INGOT = ItemTags.create(ResourceLocation.parse("forge:ingots/silver"));
-	public static final TagKey<Item> ELECTRUM_INGOT = ItemTags.create(ResourceLocation.parse("forge:ingots/electrum"));
-	public static final TagKey<Item> LEAD_INGOT = ItemTags.create(ResourceLocation.parse("forge:ingots/lead"));
-	public static final TagKey<Item> NICKEL_INGOT = ItemTags.create(ResourceLocation.parse("forge:ingots/nickel"));
-	public static final TagKey<Item> INVAR_INGOT = ItemTags.create(ResourceLocation.parse("forge:ingots/invar"));
-	public static final TagKey<Item> CONSTANTAN_INGOT = ItemTags.create(ResourceLocation.parse("forge:ingots/constantan"));
-	public static final TagKey<Item> PLATINUM_INGOT = ItemTags.create(ResourceLocation.parse("forge:ingots/platinum"));
+	public static final TagKey<Item> COBBLESTONE = ItemTags.create(ResourceLocation.parse("c:cobblestones"));
+	public static final TagKey<Item> LEATHER = ItemTags.create(ResourceLocation.parse("c:leathers"));
+	public static final TagKey<Item> COPPER_INGOT = ItemTags.create(ResourceLocation.parse("c:ingots/copper"));
+	public static final TagKey<Item> IRON_INGOT = ItemTags.create(ResourceLocation.parse("c:ingots/iron"));
+	public static final TagKey<Item> GOLD_INGOT = ItemTags.create(ResourceLocation.parse("c:ingots/gold"));
+	public static final TagKey<Item> DIAMOND = ItemTags.create(ResourceLocation.parse("c:gems/diamond"));
+	public static final TagKey<Item> NETHERITE_INGOT = ItemTags.create(ResourceLocation.parse("c:ingots/netherite"));
+	public static final TagKey<Item> TIN_INGOT = ItemTags.create(ResourceLocation.parse("c:ingots/tin"));
+	public static final TagKey<Item> BRONZE_INGOT = ItemTags.create(ResourceLocation.parse("c:ingots/bronze"));
+	public static final TagKey<Item> STEEL_INGOT = ItemTags.create(ResourceLocation.parse("c:ingots/steel"));
+	public static final TagKey<Item> SILVER_INGOT = ItemTags.create(ResourceLocation.parse("c:ingots/silver"));
+	public static final TagKey<Item> ELECTRUM_INGOT = ItemTags.create(ResourceLocation.parse("c:ingots/electrum"));
+	public static final TagKey<Item> LEAD_INGOT = ItemTags.create(ResourceLocation.parse("c:ingots/lead"));
+	public static final TagKey<Item> NICKEL_INGOT = ItemTags.create(ResourceLocation.parse("c:ingots/nickel"));
+	public static final TagKey<Item> INVAR_INGOT = ItemTags.create(ResourceLocation.parse("c:ingots/invar"));
+	public static final TagKey<Item> CONSTANTAN_INGOT = ItemTags.create(ResourceLocation.parse("c:ingots/constantan"));
+	public static final TagKey<Item> PLATINUM_INGOT = ItemTags.create(ResourceLocation.parse("c:ingots/platinum"));
 	public static final TagKey<Item> ALUMINUM_INGOT = ItemTags.create(ResourceLocation.tryBuild(ModSpartanWeaponry.ID, "ingots/aluminum"));	// The below two alumin(i)um ingot tag variants combined (for compatibility)
-	public static final TagKey<Item> FORGE_ALUMINUM_INGOT = ItemTags.create(ResourceLocation.parse("forge:ingots/aluminum"));
-	public static final TagKey<Item> FORGE_ALUMINIUM_INGOT = ItemTags.create(ResourceLocation.parse("forge:ingots/aluminium"));
+	public static final TagKey<Item> FORGE_ALUMINUM_INGOT = ItemTags.create(ResourceLocation.parse("c:ingots/aluminum"));
+	public static final TagKey<Item> FORGE_ALUMINIUM_INGOT = ItemTags.create(ResourceLocation.parse("c:ingots/aluminium"));
 	
 /*	public static final TagKey<Item> COPPER_NUGGET = ItemTags.create(ResourceLocation.parse("forge:nuggets/copper"));
 	public static final TagKey<Item> IRON_NUGGET = ItemTags.create(ResourceLocation.parse("forge:nuggets/iron"));
@@ -129,8 +129,8 @@ public class ModItemTags
 	public static final TagKey<Item> PLATINUM_NUGGET = ItemTags.create(ResourceLocation.parse("forge:nuggets/platinum"));
 	public static final TagKey<Item> ALUMINUM_NUGGET = ItemTags.create(ResourceLocation.parse("forge:nuggets/aluminum"));*/
 
-	public static final TagKey<Item> GRASS = ItemTags.create(ResourceLocation.parse("forge:grass"));
-	public static final TagKey<Item> RAW_MEAT = ItemTags.create(ResourceLocation.parse("forge:foods/meat/raw"));
+	public static final TagKey<Item> GRASS = ItemTags.create(ResourceLocation.parse("c:grass"));
+	public static final TagKey<Item> RAW_MEAT = ItemTags.create(ResourceLocation.parse("c:foods/raw_meats"));
 	public static final TagKey<Item> OILABLE_WEAPONS = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":oilable_weapons"));
 	
 	public static final TagKey<Item> ZOMBIE_SPAWN_WEAPONS = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":zombie_spawn_weapons"));

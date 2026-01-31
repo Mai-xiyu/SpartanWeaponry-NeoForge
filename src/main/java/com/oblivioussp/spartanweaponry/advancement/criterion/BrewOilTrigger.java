@@ -46,7 +46,8 @@ public class BrewOilTrigger extends SimpleCriterionTrigger<BrewOilTrigger.Trigge
 
 		public static Criterion<BrewOilTrigger.TriggerInstance> brewedOil()
 		{
-			return ModCriteriaTriggers.BREW_OIL.createCriterion(new BrewOilTrigger.TriggerInstance(Optional.empty(), Optional.empty()));
+			// NeoForge 1.21: BREW_OIL is now a Supplier
+			return ModCriteriaTriggers.BREW_OIL.get().createCriterion(new BrewOilTrigger.TriggerInstance(Optional.empty(), Optional.empty()));
 		}
 
 		// TODO: Possibly make a advancement for brewing all the oils

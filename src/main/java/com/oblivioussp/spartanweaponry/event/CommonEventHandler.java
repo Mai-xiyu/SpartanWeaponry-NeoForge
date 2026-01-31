@@ -794,7 +794,8 @@ public class CommonEventHandler
 		ItemStack stack = ev.getStack();
 		OilEffect oil = OilEffects.NONE.get();
 		if(stack.is(ModItems.WEAPON_OIL.get()) && (oil = OilHelper.getOilFromStack(stack)) != OilEffects.NONE.get())
-			ModCriteriaTriggers.BREW_OIL.trigger((ServerPlayer)ev.getEntity(), oil);
+			// NeoForge 1.21: BREW_OIL is now a Supplier
+			ModCriteriaTriggers.BREW_OIL.get().trigger((ServerPlayer)ev.getEntity(), oil);
 	}
 	
 	/**

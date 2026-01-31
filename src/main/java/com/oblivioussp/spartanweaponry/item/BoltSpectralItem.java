@@ -22,10 +22,12 @@ public class BoltSpectralItem extends BoltItem
 	}
 
 	@Override
-	public BoltEntity createBolt(Level level, ItemStack stack, LivingEntity shooter) 
+	public BoltEntity createBolt(Level level, ItemStack stack, LivingEntity shooter, ItemStack weaponStack) 
 	{
-		BoltEntity bolt = new BoltSpectralEntity(shooter, level);
-    	bolt.initEntity(damageModifier, rangeModifier, armorPiercingFactor, ItemStack.EMPTY);
+		ItemStack boltStack = stack.copy();
+		boltStack.setCount(1);
+		BoltEntity bolt = new BoltSpectralEntity(shooter, level, boltStack, weaponStack);
+    	bolt.initEntity(damageModifier, rangeModifier, armorPiercingFactor, boltStack);
     	return bolt;
 	}
 	

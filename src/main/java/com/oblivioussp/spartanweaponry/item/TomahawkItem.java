@@ -32,7 +32,7 @@ public class TomahawkItem extends ThrowingWeaponItem
 	@Override
 	public ThrowingWeaponEntity createThrowingWeaponEntity(Level level, Player player, ItemStack stack, int charge) 
 	{
-		return new TomahawkEntity(level, player);
+		return new TomahawkEntity(level, player, stack);
 	}
 	
 	@Override

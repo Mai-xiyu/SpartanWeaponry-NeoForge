@@ -72,6 +72,8 @@ public class ModSpartanWeaponry
 		ModSounds.REGISTRY.register(modBus);
 		ModParticles.REGISTRY.register(modBus);
 		ModLootModifiers.REGISTRY.register(modBus);
+		ModLootModifiers.LOOT_CONDITION_REGISTRY.register(modBus);
+		ModCriteriaTriggers.REGISTRY.register(modBus);
 		WeaponTraits.REGISTRY.makeRegistry(registryBuilder -> {});
 		WeaponTraits.REGISTRY.register(modBus);
 		ModMobEffects.REGISTRY.register(modBus);
@@ -89,7 +91,7 @@ public class ModSpartanWeaponry
 //        ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, ServerConfig.CONFIG_SPEC);
         // Register extension points
 //        ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.CONFIGGUIFACTORY, () -> ConfigScreen::new);
-		NeoForge.EVENT_BUS.register(this);
+        // NeoForge 1.21: Removed register(this) as it requires @SubscribeEvent methods
 	}
 	
 	private void onSetup(FMLCommonSetupEvent ev)
@@ -97,9 +99,8 @@ public class ModSpartanWeaponry
         Log.info("Setting up " + NAME + "!");
         ev.enqueueWork(() ->
         {
-    		ModLootModifiers.registerLootConditions();
+            // NeoForge 1.21: LootConditions and CriteriaTriggers now registered via DeferredRegister
             ModCommands.registerArgumentSerializers();
-        	ModCriteriaTriggers.register();
         });
     }
 

@@ -58,15 +58,15 @@ public class BoomerangEntity extends ThrowingWeaponEntity
 		initEntity();
 	}
 
-	public BoomerangEntity(Level level, double x, double y, double z) 
+	public BoomerangEntity(Level level, double x, double y, double z, ItemStack weapon) 
 	{
-		super(ModEntities.BOOMERANG.get(), level, x, y, z);
+		super(ModEntities.BOOMERANG.get(), level, x, y, z, weapon);
 		initEntity();
 	}
 
-	public BoomerangEntity(Level level, LivingEntity shooter) 
+	public BoomerangEntity(Level level, LivingEntity shooter, ItemStack weapon) 
 	{
-		super(ModEntities.BOOMERANG.get(), shooter, level);
+		super(ModEntities.BOOMERANG.get(), shooter, level, weapon);
 		initEntity();
 	}
 	

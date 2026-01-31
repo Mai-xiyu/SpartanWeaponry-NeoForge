@@ -27,9 +27,9 @@ public class BoltDiamondTippedItem extends BoltDiamondItem
 	}
 	
 	@Override
-	public BoltEntity createBolt(Level level, ItemStack stack, LivingEntity shooter) 
+	public BoltEntity createBolt(Level level, ItemStack stack, LivingEntity shooter, ItemStack weaponStack) 
 	{
-		BoltEntity bolt = super.createBolt(level, stack, shooter);
+		BoltEntity bolt = super.createBolt(level, stack, shooter, weaponStack);
 		bolt.setPotionEffect(stack);
 		return bolt;
 	}
