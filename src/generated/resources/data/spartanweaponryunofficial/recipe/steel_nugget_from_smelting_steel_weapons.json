@@ -1,0 +1,79 @@
+{
+  "type": "spartanweaponryunofficial:tag_smelting",
+  "experience": 0.1,
+  "ingredient": [
+    {
+      "item": "spartanweaponryunofficial:steel_dagger"
+    },
+    {
+      "item": "spartanweaponryunofficial:steel_parrying_dagger"
+    },
+    {
+      "item": "spartanweaponryunofficial:steel_longsword"
+    },
+    {
+      "item": "spartanweaponryunofficial:steel_katana"
+    },
+    {
+      "item": "spartanweaponryunofficial:steel_saber"
+    },
+    {
+      "item": "spartanweaponryunofficial:steel_rapier"
+    },
+    {
+      "item": "spartanweaponryunofficial:steel_greatsword"
+    },
+    {
+      "item": "spartanweaponryunofficial:steel_battle_hammer"
+    },
+    {
+      "item": "spartanweaponryunofficial:steel_warhammer"
+    },
+    {
+      "item": "spartanweaponryunofficial:steel_spear"
+    },
+    {
+      "item": "spartanweaponryunofficial:steel_halberd"
+    },
+    {
+      "item": "spartanweaponryunofficial:steel_pike"
+    },
+    {
+      "item": "spartanweaponryunofficial:steel_lance"
+    },
+    {
+      "item": "spartanweaponryunofficial:steel_longbow"
+    },
+    {
+      "item": "spartanweaponryunofficial:steel_heavy_crossbow"
+    },
+    {
+      "item": "spartanweaponryunofficial:steel_throwing_knife"
+    },
+    {
+      "item": "spartanweaponryunofficial:steel_tomahawk"
+    },
+    {
+      "item": "spartanweaponryunofficial:steel_javelin"
+    },
+    {
+      "item": "spartanweaponryunofficial:steel_boomerang"
+    },
+    {
+      "item": "spartanweaponryunofficial:steel_battleaxe"
+    },
+    {
+      "item": "spartanweaponryunofficial:steel_flanged_mace"
+    },
+    {
+      "item": "spartanweaponryunofficial:steel_glaive"
+    },
+    {
+      "item": "spartanweaponryunofficial:steel_quarterstaff"
+    },
+    {
+      "item": "spartanweaponryunofficial:steel_scythe"
+    }
+  ],
+  "result_tag": "c:nuggets/steel"
+}

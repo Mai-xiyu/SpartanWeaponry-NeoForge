@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:item/handheld",
-  "textures": {
-    "layer0": "minecraft:item/golden_sword",
-    "coating": "spartanweaponryunofficial:item/coating/vanilla_sword"
-  },
-  "loader": "spartanweaponryunofficial:oil_coated_item"
-}

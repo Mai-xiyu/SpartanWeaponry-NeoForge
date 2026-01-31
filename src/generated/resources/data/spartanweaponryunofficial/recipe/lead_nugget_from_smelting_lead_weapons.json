@@ -1,0 +1,79 @@
+{
+  "type": "spartanweaponryunofficial:tag_smelting",
+  "experience": 0.1,
+  "ingredient": [
+    {
+      "item": "spartanweaponryunofficial:lead_dagger"
+    },
+    {
+      "item": "spartanweaponryunofficial:lead_parrying_dagger"
+    },
+    {
+      "item": "spartanweaponryunofficial:lead_longsword"
+    },
+    {
+      "item": "spartanweaponryunofficial:lead_katana"
+    },
+    {
+      "item": "spartanweaponryunofficial:lead_saber"
+    },
+    {
+      "item": "spartanweaponryunofficial:lead_rapier"
+    },
+    {
+      "item": "spartanweaponryunofficial:lead_greatsword"
+    },
+    {
+      "item": "spartanweaponryunofficial:lead_battle_hammer"
+    },
+    {
+      "item": "spartanweaponryunofficial:lead_warhammer"
+    },
+    {
+      "item": "spartanweaponryunofficial:lead_spear"
+    },
+    {
+      "item": "spartanweaponryunofficial:lead_halberd"
+    },
+    {
+      "item": "spartanweaponryunofficial:lead_pike"
+    },
+    {
+      "item": "spartanweaponryunofficial:lead_lance"
+    },
+    {
+      "item": "spartanweaponryunofficial:lead_longbow"
+    },
+    {
+      "item": "spartanweaponryunofficial:lead_heavy_crossbow"
+    },
+    {
+      "item": "spartanweaponryunofficial:lead_throwing_knife"
+    },
+    {
+      "item": "spartanweaponryunofficial:lead_tomahawk"
+    },
+    {
+      "item": "spartanweaponryunofficial:lead_javelin"
+    },
+    {
+      "item": "spartanweaponryunofficial:lead_boomerang"
+    },
+    {
+      "item": "spartanweaponryunofficial:lead_battleaxe"
+    },
+    {
+      "item": "spartanweaponryunofficial:lead_flanged_mace"
+    },
+    {
+      "item": "spartanweaponryunofficial:lead_glaive"
+    },
+    {
+      "item": "spartanweaponryunofficial:lead_quarterstaff"
+    },
+    {
+      "item": "spartanweaponryunofficial:lead_scythe"
+    }
+  ],
+  "result_tag": "c:nuggets/lead"
+}

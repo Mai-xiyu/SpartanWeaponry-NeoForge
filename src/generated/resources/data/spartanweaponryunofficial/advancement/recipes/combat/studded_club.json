@@ -1,0 +1,40 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "spartanweaponryunofficial:type_disabled",
+      "disabled": [
+        "club"
+      ]
+    }
+  ],
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_club": {
+      "conditions": {
+        "items": [
+          {
+            "items": "spartanweaponryunofficial:wooden_club"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "spartanweaponryunofficial:studded_club"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_club"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "spartanweaponryunofficial:studded_club"
+    ]
+  }
+}

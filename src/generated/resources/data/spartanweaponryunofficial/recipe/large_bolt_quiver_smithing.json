@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "spartanweaponryunofficial:large_quiver_brace"
+  },
+  "base": {
+    "item": "spartanweaponryunofficial:medium_bolt_quiver"
+  },
+  "result": {
+    "count": 1,
+    "id": "spartanweaponryunofficial:large_bolt_quiver"
+  },
+  "template": {
+    "item": "spartanweaponryunofficial:quiver_compartment"
+  }
+}

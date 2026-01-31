@@ -1,0 +1,25 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "spartanweaponryunofficial:type_disabled",
+      "disabled": [
+        "arrows",
+        "explosives"
+      ]
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    {
+      "item": "minecraft:arrow"
+    },
+    {
+      "item": "spartanweaponryunofficial:explosive_charge"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "spartanweaponryunofficial:explosive_arrow"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "spartanweaponryunofficial:type_disabled",
+      "disabled": [
+        "explosives"
+      ]
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "item": "spartanweaponryunofficial:explosive_charge"
+    },
+    "~": {
+      "tag": "c:strings"
+    }
+  },
+  "pattern": [
+    "  ~",
+    " # ",
+    "#  "
+  ],
+  "result": {
+    "count": 2,
+    "id": "spartanweaponryunofficial:dynamite"
+  }
+}

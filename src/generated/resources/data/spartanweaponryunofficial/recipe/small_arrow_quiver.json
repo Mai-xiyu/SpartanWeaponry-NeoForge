@@ -1,0 +1,35 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "spartanweaponryunofficial:type_disabled",
+      "disabled": [
+        "quiver"
+      ]
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "tag": "c:ingots/iron"
+    },
+    "L": {
+      "tag": "c:leathers"
+    },
+    "^": {
+      "tag": "minecraft:arrows"
+    },
+    "~": {
+      "tag": "c:strings"
+    }
+  },
+  "pattern": [
+    "L~L",
+    "L^L",
+    "###"
+  ],
+  "result": {
+    "count": 1,
+    "id": "spartanweaponryunofficial:small_arrow_quiver"
+  }
+}

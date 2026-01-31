@@ -1,0 +1,79 @@
+{
+  "type": "spartanweaponryunofficial:tag_smelting",
+  "experience": 0.1,
+  "ingredient": [
+    {
+      "item": "spartanweaponryunofficial:copper_dagger"
+    },
+    {
+      "item": "spartanweaponryunofficial:copper_parrying_dagger"
+    },
+    {
+      "item": "spartanweaponryunofficial:copper_longsword"
+    },
+    {
+      "item": "spartanweaponryunofficial:copper_katana"
+    },
+    {
+      "item": "spartanweaponryunofficial:copper_saber"
+    },
+    {
+      "item": "spartanweaponryunofficial:copper_rapier"
+    },
+    {
+      "item": "spartanweaponryunofficial:copper_greatsword"
+    },
+    {
+      "item": "spartanweaponryunofficial:copper_battle_hammer"
+    },
+    {
+      "item": "spartanweaponryunofficial:copper_warhammer"
+    },
+    {
+      "item": "spartanweaponryunofficial:copper_spear"
+    },
+    {
+      "item": "spartanweaponryunofficial:copper_halberd"
+    },
+    {
+      "item": "spartanweaponryunofficial:copper_pike"
+    },
+    {
+      "item": "spartanweaponryunofficial:copper_lance"
+    },
+    {
+      "item": "spartanweaponryunofficial:copper_longbow"
+    },
+    {
+      "item": "spartanweaponryunofficial:copper_heavy_crossbow"
+    },
+    {
+      "item": "spartanweaponryunofficial:copper_throwing_knife"
+    },
+    {
+      "item": "spartanweaponryunofficial:copper_tomahawk"
+    },
+    {
+      "item": "spartanweaponryunofficial:copper_javelin"
+    },
+    {
+      "item": "spartanweaponryunofficial:copper_boomerang"
+    },
+    {
+      "item": "spartanweaponryunofficial:copper_battleaxe"
+    },
+    {
+      "item": "spartanweaponryunofficial:copper_flanged_mace"
+    },
+    {
+      "item": "spartanweaponryunofficial:copper_glaive"
+    },
+    {
+      "item": "spartanweaponryunofficial:copper_quarterstaff"
+    },
+    {
+      "item": "spartanweaponryunofficial:copper_scythe"
+    }
+  ],
+  "result_tag": "c:nuggets/copper"
+}
