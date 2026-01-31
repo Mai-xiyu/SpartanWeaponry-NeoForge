@@ -63,7 +63,7 @@ public class ThrowableMeleeWeaponTrait extends WeaponTrait implements IActionTra
 			
 			if (!levelIn.isClientSide && charge > 2)
 	        {
-	            ThrowingWeaponEntity thrown = new ThrowingWeaponEntity(ModEntities.THROWING_WEAPON.get(), player, levelIn);
+	            ThrowingWeaponEntity thrown = new ThrowingWeaponEntity(ModEntities.THROWING_WEAPON.get(), player, levelIn, stackIn);
 	            thrown.setWeapon(stackIn);
 	            thrown.shootFromRotation(player, player.xRotO, player.yRotO, 0.0F, 1.5f * (charge / 10.0f + 0.5f), 0.5f);
 	            thrown.setBaseDamage(attackDamage + 1.0f);

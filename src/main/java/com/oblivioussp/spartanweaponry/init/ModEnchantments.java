@@ -28,18 +28,25 @@ public class ModEnchantments
 		return ResourceKey.create(Registries.ENCHANTMENT, ResourceLocation.tryBuild(ModSpartanWeaponry.ID, path));
 	}
 
-	public static Holder<Enchantment> getHolder(RegistryAccess access, ResourceKey<Enchantment> key)
+	public static java.util.Optional<Holder.Reference<Enchantment>> getHolder(RegistryAccess access, ResourceKey<Enchantment> key)
 	{
-		return access.registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(key);
+		if(access == null)
+			return java.util.Optional.empty();
+		var registry = access.lookup(Registries.ENCHANTMENT);
+		if(registry.isEmpty())
+			return java.util.Optional.empty();
+		return registry.get().get(key);
 	}
 
 	public static int getLevel(RegistryAccess access, ResourceKey<Enchantment> key, ItemStack stack)
 	{
-		return EnchantmentHelper.getItemEnchantmentLevel(getHolder(access, key), stack);
+		var holder = getHolder(access, key);
+		return holder.map(h -> EnchantmentHelper.getItemEnchantmentLevel(h, stack)).orElse(0);
 	}
 
 	public static int getLevel(RegistryAccess access, ResourceKey<Enchantment> key, LivingEntity living)
 	{
-		return EnchantmentHelper.getEnchantmentLevel(getHolder(access, key), living);
+		var holder = getHolder(access, key);
+		return holder.map(h -> EnchantmentHelper.getEnchantmentLevel(h, living)).orElse(0);
 	}
 }

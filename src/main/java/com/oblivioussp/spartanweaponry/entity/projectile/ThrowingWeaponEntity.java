@@ -70,14 +70,14 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
 		super(type, level);
 	}
 
-	public ThrowingWeaponEntity(EntityType<? extends ThrowingWeaponEntity> type, Level level, double x, double y, double z) 
+	public ThrowingWeaponEntity(EntityType<? extends ThrowingWeaponEntity> type, Level level, double x, double y, double z, ItemStack weapon) 
 	{
-		super(type, x, y, z, level, ItemStack.EMPTY, ItemStack.EMPTY);
+		super(type, x, y, z, level, weapon, weapon);
 	}
 
-	public ThrowingWeaponEntity(EntityType<? extends ThrowingWeaponEntity> type, LivingEntity shooter, Level level) 
+	public ThrowingWeaponEntity(EntityType<? extends ThrowingWeaponEntity> type, LivingEntity shooter, Level level, ItemStack weapon) 
 	{
-		super(type, shooter, level, ItemStack.EMPTY, ItemStack.EMPTY);
+		super(type, shooter, level, weapon, weapon);
 	}
 	
 	

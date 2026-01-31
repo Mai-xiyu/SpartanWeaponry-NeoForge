@@ -260,7 +260,7 @@ public class HeavyCrossbowItem extends CrossbowItem implements IReloadable, IHud
     
     protected void spawnProjectile(ItemStack crossbow, BoltItem boltItem, ItemStack boltStack, Level levelIn, Player player, boolean creativeOrInfinite, float inaccuracyModifier, float projectileAngle)
     {
-    	BoltEntity bolt = boltItem.createBolt(levelIn, boltStack, player);
+    	BoltEntity bolt = boltItem.createBolt(levelIn, boltStack, player, crossbow);
     	
 		RegistryAccess registryAccess = levelIn.registryAccess();
 		bolt.setCritArrow(true);
@@ -436,7 +436,7 @@ public class HeavyCrossbowItem extends CrossbowItem implements IReloadable, IHud
     	
     	tooltip.add(Component.empty());
     	tooltip.add(Component.translatable(String.format("tooltip.%s.modifiers.ammo.type", ModSpartanWeaponry.ID), Component.translatable(String.format("tooltip.%s.modifiers.ammo.bolt", ModSpartanWeaponry.ID)).withStyle(ChatFormatting.GRAY)).withStyle(ChatFormatting.DARK_AQUA));
-    	tooltip.add(Component.translatable(String.format("tooltip.%s.modifiers.heavy_crossbow.load_time", ModSpartanWeaponry.ID), Component.translatable(String.format("tooltip.%s.modifiers.heavy_crossbow.load_time.value", ModSpartanWeaponry.ID), (float)getFullLoadTicks(stack) / 20.0f).withStyle(ChatFormatting.GRAY)).withStyle(ChatFormatting.DARK_AQUA));
+    	tooltip.add(Component.translatable(String.format("tooltip.%s.modifiers.heavy_crossbow.load_time", ModSpartanWeaponry.ID), Component.translatable(String.format("tooltip.%s.modifiers.heavy_crossbow.load_time.value", ModSpartanWeaponry.ID), (float)getFullLoadTicks(stack, levelIn) / 20.0f).withStyle(ChatFormatting.GRAY)).withStyle(ChatFormatting.DARK_AQUA));
 			tooltip.add(Component.translatable(String.format("tooltip.%s.modifiers.heavy_crossbow.aim_time", ModSpartanWeaponry.ID), Component.translatable(String.format("tooltip.%s.modifiers.heavy_crossbow.aim_time.value", ModSpartanWeaponry.ID), (float)getAimTicks(stack, levelIn) / 20.0f).withStyle(ChatFormatting.GRAY)).withStyle(ChatFormatting.DARK_AQUA));
     	tooltip.add(Component.empty());
     }
@@ -469,7 +469,8 @@ public class HeavyCrossbowItem extends CrossbowItem implements IReloadable, IHud
 	@Override
 	public float getLoadProgress(ItemStack stack, LivingEntity living)
 	{
-		return !isLoaded(stack) ? Mth.clamp((float)getLoadingTicks(stack, living) / (float)getFullLoadTicks(stack), 0.0f, 1.0f) : 0.0f;
+		Level level = living != null ? living.level() : null;
+		return !isLoaded(stack) ? Mth.clamp((float)getLoadingTicks(stack, living) / (float)getFullLoadTicks(stack, level), 0.0f, 1.0f) : 0.0f;
 	}
 	
 	// ---- ---- ---- ---- ---- ---- ---- ----
@@ -478,8 +479,24 @@ public class HeavyCrossbowItem extends CrossbowItem implements IReloadable, IHud
 	
 	public int getFullLoadTicks(ItemStack stack)
 	{
-		int i = EnchantmentHelper.getItemEnchantmentLevel(RegistryAccess.fromRegistryOfRegistries(BuiltInRegistries.REGISTRY).registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantments.QUICK_CHARGE), stack);
+		// Return base load ticks when no registry access is available (e.g., in creative inventory rendering)
+		return loadTicks;
+	}
+	
+	public int getFullLoadTicks(ItemStack stack, RegistryAccess registryAccess)
+	{
+		if(registryAccess == null)
+			return loadTicks;
+		var enchantmentRegistry = registryAccess.lookup(Registries.ENCHANTMENT);
+		if(enchantmentRegistry.isEmpty())
+			return loadTicks;
+		int i = EnchantmentHelper.getItemEnchantmentLevel(enchantmentRegistry.get().getOrThrow(Enchantments.QUICK_CHARGE), stack);
 		return Mth.clamp(loadTicks - 5 * i, 0, loadTicks);
+	}
+	
+	public int getFullLoadTicks(ItemStack stack, Level level)
+	{
+		return level != null ? getFullLoadTicks(stack, level.registryAccess()) : loadTicks;
 	}
 	
 	public int getLoadingTicks(ItemStack stack, LivingEntity living)
@@ -489,13 +506,15 @@ public class HeavyCrossbowItem extends CrossbowItem implements IReloadable, IHud
 	
 	public int getAimTicks(ItemStack stack, RegistryAccess access)
 	{
+		if(access == null)
+			return aimTicks;
 		int i = ModEnchantments.getLevel(access, ModEnchantments.SHARPSHOOTER, stack);
 		return Mth.clamp(aimTicks - 2 * i, 0, aimTicks);
 	}
 
 	public int getAimTicks(ItemStack stack, Level level)
 	{
-		return getAimTicks(stack, level.registryAccess());
+		return level != null ? getAimTicks(stack, level.registryAccess()) : aimTicks;
 	}
     
     @Override

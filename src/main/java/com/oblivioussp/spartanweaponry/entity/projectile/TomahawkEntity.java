@@ -8,6 +8,8 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 
+import net.minecraft.world.item.ItemStack;
+
 public class TomahawkEntity extends ThrowingWeaponEntity 
 {
 	public TomahawkEntity(EntityType<? extends ThrowingWeaponEntity> type, Level level) 
@@ -15,9 +17,9 @@ public class TomahawkEntity extends ThrowingWeaponEntity
 		super(type, level);
 	}
 
-	public TomahawkEntity(Level level, LivingEntity shooter) 
+	public TomahawkEntity(Level level, LivingEntity shooter, ItemStack weapon) 
 	{
-		super(ModEntities.TOMAHAWK.get(), shooter, level);
+		super(ModEntities.TOMAHAWK.get(), shooter, level, weapon);
 	}
 	
 	@Override

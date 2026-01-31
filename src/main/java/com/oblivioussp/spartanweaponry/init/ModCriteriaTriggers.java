@@ -1,18 +1,18 @@
 package com.oblivioussp.spartanweaponry.init;
 
+import java.util.function.Supplier;
+
 import com.oblivioussp.spartanweaponry.ModSpartanWeaponry;
 import com.oblivioussp.spartanweaponry.advancement.criterion.BrewOilTrigger;
 
-import net.minecraft.core.Registry;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.advancements.CriterionTrigger;
+import net.minecraft.core.registries.Registries;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class ModCriteriaTriggers 
 {
-	public static final BrewOilTrigger BREW_OIL = Registry.register(BuiltInRegistries.TRIGGER_TYPES, ResourceLocation.tryBuild(ModSpartanWeaponry.ID, "brew_oil"), new BrewOilTrigger());
+	// NeoForge 1.21: Must use DeferredRegister for trigger types
+	public static final DeferredRegister<CriterionTrigger<?>> REGISTRY = DeferredRegister.create(Registries.TRIGGER_TYPE, ModSpartanWeaponry.ID);
 	
-	public static void register()
-	{
-		// Registration is handled by static initialization.
-	}
+	public static final Supplier<BrewOilTrigger> BREW_OIL = REGISTRY.register("brew_oil", BrewOilTrigger::new);
 }

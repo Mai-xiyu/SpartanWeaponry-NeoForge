@@ -68,12 +68,12 @@ public class ModRecipeProvider extends RecipeProvider
 		TagKey<Item> planks = ItemTags.create(ResourceLocation.parse("minecraft:planks"));
 		TagKey<Item> arrows = ItemTags.create(ResourceLocation.parse("minecraft:arrows"));
 		
-		TagKey<Item> stick = ItemTags.create(ResourceLocation.parse("forge:rods/wooden"));
-		TagKey<Item> string = ItemTags.create(ResourceLocation.parse("forge:string"));
-		TagKey<Item> leather = ItemTags.create(ResourceLocation.parse("forge:leather"));
-		TagKey<Item> gunpowder = ItemTags.create(ResourceLocation.parse("forge:gunpowder"));
-		TagKey<Item> feathers = ItemTags.create(ResourceLocation.parse("forge:feathers"));
-		TagKey<Item> slimeballs = ItemTags.create(ResourceLocation.parse("forge:slimeballs"));
+		TagKey<Item> stick = ItemTags.create(ResourceLocation.parse("c:rods/wooden"));
+		TagKey<Item> string = ItemTags.create(ResourceLocation.parse("c:strings"));
+		TagKey<Item> leather = ItemTags.create(ResourceLocation.parse("c:leathers"));
+		TagKey<Item> gunpowder = ItemTags.create(ResourceLocation.parse("c:gunpowders"));
+		TagKey<Item> feathers = ItemTags.create(ResourceLocation.parse("c:feathers"));
+		TagKey<Item> slimeballs = ItemTags.create(ResourceLocation.parse("c:slimeballs"));
 		
 		TagKey<Item> bolts = ItemTags.create(ResourceLocation.parse(ModSpartanWeaponry.ID + ":bolts"));
 		
@@ -97,20 +97,20 @@ public class ModRecipeProvider extends RecipeProvider
 		TagKey<Item> platinum = ItemTags.create(ResourceLocation.parse(WeaponMaterial.PLATINUM.getRepairTagName()));
 		TagKey<Item> aluminum = ItemTags.create(ResourceLocation.parse(WeaponMaterial.ALUMINUM.getRepairTagName()));
 
-		TagKey<Item> copperNugget = ItemTags.create(ResourceLocation.parse("forge:nuggets/copper"));
-		TagKey<Item> ironNugget = ItemTags.create(ResourceLocation.parse("forge:nuggets/iron"));
-		TagKey<Item> goldNugget = ItemTags.create(ResourceLocation.parse("forge:nuggets/gold"));
-		TagKey<Item> tinNugget = ItemTags.create(ResourceLocation.parse("forge:nuggets/tin"));
-		TagKey<Item> bronzeNugget = ItemTags.create(ResourceLocation.parse("forge:nuggets/bronze"));
-		TagKey<Item> steelNugget = ItemTags.create(ResourceLocation.parse("forge:nuggets/steel"));
-		TagKey<Item> silverNugget = ItemTags.create(ResourceLocation.parse("forge:nuggets/silver"));
-		TagKey<Item> electrumNugget = ItemTags.create(ResourceLocation.parse("forge:nuggets/electrum"));
-		TagKey<Item> leadNugget = ItemTags.create(ResourceLocation.parse("forge:nuggets/lead"));
-		TagKey<Item> nickelNugget = ItemTags.create(ResourceLocation.parse("forge:nuggets/nickel"));
-		TagKey<Item> invarNugget = ItemTags.create(ResourceLocation.parse("forge:nuggets/invar"));
-		TagKey<Item> constantanNugget = ItemTags.create(ResourceLocation.parse("forge:nuggets/constantan"));
-		TagKey<Item> platinumNugget = ItemTags.create(ResourceLocation.parse("forge:nuggets/platinum"));
-		TagKey<Item> aluminumNugget = ItemTags.create(ResourceLocation.parse("forge:nuggets/aluminum"));
+		TagKey<Item> copperNugget = ItemTags.create(ResourceLocation.parse("c:nuggets/copper"));
+		TagKey<Item> ironNugget = ItemTags.create(ResourceLocation.parse("c:nuggets/iron"));
+		TagKey<Item> goldNugget = ItemTags.create(ResourceLocation.parse("c:nuggets/gold"));
+		TagKey<Item> tinNugget = ItemTags.create(ResourceLocation.parse("c:nuggets/tin"));
+		TagKey<Item> bronzeNugget = ItemTags.create(ResourceLocation.parse("c:nuggets/bronze"));
+		TagKey<Item> steelNugget = ItemTags.create(ResourceLocation.parse("c:nuggets/steel"));
+		TagKey<Item> silverNugget = ItemTags.create(ResourceLocation.parse("c:nuggets/silver"));
+		TagKey<Item> electrumNugget = ItemTags.create(ResourceLocation.parse("c:nuggets/electrum"));
+		TagKey<Item> leadNugget = ItemTags.create(ResourceLocation.parse("c:nuggets/lead"));
+		TagKey<Item> nickelNugget = ItemTags.create(ResourceLocation.parse("c:nuggets/nickel"));
+		TagKey<Item> invarNugget = ItemTags.create(ResourceLocation.parse("c:nuggets/invar"));
+		TagKey<Item> constantanNugget = ItemTags.create(ResourceLocation.parse("c:nuggets/constantan"));
+		TagKey<Item> platinumNugget = ItemTags.create(ResourceLocation.parse("c:nuggets/platinum"));
+		TagKey<Item> aluminumNugget = ItemTags.create(ResourceLocation.parse("c:nuggets/aluminum"));
 		
 		// Handles
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.COMBAT, ModItems.SIMPLE_HANDLE.get()).requires(stick).requires(ModItemTags.GRASS).unlockedBy("has_stick", hasItem(stick)).save(recipeFunc);

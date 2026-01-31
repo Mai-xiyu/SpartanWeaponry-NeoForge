@@ -75,8 +75,9 @@ public class OilCoatedItemModel implements IUnbakedGeometry<OilCoatedItemModel>
 		
 		if(textures.size() <= 0)
 			throw new IllegalStateException("Couldn't resolve Textures for model: " + context.getModelName());
-		if(coatingTexture == null)
-			Log.error("Couldn't resolve Coating textures for model: " + context.getModelName());
+		// Coating texture is optional - only warn in debug mode, not log an error
+		// if(coatingTexture == null)
+		// 	Log.warn("Couldn't resolve Coating textures for model: " + context.getModelName());
 		
 		TextureAtlasSprite particleSprite = spriteGetter.apply(context.hasMaterial("particle") ? context.getMaterial("particle") : textures.get(0));
 		

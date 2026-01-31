@@ -24,14 +24,14 @@ public class BoltSpectralEntity extends BoltEntity
         super(type, level);
     }
 
-    public BoltSpectralEntity(EntityType<? extends BoltEntity> type, double x, double y, double z, Level level)
+    public BoltSpectralEntity(EntityType<? extends BoltEntity> type, double x, double y, double z, Level level, ItemStack pickupItemStack, ItemStack weaponStack)
     {
-        super(type, x, y, z, level);
+        super(type, x, y, z, level, pickupItemStack, weaponStack);
     }
 
-    public BoltSpectralEntity(LivingEntity shooter, Level level)
+    public BoltSpectralEntity(LivingEntity shooter, Level level, ItemStack boltStack, ItemStack weaponStack)
     {
-        super(ModEntities.BOLT_SPECTRAL.get(), shooter, level);
+        super(ModEntities.BOLT_SPECTRAL.get(), shooter, level, boltStack, weaponStack);
     }
     
     @Override

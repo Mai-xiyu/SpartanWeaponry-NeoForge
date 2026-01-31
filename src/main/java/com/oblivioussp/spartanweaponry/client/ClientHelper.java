@@ -62,6 +62,7 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.alchemy.PotionContents;
+import net.minecraft.world.level.Level;
 import net.minecraft.client.Minecraft;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
@@ -134,7 +135,7 @@ public class ClientHelper
 		ItemProperties.register(crossbow, ModelOverrides.PULL, (stack, world, living, value) ->
 		{
 			if(living != null /*&& stack.getItem() == crossbow*/)
-				return crossbow.isLoaded(stack) ? 0.0f : (float)(crossbow.getLoadingTicks(stack, living)) / crossbow.getFullLoadTicks(stack);
+				return crossbow.isLoaded(stack) ? 0.0f : (float)(crossbow.getLoadingTicks(stack, living)) / crossbow.getFullLoadTicks(stack, world);
 			return 0.0f;
 		});
 		ItemProperties.register(crossbow, ModelOverrides.PULLING, (stack, world, living, value) ->
@@ -169,7 +170,8 @@ public class ClientHelper
 		});
 		ItemProperties.register(throwingWeapon, ModelOverrides.EMPTY, (stack, world, living, value) ->
 		{
-			return ItemStackDataHelper.getTag(stack).getInt(ThrowingWeaponItem.NBT_AMMO_USED) == ((ThrowingWeaponItem)throwingWeapon).getMaxAmmo(stack, Minecraft.getInstance().level) ? 1 : 0;
+			Level level = world != null ? world : Minecraft.getInstance().level;
+			return ItemStackDataHelper.getTag(stack).getInt(ThrowingWeaponItem.NBT_AMMO_USED) == ((ThrowingWeaponItem)throwingWeapon).getMaxAmmo(stack, level) ? 1 : 0;
 		});
 	}
 	

@@ -31,7 +31,7 @@ public class ThrowingKnifeItem extends ThrowingWeaponItem
 	@Override
 	public ThrowingWeaponEntity createThrowingWeaponEntity(Level level, Player player, ItemStack stack, int charge) 
 	{
-		return new ThrowingKnifeEntity(level, player);
+		return new ThrowingKnifeEntity(level, player, stack);
 	}
 	
 	@Override
