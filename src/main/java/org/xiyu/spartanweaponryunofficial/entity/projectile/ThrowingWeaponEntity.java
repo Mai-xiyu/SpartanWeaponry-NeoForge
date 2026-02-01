@@ -421,13 +421,19 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
 	@Override
 	public void writeSpawnData(RegistryFriendlyByteBuf buffer)
 	{
-		ItemStack.STREAM_CODEC.encode(buffer, getWeaponItem());
+		ItemStack weapon = getWeaponItem();
+		// Use OPTIONAL_STREAM_CODEC to handle empty ItemStack
+		ItemStack.OPTIONAL_STREAM_CODEC.encode(buffer, weapon);
 	}
 
 	@Override
 	public void readSpawnData(RegistryFriendlyByteBuf additionalData) 
 	{
-		setWeapon(ItemStack.STREAM_CODEC.decode(additionalData));
+		ItemStack weapon = ItemStack.OPTIONAL_STREAM_CODEC.decode(additionalData);
+		if(!weapon.isEmpty())
+		{
+			setWeapon(weapon);
+		}
 	}
 	
 	@Override
@@ -450,13 +456,13 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
 	public void setWeapon(ItemStack weaponStack)
 	{
 		ItemStack stack = weaponStack.copy();
-		if(!stack.isEmpty() && stack.getItem() instanceof ThrowingWeaponItem throwingWeapon)
+		// Store original weapon data for ammo system
+		if(!ItemStackDataHelper.getTag(stack).contains(ThrowingWeaponItem.NBT_ORIGINAL))
 		{
-			int maxAmmo = throwingWeapon.getMaxAmmo(stack, level());
-			ItemStackDataHelper.updateTag(stack, tag -> {
-				tag.putInt(ThrowingWeaponItem.NBT_AMMO_USED, maxAmmo - 1);
-				tag.putBoolean(ThrowingWeaponItem.NBT_ORIGINAL, false);
-			});
+			// Save the original weapon state before modifying ammo counter
+			CompoundTag original = new CompoundTag();
+			stack.save(level().registryAccess(), original);
+			ItemStackDataHelper.updateTag(stack, tag -> tag.put(ThrowingWeaponItem.NBT_ORIGINAL, original));
 		}
 		getEntityData().set(DATA_WEAPON, stack);
 		int loyalty = EnchantmentHelper.getItemEnchantmentLevel(level().registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantments.LOYALTY), stack);
@@ -482,47 +488,32 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
 			
 			if(pickup == AbstractArrow.Pickup.ALLOWED)
 			{
-				boolean pickUpAsNewItem = true;
+				// Restore ammo: decrease the ammo used counter when picking up the weapon
+				ItemStack pickUpStack = getWeaponItem().copy();
+				removeEnchantments(pickUpStack);
 				
-				ItemStack weapon = getWeaponItem();
-				
+				// Try to merge with existing weapon in inventory
+				boolean merged = false;
 				for(int i = 0; i < player.getInventory().getContainerSize(); i++)
 				{
-					ItemStack slotStack = player.getInventory().getItem(i);
-					var weaponTag = ItemStackDataHelper.getTag(weapon);
-					var slotTag = ItemStackDataHelper.getTag(slotStack);
-					if(slotStack.getItem() == weapon.getItem() && 
-							weaponTag.hasUUID(ThrowingWeaponItem.NBT_UUID) && slotTag.hasUUID(ThrowingWeaponItem.NBT_UUID) && 
-							weaponTag.getUUID(ThrowingWeaponItem.NBT_UUID).equals(slotTag.getUUID(ThrowingWeaponItem.NBT_UUID)) &&
-							weapon.getItem() instanceof ThrowingWeaponItem throwingWeapon)
+					ItemStack invStack = player.getInventory().getItem(i);
+					if(!invStack.isEmpty() && ItemStack.isSameItem(invStack, pickUpStack))
 					{
-						int maxAmmo = throwingWeapon.getMaxAmmo(slotStack, level());
-						int currentAmmo = maxAmmo - slotTag.getInt(ThrowingWeaponItem.NBT_AMMO_USED);
-						
-						if(currentAmmo < maxAmmo)
+						// Found matching weapon, decrease its ammo counter
+						int currentAmmo = ItemStackDataHelper.getTag(invStack).getInt(ThrowingWeaponItem.NBT_AMMO_USED);
+						if(currentAmmo > 0)
 						{
-							int itemDamage = slotStack.getDamageValue() + weapon.getDamageValue();
-							
-							// If the total damage exceeds the damage of the equipped stack, then "break" one of the ammo items and not increment the ammo count
-	    					if(itemDamage > slotStack.getMaxDamage())
-	    	            		itemDamage -= slotStack.getMaxDamage() + 1;
-	    					else
-	    					{
-	    						currentAmmo++;
-	    						final int finalCurrentAmmo = currentAmmo;
-	    						ItemStackDataHelper.updateTag(slotStack, tag -> tag.putInt(ThrowingWeaponItem.NBT_AMMO_USED, maxAmmo - finalCurrentAmmo));
-	    					}
-	    					slotStack.setDamageValue(itemDamage);
-	    					pickUpAsNewItem = false;
-	    					canBePickedUp = true;
-	    					break;
+							ItemStackDataHelper.updateTag(invStack, tag -> tag.putInt(ThrowingWeaponItem.NBT_AMMO_USED, Math.max(0, tag.getInt(ThrowingWeaponItem.NBT_AMMO_USED) - 1)));
+							merged = true;
+							break;
 						}
 					}
 				}
-				if(pickUpAsNewItem)
+				
+				// If couldn't merge, try adding as new item with reset ammo
+				if(!merged)
 				{
-					ItemStack pickUpStack = weapon.copy();
-					removeEnchantments(pickUpStack);
+					ItemStackDataHelper.updateTag(pickUpStack, tag -> tag.putInt(ThrowingWeaponItem.NBT_AMMO_USED, 0));
 					canBePickedUp = player.getInventory().add(pickUpStack);
 				}
 			}

@@ -20,15 +20,15 @@ public abstract class ArrowEntitySW extends AbstractArrow
 		initEntity();
 	}
 
-	public ArrowEntitySW(EntityType<? extends ArrowEntitySW> type, Level level, double x, double y, double z) 
+	public ArrowEntitySW(EntityType<? extends ArrowEntitySW> type, Level level, double x, double y, double z, ItemStack weapon) 
 	{
-		super(type, x, y, z, level, ItemStack.EMPTY, ItemStack.EMPTY);
+		super(type, x, y, z, level, ItemStack.EMPTY, weapon);
 		initEntity();
 	}
 
-	public ArrowEntitySW(EntityType<? extends ArrowEntitySW> type, Level level, LivingEntity shooter) 
+	public ArrowEntitySW(EntityType<? extends ArrowEntitySW> type, Level level, LivingEntity shooter, ItemStack weapon) 
 	{
-		super(type, shooter, level, ItemStack.EMPTY, ItemStack.EMPTY);
+		super(type, shooter, level, ItemStack.EMPTY, weapon);
 		initEntity();
 	}
 	

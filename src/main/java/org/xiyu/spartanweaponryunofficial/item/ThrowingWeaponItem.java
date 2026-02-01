@@ -275,10 +275,13 @@ public class ThrowingWeaponItem extends Item implements IWeaponTraitContainer<Th
 	public InteractionResultHolder<ItemStack> use(Level levelIn, Player player, InteractionHand hand)
 	{
 		ItemStack stack = player.getItemInHand(hand);
-		if(ItemStackDataHelper.getTag(stack).getInt(NBT_AMMO_USED) == getMaxAmmo(stack, levelIn))
-			return InteractionResultHolder.fail(stack);
-        player.startUsingItem(hand);
-        return InteractionResultHolder.consume(stack);
+		// Check if we have ammo left
+		if(ItemStackDataHelper.getTag(stack).getInt(NBT_AMMO_USED) < getMaxAmmo(stack, levelIn))
+		{
+	        player.startUsingItem(hand);
+	        return InteractionResultHolder.consume(stack);
+		}
+		return InteractionResultHolder.fail(stack);
 	}
 	
 	@Override
@@ -286,18 +289,13 @@ public class ThrowingWeaponItem extends Item implements IWeaponTraitContainer<Th
 	{
 		if(entityLiving instanceof Player)
 		{
-			int maxAmmo = getMaxAmmo(stack, levelIn);
-			int ammoCount = maxAmmo - ItemStackDataHelper.getTag(stack).getInt(NBT_AMMO_USED);
+			Player player = (Player)entityLiving;
+
+			int maxCharge = getMaxChargeTicks(stack, levelIn);
+            int charge = Math.min(getUseDuration(stack, entityLiving) - timeLeft, maxCharge);
 			
-			if(ammoCount > 0)
-			{
-				Player player = (Player)entityLiving;
-	
-				int maxCharge = getMaxChargeTicks(stack, levelIn);
-	            int charge = Math.min(getUseDuration(stack, entityLiving) - timeLeft, maxCharge);
-				
-				if (!levelIn.isClientSide && charge > 2)
-		        {
+			if (!levelIn.isClientSide && charge > 2 && ItemStackDataHelper.getTag(stack).getInt(NBT_AMMO_USED) < getMaxAmmo(stack, levelIn))
+	        {
 		            ThrowingWeaponEntity thrown = createThrowingWeaponEntity(levelIn, player, stack, charge);
 		            float chargePerc = (charge / (float)maxCharge);
 		            
@@ -305,11 +303,36 @@ public class ThrowingWeaponItem extends Item implements IWeaponTraitContainer<Th
 		            
 		            thrown.setWeapon(stack);
 		            int velocityBonus = ModEnchantments.getLevel(levelIn.registryAccess(), ModEnchantments.PROPEL, stack);
-		            thrown.shootFromRotation(player, player.xRotO, player.yRotO, 0.0F, throwVelocity * ((velocityBonus * 0.2f) + 1) * (chargePerc * 0.9f + 0.1f), 0.5f);
+		            
+		            // Different charge behavior based on weapon type:
+		            // Throwing Knife: charge affects velocity/distance, damage stays constant
+		            // Javelin: charge affects damage and velocity, distance stays similar
+		            float velocityMultiplier;
+		            double damageMultiplier;
+		            
+		            if(archetype == WeaponArchetype.THROWING_KNIFE)
+		            {
+		            	// Throwing knife: longer charge = faster and further, but same damage
+		            	velocityMultiplier = (chargePerc * 1.5f + 0.5f);  // 0.5x to 2.0x velocity based on charge
+		            	damageMultiplier = 1.0;  // Constant damage
+		            }
+		            else if(archetype == WeaponArchetype.JAVELIN)
+		            {
+		            	// Javelin: longer charge = more damage and faster, but distance stays similar
+		            	velocityMultiplier = (chargePerc * 0.5f + 0.8f);  // 0.8x to 1.3x velocity (less range variation)
+		            	damageMultiplier = (throwDamageMultiplier - 1.0f) * chargePerc + 1.0f;  // Full damage scaling
+		            }
+		            else
+		            {
+		            	// Other throwing weapons (tomahawk, boomerang): original behavior
+		            	velocityMultiplier = (chargePerc * 0.9f + 0.1f);
+		            	damageMultiplier = (throwDamageMultiplier - 1.0f) * chargePerc + 1.0f;
+		            }
+		            
+		            thrown.shootFromRotation(player, player.xRotO, player.yRotO, 0.0F, throwVelocity * ((velocityBonus * 0.2f) + 1) * velocityMultiplier, 0.5f);
 		            
 		            traits.forEach((trait) -> trait.getThrowingCallback().ifPresent((callback) -> callback.onThrowingProjectileSpawn(material, thrown)));
 		            
-		            double damageMultiplier = (throwDamageMultiplier - 1.0f) * chargePerc + 1.0f;
 		            thrown.setBaseDamage((getDirectAttackDamage() + 1.0d) * damageMultiplier);
 		            
 		            // Apply enchantments as necessary
@@ -332,31 +355,17 @@ public class ThrowingWeaponItem extends Item implements IWeaponTraitContainer<Th
 		            	thrown.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
 		            else if(thrown.isValidThrowingWeapon())
 		            {
-		            	ammoCount--;
-		            	final int finalAmmoCount = ammoCount;
-		            	ItemStackDataHelper.updateTag(stack, tag -> tag.putInt(NBT_AMMO_USED, maxAmmo - finalAmmoCount));
-		            	
-		            	// If there is no ammo left and the stack isn't original (picked up from the ground to create a new stack), then delete the stack
-		            	if(ammoCount == 0 && !ItemStackDataHelper.getTag(stack).getBoolean(NBT_ORIGINAL))
-		            	{
-			                stack.shrink(1);
-			                if(stack.getCount() <= 0)
-			                	player.getInventory().removeItem(stack);
-		            	}
+		            	// Use ammo system - increment ammo used counter
+		            	ItemStackDataHelper.updateTag(stack, tag -> tag.putInt(NBT_AMMO_USED, tag.getInt(NBT_AMMO_USED) + 1));
 		            }
 		            
-		            if(thrown.isValidThrowingWeapon())
-		            {
-		            	stack.setDamageValue(0);
-		            	levelIn.playSound((Player)null, player.getX(), player.getY(), player.getZ(), getThrowingSound(), SoundSource.PLAYERS, 0.5F, 0.4F / (levelIn.random.nextFloat() * 0.4F + 0.8F));
-		            	levelIn.addFreshEntity(thrown);
-		            }
+		            stack.setDamageValue(0);
+		            levelIn.playSound((Player)null, player.getX(), player.getY(), player.getZ(), getThrowingSound(), SoundSource.PLAYERS, 0.5F, 0.4F / (levelIn.random.nextFloat() * 0.4F + 0.8F));
+		            levelIn.addFreshEntity(thrown);
 		            
 			        player.awardStat(Stats.ITEM_USED.get(this));
 		        }
-			}
 		}
-		super.releaseUsing(stack, levelIn, entityLiving, timeLeft);
 	}
 
 	@Override

@@ -25,7 +25,7 @@ public class ArrowExplosiveItem extends ArrowItemSW
 	@Override
 	public AbstractArrow createArrow(Level level, ItemStack stack, LivingEntity shooter, ItemStack weapon)
 	{
-		AbstractArrow arrow = new ArrowExplosiveEntity(level, shooter);
+		AbstractArrow arrow = new ArrowExplosiveEntity(level, shooter, weapon);
 		return arrow;
 	}
 

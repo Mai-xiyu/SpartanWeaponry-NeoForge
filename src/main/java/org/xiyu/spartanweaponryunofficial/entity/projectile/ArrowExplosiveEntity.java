@@ -6,6 +6,7 @@ import org.xiyu.spartanweaponryunofficial.util.Config;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.Level.ExplosionInteraction;
@@ -17,14 +18,14 @@ public class ArrowExplosiveEntity extends ArrowEntitySW
 		super(type, level);
 	}
 
-	public ArrowExplosiveEntity(Level level, double x, double y, double z) 
+	public ArrowExplosiveEntity(Level level, double x, double y, double z, ItemStack weapon) 
 	{
-		super(ModEntities.ARROW_EXPLOSIVE.get(), level, x, y, z);
+		super(ModEntities.ARROW_EXPLOSIVE.get(), level, x, y, z, weapon);
 	}
 
-	public ArrowExplosiveEntity(Level level, LivingEntity shooter) 
+	public ArrowExplosiveEntity(Level level, LivingEntity shooter, ItemStack weapon) 
 	{
-		super(ModEntities.ARROW_EXPLOSIVE.get(), level, shooter);
+		super(ModEntities.ARROW_EXPLOSIVE.get(), level, shooter, weapon);
 	}
 	
 	@Override
