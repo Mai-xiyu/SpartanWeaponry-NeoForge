@@ -2,6 +2,7 @@ package org.xiyu.spartanweaponryunofficial.mixin;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Redirect;
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import org.xiyu.spartanweaponryunofficial.api.IWeaponTraitContainer;
@@ -24,7 +25,7 @@ public class PlayerMixin
 	// This mixin will need to be reimplemented using the new enchantment effect system
 	// if custom sweep damage behavior is still required.
 	
-//	@Redirect(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/enchantment/EnchantmentHelper;getSweepingDamageRatio(Lnet/minecraft/world/entity/LivingEntity;)F"))
+	@Redirect(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/enchantment/EnchantmentHelper;getSweepingDamageRatio(Lnet/minecraft/world/entity/LivingEntity;)F"))
 	private float getSweepingDamageRatio(LivingEntity entityIn)
 	{
 //		Log.debug("Intercepted EnchantmentHelper.getSweepingDamageRatio() method!");
@@ -32,13 +33,13 @@ public class PlayerMixin
 		if(weaponStack.getItem() instanceof IWeaponTraitContainer<?> container)
 		{
 			WeaponTrait sweepTrait = container.getFirstWeaponTraitWithType(WeaponTraits.TYPE_SWEEP_DAMAGE);
-			if(sweepTrait != null && sweepTrait.getLevel() > 1)
+			if(sweepTrait != null)
 			{
 				float damage = (float)entityIn.getAttributeValue(Attributes.ATTACK_DAMAGE);
-				float resultDamage = damage * sweepTrait.getMagnitude();
-				float result = ((resultDamage - 1.0f) / resultDamage) * sweepTrait.getMagnitude();;
-//				Log.debug("Base damage: " + damage + " * Magnitude: " + sweepTrait.getMagnitude() + " = Result damage: " + resultDamage + " - Overridden sweep damage ratio to " + result);
-				return result;
+				if (damage > 0)
+				{
+					return sweepTrait.getMagnitude() - (1.0f / damage);
+				}
 			}
 		}
 		// Default value when no custom sweep trait is present
