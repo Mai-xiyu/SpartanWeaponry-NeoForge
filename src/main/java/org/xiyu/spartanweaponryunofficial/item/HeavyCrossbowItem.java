@@ -194,17 +194,31 @@ public class HeavyCrossbowItem extends CrossbowItem implements IReloadable, IHud
     		else
     		{
     			// Fire the Crossbow
+    			// First check if the crossbow is actually loaded
+    			boolean isCharged = ItemStackDataHelper.getTag(stack).getBoolean(NBT_CHARGED);
+    			if(!isCharged) {
+    				// Crossbow not charged, returning early
+    				return;
+    			}
+    			
 				ItemStack itemstack = ItemStack.EMPTY;
 	            CompoundTag tag = ItemStackDataHelper.getTag(stack).getCompound(NBT_PROJECTILE);
                 
                 if(tag != null && !tag.isEmpty())
 	            	itemstack = ItemStack.parseOptional(levelIn.registryAccess(), tag);
                 
+                // If parsed itemstack is empty but crossbow is charged, use default bolt
+                if(itemstack.isEmpty() && isCharged)
+                {
+                	itemstack = new ItemStack(ModItems.BOLT.get());
+                }
+                
 	            int i = this.getUseDuration(stack, player) - timeLeft;
 	            
-	            if (i < 0 || !ItemStackDataHelper.getTag(stack).getBoolean(NBT_CHARGED)) return;
+	            if (i < 0) return;
 	
-	            if (!itemstack.isEmpty() || isCreativeOrInfinite)
+	            // If we have ammo, proceed with firing (crossbow is already charged so we should fire)
+	            if (!itemstack.isEmpty())
 	            {
 	                if (itemstack.isEmpty())
 	                {
@@ -213,7 +227,7 @@ public class HeavyCrossbowItem extends CrossbowItem implements IReloadable, IHud
 	
 	                if (!levelIn.isClientSide)
 	                {
-	                	BoltItem itemBolt = ((BoltItem)(itemstack.getItem() instanceof BoltItem ? itemstack.getItem() : ModItems.BOLT));
+	                	BoltItem itemBolt = ((BoltItem)(itemstack.getItem() instanceof BoltItem ? itemstack.getItem() : ModItems.BOLT.get()));
 	                	
 	                	boolean flag1 = player.getAbilities().instabuild || (itemstack.getItem() instanceof BoltItem ? ((BoltItem)itemstack.getItem()).isInfinite(itemstack, stack, player) : false);
 	                    
@@ -261,6 +275,8 @@ public class HeavyCrossbowItem extends CrossbowItem implements IReloadable, IHud
     protected void spawnProjectile(ItemStack crossbow, BoltItem boltItem, ItemStack boltStack, Level levelIn, Player player, boolean creativeOrInfinite, float inaccuracyModifier, float projectileAngle)
     {
     	BoltEntity bolt = boltItem.createBolt(levelIn, boltStack, player, crossbow);
+    	
+    	if(bolt == null) return;  // Safety check in case bolt creation fails
     	
 		RegistryAccess registryAccess = levelIn.registryAccess();
 		bolt.setCritArrow(true);

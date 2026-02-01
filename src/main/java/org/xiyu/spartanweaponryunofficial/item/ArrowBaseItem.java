@@ -38,7 +38,7 @@ public class ArrowBaseItem extends ArrowItem
 	@Override
 	public AbstractArrow createArrow(Level levelIn, ItemStack stack, LivingEntity shooter, ItemStack weapon)
 	{
-		ArrowBaseEntity arrow = new ArrowBaseEntity(levelIn, shooter);
+		ArrowBaseEntity arrow = new ArrowBaseEntity(levelIn, shooter, weapon);
 		ItemStack arrowStack = stack.copy();
 		arrowStack.setCount(1);
 		arrow.initEntity(damageModifier, rangeModifier, arrowStack);

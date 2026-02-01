@@ -126,7 +126,7 @@ public class LongbowItem extends BowItem implements IReloadable
             ItemStack itemstack = player.getProjectile(stack);
 
 			int i = this.getUseDuration(stack, entityLiving) - timeLeft;
-			i = EventHooks.onArrowLoose(stack, level, (Player)entityLiving, i, itemstack != null || flag);
+			i = EventHooks.onArrowLoose(stack, level, (Player)entityLiving, i, !itemstack.isEmpty() || flag);
             if (i < 0) return;
 
             if (!itemstack.isEmpty() || flag)
