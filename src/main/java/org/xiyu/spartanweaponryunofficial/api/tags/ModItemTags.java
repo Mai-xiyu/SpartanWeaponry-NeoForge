@@ -110,7 +110,7 @@ public class ModItemTags
 	public static final TagKey<Item> INVAR_INGOT = ItemTags.create(ResourceLocation.parse("c:ingots/invar"));
 	public static final TagKey<Item> CONSTANTAN_INGOT = ItemTags.create(ResourceLocation.parse("c:ingots/constantan"));
 	public static final TagKey<Item> PLATINUM_INGOT = ItemTags.create(ResourceLocation.parse("c:ingots/platinum"));
-	public static final TagKey<Item> ALUMINUM_INGOT = ItemTags.create(ResourceLocation.tryBuild(ModSpartanWeaponry.ID, "ingots/aluminum"));	// The below two alumin(i)um ingot tag variants combined (for compatibility)
+	public static final TagKey<Item> ALUMINUM_INGOT = ItemTags.create(ResourceLocation.parse("c:ingots/aluminum"));
 	public static final TagKey<Item> FORGE_ALUMINUM_INGOT = ItemTags.create(ResourceLocation.parse("c:ingots/aluminum"));
 	public static final TagKey<Item> FORGE_ALUMINIUM_INGOT = ItemTags.create(ResourceLocation.parse("c:ingots/aluminium"));
 	

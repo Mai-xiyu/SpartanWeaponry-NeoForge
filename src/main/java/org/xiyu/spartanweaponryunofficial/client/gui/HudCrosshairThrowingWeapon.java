@@ -93,13 +93,13 @@ public class HudCrosshairThrowingWeapon
 	
 	            if (flag)
 	            {
-	            	guiGraphics.blit(HudCrosshair.ICONS_LOCATION, j, i, 68, 94, 16, 16);
+	            	guiGraphics.blitSprite(net.minecraft.resources.ResourceLocation.withDefaultNamespace("hud/crosshair_attack_indicator_full"), j, i, 16, 16);
 	            }
 	            else if (f < 1.0F)
 	            {
 	                int k = (int)(f * 17.0F);
-	                guiGraphics.blit(HudCrosshair.ICONS_LOCATION, j, i, 36, 94, 16, 4);
-	                guiGraphics.blit(HudCrosshair.ICONS_LOCATION, j, i, 52, 94, k, 4);
+	                guiGraphics.blitSprite(net.minecraft.resources.ResourceLocation.withDefaultNamespace("hud/crosshair_attack_indicator_background"), j, i, 16, 4);
+	                guiGraphics.blitSprite(net.minecraft.resources.ResourceLocation.withDefaultNamespace("hud/crosshair_attack_indicator_progress"), 16, 4, 0, 0, j, i, k, 4);
 	            }
 	        }
 
