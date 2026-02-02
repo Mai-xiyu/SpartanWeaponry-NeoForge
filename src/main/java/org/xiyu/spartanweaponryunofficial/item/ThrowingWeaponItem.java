@@ -111,6 +111,12 @@ public class ThrowingWeaponItem extends Item implements IWeaponTraitContainer<Th
 	@Override
 	public void reload() 
 	{
+		// Update attack damage and speed from config (via archetype)
+		setAttackDamage(archetype.getBaseDamage(), archetype.getDamageMultiplier());
+		setAttackSpeed(archetype.getAttackSpeed());
+		// Update charge ticks from config (via archetype)
+		setChargeTicks(archetype.getChargeTicks());
+		
 		ImmutableList.Builder<WeaponTrait> builder = ImmutableList.builder();
 		builder.addAll(archetype.getTraits());
 		builder.addAll(material.getBonusTraits(archetype.getType()));

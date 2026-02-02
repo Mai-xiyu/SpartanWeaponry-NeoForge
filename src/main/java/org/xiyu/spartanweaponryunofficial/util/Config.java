@@ -148,39 +148,39 @@ public class Config
 		aluminum = new MaterialCategory(builder, "aluminum", APIConstants.DefaultMaterialDamageAluminum, APIConstants.DefaultMaterialDurabilityAluminum, TypeDisabledCondition.ALUMINUM);
 		
 		builder.push("explosives");
-			disableRecipesExplosives = builder.comment("Disables all recipes for explosive related items")
+			disableRecipesExplosives = builder.comment("Disables all recipes for explosive related items|禁用所有爆炸物相关物品的配方")
 								.translation("config." + ModSpartanWeaponry.ID + ".explosive.disable_recipe")
 								.worldRestart()
 								.define("disable_recipe", false);
-			disableTerrainDamage = builder.comment("Disables terrain damage for explosives in this mod such as Dynamite and Explosive Arrows. Is overridden by the 'mobGriefing' gamerule.")
+			disableTerrainDamage = builder.comment("Disables terrain damage for explosives in this mod such as Dynamite and Explosive Arrows. Is overridden by the 'mobGriefing' gamerule.|禁用本模组爆炸物（如炸药、爆炸箭）对地形的破坏。会被 'mobGriefing' 游戏规则覆盖。")
 								.translation("config." + ModSpartanWeaponry.ID + ".explosive.disable_terrain_damage")
 								.define("disable_terrain_damage", false);
-			fuseTicksDynamite = builder.comment("Time (in ticks) it takes for Dynamite to explode")
+			fuseTicksDynamite = builder.comment("Time (in ticks) it takes for Dynamite to explode|炸药引爆所需时间（tick）")
 					.translation("config." + ModSpartanWeaponry.ID + ".explosive.fuse_ticks_dynamite")
 					.defineInRange("fuse_ticks_dynamite", Defaults.FuseTicksDynamite, 20, 600);
-			explosionStrengthDynamite = builder.comment("Explosion strength for Dynamite")
+			explosionStrengthDynamite = builder.comment("Explosion strength for Dynamite|炸药的爆炸强度")
 					.translation("config." + ModSpartanWeaponry.ID + ".explosive.explosion_strength_dynamite")
 					.defineInRange("explosion_strength_dynamite", Defaults.ExplosionStrengthDynamite, 0.1f, 10.0f);
 		builder.pop();
 		
 		builder.push("projectiles");
-			disableNewArrowRecipes = builder.comment("Disables Recipes for all new Arrows.")
+			disableNewArrowRecipes = builder.comment("Disables Recipes for all new Arrows.|禁用所有新增箭矢的配方。")
 								.translation("config." + ModSpartanWeaponry.ID + ".projectile.disable_new_arrow_recipes")
 								.worldRestart()
 								.define("disable_new_arrow_recipes", false);
-			disableCopperAmmoRecipes = builder.comment("Disables Recipes for both Copper Arrows and Copper Bolts.")
+			disableCopperAmmoRecipes = builder.comment("Disables Recipes for both Copper Arrows and Copper Bolts.|禁用铜箭与铜弩箭的配方。")
 					.translation("config." + ModSpartanWeaponry.ID + ".projectile.disable_copper_ammo_recipes")
 					.worldRestart()
 					.define("disable_copper_ammo_recipes", false);
-			disableDiamondAmmoRecipes = builder.comment("Disables Recipes for both Diamond Arrows and Diamond Bolts.")
+			disableDiamondAmmoRecipes = builder.comment("Disables Recipes for both Diamond Arrows and Diamond Bolts.|禁用钻石箭与钻石弩箭的配方。")
 								.translation("config." + ModSpartanWeaponry.ID + ".projectile.disable_diamond_ammo_recipes")
 								.worldRestart()
 								.define("disable_diamond_ammo_recipes", false);
-			disableNetheriteAmmoRecipes = builder.comment("Disables Recipes for both Netherite Arrows and Netherite Bolts.")
+			disableNetheriteAmmoRecipes = builder.comment("Disables Recipes for both Netherite Arrows and Netherite Bolts.|禁用下界合金箭与下界合金弩箭的配方。")
 					.translation("config." + ModSpartanWeaponry.ID + ".projectile.disable_netherite_ammo_recipes")
 					.worldRestart()
 					.define("disable_netherite_ammo_recipes", false);
-			disableQuiverRecipes = builder.comment("Disables all variants of the Arrow Quiver and the Bolt Quiver in this mod")
+			disableQuiverRecipes = builder.comment("Disables all variants of the Arrow Quiver and the Bolt Quiver in this mod|禁用本模组所有箭袋与弩箭袋的配方。")
 								.translation("config." + ModSpartanWeaponry.ID + ".projectile.disable_quiver_recipes")
 								.worldRestart()
 								.define("disable_quiver_recipes", false);
@@ -196,190 +196,190 @@ public class Config
 			boltNetherite = new BoltCategory(builder, "netherite", "bolt", Defaults.BaseDamageBoltNetherite, Defaults.RangeMultiplierBoltNetherite, Defaults.ArmorPiercingFactorBoltNetherite);
 			
 			builder.push("explosive");
-				arrowExplosiveExplosionStrength = builder.comment("Base damage for explosive arrows")
+				arrowExplosiveExplosionStrength = builder.comment("Base damage for explosive arrows|爆炸箭基础伤害")
 						.translation("config." + ModSpartanWeaponry.ID + ".arrow.explosion_strength")
 						.defineInRange("base_damage", Defaults.ExplosionStrengthArrowExplosive, 0.1d, 10.0d);
-				arrowExplosiveRangeMultiplier = builder.comment("Range muliplier for explosive arrows")
+				arrowExplosiveRangeMultiplier = builder.comment("Range muliplier for explosive arrows|爆炸箭射程倍率")
 						.translation("config." + ModSpartanWeaponry.ID + ".arrow.range_multiplier")
 						.defineInRange("range_multiplier", Defaults.RangeMultiplierArrowExplosive, 0.1d, 100.0d);
 			builder.pop();
-			quiverBowBlacklist = builder.comment("Bows in this blacklist will not get Arrows pulled out of the Arrow Quiver. Use the registry ID of the bow to add to this. e.g. \"minecraft:bow\"")
+			quiverBowBlacklist = builder.comment("Bows in this blacklist will not get Arrows pulled out of the Arrow Quiver. Use the registry ID of the bow to add to this. e.g. \"minecraft:bow\"|黑名单中的弓不会从箭袋中取箭。使用弓的注册 ID 添加，例如 \"minecraft:bow\"")
 								.translation("config." + ModSpartanWeaponry.ID + ".projectile.quiver_bow_blacklist")
 //								.<String>defineList("quiver_bow_blacklist", Defaults.QuiverArrowBlacklist, /*(value) -> ForgeRegistries.ITEMS.containsKey(ResourceLocation.tryBuild((String)value))*/ (value) -> value.getClass() == String.class);
 								.<String>defineListAllowEmpty(List.of("quiver_bow_blacklist"), () -> Defaults.QuiverArrowBlacklist, IS_VALID_RESOURCE_LOCATION);
 		builder.pop();
 		
 		builder.push("loot");
-			addIronWeaponsToVillageWeaponsmith = builder.comment("Set to false to disable spawning Iron Weapons in Village Weaponsmith chests via loot table injection")
+			addIronWeaponsToVillageWeaponsmith = builder.comment("Set to false to disable spawning Iron Weapons in Village Weaponsmith chests via loot table injection|设为 false 禁用通过战利品表注入在村庄铁匠箱中生成铁制武器")
 								.translation("config." + ModSpartanWeaponry.ID + ".loot.add_iron_weapons_to_village_blacksmith")
 								.worldRestart()
 								.define("add_iron_weapons_to_village_blacksmith", true);
-			addBowAndCrossbowLootToVillageFletcher = builder.comment("Set to false to disable spawning Longbow and Heavy Crossbow-related loot in Village Fletcher chests via loot table injection")
+			addBowAndCrossbowLootToVillageFletcher = builder.comment("Set to false to disable spawning Longbow and Heavy Crossbow-related loot in Village Fletcher chests via loot table injection|设为 false 禁用通过战利品表注入在村庄制箭师箱中生成长弓/重弩相关战利品")
 					.translation("config." + ModSpartanWeaponry.ID + ".loot.add_bow_and_crossbow_loot_to_village_fletcher")
 					.worldRestart()
 					.define("add_bow_and_crossbow_loot_to_village_fletcher", true);
-			addDiamondWeaponsToEndCity = builder.comment("Set to false to disable spawning Diamond Weapons in End City chests via loot table injection")
+			addDiamondWeaponsToEndCity = builder.comment("Set to false to disable spawning Diamond Weapons in End City chests via loot table injection|设为 false 禁用通过战利品表注入在末地城箱中生成钻石武器")
 								.translation("config." + ModSpartanWeaponry.ID + ".loot.add_diamond_weapons_to_end_city")
 								.worldRestart()
 								.define("add_diamond_weapons_to_end_city", true);
-			zombieWithMeleeSpawnChanceNormal = builder.comment("Chance for Zombies to spawn with Iron Melee Weapons on all difficulties apart from Hard and Hardcore")
+			zombieWithMeleeSpawnChanceNormal = builder.comment("Chance for Zombies to spawn with Iron Melee Weapons on all difficulties apart from Hard and Hardcore|僵尸在除困难/极限外难度生成时手持铁制近战武器的概率")
 								.translation("config." + ModSpartanWeaponry.ID + ".loot.zombie_with_melee_spawn_chance_normal")
 								.defineInRange("zombie_with_melee_spawn_chance_normal", Defaults.zombieWithMeleeSpawnChanceNormal, 0.0, 1.0);
-			zombieWithMeleeSpawnChanceHard = builder.comment("Chance for Zombies to spawn with Iron Melee Weapons on Hard or Hardcore difficulty")
+			zombieWithMeleeSpawnChanceHard = builder.comment("Chance for Zombies to spawn with Iron Melee Weapons on Hard or Hardcore difficulty|僵尸在困难/极限难度生成时手持铁制近战武器的概率")
 								.translation("config." + ModSpartanWeaponry.ID + ".loot.zombie_with_melee_spawn_chance_hard")
 								.defineInRange("zombie_with_melee_spawn_chance_hard", Defaults.zombieWithMeleeSpawnChanceHard, 0.0, 1.0);
-			disableSpawningZombieWithWeapon = builder.comment("Set to true to disable spawning a Zombie with any weapons from this mod")
+			disableSpawningZombieWithWeapon = builder.comment("Set to true to disable spawning a Zombie with any weapons from this mod|设为 true 禁用僵尸手持本模组武器生成")
 								.translation("config." + ModSpartanWeaponry.ID + ".loot.disable_spawning_zombie_with_weapon")
 								.define("disable_spawning_zombie_with_weapon", false);
-			skeletonWithLongbowSpawnChanceNormal = builder.comment("Chance for Skeletons to spawn with various Longbows on all difficulties apart from Hard and Hardcore")
+			skeletonWithLongbowSpawnChanceNormal = builder.comment("Chance for Skeletons to spawn with various Longbows on all difficulties apart from Hard and Hardcore|骷髅在除困难/极限外难度生成时手持各类长弓的概率")
 								.translation("config." + ModSpartanWeaponry.ID + ".loot.skeleton_with_longbow_spawn_chance_normal")
 								.defineInRange("skeleton_with_longbow_spawn_chance_normal", Defaults.skeletonWithLongbowSpawnChanceNormal, 0.0, 1.0);
-			skeletonWithLongbowSpawnChanceHard = builder.comment("Chance for Skeletons to spawn with various Longbows on Hard or Hardcore difficulty")
+			skeletonWithLongbowSpawnChanceHard = builder.comment("Chance for Skeletons to spawn with various Longbows on Hard or Hardcore difficulty|骷髅在困难/极限难度生成时手持各类长弓的概率")
 								.translation("config." + ModSpartanWeaponry.ID + ".loot.skeleton_with_longbow_spawn_chance_hard")
 								.defineInRange("skeleton_with_longbow_spawn_chance_hard", Defaults.skeletonWithLongbowSpawnChanceHard, 0.0, 1.0);
-			disableSpawningSkeletonWithLongbow = builder.comment("Set to true to disable spawning a Skeleton with any Longbow from this mod")
+			disableSpawningSkeletonWithLongbow = builder.comment("Set to true to disable spawning a Skeleton with any Longbow from this mod|设为 true 禁用骷髅手持本模组长弓生成")
 					.translation("config." + ModSpartanWeaponry.ID + ".loot.disable_spawning_skeleton_with_longbow")
 					.define("disable_spawning_skeleton_with_longbow", false);
-			piglinWithMeleeSpawnChanceNormal = builder.comment("Chance for Piglins and Piglin Brutes to spawn with Golden Melee Weapons on all difficulties apart from Hard and Hardcore")
+			piglinWithMeleeSpawnChanceNormal = builder.comment("Chance for Piglins and Piglin Brutes to spawn with Golden Melee Weapons on all difficulties apart from Hard and Hardcore|猪灵与猪灵蛮兵在除困难/极限外难度生成时手持金制近战武器的概率")
 					.translation("config." + ModSpartanWeaponry.ID + ".loot.piglin_with_melee_spawn_chance_normal")
 					.defineInRange("piglin_with_melee_spawn_chance_normal", Defaults.piglinWithMeleeSpawnChanceNormal, 0.0, 1.0);
-			piglinWithMeleeSpawnChanceHard = builder.comment("Chance for Piglins and Piglin Brutes to spawn with Golden Melee Weapons on Hard or Hardcore difficulty")
+			piglinWithMeleeSpawnChanceHard = builder.comment("Chance for Piglins and Piglin Brutes to spawn with Golden Melee Weapons on Hard or Hardcore difficulty|猪灵与猪灵蛮兵在困难/极限难度生成时手持金制近战武器的概率")
 					.translation("config." + ModSpartanWeaponry.ID + ".loot.piglin_with_melee_spawn_chance_hard")
 					.defineInRange("piglin_with_melee_spawn_chance_hard", Defaults.piglinWithMeleeSpawnChanceHard, 0.0, 1.0);
-			disableSpawningPiglinWithWeapon = builder.comment("Set to true to disable spawning a Piglin or Piglin Brute with any weapons from this mod")
+			disableSpawningPiglinWithWeapon = builder.comment("Set to true to disable spawning a Piglin or Piglin Brute with any weapons from this mod|设为 true 禁用猪灵/猪灵蛮兵手持本模组武器生成")
 					.translation("config." + ModSpartanWeaponry.ID + ".loot.disable_spawning_piglin_with_weapon")
 					.define("disable_spawning_piglin_with_weapon", false);
-			witherSkeletonWithMeleeSpawnChanceNormal = builder.comment("Chance for Wither Skeletons to spawn with Stone Melee Weapons on all difficulties apart from Hard and Hardcore")
+			witherSkeletonWithMeleeSpawnChanceNormal = builder.comment("Chance for Wither Skeletons to spawn with Stone Melee Weapons on all difficulties apart from Hard and Hardcore|凋灵骷髅在除困难/极限外难度生成时手持石制近战武器的概率")
 					.translation("config." + ModSpartanWeaponry.ID + ".loot.wither_skeleton_with_melee_spawn_chance_normal")
 					.defineInRange("wither_skeleton_with_melee_spawn_chance_normal", Defaults.witherSkeletonWithMeleeSpawnChanceNormal, 0.0, 1.0);
-			witherSkeletonWithMeleeSpawnChanceHard = builder.comment("Chance for Wither Skeletons to spawn with Stone Melee Weapons on Hard or Hardcore difficulty")
+			witherSkeletonWithMeleeSpawnChanceHard = builder.comment("Chance for Wither Skeletons to spawn with Stone Melee Weapons on Hard or Hardcore difficulty|凋灵骷髅在困难/极限难度生成时手持石制近战武器的概率")
 					.translation("config." + ModSpartanWeaponry.ID + ".loot.wither_skeleton_with_melee_spawn_chance_hard")
 					.defineInRange("wither_skeleton_with_melee_spawn_chance_hard", Defaults.witherSkeletonWithMeleeSpawnChanceHard, 0.0, 1.0);
-			disableSpawningWitherSkeletonWithWeapon = builder.comment("Set to true to disable spawning a Wither Skeleton with any weapons from this mod")
+			disableSpawningWitherSkeletonWithWeapon = builder.comment("Set to true to disable spawning a Wither Skeleton with any weapons from this mod|设为 true 禁用凋灵骷髅手持本模组武器生成")
 					.translation("config." + ModSpartanWeaponry.ID + ".loot.disable_spawning_wither_skeleton_with_weapon")
 					.define("disable_spawning_wither_skeleton_with_weapon", false);
-			disableNewHeadDrops = builder.comment("Set to true to disable the new mob heads from being dropped from mobs using the Decapitate Weapon Trait from this mod.")
+			disableNewHeadDrops = builder.comment("Set to true to disable the new mob heads from being dropped from mobs using the Decapitate Weapon Trait from this mod.|设为 true 禁用拥有“斩首”特性的武器掉落新头颅")
 								.translation("config." + ModSpartanWeaponry.ID + ".loot.disable_new_head_drops")
 								.define("disable_new_head_drops", false);
 		builder.pop();
 		
 		builder.push("trading");
-			disableVillagerTrading = builder.comment("Set to true to disable Villagers (Weaponsmiths and Fletchers) from trading weapons from this mod")
+			disableVillagerTrading = builder.comment("Set to true to disable Villagers (Weaponsmiths and Fletchers) from trading weapons from this mod|设为 true 禁用村民（武器匠、制箭师）交易本模组武器")
 								.translation("config." + ModSpartanWeaponry.ID + ".trading.disabled")
 								.define("disable", false);
 		builder.pop();
 		
 		builder.push("traits");
 			builder.push("damage_bonus");
-				damageBonusChestMultiplier = builder.comment("Changes the \"Chest Damage Bonus\" Weapon Trait multiplier value")
+				damageBonusChestMultiplier = builder.comment("Changes the \"Chest Damage Bonus\" Weapon Trait multiplier value|调整“胸部伤害加成”特性的倍率")
 									.translation("config." + ModSpartanWeaponry.ID + ".traits.damage_bonus.chest_multiplier")
 									.defineInRange("chest_multiplier", Defaults.DamageBonusChestMultiplier, 1.0, 50.0);
-				damageBonusHeadMultiplier = builder.comment("Changes the \"Head Damage Bonus\" Weapon Trait multiplier value")
+				damageBonusHeadMultiplier = builder.comment("Changes the \"Head Damage Bonus\" Weapon Trait multiplier value|调整“头部伤害加成”特性的倍率")
 						.translation("config." + ModSpartanWeaponry.ID + ".traits.damage_bonus.head_multiplier")
 						.defineInRange("head_multiplier", Defaults.DamageBonusHeadMultiplier, 1.0, 50.0);
-				damageBonusRidingMultiplier = builder.comment("Changes the \"Riding Damage Bonus\" Weapon Trait multiplier value")
+				damageBonusRidingMultiplier = builder.comment("Changes the \"Riding Damage Bonus\" Weapon Trait multiplier value|调整“骑乘伤害加成”特性的倍率")
 						.translation("config." + ModSpartanWeaponry.ID + ".traits.damage_bonus.riding_multiplier")
 						.defineInRange("riding_multiplier", Defaults.DamageBonusRidingMultiplier, 1.0, 50.0);
-/*				damageBonusRidingVelocityForMaxBonus = builder.comment("Velocity required for the \"Riding Damage Bonus\" Weapon Trait to award the max bonus")
+/*			damageBonusRidingVelocityForMaxBonus = builder.comment("Velocity required for the \"Riding Damage Bonus\" Weapon Trait to award the max bonus|触发“骑乘伤害加成”特性最高加成所需的速度")
 						.translation("config." + ModSpartanWeaponry.ID + ".traits.damage_bonus.riding_velocity_for_max_bonus")
 						.defineInRange("riding_velocity_for_max_bonus", Defaults.DamageBonusRidingVelocityMax, 0.0, 10.0);*/
-				damageBonusThrowMultiplier = builder.comment("Changes the \"Throwing Damage Bonus\" Weapon Trait multiplier value")
+				damageBonusThrowMultiplier = builder.comment("Changes the \"Throwing Damage Bonus\" Weapon Trait multiplier value|调整“投掷伤害加成”特性的倍率")
 						.translation("config." + ModSpartanWeaponry.ID + ".traits.damage_bonus.throw_multiplier")
 						.defineInRange("throw_multiplier", Defaults.DamageBonusThrowMultiplier, 1.0, 50.0);
-				damageBonusThrowJavelinMultiplier = builder.comment("Changes the \"Chest Damage Bonus\" Weapon Trait multiplier value")
+				damageBonusThrowJavelinMultiplier = builder.comment("Changes the \"Chest Damage Bonus\" Weapon Trait multiplier value|调整“标枪投掷伤害加成”特性的倍率")
 						.translation("config." + ModSpartanWeaponry.ID + ".traits.damage_bonus.throw_javelin_multiplier")
 						.defineInRange("throw_javelin_multiplier", Defaults.DamageBonusThrowJavelinMultiplier, 1.0, 50.0);
-				damageBonusUnarmoredMultiplier = builder.comment("Changes the \"Unarmored Damage Bonus\" Weapon Trait multiplier value")
+				damageBonusUnarmoredMultiplier = builder.comment("Changes the \"Unarmored Damage Bonus\" Weapon Trait multiplier value|调整“无甲伤害加成”特性的倍率")
 						.translation("config." + ModSpartanWeaponry.ID + ".traits.damage_bonus.unarmored_multiplier")
 						.defineInRange("unarmored_multiplier", Defaults.DamageBonusUnarmoredMultiplier, 1.0, 50.0);
-				damageBonusCheckArmorValue = builder.comment("If set to true, any damage bonus that checks for armor will only apply if the hit mob has less than the total armor value threshold, while still checking for armor")
+				damageBonusCheckArmorValue = builder.comment("If set to true, any damage bonus that checks for armor will only apply if the hit mob has less than the total armor value threshold, while still checking for armor|设为 true 时，任何基于护甲判定的伤害加成仅在目标护甲值低于阈值时生效（仍会检查护甲）")
 						.translation("config." + ModSpartanWeaponry.ID + ".traits.damage_bonus.check_armor_value")
 						.define("check_armor_value", false);
-				damageBonusMaxArmorValue = builder.comment("Max armor value allowed for any damage bonus that checks for armor to apply, without any armor equipped")
+				damageBonusMaxArmorValue = builder.comment("Max armor value allowed for any damage bonus that checks for armor to apply, without any armor equipped|允许触发护甲判定伤害加成的最大护甲值")
 						.translation("config." + ModSpartanWeaponry.ID + ".traits.damage_bonus.max_armor_value")
 						.defineInRange("max_armor_value", Defaults.DamageBonusMaxArmorValue, 1.0, 50.0);
-				damageBonusUndeadMultiplier = builder.comment("Changes the \"Undead Damage Bonus\" Weapon Trait multiplier value")
+				damageBonusUndeadMultiplier = builder.comment("Changes the \"Undead Damage Bonus\" Weapon Trait multiplier value|调整“亡灵伤害加成”特性的倍率")
 						.translation("config." + ModSpartanWeaponry.ID + ".traits.damage_bonus.undead_multiplier")
 						.defineInRange("undead_multiplier", Defaults.DamageBonusUndeadMultiplier, 1.0, 50.0);
-				damageBonusBackstabMultiplier = builder.comment("Changes the \"Backstab Damage Bonus\" Weapon Trait multiplier value")
+				damageBonusBackstabMultiplier = builder.comment("Changes the \"Backstab Damage Bonus\" Weapon Trait multiplier value|调整“背刺伤害加成”特性的倍率")
 						.translation("config." + ModSpartanWeaponry.ID + ".traits.damage_bonus.backstab_multiplier")
 						.defineInRange("backstab_multiplier", Defaults.DamageBonusBackstabMultiplier, 1.0, 50.0);
 			builder.pop();
 			builder.push("damage_absorption");
-				damageAbsorptionFactor = builder.comment("Changes the percentage of damage absorbed by the \"Damage Absorption\" Weapon Trait")
+				damageAbsorptionFactor = builder.comment("Changes the percentage of damage absorbed by the \"Damage Absorption\" Weapon Trait|调整“伤害吸收”特性的吸收比例")
 						.translation("config." + ModSpartanWeaponry.ID + ".traits.damage_absorption_factor")
 						.defineInRange("damage_absorption_factor", Defaults.DamageAbsorptionFactor, 0.0, 1.0);
 			builder.pop();
 			builder.push("reach");
-				reach1Value = builder.comment("Changes the reach of any weapons with the \"Reach I\" Weapon Trait")
+				reach1Value = builder.comment("Changes the reach of any weapons with the \"Reach I\" Weapon Trait|调整“攻击距离 I”特性的攻击距离")
 						.translation("config." + ModSpartanWeaponry.ID + ".traits.reach1.value")
 						.defineInRange("reach1_value", Defaults.Reach1Value, 5.0, 15.0);
-				reach2Value = builder.comment("Changes the reach of any weapons with the \"Reach II\" Weapon Trait")
+				reach2Value = builder.comment("Changes the reach of any weapons with the \"Reach II\" Weapon Trait|调整“攻击距离 II”特性的攻击距离")
 						.translation("config." + ModSpartanWeaponry.ID + ".traits.reach2.value")
 						.defineInRange("reach2_value", Defaults.Reach2Value, 5.0, 15.0);
 			builder.pop();
 			builder.push("sweep");
-				sweep2Percentage = builder.comment("Changes the factor of damage inflicted to enemies when sweep attacked on weapons with the \"Sweep II\" Weapon Trait")
+				sweep2Percentage = builder.comment("Changes the factor of damage inflicted to enemies when sweep attacked on weapons with the \"Sweep II\" Weapon Trait|调整拥有“横扫 II”特性的武器横扫时对敌人造成的伤害系数")
 						.translation("config." + ModSpartanWeaponry.ID + ".traits.sweep2.percentage")
 						.defineInRange("sweep2_percentage", Defaults.Sweep2Percentage, 0.0, 1.0);
-				sweep3Percentage = builder.comment("Changes the factor of damage inflicted to enemies when sweep attacked on weapons with the \"Sweep III\" Weapon Trait")
+				sweep3Percentage = builder.comment("Changes the factor of damage inflicted to enemies when sweep attacked on weapons with the \"Sweep III\" Weapon Trait|调整拥有“横扫 III”特性的武器横扫时对敌人造成的伤害系数")
 						.translation("config." + ModSpartanWeaponry.ID + ".traits.sweep3.percentage")
 						.defineInRange("sweep3_percentage", Defaults.Sweep3Percentage, 0.0, 1.0);
 			builder.pop();
 			builder.push("armor_pierce");
-				armorPiercePercentage = builder.comment("Changes the percentage of damage that ignores armor on weapons with the \"Armor Piercing\" Weapon Trait")
+				armorPiercePercentage = builder.comment("Changes the percentage of damage that ignores armor on weapons with the \"Armor Piercing\" Weapon Trait|调整拥有“破甲”特性的武器无视护甲的伤害百分比")
 						.translation("config." + ModSpartanWeaponry.ID + ".traits.armor_pierce.percentage")
 						.defineInRange("percentage", Defaults.ArmorPiercePercentage, 0.0, 100.0);
 			builder.pop();
 			builder.push("quick_strike");
-				quickStrikeHurtResistTicks = builder.comment("Tweaks the hurt resistance ticks for weapons that use the \"Quick Strike\" Weapon Trait")
+				quickStrikeHurtResistTicks = builder.comment("Tweaks the hurt resistance ticks for weapons that use the \"Quick Strike\" Weapon Trait|调整拥有“快速打击”特性的武器造成的无敌帧时长（tick）")
 						.translation("config." + ModSpartanWeaponry.ID + ".traits.quick_strike.hurt_resistance_ticks")
 						.defineInRange("hurt_resistance_ticks", Defaults.QuickStrikeHurtResistTicks, 10, 20);
 			builder.pop();
 			builder.push("decapitate");
-				decapitateSkullDropPercentage = builder.comment("Tweaks the percentage of Skull drops from weapons with the \"Decapitate\" Weapon Trait")
+				decapitateSkullDropPercentage = builder.comment("Tweaks the percentage of Skull drops from weapons with the \"Decapitate\" Weapon Trait|调整拥有“斩首”特性的武器掉落头颅的概率")
 						.translation("config." + ModSpartanWeaponry.ID + ".traits.decapitate.skull_drop_percentage")
 						.defineInRange("skull_drop_percentage", Defaults.DecapitateSkullDropPercentage, 0.0, 100.0);
 			builder.pop();
 		builder.pop();
 		
 		builder.push("oil");
-			disableOilRecipes = builder.comment("Set to true to disable crafting recipes for oils")
+			disableOilRecipes = builder.comment("Set to true to disable crafting recipes for oils|设为 true 禁用所有油配方")
 					.translation("config." + ModSpartanWeaponry.ID + ".disable_oil_recipes")
 					.worldRestart()
 					.define("disable_oil_recipes", false);
-			oilUsesNormal = builder.comment("Max uses for standard oils before the effect wears off")
+			oilUsesNormal = builder.comment("Max uses for standard oils before the effect wears off|普通油的最大使用次数")
 					.translation("config." + ModSpartanWeaponry.ID + ".oil_uses_normal")
 					.worldRestart()
 					.defineInRange("oil_uses_normal", Defaults.OIL_USES_NORMAL, 1, 1000);
-			oilUsesLong = builder.comment("Max uses for sustained oils before the effect wears off")
+			oilUsesLong = builder.comment("Max uses for sustained oils before the effect wears off|持续型油的最大使用次数")
 					.translation("config." + ModSpartanWeaponry.ID + ".oil_uses_long")
 					.worldRestart()
 					.defineInRange("oil_uses_long", Defaults.OIL_USES_LONG, 1, 1000);
-			oilDamageModifierNormal = builder.comment("Damage modifier that standard oils inflict")
+			oilDamageModifierNormal = builder.comment("Damage modifier that standard oils inflict|普通油的伤害倍率")
 					.translation("config." + ModSpartanWeaponry.ID + ".oil_damage_modifier_normal")
 					.worldRestart()
 					.defineInRange("oil_damage_modifier_normal", Defaults.OIL_DAMAGE_MODIFIER_NORMAL, 0.0001d, 1.0d);
-			oilDamageModifierStrong = builder.comment("Damage modifier that potent oils inflict")
+			oilDamageModifierStrong = builder.comment("Damage modifier that potent oils inflict|强效油的伤害倍率")
 					.translation("config." + ModSpartanWeaponry.ID + ".oil_damage_modifier_strong")
 					.worldRestart()
 					.defineInRange("oil_damage_modifier_strong", Defaults.OIL_DAMAGE_MODIFIER_STRONG, 0.0001d, 1.0d);
-			potionOilDurationModifier = builder.comment("Duration modifier for potion oils, based on the original potion effects")
+			potionOilDurationModifier = builder.comment("Duration modifier for potion oils, based on the original potion effects|药水油的持续时间倍率（基于原药水效果）")
 					.translation("config." + ModSpartanWeaponry.ID + ".potion_oil_duration_modifier")
 					.worldRestart()
 					.defineInRange("potion_oil_duration_modifier", Defaults.OIL_POTION_DURATION_MODIFIER, 0.0001d, 1.0d);
-			potionOilBlacklist = builder.comment("Blacklist for potions to prevent them to be made into oils. By default, only potions with negative effects can be made into oils. Adding already disabled potions to this blacklist will do nothing")
+			potionOilBlacklist = builder.comment("Blacklist for potions to prevent them to be made into oils. By default, only potions with negative effects can be made into oils. Adding already disabled potions to this blacklist will do nothing|药水黑名单，阻止被制作成油。默认仅负面药水可制成油；已被禁用的药水加入黑名单不会产生效果")
 					.translation("config." + ModSpartanWeaponry.ID + ".potion_oil_blacklist")
 					.worldRestart()
 					.<String>defineListAllowEmpty(List.of("potion_oil_blacklist"), () -> new ArrayList<>(), IS_VALID_RESOURCE_LOCATION);
-			potionOilWhitelist = builder.comment("Whitelist for potions to allow them to be made into oils. By default, only potions with negative effects can be made into oils. Adding already enabled potions to this whitelist will do nothing")
+			potionOilWhitelist = builder.comment("Whitelist for potions to allow them to be made into oils. By default, only potions with negative effects can be made into oils. Adding already enabled potions to this whitelist will do nothing|药水白名单，允许被制作成油。默认仅负面药水可制成油；已被允许的药水加入白名单不会产生效果")
 					.translation("config." + ModSpartanWeaponry.ID + ".potion_oil_whitelist")
 					.worldRestart()
 					.<String>defineListAllowEmpty(List.of("potion_oil_whitelist"), () -> new ArrayList<>(), IS_VALID_RESOURCE_LOCATION);
 		builder.pop();
 		
 		builder.push("jei");
-			forceShowDisabledItems = builder.comment("Set to true to forcibly show disabled items in JEI, even if they cannot be crafted. Should be useful for modpack makers defining their own recipes.")
+			forceShowDisabledItems = builder.comment("Set to true to forcibly show disabled items in JEI, even if they cannot be crafted. Should be useful for modpack makers defining their own recipes.|设为 true 在 JEI 中强制显示已禁用物品，即使无法合成。对整合包作者自定义配方有用。")
 					.translation("config." + ModSpartanWeaponry.ID + ".jei.force_show_disabled_items")
 					.worldRestart()
 					.define("force_show_disabled_items", false);
@@ -583,19 +583,19 @@ public class Config
 		{
 			builder.push(weaponClass);
 			typeDisabledName = typeDisabledNameIn;
-			disableRecipes = builder.comment("Disables all recipes for all " + weaponPlural + ".")
+			disableRecipes = builder.comment("Disables all recipes for all " + weaponPlural + ".|禁用所有" + weaponPlural + "的配方。")
 					.translation("config." + ModSpartanWeaponry.ID + ".weapon.disable")
 					.worldRestart()
 					.define("disable", false);
-			speed = builder.comment("Attack speed of " + weaponPlural + ".")
+			speed = builder.comment("Attack speed of " + weaponPlural + ".|" + weaponPlural + "的攻击速度")
 					.translation("config." + ModSpartanWeaponry.ID + ".weapon.speed")
 					.worldRestart()
 					.defineInRange("speed", defaultSpeed, 0.0d, 4.0d);
-			baseDamage = builder.comment("Base Damage of " + weaponPlural + ".")
+			baseDamage = builder.comment("Base Damage of " + weaponPlural + ".|" + weaponPlural + "的基础伤害")
 					.translation("config." + ModSpartanWeaponry.ID + ".weapon.base_damage")
 					.worldRestart()
 					.defineInRange("base_damage", defaultBaseDamage, 0.1d, 100.0d);
-			damageMultipler = builder.comment("Damage Multiplier for " + weaponPlural + ".")
+			damageMultipler = builder.comment("Damage Multiplier for " + weaponPlural + ".|" + weaponPlural + "的伤害倍率")
 					.translation("config." + ModSpartanWeaponry.ID + ".weapon.damage_multiplier")
 					.worldRestart()
 					.defineInRange("damage_multiplier", defaultDamageMuliplier, 0.1d, 10.0d);
@@ -617,7 +617,7 @@ public class Config
 		{
 			builder.push(weaponClass);
 			typeDisabledName = typeDisabledNameIn;
-			disableRecipes = builder.comment("Disables all recipes for all " + weaponPlural + ".")
+			disableRecipes = builder.comment("Disables all recipes for all " + weaponPlural + ".|禁用所有" + weaponPlural + "的配方。")
 					.translation("config." + ModSpartanWeaponry.ID + ".weapon.disable")
 					.worldRestart()
 					.define("disable", false);
@@ -643,23 +643,23 @@ public class Config
 		{
 			builder.push(weaponClass);
 			typeDisabledName = typeDisabledNameIn;
-			disableRecipes = builder.comment("Disables all recipes for all " + weaponPlural + ".")
+			disableRecipes = builder.comment("Disables all recipes for all " + weaponPlural + ".|禁用所有" + weaponPlural + "的配方。")
 					.translation("config." + ModSpartanWeaponry.ID + ".weapon.disable")
 					.worldRestart()
 					.define("disable", false);
-			speed = builder.comment("Attack speed of " + weaponPlural + ".")
+			speed = builder.comment("Attack speed of " + weaponPlural + ".|" + weaponPlural + "的攻击速度")
 					.translation("config." + ModSpartanWeaponry.ID + ".weapon.speed")
 					.worldRestart()
 					.defineInRange("speed", defaultSpeed, 0.0d, 4.0d);
-			baseDamage = builder.comment("Base Damage of " + weaponPlural + ".")
+			baseDamage = builder.comment("Base Damage of " + weaponPlural + ".|" + weaponPlural + "的基础伤害")
 					.translation("config." + ModSpartanWeaponry.ID + ".weapon.base_damage")
 					.worldRestart()
 					.defineInRange("base_damage", defaultBaseDamage, 0.1d, 100.0d);
-			damageMultipler = builder.comment("Damage Multiplier for " + weaponPlural + ".")
+			damageMultipler = builder.comment("Damage Multiplier for " + weaponPlural + ".|" + weaponPlural + "的伤害倍率")
 					.translation("config." + ModSpartanWeaponry.ID + ".weapon.damage_multiplier")
 					.worldRestart()
 					.defineInRange("damage_multiplier", defaultDamageMuliplier, 0.1d, 10.0d);
-			chargeTicks = builder.comment("Charge time in ticks for " + weaponPlural + ".")
+			chargeTicks = builder.comment("Charge time in ticks for " + weaponPlural + ".|" + weaponPlural + "的蓄力时间（tick）")
 					.translation("config." + ModSpartanWeaponry.ID + ".weapon.charge_ticks")
 					.defineInRange("charge_ticks", defaultChargeTicks, 1, 1000);
 			builder.pop();
@@ -684,13 +684,13 @@ public class Config
 			builder.push(materialName);
 			this.materialName = materialName;
 			this.typeDisabledName = typeDisabledName;
-			this.damage = builder.comment("Base Damage for " + this.materialName + " weapons")
+			this.damage = builder.comment("Base Damage for " + this.materialName + " weapons|" + this.materialName + "武器的基础伤害")
 						.translation("config." + ModSpartanWeaponry.ID + ".material.base_damage")
 						.defineInRange("base_damage", damage, 0.1d, 100.0d);
-			this.durability = builder.comment("Durability for " + this.materialName + " weapons")
+			this.durability = builder.comment("Durability for " + this.materialName + " weapons|" + this.materialName + "武器的耐久度")
 					.translation("config." + ModSpartanWeaponry.ID + ".material.durability")
 					.defineInRange("durability", durability, 1, 100000);
-			this.disableRecipes = builder.comment("Set to true to disable " + this.materialName + " weapons")
+			this.disableRecipes = builder.comment("Set to true to disable " + this.materialName + " weapons|设为 true 禁用" + this.materialName + "武器")
 					.translation("config." + ModSpartanWeaponry.ID + ".material.disable")
 					.worldRestart()
 					.define("disable", false);
@@ -713,10 +713,10 @@ public class Config
 			String projName = materialName == null || materialName == "" ? projectileName : materialName + " " + projectileName;
 			String category = materialName == null || materialName == "" ? projectileName : materialName + "_" + projectileName;
 			builder.push(category);
-			this.baseDamage = builder.comment("Base damage for " + projName + "s")
+			this.baseDamage = builder.comment("Base damage for " + projName + "s|" + projName + "的基础伤害")
 					.translation("config." + ModSpartanWeaponry.ID + ".arrow.base_damage")
 					.defineInRange("base_damage", baseDamage, 0.1d, 100.0d);
-			this.rangeMultiplier = builder.comment("Range muliplier for " + projName + "s")
+			this.rangeMultiplier = builder.comment("Range muliplier for " + projName + "s|" + projName + "的射程倍率")
 					.translation("config." + ModSpartanWeaponry.ID + ".arrow.range_multiplier")
 					.defineInRange("range_multiplier", rangeMultiplier, 0.1d, 100.0d);
 			builder.pop();
@@ -734,13 +734,13 @@ public class Config
 			String projName = materialName == null || materialName == "" ? projectileName : materialName + " " + projectileName;
 			String category = materialName == null || materialName == "" ? projectileName : materialName + "_" + projectileName;
 			builder.push(category);
-			this.baseDamage = builder.comment("Base damage for " + projName + "s")
+			this.baseDamage = builder.comment("Base damage for " + projName + "s|" + projName + "的基础伤害")
 					.translation("config." + ModSpartanWeaponry.ID + ".arrow.base_damage")
 					.defineInRange("base_damage", baseDamage, 0.1d, 100.0d);
-			this.rangeMultiplier = builder.comment("Range muliplier for " + projName + "s")
+			this.rangeMultiplier = builder.comment("Range muliplier for " + projName + "s|" + projName + "的射程倍率")
 				.translation("config." + ModSpartanWeaponry.ID + ".arrow.range_multiplier")
 				.defineInRange("range_multiplier", rangeMultiplier, 0.1d, 100.0d);
-			this.armorPiercingFactor = builder.comment("Armor Piercing factor for " + projName + "s")
+			this.armorPiercingFactor = builder.comment("Armor Piercing factor for " + projName + "s|" + projName + "的破甲系数")
 					.translation("config." + ModSpartanWeaponry.ID + ".bolt.armor_piercing_factor")
 					.defineInRange("armor_piercing_factor", armorPiercingFactor, 0.0d, 1.0d);
 			builder.pop();
