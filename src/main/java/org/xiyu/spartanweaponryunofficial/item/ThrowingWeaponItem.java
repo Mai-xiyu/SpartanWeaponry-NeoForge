@@ -61,6 +61,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.fml.loading.FMLEnvironment;
+import net.neoforged.neoforge.common.ItemAbility;
 import org.xiyu.spartanweaponryunofficial.util.ItemStackDataHelper;
 
 public class ThrowingWeaponItem extends Item implements IWeaponTraitContainer<ThrowingWeaponItem>, IReloadable, IHudCrosshair
@@ -392,6 +393,18 @@ public class ThrowingWeaponItem extends Item implements IWeaponTraitContainer<Th
 		traits.forEach((trait) -> getGenericCallback(trait).ifPresent((callback) -> callback.onCreateItem(material, stack)));
 		
 		initNBT(stack, true);
+	}
+	
+	@Override
+	public boolean canPerformAction(ItemStack stack, ItemAbility toolAction)
+	{
+		for(WeaponTrait trait : traits)
+		{
+			// Pass the action to another trait if false
+			if(trait.canPerformToolAction(stack, toolAction))
+				return true;
+		}
+		return archetype.canPerformToolAction(toolAction);
 	}
 	
 	public ItemStack makeTabStack()
