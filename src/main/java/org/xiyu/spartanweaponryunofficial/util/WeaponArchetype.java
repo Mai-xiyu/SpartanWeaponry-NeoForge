@@ -26,6 +26,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.common.ItemAbility;
 import net.neoforged.neoforge.common.ItemAbilities;
+import java.util.HashSet;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.BuiltInRegistries;
 
@@ -39,9 +40,9 @@ import net.minecraft.core.registries.BuiltInRegistries;
 public class WeaponArchetype implements IReloadable
 {
 	public static final WeaponArchetype DAGGER = new WeaponArchetype("Dagger", true, ModWeaponTraitTags.DAGGER, WeaponType.MELEE, 
-			() -> Config.INSTANCE.daggers.speed.get(), () -> Config.INSTANCE.daggers.baseDamage.get().floatValue(), () -> Config.INSTANCE.daggers.damageMultipler.get().floatValue());
+			() -> Config.INSTANCE.daggers.speed.get(), () -> Config.INSTANCE.daggers.baseDamage.get().floatValue(), () -> Config.INSTANCE.daggers.damageMultipler.get().floatValue(), ItemAbilities.SWORD_DIG);
 	public static final WeaponArchetype PARRYING_DAGGER = new WeaponArchetype("Parrying Dagger", true, ModWeaponTraitTags.PARRYING_DAGGER, WeaponType.MELEE, 
-			() -> Config.INSTANCE.parryingDaggers.speed.get(), () -> Config.INSTANCE.parryingDaggers.baseDamage.get().floatValue(), () -> Config.INSTANCE.parryingDaggers.damageMultipler.get().floatValue());
+			() -> Config.INSTANCE.parryingDaggers.speed.get(), () -> Config.INSTANCE.parryingDaggers.baseDamage.get().floatValue(), () -> Config.INSTANCE.parryingDaggers.damageMultipler.get().floatValue(), ItemAbilities.SWORD_DIG);
 	public static final WeaponArchetype LONGSWORD = new WeaponArchetype("Longsword", true, ModWeaponTraitTags.LONGSWORD, WeaponType.MELEE, 
 			() -> Config.INSTANCE.longswords.speed.get(), () -> Config.INSTANCE.longswords.baseDamage.get().floatValue(), () -> Config.INSTANCE.longswords.damageMultipler.get().floatValue(), ItemAbilities.SWORD_DIG);
 	public static final WeaponArchetype KATANA = new WeaponArchetype("Katana", true, ModWeaponTraitTags.KATANA, WeaponType.MELEE, 
@@ -49,43 +50,50 @@ public class WeaponArchetype implements IReloadable
 	public static final WeaponArchetype SABER = new WeaponArchetype("Saber", true, ModWeaponTraitTags.SABER, WeaponType.MELEE, 
 			() -> Config.INSTANCE.sabers.speed.get(), () -> Config.INSTANCE.sabers.baseDamage.get().floatValue(), () -> Config.INSTANCE.sabers.damageMultipler.get().floatValue(), ItemAbilities.SWORD_DIG);
 	public static final WeaponArchetype RAPIER = new WeaponArchetype("Rapier", true, ModWeaponTraitTags.RAPIER, WeaponType.MELEE, 
-			() -> Config.INSTANCE.rapiers.speed.get(), () -> Config.INSTANCE.rapiers.baseDamage.get().floatValue(), () -> Config.INSTANCE.rapiers.damageMultipler.get().floatValue());
+			() -> Config.INSTANCE.rapiers.speed.get(), () -> Config.INSTANCE.rapiers.baseDamage.get().floatValue(), () -> Config.INSTANCE.rapiers.damageMultipler.get().floatValue(), ItemAbilities.SWORD_DIG);
 	public static final WeaponArchetype GREATSWORD = new WeaponArchetype("Greatsword", true, ModWeaponTraitTags.GREATSWORD, WeaponType.MELEE, 
 			() -> Config.INSTANCE.greatswords.speed.get(), () -> Config.INSTANCE.greatswords.baseDamage.get().floatValue(), () -> Config.INSTANCE.greatswords.damageMultipler.get().floatValue(), ItemAbilities.SWORD_DIG);
 	public static final WeaponArchetype CLUB = new WeaponArchetype("Club", false, ModWeaponTraitTags.CLUB, WeaponType.MELEE, 
-			() -> Config.INSTANCE.clubs.speed.get(), () -> Config.INSTANCE.clubs.baseDamage.get().floatValue(), () -> Config.INSTANCE.clubs.damageMultipler.get().floatValue());
+			() -> Config.INSTANCE.clubs.speed.get(), () -> Config.INSTANCE.clubs.baseDamage.get().floatValue(), () -> Config.INSTANCE.clubs.damageMultipler.get().floatValue(), ItemAbilities.SWORD_DIG);
 	public static final WeaponArchetype CESTUS = new WeaponArchetype("Cestus", false, ModWeaponTraitTags.CESTUS, WeaponType.MELEE, 
-			() -> Config.INSTANCE.cestus.speed.get(), () -> Config.INSTANCE.cestus.baseDamage.get().floatValue(), () -> Config.INSTANCE.cestus.damageMultipler.get().floatValue());
+			() -> Config.INSTANCE.cestus.speed.get(), () -> Config.INSTANCE.cestus.baseDamage.get().floatValue(), () -> Config.INSTANCE.cestus.damageMultipler.get().floatValue(), ItemAbilities.SWORD_DIG);
 	public static final WeaponArchetype BATTLE_HAMMER = new WeaponArchetype("Battle Hammer", false, ModWeaponTraitTags.BATTLE_HAMMER, WeaponType.MELEE, 
-			() -> Config.INSTANCE.battleHammers.speed.get(), () -> Config.INSTANCE.battleHammers.baseDamage.get().floatValue(), () -> Config.INSTANCE.battleHammers.damageMultipler.get().floatValue());
+			() -> Config.INSTANCE.battleHammers.speed.get(), () -> Config.INSTANCE.battleHammers.baseDamage.get().floatValue(), () -> Config.INSTANCE.battleHammers.damageMultipler.get().floatValue(), ItemAbilities.SWORD_DIG);
 	public static final WeaponArchetype WARHAMMER = new WeaponArchetype("Warhammer", false, ModWeaponTraitTags.WARHAMMER, WeaponType.MELEE, 
-			() -> Config.INSTANCE.warhammers.speed.get(), () -> Config.INSTANCE.warhammers.baseDamage.get().floatValue(), () -> Config.INSTANCE.warhammers.damageMultipler.get().floatValue());
+			() -> Config.INSTANCE.warhammers.speed.get(), () -> Config.INSTANCE.warhammers.baseDamage.get().floatValue(), () -> Config.INSTANCE.warhammers.damageMultipler.get().floatValue(), ItemAbilities.SWORD_DIG);
 	public static final WeaponArchetype SPEAR = new WeaponArchetype("Spear", false, ModWeaponTraitTags.SPEAR, WeaponType.MELEE, 
-			() -> Config.INSTANCE.spears.speed.get(), () -> Config.INSTANCE.spears.baseDamage.get().floatValue(), () -> Config.INSTANCE.spears.damageMultipler.get().floatValue());
+			() -> Config.INSTANCE.spears.speed.get(), () -> Config.INSTANCE.spears.baseDamage.get().floatValue(), () -> Config.INSTANCE.spears.damageMultipler.get().floatValue(), ItemAbilities.SWORD_DIG);
 	public static final WeaponArchetype HALBERD = new WeaponArchetype("Halberd", false, ModWeaponTraitTags.HALBERD, WeaponType.MELEE, 
-			() -> Config.INSTANCE.halberds.speed.get(), () -> Config.INSTANCE.halberds.baseDamage.get().floatValue(), () -> Config.INSTANCE.halberds.damageMultipler.get().floatValue());
+			() -> Config.INSTANCE.halberds.speed.get(), () -> Config.INSTANCE.halberds.baseDamage.get().floatValue(), () -> Config.INSTANCE.halberds.damageMultipler.get().floatValue(), ItemAbilities.SWORD_DIG);
 	public static final WeaponArchetype PIKE = new WeaponArchetype("Pike", false, ModWeaponTraitTags.PIKE, WeaponType.MELEE, 
-			() -> Config.INSTANCE.pikes.speed.get(), () -> Config.INSTANCE.pikes.baseDamage.get().floatValue(), () -> Config.INSTANCE.pikes.damageMultipler.get().floatValue());
+			() -> Config.INSTANCE.pikes.speed.get(), () -> Config.INSTANCE.pikes.baseDamage.get().floatValue(), () -> Config.INSTANCE.pikes.damageMultipler.get().floatValue(), ItemAbilities.SWORD_DIG);
 	public static final WeaponArchetype LANCE = new WeaponArchetype("Lance", false, ModWeaponTraitTags.LANCE, WeaponType.MELEE, 
-			() -> Config.INSTANCE.lances.speed.get(), () -> Config.INSTANCE.lances.baseDamage.get().floatValue(), () -> Config.INSTANCE.lances.damageMultipler.get().floatValue());
+			() -> Config.INSTANCE.lances.speed.get(), () -> Config.INSTANCE.lances.baseDamage.get().floatValue(), () -> Config.INSTANCE.lances.damageMultipler.get().floatValue(), ItemAbilities.SWORD_DIG);
 	public static final WeaponArchetype THROWING_KNIFE = new WeaponArchetype("Throwing Knife", true, ModWeaponTraitTags.THROWING_KNIFE, WeaponType.THROWING, 
-			() -> Config.INSTANCE.throwingKnives.speed.get(), () -> Config.INSTANCE.throwingKnives.baseDamage.get().floatValue(), () -> Config.INSTANCE.throwingKnives.damageMultipler.get().floatValue(), () -> Config.INSTANCE.throwingKnives.chargeTicks.get());
+			() -> Config.INSTANCE.throwingKnives.speed.get(), () -> Config.INSTANCE.throwingKnives.baseDamage.get().floatValue(), () -> Config.INSTANCE.throwingKnives.damageMultipler.get().floatValue(), () -> Config.INSTANCE.throwingKnives.chargeTicks.get(), ItemAbilities.SWORD_DIG);
 	public static final WeaponArchetype TOMAHAWK = new WeaponArchetype("Tomahawk", false, ModWeaponTraitTags.TOMAHAWK, WeaponType.THROWING, 
-			() -> Config.INSTANCE.tomahawks.speed.get(), () -> Config.INSTANCE.tomahawks.baseDamage.get().floatValue(), () -> Config.INSTANCE.tomahawks.damageMultipler.get().floatValue(), () -> Config.INSTANCE.tomahawks.chargeTicks.get());
+			() -> Config.INSTANCE.tomahawks.speed.get(), () -> Config.INSTANCE.tomahawks.baseDamage.get().floatValue(), () -> Config.INSTANCE.tomahawks.damageMultipler.get().floatValue(), () -> Config.INSTANCE.tomahawks.chargeTicks.get(), ItemAbilities.SWORD_DIG);
 	public static final WeaponArchetype JAVELIN = new WeaponArchetype("Javelin", false, ModWeaponTraitTags.JAVELIN, WeaponType.THROWING, 
-			() -> Config.INSTANCE.javelins.speed.get(), () -> Config.INSTANCE.javelins.baseDamage.get().floatValue(), () -> Config.INSTANCE.javelins.damageMultipler.get().floatValue(), () -> Config.INSTANCE.javelins.chargeTicks.get());
+			() -> Config.INSTANCE.javelins.speed.get(), () -> Config.INSTANCE.javelins.baseDamage.get().floatValue(), () -> Config.INSTANCE.javelins.damageMultipler.get().floatValue(), () -> Config.INSTANCE.javelins.chargeTicks.get(), ItemAbilities.SWORD_DIG);
 	public static final WeaponArchetype BOOMERANG = new WeaponArchetype("Boomerang", false, ModWeaponTraitTags.BOOMERANG, WeaponType.THROWING, 
-			() -> Config.INSTANCE.boomerangs.speed.get(), () -> Config.INSTANCE.boomerangs.baseDamage.get().floatValue(), () -> Config.INSTANCE.boomerangs.damageMultipler.get().floatValue(), () -> Config.INSTANCE.boomerangs.chargeTicks.get());
+			() -> Config.INSTANCE.boomerangs.speed.get(), () -> Config.INSTANCE.boomerangs.baseDamage.get().floatValue(), () -> Config.INSTANCE.boomerangs.damageMultipler.get().floatValue(), () -> Config.INSTANCE.boomerangs.chargeTicks.get(), ItemAbilities.SWORD_DIG);
+	// Battleaxe: Combined axe actions (strip, scrape, wax_off) + SWORD_DIG for Apotheosis reforging compatibility
+	private static final Set<ItemAbility> BATTLEAXE_ACTIONS = createBattleaxeActions();
+	private static Set<ItemAbility> createBattleaxeActions() {
+		Set<ItemAbility> actions = new HashSet<>(ItemAbilities.DEFAULT_AXE_ACTIONS);
+		actions.add(ItemAbilities.SWORD_DIG);
+		return ImmutableSet.copyOf(actions);
+	}
 	public static final WeaponArchetype BATTLEAXE = new WeaponArchetype("Battleaxe", false, ModWeaponTraitTags.BATTLEAXE, WeaponType.MELEE, 
-			() -> Config.INSTANCE.battleaxes.speed.get(), () -> Config.INSTANCE.battleaxes.baseDamage.get().floatValue(), () -> Config.INSTANCE.battleaxes.damageMultipler.get().floatValue(), ItemAbilities.DEFAULT_AXE_ACTIONS);
+			() -> Config.INSTANCE.battleaxes.speed.get(), () -> Config.INSTANCE.battleaxes.baseDamage.get().floatValue(), () -> Config.INSTANCE.battleaxes.damageMultipler.get().floatValue(), BATTLEAXE_ACTIONS);
 	public static final WeaponArchetype FLANGED_MACE = new WeaponArchetype("Flanged Mace", false, ModWeaponTraitTags.FLANGED_MACE, WeaponType.MELEE, 
-			() -> Config.INSTANCE.flangedMaces.speed.get(), () -> Config.INSTANCE.flangedMaces.baseDamage.get().floatValue(), () -> Config.INSTANCE.flangedMaces.damageMultipler.get().floatValue());
+			() -> Config.INSTANCE.flangedMaces.speed.get(), () -> Config.INSTANCE.flangedMaces.baseDamage.get().floatValue(), () -> Config.INSTANCE.flangedMaces.damageMultipler.get().floatValue(), ItemAbilities.SWORD_DIG);
 	public static final WeaponArchetype GLAIVE = new WeaponArchetype("Glaive", true, ModWeaponTraitTags.GLAIVE, WeaponType.MELEE, 
-			() -> Config.INSTANCE.glaives.speed.get(), () -> Config.INSTANCE.glaives.baseDamage.get().floatValue(), () -> Config.INSTANCE.glaives.damageMultipler.get().floatValue());
+			() -> Config.INSTANCE.glaives.speed.get(), () -> Config.INSTANCE.glaives.baseDamage.get().floatValue(), () -> Config.INSTANCE.glaives.damageMultipler.get().floatValue(), ItemAbilities.SWORD_DIG);
 	public static final WeaponArchetype QUARTERSTAFF = new WeaponArchetype("Quarterstaff", false, ModWeaponTraitTags.QUARTERSTAFF, WeaponType.MELEE, 
-			() -> Config.INSTANCE.quarterstaves.speed.get(), () -> Config.INSTANCE.quarterstaves.baseDamage.get().floatValue(), () -> Config.INSTANCE.quarterstaves.damageMultipler.get().floatValue());
+			() -> Config.INSTANCE.quarterstaves.speed.get(), () -> Config.INSTANCE.quarterstaves.baseDamage.get().floatValue(), () -> Config.INSTANCE.quarterstaves.damageMultipler.get().floatValue(), ItemAbilities.SWORD_DIG);
 	public static final WeaponArchetype SCYTHE = new WeaponArchetype("Scythe", false, ModWeaponTraitTags.SCYTHE, WeaponType.MELEE, 
-			() -> Config.INSTANCE.scythes.speed.get(), () -> Config.INSTANCE.scythes.baseDamage.get().floatValue(), () -> Config.INSTANCE.scythes.damageMultipler.get().floatValue());
+			() -> Config.INSTANCE.scythes.speed.get(), () -> Config.INSTANCE.scythes.baseDamage.get().floatValue(), () -> Config.INSTANCE.scythes.damageMultipler.get().floatValue(), ItemAbilities.SWORD_DIG);
 	
 	public static final List<WeaponArchetype> ALL_ARCHETYPES = ImmutableList.of(DAGGER, PARRYING_DAGGER, LONGSWORD, KATANA, SABER, RAPIER, GREATSWORD, CLUB, CESTUS, BATTLE_HAMMER, WARHAMMER,
 			SPEAR, HALBERD, PIKE, LANCE, THROWING_KNIFE, TOMAHAWK, JAVELIN, BOOMERANG, BATTLEAXE, FLANGED_MACE, GLAIVE, QUARTERSTAFF, SCYTHE);
@@ -129,13 +137,13 @@ public class WeaponArchetype implements IReloadable
 	
 	// Constructor for throwing weapons with chargeTicks
 	public WeaponArchetype(String nameIn, boolean isBladedIn, TagKey<WeaponTrait> traitsTagIn, WeaponType typeIn, Supplier<Double> speedValueIn, Supplier<Float> baseDamageIn, 
-			Supplier<Float> damageMultiplierIn, Supplier<Integer> chargeTicksIn)
+			Supplier<Float> damageMultiplierIn, Supplier<Integer> chargeTicksIn, ItemAbility... toolActionsIn)
 	{
 		name = nameIn;
 		traitsTag = traitsTagIn;
 		type = typeIn;
 		isBladed = isBladedIn;
-		toolActions = ImmutableSet.of();
+		toolActions = ImmutableSet.copyOf(toolActionsIn);
 		
 		speedValue = speedValueIn;
 		baseDamage = baseDamageIn;
