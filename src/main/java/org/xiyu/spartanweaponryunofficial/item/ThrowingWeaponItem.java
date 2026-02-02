@@ -408,14 +408,12 @@ public class ThrowingWeaponItem extends Item implements IWeaponTraitContainer<Th
 		return material.getEnchantmentValue();
 	}
 	
+	// In Minecraft 1.21+, enchantment compatibility is primarily handled via item tags
+	// This method is kept for backwards compatibility but returns true by default
 	public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) 
 	{
-		// Allow Loyalty enchantments to work on Throwing Weapons
-		RegistryAccess registryAccess = RegistryAccess.fromRegistryOfRegistries(BuiltInRegistries.REGISTRY);
-		ResourceLocation enchantmentKey = registryAccess.registry(Registries.ENCHANTMENT)
-				.map(registry -> registry.getKey(enchantment))
-				.orElse(null);
-		return enchantmentKey != null && enchantmentKey.equals(Enchantments.LOYALTY.location());
+		// Allow all enchantments - let the tag system handle compatibility
+		return true;
 	}
     
     @Override

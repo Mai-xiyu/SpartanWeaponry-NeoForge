@@ -35,6 +35,20 @@ public class ModItemTagsProvider extends ItemTagsProvider
 		final TagKey<Item> CURIOS_BACK = ItemTags.create(ResourceLocation.parse("curios:back"));
 		final TagKey<Item> CURIOS_QUIVER = ItemTags.create(ResourceLocation.parse("curios:quiver"));
 		
+		// Minecraft 1.21+ enchantment tags - required for enchanting table and anvil to work
+		final TagKey<Item> ENCHANTABLE_SWORD = ItemTags.create(ResourceLocation.parse("minecraft:enchantable/sword"));
+		final TagKey<Item> ENCHANTABLE_WEAPON = ItemTags.create(ResourceLocation.parse("minecraft:enchantable/weapon"));
+		final TagKey<Item> ENCHANTABLE_DURABILITY = ItemTags.create(ResourceLocation.parse("minecraft:enchantable/durability"));
+		final TagKey<Item> ENCHANTABLE_VANISHING = ItemTags.create(ResourceLocation.parse("minecraft:enchantable/vanishing"));
+		final TagKey<Item> ENCHANTABLE_BOW = ItemTags.create(ResourceLocation.parse("minecraft:enchantable/bow"));
+		final TagKey<Item> ENCHANTABLE_CROSSBOW = ItemTags.create(ResourceLocation.parse("minecraft:enchantable/crossbow"));
+		final TagKey<Item> ENCHANTABLE_TRIDENT = ItemTags.create(ResourceLocation.parse("minecraft:enchantable/trident"));
+		
+		// Mod-specific enchantable tags for mod enchantments to work at enchanting table
+		final TagKey<Item> ENCHANTABLE_THROWING_WEAPON = ItemTags.create(ResourceLocation.parse("spartanweaponryunofficial:enchantable/throwing_weapon"));
+		final TagKey<Item> ENCHANTABLE_HEAVY_CROSSBOW = ItemTags.create(ResourceLocation.parse("spartanweaponryunofficial:enchantable/heavy_crossbow"));
+		final TagKey<Item> ENCHANTABLE_BOOMERANG = ItemTags.create(ResourceLocation.parse("spartanweaponryunofficial:enchantable/boomerang"));
+		
 		// Tags in the Spartan Weaponry domain
 		tag(ModItemTags.HANDLES).add(ModItems.SIMPLE_HANDLE.get(), ModItems.HANDLE.get());
 		tag(ModItemTags.POLES).add(ModItems.SIMPLE_POLE.get(), ModItems.POLE.get());
@@ -207,6 +221,54 @@ public class ModItemTagsProvider extends ItemTagsProvider
 		
 		// Tags in vanilla Minecraft's domain
 		tag(ItemTags.ARROWS).addTag(ModItemTags.ARROWS);
+		
+		// Minecraft 1.21+ enchantment compatibility tags
+		// Melee weapons - can receive sword enchantments (Sharpness, Smite, Bane of Arthropods, etc.)
+		tag(ENCHANTABLE_SWORD).addTags(ModItemTags.DAGGERS, ModItemTags.PARRYING_DAGGERS, ModItemTags.LONGSWORDS, ModItemTags.KATANAS, 
+				ModItemTags.SABERS, ModItemTags.RAPIERS, ModItemTags.GREATSWORDS, ModItemTags.CLUBS, ModItemTags.CESTUSAE, 
+				ModItemTags.BATTLE_HAMMERS, ModItemTags.WARHAMMERS, ModItemTags.SPEARS, ModItemTags.HALBERDS, ModItemTags.PIKES, 
+				ModItemTags.LANCES, ModItemTags.BATTLEAXES, ModItemTags.FLANGED_MACES, ModItemTags.GLAIVES, ModItemTags.QUARTERSTAVES, 
+				ModItemTags.SCYTHES);
+		
+		// Throwing weapons - also receive sword enchantments for melee use
+		tag(ENCHANTABLE_SWORD).addTags(ModItemTags.THROWING_KNIVES, ModItemTags.TOMAHAWKS, ModItemTags.JAVELINS, ModItemTags.BOOMERANGS);
+		
+		// Weapon enchantments (Fire Aspect, Knockback, Looting)
+		tag(ENCHANTABLE_WEAPON).addTags(ModItemTags.DAGGERS, ModItemTags.PARRYING_DAGGERS, ModItemTags.LONGSWORDS, ModItemTags.KATANAS, 
+				ModItemTags.SABERS, ModItemTags.RAPIERS, ModItemTags.GREATSWORDS, ModItemTags.CLUBS, ModItemTags.CESTUSAE, 
+				ModItemTags.BATTLE_HAMMERS, ModItemTags.WARHAMMERS, ModItemTags.SPEARS, ModItemTags.HALBERDS, ModItemTags.PIKES, 
+				ModItemTags.LANCES, ModItemTags.BATTLEAXES, ModItemTags.FLANGED_MACES, ModItemTags.GLAIVES, ModItemTags.QUARTERSTAVES, 
+				ModItemTags.SCYTHES, ModItemTags.THROWING_KNIVES, ModItemTags.TOMAHAWKS, ModItemTags.JAVELINS, ModItemTags.BOOMERANGS);
+		
+		// Durability enchantments (Unbreaking, Mending)
+		tag(ENCHANTABLE_DURABILITY).addTags(ModItemTags.DAGGERS, ModItemTags.PARRYING_DAGGERS, ModItemTags.LONGSWORDS, ModItemTags.KATANAS, 
+				ModItemTags.SABERS, ModItemTags.RAPIERS, ModItemTags.GREATSWORDS, ModItemTags.CLUBS, ModItemTags.CESTUSAE, 
+				ModItemTags.BATTLE_HAMMERS, ModItemTags.WARHAMMERS, ModItemTags.SPEARS, ModItemTags.HALBERDS, ModItemTags.PIKES, 
+				ModItemTags.LANCES, ModItemTags.LONGBOWS, ModItemTags.HEAVY_CROSSBOWS, ModItemTags.THROWING_KNIVES, ModItemTags.TOMAHAWKS, 
+				ModItemTags.JAVELINS, ModItemTags.BOOMERANGS, ModItemTags.BATTLEAXES, ModItemTags.FLANGED_MACES, ModItemTags.GLAIVES, 
+				ModItemTags.QUARTERSTAVES, ModItemTags.SCYTHES);
+		
+		// Curse of Vanishing
+		tag(ENCHANTABLE_VANISHING).addTags(ModItemTags.DAGGERS, ModItemTags.PARRYING_DAGGERS, ModItemTags.LONGSWORDS, ModItemTags.KATANAS, 
+				ModItemTags.SABERS, ModItemTags.RAPIERS, ModItemTags.GREATSWORDS, ModItemTags.CLUBS, ModItemTags.CESTUSAE, 
+				ModItemTags.BATTLE_HAMMERS, ModItemTags.WARHAMMERS, ModItemTags.SPEARS, ModItemTags.HALBERDS, ModItemTags.PIKES, 
+				ModItemTags.LANCES, ModItemTags.LONGBOWS, ModItemTags.HEAVY_CROSSBOWS, ModItemTags.THROWING_KNIVES, ModItemTags.TOMAHAWKS, 
+				ModItemTags.JAVELINS, ModItemTags.BOOMERANGS, ModItemTags.BATTLEAXES, ModItemTags.FLANGED_MACES, ModItemTags.GLAIVES, 
+				ModItemTags.QUARTERSTAVES, ModItemTags.SCYTHES, ModItemTags.QUIVERS);
+		
+		// Bow enchantments (Power, Punch, Flame, Infinity)
+		tag(ENCHANTABLE_BOW).addTag(ModItemTags.LONGBOWS);
+		
+		// Crossbow enchantments (Quick Charge, Multishot, Piercing)
+		tag(ENCHANTABLE_CROSSBOW).addTag(ModItemTags.HEAVY_CROSSBOWS);
+		
+		// Trident enchantments (Loyalty, Riptide, Channeling, Impaling) - for throwing weapons
+		tag(ENCHANTABLE_TRIDENT).addTags(ModItemTags.JAVELINS);
+		
+		// Mod-specific enchantable tags - for mod's custom enchantments to work at enchanting table
+		tag(ENCHANTABLE_THROWING_WEAPON).addTag(ModItemTags.THROWING_WEAPONS);
+		tag(ENCHANTABLE_HEAVY_CROSSBOW).addTag(ModItemTags.HEAVY_CROSSBOWS);
+		tag(ENCHANTABLE_BOOMERANG).addTag(ModItemTags.BOOMERANGS);
 		
 		// Tags in Forge's domain
 		final TagKey<Item> HEADS_TAG = ItemTags.create(ResourceLocation.parse("c:heads"));
