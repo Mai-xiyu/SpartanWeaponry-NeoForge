@@ -69,13 +69,13 @@ public class WeaponArchetype implements IReloadable
 	public static final WeaponArchetype LANCE = new WeaponArchetype("Lance", false, ModWeaponTraitTags.LANCE, WeaponType.MELEE, 
 			() -> Config.INSTANCE.lances.speed.get(), () -> Config.INSTANCE.lances.baseDamage.get().floatValue(), () -> Config.INSTANCE.lances.damageMultipler.get().floatValue());
 	public static final WeaponArchetype THROWING_KNIFE = new WeaponArchetype("Throwing Knife", true, ModWeaponTraitTags.THROWING_KNIFE, WeaponType.THROWING, 
-			() -> Config.INSTANCE.throwingKnives.speed.get(), () -> Config.INSTANCE.throwingKnives.baseDamage.get().floatValue(), () -> Config.INSTANCE.throwingKnives.damageMultipler.get().floatValue());
+			() -> Config.INSTANCE.throwingKnives.speed.get(), () -> Config.INSTANCE.throwingKnives.baseDamage.get().floatValue(), () -> Config.INSTANCE.throwingKnives.damageMultipler.get().floatValue(), () -> Config.INSTANCE.throwingKnives.chargeTicks.get());
 	public static final WeaponArchetype TOMAHAWK = new WeaponArchetype("Tomahawk", false, ModWeaponTraitTags.TOMAHAWK, WeaponType.THROWING, 
-			() -> Config.INSTANCE.tomahawks.speed.get(), () -> Config.INSTANCE.tomahawks.baseDamage.get().floatValue(), () -> Config.INSTANCE.tomahawks.damageMultipler.get().floatValue());
+			() -> Config.INSTANCE.tomahawks.speed.get(), () -> Config.INSTANCE.tomahawks.baseDamage.get().floatValue(), () -> Config.INSTANCE.tomahawks.damageMultipler.get().floatValue(), () -> Config.INSTANCE.tomahawks.chargeTicks.get());
 	public static final WeaponArchetype JAVELIN = new WeaponArchetype("Javelin", false, ModWeaponTraitTags.JAVELIN, WeaponType.THROWING, 
-			() -> Config.INSTANCE.javelins.speed.get(), () -> Config.INSTANCE.javelins.baseDamage.get().floatValue(), () -> Config.INSTANCE.javelins.damageMultipler.get().floatValue());
+			() -> Config.INSTANCE.javelins.speed.get(), () -> Config.INSTANCE.javelins.baseDamage.get().floatValue(), () -> Config.INSTANCE.javelins.damageMultipler.get().floatValue(), () -> Config.INSTANCE.javelins.chargeTicks.get());
 	public static final WeaponArchetype BOOMERANG = new WeaponArchetype("Boomerang", false, ModWeaponTraitTags.BOOMERANG, WeaponType.THROWING, 
-			() -> Config.INSTANCE.boomerangs.speed.get(), () -> Config.INSTANCE.boomerangs.baseDamage.get().floatValue(), () -> Config.INSTANCE.boomerangs.damageMultipler.get().floatValue());
+			() -> Config.INSTANCE.boomerangs.speed.get(), () -> Config.INSTANCE.boomerangs.baseDamage.get().floatValue(), () -> Config.INSTANCE.boomerangs.damageMultipler.get().floatValue(), () -> Config.INSTANCE.boomerangs.chargeTicks.get());
 	public static final WeaponArchetype BATTLEAXE = new WeaponArchetype("Battleaxe", false, ModWeaponTraitTags.BATTLEAXE, WeaponType.MELEE, 
 			() -> Config.INSTANCE.battleaxes.speed.get(), () -> Config.INSTANCE.battleaxes.baseDamage.get().floatValue(), () -> Config.INSTANCE.battleaxes.damageMultipler.get().floatValue(), ItemAbilities.DEFAULT_AXE_ACTIONS);
 	public static final WeaponArchetype FLANGED_MACE = new WeaponArchetype("Flanged Mace", false, ModWeaponTraitTags.FLANGED_MACE, WeaponType.MELEE, 
@@ -103,6 +103,7 @@ public class WeaponArchetype implements IReloadable
 	protected final Supplier<Double> speedValue;
 	protected final Supplier<Float> baseDamage;
 	protected final Supplier<Float> damageMultiplier;
+	protected final Supplier<Integer> chargeTicks;  // For throwing weapons only
 
 	public WeaponArchetype(String nameIn, boolean isBladedIn, TagKey<WeaponTrait> traitsTagIn, WeaponType typeIn, Supplier<Double> speedValueIn, Supplier<Float> baseDamageIn, 
 			Supplier<Float> damageMultiplierIn, Set<ItemAbility> toolActionsIn)
@@ -116,6 +117,7 @@ public class WeaponArchetype implements IReloadable
 		speedValue = speedValueIn;
 		baseDamage = baseDamageIn;
 		damageMultiplier = damageMultiplierIn;
+		chargeTicks = null;  // Melee weapons don't have charge ticks
 //		ReloadableHandler.addToItemReloadList(this);
 	}
 	
@@ -123,6 +125,22 @@ public class WeaponArchetype implements IReloadable
 			Supplier<Float> damageMultiplierIn, ItemAbility... toolActionsIn)
 	{
 		this(nameIn, isBladedIn, traitsTagIn, typeIn, speedValueIn, baseDamageIn, damageMultiplierIn, ImmutableSet.copyOf(toolActionsIn));
+	}
+	
+	// Constructor for throwing weapons with chargeTicks
+	public WeaponArchetype(String nameIn, boolean isBladedIn, TagKey<WeaponTrait> traitsTagIn, WeaponType typeIn, Supplier<Double> speedValueIn, Supplier<Float> baseDamageIn, 
+			Supplier<Float> damageMultiplierIn, Supplier<Integer> chargeTicksIn)
+	{
+		name = nameIn;
+		traitsTag = traitsTagIn;
+		type = typeIn;
+		isBladed = isBladedIn;
+		toolActions = ImmutableSet.of();
+		
+		speedValue = speedValueIn;
+		baseDamage = baseDamageIn;
+		damageMultiplier = damageMultiplierIn;
+		chargeTicks = chargeTicksIn;
 	}
 
 	@Override
@@ -246,5 +264,10 @@ public class WeaponArchetype implements IReloadable
 	public float getDamageMultiplier()
 	{
 		return damageMultiplier.get().floatValue();
+	}
+	
+	public int getChargeTicks()
+	{
+		return chargeTicks != null ? chargeTicks.get() : 0;
 	}
 }
