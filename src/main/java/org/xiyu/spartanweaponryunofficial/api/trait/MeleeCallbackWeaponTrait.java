@@ -2,45 +2,25 @@ package org.xiyu.spartanweaponryunofficial.api.trait;
 
 import java.util.Optional;
 
-import org.xiyu.spartanweaponryunofficial.api.WeaponMaterial;
-
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
-
 /**
  * Default Weapon Property class with melee callback methods. Extend this if you want a melee weapon trait with custom behaviour.
- * @author ObliviousSpartan
  *
+ * @author ObliviousSpartan
  */
-public class MeleeCallbackWeaponTrait extends WeaponTrait implements IMeleeTraitCallback 
-{
-	public MeleeCallbackWeaponTrait(String typeIn, String modIdIn, TraitQuality qualityIn)
-	{
-		super(typeIn, modIdIn, qualityIn);
-		isMelee = true;
-	}
-	
-	@Override
-		public Optional<IGenericTraitCallback> getGenericCallback() 
-	{
-		return Optional.of(this);
-	}
+public class MeleeCallbackWeaponTrait extends WeaponTrait implements IMeleeTraitCallback {
+    public MeleeCallbackWeaponTrait(String typeIn, String modIdIn, TraitQuality qualityIn) {
+        super(typeIn, modIdIn, qualityIn);
+        this.isMelee = true;
+    }
 
-	@Override
-	public Optional<IMeleeTraitCallback> getMeleeCallback() 
-	{
-		return Optional.of(this);
-	}
+    @Override
+    public Optional<IGenericTraitCallback> getGenericCallback() {
+        return Optional.of(this);
+    }
 
-	@Override
-	public void onItemUpdate(WeaponMaterial material, ItemStack stack, Level level, LivingEntity entity, int itemSlot, boolean isSelected) {}
-
-	@Override
-	public void onHitEntity(WeaponMaterial material, ItemStack stack, LivingEntity target, LivingEntity attacker, Entity projectile) {}
-
-	@Override
-	public void onCreateItem(WeaponMaterial material, ItemStack stack) {}
+    @Override
+    public Optional<IMeleeTraitCallback> getMeleeCallback() {
+        return Optional.of(this);
+    }
 
 }
