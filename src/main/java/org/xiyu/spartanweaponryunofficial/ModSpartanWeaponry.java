@@ -12,6 +12,7 @@ import org.xiyu.spartanweaponryunofficial.api.OilEffects;
 import org.xiyu.spartanweaponryunofficial.api.SpartanWeaponryAPI;
 import org.xiyu.spartanweaponryunofficial.api.WeaponTraits;
 import org.xiyu.spartanweaponryunofficial.api.trait.MeleeBlockWeaponTrait;
+import org.xiyu.spartanweaponryunofficial.capability.CuriosHelper;
 import org.xiyu.spartanweaponryunofficial.client.ClientHelper;
 import org.xiyu.spartanweaponryunofficial.init.*;
 import org.xiyu.spartanweaponryunofficial.network.NetworkHandler;
@@ -60,6 +61,8 @@ public class ModSpartanWeaponry {
         NeoForge.EVENT_BUS.addListener(MeleeBlockWeaponTrait::onBlockEvent);
         NeoForge.EVENT_BUS.addListener(ModCommands::registerCommands);
         NeoForge.EVENT_BUS.addListener(ModOilRecipes::initOilRecipes);
+        if (CuriosHelper.LOADED)
+            modBus.addListener(CuriosHelper.Client::registerReloadListener);
 
         // Place Config registration here...
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.CONFIG_SPEC);

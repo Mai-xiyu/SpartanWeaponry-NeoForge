@@ -194,11 +194,6 @@ public class ClientHelper {
     }
 
     @SubscribeEvent
-    public static void reload(RegisterClientReloadListenersEvent ev) {
-        if (CuriosHelper.LOADED) ev.registerReloadListener(CurioRenderer.INSTANCE);
-    }
-
-    @SubscribeEvent
     public static void registerSkullModels(EntityRenderersEvent.CreateSkullModels ev) {
         EntityModelSet entityModelSet = ev.getEntityModelSet();
         ev.registerSkullModel(ExtendedSkullBlock.Types.BLAZE, new SkullModel(entityModelSet.bakeLayer(ModelLayers.BLAZE_HEAD)));
