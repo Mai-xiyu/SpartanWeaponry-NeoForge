@@ -122,7 +122,7 @@ dependencies {
 
     // Curios API (NeoForge)
     compileOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}+${minecraft_version}:api"
-    runtimeOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}+${minecraft_version}"
+//    runtimeOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}+${minecraft_version}"
 
     // EMI (NeoForge)
     compileOnly "dev.emi:emi-neoforge:${emi_version}:api"

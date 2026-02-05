@@ -3,9 +3,8 @@ package org.xiyu.spartanweaponryunofficial.item;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 
-public interface IHudLoadState 
-{
-	public boolean isLoaded(ItemStack stack);
-    
-	public float getLoadProgress(ItemStack stack, LivingEntity entity);
+public interface IHudLoadState {
+    boolean isLoaded(ItemStack stack);
+
+    float getLoadProgress(ItemStack stack, LivingEntity entity);
 }
