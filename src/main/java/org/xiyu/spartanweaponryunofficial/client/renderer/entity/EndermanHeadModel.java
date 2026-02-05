@@ -2,51 +2,42 @@ package org.xiyu.spartanweaponryunofficial.client.renderer.entity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-
 import net.minecraft.client.model.SkullModelBase;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
-import net.minecraft.client.model.geom.builders.CubeDeformation;
-import net.minecraft.client.model.geom.builders.CubeListBuilder;
-import net.minecraft.client.model.geom.builders.LayerDefinition;
-import net.minecraft.client.model.geom.builders.MeshDefinition;
-import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.client.model.geom.builders.*;
+import org.jetbrains.annotations.NotNull;
 
-public class EndermanHeadModel extends SkullModelBase
-{
-	private static final String PART_HEAD = "head";
-	private static final String PART_JAW = "jaw";
-	
-	private ModelPart root;
-	private ModelPart head;
-	
-	public EndermanHeadModel(ModelPart modelRoot)
-	{
-		root = modelRoot;
-		head = modelRoot.getChild(PART_HEAD);
-	}
-	
-	public static LayerDefinition createLayer()
-	{
-		MeshDefinition meshDef = new MeshDefinition();
-		PartDefinition partDef = meshDef.getRoot();
-		
-		partDef.addOrReplaceChild(PART_HEAD, CubeListBuilder.create().texOffs(0, 0).addBox(-4.0f, -8.0f, -4.0f, 8.0f, 8.0f, 8.0f), PartPose.ZERO);
-		partDef.getChild(PART_HEAD).addOrReplaceChild(PART_JAW, CubeListBuilder.create().texOffs(0, 16).addBox(-4.0f, -8.0f, -4.0f, 8.0f, 8.0f, 8.0f, new CubeDeformation(-0.5f)), PartPose.ZERO);
-		
-		return LayerDefinition.create(meshDef, 32, 32);
-	}
+public class EndermanHeadModel extends SkullModelBase {
+    private static final String PART_HEAD = "head";
+    private static final String PART_JAW = "jaw";
 
-	@Override
-	public void setupAnim(float p_170950_, float p_170951_, float p_170952_)
-	{
-		head.yRot = p_170951_ * ((float)Math.PI / 180.0f);
-		head.xRot = p_170952_ * ((float)Math.PI / 180.0f);
-	}
+    private final ModelPart root;
+    private final ModelPart head;
 
-	@Override
-	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) 
-	{
-		root.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
-	}
+    public EndermanHeadModel(ModelPart modelRoot) {
+        this.root = modelRoot;
+        this.head = modelRoot.getChild(PART_HEAD);
+    }
+
+    public static LayerDefinition createLayer() {
+        MeshDefinition meshDef = new MeshDefinition();
+        PartDefinition partDef = meshDef.getRoot();
+
+        partDef.addOrReplaceChild(PART_HEAD, CubeListBuilder.create().texOffs(0, 0).addBox(-4.0f, -8.0f, -4.0f, 8.0f, 8.0f, 8.0f), PartPose.ZERO);
+        partDef.getChild(PART_HEAD).addOrReplaceChild(PART_JAW, CubeListBuilder.create().texOffs(0, 16).addBox(-4.0f, -8.0f, -4.0f, 8.0f, 8.0f, 8.0f, new CubeDeformation(-0.5f)), PartPose.ZERO);
+
+        return LayerDefinition.create(meshDef, 32, 32);
+    }
+
+    @Override
+    public void setupAnim(float p_170950_, float p_170951_, float p_170952_) {
+        this.head.yRot = p_170951_ * ((float) Math.PI / 180.0f);
+        this.head.xRot = p_170952_ * ((float) Math.PI / 180.0f);
+    }
+
+    @Override
+    public void renderToBuffer(@NotNull PoseStack poseStack, @NotNull VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
+        this.root.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
+    }
 }

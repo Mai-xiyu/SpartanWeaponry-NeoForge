@@ -5,7 +5,6 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 
-public class ModBlockTags
-{
-	public static final TagKey<Block> GRASS = BlockTags.create(ResourceLocation.parse("c:grass"));
+public class ModBlockTags {
+    public static final TagKey<Block> GRASS = BlockTags.create(ResourceLocation.parse("c:grass"));
 }

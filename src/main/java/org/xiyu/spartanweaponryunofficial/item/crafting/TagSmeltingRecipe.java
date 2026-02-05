@@ -1,82 +1,67 @@
 package org.xiyu.spartanweaponryunofficial.item.crafting;
 
-import org.xiyu.spartanweaponryunofficial.init.ModRecipeSerializers;
-
 import net.minecraft.core.HolderLookup;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.CookingBookCategory;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.SmeltingRecipe;
-import net.minecraft.world.item.crafting.SingleRecipeInput;
+import net.minecraft.world.item.crafting.*;
+import org.jetbrains.annotations.NotNull;
+import org.xiyu.spartanweaponryunofficial.init.ModRecipeSerializers;
 
-public class TagSmeltingRecipe extends SmeltingRecipe implements ITagCookingRecipe
-{
-	protected final Ingredient result;
-	protected final TagKey<Item> resultTag;
-	
-	public TagSmeltingRecipe(String groupIn,
-			CookingBookCategory categoryIn, Ingredient inputIngredientIn, TagKey<Item> resultTagIn, float experienceIn,
-			int cookTimeIn) 
-	{
-		super(groupIn, categoryIn, inputIngredientIn, ItemStack.EMPTY, experienceIn, cookTimeIn);
-		resultTag = resultTagIn;
-		result = Ingredient.of(resultTagIn);
-	}
-	
-	@Override
-	public ItemStack getResultItem(HolderLookup.Provider provider) 
-	{
-		return result.getItems()[0];
-	}
-	
-	@Override
-	public ItemStack assemble(SingleRecipeInput input, HolderLookup.Provider provider)
-	{
-		return getResultItem(provider).copy();
-	}
+public class TagSmeltingRecipe extends SmeltingRecipe implements ITagCookingRecipe {
+    protected final Ingredient result;
+    protected final TagKey<Item> resultTag;
 
-	@Override
-	public RecipeSerializer<?> getSerializer() 
-	{
-		return ModRecipeSerializers.TAGGED_SMELTING.get();
-	}
+    public TagSmeltingRecipe(String groupIn,
+                             CookingBookCategory categoryIn, Ingredient inputIngredientIn, TagKey<Item> resultTagIn, float experienceIn,
+                             int cookTimeIn) {
+        super(groupIn, categoryIn, inputIngredientIn, ItemStack.EMPTY, experienceIn, cookTimeIn);
+        this.resultTag = resultTagIn;
+        this.result = Ingredient.of(resultTagIn);
+    }
 
-	@Override
-	public CookingBookCategory getCategory() 
-	{
-		return category();
-	}
+    @Override
+    public @NotNull ItemStack getResultItem(HolderLookup.@NotNull Provider provider) {
+        return this.result.getItems()[0];
+    }
 
-	@Override
-	public Ingredient getInputIngredient() 
-	{
-		return ingredient;
-	}
+    @Override
+    public @NotNull ItemStack assemble(@NotNull SingleRecipeInput input, HolderLookup.@NotNull Provider provider) {
+        return this.getResultItem(provider).copy();
+    }
 
-	@Override
-	public Ingredient getResultIngredient() 
-	{
-		return result;
-	}
+    @Override
+    public @NotNull RecipeSerializer<?> getSerializer() {
+        return ModRecipeSerializers.TAGGED_SMELTING.get();
+    }
 
-	@Override
-	public TagKey<Item> getResultTag()
-	{
-		return resultTag;
-	}
+    @Override
+    public CookingBookCategory getCategory() {
+        return this.category();
+    }
 
-	@Override
-	public int getCookTime() 
-	{
-		return getCookingTime();
-	}
+    @Override
+    public Ingredient getInputIngredient() {
+        return this.ingredient;
+    }
 
-	@Override
-	public float getExperienceDrop()
-	{
-		return getExperience();
-	}
+    @Override
+    public Ingredient getResultIngredient() {
+        return this.result;
+    }
+
+    @Override
+    public TagKey<Item> getResultTag() {
+        return this.resultTag;
+    }
+
+    @Override
+    public int getCookTime() {
+        return this.getCookingTime();
+    }
+
+    @Override
+    public float getExperienceDrop() {
+        return this.getExperience();
+    }
 }

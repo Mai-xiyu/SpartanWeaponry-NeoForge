@@ -7,12 +7,16 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.SingleRecipeInput;
 
-public interface ITagCookingRecipe extends Recipe<SingleRecipeInput>
-{
-	public CookingBookCategory getCategory();
-	public Ingredient getInputIngredient();
-	public Ingredient getResultIngredient();
-	public TagKey<Item> getResultTag();
-	public float getExperienceDrop();
-	public int getCookTime();
+public interface ITagCookingRecipe extends Recipe<SingleRecipeInput> {
+    CookingBookCategory getCategory();
+
+    Ingredient getInputIngredient();
+
+    Ingredient getResultIngredient();
+
+    TagKey<Item> getResultTag();
+
+    float getExperienceDrop();
+
+    int getCookTime();
 }
