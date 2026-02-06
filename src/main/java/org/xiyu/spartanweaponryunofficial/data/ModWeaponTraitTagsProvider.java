@@ -32,12 +32,12 @@ public class ModWeaponTraitTagsProvider extends IntrinsicHolderTagsProvider<Weap
         this.tag(ModWeaponTraitTags.LONGSWORD).add(WeaponTraits.TWO_HANDED_1.get(), WeaponTraits.SWEEP_1.get());
         this.tag(ModWeaponTraitTags.KATANA).add(WeaponTraits.TWO_HANDED_1.get(), WeaponTraits.DAMAGE_BONUS_CHEST.get(), WeaponTraits.SWEEP_1.get());
         this.tag(ModWeaponTraitTags.SABER).add(WeaponTraits.DAMAGE_ABSORB.get(), WeaponTraits.DAMAGE_BONUS_CHEST.get(), WeaponTraits.SWEEP_1.get());
-        this.tag(ModWeaponTraitTags.RAPIER).add(WeaponTraits.DAMAGE_ABSORB.get(), WeaponTraits.DAMAGE_BONUS_UNARMOURED.get());
+        this.tag(ModWeaponTraitTags.RAPIER).add(WeaponTraits.DAMAGE_ABSORB.get(), WeaponTraits.DAMAGE_BONUS_UNARMORED.get());
         this.tag(ModWeaponTraitTags.GREATSWORD).add(WeaponTraits.TWO_HANDED_2.get(), WeaponTraits.REACH_1.get(), WeaponTraits.SWEEP_3.get());
         this.tag(ModWeaponTraitTags.CLUB).add(WeaponTraits.NAUSEA.get());
         this.tag(ModWeaponTraitTags.CESTUS).add(WeaponTraits.QUICK_STRIKE.get());
         this.tag(ModWeaponTraitTags.BATTLE_HAMMER).add(WeaponTraits.KNOCKBACK.get(), WeaponTraits.NAUSEA.get(), WeaponTraits.HAMMER_SLAM.get());
-        this.tag(ModWeaponTraitTags.WARHAMMER).add(WeaponTraits.TWO_HANDED_1.get(), WeaponTraits.ARMOUR_PIERCING.get());
+        this.tag(ModWeaponTraitTags.WARHAMMER).add(WeaponTraits.TWO_HANDED_1.get(), WeaponTraits.ARMOR_PIERCING.get());
         this.tag(ModWeaponTraitTags.SPEAR).add(WeaponTraits.REACH_2.get());
         this.tag(ModWeaponTraitTags.HALBERD).add(WeaponTraits.TWO_HANDED_2.get(), WeaponTraits.REACH_1_5.get(), WeaponTraits.SHIELD_BREACH.get());
         this.tag(ModWeaponTraitTags.PIKE).add(WeaponTraits.TWO_HANDED_1.get(), WeaponTraits.REACH_2_5.get());
