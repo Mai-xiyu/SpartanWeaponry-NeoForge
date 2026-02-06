@@ -492,7 +492,7 @@ public class Config {
         WeaponTraits.DAMAGE_BONUS_RIDING.get().setMagnitude(INSTANCE.damageBonusRidingMultiplier.get().floatValue());
         WeaponTraits.DAMAGE_BONUS_THROWN_1.get().setMagnitude(INSTANCE.damageBonusThrowMultiplier.get().floatValue());
         WeaponTraits.DAMAGE_BONUS_THROWN_2.get().setMagnitude(INSTANCE.damageBonusThrowJavelinMultiplier.get().floatValue());
-        WeaponTraits.DAMAGE_BONUS_UNARMOURED.get().setMagnitude(INSTANCE.damageBonusUnarmoredMultiplier.get().floatValue());
+        WeaponTraits.DAMAGE_BONUS_UNARMORED.get().setMagnitude(INSTANCE.damageBonusUnarmoredMultiplier.get().floatValue());
         WeaponTraits.DAMAGE_BONUS_UNDEAD.get().setMagnitude(INSTANCE.damageBonusUndeadMultiplier.get().floatValue());
         WeaponTraits.DAMAGE_BONUS_BACKSTAB.get().setMagnitude(INSTANCE.damageBonusBackstabMultiplier.get().floatValue());
         WeaponTraits.DAMAGE_ABSORB.get().setMagnitude(INSTANCE.damageAbsorptionFactor.get().floatValue());
@@ -500,7 +500,7 @@ public class Config {
         WeaponTraits.REACH_2.get().setMagnitude(INSTANCE.reach2Value.get().floatValue());
         WeaponTraits.SWEEP_2.get().setMagnitude(INSTANCE.sweep2Percentage.get().floatValue());
         WeaponTraits.SWEEP_3.get().setMagnitude(INSTANCE.sweep3Percentage.get().floatValue());
-        WeaponTraits.ARMOUR_PIERCING.get().setMagnitude(INSTANCE.armorPiercePercentage.get().floatValue());
+        WeaponTraits.ARMOR_PIERCING.get().setMagnitude(INSTANCE.armorPiercePercentage.get().floatValue());
         WeaponTraits.QUICK_STRIKE.get().setMagnitude(INSTANCE.quickStrikeHurtResistTicks.get().floatValue());
         WeaponTraits.DECAPITATE.get().setMagnitude(INSTANCE.decapitateSkullDropPercentage.get().floatValue());
 

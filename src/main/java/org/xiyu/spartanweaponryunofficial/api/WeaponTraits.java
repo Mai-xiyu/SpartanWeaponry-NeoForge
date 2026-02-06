@@ -23,7 +23,7 @@ public class WeaponTraits {
             TYPE_DAMAGE_BONUS_HELMET = "extra_damage_helmet",
             TYPE_DAMAGE_BONUS_RIDING = "extra_damage_riding",
             TYPE_DAMAGE_BONUS_THROWN = "extra_damage_thrown",
-            TYPE_DAMAGE_BONUS_UNARMOURED = "extra_damage_unarmoured",
+            TYPE_DAMAGE_BONUS_UNARMORED = "extra_damage_unarmored",
             TYPE_DAMAGE_BONUS_UNDEAD = "extra_damage_undead",
             TYPE_DAMAGE_BONUS_BACKSTAB = "extra_damage_backstab",
             TYPE_DAMAGE_ABSORB = "damage_absorb",
@@ -31,7 +31,7 @@ public class WeaponTraits {
             TYPE_SWEEP_DAMAGE = "sweep_damage",
             TYPE_KNOCKBACK = "knockback",
             TYPE_NAUSEA = "nausea",
-            TYPE_ARMOUR_PIERCING = "armour_piercing",
+            TYPE_ARMOR_PIERCING = "armor_piercing",
             TYPE_SHIELD_BREACH = "shield_breach",
             TYPE_VERSATILE = "versatile",
             TYPE_QUICK_STRIKE = "quick_strike",
@@ -51,7 +51,7 @@ public class WeaponTraits {
     public static final DeferredHolder<WeaponTrait, WeaponTrait> DAMAGE_BONUS_RIDING = REGISTRY.register("riding_damage_bonus", () -> new DamageBonusWeaponTrait(TYPE_DAMAGE_BONUS_RIDING, SpartanWeaponryAPI.MOD_ID, DamageBonusWeaponTrait.DAMAGE_RIDING).setMagnitude(2.0f));
     public static final DeferredHolder<WeaponTrait, WeaponTrait> DAMAGE_BONUS_THROWN_1 = REGISTRY.register("thrown_damage_bonus_1", () -> new ThrowingDamageBonusWeaponTrait(TYPE_DAMAGE_BONUS_THROWN, SpartanWeaponryAPI.MOD_ID, DamageBonusWeaponTrait.DAMAGE_DEFAULT).setLevel(1).setMagnitude(2.0f));
     public static final DeferredHolder<WeaponTrait, WeaponTrait> DAMAGE_BONUS_THROWN_2 = REGISTRY.register("thrown_damage_bonus_2", () -> new ThrowingDamageBonusWeaponTrait(TYPE_DAMAGE_BONUS_THROWN, SpartanWeaponryAPI.MOD_ID, DamageBonusWeaponTrait.DAMAGE_DEFAULT).setLevel(2).setMagnitude(3.0f));
-    public static final DeferredHolder<WeaponTrait, WeaponTrait> DAMAGE_BONUS_UNARMOURED = REGISTRY.register("unarmoured_damage_bonus", () -> new DamageBonusWeaponTrait(TYPE_DAMAGE_BONUS_UNARMOURED, SpartanWeaponryAPI.MOD_ID, DamageBonusWeaponTrait.DAMAGE_UNARMOURED).setMagnitude(3.0f));
+    public static final DeferredHolder<WeaponTrait, WeaponTrait> DAMAGE_BONUS_UNARMORED = REGISTRY.register("unarmored_damage_bonus", () -> new DamageBonusWeaponTrait(TYPE_DAMAGE_BONUS_UNARMORED, SpartanWeaponryAPI.MOD_ID, DamageBonusWeaponTrait.DAMAGE_UNARMORED).setMagnitude(3.0f));
     public static final DeferredHolder<WeaponTrait, WeaponTrait> DAMAGE_BONUS_UNDEAD = REGISTRY.register("undead_damage_bonus", () -> new DamageBonusWeaponTrait(TYPE_DAMAGE_BONUS_UNDEAD, SpartanWeaponryAPI.MOD_ID, DamageBonusWeaponTrait.DAMAGE_UNDEAD).setMagnitude(1.5f));
     public static final DeferredHolder<WeaponTrait, WeaponTrait> DAMAGE_BONUS_BACKSTAB = REGISTRY.register("backstab_damage_bonus", () -> new DamageBonusWeaponTrait(TYPE_DAMAGE_BONUS_BACKSTAB, SpartanWeaponryAPI.MOD_ID, DamageBonusWeaponTrait.DAMAGE_BACKSTAB).setMagnitude(3.0f));
     public static final DeferredHolder<WeaponTrait, WeaponTrait> DAMAGE_ABSORB = REGISTRY.register("damage_absorb", () -> new DamageAbsorbWeaponTrait(TYPE_DAMAGE_ABSORB, SpartanWeaponryAPI.MOD_ID).setMagnitude(0.25f));
@@ -64,7 +64,7 @@ public class WeaponTraits {
     public static final DeferredHolder<WeaponTrait, WeaponTrait> SWEEP_3 = REGISTRY.register("sweep_3", () -> new SweepWeaponTrait(TYPE_SWEEP_DAMAGE, SpartanWeaponryAPI.MOD_ID).setLevel(3).setMagnitude(0.75f));
     public static final DeferredHolder<WeaponTrait, WeaponTrait> KNOCKBACK = REGISTRY.register("extra_knockback", () -> new KnockbackWeaponTrait(TYPE_KNOCKBACK, SpartanWeaponryAPI.MOD_ID));
     public static final DeferredHolder<WeaponTrait, WeaponTrait> NAUSEA = REGISTRY.register("nauseous_blow", () -> new NauseaWeaponTrait(TYPE_NAUSEA, SpartanWeaponryAPI.MOD_ID).setMagnitude(10.0f));
-    public static final DeferredHolder<WeaponTrait, WeaponTrait> ARMOUR_PIERCING = REGISTRY.register("armour_piercing", () -> new WeaponTraitWithMagnitude(TYPE_ARMOUR_PIERCING, SpartanWeaponryAPI.MOD_ID, TraitQuality.POSITIVE).setMelee().setMagnitude(50.0f));
+    public static final DeferredHolder<WeaponTrait, WeaponTrait> ARMOR_PIERCING = REGISTRY.register("armor_piercing", () -> new WeaponTraitWithMagnitude(TYPE_ARMOR_PIERCING, SpartanWeaponryAPI.MOD_ID, TraitQuality.POSITIVE).setMelee().setMagnitude(50.0f));
     public static final DeferredHolder<WeaponTrait, WeaponTrait> SHIELD_BREACH = REGISTRY.register("shield_breach", () -> new WeaponTrait(TYPE_SHIELD_BREACH, SpartanWeaponryAPI.MOD_ID, TraitQuality.POSITIVE).setMelee());
     public static final DeferredHolder<WeaponTrait, WeaponTrait> VERSATILE_PICKAXE = REGISTRY.register("versatile_pickaxe", () -> new VersatileWeaponTrait(TYPE_VERSATILE, SpartanWeaponryAPI.MOD_ID, BlockTags.MINEABLE_WITH_PICKAXE, "pickaxe"));
     public static final DeferredHolder<WeaponTrait, WeaponTrait> VERSATILE_AXE = REGISTRY.register("versatile_axe", () -> new VersatileWeaponTrait(TYPE_VERSATILE, SpartanWeaponryAPI.MOD_ID, BlockTags.MINEABLE_WITH_AXE, "axe"));

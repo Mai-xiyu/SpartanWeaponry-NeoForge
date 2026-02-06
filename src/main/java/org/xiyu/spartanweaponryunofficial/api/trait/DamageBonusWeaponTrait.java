@@ -39,7 +39,7 @@ public class DamageBonusWeaponTrait extends MeleeCallbackWeaponTrait {
             victim.getItemBySlot(EquipmentSlot.HEAD).isEmpty() && (!APIConfigValues.damageBonusCheckArmorValue || victim.getAttributeValue(Attributes.ARMOR) <= APIConfigValues.damageBonusMaxArmorValue) ?
                     baseDamage + bonusDamage : baseDamage;
 
-    public static final DamageCalculationFunc DAMAGE_UNARMOURED = (material, baseDamage, bonusDamage, source, attacker, victim) ->
+    public static final DamageCalculationFunc DAMAGE_UNARMORED = (material, baseDamage, bonusDamage, source, attacker, victim) ->
     {
         boolean isUnarmored = victim.getItemBySlot(EquipmentSlot.HEAD).isEmpty() && victim.getItemBySlot(EquipmentSlot.CHEST).isEmpty() &&
                 victim.getItemBySlot(EquipmentSlot.LEGS).isEmpty() && victim.getItemBySlot(EquipmentSlot.FEET).isEmpty();
@@ -83,7 +83,7 @@ public class DamageBonusWeaponTrait extends MeleeCallbackWeaponTrait {
     @Override
     protected void addTooltipDescription(ItemStack stack, List<Component> tooltip) {
         if (APIConfigValues.damageBonusCheckArmorValue && (this.type.equals(WeaponTraits.TYPE_DAMAGE_BONUS_CHEST) ||
-                this.type.equals(WeaponTraits.TYPE_DAMAGE_BONUS_UNARMOURED) || this.type.equals(WeaponTraits.TYPE_DAMAGE_BONUS_HELMET)))
+                this.type.equals(WeaponTraits.TYPE_DAMAGE_BONUS_UNARMORED) || this.type.equals(WeaponTraits.TYPE_DAMAGE_BONUS_HELMET)))
             tooltip.add(tooltipIndent().append(Component.translatable(String.format("tooltip.%s.trait.%s.desc.armor_points", SpartanWeaponryAPI.MOD_ID, this.type), (this.magnitude - 1.0f) * 100.0f, APIConfigValues.damageBonusMaxArmorValue).withStyle(WeaponTrait.DESCRIPTION_FORMAT)));
         else
             tooltip.add(tooltipIndent().append(Component.translatable(String.format("tooltip.%s.trait.%s.desc", SpartanWeaponryAPI.MOD_ID, this.type), (this.magnitude - 1.0f) * 100.0f).withStyle(WeaponTrait.DESCRIPTION_FORMAT)));

@@ -46,7 +46,7 @@ public class PlayerMixin {
         Player playerIn = ((Player) originalSource.getEntity());
         ItemStack weaponStack = playerIn.getMainHandItem();
         if (weaponStack.getItem() instanceof IWeaponTraitContainer<?> container) {
-            WeaponTrait armorPiercingTrait = container.getFirstWeaponTraitWithType(WeaponTraits.TYPE_ARMOUR_PIERCING);
+            WeaponTrait armorPiercingTrait = container.getFirstWeaponTraitWithType(WeaponTraits.TYPE_ARMOR_PIERCING);
             if (armorPiercingTrait != null) {
 //				Log.debug("Set damage type to Armor Piercing");
 //				float armorPiercingPercentage = armorPiercingTrait.getMagnitude() / 100.0f;
