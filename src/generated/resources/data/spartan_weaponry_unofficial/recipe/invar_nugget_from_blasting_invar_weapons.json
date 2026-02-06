@@ -1,0 +1,79 @@
+{
+  "type": "spartan_weaponry_unofficial:tag_blasting",
+  "experience": 0.1,
+  "ingredient": [
+    {
+      "item": "spartan_weaponry_unofficial:invar_dagger"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:invar_parrying_dagger"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:invar_longsword"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:invar_katana"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:invar_saber"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:invar_rapier"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:invar_greatsword"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:invar_battle_hammer"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:invar_warhammer"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:invar_spear"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:invar_halberd"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:invar_pike"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:invar_lance"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:longbow_invar_strengthened"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:heavy_crossbow_invar_strengthened"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:throwing_knife_invar"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:tomahawk_invar"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:javelin_invar"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:boomerang_invar"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:invar_battleaxe"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:invar_flanged_mace"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:invar_glaive"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:invar_quarterstaff"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:invar_scythe"
+    }
+  ],
+  "result_tag": "c:nuggets/invar"
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "tag": "c:ingots/netherite"
+  },
+  "base": {
+    "item": "spartan_weaponry_unofficial:diamond_greatsword"
+  },
+  "result": {
+    "count": 1,
+    "id": "spartan_weaponry_unofficial:netherite_greatsword"
+  },
+  "template": {
+    "item": "minecraft:netherite_upgrade_smithing_template"
+  }
+}

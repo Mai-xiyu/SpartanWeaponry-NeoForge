@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "spartanweaponryunofficial:item/tipped_iron_arrow_base",
-    "layer1": "spartanweaponryunofficial:item/tipped_arrow_head"
-  }
-}

@@ -1,0 +1,21 @@
+{
+  "parent": "spartan_weaponry_unofficial:item/base/throwing_knife",
+  "overrides": [
+    {
+      "model": "spartan_weaponry_unofficial:item/throwing_knife_wooden_throwing",
+      "predicate": {
+        "spartan_weaponry_unofficial:empty": 0.0,
+        "spartan_weaponry_unofficial:throwing": 1.0
+      }
+    },
+    {
+      "model": "spartan_weaponry_unofficial:item/base/throwing_knife_empty",
+      "predicate": {
+        "spartan_weaponry_unofficial:empty": 1.0
+      }
+    }
+  ],
+  "textures": {
+    "layer0": "spartan_weaponry_unofficial:item/wooden_throwing_knife"
+  }
+}

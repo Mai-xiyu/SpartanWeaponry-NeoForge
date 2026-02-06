@@ -1,0 +1,33 @@
+{
+  "parent": "spartan_weaponry_unofficial:root",
+  "criteria": {
+    "has_quarterstaff": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#spartan_weaponry_unofficial:quarterstaves"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.spartan_weaponry_unofficial.craft_quarterstaff.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "spartan_weaponry_unofficial:golden_quarterstaff"
+    },
+    "title": {
+      "translate": "advancement.spartan_weaponry_unofficial.craft_quarterstaff.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_quarterstaff"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

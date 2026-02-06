@@ -1,6 +1,0 @@
-{
-  "parent": "spartanweaponryunofficial:item/base/longbow_pulling",
-  "textures": {
-    "layer0": "spartanweaponryunofficial:item/invar_longbow_pulling_2"
-  }
-}

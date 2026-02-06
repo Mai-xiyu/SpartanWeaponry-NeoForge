@@ -21,7 +21,7 @@ public class DataGenEventHandler {
 /*		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		
 		// Find files to convert
-		File langDir = new File("../src/main/resources/assets/spartanweaponryunofficial/lang");
+		File langDir = new File("../src/main/resources/assets/spartan_weaponry_unofficial/lang");
 		if(!langDir.exists())
 			throw new IllegalArgumentException("Cannot find lang directory!");
 

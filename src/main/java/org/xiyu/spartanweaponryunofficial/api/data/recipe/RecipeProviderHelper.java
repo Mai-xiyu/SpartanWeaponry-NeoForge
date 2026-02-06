@@ -65,7 +65,7 @@ public class RecipeProviderHelper
 	public static void recipeDagger(RecipeOutput consumer, ItemLike handle, TagKey<Item> material, ItemLike result, String hasItemCriterionName, String requiredModId)
 	{
 		ConditionalShapedRecipeBuilder recipe = ConditionalShapedRecipeBuilder.shaped(result).define('#', material).define('|', handle).pattern("#").pattern("|").
-			group("spartanweaponryunofficial:dagger").condition(new TypeDisabledCondition(Collections.singletonList(TypeDisabledCondition.DAGGER))).
+			group("spartan_weaponry_unofficial:dagger").condition(new TypeDisabledCondition(Collections.singletonList(TypeDisabledCondition.DAGGER))).
 			unlockedBy(hasItemCriterionName, hasItem(material));
 		if(!requiredModId.isEmpty())
 			recipe.condition(new ModLoadedCondition(requiredModId));
@@ -97,7 +97,7 @@ public class RecipeProviderHelper
 	public static void recipeParryingDagger(RecipeOutput consumer, ItemLike handle, TagKey<Item> material, ItemLike result, String hasItemCriterionName, String requiredModId)
 	{
 		ConditionalShapedRecipeBuilder recipe = ConditionalShapedRecipeBuilder.shaped(result).define('#', material).define('|', handle).pattern(" #").pattern("#|").
-			group("spartanweaponryunofficial:parrying_dagger").condition(new TypeDisabledCondition(Collections.singletonList(TypeDisabledCondition.PARRYING_DAGGER))).
+			group("spartan_weaponry_unofficial:parrying_dagger").condition(new TypeDisabledCondition(Collections.singletonList(TypeDisabledCondition.PARRYING_DAGGER))).
 			unlockedBy(hasItemCriterionName, hasItem(material));
 		if(!requiredModId.isEmpty())
 			recipe.condition(new ModLoadedCondition(requiredModId));
@@ -129,7 +129,7 @@ public class RecipeProviderHelper
 	public static void recipeLongsword(RecipeOutput consumer, ItemLike handle, TagKey<Item> material, ItemLike result, String hasItemCriterionName, String requiredModId)
 	{
 		ConditionalShapedRecipeBuilder recipe = ConditionalShapedRecipeBuilder.shaped(result).define('#', material).define('|', handle).pattern(" # ").pattern(" # ").pattern("#|#").
-			group("spartanweaponryunofficial:longsword").condition(new TypeDisabledCondition(Collections.singletonList(TypeDisabledCondition.LONGSWORD))).
+			group("spartan_weaponry_unofficial:longsword").condition(new TypeDisabledCondition(Collections.singletonList(TypeDisabledCondition.LONGSWORD))).
 			unlockedBy(hasItemCriterionName, hasItem(material));
 		if(!requiredModId.isEmpty())
 			recipe.condition(new ModLoadedCondition(requiredModId));
@@ -161,7 +161,7 @@ public class RecipeProviderHelper
 	public static void recipeKatana(RecipeOutput consumer, ItemLike handle, TagKey<Item> material, ItemLike result, String hasItemCriterionName, String requiredModId)
 	{
 		ConditionalShapedRecipeBuilder recipe = ConditionalShapedRecipeBuilder.shaped(result).define('#', material).define('|', handle).pattern("  #").pattern(" # ").pattern("|  ").
-			group("spartanweaponryunofficial:katana").condition(new TypeDisabledCondition(Collections.singletonList(TypeDisabledCondition.KATANA))).
+			group("spartan_weaponry_unofficial:katana").condition(new TypeDisabledCondition(Collections.singletonList(TypeDisabledCondition.KATANA))).
 			unlockedBy(hasItemCriterionName, hasItem(material));
 		if(!requiredModId.isEmpty())
 			recipe.condition(new ModLoadedCondition(requiredModId));
@@ -193,7 +193,7 @@ public class RecipeProviderHelper
 	public static void recipeSaber(RecipeOutput consumer, ItemLike handle, TagKey<Item> material, ItemLike result, String hasItemCriterionName, String requiredModId)
 	{
 		ConditionalShapedRecipeBuilder recipe = ConditionalShapedRecipeBuilder.shaped(result).define('#', material).define('|', handle).pattern(" #").pattern(" #").pattern("#|").
-			group("spartanweaponryunofficial:saber").condition(new TypeDisabledCondition(Collections.singletonList(TypeDisabledCondition.SABER))).
+			group("spartan_weaponry_unofficial:saber").condition(new TypeDisabledCondition(Collections.singletonList(TypeDisabledCondition.SABER))).
 			unlockedBy(hasItemCriterionName, hasItem(material));
 		if(!requiredModId.isEmpty())
 			recipe.condition(new ModLoadedCondition(requiredModId));
@@ -225,7 +225,7 @@ public class RecipeProviderHelper
 	public static void recipeRapier(RecipeOutput consumer, ItemLike handle, TagKey<Item> material, ItemLike result, String hasItemCriterionName, String requiredModId)
 	{
 		ConditionalShapedRecipeBuilder recipe = ConditionalShapedRecipeBuilder.shaped(result).define('#', material).define('|', handle).pattern("  #").pattern("## ").pattern("|# ").
-			group("spartanweaponryunofficial:rapier").condition(new TypeDisabledCondition(Collections.singletonList(TypeDisabledCondition.RAPIER))).
+			group("spartan_weaponry_unofficial:rapier").condition(new TypeDisabledCondition(Collections.singletonList(TypeDisabledCondition.RAPIER))).
 			unlockedBy(hasItemCriterionName, hasItem(material));
 		if(!requiredModId.isEmpty())
 			recipe.condition(new ModLoadedCondition(requiredModId));
@@ -257,7 +257,7 @@ public class RecipeProviderHelper
 	public static void recipeGreatsword(RecipeOutput consumer, ItemLike handle, TagKey<Item> material, ItemLike result, String hasItemCriterionName, String requiredModId)
 	{
 		ConditionalShapedRecipeBuilder recipe = ConditionalShapedRecipeBuilder.shaped(result).define('#', material).define('|', handle).pattern(" # ").pattern("###").pattern("#|#").
-			group("spartanweaponryunofficial:greatsword").condition(new TypeDisabledCondition(Collections.singletonList(TypeDisabledCondition.GREATSWORD))).
+			group("spartan_weaponry_unofficial:greatsword").condition(new TypeDisabledCondition(Collections.singletonList(TypeDisabledCondition.GREATSWORD))).
 			unlockedBy(hasItemCriterionName, hasItem(material));
 		if(!requiredModId.isEmpty())
 			recipe.condition(new ModLoadedCondition(requiredModId));
@@ -289,7 +289,7 @@ public class RecipeProviderHelper
 	public static void recipeBattleHammer(RecipeOutput consumer, ItemLike handle, TagKey<Item> material, ItemLike result, String hasItemCriterionName, String requiredModId)
 	{
 		ConditionalShapedRecipeBuilder recipe = ConditionalShapedRecipeBuilder.shaped(result).define('#', material).define('|', handle).pattern("###").pattern("###").pattern(" | ").
-			group("spartanweaponryunofficial:battle_hammer").condition(new TypeDisabledCondition(Collections.singletonList(TypeDisabledCondition.BATTLE_HAMMER))).
+			group("spartan_weaponry_unofficial:battle_hammer").condition(new TypeDisabledCondition(Collections.singletonList(TypeDisabledCondition.BATTLE_HAMMER))).
 			unlockedBy(hasItemCriterionName, hasItem(material));
 		if(!requiredModId.isEmpty())
 			recipe.condition(new ModLoadedCondition(requiredModId));
@@ -321,7 +321,7 @@ public class RecipeProviderHelper
 	public static void recipeWarhammer(RecipeOutput consumer, ItemLike handle, TagKey<Item> material, ItemLike result, String hasItemCriterionName, String requiredModId)
 	{
 		ConditionalShapedRecipeBuilder recipe = ConditionalShapedRecipeBuilder.shaped(result).define('#', material).define('|', handle).pattern(" #").pattern("##").pattern(" |").
-			group("spartanweaponryunofficial:warhammer").condition(new TypeDisabledCondition(Collections.singletonList(TypeDisabledCondition.WARHAMMER))).
+			group("spartan_weaponry_unofficial:warhammer").condition(new TypeDisabledCondition(Collections.singletonList(TypeDisabledCondition.WARHAMMER))).
 			unlockedBy(hasItemCriterionName, hasItem(material));
 		if(!requiredModId.isEmpty())
 			recipe.condition(new ModLoadedCondition(requiredModId));
@@ -353,7 +353,7 @@ public class RecipeProviderHelper
 	public static void recipeSpear(RecipeOutput consumer, ItemLike pole, TagKey<Item> material, ItemLike result, String hasItemCriterionName, String requiredModId)
 	{
 		ConditionalShapedRecipeBuilder recipe = ConditionalShapedRecipeBuilder.shaped(result).define('#', material).define('/', pole).pattern("#").pattern("/").
-			group("spartanweaponryunofficial:spear").condition(new TypeDisabledCondition(Collections.singletonList(TypeDisabledCondition.SPEAR))).
+			group("spartan_weaponry_unofficial:spear").condition(new TypeDisabledCondition(Collections.singletonList(TypeDisabledCondition.SPEAR))).
 			unlockedBy(hasItemCriterionName, hasItem(material));
 		if(!requiredModId.isEmpty())
 			recipe.condition(new ModLoadedCondition(requiredModId));
@@ -385,7 +385,7 @@ public class RecipeProviderHelper
 	public static void recipeHalberd(RecipeOutput consumer, ItemLike pole, TagKey<Item> material, ItemLike result, String hasItemCriterionName, String requiredModId)
 	{
 		ConditionalShapedRecipeBuilder recipe = ConditionalShapedRecipeBuilder.shaped(result).define('#', material).define('/', pole).pattern(" #").pattern("##").pattern("#/").
-			group("spartanweaponryunofficial:halberd").condition(new TypeDisabledCondition(Collections.singletonList(TypeDisabledCondition.HALBERD))).
+			group("spartan_weaponry_unofficial:halberd").condition(new TypeDisabledCondition(Collections.singletonList(TypeDisabledCondition.HALBERD))).
 			unlockedBy(hasItemCriterionName, hasItem(material));
 		if(!requiredModId.isEmpty())
 			recipe.condition(new ModLoadedCondition(requiredModId));
@@ -417,7 +417,7 @@ public class RecipeProviderHelper
 	public static void recipePike(RecipeOutput consumer, ItemLike pole, TagKey<Item> material, ItemLike result, String hasItemCriterionName, String requiredModId)
 	{
 		ConditionalShapedRecipeBuilder recipe = ConditionalShapedRecipeBuilder.shaped(result).define('#', material).define('/', pole).pattern("#").pattern("/").pattern("/").
-			group("spartanweaponryunofficial:pike").condition(new TypeDisabledCondition(Collections.singletonList(TypeDisabledCondition.PIKE))).
+			group("spartan_weaponry_unofficial:pike").condition(new TypeDisabledCondition(Collections.singletonList(TypeDisabledCondition.PIKE))).
 			unlockedBy(hasItemCriterionName, hasItem(material));
 		if(!requiredModId.isEmpty())
 			recipe.condition(new ModLoadedCondition(requiredModId));
@@ -451,7 +451,7 @@ public class RecipeProviderHelper
 	public static void recipeLance(RecipeOutput consumer, ItemLike handle, ItemLike pole, TagKey<Item> material, ItemLike result, String hasItemCriterionName, String requiredModId)
 	{
 		ConditionalShapedRecipeBuilder recipe = ConditionalShapedRecipeBuilder.shaped(result).define('#', material).define('|', handle).define('/', pole).pattern("  #").pattern("#/ ").pattern("|# ").
-			group("spartanweaponryunofficial:lance").condition(new TypeDisabledCondition(Collections.singletonList(TypeDisabledCondition.LANCE))).
+			group("spartan_weaponry_unofficial:lance").condition(new TypeDisabledCondition(Collections.singletonList(TypeDisabledCondition.LANCE))).
 			unlockedBy(hasItemCriterionName, hasItem(material));
 		if(!requiredModId.isEmpty())
 			recipe.condition(new ModLoadedCondition(requiredModId));
@@ -489,7 +489,7 @@ public class RecipeProviderHelper
 			String hasItemCriterionName, String requiredModId)
 	{
 		ConditionalShapedRecipeBuilder recipe = ConditionalShapedRecipeBuilder.shaped(result).define('#', material).define('|', handle).define('/', stick).define('~', string).
-			pattern("|/#").pattern("/ ~").pattern("#~~").group("spartanweaponryunofficial:longbow").condition(new TypeDisabledCondition(Collections.singletonList(TypeDisabledCondition.LONGBOW))).
+			pattern("|/#").pattern("/ ~").pattern("#~~").group("spartan_weaponry_unofficial:longbow").condition(new TypeDisabledCondition(Collections.singletonList(TypeDisabledCondition.LONGBOW))).
 			unlockedBy(hasItemCriterionName, hasItem(material));
 		if(!requiredModId.isEmpty())
 			recipe.condition(new ModLoadedCondition(requiredModId));
@@ -527,7 +527,7 @@ public class RecipeProviderHelper
 			String hasItemCriterionName, String requiredModId)
 	{
 		ConditionalShapedRecipeBuilder recipe = ConditionalShapedRecipeBuilder.shaped(result).define('#', material).define('|', handle).define('P', planks).define('D', bow).define('H', Items.TRIPWIRE_HOOK).
-			pattern("#D#").pattern("PHP").pattern(" | ").group("spartanweaponryunofficial:heavy_crossbow").condition(new TypeDisabledCondition(Collections.singletonList(TypeDisabledCondition.HEAVY_CROSSBOW))).
+			pattern("#D#").pattern("PHP").pattern(" | ").group("spartan_weaponry_unofficial:heavy_crossbow").condition(new TypeDisabledCondition(Collections.singletonList(TypeDisabledCondition.HEAVY_CROSSBOW))).
 			unlockedBy(hasItemCriterionName, hasItem(material));
 		if(!requiredModId.isEmpty())
 			recipe.condition(new ModLoadedCondition(requiredModId));
@@ -558,7 +558,7 @@ public class RecipeProviderHelper
 	 */
 	public static void recipeThrowingKnife(RecipeOutput consumer, ItemLike handle, TagKey<Item> material, ItemLike result, String hasItemCriterionName, String requiredModId)
 	{
-		ConditionalShapedRecipeBuilder recipe = ConditionalShapedRecipeBuilder.shaped(result).define('#', material).define('|', handle).pattern("|#").group("spartanweaponryunofficial:throwing_knife").
+		ConditionalShapedRecipeBuilder recipe = ConditionalShapedRecipeBuilder.shaped(result).define('#', material).define('|', handle).pattern("|#").group("spartan_weaponry_unofficial:throwing_knife").
 			condition(new TypeDisabledCondition(Collections.singletonList(TypeDisabledCondition.THROWING_KNIFE))).unlockedBy(hasItemCriterionName, hasItem(material));
 		if(!requiredModId.isEmpty())
 			recipe.condition(new ModLoadedCondition(requiredModId));
@@ -590,7 +590,7 @@ public class RecipeProviderHelper
 	public static void recipeTomahawk(RecipeOutput consumer, ItemLike handle, TagKey<Item> material, ItemLike result, String hasItemCriterionName, String requiredModId)
 	{
 		ConditionalShapedRecipeBuilder recipe = ConditionalShapedRecipeBuilder.shaped(result).define('#', material).define('|', handle).pattern("|#").pattern(" #").
-			group("spartanweaponryunofficial:tomahawk").condition(new TypeDisabledCondition(Collections.singletonList(TypeDisabledCondition.TOMAHAWK))).
+			group("spartan_weaponry_unofficial:tomahawk").condition(new TypeDisabledCondition(Collections.singletonList(TypeDisabledCondition.TOMAHAWK))).
 			unlockedBy(hasItemCriterionName, hasItem(material));
 		if(!requiredModId.isEmpty())
 			recipe.condition(new ModLoadedCondition(requiredModId));
@@ -621,7 +621,7 @@ public class RecipeProviderHelper
 	 */
 	public static void recipeJavelin(RecipeOutput consumer, ItemLike pole, TagKey<Item> material, ItemLike result, String hasItemCriterionName, String requiredModId)
 	{
-		ConditionalShapedRecipeBuilder recipe = ConditionalShapedRecipeBuilder.shaped(result).define('#', material).define('/', pole).pattern("/#").group("spartanweaponryunofficial:javelin").
+		ConditionalShapedRecipeBuilder recipe = ConditionalShapedRecipeBuilder.shaped(result).define('#', material).define('/', pole).pattern("/#").group("spartan_weaponry_unofficial:javelin").
 			condition(new TypeDisabledCondition(Collections.singletonList(TypeDisabledCondition.JAVELIN))).unlockedBy(hasItemCriterionName, hasItem(material));
 		if(!requiredModId.isEmpty())
 			recipe.condition(new ModLoadedCondition(requiredModId));
@@ -653,7 +653,7 @@ public class RecipeProviderHelper
 	public static void recipeBoomerang(RecipeOutput consumer, Ingredient planks, TagKey<Item> material, ItemLike result, String hasItemCriterionName, String requiredModId)
 	{
 		ConditionalShapedRecipeBuilder recipe = ConditionalShapedRecipeBuilder.shaped(result).define('#', material).define('P', planks).pattern("#PP").pattern("P  ").pattern("P  ").
-			group("spartanweaponryunofficial:boomerang").condition(new TypeDisabledCondition(Collections.singletonList(TypeDisabledCondition.BOOMERANG))).
+			group("spartan_weaponry_unofficial:boomerang").condition(new TypeDisabledCondition(Collections.singletonList(TypeDisabledCondition.BOOMERANG))).
 			unlockedBy(hasItemCriterionName, hasItem(material));
 		if(!requiredModId.isEmpty())
 			recipe.condition(new ModLoadedCondition(requiredModId));
@@ -688,7 +688,7 @@ public class RecipeProviderHelper
 			String requiredModId)
 	{
 		ConditionalShapedRecipeBuilder recipe = ConditionalShapedRecipeBuilder.shaped(result).define('#', material).define('|', handle).define('/', stick).
-			pattern("###").pattern("#/#").pattern(" | ").group("spartanweaponryunofficial:battleaxe").condition(new TypeDisabledCondition(Collections.singletonList(TypeDisabledCondition.BATTLEAXE))).
+			pattern("###").pattern("#/#").pattern(" | ").group("spartan_weaponry_unofficial:battleaxe").condition(new TypeDisabledCondition(Collections.singletonList(TypeDisabledCondition.BATTLEAXE))).
 			unlockedBy(hasItemCriterionName, hasItem(material));
 		if(!requiredModId.isEmpty())
 			recipe.condition(new ModLoadedCondition(requiredModId));
@@ -723,7 +723,7 @@ public class RecipeProviderHelper
 			String requiredModId)
 	{
 		ConditionalShapedRecipeBuilder recipe = ConditionalShapedRecipeBuilder.shaped(result).define('#', material).define('|', handle).define('/', stick).
-			pattern(" ##").pattern(" /#").pattern("|  ").group("spartanweaponryunofficial:flanged_mace").condition(new TypeDisabledCondition(Collections.singletonList(TypeDisabledCondition.FLANGED_MACE))).
+			pattern(" ##").pattern(" /#").pattern("|  ").group("spartan_weaponry_unofficial:flanged_mace").condition(new TypeDisabledCondition(Collections.singletonList(TypeDisabledCondition.FLANGED_MACE))).
 			unlockedBy(hasItemCriterionName, hasItem(material));
 		if(!requiredModId.isEmpty())
 			recipe.condition(new ModLoadedCondition(requiredModId));
@@ -755,7 +755,7 @@ public class RecipeProviderHelper
 	public static void recipeGlaive(RecipeOutput consumer, ItemLike pole, TagKey<Item> material, ItemLike result, String hasItemCriterionName, String requiredModId)
 	{
 		ConditionalShapedRecipeBuilder recipe = ConditionalShapedRecipeBuilder.shaped(result).define('#', material).define('/', pole).pattern(" #").pattern(" #").pattern(" /").
-			group("spartanweaponryunofficial:glaive").condition(new TypeDisabledCondition(Collections.singletonList(TypeDisabledCondition.GLAIVE))).unlockedBy(hasItemCriterionName, hasItem(material));
+			group("spartan_weaponry_unofficial:glaive").condition(new TypeDisabledCondition(Collections.singletonList(TypeDisabledCondition.GLAIVE))).unlockedBy(hasItemCriterionName, hasItem(material));
 		if(!requiredModId.isEmpty())
 			recipe.condition(new ModLoadedCondition(requiredModId));
 		recipe.save(consumer);
@@ -786,7 +786,7 @@ public class RecipeProviderHelper
 	public static void recipeQuarterstaff(RecipeOutput consumer, ItemLike pole, TagKey<Item> material, ItemLike result, String hasItemCriterionName, String requiredModId)
 	{
 		ConditionalShapedRecipeBuilder recipe = ConditionalShapedRecipeBuilder.shaped(result).define('#', material).define('/', pole).pattern("  #").pattern(" / ").pattern("#  ").
-			group("spartanweaponryunofficial:quarterstaff").condition(new TypeDisabledCondition(Collections.singletonList(TypeDisabledCondition.QUARTERSTAFF))).
+			group("spartan_weaponry_unofficial:quarterstaff").condition(new TypeDisabledCondition(Collections.singletonList(TypeDisabledCondition.QUARTERSTAFF))).
 			unlockedBy(hasItemCriterionName, hasItem(material));
 		if(!requiredModId.isEmpty())
 			recipe.condition(new ModLoadedCondition(requiredModId));
@@ -803,7 +803,7 @@ public class RecipeProviderHelper
 	 */
 	public static void recipeScythe(RecipeOutput consumer, ItemLike pole, TagKey<Item> material, ItemLike result, String hasItemCriterionName)
 	{
-		ConditionalShapedRecipeBuilder.shaped(result).define('#', material).define('/', pole).pattern("## ").pattern("  #").pattern(" / ").group("spartanweaponryunofficial:scythe").
+		ConditionalShapedRecipeBuilder.shaped(result).define('#', material).define('/', pole).pattern("## ").pattern("  #").pattern(" / ").group("spartan_weaponry_unofficial:scythe").
 			condition(new TypeDisabledCondition(Collections.singletonList(TypeDisabledCondition.SCYTHE))).unlockedBy(hasItemCriterionName, hasItem(material)).save(consumer);
 	}
 
@@ -819,7 +819,7 @@ public class RecipeProviderHelper
 	public static void recipeScythe(RecipeOutput consumer, ItemLike pole, TagKey<Item> material, ItemLike result, String hasItemCriterionName, String requiredModId)
 	{
 		ConditionalShapedRecipeBuilder recipe = ConditionalShapedRecipeBuilder.shaped(result).define('#', material).define('/', pole).pattern("## ").pattern("  #").pattern(" / ").
-			group("spartanweaponryunofficial:scythe").condition(new TypeDisabledCondition(Collections.singletonList(TypeDisabledCondition.SCYTHE))).
+			group("spartan_weaponry_unofficial:scythe").condition(new TypeDisabledCondition(Collections.singletonList(TypeDisabledCondition.SCYTHE))).
 			unlockedBy(hasItemCriterionName, hasItem(material));
 		if(!requiredModId.isEmpty())
 			recipe.condition(new ModLoadedCondition(requiredModId));

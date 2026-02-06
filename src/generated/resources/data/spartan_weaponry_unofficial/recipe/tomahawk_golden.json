@@ -1,0 +1,29 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "spartan_weaponry_unofficial:type_disabled",
+      "disabled": [
+        "tomahawk"
+      ]
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "spartan_weaponry_unofficial:tomahawk",
+  "key": {
+    "#": {
+      "tag": "c:ingots/gold"
+    },
+    "|": {
+      "item": "spartan_weaponry_unofficial:handle"
+    }
+  },
+  "pattern": [
+    "|#",
+    " #"
+  ],
+  "result": {
+    "count": 1,
+    "id": "spartan_weaponry_unofficial:tomahawk_golden"
+  }
+}

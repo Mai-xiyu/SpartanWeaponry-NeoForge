@@ -1,6 +1,0 @@
-{
-  "parent": "spartanweaponryunofficial:item/base/heavy_crossbow_pulling",
-  "textures": {
-    "layer0": "spartanweaponryunofficial:item/netherite_heavy_crossbow_pulling_1"
-  }
-}

@@ -1,8 +1,0 @@
-{
-  "parent": "spartanweaponryunofficial:item/base/parrying_dagger_blocking",
-  "loader": "spartanweaponryunofficial:oil_coated_item",
-  "textures": {
-    "coating": "spartanweaponryunofficial:item/coating/parrying_dagger",
-    "layer0": "spartanweaponryunofficial:item/diamond_parrying_dagger"
-  }
-}

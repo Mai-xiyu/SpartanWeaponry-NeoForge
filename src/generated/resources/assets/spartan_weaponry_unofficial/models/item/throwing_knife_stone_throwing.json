@@ -1,0 +1,6 @@
+{
+  "parent": "spartan_weaponry_unofficial:item/base/throwing_knife_throwing",
+  "textures": {
+    "layer0": "spartan_weaponry_unofficial:item/stone_throwing_knife"
+  }
+}

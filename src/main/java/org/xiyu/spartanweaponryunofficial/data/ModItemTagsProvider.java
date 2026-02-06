@@ -41,9 +41,9 @@ public class ModItemTagsProvider extends ItemTagsProvider {
         final TagKey<Item> ENCHANTABLE_TRIDENT = ItemTags.create(ResourceLocation.parse("minecraft:enchantable/trident"));
 
         // Mod-specific enchantable tags for mod enchantments to work at enchanting table
-        final TagKey<Item> ENCHANTABLE_THROWING_WEAPON = ItemTags.create(ResourceLocation.parse("spartanweaponryunofficial:enchantable/throwing_weapon"));
-        final TagKey<Item> ENCHANTABLE_HEAVY_CROSSBOW = ItemTags.create(ResourceLocation.parse("spartanweaponryunofficial:enchantable/heavy_crossbow"));
-        final TagKey<Item> ENCHANTABLE_BOOMERANG = ItemTags.create(ResourceLocation.parse("spartanweaponryunofficial:enchantable/boomerang"));
+        final TagKey<Item> ENCHANTABLE_THROWING_WEAPON = ItemTags.create(ResourceLocation.parse("spartan_weaponry_unofficial:enchantable/throwing_weapon"));
+        final TagKey<Item> ENCHANTABLE_HEAVY_CROSSBOW = ItemTags.create(ResourceLocation.parse("spartan_weaponry_unofficial:enchantable/heavy_crossbow"));
+        final TagKey<Item> ENCHANTABLE_BOOMERANG = ItemTags.create(ResourceLocation.parse("spartan_weaponry_unofficial:enchantable/boomerang"));
 
         // Tags in the Spartan Weaponry domain
         this.tag(ModItemTags.HANDLES).add(ModItems.SIMPLE_HANDLE.get(), ModItems.HANDLE.get());

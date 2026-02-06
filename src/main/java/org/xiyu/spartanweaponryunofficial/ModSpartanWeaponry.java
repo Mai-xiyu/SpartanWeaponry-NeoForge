@@ -24,7 +24,7 @@ import org.xiyu.spartanweaponryunofficial.util.Log;
 @Mod(value = ModSpartanWeaponry.ID)
 public class ModSpartanWeaponry {
     // Mod information
-    public static final String ID = "spartanweaponryunofficial";
+    public static final String ID = "spartan_weaponry_unofficial";
     public static final String NAME = "Spartan Weaponr unofficial";
 
     public ModSpartanWeaponry(ModContainer modContainer, IEventBus modBus) {

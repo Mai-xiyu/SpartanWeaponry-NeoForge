@@ -1,8 +1,0 @@
-{
-  "parent": "spartanweaponryunofficial:item/base/club_throwing",
-  "loader": "spartanweaponryunofficial:oil_coated_item",
-  "textures": {
-    "coating": "spartanweaponryunofficial:item/coating/club",
-    "layer0": "spartanweaponryunofficial:item/wooden_club"
-  }
-}

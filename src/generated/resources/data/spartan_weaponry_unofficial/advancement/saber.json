@@ -1,0 +1,33 @@
+{
+  "parent": "spartan_weaponry_unofficial:katana",
+  "criteria": {
+    "has_saber": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#spartan_weaponry_unofficial:sabers"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.spartan_weaponry_unofficial.craft_saber.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "spartan_weaponry_unofficial:iron_saber"
+    },
+    "title": {
+      "translate": "advancement.spartan_weaponry_unofficial.craft_saber.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_saber"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

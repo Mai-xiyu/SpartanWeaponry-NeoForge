@@ -1,0 +1,79 @@
+{
+  "type": "spartan_weaponry_unofficial:tag_smelting",
+  "experience": 0.1,
+  "ingredient": [
+    {
+      "item": "spartan_weaponry_unofficial:tin_dagger"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:tin_parrying_dagger"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:tin_longsword"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:tin_katana"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:tin_saber"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:tin_rapier"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:tin_greatsword"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:tin_battle_hammer"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:tin_warhammer"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:tin_spear"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:tin_halberd"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:tin_pike"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:tin_lance"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:longbow_tin_strengthened"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:heavy_crossbow_tin_strengthened"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:throwing_knife_tin"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:tomahawk_tin"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:javelin_tin"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:boomerang_tin"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:tin_battleaxe"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:tin_flanged_mace"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:tin_glaive"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:tin_quarterstaff"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:tin_scythe"
+    }
+  ],
+  "result_tag": "c:nuggets/tin"
+}

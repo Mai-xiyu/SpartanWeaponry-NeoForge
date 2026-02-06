@@ -1,8 +1,0 @@
-{
-  "parent": "spartanweaponryunofficial:item/base/battleaxe_blocking",
-  "loader": "spartanweaponryunofficial:oil_coated_item",
-  "textures": {
-    "coating": "spartanweaponryunofficial:item/coating/battleaxe",
-    "layer0": "spartanweaponryunofficial:item/copper_battleaxe"
-  }
-}

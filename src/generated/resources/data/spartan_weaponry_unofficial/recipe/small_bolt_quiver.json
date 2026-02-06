@@ -1,0 +1,36 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "spartan_weaponry_unofficial:type_disabled",
+      "disabled": [
+        "quiver",
+        "bolts"
+      ]
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "tag": "c:ingots/iron"
+    },
+    "L": {
+      "tag": "c:leathers"
+    },
+    "^": {
+      "tag": "spartan_weaponry_unofficial:bolts"
+    },
+    "~": {
+      "tag": "c:strings"
+    }
+  },
+  "pattern": [
+    "L~L",
+    "L^L",
+    "###"
+  ],
+  "result": {
+    "count": 1,
+    "id": "spartan_weaponry_unofficial:small_bolt_quiver"
+  }
+}

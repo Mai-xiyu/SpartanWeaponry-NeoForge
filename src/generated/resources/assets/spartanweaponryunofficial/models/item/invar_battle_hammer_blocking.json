@@ -1,8 +1,0 @@
-{
-  "parent": "spartanweaponryunofficial:item/base/battle_hammer_blocking",
-  "loader": "spartanweaponryunofficial:oil_coated_item",
-  "textures": {
-    "coating": "spartanweaponryunofficial:item/coating/battle_hammer",
-    "layer0": "spartanweaponryunofficial:item/invar_battle_hammer"
-  }
-}

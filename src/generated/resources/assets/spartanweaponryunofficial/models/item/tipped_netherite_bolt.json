@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "spartanweaponryunofficial:item/tipped_netherite_bolt_base",
-    "layer1": "spartanweaponryunofficial:item/tipped_bolt_head"
-  }
-}

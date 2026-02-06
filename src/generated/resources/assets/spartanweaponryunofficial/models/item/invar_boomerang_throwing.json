@@ -1,6 +1,0 @@
-{
-  "parent": "spartanweaponryunofficial:item/base/boomerang_throwing",
-  "textures": {
-    "layer0": "spartanweaponryunofficial:item/invar_boomerang"
-  }
-}
