@@ -1,6 +1,0 @@
-{
-  "parent": "spartanweaponryunofficial:item/base/tomahawk",
-  "textures": {
-    "layer0": "spartanweaponryunofficial:item/empty_tomahawk"
-  }
-}

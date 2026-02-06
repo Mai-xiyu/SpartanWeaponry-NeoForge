@@ -1,0 +1,37 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "spartan_weaponry_unofficial:type_disabled",
+      "disabled": [
+        "spear",
+        "electrum"
+      ]
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/electrum"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "spartan_weaponry_unofficial:spear",
+  "key": {
+    "#": {
+      "tag": "c:ingots/electrum"
+    },
+    "/": {
+      "tag": "spartan_weaponry_unofficial:poles"
+    }
+  },
+  "pattern": [
+    "#",
+    "/"
+  ],
+  "result": {
+    "count": 1,
+    "id": "spartan_weaponry_unofficial:electrum_spear"
+  }
+}

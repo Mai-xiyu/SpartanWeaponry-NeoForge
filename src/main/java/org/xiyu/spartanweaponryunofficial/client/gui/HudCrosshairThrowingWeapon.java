@@ -35,7 +35,7 @@ public class HudCrosshairThrowingWeapon {
             int offset = ClientConfig.INSTANCE.forceCompatibilityCrosshairs.get() ? 20 : 10;
             if (player.isUsingItem()) {
                 float percentage = Mth.clamp((player.getTicksUsingItem() + partialTicks) / throwingWeapon.getMaxChargeTicks(equippedStack, mc.level), 0.0f, 1.0f);
-                offset *= (int) (1.0f - percentage);
+                offset = (int) (offset * (1.0f - percentage));
             }
 
             Matrix4fStack modelViewStack = RenderSystem.getModelViewStack();

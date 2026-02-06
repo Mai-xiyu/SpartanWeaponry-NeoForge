@@ -5,7 +5,7 @@ import org.xiyu.spartanweaponryunofficial.util.Log;
 
 public class SpartanWeaponryAPI {
     public static final int API_VERSION = 12;
-    public static final String MOD_ID = "spartanweaponryunofficial";
+    public static final String MOD_ID = "spartan_weaponry_unofficial";
 
     /**
      * Use this method in your addon mod to ensure that the API is of the correct version.
@@ -159,7 +159,7 @@ public class SpartanWeaponryAPI {
     }
 
     /**
-     * Creates a new longbow, using the specified material. Give the new item the registry name of "item.[modId].longbow_[material.unlocName]". The caller is responsible for registering the weapon item and recipe
+     * Creates a new longbow, using the specified material. Give the new item the registry name of "item.[modId].longbow_[material.unlocName]_strengthened". The caller is responsible for registering the weapon item and recipe
      *
      * @param material The Material that the weapon is made of
      * @return The newly created weapon
@@ -169,7 +169,7 @@ public class SpartanWeaponryAPI {
     }
 
     /**
-     * Creates a new heavy crossbow, using the specified material. Give the new item the registry name of "item.[modId].heavy_crossbow_[material.unlocName]". The caller is responsible for registering the weapon item and recipe
+     * Creates a new heavy crossbow, using the specified material. Give the new item the registry name of "item.[modId].heavy_crossbow_[material.unlocName]_strengthened". The caller is responsible for registering the weapon item and recipe
      *
      * @param material The Material that the weapon is made of
      * @return The newly created weapon

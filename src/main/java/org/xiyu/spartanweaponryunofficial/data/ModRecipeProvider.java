@@ -100,17 +100,17 @@ public class ModRecipeProvider extends RecipeProvider {
 
         // Handles
         ShapelessRecipeBuilder.shapeless(RecipeCategory.COMBAT, ModItems.SIMPLE_HANDLE.get()).requires(stick).requires(ModItemTags.GRASS).unlockedBy("has_stick", hasItem(stick)).save(recipeFunc);
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.COMBAT, ModItems.HANDLE.get()).requires(stick).requires(string).group("spartanweaponryunofficial:handle").unlockedBy("has_string", hasItem(string)).save(recipeFunc, ModSpartanWeaponry.ID + ":handle_from_string");
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.COMBAT, ModItems.HANDLE.get(), 4).requires(stick).requires(stick).requires(stick).requires(stick).requires(ItemTags.WOOL).group("spartanweaponryunofficial:handle").unlockedBy("has_stick", hasItem(stick)).save(recipeFunc, ModSpartanWeaponry.ID + ":handle_from_wool");
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.COMBAT, ModItems.HANDLE.get(), 4).requires(stick).requires(stick).requires(stick).requires(stick).requires(leather).group("spartanweaponryunofficial:handle").unlockedBy("has_stick", hasItem(stick)).save(recipeFunc, ModSpartanWeaponry.ID + ":handle_from_leather");
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.COMBAT, ModItems.HANDLE.get()).requires(stick).requires(string).group("spartan_weaponry_unofficial:handle").unlockedBy("has_string", hasItem(string)).save(recipeFunc, ModSpartanWeaponry.ID + ":handle_from_string");
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.COMBAT, ModItems.HANDLE.get(), 4).requires(stick).requires(stick).requires(stick).requires(stick).requires(ItemTags.WOOL).group("spartan_weaponry_unofficial:handle").unlockedBy("has_stick", hasItem(stick)).save(recipeFunc, ModSpartanWeaponry.ID + ":handle_from_wool");
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.COMBAT, ModItems.HANDLE.get(), 4).requires(stick).requires(stick).requires(stick).requires(stick).requires(leather).group("spartan_weaponry_unofficial:handle").unlockedBy("has_stick", hasItem(stick)).save(recipeFunc, ModSpartanWeaponry.ID + ":handle_from_leather");
         // Poles
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.SIMPLE_POLE.get()).define('#', ModItems.SIMPLE_HANDLE.get()).define('/', stick).pattern("/").pattern("#").pattern("/").unlockedBy("has_handle", hasItem(ModItems.SIMPLE_HANDLE.get())).save(recipeFunc);
-        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.POLE.get()).define('|', stick).define('#', string).pattern("| ").pattern("|#").pattern("| ").group("spartanweaponryunofficial:pole").unlockedBy("has_stick", hasItem(stick)).save(recipeFunc, ModSpartanWeaponry.ID + ":pole_from_string");
-        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.POLE.get(), 4).define('|', stick).define('#', ItemTags.WOOL).pattern("|||").pattern("|||").pattern("||#").group("spartanweaponryunofficial:pole").unlockedBy("has_stick", hasItem(stick)).save(recipeFunc, ModSpartanWeaponry.ID + ":pole_from_wool");
-        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.POLE.get(), 4).define('|', stick).define('#', leather).pattern("|||").pattern("|||").pattern("||#").group("spartanweaponryunofficial:pole").unlockedBy("has_stick", hasItem(stick)).save(recipeFunc, ModSpartanWeaponry.ID + ":pole_from_leather");
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.POLE.get()).define('|', stick).define('#', string).pattern("| ").pattern("|#").pattern("| ").group("spartan_weaponry_unofficial:pole").unlockedBy("has_stick", hasItem(stick)).save(recipeFunc, ModSpartanWeaponry.ID + ":pole_from_string");
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.POLE.get(), 4).define('|', stick).define('#', ItemTags.WOOL).pattern("|||").pattern("|||").pattern("||#").group("spartan_weaponry_unofficial:pole").unlockedBy("has_stick", hasItem(stick)).save(recipeFunc, ModSpartanWeaponry.ID + ":pole_from_wool");
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.POLE.get(), 4).define('|', stick).define('#', leather).pattern("|||").pattern("|||").pattern("||#").group("spartan_weaponry_unofficial:pole").unlockedBy("has_stick", hasItem(stick)).save(recipeFunc, ModSpartanWeaponry.ID + ":pole_from_leather");
 
-        ConditionalShapedRecipeBuilder.shaped(ModItems.EXPLOSIVE_CHARGE.get(), 4).define('#', gunpowder).define('-', ironNugget).pattern("###").pattern("---").pattern("###").group("spartanweaponryunofficial:explosive").unlockedBy("has_gunpowder", hasItem(gunpowder)).condition(new TypeDisabledCondition(Collections.singletonList(TypeDisabledCondition.EXPLOSIVES))).save(recipeFunc);
-        ConditionalShapedRecipeBuilder.shaped(ModItems.GREASE_BALL.get()).define('#', ModItemTags.RAW_MEAT).define('O', slimeballs).pattern(" # ").pattern("#O#").pattern(" # ").group("spartanweaponryunofficial:grease_ball").unlockedBy("has_meat", hasItem(ModItemTags.RAW_MEAT)).unlockedBy("has_slimeball", hasItem(slimeballs)).condition(new TypeDisabledCondition(Collections.singletonList(TypeDisabledCondition.OIL))).save(recipeFunc);
+        ConditionalShapedRecipeBuilder.shaped(ModItems.EXPLOSIVE_CHARGE.get(), 4).define('#', gunpowder).define('-', ironNugget).pattern("###").pattern("---").pattern("###").group("spartan_weaponry_unofficial:explosive").unlockedBy("has_gunpowder", hasItem(gunpowder)).condition(new TypeDisabledCondition(Collections.singletonList(TypeDisabledCondition.EXPLOSIVES))).save(recipeFunc);
+        ConditionalShapedRecipeBuilder.shaped(ModItems.GREASE_BALL.get()).define('#', ModItemTags.RAW_MEAT).define('O', slimeballs).pattern(" # ").pattern("#O#").pattern(" # ").group("spartan_weaponry_unofficial:grease_ball").unlockedBy("has_meat", hasItem(ModItemTags.RAW_MEAT)).unlockedBy("has_slimeball", hasItem(slimeballs)).condition(new TypeDisabledCondition(Collections.singletonList(TypeDisabledCondition.OIL))).save(recipeFunc);
 
         RecipeData dataWood = new RecipeData(ItemTags.PLANKS, "wood", "has_wood");
         RecipeData dataStone = new RecipeData(stone, "stone", "has_cobblestone");
@@ -336,7 +336,7 @@ public class ModRecipeProvider extends RecipeProvider {
     private void recipeDagger(RecipeOutput consumer, ItemLike result, RecipeData data) {
         String itemDisabledType = data.getDisableType();
         List<String> typesDisabled = itemDisabledType == null || itemDisabledType.isEmpty() ? Collections.singletonList(TypeDisabledCondition.DAGGER) : ImmutableList.of(TypeDisabledCondition.DAGGER, itemDisabledType);
-        ConditionalShapedRecipeBuilder builder = ConditionalShapedRecipeBuilder.shaped(result).define('#', data.getMaterialTag()).define('|', ModItemTags.HANDLES).pattern("#").pattern("|").group("spartanweaponryunofficial:dagger").condition(new TypeDisabledCondition(typesDisabled)).unlockedBy(data.getCriterion(), hasItem(data.getMaterialTag()));
+        ConditionalShapedRecipeBuilder builder = ConditionalShapedRecipeBuilder.shaped(result).define('#', data.getMaterialTag()).define('|', ModItemTags.HANDLES).pattern("#").pattern("|").group("spartan_weaponry_unofficial:dagger").condition(new TypeDisabledCondition(typesDisabled)).unlockedBy(data.getCriterion(), hasItem(data.getMaterialTag()));
         if (data.isModdedMaterial())
             builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
         builder.save(consumer);
@@ -345,7 +345,7 @@ public class ModRecipeProvider extends RecipeProvider {
     private void recipeParryingDagger(RecipeOutput consumer, ItemLike result, RecipeData data) {
         String itemDisabledType = data.getDisableType();
         List<String> typesDisabled = itemDisabledType == null || itemDisabledType.isEmpty() ? Collections.singletonList(TypeDisabledCondition.PARRYING_DAGGER) : ImmutableList.of(TypeDisabledCondition.PARRYING_DAGGER, itemDisabledType);
-        ConditionalShapedRecipeBuilder builder = ConditionalShapedRecipeBuilder.shaped(result).define('#', data.getMaterialTag()).define('|', ModItems.HANDLE.get()).pattern(" #").pattern("#|").group("spartanweaponryunofficial:parrying_dagger").condition(new TypeDisabledCondition(typesDisabled)).unlockedBy(data.getCriterion(), hasItem(data.getMaterialTag()));
+        ConditionalShapedRecipeBuilder builder = ConditionalShapedRecipeBuilder.shaped(result).define('#', data.getMaterialTag()).define('|', ModItems.HANDLE.get()).pattern(" #").pattern("#|").group("spartan_weaponry_unofficial:parrying_dagger").condition(new TypeDisabledCondition(typesDisabled)).unlockedBy(data.getCriterion(), hasItem(data.getMaterialTag()));
         if (data.isModdedMaterial())
             builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
         builder.save(consumer);
@@ -354,7 +354,7 @@ public class ModRecipeProvider extends RecipeProvider {
     private void recipeLongsword(RecipeOutput consumer, ItemLike result, RecipeData data) {
         String itemDisabledType = data.getDisableType();
         List<String> typesDisabled = itemDisabledType == null || itemDisabledType.isEmpty() ? Collections.singletonList(TypeDisabledCondition.LONGSWORD) : ImmutableList.of(TypeDisabledCondition.LONGSWORD, itemDisabledType);
-        ConditionalShapedRecipeBuilder builder = ConditionalShapedRecipeBuilder.shaped(result).define('#', data.getMaterialTag()).define('|', ModItems.HANDLE.get()).pattern(" # ").pattern(" # ").pattern("#|#").group("spartanweaponryunofficial:longsword").condition(new TypeDisabledCondition(typesDisabled)).unlockedBy(data.getCriterion(), hasItem(data.getMaterialTag()));
+        ConditionalShapedRecipeBuilder builder = ConditionalShapedRecipeBuilder.shaped(result).define('#', data.getMaterialTag()).define('|', ModItems.HANDLE.get()).pattern(" # ").pattern(" # ").pattern("#|#").group("spartan_weaponry_unofficial:longsword").condition(new TypeDisabledCondition(typesDisabled)).unlockedBy(data.getCriterion(), hasItem(data.getMaterialTag()));
         if (data.isModdedMaterial())
             builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
         builder.save(consumer);
@@ -363,7 +363,7 @@ public class ModRecipeProvider extends RecipeProvider {
     private void recipeKatana(RecipeOutput consumer, ItemLike result, RecipeData data) {
         String itemDisabledType = data.getDisableType();
         List<String> typesDisabled = itemDisabledType == null || itemDisabledType.isEmpty() ? Collections.singletonList(TypeDisabledCondition.KATANA) : ImmutableList.of(TypeDisabledCondition.KATANA, itemDisabledType);
-        ConditionalShapedRecipeBuilder builder = ConditionalShapedRecipeBuilder.shaped(result).define('#', data.getMaterialTag()).define('|', ModItems.HANDLE.get()).pattern("  #").pattern(" # ").pattern("|  ").group("spartanweaponryunofficial:katana").condition(new TypeDisabledCondition(typesDisabled)).unlockedBy(data.getCriterion(), hasItem(data.getMaterialTag()));
+        ConditionalShapedRecipeBuilder builder = ConditionalShapedRecipeBuilder.shaped(result).define('#', data.getMaterialTag()).define('|', ModItems.HANDLE.get()).pattern("  #").pattern(" # ").pattern("|  ").group("spartan_weaponry_unofficial:katana").condition(new TypeDisabledCondition(typesDisabled)).unlockedBy(data.getCriterion(), hasItem(data.getMaterialTag()));
         if (data.isModdedMaterial())
             builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
         builder.save(consumer);
@@ -372,7 +372,7 @@ public class ModRecipeProvider extends RecipeProvider {
     private void recipeSaber(RecipeOutput consumer, ItemLike result, RecipeData data) {
         String itemDisabledType = data.getDisableType();
         List<String> typesDisabled = itemDisabledType == null || itemDisabledType.isEmpty() ? Collections.singletonList(TypeDisabledCondition.SABER) : ImmutableList.of(TypeDisabledCondition.SABER, itemDisabledType);
-        ConditionalShapedRecipeBuilder builder = ConditionalShapedRecipeBuilder.shaped(result).define('#', data.getMaterialTag()).define('|', ModItems.HANDLE.get()).pattern(" #").pattern(" #").pattern("#|").group("spartanweaponryunofficial:saber").condition(new TypeDisabledCondition(typesDisabled)).unlockedBy(data.getCriterion(), hasItem(data.getMaterialTag()));
+        ConditionalShapedRecipeBuilder builder = ConditionalShapedRecipeBuilder.shaped(result).define('#', data.getMaterialTag()).define('|', ModItems.HANDLE.get()).pattern(" #").pattern(" #").pattern("#|").group("spartan_weaponry_unofficial:saber").condition(new TypeDisabledCondition(typesDisabled)).unlockedBy(data.getCriterion(), hasItem(data.getMaterialTag()));
         if (data.isModdedMaterial())
             builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
         builder.save(consumer);
@@ -381,7 +381,7 @@ public class ModRecipeProvider extends RecipeProvider {
     private void recipeRapier(RecipeOutput consumer, ItemLike result, RecipeData data) {
         String itemDisabledType = data.getDisableType();
         List<String> typesDisabled = itemDisabledType == null || itemDisabledType.isEmpty() ? Collections.singletonList(TypeDisabledCondition.RAPIER) : ImmutableList.of(TypeDisabledCondition.RAPIER, itemDisabledType);
-        ConditionalShapedRecipeBuilder builder = ConditionalShapedRecipeBuilder.shaped(result).define('#', data.getMaterialTag()).define('|', ModItems.HANDLE.get()).pattern("  #").pattern("## ").pattern("|# ").group("spartanweaponryunofficial:rapier").condition(new TypeDisabledCondition(typesDisabled)).unlockedBy(data.getCriterion(), hasItem(data.getMaterialTag()));
+        ConditionalShapedRecipeBuilder builder = ConditionalShapedRecipeBuilder.shaped(result).define('#', data.getMaterialTag()).define('|', ModItems.HANDLE.get()).pattern("  #").pattern("## ").pattern("|# ").group("spartan_weaponry_unofficial:rapier").condition(new TypeDisabledCondition(typesDisabled)).unlockedBy(data.getCriterion(), hasItem(data.getMaterialTag()));
         if (data.isModdedMaterial())
             builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
         builder.save(consumer);
@@ -390,7 +390,7 @@ public class ModRecipeProvider extends RecipeProvider {
     private void recipeGreatsword(RecipeOutput consumer, ItemLike result, RecipeData data) {
         String itemDisabledType = data.getDisableType();
         List<String> typesDisabled = itemDisabledType == null || itemDisabledType.isEmpty() ? Collections.singletonList(TypeDisabledCondition.GREATSWORD) : ImmutableList.of(TypeDisabledCondition.GREATSWORD, itemDisabledType);
-        ConditionalShapedRecipeBuilder builder = ConditionalShapedRecipeBuilder.shaped(result).define('#', data.getMaterialTag()).define('|', ModItems.HANDLE.get()).pattern(" # ").pattern("###").pattern("#|#").group("spartanweaponryunofficial:greatsword").condition(new TypeDisabledCondition(typesDisabled)).unlockedBy(data.getCriterion(), hasItem(data.getMaterialTag()));
+        ConditionalShapedRecipeBuilder builder = ConditionalShapedRecipeBuilder.shaped(result).define('#', data.getMaterialTag()).define('|', ModItems.HANDLE.get()).pattern(" # ").pattern("###").pattern("#|#").group("spartan_weaponry_unofficial:greatsword").condition(new TypeDisabledCondition(typesDisabled)).unlockedBy(data.getCriterion(), hasItem(data.getMaterialTag()));
         if (data.isModdedMaterial())
             builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
         builder.save(consumer);
@@ -399,7 +399,7 @@ public class ModRecipeProvider extends RecipeProvider {
     private void recipeBattleHammer(RecipeOutput consumer, ItemLike result, RecipeData data) {
         String itemDisabledType = data.getDisableType();
         List<String> typesDisabled = itemDisabledType == null || itemDisabledType.isEmpty() ? Collections.singletonList(TypeDisabledCondition.BATTLE_HAMMER) : ImmutableList.of(TypeDisabledCondition.BATTLE_HAMMER, itemDisabledType);
-        ConditionalShapedRecipeBuilder builder = ConditionalShapedRecipeBuilder.shaped(result).define('#', data.getMaterialTag()).define('|', ModItems.HANDLE.get()).pattern("###").pattern("###").pattern(" | ").group("spartanweaponryunofficial:battle_hammer").condition(new TypeDisabledCondition(typesDisabled)).unlockedBy(data.getCriterion(), hasItem(data.getMaterialTag()));
+        ConditionalShapedRecipeBuilder builder = ConditionalShapedRecipeBuilder.shaped(result).define('#', data.getMaterialTag()).define('|', ModItems.HANDLE.get()).pattern("###").pattern("###").pattern(" | ").group("spartan_weaponry_unofficial:battle_hammer").condition(new TypeDisabledCondition(typesDisabled)).unlockedBy(data.getCriterion(), hasItem(data.getMaterialTag()));
         if (data.isModdedMaterial())
             builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
         builder.save(consumer);
@@ -408,7 +408,7 @@ public class ModRecipeProvider extends RecipeProvider {
     private void recipeWarhammer(RecipeOutput consumer, ItemLike result, RecipeData data) {
         String itemDisabledType = data.getDisableType();
         List<String> typesDisabled = itemDisabledType == null || itemDisabledType.isEmpty() ? Collections.singletonList(TypeDisabledCondition.WARHAMMER) : ImmutableList.of(TypeDisabledCondition.WARHAMMER, itemDisabledType);
-        ConditionalShapedRecipeBuilder builder = ConditionalShapedRecipeBuilder.shaped(result).define('#', data.getMaterialTag()).define('|', ModItems.HANDLE.get()).pattern(" #").pattern("##").pattern(" |").group("spartanweaponryunofficial:warhammer").condition(new TypeDisabledCondition(typesDisabled)).unlockedBy(data.getCriterion(), hasItem(data.getMaterialTag()));
+        ConditionalShapedRecipeBuilder builder = ConditionalShapedRecipeBuilder.shaped(result).define('#', data.getMaterialTag()).define('|', ModItems.HANDLE.get()).pattern(" #").pattern("##").pattern(" |").group("spartan_weaponry_unofficial:warhammer").condition(new TypeDisabledCondition(typesDisabled)).unlockedBy(data.getCriterion(), hasItem(data.getMaterialTag()));
         if (data.isModdedMaterial())
             builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
         builder.save(consumer);
@@ -417,7 +417,7 @@ public class ModRecipeProvider extends RecipeProvider {
     private void recipeSpear(RecipeOutput consumer, ItemLike result, RecipeData data) {
         String itemDisabledType = data.getDisableType();
         List<String> typesDisabled = itemDisabledType == null || itemDisabledType.isEmpty() ? Collections.singletonList(TypeDisabledCondition.SPEAR) : ImmutableList.of(TypeDisabledCondition.SPEAR, itemDisabledType);
-        ConditionalShapedRecipeBuilder builder = ConditionalShapedRecipeBuilder.shaped(result).define('#', data.getMaterialTag()).define('/', ModItemTags.POLES).pattern("#").pattern("/").group("spartanweaponryunofficial:spear").condition(new TypeDisabledCondition(typesDisabled)).unlockedBy(data.getCriterion(), hasItem(data.getMaterialTag()));
+        ConditionalShapedRecipeBuilder builder = ConditionalShapedRecipeBuilder.shaped(result).define('#', data.getMaterialTag()).define('/', ModItemTags.POLES).pattern("#").pattern("/").group("spartan_weaponry_unofficial:spear").condition(new TypeDisabledCondition(typesDisabled)).unlockedBy(data.getCriterion(), hasItem(data.getMaterialTag()));
         if (data.isModdedMaterial())
             builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
         builder.save(consumer);
@@ -426,7 +426,7 @@ public class ModRecipeProvider extends RecipeProvider {
     private void recipeHalberd(RecipeOutput consumer, ItemLike result, RecipeData data) {
         String itemDisabledType = data.getDisableType();
         List<String> typesDisabled = itemDisabledType == null || itemDisabledType.isEmpty() ? Collections.singletonList(TypeDisabledCondition.HALBERD) : ImmutableList.of(TypeDisabledCondition.HALBERD, itemDisabledType);
-        ConditionalShapedRecipeBuilder builder = ConditionalShapedRecipeBuilder.shaped(result).define('#', data.getMaterialTag()).define('/', ModItems.POLE.get()).pattern(" #").pattern("##").pattern("#/").group("spartanweaponryunofficial:halberd").condition(new TypeDisabledCondition(typesDisabled)).unlockedBy(data.getCriterion(), hasItem(data.getMaterialTag()));
+        ConditionalShapedRecipeBuilder builder = ConditionalShapedRecipeBuilder.shaped(result).define('#', data.getMaterialTag()).define('/', ModItems.POLE.get()).pattern(" #").pattern("##").pattern("#/").group("spartan_weaponry_unofficial:halberd").condition(new TypeDisabledCondition(typesDisabled)).unlockedBy(data.getCriterion(), hasItem(data.getMaterialTag()));
         if (data.isModdedMaterial())
             builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
         builder.save(consumer);
@@ -435,7 +435,7 @@ public class ModRecipeProvider extends RecipeProvider {
     private void recipePike(RecipeOutput consumer, ItemLike result, RecipeData data) {
         String itemDisabledType = data.getDisableType();
         List<String> typesDisabled = itemDisabledType == null || itemDisabledType.isEmpty() ? Collections.singletonList(TypeDisabledCondition.PIKE) : ImmutableList.of(TypeDisabledCondition.PIKE, itemDisabledType);
-        ConditionalShapedRecipeBuilder builder = ConditionalShapedRecipeBuilder.shaped(result).define('#', data.getMaterialTag()).define('/', ModItems.POLE.get()).pattern("#").pattern("/").pattern("/").group("spartanweaponryunofficial:pike").condition(new TypeDisabledCondition(typesDisabled)).unlockedBy(data.getCriterion(), hasItem(data.getMaterialTag()));
+        ConditionalShapedRecipeBuilder builder = ConditionalShapedRecipeBuilder.shaped(result).define('#', data.getMaterialTag()).define('/', ModItems.POLE.get()).pattern("#").pattern("/").pattern("/").group("spartan_weaponry_unofficial:pike").condition(new TypeDisabledCondition(typesDisabled)).unlockedBy(data.getCriterion(), hasItem(data.getMaterialTag()));
         if (data.isModdedMaterial())
             builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
         builder.save(consumer);
@@ -444,7 +444,7 @@ public class ModRecipeProvider extends RecipeProvider {
     private void recipeLance(RecipeOutput consumer, ItemLike result, RecipeData data) {
         String itemDisabledType = data.getDisableType();
         List<String> typesDisabled = itemDisabledType == null || itemDisabledType.isEmpty() ? Collections.singletonList(TypeDisabledCondition.LANCE) : ImmutableList.of(TypeDisabledCondition.LANCE, itemDisabledType);
-        ConditionalShapedRecipeBuilder builder = ConditionalShapedRecipeBuilder.shaped(result).define('#', data.getMaterialTag()).define('|', ModItems.HANDLE.get()).define('/', ModItems.POLE.get()).pattern("  #").pattern("#/ ").pattern("|# ").group("spartanweaponryunofficial:lance").condition(new TypeDisabledCondition(typesDisabled)).unlockedBy(data.getCriterion(), hasItem(data.getMaterialTag()));
+        ConditionalShapedRecipeBuilder builder = ConditionalShapedRecipeBuilder.shaped(result).define('#', data.getMaterialTag()).define('|', ModItems.HANDLE.get()).define('/', ModItems.POLE.get()).pattern("  #").pattern("#/ ").pattern("|# ").group("spartan_weaponry_unofficial:lance").condition(new TypeDisabledCondition(typesDisabled)).unlockedBy(data.getCriterion(), hasItem(data.getMaterialTag()));
         if (data.isModdedMaterial())
             builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
         builder.save(consumer);
@@ -453,7 +453,7 @@ public class ModRecipeProvider extends RecipeProvider {
     private void recipeLongbow(RecipeOutput consumer, TagKey<Item> stick, TagKey<Item> string, ItemLike result, RecipeData data) {
         String itemDisabledType = data.getDisableType();
         List<String> typesDisabled = itemDisabledType == null || itemDisabledType.isEmpty() ? Collections.singletonList(TypeDisabledCondition.LONGBOW) : ImmutableList.of(TypeDisabledCondition.LONGBOW, itemDisabledType);
-        ConditionalShapedRecipeBuilder builder = ConditionalShapedRecipeBuilder.shaped(result).define('#', data.getMaterialTag()).define('|', ModItems.HANDLE.get()).define('/', stick).define('~', string).pattern("|/#").pattern("/ ~").pattern("#~~").group("spartanweaponryunofficial:longbow").condition(new TypeDisabledCondition(typesDisabled)).unlockedBy(data.getCriterion(), hasItem(data.getMaterialTag()));
+        ConditionalShapedRecipeBuilder builder = ConditionalShapedRecipeBuilder.shaped(result).define('#', data.getMaterialTag()).define('|', ModItems.HANDLE.get()).define('/', stick).define('~', string).pattern("|/#").pattern("/ ~").pattern("#~~").group("spartan_weaponry_unofficial:longbow").condition(new TypeDisabledCondition(typesDisabled)).unlockedBy(data.getCriterion(), hasItem(data.getMaterialTag()));
         if (data.isModdedMaterial())
             builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
         builder.save(consumer);
@@ -462,7 +462,7 @@ public class ModRecipeProvider extends RecipeProvider {
     private void recipeHeavyCrossbow(RecipeOutput consumer, TagKey<Item> planks, ItemLike result, RecipeData data) {
         String itemDisabledType = data.getDisableType();
         List<String> typesDisabled = itemDisabledType == null || itemDisabledType.isEmpty() ? Collections.singletonList(TypeDisabledCondition.HEAVY_CROSSBOW) : ImmutableList.of(TypeDisabledCondition.HEAVY_CROSSBOW, itemDisabledType);
-        ConditionalShapedRecipeBuilder builder = ConditionalShapedRecipeBuilder.shaped(result).define('#', data.getMaterialTag()).define('|', ModItems.HANDLE.get()).define('P', planks).define('D', Items.BOW).define('H', Items.TRIPWIRE_HOOK).pattern("#D#").pattern("PHP").pattern(" | ").group("spartanweaponryunofficial:heavy_crossbow").condition(new TypeDisabledCondition(typesDisabled)).unlockedBy(data.getCriterion(), hasItem(data.getMaterialTag()));
+        ConditionalShapedRecipeBuilder builder = ConditionalShapedRecipeBuilder.shaped(result).define('#', data.getMaterialTag()).define('|', ModItems.HANDLE.get()).define('P', planks).define('D', Items.BOW).define('H', Items.TRIPWIRE_HOOK).pattern("#D#").pattern("PHP").pattern(" | ").group("spartan_weaponry_unofficial:heavy_crossbow").condition(new TypeDisabledCondition(typesDisabled)).unlockedBy(data.getCriterion(), hasItem(data.getMaterialTag()));
         if (data.isModdedMaterial())
             builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
         builder.save(consumer);
@@ -471,7 +471,7 @@ public class ModRecipeProvider extends RecipeProvider {
     private void recipeThrowingKnife(RecipeOutput consumer, ItemLike result, RecipeData data) {
         String itemDisabledType = data.getDisableType();
         List<String> typesDisabled = itemDisabledType == null || itemDisabledType.isEmpty() ? Collections.singletonList(TypeDisabledCondition.THROWING_KNIFE) : ImmutableList.of(TypeDisabledCondition.THROWING_KNIFE, itemDisabledType);
-        ConditionalShapedRecipeBuilder builder = ConditionalShapedRecipeBuilder.shaped(result).define('#', data.getMaterialTag()).define('|', ModItemTags.HANDLES).pattern("|#").group("spartanweaponryunofficial:throwing_knife").condition(new TypeDisabledCondition(typesDisabled)).unlockedBy(data.getCriterion(), hasItem(data.getMaterialTag()));
+        ConditionalShapedRecipeBuilder builder = ConditionalShapedRecipeBuilder.shaped(result).define('#', data.getMaterialTag()).define('|', ModItemTags.HANDLES).pattern("|#").group("spartan_weaponry_unofficial:throwing_knife").condition(new TypeDisabledCondition(typesDisabled)).unlockedBy(data.getCriterion(), hasItem(data.getMaterialTag()));
         if (data.isModdedMaterial())
             builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
         builder.save(consumer);
@@ -480,7 +480,7 @@ public class ModRecipeProvider extends RecipeProvider {
     private void recipeTomahawk(RecipeOutput consumer, ItemLike result, RecipeData data) {
         String itemDisabledType = data.getDisableType();
         List<String> typesDisabled = itemDisabledType == null || itemDisabledType.isEmpty() ? Collections.singletonList(TypeDisabledCondition.TOMAHAWK) : ImmutableList.of(TypeDisabledCondition.TOMAHAWK, itemDisabledType);
-        ConditionalShapedRecipeBuilder builder = ConditionalShapedRecipeBuilder.shaped(result).define('#', data.getMaterialTag()).define('|', ModItems.HANDLE.get()).pattern("|#").pattern(" #").group("spartanweaponryunofficial:tomahawk").condition(new TypeDisabledCondition(typesDisabled)).unlockedBy(data.getCriterion(), hasItem(data.getMaterialTag()));
+        ConditionalShapedRecipeBuilder builder = ConditionalShapedRecipeBuilder.shaped(result).define('#', data.getMaterialTag()).define('|', ModItems.HANDLE.get()).pattern("|#").pattern(" #").group("spartan_weaponry_unofficial:tomahawk").condition(new TypeDisabledCondition(typesDisabled)).unlockedBy(data.getCriterion(), hasItem(data.getMaterialTag()));
         if (data.isModdedMaterial())
             builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
         builder.save(consumer);
@@ -489,7 +489,7 @@ public class ModRecipeProvider extends RecipeProvider {
     private void recipeJavelin(RecipeOutput consumer, ItemLike result, RecipeData data) {
         String itemDisabledType = data.getDisableType();
         List<String> typesDisabled = itemDisabledType == null || itemDisabledType.isEmpty() ? Collections.singletonList(TypeDisabledCondition.JAVELIN) : ImmutableList.of(TypeDisabledCondition.JAVELIN, itemDisabledType);
-        ConditionalShapedRecipeBuilder builder = ConditionalShapedRecipeBuilder.shaped(result).define('#', data.getMaterialTag()).define('/', ModItems.POLE.get()).pattern("/#").group("spartanweaponryunofficial:javelin").condition(new TypeDisabledCondition(typesDisabled)).unlockedBy(data.getCriterion(), hasItem(data.getMaterialTag()));
+        ConditionalShapedRecipeBuilder builder = ConditionalShapedRecipeBuilder.shaped(result).define('#', data.getMaterialTag()).define('/', ModItems.POLE.get()).pattern("/#").group("spartan_weaponry_unofficial:javelin").condition(new TypeDisabledCondition(typesDisabled)).unlockedBy(data.getCriterion(), hasItem(data.getMaterialTag()));
         if (data.isModdedMaterial())
             builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
         builder.save(consumer);
@@ -498,7 +498,7 @@ public class ModRecipeProvider extends RecipeProvider {
     private void recipeBoomerang(RecipeOutput consumer, TagKey<Item> planks, ItemLike result, RecipeData data) {
         String itemDisabledType = data.getDisableType();
         List<String> typesDisabled = itemDisabledType == null || itemDisabledType.isEmpty() ? Collections.singletonList(TypeDisabledCondition.BOOMERANG) : ImmutableList.of(TypeDisabledCondition.BOOMERANG, itemDisabledType);
-        ConditionalShapedRecipeBuilder builder = ConditionalShapedRecipeBuilder.shaped(result).define('#', data.getMaterialTag()).define('P', planks).pattern("#PP").pattern("P  ").pattern("P  ").group("spartanweaponryunofficial:boomerang").condition(new TypeDisabledCondition(typesDisabled)).unlockedBy(data.getCriterion(), hasItem(data.getMaterialTag()));
+        ConditionalShapedRecipeBuilder builder = ConditionalShapedRecipeBuilder.shaped(result).define('#', data.getMaterialTag()).define('P', planks).pattern("#PP").pattern("P  ").pattern("P  ").group("spartan_weaponry_unofficial:boomerang").condition(new TypeDisabledCondition(typesDisabled)).unlockedBy(data.getCriterion(), hasItem(data.getMaterialTag()));
         if (data.isModdedMaterial())
             builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
         builder.save(consumer);
@@ -507,7 +507,7 @@ public class ModRecipeProvider extends RecipeProvider {
     private void recipeBattleaxe(RecipeOutput consumer, TagKey<Item> stick, ItemLike result, RecipeData data) {
         String itemDisabledType = data.getDisableType();
         List<String> typesDisabled = itemDisabledType == null || itemDisabledType.isEmpty() ? Collections.singletonList(TypeDisabledCondition.BATTLEAXE) : ImmutableList.of(TypeDisabledCondition.BATTLEAXE, itemDisabledType);
-        ConditionalShapedRecipeBuilder builder = ConditionalShapedRecipeBuilder.shaped(result).define('#', data.getMaterialTag()).define('|', ModItems.HANDLE.get()).define('/', stick).pattern("###").pattern("#/#").pattern(" | ").group("spartanweaponryunofficial:battleaxe").condition(new TypeDisabledCondition(typesDisabled)).unlockedBy(data.getCriterion(), hasItem(data.getMaterialTag()));
+        ConditionalShapedRecipeBuilder builder = ConditionalShapedRecipeBuilder.shaped(result).define('#', data.getMaterialTag()).define('|', ModItems.HANDLE.get()).define('/', stick).pattern("###").pattern("#/#").pattern(" | ").group("spartan_weaponry_unofficial:battleaxe").condition(new TypeDisabledCondition(typesDisabled)).unlockedBy(data.getCriterion(), hasItem(data.getMaterialTag()));
         if (data.isModdedMaterial())
             builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
         builder.save(consumer);
@@ -516,7 +516,7 @@ public class ModRecipeProvider extends RecipeProvider {
     private void recipeFlangedMace(RecipeOutput consumer, TagKey<Item> stick, ItemLike result, RecipeData data) {
         String itemDisabledType = data.getDisableType();
         List<String> typesDisabled = itemDisabledType == null || itemDisabledType.isEmpty() ? Collections.singletonList(TypeDisabledCondition.FLANGED_MACE) : ImmutableList.of(TypeDisabledCondition.FLANGED_MACE, itemDisabledType);
-        ConditionalShapedRecipeBuilder builder = ConditionalShapedRecipeBuilder.shaped(result).define('#', data.getMaterialTag()).define('|', ModItems.HANDLE.get()).define('/', stick).pattern(" ##").pattern(" /#").pattern("|  ").group("spartanweaponryunofficial:flanged_mace").condition(new TypeDisabledCondition(typesDisabled)).unlockedBy(data.getCriterion(), hasItem(data.getMaterialTag()));
+        ConditionalShapedRecipeBuilder builder = ConditionalShapedRecipeBuilder.shaped(result).define('#', data.getMaterialTag()).define('|', ModItems.HANDLE.get()).define('/', stick).pattern(" ##").pattern(" /#").pattern("|  ").group("spartan_weaponry_unofficial:flanged_mace").condition(new TypeDisabledCondition(typesDisabled)).unlockedBy(data.getCriterion(), hasItem(data.getMaterialTag()));
         if (data.isModdedMaterial())
             builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
         builder.save(consumer);
@@ -525,7 +525,7 @@ public class ModRecipeProvider extends RecipeProvider {
     private void recipeGlaive(RecipeOutput consumer, ItemLike result, RecipeData data) {
         String itemDisabledType = data.getDisableType();
         List<String> typesDisabled = itemDisabledType == null || itemDisabledType.isEmpty() ? Collections.singletonList(TypeDisabledCondition.GLAIVE) : ImmutableList.of(TypeDisabledCondition.GLAIVE, itemDisabledType);
-        ConditionalShapedRecipeBuilder builder = ConditionalShapedRecipeBuilder.shaped(result).define('#', data.getMaterialTag()).define('/', ModItems.POLE.get()).pattern(" #").pattern(" #").pattern(" /").group("spartanweaponryunofficial:glaive").condition(new TypeDisabledCondition(typesDisabled)).unlockedBy(data.getCriterion(), hasItem(data.getMaterialTag()));
+        ConditionalShapedRecipeBuilder builder = ConditionalShapedRecipeBuilder.shaped(result).define('#', data.getMaterialTag()).define('/', ModItems.POLE.get()).pattern(" #").pattern(" #").pattern(" /").group("spartan_weaponry_unofficial:glaive").condition(new TypeDisabledCondition(typesDisabled)).unlockedBy(data.getCriterion(), hasItem(data.getMaterialTag()));
         if (data.isModdedMaterial())
             builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
         builder.save(consumer);
@@ -534,7 +534,7 @@ public class ModRecipeProvider extends RecipeProvider {
     private void recipeQuarterstaff(RecipeOutput consumer, ItemLike result, RecipeData data) {
         String itemDisabledType = data.getDisableType();
         List<String> typesDisabled = itemDisabledType == null || itemDisabledType.isEmpty() ? Collections.singletonList(TypeDisabledCondition.QUARTERSTAFF) : ImmutableList.of(TypeDisabledCondition.QUARTERSTAFF, itemDisabledType);
-        ConditionalShapedRecipeBuilder builder = ConditionalShapedRecipeBuilder.shaped(result).define('#', data.getMaterialTag()).define('/', ModItems.POLE.get()).pattern("  #").pattern(" / ").pattern("#  ").group("spartanweaponryunofficial:quarterstaff").condition(new TypeDisabledCondition(typesDisabled)).unlockedBy(data.getCriterion(), hasItem(data.getMaterialTag()));
+        ConditionalShapedRecipeBuilder builder = ConditionalShapedRecipeBuilder.shaped(result).define('#', data.getMaterialTag()).define('/', ModItems.POLE.get()).pattern("  #").pattern(" / ").pattern("#  ").group("spartan_weaponry_unofficial:quarterstaff").condition(new TypeDisabledCondition(typesDisabled)).unlockedBy(data.getCriterion(), hasItem(data.getMaterialTag()));
         if (data.isModdedMaterial())
             builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
         builder.save(consumer);
@@ -543,7 +543,7 @@ public class ModRecipeProvider extends RecipeProvider {
     private void recipeScythe(RecipeOutput consumer, ItemLike result, RecipeData data) {
         String itemDisabledType = data.getDisableType();
         List<String> typesDisabled = itemDisabledType == null || itemDisabledType.isEmpty() ? Collections.singletonList(TypeDisabledCondition.SCYTHE) : ImmutableList.of(TypeDisabledCondition.SCYTHE, itemDisabledType);
-        ConditionalShapedRecipeBuilder builder = ConditionalShapedRecipeBuilder.shaped(result).define('#', data.getMaterialTag()).define('/', ModItems.POLE.get()).pattern("## ").pattern("  #").pattern(" / ").group("spartanweaponryunofficial:scythe").condition(new TypeDisabledCondition(typesDisabled)).unlockedBy(data.getCriterion(), hasItem(data.getMaterialTag()));
+        ConditionalShapedRecipeBuilder builder = ConditionalShapedRecipeBuilder.shaped(result).define('#', data.getMaterialTag()).define('/', ModItems.POLE.get()).pattern("## ").pattern("  #").pattern(" / ").group("spartan_weaponry_unofficial:scythe").condition(new TypeDisabledCondition(typesDisabled)).unlockedBy(data.getCriterion(), hasItem(data.getMaterialTag()));
         if (data.isModdedMaterial())
             builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
         builder.save(consumer);

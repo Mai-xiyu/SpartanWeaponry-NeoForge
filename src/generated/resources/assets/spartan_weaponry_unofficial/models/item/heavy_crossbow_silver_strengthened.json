@@ -1,0 +1,41 @@
+{
+  "parent": "spartan_weaponry_unofficial:item/base/heavy_crossbow",
+  "overrides": [
+    {
+      "model": "spartan_weaponry_unofficial:item/heavy_crossbow_silver_strengthened_pulling_0",
+      "predicate": {
+        "spartan_weaponry_unofficial:pulling": 1.0
+      }
+    },
+    {
+      "model": "spartan_weaponry_unofficial:item/heavy_crossbow_silver_strengthened_pulling_1",
+      "predicate": {
+        "spartan_weaponry_unofficial:pull": 0.65,
+        "spartan_weaponry_unofficial:pulling": 1.0
+      }
+    },
+    {
+      "model": "spartan_weaponry_unofficial:item/heavy_crossbow_silver_strengthened_pulling_2",
+      "predicate": {
+        "spartan_weaponry_unofficial:pull": 1.0,
+        "spartan_weaponry_unofficial:pulling": 1.0
+      }
+    },
+    {
+      "model": "spartan_weaponry_unofficial:item/heavy_crossbow_silver_strengthened_loaded",
+      "predicate": {
+        "spartan_weaponry_unofficial:charged": 1.0
+      }
+    },
+    {
+      "model": "spartan_weaponry_unofficial:item/heavy_crossbow_silver_strengthened_firing",
+      "predicate": {
+        "spartan_weaponry_unofficial:charged": 1.0,
+        "spartan_weaponry_unofficial:pulling": 1.0
+      }
+    }
+  ],
+  "textures": {
+    "layer0": "spartan_weaponry_unofficial:item/silver_heavy_crossbow_standby"
+  }
+}

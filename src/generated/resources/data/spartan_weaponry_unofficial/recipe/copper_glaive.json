@@ -1,0 +1,38 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "spartan_weaponry_unofficial:type_disabled",
+      "disabled": [
+        "glaive",
+        "copper"
+      ]
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/copper"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "spartan_weaponry_unofficial:glaive",
+  "key": {
+    "#": {
+      "tag": "c:ingots/copper"
+    },
+    "/": {
+      "item": "spartan_weaponry_unofficial:pole"
+    }
+  },
+  "pattern": [
+    " #",
+    " #",
+    " /"
+  ],
+  "result": {
+    "count": 1,
+    "id": "spartan_weaponry_unofficial:copper_glaive"
+  }
+}

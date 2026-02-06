@@ -1,0 +1,36 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "spartan_weaponry_unofficial:type_disabled",
+      "disabled": [
+        "throwing_knife",
+        "platinum"
+      ]
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/platinum"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "spartan_weaponry_unofficial:throwing_knife",
+  "key": {
+    "#": {
+      "tag": "c:ingots/platinum"
+    },
+    "|": {
+      "tag": "spartan_weaponry_unofficial:handles"
+    }
+  },
+  "pattern": [
+    "|#"
+  ],
+  "result": {
+    "count": 1,
+    "id": "spartan_weaponry_unofficial:throwing_knife_platinum"
+  }
+}

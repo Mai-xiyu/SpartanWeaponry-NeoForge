@@ -1,0 +1,47 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "spartan_weaponry_unofficial:type_disabled",
+      "disabled": [
+        "heavy_crossbow",
+        "copper"
+      ]
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/copper"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "spartan_weaponry_unofficial:heavy_crossbow",
+  "key": {
+    "#": {
+      "tag": "c:ingots/copper"
+    },
+    "D": {
+      "item": "minecraft:bow"
+    },
+    "H": {
+      "item": "minecraft:tripwire_hook"
+    },
+    "P": {
+      "tag": "minecraft:planks"
+    },
+    "|": {
+      "item": "spartan_weaponry_unofficial:handle"
+    }
+  },
+  "pattern": [
+    "#D#",
+    "PHP",
+    " | "
+  ],
+  "result": {
+    "count": 1,
+    "id": "spartan_weaponry_unofficial:heavy_crossbow_copper_strengthened"
+  }
+}

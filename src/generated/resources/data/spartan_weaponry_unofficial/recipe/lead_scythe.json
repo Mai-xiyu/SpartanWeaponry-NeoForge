@@ -1,0 +1,38 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "spartan_weaponry_unofficial:type_disabled",
+      "disabled": [
+        "scythe",
+        "lead"
+      ]
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/lead"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "spartan_weaponry_unofficial:scythe",
+  "key": {
+    "#": {
+      "tag": "c:ingots/lead"
+    },
+    "/": {
+      "item": "spartan_weaponry_unofficial:pole"
+    }
+  },
+  "pattern": [
+    "## ",
+    "  #",
+    " / "
+  ],
+  "result": {
+    "count": 1,
+    "id": "spartan_weaponry_unofficial:lead_scythe"
+  }
+}

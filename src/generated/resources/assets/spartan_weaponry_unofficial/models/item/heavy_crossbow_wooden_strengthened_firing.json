@@ -1,0 +1,6 @@
+{
+  "parent": "spartan_weaponry_unofficial:item/base/heavy_crossbow_firing",
+  "textures": {
+    "layer0": "spartan_weaponry_unofficial:item/wooden_heavy_crossbow_loaded"
+  }
+}

@@ -1,8 +1,0 @@
-{
-  "parent": "spartanweaponryunofficial:item/base/pike_blocking",
-  "loader": "spartanweaponryunofficial:oil_coated_item",
-  "textures": {
-    "coating": "spartanweaponryunofficial:item/coating/pike",
-    "layer0": "spartanweaponryunofficial:item/bronze_pike"
-  }
-}

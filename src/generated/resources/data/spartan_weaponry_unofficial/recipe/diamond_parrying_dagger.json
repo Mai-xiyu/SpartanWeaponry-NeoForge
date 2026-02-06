@@ -1,0 +1,29 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "spartan_weaponry_unofficial:type_disabled",
+      "disabled": [
+        "parrying_dagger"
+      ]
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "spartan_weaponry_unofficial:parrying_dagger",
+  "key": {
+    "#": {
+      "tag": "c:gems/diamond"
+    },
+    "|": {
+      "item": "spartan_weaponry_unofficial:handle"
+    }
+  },
+  "pattern": [
+    " #",
+    "#|"
+  ],
+  "result": {
+    "count": 1,
+    "id": "spartan_weaponry_unofficial:diamond_parrying_dagger"
+  }
+}

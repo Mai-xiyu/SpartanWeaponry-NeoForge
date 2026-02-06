@@ -1,0 +1,30 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "spartan_weaponry_unofficial:type_disabled",
+      "disabled": [
+        "longsword"
+      ]
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "spartan_weaponry_unofficial:longsword",
+  "key": {
+    "#": {
+      "tag": "c:ingots/iron"
+    },
+    "|": {
+      "item": "spartan_weaponry_unofficial:handle"
+    }
+  },
+  "pattern": [
+    " # ",
+    " # ",
+    "#|#"
+  ],
+  "result": {
+    "count": 1,
+    "id": "spartan_weaponry_unofficial:iron_longsword"
+  }
+}

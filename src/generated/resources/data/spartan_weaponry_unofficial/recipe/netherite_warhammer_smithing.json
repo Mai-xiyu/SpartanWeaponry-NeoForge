@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "tag": "c:ingots/netherite"
+  },
+  "base": {
+    "item": "spartan_weaponry_unofficial:diamond_warhammer"
+  },
+  "result": {
+    "count": 1,
+    "id": "spartan_weaponry_unofficial:netherite_warhammer"
+  },
+  "template": {
+    "item": "minecraft:netherite_upgrade_smithing_template"
+  }
+}

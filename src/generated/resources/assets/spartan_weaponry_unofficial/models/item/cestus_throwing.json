@@ -1,0 +1,6 @@
+{
+  "parent": "spartan_weaponry_unofficial:item/base/cestus_throwing",
+  "textures": {
+    "layer0": "spartan_weaponry_unofficial:item/cestus"
+  }
+}

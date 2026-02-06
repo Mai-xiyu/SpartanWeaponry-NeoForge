@@ -34,9 +34,9 @@ public class ModCommands {
             Component.translatable("command." + ModSpartanWeaponry.ID + ".apply_oil.error.incompatible_item", object));
 
     public static void registerCommands(RegisterCommandsEvent ev) {
-        // Command "spartanweaponryunofficial". Currently only has the "applyOil", "applyPotionOil" and "clearOil" sub-commands
+        // Command "spartan_weaponry_unofficial". Currently only has the "applyOil", "applyPotionOil" and "clearOil" sub-commands
         Predicate<CommandSourceStack> requireOPPermission = (commandSource) -> commandSource.hasPermission(2);
-        LiteralArgumentBuilder<CommandSourceStack> command = Commands.literal("spartanweaponryunofficial").requires(requireOPPermission);
+        LiteralArgumentBuilder<CommandSourceStack> command = Commands.literal("spartan_weaponry_unofficial").requires(requireOPPermission);
 
         command.then(Commands.literal("applyOil").            // Apply Oil command
                 then(Commands.argument("player", EntityArgument.player()).
@@ -53,7 +53,7 @@ public class ModCommands {
                 executes((context) -> clearOil(context.getSource(), EntityArgument.getPlayer(context, "player")))));
 
         LiteralCommandNode<CommandSourceStack> mainCommand = ev.getDispatcher().register(command);    // Requires server op permission
-        // Command "sw" is an alias to command "spartanweaponryunofficial"
+        // Command "sw" is an alias to command "spartan_weaponry_unofficial"
         ev.getDispatcher().register(Commands.literal("sw").requires(requireOPPermission).redirect(mainCommand));
         Log.info("Finished registering commands for " + ModSpartanWeaponry.NAME + "!");
     }

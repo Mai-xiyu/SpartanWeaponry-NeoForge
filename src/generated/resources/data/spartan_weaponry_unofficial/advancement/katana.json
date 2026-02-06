@@ -1,0 +1,33 @@
+{
+  "parent": "spartan_weaponry_unofficial:root",
+  "criteria": {
+    "has_katana": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#spartan_weaponry_unofficial:katanas"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.spartan_weaponry_unofficial.craft_katana.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "spartan_weaponry_unofficial:stone_katana"
+    },
+    "title": {
+      "translate": "advancement.spartan_weaponry_unofficial.craft_katana.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_katana"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

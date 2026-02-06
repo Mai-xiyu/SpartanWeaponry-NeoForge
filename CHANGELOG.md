@@ -1,107 +1,61 @@
 # Changelog
 
-## Apotheosis Mod Compatibility Fixes
+## [1.0.2] - 2026-02-07
 
-- **Fixed the issue where Battle Axes cannot be placed in the Reforging Table**: Added `SWORD_DIG` to the `ItemAbility` set of `BATTLEAXE`, allowing it to be recognized as a melee weapon by Apotheosis while retaining its original axe functionalities (stripping bark, removing copper patina, and de-waxing).
+### Changed
+- **Mod ID Update**: Changed from `spartanweaponryunofficial` to `spartan_weaponry_unofficial` (using underscores) to comply with Minecraft modding naming conventions.
+- **Version Number**: Updated to 1.0.2.
 
-- **Fixed the issue where other weapons cannot be placed in the Reforging Table**: Added the `SWORD_DIG` ability to all melee weapons and thrown weapons, including:
+### Added
+- **Strengthened Weapon Naming**: Longbows and heavy crossbows created through the addon API now automatically have the `_strengthened` suffix:
+  - Longbow: `longbow_{material}_strengthened` (e.g., `longbow_diamond_strengthened`)
+  - Heavy Crossbow: `heavy_crossbow_{material}_strengthened` (e.g., `heavy_crossbow_iron_strengthened`)
+- **Localization Updates**: Updated all 7 language translation files to support the new naming format.
 
-    - Melee Weapons: Dagger, Parrying Dagger, Sword, Rapier, Saber, Katana, Greatsword, Club, Gauntlets, War Hammer, Lucerne Hammer, Spear, Halberd, Pike, Lance, Flail, Naginata, Quarterstaff, Scythe
+### Fixed
+- **Model Generation System**: Fixed and improved texture path conversion logic in `ModelGenerator.java`, supporting automatic conversion for all 18 material types.
+- **Data Generation**: Resolved data generation failures caused by mismatches between weapon registration names and texture file names.
+- **Data Namespace References**: Updated 506 namespace references in data and assets JSON files from old to new Mod ID format.
 
-    - Thrown Weapons: Throwing Knife, Battle Axe, Javelin, Boomerang
+### Technical Changes
+- Refactored the `WeaponItemsRanged` constructor in `ModItems.java` to add strengthened weapon suffix logic.
+- Extended the material list in `ModelGenerator.java` to cover all vanilla and mod-added material types.
+- Renamed resource directory structure to match the new Mod ID (`assets/spartan_weaponry_unofficial` and `data/spartan_weaponry_unofficial`).
+- Updated API documentation and resource pack development guide to reflect the naming changes.
+- Batch updated all namespace references in:
+  - 489 data JSON files (tags, enchantments, recipes, loot tables, advancements)
+  - 17 assets JSON files (models)
 
-## Sweep Attack Mechanics Overhaul (Sweep)
+### Breaking Changes
+⚠️ **Incompatible with Old Save Files**: Due to the Mod ID change, items from previous versions will be lost after updating. It is recommended to use this version in new worlds.
 
-- **Modified ** **`PlayerMixin.java`**: Restored and rewrote the interception logic for `EnchantmentHelper.getSweepingDamageRatio`.
+---
 
-- **New Calculation Formula**: Final Sweep Damage = Weapon Base Damage × Sweep Trait Multiplier (e.g., 8.5 × 0.75 = 6.375).
+## [1.0.2] - 2026-02-07
 
-- **Updated Sweep Multiplier Definitions in ** **`WeaponTraits.java`**:
+### Changed
+- **Mod ID 更新**: 从 `spartanweaponryunofficial` 更改为 `spartan_weaponry_unofficial` (使用下划线)，以符合 Minecraft 模组命名规范。
+- **版本号**: 更新到 1.0.2。
 
-    - `SWEEP_1`: 25% (0.25f)
+### Added
+- **强化武器命名**: 通过附加 API 创建的长弓和重型十字弩现在自动添加 `_strengthened` 后缀：
+  - 长弓: `longbow_{material}_strengthened` (例如: `longbow_diamond_strengthened`)
+  - 重型十字弓: `heavy_crossbow_{material}_strengthened` (例如: `heavy_crossbow_iron_strengthened`)
+- **本地化更新**: 更新了所有 7 种语言的翻译文件以支持新的命名格式。
 
-    - `SWEEP_2`: 50% (0.50f)
+### Fixed
+- **模型生成系统**: 修复并改进了 `ModelGenerator.java` 中的纹理路径转换逻辑，支持所有 18 种材料的自动转换。
+- **数据生成**: 解决了武器注册名与纹理文件名不匹配导致的数据生成失败问题。
+- **数据命名空间引用**: 更新了 data 和 assets JSON 文件中的 506 处命名空间引用，从旧格式更新为新的 Mod ID 格式。
 
-    - `SWEEP_3`: 75% (0.75f) - Corresponds to the original "Sweeping Edge III" effect.
+### Technical Changes
+- 重构了 `ModItems.java` 中的 `WeaponItemsRanged` 构造函数，添加了强化武器后缀逻辑。
+- 扩展了 `ModelGenerator.java` 中的材料列表，覆盖原版和模组添加的所有材料类型。
+- 重命名了资源目录结构以匹配新的 Mod ID (`assets/spartan_weaponry_unofficial` 和 `data/spartan_weaponry_unofficial`)。
+- 更新了 API 文档和资源包开发指南以反映命名变更。
+- 批量更新了所有命名空间引用：
+  - 489 个 data JSON 文件（tags、enchantments、recipes、loot tables、advancements）
+  - 17 个 assets JSON 文件（models）
 
-## Attack Range (Reach) Adjustments
-
-- **Added New Trait Levels in ** **`WeaponTraits.java`**:
-
-    - `REACH_1_5`: +1.5 Blocks (Magnitude 6.5f)
-
-    - `REACH_2_5`: +2.5 Blocks (Magnitude 7.5f)
-
-- **Updated ** **`ModWeaponTraitTagsProvider.java`**: Adjusted attack range bonuses for various weapons (added to the original base values):
-
-    - **+1.0 Block Increase**:
-
-        - Scythe: 0 -> +1.0 (`REACH_1`)
-
-        - Javelin: 0 -> +1.0 (`REACH_1`)
-
-        - Quarterstaff: 0 -> +1.0 (`REACH_1`)
-
-        - Lance: +1.0 -> +2.0 (`REACH_2`)
-
-        - Spear: +1.0 -> +2.0 (`REACH_2`)
-
-    - **+0.5 Block Increase**:
-
-        - Pike: +2.0 -> +2.5 (`REACH_2_5`)
-
-        - Halberd: +1.0 -> +1.5 (`REACH_1_5`)
-
-        - Glaive: +1.0 -> +1.5 (`REACH_1_5`)
-
-
-
-# 更新日志
-
-## Apotheosis 模组兼容性修复
-
-- **修复战斧无法放入重铸台的问题**：为 `BATTLEAXE` 的 `ItemAbility` 集合添加了 `SWORD_DIG`，使其能被 Apotheosis 识别为近战武器，同时保留原有的斧头功能（剥树皮、刮铜锈、去蜡）。
-
-- **修复其他武器无法放入重铸台的问题**：为所有近战武器和投掷武器添加了 `SWORD_DIG` 能力，包括：
-
-- 近战武器：匕首、格挡匕首、剑、刺剑、军刀、武士刀、巨剑、棍棒、拳套、战锤、锤矛、长矛、戟、长枪、骑枪、链枷、薙刀、棍棒、镰刀
-
-- 投掷武器：飞刀、战斧、标枪、回旋镖
-
-## 横扫攻击机制重构（Sweep）
-
-- **`PlayerMixin.java`** **修改 **：恢复并重构了 `EnchantmentHelper.getSweepingDamageRatio` 的拦截逻辑。
-
-- **新增计算公式**：最终横扫伤害 = 武器基础伤害 × 横扫特质倍率（示例：8.5 × 0.75 = 6.375）。
-
-- **`WeaponTraits.java`** **更新  中的横扫倍率定义**：`SWEEP_1`: 25% (0.25f)
-
-- `SWEEP_2`: 50% (0.50f)
-
-- `SWEEP_3`: 75% (0.75f) - 对应原版“横扫之刃III”效果。
-
-## 攻击范围（Reach）调整
-
-- **`WeaponTraits.java`** **在  中新增特质等级**：
-`REACH_1_5`: +1.5 格（量级 6.5f）
-
-- `REACH_2_5`: +2.5 格（量级 7.5f）
-
-**`ModWeaponTraitTagsProvider.java`** **更新 **：调整了各类武器的攻击范围加成（在原有基础值上增加）：
-**+1.0 格提升**：
-镰刀：0 → +1.0（`REACH_1`）
-
-标枪：0 → +1.0（`REACH_1`）
-
-棍棒：0 → +1.0（`REACH_1`）
-
-骑枪：+1.0 → +2.0（`REACH_2`）
-
-长矛：+1.0 → +2.0（`REACH_2`）
-
-**+0.5 格提升**：
-长枪：+2.0 → +2.5（`REACH_2_5`）
-
-戟：+1.0 → +1.5（`REACH_1_5`）
-
-薙刀：+1.0 → +1.5（`REACH_1_5`）
+### Breaking Changes
+⚠️ **不兼容旧版本存档**: 由于 Mod ID 变更，旧版本的物品在更新后会丢失。建议在新世界中使用此版本。

@@ -1,0 +1,34 @@
+{
+  "parent": "spartan_weaponry_unofficial:root",
+  "criteria": {
+    "has_netherite_weapon": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#spartan_weaponry_unofficial:netherite_weapons"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.spartan_weaponry_unofficial.upgrade_netherite.desc"
+    },
+    "frame": "goal",
+    "icon": {
+      "count": 1,
+      "id": "spartan_weaponry_unofficial:netherite_battleaxe"
+    },
+    "title": {
+      "translate": "advancement.spartan_weaponry_unofficial.upgrade_netherite.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_netherite_weapon"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

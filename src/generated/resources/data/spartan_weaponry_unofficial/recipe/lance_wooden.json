@@ -1,0 +1,33 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "spartan_weaponry_unofficial:type_disabled",
+      "disabled": [
+        "lance"
+      ]
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "spartan_weaponry_unofficial:lance",
+  "key": {
+    "#": {
+      "tag": "minecraft:planks"
+    },
+    "/": {
+      "item": "spartan_weaponry_unofficial:pole"
+    },
+    "|": {
+      "item": "spartan_weaponry_unofficial:handle"
+    }
+  },
+  "pattern": [
+    "  #",
+    "#/ ",
+    "|# "
+  ],
+  "result": {
+    "count": 1,
+    "id": "spartan_weaponry_unofficial:lance_wooden"
+  }
+}

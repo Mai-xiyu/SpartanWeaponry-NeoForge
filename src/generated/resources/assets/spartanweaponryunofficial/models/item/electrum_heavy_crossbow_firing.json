@@ -1,6 +1,0 @@
-{
-  "parent": "spartanweaponryunofficial:item/base/heavy_crossbow_firing",
-  "textures": {
-    "layer0": "spartanweaponryunofficial:item/electrum_heavy_crossbow_loaded"
-  }
-}

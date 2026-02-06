@@ -1,0 +1,79 @@
+{
+  "type": "spartan_weaponry_unofficial:tag_smelting",
+  "experience": 0.1,
+  "ingredient": [
+    {
+      "item": "spartan_weaponry_unofficial:golden_dagger"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:golden_parrying_dagger"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:golden_longsword"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:golden_katana"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:golden_saber"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:golden_rapier"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:golden_greatsword"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:golden_battle_hammer"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:golden_warhammer"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:golden_spear"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:golden_halberd"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:golden_pike"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:golden_lance"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:longbow_golden_strengthened"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:heavy_crossbow_golden_strengthened"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:throwing_knife_golden"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:tomahawk_golden"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:javelin_golden"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:boomerang_golden"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:golden_battleaxe"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:golden_flanged_mace"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:golden_glaive"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:golden_quarterstaff"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:golden_scythe"
+    }
+  ],
+  "result_tag": "c:nuggets/gold"
+}

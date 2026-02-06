@@ -24,6 +24,37 @@ public class ModelGenerator {
     }
 
     /**
+     * Convert registration name to texture file name.
+     * For ranged/throwing weapons: "weapontype_material" -> "material_weapontype"
+     * Handles all material names used in the mod.
+     *
+     * @param registrationName The item's registration name
+     * @return The corresponding texture file name
+     */
+    private String convertRegistrationNameToTextureName(String registrationName) {
+        // List of all material suffixes
+        String[] materials = {
+            "_wooden", "_stone", "_leather",
+            "_copper", "_iron", "_golden",
+            "_diamond", "_netherite",
+            "_tin", "_bronze", "_steel",
+            "_silver", "_electrum", "_lead",
+            "_nickel", "_invar", "_constantan",
+            "_platinum", "_aluminum"
+        };
+        
+        for (String material : materials) {
+            if (registrationName.endsWith(material)) {
+                String weaponType = registrationName.substring(0, registrationName.length() - material.length());
+                // Remove leading underscore from material and prepend to weapon type
+                return material.substring(1) + "_" + weaponType;
+            }
+        }
+        
+        return registrationName;
+    }
+
+    /**
      * Generates a model using the same base model as most mundane items
      *
      * @param item The item to generate the model for. The registry name is used for the texture name
@@ -67,7 +98,8 @@ public class ModelGenerator {
         ResourceLocation parentPath = parent != null ? parent : this.itemModelProvider.mcLoc("item/generated");
         String texturePath = textureFolderPath.isEmpty() ? "item/" : "item/" + textureFolderPath + "/";
         String itemPath = BuiltInRegistries.ITEM.getKey(item).getPath();
-        return this.itemModelProvider.withExistingParent(itemPath, parentPath).texture("layer0", texturePath + itemPath).getLocation();
+        String textureName = convertRegistrationNameToTextureName(itemPath);
+        return this.itemModelProvider.withExistingParent(itemPath, parentPath).texture("layer0", texturePath + textureName).getLocation();
     }
 
     /**
@@ -94,19 +126,20 @@ public class ModelGenerator {
     public ResourceLocation createMeleeWeaponModels(Item item, ResourceLocation baseModel, ResourceLocation coatingTexture, String textureFolderPath) {
         String texturePath = textureFolderPath.isEmpty() ? "item/" : "item/" + textureFolderPath + "/";
         String itemPath = BuiltInRegistries.ITEM.getKey(item).getPath();
+        String textureName = convertRegistrationNameToTextureName(itemPath);
         ResourceLocation blockingModel = this.itemModelProvider.withExistingParent(itemPath + "_blocking", ResourceLocation.tryBuild(baseModel.getNamespace(), baseModel.getPath() + "_blocking")).
                 customLoader(OilCoatingItemModelBuilder::new).end().
-                texture("layer0", texturePath + itemPath).
+                texture("layer0", texturePath + textureName).
                 texture("coating", coatingTexture).
                 getLocation();
         ResourceLocation throwingModel = this.itemModelProvider.withExistingParent(itemPath + "_throwing", ResourceLocation.tryBuild(baseModel.getNamespace(), baseModel.getPath() + "_throwing")).
                 customLoader(OilCoatingItemModelBuilder::new).end().
-                texture("layer0", texturePath + itemPath).
+                texture("layer0", texturePath + textureName).
                 texture("coating", coatingTexture).
                 getLocation();
         return this.itemModelProvider.withExistingParent(itemPath, baseModel).
                 customLoader(OilCoatingItemModelBuilder::new).end().
-                texture("layer0", texturePath + itemPath).
+                texture("layer0", texturePath + textureName).
                 texture("coating", coatingTexture).
                 override().predicate(ModelOverrides.BLOCKING, 1.0f).model(new ExistingModelFile(blockingModel, this.itemModelProvider.existingFileHelper)).end().
                 override().predicate(ModelOverrides.THROWING, 1.0f).model(new ExistingModelFile(throwingModel, this.itemModelProvider.existingFileHelper)).end().
@@ -137,14 +170,15 @@ public class ModelGenerator {
     public ResourceLocation createCestusModels(Item item, ResourceLocation baseModel, ResourceLocation coatingTexture, String textureFolderPath) {
         String texturePath = textureFolderPath.isEmpty() ? "item/" : "item/" + textureFolderPath + "/";
         String itemPath = BuiltInRegistries.ITEM.getKey(item).getPath();
+        String textureName = convertRegistrationNameToTextureName(itemPath);
         ResourceLocation blockingModel = this.itemModelProvider.withExistingParent(itemPath + "_blocking", ResourceLocation.tryBuild(baseModel.getNamespace(), baseModel.getPath() + "_blocking")).
-                texture("layer0", texturePath + itemPath).
+                texture("layer0", texturePath + textureName).
                 getLocation();
         ResourceLocation throwingModel = this.itemModelProvider.withExistingParent(itemPath + "_throwing", ResourceLocation.tryBuild(baseModel.getNamespace(), baseModel.getPath() + "_throwing")).
-                texture("layer0", texturePath + itemPath).
+                texture("layer0", texturePath + textureName).
                 getLocation();
         return this.itemModelProvider.withExistingParent(itemPath, baseModel).
-                texture("layer0", texturePath + itemPath).
+                texture("layer0", texturePath + textureName).
                 override().predicate(ModelOverrides.BLOCKING, 1.0f).model(new ExistingModelFile(blockingModel, this.itemModelProvider.existingFileHelper)).end().
                 override().predicate(ModelOverrides.THROWING, 1.0f).model(new ExistingModelFile(throwingModel, this.itemModelProvider.existingFileHelper)).end().
                 getLocation();
@@ -176,8 +210,9 @@ public class ModelGenerator {
     public ResourceLocation createThrowingWeaponModels(Item item, ResourceLocation baseModel, ResourceLocation baseThrowingModel, ResourceLocation emptyModel, String textureFolderPath) {
         String texturePath = textureFolderPath.isEmpty() ? "item/" : "item/" + textureFolderPath + "/";
         String itemPath = BuiltInRegistries.ITEM.getKey(item).getPath();
-        ResourceLocation throwingModel = this.itemModelProvider.withExistingParent(itemPath + "_throwing", baseThrowingModel).texture("layer0", texturePath + itemPath).getLocation();
-        return this.itemModelProvider.withExistingParent(itemPath, baseModel).texture("layer0", texturePath + itemPath).
+        String textureName = convertRegistrationNameToTextureName(itemPath);
+        ResourceLocation throwingModel = this.itemModelProvider.withExistingParent(itemPath + "_throwing", baseThrowingModel).texture("layer0", texturePath + textureName).getLocation();
+        return this.itemModelProvider.withExistingParent(itemPath, baseModel).texture("layer0", texturePath + textureName).
                 override().predicate(ModelOverrides.THROWING, 1.0f).predicate(ModelOverrides.EMPTY, 0.0f).model(new ExistingModelFile(throwingModel, this.itemModelProvider.existingFileHelper)).end().
                 override().predicate(ModelOverrides.EMPTY, 1.0f).model(new ExistingModelFile(emptyModel, this.itemModelProvider.existingFileHelper)).end().
                 getLocation();
@@ -191,6 +226,7 @@ public class ModelGenerator {
      */
     public ResourceLocation createVanillaSwordModels(Item item) {
         String itemPath = BuiltInRegistries.ITEM.getKey(item).getPath();
+        String textureName = convertRegistrationNameToTextureName(itemPath);
         return this.itemModelProvider.withExistingParent(itemPath, "minecraft:item/handheld").
                 customLoader(OilCoatingItemModelBuilder::new).end().
                 texture("layer0", "minecraft:item/" + itemPath).
@@ -533,10 +569,18 @@ public class ModelGenerator {
     public ResourceLocation createLongbowModels(Item item, String textureFolderPath) {
         String texturePath = textureFolderPath.isEmpty() ? "item/" : "item/" + textureFolderPath + "/";
         String itemPath = BuiltInRegistries.ITEM.getKey(item).getPath();
-        ResourceLocation pulling0 = this.itemModelProvider.withExistingParent(itemPath + "_pulling_0", BaseModels.LONGBOW_PULLING).texture("layer0", texturePath + itemPath + "_pulling_0").getLocation();
-        ResourceLocation pulling1 = this.itemModelProvider.withExistingParent(itemPath + "_pulling_1", BaseModels.LONGBOW_PULLING).texture("layer0", texturePath + itemPath + "_pulling_1").getLocation();
-        ResourceLocation pulling2 = this.itemModelProvider.withExistingParent(itemPath + "_pulling_2", BaseModels.LONGBOW_PULLING).texture("layer0", texturePath + itemPath + "_pulling_2").getLocation();
-        return this.itemModelProvider.withExistingParent(itemPath, BaseModels.LONGBOW).texture("layer0", texturePath + itemPath + "_standby").
+        // Convert new format (longbow_material_strengthened) to texture file format (material_longbow)
+        String textureName = itemPath;
+        if (itemPath.startsWith("longbow_") && itemPath.endsWith("_strengthened")) {
+            String material = itemPath.substring("longbow_".length(), itemPath.length() - "_strengthened".length());
+            textureName = material + "_longbow";
+        } else {
+            textureName = convertRegistrationNameToTextureName(itemPath);
+        }
+        ResourceLocation pulling0 = this.itemModelProvider.withExistingParent(itemPath + "_pulling_0", BaseModels.LONGBOW_PULLING).texture("layer0", texturePath + textureName + "_pulling_0").getLocation();
+        ResourceLocation pulling1 = this.itemModelProvider.withExistingParent(itemPath + "_pulling_1", BaseModels.LONGBOW_PULLING).texture("layer0", texturePath + textureName + "_pulling_1").getLocation();
+        ResourceLocation pulling2 = this.itemModelProvider.withExistingParent(itemPath + "_pulling_2", BaseModels.LONGBOW_PULLING).texture("layer0", texturePath + textureName + "_pulling_2").getLocation();
+        return this.itemModelProvider.withExistingParent(itemPath, BaseModels.LONGBOW).texture("layer0", texturePath + textureName + "_standby").
                 override().predicate(ModelOverrides.PULLING, 1.0f).model(new ExistingModelFile(pulling0, this.itemModelProvider.existingFileHelper)).end().
                 override().predicate(ModelOverrides.PULLING, 1.0f).predicate(ModelOverrides.PULL, 0.65f).model(new ExistingModelFile(pulling1, this.itemModelProvider.existingFileHelper)).end().
                 override().predicate(ModelOverrides.PULLING, 1.0f).predicate(ModelOverrides.PULL, 0.9f).model(new ExistingModelFile(pulling2, this.itemModelProvider.existingFileHelper)).end().
@@ -563,12 +607,20 @@ public class ModelGenerator {
     public ResourceLocation createHeavyCrossbowModels(Item item, String textureFolderPath) {
         String texturePath = textureFolderPath.isEmpty() ? "item/" : "item/" + textureFolderPath + "/";
         String itemPath = BuiltInRegistries.ITEM.getKey(item).getPath();
-        ResourceLocation pulling0 = this.itemModelProvider.withExistingParent(itemPath + "_pulling_0", BaseModels.HEAVY_CROSSBOW_PULLING).texture("layer0", texturePath + itemPath + "_pulling_0").getLocation();
-        ResourceLocation pulling1 = this.itemModelProvider.withExistingParent(itemPath + "_pulling_1", BaseModels.HEAVY_CROSSBOW_PULLING).texture("layer0", texturePath + itemPath + "_pulling_1").getLocation();
-        ResourceLocation pulling2 = this.itemModelProvider.withExistingParent(itemPath + "_pulling_2", BaseModels.HEAVY_CROSSBOW_PULLING).texture("layer0", texturePath + itemPath + "_pulling_2").getLocation();
-        ResourceLocation loaded = this.itemModelProvider.withExistingParent(itemPath + "_loaded", BaseModels.HEAVY_CROSSBOW_LOADED).texture("layer0", texturePath + itemPath + "_loaded").getLocation();
-        ResourceLocation firing = this.itemModelProvider.withExistingParent(itemPath + "_firing", BaseModels.HEAVY_CROSSBOW_FIRING).texture("layer0", texturePath + itemPath + "_loaded").getLocation();
-        return this.itemModelProvider.withExistingParent(itemPath, BaseModels.HEAVY_CROSSBOW).texture("layer0", texturePath + itemPath + "_standby").
+        // Convert new format (heavy_crossbow_material_strengthened) to texture file format (material_heavy_crossbow)
+        String textureName = itemPath;
+        if (itemPath.startsWith("heavy_crossbow_") && itemPath.endsWith("_strengthened")) {
+            String material = itemPath.substring("heavy_crossbow_".length(), itemPath.length() - "_strengthened".length());
+            textureName = material + "_heavy_crossbow";
+        } else {
+            textureName = convertRegistrationNameToTextureName(itemPath);
+        }
+        ResourceLocation pulling0 = this.itemModelProvider.withExistingParent(itemPath + "_pulling_0", BaseModels.HEAVY_CROSSBOW_PULLING).texture("layer0", texturePath + textureName + "_pulling_0").getLocation();
+        ResourceLocation pulling1 = this.itemModelProvider.withExistingParent(itemPath + "_pulling_1", BaseModels.HEAVY_CROSSBOW_PULLING).texture("layer0", texturePath + textureName + "_pulling_1").getLocation();
+        ResourceLocation pulling2 = this.itemModelProvider.withExistingParent(itemPath + "_pulling_2", BaseModels.HEAVY_CROSSBOW_PULLING).texture("layer0", texturePath + textureName + "_pulling_2").getLocation();
+        ResourceLocation loaded = this.itemModelProvider.withExistingParent(itemPath + "_loaded", BaseModels.HEAVY_CROSSBOW_LOADED).texture("layer0", texturePath + textureName + "_loaded").getLocation();
+        ResourceLocation firing = this.itemModelProvider.withExistingParent(itemPath + "_firing", BaseModels.HEAVY_CROSSBOW_FIRING).texture("layer0", texturePath + textureName + "_loaded").getLocation();
+        return this.itemModelProvider.withExistingParent(itemPath, BaseModels.HEAVY_CROSSBOW).texture("layer0", texturePath + textureName + "_standby").
                 override().predicate(ModelOverrides.PULLING, 1.0f).model(new ExistingModelFile(pulling0, this.itemModelProvider.existingFileHelper)).end().
                 override().predicate(ModelOverrides.PULLING, 1.0f).predicate(ModelOverrides.PULL, 0.65f).model(new ExistingModelFile(pulling1, this.itemModelProvider.existingFileHelper)).end().
                 override().predicate(ModelOverrides.PULLING, 1.0f).predicate(ModelOverrides.PULL, 1.0f).model(new ExistingModelFile(pulling2, this.itemModelProvider.existingFileHelper)).end().

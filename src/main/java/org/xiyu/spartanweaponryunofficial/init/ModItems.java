@@ -27,7 +27,7 @@ public class ModItems {
             Item.Properties propVanilla = new Item.Properties();
             Item.Properties propModded = new Item.Properties();
 
-            this.wood = register.register("wooden_" + weaponName, () -> factory.create(WeaponMaterial.WOOD, propVanilla));
+            this.wood = register.register(weaponName + "_wooden", () -> factory.create(WeaponMaterial.WOOD, propVanilla));
             this.stone = register.register("stone_" + weaponName, () -> factory.create(WeaponMaterial.STONE, propVanilla));
             this.copper = register.register("copper_" + weaponName, () -> factory.create(WeaponMaterial.COPPER, propVanilla));
             this.iron = register.register("iron_" + weaponName, () -> factory.create(WeaponMaterial.IRON, propVanilla));
@@ -77,26 +77,30 @@ public class ModItems {
         public WeaponItemsRanged(DeferredRegister<Item> register, String weaponName, WeaponFunction<? extends Item> factory) {
             Item.Properties propVanilla = new Item.Properties();
             Item.Properties propModded = new Item.Properties();
+            
+            // Determine if this weapon type needs 'strengthened' in the name
+            boolean isStrengthenedWeapon = weaponName.equals("longbow") || weaponName.equals("heavy_crossbow");
+            String strengthenedSuffix = isStrengthenedWeapon ? "_strengthened" : "";
 
-            this.wood = register.register("wooden_" + weaponName, () -> factory.create(WeaponMaterial.WOOD, propVanilla));
-            this.leather = register.register("leather_" + weaponName, () -> factory.create(WeaponMaterial.LEATHER, propVanilla));
-            this.copper = register.register("copper_" + weaponName, () -> factory.create(WeaponMaterial.COPPER, propVanilla));
-            this.iron = register.register("iron_" + weaponName, () -> factory.create(WeaponMaterial.IRON, propVanilla));
-            this.gold = register.register("golden_" + weaponName, () -> factory.create(WeaponMaterial.GOLD, propVanilla));
-            this.diamond = register.register("diamond_" + weaponName, () -> factory.create(WeaponMaterial.DIAMOND, propVanilla));
-            this.netherite = register.register("netherite_" + weaponName, () -> factory.create(WeaponMaterial.NETHERITE, new Item.Properties().fireResistant()));
+            this.wood = register.register(weaponName + "_wooden" + strengthenedSuffix, () -> factory.create(WeaponMaterial.WOOD, propVanilla));
+            this.leather = register.register(weaponName + "_leather" + strengthenedSuffix, () -> factory.create(WeaponMaterial.LEATHER, propVanilla));
+            this.copper = register.register(weaponName + "_copper" + strengthenedSuffix, () -> factory.create(WeaponMaterial.COPPER, propVanilla));
+            this.iron = register.register(weaponName + "_iron" + strengthenedSuffix, () -> factory.create(WeaponMaterial.IRON, propVanilla));
+            this.gold = register.register(weaponName + "_golden" + strengthenedSuffix, () -> factory.create(WeaponMaterial.GOLD, propVanilla));
+            this.diamond = register.register(weaponName + "_diamond" + strengthenedSuffix, () -> factory.create(WeaponMaterial.DIAMOND, propVanilla));
+            this.netherite = register.register(weaponName + "_netherite" + strengthenedSuffix, () -> factory.create(WeaponMaterial.NETHERITE, new Item.Properties().fireResistant()));
 
-            this.tin = register.register("tin_" + weaponName, () -> factory.create(WeaponMaterial.TIN, propModded));
-            this.bronze = register.register("bronze_" + weaponName, () -> factory.create(WeaponMaterial.BRONZE, propModded));
-            this.steel = register.register("steel_" + weaponName, () -> factory.create(WeaponMaterial.STEEL, propModded));
-            this.silver = register.register("silver_" + weaponName, () -> factory.create(WeaponMaterial.SILVER, propModded));
-            this.electrum = register.register("electrum_" + weaponName, () -> factory.create(WeaponMaterial.ELECTRUM, propModded));
-            this.lead = register.register("lead_" + weaponName, () -> factory.create(WeaponMaterial.LEAD, propModded));
-            this.nickel = register.register("nickel_" + weaponName, () -> factory.create(WeaponMaterial.NICKEL, propModded));
-            this.invar = register.register("invar_" + weaponName, () -> factory.create(WeaponMaterial.INVAR, propModded));
-            this.constantan = register.register("constantan_" + weaponName, () -> factory.create(WeaponMaterial.CONSTANTAN, propModded));
-            this.platinum = register.register("platinum_" + weaponName, () -> factory.create(WeaponMaterial.PLATINUM, propModded));
-            this.aluminum = register.register("aluminum_" + weaponName, () -> factory.create(WeaponMaterial.ALUMINUM, propModded));
+            this.tin = register.register(weaponName + "_tin" + strengthenedSuffix, () -> factory.create(WeaponMaterial.TIN, propModded));
+            this.bronze = register.register(weaponName + "_bronze" + strengthenedSuffix, () -> factory.create(WeaponMaterial.BRONZE, propModded));
+            this.steel = register.register(weaponName + "_steel" + strengthenedSuffix, () -> factory.create(WeaponMaterial.STEEL, propModded));
+            this.silver = register.register(weaponName + "_silver" + strengthenedSuffix, () -> factory.create(WeaponMaterial.SILVER, propModded));
+            this.electrum = register.register(weaponName + "_electrum" + strengthenedSuffix, () -> factory.create(WeaponMaterial.ELECTRUM, propModded));
+            this.lead = register.register(weaponName + "_lead" + strengthenedSuffix, () -> factory.create(WeaponMaterial.LEAD, propModded));
+            this.nickel = register.register(weaponName + "_nickel" + strengthenedSuffix, () -> factory.create(WeaponMaterial.NICKEL, propModded));
+            this.invar = register.register(weaponName + "_invar" + strengthenedSuffix, () -> factory.create(WeaponMaterial.INVAR, propModded));
+            this.constantan = register.register(weaponName + "_constantan" + strengthenedSuffix, () -> factory.create(WeaponMaterial.CONSTANTAN, propModded));
+            this.platinum = register.register(weaponName + "_platinum" + strengthenedSuffix, () -> factory.create(WeaponMaterial.PLATINUM, propModded));
+            this.aluminum = register.register(weaponName + "_aluminum" + strengthenedSuffix, () -> factory.create(WeaponMaterial.ALUMINUM, propModded));
         }
 
         public ImmutableList<ItemStack> getVanillaItemStacks() {
@@ -124,25 +128,25 @@ public class ModItems {
             Item.Properties propVanilla = new Item.Properties();
             Item.Properties propModded = new Item.Properties();
 
-            this.wood = register.register("wooden_" + weaponName, () -> factory.create(WeaponMaterial.WOOD, propVanilla));
-            this.stone = register.register("stone_" + weaponName, () -> factory.create(WeaponMaterial.STONE, propVanilla));
-            this.copper = register.register("copper_" + weaponName, () -> factory.create(WeaponMaterial.COPPER, propVanilla));
-            this.iron = register.register("iron_" + weaponName, () -> factory.create(WeaponMaterial.IRON, propVanilla));
-            this.gold = register.register("golden_" + weaponName, () -> factory.create(WeaponMaterial.GOLD, propVanilla));
-            this.diamond = register.register("diamond_" + weaponName, () -> factory.create(WeaponMaterial.DIAMOND, propVanilla));
-            this.netherite = register.register("netherite_" + weaponName, () -> factory.create(WeaponMaterial.NETHERITE, new Item.Properties().fireResistant()));
+            this.wood = register.register(weaponName + "_wooden", () -> factory.create(WeaponMaterial.WOOD, propVanilla));
+            this.stone = register.register(weaponName + "_stone", () -> factory.create(WeaponMaterial.STONE, propVanilla));
+            this.copper = register.register(weaponName + "_copper", () -> factory.create(WeaponMaterial.COPPER, propVanilla));
+            this.iron = register.register(weaponName + "_iron", () -> factory.create(WeaponMaterial.IRON, propVanilla));
+            this.gold = register.register(weaponName + "_golden", () -> factory.create(WeaponMaterial.GOLD, propVanilla));
+            this.diamond = register.register(weaponName + "_diamond", () -> factory.create(WeaponMaterial.DIAMOND, propVanilla));
+            this.netherite = register.register(weaponName + "_netherite", () -> factory.create(WeaponMaterial.NETHERITE, new Item.Properties().fireResistant()));
 
-            this.tin = register.register("tin_" + weaponName, () -> factory.create(WeaponMaterial.TIN, propModded));
-            this.bronze = register.register("bronze_" + weaponName, () -> factory.create(WeaponMaterial.BRONZE, propModded));
-            this.steel = register.register("steel_" + weaponName, () -> factory.create(WeaponMaterial.STEEL, propModded));
-            this.silver = register.register("silver_" + weaponName, () -> factory.create(WeaponMaterial.SILVER, propModded));
-            this.electrum = register.register("electrum_" + weaponName, () -> factory.create(WeaponMaterial.ELECTRUM, propModded));
-            this.lead = register.register("lead_" + weaponName, () -> factory.create(WeaponMaterial.LEAD, propModded));
-            this.nickel = register.register("nickel_" + weaponName, () -> factory.create(WeaponMaterial.NICKEL, propModded));
-            this.invar = register.register("invar_" + weaponName, () -> factory.create(WeaponMaterial.INVAR, propModded));
-            this.constantan = register.register("constantan_" + weaponName, () -> factory.create(WeaponMaterial.CONSTANTAN, propModded));
-            this.platinum = register.register("platinum_" + weaponName, () -> factory.create(WeaponMaterial.PLATINUM, propModded));
-            this.aluminum = register.register("aluminum_" + weaponName, () -> factory.create(WeaponMaterial.ALUMINUM, propModded));
+            this.tin = register.register(weaponName + "_tin", () -> factory.create(WeaponMaterial.TIN, propModded));
+            this.bronze = register.register(weaponName + "_bronze", () -> factory.create(WeaponMaterial.BRONZE, propModded));
+            this.steel = register.register(weaponName + "_steel", () -> factory.create(WeaponMaterial.STEEL, propModded));
+            this.silver = register.register(weaponName + "_silver", () -> factory.create(WeaponMaterial.SILVER, propModded));
+            this.electrum = register.register(weaponName + "_electrum", () -> factory.create(WeaponMaterial.ELECTRUM, propModded));
+            this.lead = register.register(weaponName + "_lead", () -> factory.create(WeaponMaterial.LEAD, propModded));
+            this.nickel = register.register(weaponName + "_nickel", () -> factory.create(WeaponMaterial.NICKEL, propModded));
+            this.invar = register.register(weaponName + "_invar", () -> factory.create(WeaponMaterial.INVAR, propModded));
+            this.constantan = register.register(weaponName + "_constantan", () -> factory.create(WeaponMaterial.CONSTANTAN, propModded));
+            this.platinum = register.register(weaponName + "_platinum", () -> factory.create(WeaponMaterial.PLATINUM, propModded));
+            this.aluminum = register.register(weaponName + "_aluminum", () -> factory.create(WeaponMaterial.ALUMINUM, propModded));
         }
 		
 /*		public void updateSettingsFromConfig(float baseDamage, float damageMultiplier, double speed, int chargeTicks)

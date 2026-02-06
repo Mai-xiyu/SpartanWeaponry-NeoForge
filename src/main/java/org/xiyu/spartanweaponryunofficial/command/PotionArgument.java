@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public class PotionArgument implements ArgumentType<PotionInput> {
-    private static final Collection<String> EXAMPLES = List.of("spartanweaponryunofficial:undead");
+    private static final Collection<String> EXAMPLES = List.of("spartan_weaponry_unofficial:undead");
 
     public static PotionArgument potion() {
         return new PotionArgument();

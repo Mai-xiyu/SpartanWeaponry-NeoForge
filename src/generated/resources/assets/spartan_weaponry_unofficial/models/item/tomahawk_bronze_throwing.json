@@ -1,0 +1,6 @@
+{
+  "parent": "spartan_weaponry_unofficial:item/base/tomahawk_throwing",
+  "textures": {
+    "layer0": "spartan_weaponry_unofficial:item/bronze_tomahawk"
+  }
+}

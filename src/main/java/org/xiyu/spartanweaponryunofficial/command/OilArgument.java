@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public class OilArgument implements ArgumentType<OilInput> {
-    private static final Collection<String> EXAMPLES = List.of("spartanweaponryunofficial:undead");
+    private static final Collection<String> EXAMPLES = List.of("spartan_weaponry_unofficial:undead");
 
     public static OilArgument oil() {
         return new OilArgument();

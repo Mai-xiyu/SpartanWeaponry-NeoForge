@@ -55,7 +55,7 @@ public class WeaponOilItem extends BasicItem {
         if (potion == null)
             return baseName;
         ResourceLocation potionKey = BuiltInRegistries.POTION.getKey(potion);
-        return potionKey == null ? baseName : Component.translatable("item.spartanweaponryunofficial.proj_tipped.effect." + potionKey.getPath(), baseName);
+        return potionKey == null ? baseName : Component.translatable("item.spartan_weaponry_unofficial.proj_tipped.effect." + potionKey.getPath(), baseName);
     }
 
     @Override

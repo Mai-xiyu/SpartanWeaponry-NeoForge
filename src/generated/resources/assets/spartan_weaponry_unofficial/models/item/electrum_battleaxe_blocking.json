@@ -1,0 +1,8 @@
+{
+  "parent": "spartan_weaponry_unofficial:item/base/battleaxe_blocking",
+  "loader": "spartan_weaponry_unofficial:oil_coated_item",
+  "textures": {
+    "coating": "spartan_weaponry_unofficial:item/coating/battleaxe",
+    "layer0": "spartan_weaponry_unofficial:item/electrum_battleaxe"
+  }
+}

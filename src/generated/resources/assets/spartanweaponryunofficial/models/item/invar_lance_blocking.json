@@ -1,8 +1,0 @@
-{
-  "parent": "spartanweaponryunofficial:item/base/lance_blocking",
-  "loader": "spartanweaponryunofficial:oil_coated_item",
-  "textures": {
-    "coating": "spartanweaponryunofficial:item/coating/lance",
-    "layer0": "spartanweaponryunofficial:item/invar_lance"
-  }
-}

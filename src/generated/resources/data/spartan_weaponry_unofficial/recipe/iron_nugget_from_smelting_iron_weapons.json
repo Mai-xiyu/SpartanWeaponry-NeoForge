@@ -1,0 +1,79 @@
+{
+  "type": "spartan_weaponry_unofficial:tag_smelting",
+  "experience": 0.1,
+  "ingredient": [
+    {
+      "item": "spartan_weaponry_unofficial:iron_dagger"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:iron_parrying_dagger"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:iron_longsword"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:iron_katana"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:iron_saber"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:iron_rapier"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:iron_greatsword"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:iron_battle_hammer"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:iron_warhammer"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:iron_spear"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:iron_halberd"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:iron_pike"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:iron_lance"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:longbow_iron_strengthened"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:heavy_crossbow_iron_strengthened"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:throwing_knife_iron"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:tomahawk_iron"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:javelin_iron"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:boomerang_iron"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:iron_battleaxe"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:iron_flanged_mace"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:iron_glaive"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:iron_quarterstaff"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:iron_scythe"
+    }
+  ],
+  "result_tag": "c:nuggets/iron"
+}

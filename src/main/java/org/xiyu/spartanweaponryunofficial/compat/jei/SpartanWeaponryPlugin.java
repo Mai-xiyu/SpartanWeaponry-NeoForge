@@ -22,7 +22,7 @@ import java.util.Arrays;
 
 @JeiPlugin
 public class SpartanWeaponryPlugin implements IModPlugin {
-    private final ResourceLocation PLUGIN_UID = ResourceLocation.tryBuild("spartanweaponryunofficial", "jei_plugin");
+    private final ResourceLocation PLUGIN_UID = ResourceLocation.tryBuild("spartan_weaponry_unofficial", "jei_plugin");
 
     public @NotNull ResourceLocation getPluginUid() {
         return this.PLUGIN_UID;

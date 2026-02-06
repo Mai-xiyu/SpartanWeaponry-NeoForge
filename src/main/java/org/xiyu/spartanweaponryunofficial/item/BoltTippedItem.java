@@ -54,7 +54,7 @@ public class BoltTippedItem extends BoltItem {
         var potionKey = net.minecraft.core.registries.BuiltInRegistries.POTION.getKey(potion);
         if (potionKey == null)
             return Component.translatable("item." + ModSpartanWeaponry.ID + "." + this.baseName);
-        String translationKey = "item.spartanweaponryunofficial.proj_tipped.effect." + potionKey.getPath();
+        String translationKey = "item.spartan_weaponry_unofficial.proj_tipped.effect." + potionKey.getPath();
         return Component.translatable(translationKey, Component.translatable("item." + ModSpartanWeaponry.ID + "." + this.baseName));
     }
 }

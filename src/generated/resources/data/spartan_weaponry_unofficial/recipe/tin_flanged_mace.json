@@ -1,0 +1,41 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "spartan_weaponry_unofficial:type_disabled",
+      "disabled": [
+        "flanged_mace",
+        "tin"
+      ]
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/tin"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "spartan_weaponry_unofficial:flanged_mace",
+  "key": {
+    "#": {
+      "tag": "c:ingots/tin"
+    },
+    "/": {
+      "tag": "c:rods/wooden"
+    },
+    "|": {
+      "item": "spartan_weaponry_unofficial:handle"
+    }
+  },
+  "pattern": [
+    " ##",
+    " /#",
+    "|  "
+  ],
+  "result": {
+    "count": 1,
+    "id": "spartan_weaponry_unofficial:tin_flanged_mace"
+  }
+}
