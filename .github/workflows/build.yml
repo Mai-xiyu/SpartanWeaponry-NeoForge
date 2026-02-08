@@ -1,0 +1,48 @@
+name: Build NeoForge Mod
+
+# 触发机制：代码推送到任意分支时触发
+on:
+  push:
+  pull_request: # 建议加上 PR 触发，防止合并坏代码
+  workflow_dispatch: # 允许在 GitHub 网页上手动点击触发
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1.以此拉取代码
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # 2. 验证 Gradle Wrapper (安全最佳实践，防止恶意修改)
+      - name: Validate Gradle Wrapper
+        uses: gradle/actions/wrapper-validation@v3
+
+      # 3. 配置 Java 环境 (根据你的 build.gradle，必须是 Java 21)
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      # 4. 配置 Gradle (包含缓存功能，加快构建速度)
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      # 5. 赋予 gradlew 执行权限 (Linux 环境必须步骤)
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      # 6. 执行构建任务 (这里同时执行 devJar 和 build)
+      # 注意：确保你已经在 build.gradle 里手动注册了 'devJar' 任务，否则这步会报错
+      - name: Build with Gradle
+        run: ./gradlew devJar build
+
+      # 7. 上传构建产物 (将 jar 包展示在 Action 页面)
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: SpartanShields-Jars-${{ github.run_number }} # 产物包名称，带上运行编号防止混淆
+          path: build/libs/*.jar # 上传该路径下所有的 jar 文件
+          retention-days: 7 # 产物保留天数 (可选)
