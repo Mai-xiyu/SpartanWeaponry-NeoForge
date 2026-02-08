@@ -674,10 +674,16 @@
 	"item.spartan_weaponry_unofficial.proj_tipped.effect.long_haste": "长效急迫%s",
 	"item.spartan_weaponry_unofficial.proj_tipped.effect.strong_haste": "强效急迫%s",
 	"item.spartan_weaponry_unofficial.proj_tipped.effect.fatigue": "挖掘疲劳%s",
+	"item.spartan_weaponry_unofficial.proj_tipped.effect.long_fatigue": "长效挖掘疲劳%s",
+	"item.spartan_weaponry_unofficial.proj_tipped.effect.strong_hfatigue": "强效挖掘疲劳%s",
 	"item.spartan_weaponry_unofficial.proj_tipped.effect.resistance": "抗性%s",
 	"item.spartan_weaponry_unofficial.proj_tipped.effect.absorption": "伤害吸收%s",
 	"item.spartan_weaponry_unofficial.proj_tipped.effect.wither": "凋零%s",
+	"item.spartan_weaponry_unofficial.proj_tipped.effect.long_wither": "长效凋零%s",
+	"item.spartan_weaponry_unofficial.proj_tipped.effect.strong_wither": "强效凋零%s",
 	"item.spartan_weaponry_unofficial.proj_tipped.effect.sundering": "割裂%s",
+	"item.spartan_weaponry_unofficial.proj_tipped.effect.long_sundering": "长效割裂%s",
+	"item.spartan_weaponry_unofficial.proj_tipped.effect.strong_sundering": "强效割裂%s",
 	"item.spartan_weaponry_unofficial.proj_tipped.effect.knowledge": "学识%s",
 	
 	// 寂静宝石 3 (Silent Gems 3)
@@ -907,6 +913,8 @@
 	
 	// 神化 (Apotheosis)
 	"item.spartan_weaponry_unofficial.proj_tipped.effect.grievous": "禁疗%s",
+	"item.spartan_weaponry_unofficial.proj_tipped.effect.long_grievous": "长效禁疗%s",
+	"item.spartan_weaponry_unofficial.proj_tipped.effect.strong_grievous": "强效禁疗%s",
 	"item.spartan_weaponry_unofficial.proj_tipped.effect.flying": "飞行%s",
 	
 	// 深暗之园 (The Undergarden)
@@ -957,6 +965,15 @@
 	"item.spartan_weaponry_unofficial.proj_tipped.effect.cold_resistance_long": "耐寒%s",
 	"item.spartan_weaponry_unofficial.proj_tipped.effect.thirst": "干渴%s",
 	"item.spartan_weaponry_unofficial.proj_tipped.effect.thirst_long": "持久干渴%s",
+
+	// 蜜蜂领域/黄蜂领域 (The Bumble Zone)
+	"item.spartan_weaponry_unofficial.proj_tipped.effect.neurotoxin": "麻痹%s",
+	"item.spartan_weaponry_unofficial.proj_tipped.effect.long_neurotoxin": "长效麻痹%s",
+
+	// 永恒星光 (Eternal Starlight)
+	"item.spartan_weaponry_unofficial.proj_tipped.effect.hunger": "饥饿%s",
+	"item.spartan_weaponry_unofficial.proj_tipped.effect.long_hunger": "长效饥饿%s",
+
 	
 	// 箭袋
 	"item.spartan_weaponry_unofficial.small_arrow_quiver": "小型箭袋",
@@ -1119,7 +1136,7 @@
 	"tooltip.spartan_weaponry_unofficial.trait.reach.desc": "增加近战攻击距离, 等级越高攻击范围越大",
 	"tooltip.spartan_weaponry_unofficial.trait.sweep_damage": "横扫 %s",
 	"tooltip.spartan_weaponry_unofficial.trait.sweep_damage.desc": "在横扫距离内的所有目标受到 %d%% 点基础伤害",
-	"tooltip.spartan_weaponry_unofficial.trait.sweep_damage.fixed.desc": "在横扫距离内的所有目标受到 %f 伤害",
+	"tooltip.spartan_weaponry_unofficial.trait.sweep_damage.fixed.desc": "在横扫距离内的所有目标受到 %f%% 伤害",
 	"tooltip.spartan_weaponry_unofficial.trait.knockback": "强化击退",
 	"tooltip.spartan_weaponry_unofficial.trait.knockback.desc": "能把目标击退倒更远的距离",
 	"tooltip.spartan_weaponry_unofficial.trait.nausea": "眩晕",
