@@ -190,7 +190,14 @@ publishing {
         }
     }
 }
+tasks.register('devJar', Jar) {
+    group = 'build'
+    description = 'Generates a development jar with mapped names.'
 
+    from sourceSets.main.output
+    archiveClassifier = 'dev'
+    dependsOn tasks.named('processResources')
+}
 // IDEA no longer automatically downloads sources/javadoc jars for dependencies, so we need to explicitly enable the behavior.
 idea {
     module {
