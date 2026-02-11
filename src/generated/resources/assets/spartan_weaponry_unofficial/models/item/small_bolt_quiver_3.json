@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "spartan_weaponry_unofficial:item/small_bolt_quiver_3"
+  }
+}

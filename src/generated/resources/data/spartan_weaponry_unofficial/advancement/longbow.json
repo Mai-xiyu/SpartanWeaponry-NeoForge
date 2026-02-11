@@ -1,0 +1,33 @@
+{
+  "parent": "spartan_weaponry_unofficial:root",
+  "criteria": {
+    "has_longbow": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#spartan_weaponry_unofficial:longbows"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.spartan_weaponry_unofficial.craft_longbow.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "spartan_weaponry_unofficial:longbow_wooden_strengthened"
+    },
+    "title": {
+      "translate": "advancement.spartan_weaponry_unofficial.craft_longbow.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_longbow"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

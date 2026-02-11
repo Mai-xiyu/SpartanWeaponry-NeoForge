@@ -1,0 +1,37 @@
+{
+  "forge:conditions": [
+    {
+      "type": "spartan_weaponry_unofficial:type_disabled",
+      "disabled": [
+        "spear",
+        "platinum"
+      ]
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "forge:ingots/platinum"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "spartan_weaponry_unofficial:spear",
+  "key": {
+    "#": {
+      "tag": "forge:ingots/platinum"
+    },
+    "/": {
+      "tag": "spartan_weaponry_unofficial:poles"
+    }
+  },
+  "pattern": [
+    "#",
+    "/"
+  ],
+  "result": {
+    "count": 1,
+    "id": "spartan_weaponry_unofficial:platinum_spear"
+  }
+}

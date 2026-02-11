@@ -1,0 +1,33 @@
+{
+  "parent": "spartan_weaponry_unofficial:root",
+  "criteria": {
+    "has_battle_hammer": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#spartan_weaponry_unofficial:battle_hammers"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.spartan_weaponry_unofficial.craft_battle_hammer.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "spartan_weaponry_unofficial:golden_battle_hammer"
+    },
+    "title": {
+      "translate": "advancement.spartan_weaponry_unofficial.craft_battle_hammer.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_battle_hammer"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

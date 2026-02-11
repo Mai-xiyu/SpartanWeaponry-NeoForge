@@ -1,0 +1,8 @@
+{
+  "parent": "spartan_weaponry_unofficial:item/base/quarterstaff_throwing",
+  "loader": "spartan_weaponry_unofficial:oil_coated_item",
+  "textures": {
+    "coating": "spartan_weaponry_unofficial:item/coating/quarterstaff",
+    "layer0": "spartan_weaponry_unofficial:item/netherite_quarterstaff"
+  }
+}

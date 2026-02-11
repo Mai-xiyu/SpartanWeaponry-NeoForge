@@ -1,0 +1,33 @@
+{
+  "parent": "spartan_weaponry_unofficial:spear",
+  "criteria": {
+    "has_glaive": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#spartan_weaponry_unofficial:glaives"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.spartan_weaponry_unofficial.craft_glaive.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "spartan_weaponry_unofficial:iron_glaive"
+    },
+    "title": {
+      "translate": "advancement.spartan_weaponry_unofficial.craft_glaive.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_glaive"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

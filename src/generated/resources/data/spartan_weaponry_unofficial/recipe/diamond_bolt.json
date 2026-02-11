@@ -1,0 +1,33 @@
+{
+  "forge:conditions": [
+    {
+      "type": "spartan_weaponry_unofficial:type_disabled",
+      "disabled": [
+        "bolts",
+        "diamond_ammo"
+      ]
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "tag": "forge:gems/diamond"
+    },
+    "F": {
+      "tag": "forge:feathers"
+    },
+    "|": {
+      "tag": "forge:nuggets/iron"
+    }
+  },
+  "pattern": [
+    "  #",
+    " | ",
+    "F  "
+  ],
+  "result": {
+    "count": 4,
+    "id": "spartan_weaponry_unofficial:diamond_bolt"
+  }
+}

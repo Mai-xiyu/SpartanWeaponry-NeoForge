@@ -1,0 +1,33 @@
+{
+  "parent": "spartan_weaponry_unofficial:longbow",
+  "criteria": {
+    "has_heavy_crossbow": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#spartan_weaponry_unofficial:heavy_crossbows"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.spartan_weaponry_unofficial.craft_heavy_crossbow.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "spartan_weaponry_unofficial:heavy_crossbow_wooden_strengthened"
+    },
+    "title": {
+      "translate": "advancement.spartan_weaponry_unofficial.craft_heavy_crossbow.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_heavy_crossbow"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

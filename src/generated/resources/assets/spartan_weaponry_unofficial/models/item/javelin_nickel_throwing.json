@@ -1,0 +1,6 @@
+{
+  "parent": "spartan_weaponry_unofficial:item/base/javelin_throwing",
+  "textures": {
+    "layer0": "spartan_weaponry_unofficial:item/nickel_javelin"
+  }
+}

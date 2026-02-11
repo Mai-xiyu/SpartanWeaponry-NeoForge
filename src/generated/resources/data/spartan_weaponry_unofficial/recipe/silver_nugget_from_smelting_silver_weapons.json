@@ -1,0 +1,79 @@
+{
+  "type": "spartan_weaponry_unofficial:tag_smelting",
+  "experience": 0.1,
+  "ingredient": [
+    {
+      "item": "spartan_weaponry_unofficial:silver_dagger"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:silver_parrying_dagger"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:silver_longsword"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:silver_katana"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:silver_saber"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:silver_rapier"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:silver_greatsword"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:silver_battle_hammer"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:silver_warhammer"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:silver_spear"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:silver_halberd"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:silver_pike"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:silver_lance"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:longbow_silver_strengthened"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:heavy_crossbow_silver_strengthened"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:throwing_knife_silver"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:tomahawk_silver"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:javelin_silver"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:boomerang_silver"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:silver_battleaxe"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:silver_flanged_mace"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:silver_glaive"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:silver_quarterstaff"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:silver_scythe"
+    }
+  ],
+  "result_tag": "forge:nuggets/silver"
+}

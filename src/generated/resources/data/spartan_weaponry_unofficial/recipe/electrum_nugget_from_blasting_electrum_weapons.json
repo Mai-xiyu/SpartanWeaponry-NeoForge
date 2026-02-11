@@ -1,0 +1,79 @@
+{
+  "type": "spartan_weaponry_unofficial:tag_blasting",
+  "experience": 0.1,
+  "ingredient": [
+    {
+      "item": "spartan_weaponry_unofficial:electrum_dagger"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:electrum_parrying_dagger"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:electrum_longsword"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:electrum_katana"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:electrum_saber"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:electrum_rapier"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:electrum_greatsword"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:electrum_battle_hammer"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:electrum_warhammer"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:electrum_spear"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:electrum_halberd"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:electrum_pike"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:electrum_lance"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:longbow_electrum_strengthened"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:heavy_crossbow_electrum_strengthened"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:throwing_knife_electrum"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:tomahawk_electrum"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:javelin_electrum"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:boomerang_electrum"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:electrum_battleaxe"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:electrum_flanged_mace"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:electrum_glaive"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:electrum_quarterstaff"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:electrum_scythe"
+    }
+  ],
+  "result_tag": "forge:nuggets/electrum"
+}

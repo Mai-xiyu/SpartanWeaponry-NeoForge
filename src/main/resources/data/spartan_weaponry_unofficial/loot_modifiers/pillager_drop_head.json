@@ -1,0 +1,19 @@
+{
+  "conditions": [
+    {
+      "condition": "spartan_weaponry_unofficial:new_heads_enabled"
+    },
+    {
+      "condition": "minecraft:killed_by_player"
+    },
+    {
+      "condition": "minecraft:entity_properties",
+      "predicate": {
+        "type": "minecraft:pillager"
+      },
+      "entity": "this"
+    }
+  ],
+  "skull": "spartan_weaponry_unofficial:illager_head",
+  "type": "spartan_weaponry_unofficial:decapitate"
+}

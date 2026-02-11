@@ -1,0 +1,37 @@
+{
+  "forge:conditions": [
+    {
+      "type": "spartan_weaponry_unofficial:type_disabled",
+      "disabled": [
+        "dagger",
+        "electrum"
+      ]
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "forge:ingots/electrum"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "spartan_weaponry_unofficial:dagger",
+  "key": {
+    "#": {
+      "tag": "forge:ingots/electrum"
+    },
+    "|": {
+      "tag": "spartan_weaponry_unofficial:handles"
+    }
+  },
+  "pattern": [
+    "#",
+    "|"
+  ],
+  "result": {
+    "count": 1,
+    "id": "spartan_weaponry_unofficial:electrum_dagger"
+  }
+}

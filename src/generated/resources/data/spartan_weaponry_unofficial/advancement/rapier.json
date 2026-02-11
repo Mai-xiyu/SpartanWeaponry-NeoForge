@@ -1,0 +1,33 @@
+{
+  "parent": "spartan_weaponry_unofficial:saber",
+  "criteria": {
+    "has_rapier": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#spartan_weaponry_unofficial:rapiers"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.spartan_weaponry_unofficial.craft_rapier.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "spartan_weaponry_unofficial:diamond_rapier"
+    },
+    "title": {
+      "translate": "advancement.spartan_weaponry_unofficial.craft_rapier.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_rapier"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

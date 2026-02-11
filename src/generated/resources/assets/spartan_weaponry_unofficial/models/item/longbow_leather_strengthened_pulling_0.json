@@ -1,0 +1,6 @@
+{
+  "parent": "spartan_weaponry_unofficial:item/base/longbow_pulling",
+  "textures": {
+    "layer0": "spartan_weaponry_unofficial:item/leather_longbow_pulling_0"
+  }
+}

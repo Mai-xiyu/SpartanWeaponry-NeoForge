@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "group": "spartan_weaponry_unofficial:handle",
+  "ingredients": [
+    {
+      "tag": "forge:rods/wooden"
+    },
+    {
+      "tag": "forge:strings"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "spartan_weaponry_unofficial:handle"
+  }
+}
