@@ -1,0 +1,22 @@
+{
+  "description": {
+    "translate": "enchantment.spartan_weaponry_unofficial.supercharge"
+  },
+  "exclusive_set": [],
+  "supported_items": "#spartan_weaponry_unofficial:throwing_weapons",
+  "weight": 5,
+  "max_level": 5,
+  "min_cost": {
+    "base": 1,
+    "per_level_above_first": 10
+  },
+  "max_cost": {
+    "base": 16,
+    "per_level_above_first": 10
+  },
+  "anvil_cost": 2,
+  "slots": [
+    "mainhand"
+  ],
+  "effects": {}
+}

@@ -1,0 +1,79 @@
+{
+  "type": "spartan_weaponry_unofficial:tag_blasting",
+  "experience": 0.1,
+  "ingredient": [
+    {
+      "item": "spartan_weaponry_unofficial:platinum_dagger"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:platinum_parrying_dagger"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:platinum_longsword"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:platinum_katana"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:platinum_saber"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:platinum_rapier"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:platinum_greatsword"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:platinum_battle_hammer"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:platinum_warhammer"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:platinum_spear"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:platinum_halberd"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:platinum_pike"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:platinum_lance"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:longbow_platinum_strengthened"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:heavy_crossbow_platinum_strengthened"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:throwing_knife_platinum"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:tomahawk_platinum"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:javelin_platinum"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:boomerang_platinum"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:platinum_battleaxe"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:platinum_flanged_mace"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:platinum_glaive"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:platinum_quarterstaff"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:platinum_scythe"
+    }
+  ],
+  "result_tag": "forge:nuggets/platinum"
+}

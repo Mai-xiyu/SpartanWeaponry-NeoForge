@@ -1,0 +1,9 @@
+{
+  "values": [
+    "spartan_weaponry_unofficial:medium_arrow_quiver",
+    "spartan_weaponry_unofficial:medium_bolt_quiver",
+    "spartan_weaponry_unofficial:large_arrow_quiver",
+    "spartan_weaponry_unofficial:large_bolt_quiver",
+    "#spartan_weaponry_unofficial:upgraded_quivers_max"
+  ]
+}

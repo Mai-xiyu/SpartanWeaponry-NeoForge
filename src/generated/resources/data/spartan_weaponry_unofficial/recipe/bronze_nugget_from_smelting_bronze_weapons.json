@@ -1,0 +1,79 @@
+{
+  "type": "spartan_weaponry_unofficial:tag_smelting",
+  "experience": 0.1,
+  "ingredient": [
+    {
+      "item": "spartan_weaponry_unofficial:bronze_dagger"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:bronze_parrying_dagger"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:bronze_longsword"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:bronze_katana"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:bronze_saber"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:bronze_rapier"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:bronze_greatsword"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:bronze_battle_hammer"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:bronze_warhammer"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:bronze_spear"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:bronze_halberd"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:bronze_pike"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:bronze_lance"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:longbow_bronze_strengthened"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:heavy_crossbow_bronze_strengthened"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:throwing_knife_bronze"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:tomahawk_bronze"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:javelin_bronze"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:boomerang_bronze"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:bronze_battleaxe"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:bronze_flanged_mace"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:bronze_glaive"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:bronze_quarterstaff"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:bronze_scythe"
+    }
+  ],
+  "result_tag": "forge:nuggets/bronze"
+}

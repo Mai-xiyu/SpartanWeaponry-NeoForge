@@ -1,0 +1,25 @@
+{
+  "replace": false,
+  "entries": [
+    "spartan_weaponry_unofficial:piglin_drop_head",
+    "spartan_weaponry_unofficial:evoker_drop_head",
+    "spartan_weaponry_unofficial:zombie_drop_head",
+    "spartan_weaponry_unofficial:illusioner_drop_head",
+    "spartan_weaponry_unofficial:creeper_drop_head",
+    "spartan_weaponry_unofficial:witch_drop_head",
+    "spartan_weaponry_unofficial:blaze_drop_head",
+    "spartan_weaponry_unofficial:drowned_drop_head",
+    "spartan_weaponry_unofficial:spider_drop_head",
+    "spartan_weaponry_unofficial:skeleton_drop_skull",
+    "spartan_weaponry_unofficial:ender_dragon_drop_head",
+    "spartan_weaponry_unofficial:vindicator_drop_head",
+    "spartan_weaponry_unofficial:player_drop_head",
+    "spartan_weaponry_unofficial:pillager_drop_head",
+    "spartan_weaponry_unofficial:husk_drop_head",
+    "spartan_weaponry_unofficial:stray_drop_skull",
+    "spartan_weaponry_unofficial:enderman_drop_head",
+    "spartan_weaponry_unofficial:zombified_piglin_drop_head",
+    "spartan_weaponry_unofficial:cave_spider_drop_head",
+    "spartan_weaponry_unofficial:wither_skeleton_drop_skull"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "parent": "spartan_weaponry_unofficial:root",
+  "criteria": {
+    "has_parrying_dagger": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#spartan_weaponry_unofficial:parrying_daggers"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.spartan_weaponry_unofficial.craft_parrying_dagger.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "spartan_weaponry_unofficial:golden_parrying_dagger"
+    },
+    "title": {
+      "translate": "advancement.spartan_weaponry_unofficial.craft_parrying_dagger.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_parrying_dagger"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

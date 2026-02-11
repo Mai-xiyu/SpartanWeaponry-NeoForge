@@ -1,0 +1,29 @@
+{
+  "forge:conditions": [
+    {
+      "type": "spartan_weaponry_unofficial:type_disabled",
+      "disabled": [
+        "dagger"
+      ]
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "spartan_weaponry_unofficial:dagger",
+  "key": {
+    "#": {
+      "tag": "forge:cobblestones"
+    },
+    "|": {
+      "tag": "spartan_weaponry_unofficial:handles"
+    }
+  },
+  "pattern": [
+    "#",
+    "|"
+  ],
+  "result": {
+    "count": 1,
+    "id": "spartan_weaponry_unofficial:stone_dagger"
+  }
+}

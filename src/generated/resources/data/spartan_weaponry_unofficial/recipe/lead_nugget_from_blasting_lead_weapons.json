@@ -1,0 +1,79 @@
+{
+  "type": "spartan_weaponry_unofficial:tag_blasting",
+  "experience": 0.1,
+  "ingredient": [
+    {
+      "item": "spartan_weaponry_unofficial:lead_dagger"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:lead_parrying_dagger"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:lead_longsword"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:lead_katana"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:lead_saber"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:lead_rapier"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:lead_greatsword"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:lead_battle_hammer"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:lead_warhammer"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:lead_spear"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:lead_halberd"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:lead_pike"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:lead_lance"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:longbow_lead_strengthened"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:heavy_crossbow_lead_strengthened"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:throwing_knife_lead"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:tomahawk_lead"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:javelin_lead"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:boomerang_lead"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:lead_battleaxe"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:lead_flanged_mace"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:lead_glaive"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:lead_quarterstaff"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:lead_scythe"
+    }
+  ],
+  "result_tag": "forge:nuggets/lead"
+}

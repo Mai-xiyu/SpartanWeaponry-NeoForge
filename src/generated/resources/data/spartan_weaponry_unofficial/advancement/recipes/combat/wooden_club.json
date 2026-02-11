@@ -1,0 +1,40 @@
+{
+  "forge:conditions": [
+    {
+      "type": "spartan_weaponry_unofficial:type_disabled",
+      "disabled": [
+        "club"
+      ]
+    }
+  ],
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "spartan_weaponry_unofficial:wooden_club"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_wood_log": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#minecraft:logs"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_wood_log"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "spartan_weaponry_unofficial:wooden_club"
+    ]
+  }
+}

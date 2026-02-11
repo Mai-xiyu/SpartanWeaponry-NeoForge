@@ -1,0 +1,36 @@
+{
+  "forge:conditions": [
+    {
+      "type": "spartan_weaponry_unofficial:type_disabled",
+      "disabled": [
+        "javelin",
+        "nickel"
+      ]
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "forge:ingots/nickel"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "spartan_weaponry_unofficial:javelin",
+  "key": {
+    "#": {
+      "tag": "forge:ingots/nickel"
+    },
+    "/": {
+      "item": "spartan_weaponry_unofficial:pole"
+    }
+  },
+  "pattern": [
+    "/#"
+  ],
+  "result": {
+    "count": 1,
+    "id": "spartan_weaponry_unofficial:javelin_nickel"
+  }
+}

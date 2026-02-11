@@ -1,0 +1,79 @@
+{
+  "type": "spartan_weaponry_unofficial:tag_smelting",
+  "experience": 0.1,
+  "ingredient": [
+    {
+      "item": "spartan_weaponry_unofficial:aluminum_dagger"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:aluminum_parrying_dagger"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:aluminum_longsword"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:aluminum_katana"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:aluminum_saber"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:aluminum_rapier"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:aluminum_greatsword"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:aluminum_battle_hammer"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:aluminum_warhammer"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:aluminum_spear"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:aluminum_halberd"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:aluminum_pike"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:aluminum_lance"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:longbow_aluminum_strengthened"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:heavy_crossbow_aluminum_strengthened"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:throwing_knife_aluminum"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:tomahawk_aluminum"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:javelin_aluminum"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:boomerang_aluminum"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:aluminum_battleaxe"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:aluminum_flanged_mace"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:aluminum_glaive"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:aluminum_quarterstaff"
+    },
+    {
+      "item": "spartan_weaponry_unofficial:aluminum_scythe"
+    }
+  ],
+  "result_tag": "forge:nuggets/aluminum"
+}

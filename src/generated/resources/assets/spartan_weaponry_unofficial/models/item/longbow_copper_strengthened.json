@@ -1,0 +1,28 @@
+{
+  "parent": "spartan_weaponry_unofficial:item/base/longbow",
+  "overrides": [
+    {
+      "model": "spartan_weaponry_unofficial:item/longbow_copper_strengthened_pulling_0",
+      "predicate": {
+        "spartan_weaponry_unofficial:pulling": 1.0
+      }
+    },
+    {
+      "model": "spartan_weaponry_unofficial:item/longbow_copper_strengthened_pulling_1",
+      "predicate": {
+        "spartan_weaponry_unofficial:pull": 0.65,
+        "spartan_weaponry_unofficial:pulling": 1.0
+      }
+    },
+    {
+      "model": "spartan_weaponry_unofficial:item/longbow_copper_strengthened_pulling_2",
+      "predicate": {
+        "spartan_weaponry_unofficial:pull": 0.9,
+        "spartan_weaponry_unofficial:pulling": 1.0
+      }
+    }
+  ],
+  "textures": {
+    "layer0": "spartan_weaponry_unofficial:item/copper_longbow_standby"
+  }
+}

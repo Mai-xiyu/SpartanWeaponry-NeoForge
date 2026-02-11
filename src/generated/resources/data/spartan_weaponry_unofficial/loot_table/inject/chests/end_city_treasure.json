@@ -1,0 +1,152 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "spartan_weaponry_unofficial:diamond_dagger",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spartan_weaponry_unofficial:diamond_parrying_dagger",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spartan_weaponry_unofficial:diamond_longsword",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spartan_weaponry_unofficial:diamond_katana",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spartan_weaponry_unofficial:diamond_saber",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spartan_weaponry_unofficial:diamond_rapier",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spartan_weaponry_unofficial:diamond_greatsword",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spartan_weaponry_unofficial:diamond_battle_hammer",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spartan_weaponry_unofficial:diamond_warhammer",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spartan_weaponry_unofficial:diamond_spear",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spartan_weaponry_unofficial:diamond_halberd",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spartan_weaponry_unofficial:diamond_pike",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spartan_weaponry_unofficial:diamond_lance",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spartan_weaponry_unofficial:longbow_diamond_strengthened",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spartan_weaponry_unofficial:heavy_crossbow_diamond_strengthened",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 3.0,
+                "min": 1.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "spartan_weaponry_unofficial:diamond_bolt",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spartan_weaponry_unofficial:throwing_knife_diamond",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spartan_weaponry_unofficial:tomahawk_diamond",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spartan_weaponry_unofficial:javelin_diamond",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spartan_weaponry_unofficial:boomerang_diamond",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spartan_weaponry_unofficial:diamond_battleaxe",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spartan_weaponry_unofficial:diamond_flanged_mace",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spartan_weaponry_unofficial:diamond_glaive",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spartan_weaponry_unofficial:diamond_quarterstaff",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spartan_weaponry_unofficial:diamond_scythe",
+          "weight": 5
+        }
+      ],
+      "rolls": {
+        "type": "minecraft:uniform",
+        "max": 2.0,
+        "min": 1.0
+      }
+    }
+  ],
+  "random_sequence": "spartan_weaponry_unofficial:inject/chests/end_city_treasure"
+}

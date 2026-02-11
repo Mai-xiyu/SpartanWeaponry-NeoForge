@@ -1,0 +1,33 @@
+{
+  "forge:conditions": [
+    {
+      "type": "spartan_weaponry_unofficial:type_disabled",
+      "disabled": [
+        "battleaxe"
+      ]
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "spartan_weaponry_unofficial:battleaxe",
+  "key": {
+    "#": {
+      "tag": "forge:ingots/gold"
+    },
+    "/": {
+      "tag": "forge:rods/wooden"
+    },
+    "|": {
+      "item": "spartan_weaponry_unofficial:handle"
+    }
+  },
+  "pattern": [
+    "###",
+    "#/#",
+    " | "
+  ],
+  "result": {
+    "count": 1,
+    "id": "spartan_weaponry_unofficial:golden_battleaxe"
+  }
+}

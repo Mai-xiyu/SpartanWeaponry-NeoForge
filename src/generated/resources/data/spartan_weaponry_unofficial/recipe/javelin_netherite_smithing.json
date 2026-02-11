@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "tag": "forge:ingots/netherite"
+  },
+  "base": {
+    "item": "spartan_weaponry_unofficial:javelin_diamond"
+  },
+  "result": {
+    "count": 1,
+    "id": "spartan_weaponry_unofficial:javelin_netherite"
+  },
+  "template": {
+    "item": "minecraft:netherite_upgrade_smithing_template"
+  }
+}

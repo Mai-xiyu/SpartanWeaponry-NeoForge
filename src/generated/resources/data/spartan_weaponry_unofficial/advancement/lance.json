@@ -1,0 +1,33 @@
+{
+  "parent": "spartan_weaponry_unofficial:spear",
+  "criteria": {
+    "has_lance": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#spartan_weaponry_unofficial:lances"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.spartan_weaponry_unofficial.craft_lance.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "spartan_weaponry_unofficial:iron_lance"
+    },
+    "title": {
+      "translate": "advancement.spartan_weaponry_unofficial.craft_lance.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_lance"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

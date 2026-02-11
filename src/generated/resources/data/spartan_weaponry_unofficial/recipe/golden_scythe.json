@@ -1,0 +1,30 @@
+{
+  "forge:conditions": [
+    {
+      "type": "spartan_weaponry_unofficial:type_disabled",
+      "disabled": [
+        "scythe"
+      ]
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "spartan_weaponry_unofficial:scythe",
+  "key": {
+    "#": {
+      "tag": "forge:ingots/gold"
+    },
+    "/": {
+      "item": "spartan_weaponry_unofficial:pole"
+    }
+  },
+  "pattern": [
+    "## ",
+    "  #",
+    " / "
+  ],
+  "result": {
+    "count": 1,
+    "id": "spartan_weaponry_unofficial:golden_scythe"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "forge:conditions": [
+    {
+      "type": "spartan_weaponry_unofficial:type_disabled",
+      "disabled": [
+        "longbow",
+        "nickel"
+      ]
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "forge:ingots/nickel"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "spartan_weaponry_unofficial:longbow",
+  "key": {
+    "#": {
+      "tag": "forge:ingots/nickel"
+    },
+    "/": {
+      "tag": "forge:rods/wooden"
+    },
+    "|": {
+      "item": "spartan_weaponry_unofficial:handle"
+    },
+    "~": {
+      "tag": "forge:strings"
+    }
+  },
+  "pattern": [
+    "|/#",
+    "/ ~",
+    "#~~"
+  ],
+  "result": {
+    "count": 1,
+    "id": "spartan_weaponry_unofficial:longbow_nickel_strengthened"
+  }
+}

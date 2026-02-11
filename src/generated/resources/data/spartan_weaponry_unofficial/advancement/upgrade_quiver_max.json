@@ -1,0 +1,34 @@
+{
+  "parent": "spartan_weaponry_unofficial:upgrade_quiver",
+  "criteria": {
+    "has_max_upgraded_quiver": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#spartan_weaponry_unofficial:upgraded_quivers_max"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.spartan_weaponry_unofficial.upgrade_quiver_max.desc"
+    },
+    "frame": "goal",
+    "icon": {
+      "count": 1,
+      "id": "spartan_weaponry_unofficial:huge_arrow_quiver"
+    },
+    "title": {
+      "translate": "advancement.spartan_weaponry_unofficial.upgrade_quiver_max.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_max_upgraded_quiver"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

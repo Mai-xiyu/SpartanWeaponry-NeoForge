@@ -1,0 +1,50 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 3.0,
+                "min": 1.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "spartan_weaponry_unofficial:bolt",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spartan_weaponry_unofficial:longbow_wooden_strengthened",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spartan_weaponry_unofficial:longbow_iron_strengthened"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spartan_weaponry_unofficial:heavy_crossbow_wooden_strengthened",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spartan_weaponry_unofficial:heavy_crossbow_iron_strengthened"
+        }
+      ],
+      "rolls": {
+        "type": "minecraft:uniform",
+        "max": 2.0,
+        "min": 1.0
+      }
+    }
+  ],
+  "random_sequence": "spartan_weaponry_unofficial:inject/chests/village/village_fletcher"
+}

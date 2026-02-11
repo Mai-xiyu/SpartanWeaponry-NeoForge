@@ -1,0 +1,26 @@
+{
+  "forge:conditions": [
+    {
+      "type": "spartan_weaponry_unofficial:type_disabled",
+      "disabled": [
+        "club"
+      ]
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "spartan_weaponry_unofficial:club",
+  "key": {
+    "#": {
+      "tag": "minecraft:logs"
+    }
+  },
+  "pattern": [
+    " #",
+    "# "
+  ],
+  "result": {
+    "count": 1,
+    "id": "spartan_weaponry_unofficial:wooden_club"
+  }
+}

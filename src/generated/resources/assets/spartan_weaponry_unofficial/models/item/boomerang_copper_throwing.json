@@ -1,0 +1,6 @@
+{
+  "parent": "spartan_weaponry_unofficial:item/base/boomerang_throwing",
+  "textures": {
+    "layer0": "spartan_weaponry_unofficial:item/copper_boomerang"
+  }
+}

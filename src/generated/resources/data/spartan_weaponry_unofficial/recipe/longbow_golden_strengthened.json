@@ -1,0 +1,36 @@
+{
+  "forge:conditions": [
+    {
+      "type": "spartan_weaponry_unofficial:type_disabled",
+      "disabled": [
+        "longbow"
+      ]
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "spartan_weaponry_unofficial:longbow",
+  "key": {
+    "#": {
+      "tag": "forge:ingots/gold"
+    },
+    "/": {
+      "tag": "forge:rods/wooden"
+    },
+    "|": {
+      "item": "spartan_weaponry_unofficial:handle"
+    },
+    "~": {
+      "tag": "forge:strings"
+    }
+  },
+  "pattern": [
+    "|/#",
+    "/ ~",
+    "#~~"
+  ],
+  "result": {
+    "count": 1,
+    "id": "spartan_weaponry_unofficial:longbow_golden_strengthened"
+  }
+}

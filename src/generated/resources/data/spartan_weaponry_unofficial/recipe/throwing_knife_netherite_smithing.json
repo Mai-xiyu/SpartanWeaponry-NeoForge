@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "tag": "forge:ingots/netherite"
+  },
+  "base": {
+    "item": "spartan_weaponry_unofficial:throwing_knife_diamond"
+  },
+  "result": {
+    "count": 1,
+    "id": "spartan_weaponry_unofficial:throwing_knife_netherite"
+  },
+  "template": {
+    "item": "minecraft:netherite_upgrade_smithing_template"
+  }
+}

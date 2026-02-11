@@ -1,0 +1,28 @@
+{
+  "forge:conditions": [
+    {
+      "type": "spartan_weaponry_unofficial:type_disabled",
+      "disabled": [
+        "club"
+      ]
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "spartan_weaponry_unofficial:club",
+  "key": {
+    "#": {
+      "tag": "forge:ingots/iron"
+    },
+    "C": {
+      "item": "spartan_weaponry_unofficial:wooden_club"
+    }
+  },
+  "pattern": [
+    "C#"
+  ],
+  "result": {
+    "count": 1,
+    "id": "spartan_weaponry_unofficial:studded_club"
+  }
+}

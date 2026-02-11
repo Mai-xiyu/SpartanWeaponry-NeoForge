@@ -1,0 +1,48 @@
+{
+  "forge:conditions": [
+    {
+      "type": "spartan_weaponry_unofficial:type_disabled",
+      "disabled": [
+        "dagger",
+        "tin"
+      ]
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "forge:ingots/tin"
+      }
+    }
+  ],
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "spartan_weaponry_unofficial:tin_dagger"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_tin_ingot": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#forge:ingots/tin"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_tin_ingot"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "spartan_weaponry_unofficial:tin_dagger"
+    ]
+  }
+}

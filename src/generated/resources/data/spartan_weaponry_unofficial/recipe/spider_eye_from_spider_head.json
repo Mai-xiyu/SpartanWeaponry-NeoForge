@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    [
+      {
+        "item": "spartan_weaponry_unofficial:spider_head"
+      },
+      {
+        "item": "spartan_weaponry_unofficial:cave_spider_head"
+      }
+    ]
+  ],
+  "result": {
+    "count": 4,
+    "id": "minecraft:spider_eye"
+  }
+}

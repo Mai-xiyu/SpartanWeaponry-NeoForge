@@ -1,0 +1,51 @@
+{
+  "forge:conditions": [
+    {
+      "type": "spartan_weaponry_unofficial:type_disabled",
+      "disabled": [
+        "oil"
+      ]
+    }
+  ],
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_meat": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#forge:foods/raw_meats"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_slimeball": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#forge:slimeballs"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "spartan_weaponry_unofficial:grease_ball"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_meat",
+      "has_slimeball"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "spartan_weaponry_unofficial:grease_ball"
+    ]
+  }
+}
