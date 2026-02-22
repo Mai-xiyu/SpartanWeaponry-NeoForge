@@ -18,6 +18,9 @@ Inspired by Balkon's WeaponMod, it adds new versions of weapons from that mod, a
 - **移植者**: Mai_xiyu & Claude AI
 - **许可证**: Apache-2.0
 
+## API DOCS
+- [Docs](https://mai-xiyu.github.io/ProJect_Docs/)
+
 ### 主要改动
 - 从 Forge 1.20.1 迁移至 NeoForge 1.21.1
 - 适配 Minecraft 1.21 的 API 变更
