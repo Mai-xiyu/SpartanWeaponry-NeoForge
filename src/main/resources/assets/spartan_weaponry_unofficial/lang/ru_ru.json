@@ -1325,5 +1325,14 @@
 	"item.spartan_weaponry_unofficial.boomerang_invar": "Инваровый бумеранг",
 	"item.spartan_weaponry_unofficial.boomerang_constantan": "Константановый бумеранг",
 	"item.spartan_weaponry_unofficial.boomerang_platinum": "Платиновый бумеранг",
-	"item.spartan_weaponry_unofficial.boomerang_aluminum": "Алюминиевый бумеранг"
+	"item.spartan_weaponry_unofficial.boomerang_aluminum": "Алюминиевый бумеранг",
+	"spartan_weaponry_unofficial.configuration.quiver": "Колчан",
+	"spartan_weaponry_unofficial.configuration.oil_uses": "Применения масла",
+	"config.spartan_weaponry_unofficial.client.force_compatibility_crosshairs.tooltip": "Принудительно включает совместимые прицелы для модов, заменяющих стандартный прицел.",
+	"config.spartan_weaponry_unofficial.client.disable_shoulder_surfing_integration.tooltip": "Отключает функции интеграции с Shoulder Surfing.",
+	"config.spartan_weaponry_unofficial.weapon.disable.tooltip": "Отключает этот тип оружия.",
+	"config.spartan_weaponry_unofficial.weapon.speed.tooltip": "Базовый модификатор скорости атаки для этого типа оружия.",
+	"config.spartan_weaponry_unofficial.weapon.base_damage.tooltip": "Базовый урон атаки для этого типа оружия.",
+	"config.spartan_weaponry_unofficial.weapon.damage_multiplier.tooltip": "Множитель урона, применяемый к базовому урону.",
+	"config.spartan_weaponry_unofficial.potion_oil_blacklist.tooltip": "Масла зелий с этими эффектами нельзя создать."
 }

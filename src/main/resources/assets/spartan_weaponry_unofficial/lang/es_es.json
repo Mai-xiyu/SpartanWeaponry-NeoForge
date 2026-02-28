@@ -963,7 +963,16 @@
 	"item.spartan_weaponry_unofficial.boomerang_silver": "Boomerang de plata",
 	"item.spartan_weaponry_unofficial.boomerang_electrum": "Boomerang de electrum",
 	"item.spartan_weaponry_unofficial.boomerang_lead": "Boomerang de plomo",
-	"item.spartan_weaponry_unofficial.boomerang_nickel": "Boomerang de nickel",
-	"item.spartan_weaponry_unofficial.boomerang_invar": "Boomerang de invar",
-	"item.spartan_weaponry_unofficial.boomerang_platinum": "Boomerang de platino"
+    "item.spartan_weaponry_unofficial.boomerang_nickel": "Boomerang de nickel",
+    "item.spartan_weaponry_unofficial.boomerang_invar": "Boomerang de invar",
+    "item.spartan_weaponry_unofficial.boomerang_platinum": "Boomerang de platino",
+    "spartan_weaponry_unofficial.configuration.quiver": "Carcaj",
+    "spartan_weaponry_unofficial.configuration.oil_uses": "Usos del aceite",
+    "config.spartan_weaponry_unofficial.client.force_compatibility_crosshairs.tooltip": "Fuerza miras de compatibilidad para mods que reemplazan la mira predeterminada.",
+    "config.spartan_weaponry_unofficial.client.disable_shoulder_surfing_integration.tooltip": "Desactiva las funciones de integración con Shoulder Surfing.",
+    "config.spartan_weaponry_unofficial.weapon.disable.tooltip": "Desactiva este tipo de arma.",
+    "config.spartan_weaponry_unofficial.weapon.speed.tooltip": "Modificador base de velocidad de ataque para este tipo de arma.",
+    "config.spartan_weaponry_unofficial.weapon.base_damage.tooltip": "Daño base de ataque para este tipo de arma.",
+    "config.spartan_weaponry_unofficial.weapon.damage_multiplier.tooltip": "Multiplicador de daño aplicado al daño base.",
+    "config.spartan_weaponry_unofficial.potion_oil_blacklist.tooltip": "Los aceites de poción con estos efectos no se pueden fabricar."
 }
