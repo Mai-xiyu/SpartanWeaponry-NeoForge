@@ -14,10 +14,13 @@ import net.neoforged.fml.loading.FMLLoader;
 import net.neoforged.neoforge.client.event.InputEvent;
 import net.neoforged.neoforge.client.event.RenderGuiLayerEvent;
 import net.neoforged.neoforge.client.event.RenderTooltipEvent;
+import net.neoforged.neoforge.client.event.ScreenEvent;
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 import org.lwjgl.glfw.GLFW;
 import org.xiyu.spartanweaponryunofficial.ModSpartanWeaponry;
+import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.screens.ConfirmLinkScreen;
 import org.xiyu.spartanweaponryunofficial.api.oil.OilEffect;
 import org.xiyu.spartanweaponryunofficial.api.tags.ModItemTags;
 import org.xiyu.spartanweaponryunofficial.capability.IOilHandler;
@@ -96,6 +99,21 @@ public class ClientEventHandler {
             // Format NBT debug string
             String nbtStr = ItemStackDataHelper.getTag(stack).toString();
             ev.getToolTip().add(Component.literal("NBT: " + ChatFormatting.DARK_GRAY + nbtStr).withStyle(ChatFormatting.DARK_PURPLE));
+        }
+    }
+
+    @SubscribeEvent
+    public static void onScreenInitPost(ScreenEvent.Init.Post event) {
+        // Only inject Discord button if the current screen is our generated config screen
+        if (ModSpartanWeaponry.myConfigScreenInstance != null && event.getScreen() == ModSpartanWeaponry.myConfigScreenInstance) {
+            int screenWidth = event.getScreen().width;
+
+            // Generate "Discord" Button (width: 80, height: 20, 10px padding from top right)
+            Button discordButton = Button.builder(Component.literal("Discord"), button -> {
+                ConfirmLinkScreen.confirmLinkNow(event.getScreen(), "https://discord.com/invite/h88UDxwUHm");
+            }).bounds(screenWidth - 80 - 10, 10, 80, 20).build();
+
+            event.addListener(discordButton);
         }
     }
 }

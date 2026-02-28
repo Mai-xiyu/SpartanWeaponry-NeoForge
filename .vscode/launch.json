@@ -16,7 +16,7 @@
       ],
       "vmArgs": [
         "@/home/xiyu/下载/Spartan Weaponry/build/moddev/clientRunVmArgs.txt",
-        "-Dfml.modFolders\u003dspartanweaponryunofficial%%/home/xiyu/下载/Spartan Weaponry/bin/main"
+        "-Dfml.modFolders\u003dspartan_weaponry_unofficial%%/home/xiyu/下载/Spartan Weaponry/bin/main"
       ],
       "cwd": "${workspaceFolder}/run",
       "env": {},
@@ -38,7 +38,7 @@
       ],
       "vmArgs": [
         "@/home/xiyu/下载/Spartan Weaponry/build/moddev/dataRunVmArgs.txt",
-        "-Dfml.modFolders\u003dspartanweaponryunofficial%%/home/xiyu/下载/Spartan Weaponry/bin/main"
+        "-Dfml.modFolders\u003dspartan_weaponry_unofficial%%/home/xiyu/下载/Spartan Weaponry/bin/main"
       ],
       "cwd": "${workspaceFolder}/run",
       "env": {},
@@ -60,7 +60,7 @@
       ],
       "vmArgs": [
         "@/home/xiyu/下载/Spartan Weaponry/build/moddev/gameTestServerRunVmArgs.txt",
-        "-Dfml.modFolders\u003dspartanweaponryunofficial%%/home/xiyu/下载/Spartan Weaponry/bin/main"
+        "-Dfml.modFolders\u003dspartan_weaponry_unofficial%%/home/xiyu/下载/Spartan Weaponry/bin/main"
       ],
       "cwd": "${workspaceFolder}/run",
       "env": {},
@@ -82,7 +82,7 @@
       ],
       "vmArgs": [
         "@/home/xiyu/下载/Spartan Weaponry/build/moddev/serverRunVmArgs.txt",
-        "-Dfml.modFolders\u003dspartanweaponryunofficial%%/home/xiyu/下载/Spartan Weaponry/bin/main"
+        "-Dfml.modFolders\u003dspartan_weaponry_unofficial%%/home/xiyu/下载/Spartan Weaponry/bin/main"
       ],
       "cwd": "${workspaceFolder}/run",
       "env": {},

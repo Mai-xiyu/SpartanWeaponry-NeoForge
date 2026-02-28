@@ -25,7 +25,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraft.world.item.enchantment.ItemEnchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
@@ -296,31 +295,22 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
                 ((ServerLevel) level).sendParticles(new BlockParticleOption(ParticleTypes.BLOCK, state).setPos(hitResult.getBlockPos()), this.getX(), this.getY(), this.getZ(), 5, 0.1d, 0.1d, 0.1d, 0.05d);
             }
 
-            ItemStack stack = this.getWeaponItem();
-            this.removeEnchantments(stack);
+            // Weapon retains enchantments - duplication is prevented by the AmmoUsed merge system
         }
         super.onHitBlock(hitResult);
     }
 
-    /**
-     * Delete any enchantments from the provided item stack to prevent duping of said enchantments
-     *
-     * @param stack The item stack to remove enchantments from
-     */
-    protected void removeEnchantments(ItemStack stack) {
-        Level level = this.level();
-        if (stack.isEnchanted() && ItemStackDataHelper.getTag(stack).contains(ThrowingWeaponItem.NBT_AMMO_USED)) {
-            EnchantmentHelper.setEnchantments(stack, ItemEnchantments.EMPTY);
 
-            // Spawn magic dispersal particles
-            if (!level.isClientSide)
-                ((ServerLevel) level).sendParticles(ParticleTypes.WITCH, this.getX(), this.getY(), this.getZ(), 10, 0.1d, 0.1d, 0.1d, 0.2d);
-        }
-    }
 
     protected void dropAsItem() {
-        ItemStack stack = this.getWeaponItem();
-        this.removeEnchantments(stack);
+        ItemStack stack = this.getWeaponItem().copy();
+        // Clean up internal tracking tags but preserve enchantments
+        if (ItemStackDataHelper.hasTag(stack)) {
+            CompoundTag tag = ItemStackDataHelper.getTag(stack);
+            if (tag.contains(ThrowingWeaponItem.NBT_AMMO_USED)) {
+                ItemStackDataHelper.updateTag(stack, t -> t.putInt(ThrowingWeaponItem.NBT_AMMO_USED, 0));
+            }
+        }
         this.spawnAtLocation(stack, 0.1F);
     }
 
@@ -346,6 +336,16 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
     @Override
     public void readAdditionalSaveData(@NotNull CompoundTag compound) {
         super.readAdditionalSaveData(compound);
+        if (compound.contains(NBT_WEAPON)) {
+            CompoundTag weaponTag = compound.getCompound(NBT_WEAPON);
+            ItemStack weapon = ItemStack.parse(this.level().registryAccess(), weaponTag).orElse(ItemStack.EMPTY);
+            if (!weapon.isEmpty()) {
+                this.getEntityData().set(DATA_WEAPON, weapon);
+            }
+        }
+        if (compound.contains("ReturnLevel")) {
+            this.getEntityData().set(DATA_RETURN, compound.getByte("ReturnLevel"));
+        }
     }
 
     @Override
@@ -366,6 +366,13 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
     @Override
     public void addAdditionalSaveData(@NotNull CompoundTag compound) {
         super.addAdditionalSaveData(compound);
+        ItemStack weapon = this.getWeaponItem();
+        if (!weapon.isEmpty()) {
+            CompoundTag weaponTag = new CompoundTag();
+            weapon.save(this.level().registryAccess(), weaponTag);
+            compound.put(NBT_WEAPON, weaponTag);
+        }
+        compound.putByte("ReturnLevel", this.getEntityData().get(DATA_RETURN));
     }
 
     // New Methods
@@ -407,7 +414,6 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
             if (this.pickup == AbstractArrow.Pickup.ALLOWED) {
                 // Restore ammo: decrease the ammo used counter when picking up the weapon
                 ItemStack pickUpStack = this.getWeaponItem().copy();
-                this.removeEnchantments(pickUpStack);
 
                 // Try to merge with existing weapon in inventory
                 boolean merged = false;
@@ -426,7 +432,10 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
 
                 // If couldn't merge, try adding as new item with reset ammo
                 if (!merged) {
-                    ItemStackDataHelper.updateTag(pickUpStack, tag -> tag.putInt(ThrowingWeaponItem.NBT_AMMO_USED, 0));
+                    // Only reset AmmoUsed if already present (don't add it to non-ThrowingWeaponItem weapons)
+                    if (ItemStackDataHelper.hasTag(pickUpStack) && ItemStackDataHelper.getTag(pickUpStack).contains(ThrowingWeaponItem.NBT_AMMO_USED)) {
+                        ItemStackDataHelper.updateTag(pickUpStack, tag -> tag.putInt(ThrowingWeaponItem.NBT_AMMO_USED, 0));
+                    }
                     canBePickedUp = player.getInventory().add(pickUpStack);
                 }
             }
