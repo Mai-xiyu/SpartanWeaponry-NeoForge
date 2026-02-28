@@ -7,6 +7,8 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.client.gui.ConfigurationScreen;
+import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.neoforged.neoforge.common.NeoForge;
 import org.xiyu.spartanweaponryunofficial.api.OilEffects;
 import org.xiyu.spartanweaponryunofficial.api.SpartanWeaponryAPI;
@@ -26,6 +28,9 @@ public class ModSpartanWeaponry {
     // Mod information
     public static final String ID = "spartan_weaponry_unofficial";
     public static final String NAME = "Spartan Weaponr unofficial";
+
+    // 静态变量暂存当前打开的配置屏幕实例
+    public static net.minecraft.client.gui.screens.Screen myConfigScreenInstance = null;
 
     public ModSpartanWeaponry(ModContainer modContainer, IEventBus modBus) {
         Log.info("Constructing Mod: " + NAME);
@@ -69,7 +74,11 @@ public class ModSpartanWeaponry {
         modContainer.registerConfig(ModConfig.Type.CLIENT, ClientConfig.CONFIG_SPEC);
 //        ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, ServerConfig.CONFIG_SPEC);
         // Register extension points
-//        ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.CONFIGGUIFACTORY, () -> ConfigScreen::new);
+        modContainer.registerExtensionPoint(IConfigScreenFactory.class, (container, parent) -> {
+            net.neoforged.neoforge.client.gui.ConfigurationScreen screen = new net.neoforged.neoforge.client.gui.ConfigurationScreen(container, parent);
+            myConfigScreenInstance = screen;
+            return screen;
+        });
         // NeoForge 1.21: Removed register(this) as it requires @SubscribeEvent methods
     }
 
