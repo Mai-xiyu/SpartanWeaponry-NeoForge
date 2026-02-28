@@ -963,7 +963,16 @@
 	"item.spartan_weaponry_unofficial.boomerang_silver": "Bumerangue de Prata",
 	"item.spartan_weaponry_unofficial.boomerang_electrum": "Bumerangue de Electro",
 	"item.spartan_weaponry_unofficial.boomerang_lead": "Bumerangue de Chumbo",
-	"item.spartan_weaponry_unofficial.boomerang_nickel": "Bumerangue de Níquel",
-	"item.spartan_weaponry_unofficial.boomerang_invar": "Bumerangue de Invar",
-	"item.spartan_weaponry_unofficial.boomerang_platinum": "Bumerangue de Platina"
+    "item.spartan_weaponry_unofficial.boomerang_nickel": "Bumerangue de Níquel",
+    "item.spartan_weaponry_unofficial.boomerang_invar": "Bumerangue de Invar",
+    "item.spartan_weaponry_unofficial.boomerang_platinum": "Bumerangue de Platina",
+    "spartan_weaponry_unofficial.configuration.quiver": "Aljava",
+    "spartan_weaponry_unofficial.configuration.oil_uses": "Usos do óleo",
+    "config.spartan_weaponry_unofficial.client.force_compatibility_crosshairs.tooltip": "Força miras de compatibilidade para mods que substituem a mira padrão.",
+    "config.spartan_weaponry_unofficial.client.disable_shoulder_surfing_integration.tooltip": "Desativa os recursos de integração com Shoulder Surfing.",
+    "config.spartan_weaponry_unofficial.weapon.disable.tooltip": "Desativa este tipo de arma.",
+    "config.spartan_weaponry_unofficial.weapon.speed.tooltip": "Modificador base de velocidade de ataque para este tipo de arma.",
+    "config.spartan_weaponry_unofficial.weapon.base_damage.tooltip": "Dano base de ataque para este tipo de arma.",
+    "config.spartan_weaponry_unofficial.weapon.damage_multiplier.tooltip": "Multiplicador de dano aplicado ao dano base.",
+    "config.spartan_weaponry_unofficial.potion_oil_blacklist.tooltip": "Óleos de poção com estes efeitos não podem ser fabricados."
 }
