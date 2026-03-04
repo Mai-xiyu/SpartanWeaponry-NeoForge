@@ -18,7 +18,10 @@ import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.ModContainer;
 import net.neoforged.neoforge.client.event.*;
+import net.neoforged.neoforge.client.gui.ConfigurationScreen;
+import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 import org.xiyu.spartanweaponryunofficial.ModSpartanWeaponry;
 import org.xiyu.spartanweaponryunofficial.api.ModToolActions;
@@ -50,6 +53,21 @@ import org.xiyu.spartanweaponryunofficial.util.OilHelper;
 
 @EventBusSubscriber(modid = ModSpartanWeaponry.ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ClientHelper {
+
+    // Holds the last opened config screen instance for Discord button injection
+    public static net.minecraft.client.gui.screens.Screen lastConfigScreen = null;
+
+    /**
+     * Registers the NeoForge ConfigurationScreen extension point (client-only).
+     * Called from ModSpartanWeaponry constructor behind a dist check.
+     */
+    public static void registerConfigScreen(ModContainer modContainer) {
+        modContainer.registerExtensionPoint(IConfigScreenFactory.class, (container, parent) -> {
+            ConfigurationScreen screen = new ConfigurationScreen(container, parent);
+            lastConfigScreen = screen;
+            return screen;
+        });
+    }
 
     public static final LayeredDraw.Layer LOAD_STATE = HudLoadState::render;
     public static final LayeredDraw.Layer QUIVER_AMMO = HudQuiverAmmo::render;
