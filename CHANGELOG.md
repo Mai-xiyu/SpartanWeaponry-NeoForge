@@ -11,5 +11,9 @@
 ### Changed
 - **Config Screen Registration**: Moved config screen extension point registration from `ModSpartanWeaponry` to `ClientHelper.registerConfigScreen()`, properly guarded behind a dist check.
 - **配置界面注册**: 将配置界面扩展点注册从 `ModSpartanWeaponry` 移至 `ClientHelper.registerConfigScreen()`，并用物理端检查正确保护。
+- **Missing Translations (en_us.json)**: Added 105 missing translation keys including all wooden weapon variants, throwing knives, boomerangs, javelins, tomahawks, quiver upgrade kits, and tipped projectile effects.
+- **缺失翻译 (en_us.json)**: 补充了 105 个缺失的翻译 key，包括所有木质武器变体、飞刀、回旋镖、标枪、印第安战斧、箭袋升级包和药水箭头效果。
+- **Missing Translations (zh_cn.json)**: Added 14 missing translation keys including parrying dagger variants, quiver compartment tooltips, and lightweight trait.
+- **缺失翻译 (zh_cn.json)**: 补充了 14 个缺失的翻译 key，包括格挡匕首变体、箭袋隔层提示和轻量化特性。
 
 ---
