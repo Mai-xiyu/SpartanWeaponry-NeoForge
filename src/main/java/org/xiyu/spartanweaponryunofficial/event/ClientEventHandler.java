@@ -19,6 +19,7 @@ import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 import org.lwjgl.glfw.GLFW;
 import org.xiyu.spartanweaponryunofficial.ModSpartanWeaponry;
+import org.xiyu.spartanweaponryunofficial.client.ClientHelper;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.ConfirmLinkScreen;
 import org.xiyu.spartanweaponryunofficial.api.oil.OilEffect;
@@ -105,7 +106,7 @@ public class ClientEventHandler {
     @SubscribeEvent
     public static void onScreenInitPost(ScreenEvent.Init.Post event) {
         // Only inject Discord button if the current screen is our generated config screen
-        if (ModSpartanWeaponry.myConfigScreenInstance != null && event.getScreen() == ModSpartanWeaponry.myConfigScreenInstance) {
+        if (ClientHelper.lastConfigScreen != null && event.getScreen() == ClientHelper.lastConfigScreen) {
             int screenWidth = event.getScreen().width;
 
             // Generate "Discord" Button (width: 80, height: 20, 10px padding from top right)
