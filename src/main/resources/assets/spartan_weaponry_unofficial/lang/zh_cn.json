@@ -1643,5 +1643,20 @@
 		"config.spartan_weaponry_unofficial.weapon.speed.tooltip": "此武器类型的基础攻击速度修正。",
 		"config.spartan_weaponry_unofficial.weapon.base_damage.tooltip": "此武器类型的基础攻击伤害。",
 		"config.spartan_weaponry_unofficial.weapon.damage_multiplier.tooltip": "应用于基础伤害的伤害倍率。",
-		"config.spartan_weaponry_unofficial.potion_oil_blacklist.tooltip": "具有这些效果的药水油不可被合成。"
+		"config.spartan_weaponry_unofficial.potion_oil_blacklist.tooltip": "具有这些效果的药水油不可被合成。",
+
+		"gearType.silentgear.parrying_dagger": "格挡匕首",
+	"item.spartan_weaponry_unofficial.blueprint.parrying_dagger.desc": "旧式防御",
+	"item.spartan_weaponry_unofficial.parrying_dagger": "格挡匕首",
+	"item.spartan_weaponry_unofficial.parrying_dagger_blade": "复合格挡匕首刃",
+	"item.spartan_weaponry_unofficial.parrying_dagger_blade.nameProper": "%s格挡匕首刃",
+	"item.spartan_weaponry_unofficial.silent_gear_parrying_dagger": "格挡匕首",
+	"item.spartan_weaponry_unofficial.silent_gear_parrying_dagger.nameProper": "%s格挡匕首",
+	"part.spartan_weaponry_unofficial.parrying_dagger_blade": "格挡匕首刃",
+	"tooltip.spartan_weaponry_unofficial.quiver_compartment.additonal_slot_description": "箭袋支架槽",
+	"tooltip.spartan_weaponry_unofficial.quiver_compartment.applies_to": "箭矢与弩箭袋",
+	"tooltip.spartan_weaponry_unofficial.quiver_compartment.base_slot_description": "箭袋槽",
+	"tooltip.spartan_weaponry_unofficial.quiver_compartment.ingredients": "下一级箭袋支架",
+	"tooltip.spartan_weaponry_unofficial.trait.lightweight": "轻量化 %s",
+	"tooltip.spartan_weaponry_unofficial.trait.lightweight.desc": "加快攻击速度、远程拉弓速度、装填时间和投掷蓄力时间"
 }
