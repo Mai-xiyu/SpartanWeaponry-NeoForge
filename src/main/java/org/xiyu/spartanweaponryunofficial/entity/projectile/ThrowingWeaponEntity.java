@@ -234,16 +234,9 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
         }
 
         if (entity.hurt(src, damage)) {
-            if (weapon.isDamageableItem()) {
-                int newDamage = weapon.getDamageValue() + 1;
-                if (newDamage >= weapon.getMaxDamage()) {
-                    this.playSound(SoundEvents.ITEM_BREAK, 0.8f, 0.8f + this.random.nextFloat() * 0.4f);
-                    level.broadcastEntityEvent(this, (byte) 3);
-                    this.discard();
-                } else {
-                    weapon.setDamageValue(newDamage);
-                }
-            }
+            if (level instanceof ServerLevel serverLevel && shooter instanceof LivingEntity)
+                weapon.hurtAndBreak(1, serverLevel, (LivingEntity) shooter, item -> {
+                });
 
             if (entity instanceof LivingEntity entitylivingbase) {
 
@@ -299,7 +292,6 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
         }
         super.onHitBlock(hitResult);
     }
-
 
 
     protected void dropAsItem() {
@@ -423,6 +415,7 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
                         // Found matching weapon, decrease its ammo counter
                         int currentAmmo = ItemStackDataHelper.getTag(invStack).getInt(ThrowingWeaponItem.NBT_AMMO_USED);
                         if (currentAmmo > 0) {
+                            invStack.setDamageValue(invStack.getDamageValue() + pickUpStack.getDamageValue());
                             ItemStackDataHelper.updateTag(invStack, tag -> tag.putInt(ThrowingWeaponItem.NBT_AMMO_USED, Math.max(0, tag.getInt(ThrowingWeaponItem.NBT_AMMO_USED) - 1)));
                             merged = true;
                             break;
