@@ -398,9 +398,10 @@ public class CommonEventHandler {
 
     @SubscribeEvent
     public static void onPlayerPickup(ItemEntityPickupEvent.Pre ev) {
+        if (ev.getItemEntity().hasPickUpDelay()) return;//Cancel when in delay
+
         ItemStack pickedUpStack = ev.getItemEntity().getItem().copy();
-        int beforeCount = pickedUpStack.getCount(),
-                afterCount;
+        int beforeCount = pickedUpStack.getCount(), afterCount;
         Player player = ev.getPlayer();
         Level level = player.level();
         List<ItemStack> quivers = QuiverHelper.findValidQuivers(player);
