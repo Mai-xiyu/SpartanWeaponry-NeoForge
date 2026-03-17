@@ -5,6 +5,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 import org.xiyu.spartanweaponryunofficial.init.ModItems;
@@ -19,12 +20,12 @@ public abstract class ArrowEntitySW extends AbstractArrow {
     }
 
     public ArrowEntitySW(EntityType<? extends ArrowEntitySW> type, Level level, double x, double y, double z, ItemStack weapon) {
-        super(type, x, y, z, level, ItemStack.EMPTY, weapon);
+        super(type, x, y, z, level, Items.ARROW.getDefaultInstance(), weapon);
         this.initEntity();
     }
 
     public ArrowEntitySW(EntityType<? extends ArrowEntitySW> type, Level level, LivingEntity shooter, ItemStack weapon) {
-        super(type, shooter, level, ItemStack.EMPTY, weapon);
+        super(type, shooter, level, Items.ARROW.getDefaultInstance(), weapon);
         this.initEntity();
     }
 
