@@ -26,6 +26,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -229,6 +230,14 @@ public class BoltEntity extends AbstractArrow implements IEntityWithComplexSpawn
     public void readAdditionalSaveData(@NotNull CompoundTag compound) {
         super.readAdditionalSaveData(compound);
 
+        if (compound.contains(this.NBT_BOLT)) {
+            CompoundTag boltNbt = compound.getCompound(this.NBT_BOLT);
+            ItemStack boltStack = ItemStack.parseOptional(this.level().registryAccess(), boltNbt);
+            if (!boltStack.isEmpty()) {
+                this.getEntityData().set(DATA_BOLT, boltStack);
+            }
+        }
+
         if (compound.contains(this.NBT_POTION, 8))
             this.potion = BuiltInRegistries.POTION.get(ResourceLocation.parse(compound.getString(this.NBT_POTION)));
 
@@ -244,7 +253,21 @@ public class BoltEntity extends AbstractArrow implements IEntityWithComplexSpawn
 
     @Override
     public void addAdditionalSaveData(@NotNull CompoundTag compound) {
+        // Guard: AbstractArrow.addAdditionalSaveData calls getPickupItem().save() which crashes on empty ItemStack.
+        ItemStack boltData = this.getEntityData().get(DATA_BOLT);
+        boolean wasEmpty = boltData.isEmpty();
+        if (wasEmpty) {
+            this.getEntityData().set(DATA_BOLT, Items.ARROW.getDefaultInstance());
+        }
         super.addAdditionalSaveData(compound);
+        if (wasEmpty) {
+            this.getEntityData().set(DATA_BOLT, ItemStack.EMPTY);
+        }
+
+        ItemStack boltStack = this.getPickupItem();
+        if (!boltStack.isEmpty()) {
+            compound.put(this.NBT_BOLT, boltStack.save(this.level().registryAccess()));
+        }
 
         if (this.potion != null) {
             compound.putString(this.NBT_POTION, BuiltInRegistries.POTION.getKey(this.potion).toString());
