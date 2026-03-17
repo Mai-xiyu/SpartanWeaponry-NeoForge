@@ -23,6 +23,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
@@ -357,7 +358,17 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
 
     @Override
     public void addAdditionalSaveData(@NotNull CompoundTag compound) {
+        // Guard: AbstractArrow.addAdditionalSaveData calls getPickupItem().save() which crashes on empty ItemStack.
+        ItemStack weaponData = this.getEntityData().get(DATA_WEAPON);
+        boolean wasEmpty = weaponData.isEmpty();
+        if (wasEmpty) {
+            this.getEntityData().set(DATA_WEAPON, Items.ARROW.getDefaultInstance());
+        }
         super.addAdditionalSaveData(compound);
+        if (wasEmpty) {
+            this.getEntityData().set(DATA_WEAPON, ItemStack.EMPTY);
+        }
+
         ItemStack weapon = this.getWeaponItem();
         if (!weapon.isEmpty()) {
             CompoundTag weaponTag = new CompoundTag();

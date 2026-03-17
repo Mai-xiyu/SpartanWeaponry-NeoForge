@@ -20,6 +20,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.level.Level;
@@ -47,11 +48,11 @@ public class ArrowBaseEntity extends AbstractArrow implements IEntityWithComplex
     }
 
     public ArrowBaseEntity(Level level, double x, double y, double z, ItemStack weapon) {
-        super(ModEntities.ARROW_SW.get(), x, y, z, level, ItemStack.EMPTY, weapon);
+        super(ModEntities.ARROW_SW.get(), x, y, z, level, Items.ARROW.getDefaultInstance(), weapon);
     }
 
     public ArrowBaseEntity(Level level, LivingEntity shooter, ItemStack weapon) {
-        super(ModEntities.ARROW_SW.get(), shooter, level, ItemStack.EMPTY, weapon);
+        super(ModEntities.ARROW_SW.get(), shooter, level, Items.ARROW.getDefaultInstance(), weapon);
     }
 
     public void initEntity(float baseDamage, float rangeMultiplier, ItemStack arrowStack) {
@@ -155,14 +156,27 @@ public class ArrowBaseEntity extends AbstractArrow implements IEntityWithComplex
 
     @Override
     public void writeSpawnData(@NotNull RegistryFriendlyByteBuf buffer) {
-//		buffer.writeItemStack(arrowStack);
-        ItemStack.STREAM_CODEC.encode(buffer, this.getPickupItem());
+        ItemStack.OPTIONAL_STREAM_CODEC.encode(buffer, this.getPickupItem());
     }
 
     @Override
     public void addAdditionalSaveData(@NotNull CompoundTag compound) {
+        // Guard: AbstractArrow.addAdditionalSaveData calls getPickupItem().save() which crashes on empty ItemStack.
+        // Temporarily set a fallback if our ARROW data is empty, then restore after super call.
+        ItemStack arrowData = this.getEntityData().get(ARROW);
+        boolean wasEmpty = arrowData.isEmpty();
+        if (wasEmpty) {
+            this.getEntityData().set(ARROW, Items.ARROW.getDefaultInstance());
+        }
         super.addAdditionalSaveData(compound);
-        compound.put(this.NBT_ARROW, this.getPickupItem().save(this.level().registryAccess()));
+        if (wasEmpty) {
+            this.getEntityData().set(ARROW, ItemStack.EMPTY);
+        }
+
+        ItemStack arrowStack = this.getPickupItem();
+        if (!arrowStack.isEmpty()) {
+            compound.put(this.NBT_ARROW, arrowStack.save(this.level().registryAccess()));
+        }
 
         if (this.potion != null) {
             compound.putString(this.NBT_POTION, BuiltInRegistries.POTION.getKey(this.potion).toString());
@@ -173,7 +187,10 @@ public class ArrowBaseEntity extends AbstractArrow implements IEntityWithComplex
 
     @Override
     public void readSpawnData(@NotNull RegistryFriendlyByteBuf additionalData) {
-        this.setArrowStack(ItemStack.STREAM_CODEC.decode(additionalData));
+        ItemStack decoded = ItemStack.OPTIONAL_STREAM_CODEC.decode(additionalData);
+        if (!decoded.isEmpty()) {
+            this.setArrowStack(decoded);
+        }
     }
 
     @Override
