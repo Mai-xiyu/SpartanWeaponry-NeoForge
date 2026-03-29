@@ -48,6 +48,7 @@ import net.neoforged.neoforge.event.entity.EntityTeleportEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDropsEvent;
 import net.neoforged.neoforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
+import net.neoforged.neoforge.event.entity.item.ItemTossEvent;
 import net.neoforged.neoforge.event.entity.player.ItemEntityPickupEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.village.VillagerTradesEvent;
@@ -431,12 +432,9 @@ public class CommonEventHandler {
                 level.playSound(null, ev.getItemEntity().getX(), ev.getItemEntity().getY(), ev.getItemEntity().getZ(), SoundEvents.ITEM_PICKUP, player.getSoundSource(), 0.2F, (rand.nextFloat() - rand.nextFloat()) * 0.7F + 0.0F);
             }
         }
-        // Merge compatible itemstacks for throwing weapons
+        // Merge compatible itemstacks for throwing weapons (ammo restoration on pickup)
         if (pickedUpStack.getItem() instanceof ThrowingWeaponItem throwingWeapon) {
-            boolean pickUpAsNewItem = true;
-            boolean removeItems = false;
-
-            // Find any stack that might fit this item.
+            // Find any stack with matching UUID that needs ammo restored
             for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
                 ItemStack slotStack = player.getInventory().getItem(i);
                 if (ItemStack.isSameItem(slotStack, pickedUpStack) && ItemStackDataHelper.hasTag(pickedUpStack) && ItemStackDataHelper.hasTag(slotStack) &&
@@ -476,18 +474,36 @@ public class CommonEventHandler {
                             }
                         }
                         slotStack.setDamageValue(itemDamage);
-                        pickUpAsNewItem = false;
-                        removeItems = true;
+
+                        // Consume the picked-up item entity and play pickup effects
+                        player.take(ev.getItemEntity(), 1);
+                        level.playSound(null, ev.getItemEntity().getX(), ev.getItemEntity().getY(), ev.getItemEntity().getZ(), SoundEvents.ITEM_PICKUP, SoundSource.PLAYERS, 0.2F, (rand.nextFloat() - rand.nextFloat()) * 0.7F + 0.0F);
+                        ev.getItemEntity().getItem().setCount(0);
                         break;
                     }
                 }
             }
-            if (pickUpAsNewItem)
-                removeItems = player.getInventory().add(pickedUpStack);
-            if (removeItems) {
-                player.take(player, 1);
-                level.playSound(null, ev.getItemEntity().getX(), ev.getItemEntity().getY(), ev.getItemEntity().getZ(), SoundEvents.ITEM_PICKUP, SoundSource.PLAYERS, 0.2F, (rand.nextFloat() - rand.nextFloat()) * 0.7F + 0.0F);
-                ev.getItemEntity().getItem().setCount(0);
+            // If no UUID match found, let vanilla pickup logic handle it normally
+            // (this allows Q-key dropping to work - the item stays on the ground as expected)
+        }
+    }
+
+    /**
+     * Prevent dropping throwing weapons when all ammo is used (i.e. the weapon is in-flight).
+     * Without this, Q-dropping the placeholder item would cause the returning projectile
+     * to lose its inventory target for ammo restoration.
+     */
+    @SubscribeEvent
+    public static void onItemToss(ItemTossEvent ev) {
+        ItemStack stack = ev.getEntity().getItem();
+        if (stack.getItem() instanceof ThrowingWeaponItem throwingWeapon && ItemStackDataHelper.hasTag(stack)) {
+            int ammoUsed = ItemStackDataHelper.getTag(stack).getInt(ThrowingWeaponItem.NBT_AMMO_USED);
+            int maxAmmo = throwingWeapon.getMaxAmmo(stack, ev.getPlayer().level());
+            if (ammoUsed >= maxAmmo) {
+                // Cancel the toss - but ItemTossEvent cancellation does NOT restore the item to inventory,
+                // so we must add it back manually
+                ev.setCanceled(true);
+                ev.getPlayer().getInventory().add(stack);
             }
         }
     }
