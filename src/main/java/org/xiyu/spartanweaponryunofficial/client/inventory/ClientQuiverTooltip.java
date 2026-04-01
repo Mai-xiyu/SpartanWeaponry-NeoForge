@@ -1,16 +1,15 @@
 package org.xiyu.spartanweaponryunofficial.client.inventory;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.core.NonNullList;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.data.AtlasIds;
+import net.minecraft.resources.Identifier;
 import net.minecraft.util.Mth;
-import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.xiyu.spartanweaponryunofficial.ModSpartanWeaponry;
@@ -20,7 +19,7 @@ import org.xiyu.spartanweaponryunofficial.inventory.tooltip.QuiverTooltip;
 import org.xiyu.spartanweaponryunofficial.util.Defaults;
 
 public class ClientQuiverTooltip implements ClientTooltipComponent {
-    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(ModSpartanWeaponry.ID, "textures/gui/tooltip/quiver.png");
+    private static final Identifier TEXTURE = Identifier.fromNamespaceAndPath(ModSpartanWeaponry.ID, "textures/gui/tooltip/quiver.png");
     private static final int SLOT_SIZE_X = 18;
     private static final int SLOT_SIZE_Y = 18;
     private static final int BORDER_WIDTH_LEFT = 7;
@@ -45,7 +44,7 @@ public class ClientQuiverTooltip implements ClientTooltipComponent {
     }
 
     @Override
-    public int getHeight() {
+    public int getHeight(@NotNull Font font) {
         return this.gridSizeY() * SLOT_SIZE_Y + BORDER_HEIGHT + BORDER_HEIGHT + 2;
     }
 
@@ -63,7 +62,7 @@ public class ClientQuiverTooltip implements ClientTooltipComponent {
     }
 
     @Override
-    public void renderImage(@NotNull Font fontIn, int posXIn, int posYIn, @NotNull GuiGraphics guiGraphics) {
+    public void extractImage(@NotNull Font fontIn, int posXIn, int posYIn, int widthIn, int heightIn, @NotNull GuiGraphicsExtractor guiGraphics) {
 
         // Left Border
 
@@ -83,7 +82,7 @@ public class ClientQuiverTooltip implements ClientTooltipComponent {
                 drawLongVertBorders ? TexturePart.BORDER_LONG_RIGHT : TexturePart.BORDER_RIGHT);
     }
 
-    public void renderSlot(int slotIdxIn, Font fontIn, int posXIn, int posYIn, GuiGraphics guiGraphics) {
+    public void renderSlot(int slotIdxIn, Font fontIn, int posXIn, int posYIn, GuiGraphicsExtractor guiGraphics) {
 
         ItemStack stackToDraw = this.items.get(slotIdxIn);
 
@@ -92,23 +91,20 @@ public class ClientQuiverTooltip implements ClientTooltipComponent {
 
         this.blitPart(guiGraphics, slotX, slotY, TexturePart.SLOT);
 
-        RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
         Minecraft mc = Minecraft.getInstance();
-        TextureAtlasSprite sprite = mc.getTextureAtlas(InventoryMenu.BLOCK_ATLAS).apply(this.isBoltQuiver ? QuiverBoltMenu.EMPTY_BOLT_SLOT : QuiverArrowMenu.EMPTY_ARROW_SLOT);
-//		RenderSystem.setShaderTexture(0, sprite.atlasLocation());
-        guiGraphics.blit(slotX + 1, slotY + 1, BLIT_OFFSET, 16, 16, sprite);
+        TextureAtlasSprite sprite = mc.getAtlasManager().getAtlasOrThrow(AtlasIds.BLOCKS).getSprite(this.isBoltQuiver ? QuiverBoltMenu.EMPTY_BOLT_SLOT : QuiverArrowMenu.EMPTY_ARROW_SLOT);
+        guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, sprite, slotX + 1, slotY + 1, 16, 16);
 
         if (slotIdxIn == this.prioritySlot)
-            AbstractContainerScreen.renderSlotHighlight(guiGraphics, slotX + 1, slotY + 1, BLIT_OFFSET + 10, 0x8040C040);
+            guiGraphics.fill(slotX + 1, slotY + 1, slotX + 1 + 16, slotY + 1 + 16, 0x8040C040);
         if (!stackToDraw.isEmpty()) {
-            guiGraphics.renderItem(stackToDraw, slotX + 1, slotY + 1);
-            guiGraphics.renderItemDecorations(fontIn, stackToDraw, slotX + 1, slotY + 1);
+            guiGraphics.item(stackToDraw, slotX + 1, slotY + 1);
+            guiGraphics.itemDecorations(fontIn, stackToDraw, slotX + 1, slotY + 1);
         }
     }
 
-    protected void blitPart(GuiGraphics guiGraphics, int posXIn, int posYIn, TexturePart partIn) {
-        RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
-        guiGraphics.blit(TEXTURE, posXIn, posYIn, BLIT_OFFSET, partIn.x, partIn.y, partIn.width, partIn.height, TEXTURE_SIZE, TEXTURE_SIZE);
+    protected void blitPart(GuiGraphicsExtractor guiGraphics, int posXIn, int posYIn, TexturePart partIn) {
+        guiGraphics.blit(RenderPipelines.GUI_TEXTURED, TEXTURE, posXIn, posYIn, (float) partIn.x, (float) partIn.y, partIn.width, partIn.height, TEXTURE_SIZE, TEXTURE_SIZE);
     }
 
     protected enum TexturePart {

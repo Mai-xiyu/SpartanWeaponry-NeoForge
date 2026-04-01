@@ -3,12 +3,12 @@ package org.xiyu.spartanweaponryunofficial.api.trait;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.item.ItemUseAnimation;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
@@ -40,7 +40,7 @@ public interface IActionTraitCallback {
      * @param handIn       The hand in use
      * @return The interaction result
      */
-    InteractionResultHolder<ItemStack> use(ItemStack usingStackIn, Level levelIn, Player playerIn, InteractionHand handIn);
+    InteractionResult use(ItemStack usingStackIn, Level levelIn, Player playerIn, InteractionHand handIn);
 
     /**
      * Called when the player releases (lets go of) the use key when using a weapon with this trait<br>
@@ -83,8 +83,8 @@ public interface IActionTraitCallback {
      * @param stackIn The item stack the animation applies to
      * @return The use animation
      */
-    default UseAnim getUseAnimation(ItemStack stackIn) {
-        return UseAnim.NONE;
+    default ItemUseAnimation getUseAnimation(ItemStack stackIn) {
+        return ItemUseAnimation.NONE;
     }
 
     /**

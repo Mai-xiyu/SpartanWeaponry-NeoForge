@@ -9,11 +9,11 @@
   ],
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_greaseball": {
+    "has_slimeball": {
       "conditions": {
         "items": [
           {
-            "items": "spartan_weaponry_unofficial:grease_ball"
+            "items": "minecraft:slime_ball"
           }
         ]
       },
@@ -28,7 +28,7 @@
   },
   "requirements": [
     [
-      "has_greaseball",
+      "has_slimeball",
       "has_the_recipe"
     ]
   ],

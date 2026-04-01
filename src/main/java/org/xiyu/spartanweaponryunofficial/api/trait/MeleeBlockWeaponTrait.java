@@ -1,13 +1,13 @@
 package org.xiyu.spartanweaponryunofficial.api.trait;
 
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.item.ItemUseAnimation;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.common.ItemAbility;
 import net.neoforged.neoforge.event.entity.living.LivingShieldBlockEvent;
@@ -27,17 +27,17 @@ public class MeleeBlockWeaponTrait extends WeaponTrait implements IActionTraitCa
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(ItemStack usingStackIn, Level levelIn, Player playerIn,
+    public InteractionResult use(ItemStack usingStackIn, Level levelIn, Player playerIn,
                                                   InteractionHand handIn) {
         if (playerIn.isCrouching())
-            return InteractionResultHolder.fail(usingStackIn);
+            return InteractionResult.FAIL;
         playerIn.startUsingItem(handIn);
-        return InteractionResultHolder.consume(usingStackIn);
+        return InteractionResult.CONSUME;
     }
 
     @Override
-    public UseAnim getUseAnimation(ItemStack stackIn) {
-        return UseAnim.BLOCK;
+    public ItemUseAnimation getUseAnimation(ItemStack stackIn) {
+        return ItemUseAnimation.BLOCK;
     }
 
     @Override
@@ -55,7 +55,7 @@ public class MeleeBlockWeaponTrait extends WeaponTrait implements IActionTraitCa
             // Block Melee attacks only! Explosion, Fire, Magic, Projectile and unblockable damage won't be blocked!
             // NOTE: Changes in Minecraft version 1.20.x means that it can only block specific damage sources, rather than block melee damage sources only! Maybe provide a tag for damage sources?
             if (!source.is(DamageTypes.PLAYER_ATTACK) && !source.is(DamageTypes.MOB_ATTACK) && !source.is(DamageTypes.MOB_ATTACK_NO_AGGRO))
-                ev.setCanceled(true);
+                ev.setBlocked(false);
         }
     }
 }

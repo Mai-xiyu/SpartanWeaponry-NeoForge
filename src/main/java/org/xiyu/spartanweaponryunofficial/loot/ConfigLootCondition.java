@@ -3,9 +3,7 @@ package org.xiyu.spartanweaponryunofficial.loot;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
-import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
 import org.jetbrains.annotations.NotNull;
-import org.xiyu.spartanweaponryunofficial.init.ModLootModifiers;
 import org.xiyu.spartanweaponryunofficial.util.Config;
 
 public class ConfigLootCondition implements LootItemCondition {
@@ -21,9 +19,8 @@ public class ConfigLootCondition implements LootItemCondition {
     }
 
     @Override
-    public @NotNull LootItemConditionType getType() {
-        // NeoForge 1.21: CONFIG_ENABLED is now a Supplier
-        return ModLootModifiers.CONFIG_ENABLED.get();
+    public @NotNull MapCodec<ConfigLootCondition> codec() {
+        return CODEC;
     }
 
     public static LootItemCondition.Builder builder() {

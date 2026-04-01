@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ItemRandomizer {
     public static ItemStack generate(Level level, List<Item> items) {
-        float weaponRand = level.random.nextFloat();
+        float weaponRand = level.getRandom().nextFloat();
         float divider = 1.0f / items.size();
         int idx = Mth.floor(weaponRand / divider);
         idx = Math.min(idx, items.size() - 1);
@@ -17,3 +17,4 @@ public class ItemRandomizer {
         return new ItemStack(items.get(idx));
     }
 }
+

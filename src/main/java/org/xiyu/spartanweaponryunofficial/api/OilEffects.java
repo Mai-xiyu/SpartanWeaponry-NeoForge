@@ -2,7 +2,7 @@ package org.xiyu.spartanweaponryunofficial.api;
 
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.effect.MobEffects;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -15,7 +15,7 @@ import org.xiyu.spartanweaponryunofficial.init.ModMobEffects;
 import org.xiyu.spartanweaponryunofficial.util.Defaults;
 
 public class OilEffects {
-    public static final ResourceLocation REGISTRY_NAME = ResourceLocation.fromNamespaceAndPath(ModSpartanWeaponry.ID, "oil_effects");
+    public static final Identifier REGISTRY_NAME = Identifier.fromNamespaceAndPath(ModSpartanWeaponry.ID, "oil_effects");
     public static final ResourceKey<Registry<OilEffect>> REGISTRY_KEY = ResourceKey.createRegistryKey(REGISTRY_NAME);
     public static final DeferredRegister<OilEffect> REGISTRY = DeferredRegister.create(REGISTRY_KEY, ModSpartanWeaponry.ID);
 

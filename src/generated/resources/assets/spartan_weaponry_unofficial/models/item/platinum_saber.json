@@ -1,6 +1,5 @@
 {
   "parent": "spartan_weaponry_unofficial:item/base/saber",
-  "loader": "spartan_weaponry_unofficial:oil_coated_item",
   "overrides": [
     {
       "model": "spartan_weaponry_unofficial:item/platinum_saber_blocking",

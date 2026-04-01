@@ -1,6 +1,5 @@
 {
   "parent": "spartan_weaponry_unofficial:item/base/saber_blocking",
-  "loader": "spartan_weaponry_unofficial:oil_coated_item",
   "textures": {
     "coating": "spartan_weaponry_unofficial:item/coating/saber",
     "layer0": "spartan_weaponry_unofficial:item/electrum_saber"

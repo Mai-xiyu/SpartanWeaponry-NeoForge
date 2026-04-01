@@ -4,7 +4,10 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.util.ProblemReporter;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.storage.TagValueInput;
+import net.minecraft.world.level.storage.TagValueOutput;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import org.xiyu.spartanweaponryunofficial.item.QuiverBaseItem;
 import org.xiyu.spartanweaponryunofficial.util.ItemStackDataHelper;
@@ -15,9 +18,9 @@ public class QuiverItemStackHandler extends ItemStackHandler implements IQuiverI
     public QuiverItemStackHandler(ItemStack stack, int size) {
         super(size);
         this.quiverStack = stack;
-        CompoundTag tag = ItemStackDataHelper.getTag(stack).getCompound(QuiverBaseItem.NBT_AMMO);
+        CompoundTag tag = ItemStackDataHelper.getTag(stack).getCompoundOrEmpty(QuiverBaseItem.NBT_AMMO);
         if (!tag.isEmpty())
-            this.deserializeNBT(getRegistryAccess(), tag);
+            this.deserialize(TagValueInput.create(ProblemReporter.DISCARDING, getRegistryAccess(), tag));
     }
 
     /**
@@ -41,7 +44,11 @@ public class QuiverItemStackHandler extends ItemStackHandler implements IQuiverI
     }
 
     private void syncToStack() {
-        ItemStackDataHelper.updateTag(this.quiverStack, tag -> tag.put(QuiverBaseItem.NBT_AMMO, this.serializeNBT(getRegistryAccess())));
+        ItemStackDataHelper.updateTag(this.quiverStack, tag -> {
+            TagValueOutput output = TagValueOutput.createWithContext(ProblemReporter.DISCARDING, getRegistryAccess());
+            this.serialize(output);
+            tag.put(QuiverBaseItem.NBT_AMMO, output.buildResult());
+        });
     }
 
     private static RegistryAccess getRegistryAccess() {

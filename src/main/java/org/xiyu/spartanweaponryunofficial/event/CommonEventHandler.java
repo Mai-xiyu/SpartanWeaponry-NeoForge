@@ -3,6 +3,7 @@ package org.xiyu.spartanweaponryunofficial.event;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceKey;
@@ -19,8 +20,9 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.entity.npc.VillagerProfession;
-import net.minecraft.world.entity.npc.VillagerTrades.ItemListing;
+// REMOVED: VillagerProfession and ItemListing (trade system now data-driven in MC 26.1)
+// import net.minecraft.world.entity.npc.VillagerProfession;
+// import net.minecraft.world.entity.npc.VillagerTrades.ItemListing;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -51,7 +53,8 @@ import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import net.neoforged.neoforge.event.entity.item.ItemTossEvent;
 import net.neoforged.neoforge.event.entity.player.ItemEntityPickupEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
-import net.neoforged.neoforge.event.village.VillagerTradesEvent;
+// REMOVED: VillagerTradesEvent removed in NeoForge 26.1
+// import net.neoforged.neoforge.event.village.VillagerTradesEvent;
 import org.xiyu.spartanweaponryunofficial.ModSpartanWeaponry;
 import org.xiyu.spartanweaponryunofficial.api.IWeaponTraitContainer;
 import org.xiyu.spartanweaponryunofficial.api.OilEffects;
@@ -68,8 +71,9 @@ import org.xiyu.spartanweaponryunofficial.item.QuiverBaseItem;
 import org.xiyu.spartanweaponryunofficial.item.SwordBaseItem;
 import org.xiyu.spartanweaponryunofficial.item.ThrowingWeaponItem;
 import org.xiyu.spartanweaponryunofficial.loot.ModLootTables;
-import org.xiyu.spartanweaponryunofficial.merchant.villager.FletcherTrades;
-import org.xiyu.spartanweaponryunofficial.merchant.villager.WeaponsmithTrades;
+// REMOVED: FletcherTrades and WeaponsmithTrades (trade system now data-driven)
+// import org.xiyu.spartanweaponryunofficial.merchant.villager.FletcherTrades;
+// import org.xiyu.spartanweaponryunofficial.merchant.villager.WeaponsmithTrades;
 import org.xiyu.spartanweaponryunofficial.util.*;
 import org.xiyu.spartanweaponryunofficial.util.QuiverHelper.IQuiverInfo;
 
@@ -77,7 +81,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
-@EventBusSubscriber(modid = ModSpartanWeaponry.ID, bus = EventBusSubscriber.Bus.GAME)
+@EventBusSubscriber(modid = ModSpartanWeaponry.ID)
 public class CommonEventHandler {
     public static Random rand = new Random();
 
@@ -119,7 +123,7 @@ public class CommonEventHandler {
                     doTraitDamageParticles = true;
             }
             if (attackerStack.getItem() instanceof ThrowingWeaponItem && ItemStackDataHelper.hasTag(attackerStack) &&
-                    ItemStackDataHelper.getTag(attackerStack).getInt(ThrowingWeaponItem.NBT_AMMO_USED) >= ((ThrowingWeaponItem) attackerStack.getItem()).getMaxAmmo(attackerStack, attacker.level()))
+                    ItemStackDataHelper.getTag(attackerStack).getIntOr(ThrowingWeaponItem.NBT_AMMO_USED, 0) >= ((ThrowingWeaponItem) attackerStack.getItem()).getMaxAmmo(attackerStack, attacker.level()))
                 // Only do punching damage when melee attacking using a throwing weapon without ammo
                 dmgDealt = 1.0f;
 
@@ -147,7 +151,7 @@ public class CommonEventHandler {
                 ev.setAmount(dmgDealt);
             }
 
-            if (!level.isClientSide) {
+            if (!level.isClientSide()) {
                 // Emit particles when damage has been enhanced or mitigated, depending on what has happened
                 if (doTraitDamageParticles && dmgDealt > ev.getAmount())
                     ((ServerLevel) level).sendParticles(ModParticles.DAMAGE_BOOSTED.get(), target.getX(), target.getY() + (target.getBbHeight() / 2.0f), target.getZ(), 8, 0.2d, 0.2d, 0.2d, 0.5d);
@@ -202,7 +206,7 @@ public class CommonEventHandler {
                 for (ItemEntity drop : ev.getDrops()) {
                     ItemStack dropStack = drop.getItem();
                     if (!dropStack.isEmpty()) {
-                        int extra = drop.level().random.nextInt(luckLevel + 1);
+                        int extra = drop.level().getRandom().nextInt(luckLevel + 1);
                         if (extra > 0)
                             dropStack.grow(extra);
                     }
@@ -254,8 +258,8 @@ public class CommonEventHandler {
                             // If there is any offhand item data in the quiver, find it and put it back
                             CompoundTag nbt = ItemStackDataHelper.getTagElement(quiver, QuiverBaseItem.NBT_OFFHAND_MOVED);
                             if (nbt != null) {
-                                String itemId = nbt.getString(QuiverBaseItem.NBT_ITEM_ID);
-                                int itemSlot = nbt.getInt(QuiverBaseItem.NBT_ITEM_SLOT);
+                                String itemId = nbt.getStringOr(QuiverBaseItem.NBT_ITEM_ID, "");
+                                int itemSlot = nbt.getIntOr(QuiverBaseItem.NBT_ITEM_SLOT, -1);
                                 ItemStack offhandStack = player.getInventory().getItem(itemSlot);
                                 // Check to see if the item in the slot is a match
                                 if (BuiltInRegistries.ITEM.getKey(offhandStack.getItem()).toString().equals(itemId)) {
@@ -289,22 +293,13 @@ public class CommonEventHandler {
                             if (quiverHandler == null)
                                 continue;
                             boolean isQuiverEmpty = quiverHandler.isEmpty();
-							/*for(int i = 0; i < quiverHandler.getSlots(); i++)
-							{
-								ItemStack arrowStack = quiverHandler.getStackInSlot(i);
-								if(!arrowStack.isEmpty())
-								{
-									isQuiverEmpty = false;
-									break;
-								}
-							}*/
 
                             // Check to see if the opposite hand slot is not empty; attempt to move it somewhere else
                             if (!isQuiverEmpty && !oppositeStack.isEmpty() && !quiverInfo.isAmmo(oppositeStack)) {
                                 // Find the nearest empty slot...
                                 int emptySlot = -1;
-                                for (int i = 0; i < player.getInventory().items.size(); i++) {
-                                    ItemStack playerStack = player.getInventory().items.get(i);
+                                for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
+                                    ItemStack playerStack = player.getInventory().getItem(i);
                                     if (playerStack.isEmpty()) {
                                         emptySlot = i;
                                         break;
@@ -348,7 +343,7 @@ public class CommonEventHandler {
                 return;
             ItemStack arrowStack = player.getItemBySlot(oppositeHandSlot);
 
-            int prioritySlot = ItemStackDataHelper.getTag(quiver).getInt(QuiverBaseItem.NBT_PROIRITY_SLOT);
+            int prioritySlot = ItemStackDataHelper.getTag(quiver).getIntOr(QuiverBaseItem.NBT_PROIRITY_SLOT, 0);
             arrowStack = quiverHandler.insertItem(prioritySlot, arrowStack, false);
             if (!arrowStack.isEmpty()) {
                 for (int j = 0; j < quiverHandler.getSlots(); j++) {
@@ -375,7 +370,7 @@ public class CommonEventHandler {
                 return;
             ItemStack arrowStack;
 
-            int prioritySlot = ItemStackDataHelper.getTag(quiver).getInt(QuiverBaseItem.NBT_PROIRITY_SLOT);
+            int prioritySlot = ItemStackDataHelper.getTag(quiver).getIntOr(QuiverBaseItem.NBT_PROIRITY_SLOT, 0);
             if (prioritySlot <= quiverHandler.getSlots()) {
                 arrowStack = quiverHandler.extractItem(prioritySlot, 64, false);
                 if (!arrowStack.isEmpty()) {
@@ -412,7 +407,7 @@ public class CommonEventHandler {
             for (ItemStack quiver : quivers) {
                 if (!pickedUpStack.isEmpty() && !quiver.isEmpty() && ((QuiverBaseItem) quiver.getItem()).isAmmoValid(pickedUpStack, quiver)) {
                     // Make sure auto-collect is enabled.
-                    if (ItemStackDataHelper.getTag(quiver).getBoolean(QuiverBaseItem.NBT_AMMO_COLLECT)) {
+                    if (ItemStackDataHelper.getTag(quiver).getBooleanOr(QuiverBaseItem.NBT_AMMO_COLLECT, false)) {
                         // Attempt to place the arrows into the quiver.
                         IQuiverItemHandler quiverHandler = quiver.getCapability(ModCapabilities.QUIVER_ITEM_CAPABILITY);
                         if (quiverHandler == null)
@@ -437,13 +432,19 @@ public class CommonEventHandler {
             // Find any stack with matching UUID that needs ammo restored
             for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
                 ItemStack slotStack = player.getInventory().getItem(i);
-                if (ItemStack.isSameItem(slotStack, pickedUpStack) && ItemStackDataHelper.hasTag(pickedUpStack) && ItemStackDataHelper.hasTag(slotStack) &&
-                        ItemStackDataHelper.getTag(slotStack).hasUUID(ThrowingWeaponItem.NBT_UUID) && ItemStackDataHelper.getTag(pickedUpStack).hasUUID(ThrowingWeaponItem.NBT_UUID) &&
-                        ItemStackDataHelper.getTag(pickedUpStack).getUUID(ThrowingWeaponItem.NBT_UUID).equals(ItemStackDataHelper.getTag(slotStack).getUUID(ThrowingWeaponItem.NBT_UUID))) {
+                if (ItemStack.isSameItem(slotStack, pickedUpStack) && ItemStackDataHelper.hasTag(pickedUpStack) && ItemStackDataHelper.hasTag(slotStack)) {
+                    CompoundTag slotTag = ItemStackDataHelper.getTag(slotStack);
+                    CompoundTag pickedTag = ItemStackDataHelper.getTag(pickedUpStack);
+                    Optional<java.util.UUID> slotUuid = ThrowingWeaponItem.getWeaponUuid(slotTag);
+                    Optional<java.util.UUID> pickedUuid = ThrowingWeaponItem.getWeaponUuid(pickedTag);
+                    if (slotUuid.isEmpty() || pickedUuid.isEmpty() || !pickedUuid.get().equals(slotUuid.get())) {
+                        continue;
+                    }
+
                     int maxAmmo = throwingWeapon.getMaxAmmo(slotStack, player.level());
-                    int currentAmmo = maxAmmo - ItemStackDataHelper.getTag(slotStack).getInt(ThrowingWeaponItem.NBT_AMMO_USED);
-                    boolean currentNotOriginalStack = !ItemStackDataHelper.getTag(slotStack).getBoolean(ThrowingWeaponItem.NBT_ORIGINAL);
-                    boolean pickedUpOriginalStack = ItemStackDataHelper.getTag(pickedUpStack).getBoolean(ThrowingWeaponItem.NBT_ORIGINAL);
+                    int currentAmmo = maxAmmo - slotTag.getIntOr(ThrowingWeaponItem.NBT_AMMO_USED, 0);
+                    boolean currentNotOriginalStack = !slotTag.getBooleanOr(ThrowingWeaponItem.NBT_ORIGINAL, true);
+                    boolean pickedUpOriginalStack = pickedTag.getBooleanOr(ThrowingWeaponItem.NBT_ORIGINAL, true);
 
                     if (currentAmmo < maxAmmo || (currentNotOriginalStack && pickedUpOriginalStack)) {
                         int itemDamage = slotStack.getDamageValue() + pickedUpStack.getDamageValue();
@@ -459,7 +460,7 @@ public class CommonEventHandler {
 //    							((ServerLevel)level).getChunkSource().broadcast(player, new ClientboundEntityEventPacket(player, (byte) 47));
                             itemDamage -= slotStack.getMaxDamage() + 1;
                         } else {
-                            currentAmmo += (maxAmmo - ItemStackDataHelper.getTag(pickedUpStack).getInt(ThrowingWeaponItem.NBT_AMMO_USED));
+                            currentAmmo += (maxAmmo - pickedTag.getIntOr(ThrowingWeaponItem.NBT_AMMO_USED, 0));
                             currentAmmo = Mth.clamp(currentAmmo, 0, maxAmmo);
                             final int finalCurrentAmmo = currentAmmo;
                             ItemStackDataHelper.updateTag(slotStack, tag -> tag.putInt(ThrowingWeaponItem.NBT_AMMO_USED, maxAmmo - finalCurrentAmmo));
@@ -497,7 +498,7 @@ public class CommonEventHandler {
     public static void onItemToss(ItemTossEvent ev) {
         ItemStack stack = ev.getEntity().getItem();
         if (stack.getItem() instanceof ThrowingWeaponItem throwingWeapon && ItemStackDataHelper.hasTag(stack)) {
-            int ammoUsed = ItemStackDataHelper.getTag(stack).getInt(ThrowingWeaponItem.NBT_AMMO_USED);
+            int ammoUsed = ItemStackDataHelper.getTag(stack).getIntOr(ThrowingWeaponItem.NBT_AMMO_USED, 0);
             int maxAmmo = throwingWeapon.getMaxAmmo(stack, ev.getPlayer().level());
             if (ammoUsed >= maxAmmo) {
                 // Cancel the toss - but ItemTossEvent cancellation does NOT restore the item to inventory,
@@ -515,15 +516,15 @@ public class CommonEventHandler {
     @SubscribeEvent
     public static void onLootTableLoad(LootTableLoadEvent ev) {
         if (Config.INSTANCE.addIronWeaponsToVillageWeaponsmith.get() &&
-                ev.getName().equals(BuiltInLootTables.VILLAGE_WEAPONSMITH.location())) {
+                ev.getName().equals(BuiltInLootTables.VILLAGE_WEAPONSMITH)) {
             Log.info("Adding Iron Weapons to the Village Weaponsmith Loot Table!");
             ev.getTable().addPool(generateLootPool(ModLootTables.INJECT_VILLAGE_WEAPONSMITH));
         } else if (Config.INSTANCE.addBowAndCrossbowLootToVillageFletcher.get() &&
-                ev.getName().equals(BuiltInLootTables.VILLAGE_FLETCHER.location())) {
+                ev.getName().equals(BuiltInLootTables.VILLAGE_FLETCHER)) {
             Log.info("Adding Longbow and Heavy Crossbow related loot to the Village Fletcher Loot Table!");
             ev.getTable().addPool(generateLootPool(ModLootTables.INJECT_VILLAGE_FLETCHER));
         } else if (Config.INSTANCE.addDiamondWeaponsToEndCity.get() &&
-                ev.getName().equals(BuiltInLootTables.END_CITY_TREASURE.location())) {
+                ev.getName().equals(BuiltInLootTables.END_CITY_TREASURE)) {
             Log.info("Adding Diamond Weapons to the End City Treasure Loot Table!");
             ev.getTable().addPool(generateLootPool(ModLootTables.INJECT_END_CITY_TREASURE));
         }
@@ -540,95 +541,8 @@ public class CommonEventHandler {
         return NestedLootTable.lootTableReference(tableKey).setWeight(1);
     }
 
-    /**
-     * Allow Mobs to spawn with weapons from this mod; Zombies with most melee weapons and Skeletons with Longbows
-     *
-     */
-	/*@SubscribeEvent
-	public static void onJoinWorld(SpecialSpawn ev)
-	{
-		if(!Config.INSTANCE.disableSpawningZombieWithWeapon.get() && ev.getEntity() instanceof Zombie zombie)
-		{
-			float rand = zombie.level.random.nextFloat();
-			float chance = zombie.level.getDifficulty() == Difficulty.HARD ? 
-					Config.INSTANCE.zombieWithMeleeSpawnChanceHard.get().floatValue() : 
-					Config.INSTANCE.zombieWithMeleeSpawnChanceNormal.get().floatValue();
-			
-			if(rand > 1 - chance)
-			{
-				ITag<Item> tag = ForgeRegistries.ITEMS.tags().getTag(ModItemTags.ZOMBIE_SPAWN_WEAPONS);
-				if(!tag.isEmpty())
-				{
-					ItemStack weapon = ItemStack.EMPTY;
-					List<Item> possibleWeapons = tag.stream().toList();
-					
-					weapon = generateRandomItem(zombie.level, possibleWeapons);
-				
-					zombie.setItemSlot(EquipmentSlot.MAINHAND, weapon);
-				}
-			}
-		}
-		if(!Config.INSTANCE.disableSpawningSkeletonWithLongbow.get() && ev.getEntity() instanceof AbstractSkeleton skeleton)
-		{
-			float rand = skeleton.level.random.nextFloat();
-			float chance = skeleton.level.getDifficulty() == Difficulty.HARD ? 
-					Config.INSTANCE.skeletonWithLongbowSpawnChanceHard.get().floatValue() : 
-					Config.INSTANCE.skeletonWithLongbowSpawnChanceNormal.get().floatValue();
-			
-			if(rand > 1 - chance)
-			{
-				ITag<Item> tag = ForgeRegistries.ITEMS.tags().getTag(ModItemTags.SKELETON_SPAWN_LONGBOWS);
-				if(!tag.isEmpty())
-				{
-					ItemStack weapon = ItemStack.EMPTY;
-					List<Item> possibleWeapons = tag.stream().toList();
-					weapon = generateRandomItem(skeleton.level, possibleWeapons);
-					skeleton.setItemSlot(EquipmentSlot.MAINHAND, weapon);
-				}
-			}
-		}
-	}
-	
-	private static ItemStack generateRandomItem(Level level, List<Item> items)
-	{
-		float weaponRand = level.random.nextFloat();
-		float divider = 1.0f / items.size();
-		int idx = Mth.floor(weaponRand / divider);
-		idx = idx > items.size() - 1 ? items.size() - 1 : idx;
-		
-		return new ItemStack(items.get(idx));
-	}*/
-    @SubscribeEvent
-    public static void addVillagerTrades(VillagerTradesEvent ev) {
-        if (Config.INSTANCE.disableVillagerTrading.get())
-            return;
-
-        if (ev.getType() == VillagerProfession.WEAPONSMITH) {
-            List<ItemListing> tradesLv1 = ev.getTrades().get(1);
-            List<ItemListing> tradesLv2 = ev.getTrades().get(2);
-            List<ItemListing> tradesLv3 = ev.getTrades().get(3);
-            List<ItemListing> tradesLv4 = ev.getTrades().get(4);
-            List<ItemListing> tradesLv5 = ev.getTrades().get(5);
-            if (!WeaponsmithTrades.LVL1_ITEMS.isEmpty()) tradesLv1.add(WeaponsmithTrades.LVL1_TRADE);
-            if (!WeaponsmithTrades.LVL2_ITEMS.isEmpty()) tradesLv2.add(WeaponsmithTrades.LVL2_TRADE);
-            if (!WeaponsmithTrades.LVL3_ITEMS.isEmpty()) tradesLv3.add(WeaponsmithTrades.LVL3_TRADE);
-            if (!WeaponsmithTrades.LVL4_ITEMS.isEmpty()) tradesLv4.add(WeaponsmithTrades.LVL4_TRADE);
-            if (!WeaponsmithTrades.LVL5_ITEMS.isEmpty()) tradesLv5.add(WeaponsmithTrades.LVL5_TRADE);
-        } else if (ev.getType() == VillagerProfession.FLETCHER) {
-            List<ItemListing> tradesLv1 = ev.getTrades().get(1);
-            List<ItemListing> tradesLv3 = ev.getTrades().get(3);
-            List<ItemListing> tradesLv5 = ev.getTrades().get(5);
-            if (!Config.INSTANCE.longbows.disableRecipes.get()) tradesLv1.add(FletcherTrades.LONGBOW_WOOD_TRADE);
-            if (!Config.INSTANCE.longbows.disableRecipes.get()) tradesLv3.add(FletcherTrades.LONGBOW_IRON_TRADE);
-            if (!Config.INSTANCE.heavyCrossbows.disableRecipes.get())
-                tradesLv3.add(FletcherTrades.HEAVY_CROSSBOW_TRADE);
-            if (!Config.INSTANCE.heavyCrossbows.disableRecipes.get()) tradesLv3.add(FletcherTrades.BOLT_TRADE);
-            if (!Config.INSTANCE.longbows.disableRecipes.get())
-                tradesLv5.add(FletcherTrades.ENCHANTED_DIAMOND_LONGBOW_TRADE);
-            if (!Config.INSTANCE.heavyCrossbows.disableRecipes.get())
-                tradesLv5.add(FletcherTrades.ENCHANTED_DIAMOND_HEAVY_CROSSBOW_TRADE);
-        }
-    }
+    // NOTE: Mob spawn weapons moved to ZombieMixin/AbstractSkeletonMixin
+    // NOTE: VillagerTrades now data-driven in MC 26.1
 
     /**
      * Events to supress Ender Teleportation using the Ender Disruption Mob Effect
@@ -644,7 +558,7 @@ public class CommonEventHandler {
     }
 
     @SubscribeEvent
-    public static void onEnderTeleport(EntityTeleportEvent.ChorusFruit ev) {
+    public static void onEnderTeleport(EntityTeleportEvent.ItemConsumption ev) {
         ev.setCanceled(checkToCancelTeleport(ev.getEntityLiving()));
     }
 
@@ -661,18 +575,19 @@ public class CommonEventHandler {
     public static void handleAnvilUpdate(AnvilUpdateEvent ev) {
         ItemStack left = ev.getLeft();
         ItemStack right = ev.getRight();
-        if (left.getItem() instanceof ThrowingWeaponItem throwingWeapon && ItemStackDataHelper.hasTag(left) && ItemStackDataHelper.getTag(left).getBoolean(ThrowingWeaponItem.NBT_ORIGINAL)
+        if (left.getItem() instanceof ThrowingWeaponItem throwingWeapon && ItemStackDataHelper.hasTag(left) && ItemStackDataHelper.getTag(left).getBooleanOr(ThrowingWeaponItem.NBT_ORIGINAL, true)
                 && ItemStack.isSameItem(left, right)) {
-            int leftAmmo = ItemStackDataHelper.getTag(left).getInt(ThrowingWeaponItem.NBT_AMMO_USED);
-            int rightAmmo = ItemStackDataHelper.getTag(right).getInt(ThrowingWeaponItem.NBT_AMMO_USED);
+            int leftAmmo = ItemStackDataHelper.getTag(left).getIntOr(ThrowingWeaponItem.NBT_AMMO_USED, 0);
+            int rightAmmo = ItemStackDataHelper.getTag(right).getIntOr(ThrowingWeaponItem.NBT_AMMO_USED, 0);
 
             if (leftAmmo == 0)    // Used ammo is zero when ammo is full
                 return;
 
             // Combine ammo and durability
-            int maxAmmo = ((ThrowingWeaponItem) left.getItem()).getMaxAmmo(left, ev.getPlayer().level());
+            RegistryAccess fallbackAccess = RegistryAccess.fromRegistryOfRegistries(BuiltInRegistries.REGISTRY);
+            int maxAmmo = ((ThrowingWeaponItem) left.getItem()).getMaxAmmo(left, fallbackAccess);
             int durability = left.getDamageValue() + right.getDamageValue();
-            int combinedAmmo = Mth.clamp((maxAmmo - leftAmmo) + (maxAmmo - rightAmmo), 0, throwingWeapon.getMaxAmmo(left, ev.getPlayer().level()));
+            int combinedAmmo = Mth.clamp((maxAmmo - leftAmmo) + (maxAmmo - rightAmmo), 0, throwingWeapon.getMaxAmmo(left, fallbackAccess));
             // Reduce ammo count if combined durability value exceeds maximum durability value
             if (durability > left.getMaxDamage()) {
                 combinedAmmo = Math.max(combinedAmmo - 1, 0);
@@ -690,7 +605,8 @@ public class CommonEventHandler {
                 cost += entry.getIntValue();
             }
 
-            ev.setCost(cost);
+            // NeoForge 26.1: setCost -> setXpCost
+            ev.setXpCost(cost);
             ev.setOutput(resultStack);
         }
     }
@@ -727,7 +643,7 @@ public class CommonEventHandler {
         Player player = ev.getEntity();
         InteractionHand hand = ev.getHand();
         ItemStack stack = player.getItemInHand(hand);
-        if (!stack.is(Tags.Items.RODS_WOODEN) || player.getCooldowns().isOnCooldown(stack.getItem()))
+        if (!stack.is(Tags.Items.RODS_WOODEN) || player.getCooldowns().isOnCooldown(stack))
             return;
 
         Level level = ev.getLevel();
@@ -746,7 +662,7 @@ public class CommonEventHandler {
                 }
             }
             // Remove an item of the main stack
-            player.getCooldowns().addCooldown(stack.getItem(), 5);
+            player.getCooldowns().addCooldown(stack, 5);
             stack.shrink(1);
             if (stack.getCount() <= 0) {
                 stack = ItemStack.EMPTY;
@@ -763,3 +679,4 @@ public class CommonEventHandler {
         }
     }
 }
+

@@ -1,6 +1,7 @@
 package org.xiyu.spartanweaponryunofficial.mixin;
 
 import net.minecraft.core.Holder;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.DifficultyInstance;
@@ -43,15 +44,15 @@ public class MobMixin extends LivingEntityMixin {
 
             if (rand > 1 - chance) {
                 Level level = this.level();
-                level.registryAccess().registryOrThrow(Registries.ITEM).getTag(itemTagIn).ifPresent(tag ->
-                {
-                    if (tag.size() > 0) {
-                        ItemStack weapon;
-                        List<Item> possibleWeapons = tag.stream().map(Holder::value).toList();
-                        weapon = ItemRandomizer.generate(level, possibleWeapons);
-                        this.setItemSlot(EquipmentSlot.MAINHAND, weapon);
-                    }
-                });
+                var tag = BuiltInRegistries.ITEM.getTagOrEmpty(itemTagIn);
+                List<Item> possibleWeapons = new java.util.ArrayList<>();
+                for (Holder<Item> holder : tag) {
+                    possibleWeapons.add(holder.value());
+                }
+                if (!possibleWeapons.isEmpty()) {
+                    ItemStack weapon = ItemRandomizer.generate(level, possibleWeapons);
+                    this.setItemSlot(EquipmentSlot.MAINHAND, weapon);
+                }
             }
         }
     }

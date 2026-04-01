@@ -11,8 +11,6 @@ import net.minecraft.world.item.alchemy.PotionContents;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import org.xiyu.spartanweaponryunofficial.ModSpartanWeaponry;
-import org.xiyu.spartanweaponryunofficial.api.OilEffects;
-import org.xiyu.spartanweaponryunofficial.util.OilHelper;
 
 public class ModCreativeTabs {
     public static final DeferredRegister<CreativeModeTab> REGISTRY = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, ModSpartanWeaponry.ID);
@@ -25,7 +23,7 @@ public class ModCreativeTabs {
                         ImmutableList.Builder<ItemStack> builder = ImmutableList.builder();
                         builder.add(new ItemStack(ModItems.SIMPLE_HANDLE.get()), new ItemStack(ModItems.HANDLE.get()),
                                 new ItemStack(ModItems.SIMPLE_POLE.get()), new ItemStack(ModItems.POLE.get()),
-                                new ItemStack(ModItems.EXPLOSIVE_CHARGE.get()), new ItemStack(ModItems.GREASE_BALL.get()));
+                            new ItemStack(ModItems.EXPLOSIVE_CHARGE.get()));
                         builder.addAll(ModItems.DAGGERS.getVanillaItemStacks());
                         builder.addAll(ModItems.PARRYING_DAGGERS.getVanillaItemStacks());
                         builder.addAll(ModItems.LONGSWORDS.getVanillaItemStacks());
@@ -66,7 +64,6 @@ public class ModCreativeTabs {
                         output.accept(ModItems.LARGE_QUIVER_BRACE.get());
                         output.accept(ModItems.HUGE_QUIVER_BRACE.get());
                         output.accept(ModItems.DYNAMITE.get());
-                        makeWeaponOilVariants(output);
                         output.accept(ModItems.BLAZE_HEAD.get());
                         output.accept(ModItems.ENDERMAN_HEAD.get());
                         output.accept(ModItems.SPIDER_HEAD.get());
@@ -146,10 +143,5 @@ public class ModCreativeTabs {
         BuiltInRegistries.POTION.stream()
                 .filter((potion) -> !(potion.getEffects().isEmpty()))
                 .forEach((potion) -> output.accept(PotionContents.createItemStack(item, BuiltInRegistries.POTION.wrapAsHolder(potion))));
-    }
-
-    private static void makeWeaponOilVariants(CreativeModeTab.Output output) {
-        OilEffects.REGISTRY.getEntries().stream().filter((oil) -> oil.get() != OilEffects.POTION.get()).forEach((oil) -> output.accept(OilHelper.makeOilStack(oil.get())));
-        BuiltInRegistries.POTION.stream().filter(OilHelper::isValidPotion).forEach((potion) -> output.accept(OilHelper.makePotionOilStack(potion)));
     }
 }

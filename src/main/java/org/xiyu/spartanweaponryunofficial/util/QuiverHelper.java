@@ -5,12 +5,13 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ProjectileWeaponItem;
 import org.xiyu.spartanweaponryunofficial.api.tags.ModItemTags;
-import org.xiyu.spartanweaponryunofficial.capability.CuriosHelper;
+// TODO: Curios API not available for 26.1 yet
+// import org.xiyu.spartanweaponryunofficial.capability.CuriosHelper;
 import org.xiyu.spartanweaponryunofficial.item.HeavyCrossbowItem;
 import org.xiyu.spartanweaponryunofficial.item.QuiverBaseItem;
-import top.theillusivec4.curios.api.CuriosApi;
-import top.theillusivec4.curios.api.SlotResult;
-import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
+// import top.theillusivec4.curios.api.CuriosApi;
+// import top.theillusivec4.curios.api.SlotResult;
+// import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,12 +68,14 @@ public class QuiverHelper {
 
     public static ItemStack findFirstOfType(Player player, IQuiverInfo info) {
         // Find a quiver, if possible.
-        // Via a Curios slot...
+        // TODO: Curios slot support disabled for 26.1
+        /*
         if (CuriosHelper.LOADED) {
             Optional<SlotResult> opt = getQuiverCurio(player);
             if (opt.isPresent() && info.isQuiver(opt.get().stack()))
                 return opt.get().stack();
         }
+        */
         // ... or via the hotbar
         for (int i = 0; i < 9; i++) {
             ItemStack stack = player.getInventory().getItem(i);
@@ -91,11 +94,13 @@ public class QuiverHelper {
         List<ItemStack> result = new ArrayList<>();
 
         // Find a quiver, if possible.
-        // Via the Curios back slot
+        // TODO: Curios back slot support disabled for 26.1
+        /*
         if (CuriosHelper.LOADED) {
             Optional<SlotResult> opt = getQuiverCurio(player);
             opt.ifPresent(slotResult -> result.add(slotResult.stack()));
         }
+        */
         // ... or via the hotbar
         for (int i = 0; i < 9; i++) {
             ItemStack stack = player.getInventory().getItem(i);
@@ -111,12 +116,14 @@ public class QuiverHelper {
      */
     public static ItemStack findFirstQuiver(Player player) {
         // Find a quiver, if possible.
-        // Via the Curios back slot
+        // TODO: Curios back slot support disabled for 26.1
+        /*
         if (CuriosHelper.LOADED) {
             Optional<SlotResult> opt = getQuiverCurio(player);
             if (opt.isPresent())
                 return opt.get().stack();
         }
+        */
         // ... or via the hotbar
         for (int i = 0; i < 9; i++) {
             ItemStack stack = player.getInventory().getItem(i);
@@ -127,8 +134,10 @@ public class QuiverHelper {
         return ItemStack.EMPTY;
     }
 
+    /* TODO: Curios API not available for 26.1 yet
     public static Optional<SlotResult> getQuiverCurio(Player player) {
         Optional<ICuriosItemHandler> handler = CuriosApi.getCuriosInventory(player);
         return handler.isPresent() ? handler.orElseThrow().findFirstCurio((stack) -> stack.getItem() instanceof QuiverBaseItem) : Optional.empty();
     }
+    */
 }

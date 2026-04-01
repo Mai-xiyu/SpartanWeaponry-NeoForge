@@ -1,0 +1,1871 @@
+﻿.\gradlew.bat : Picked up JAVA_TOOL_OPTIONS: -Duser.language=en -Duser.country=
+US
+所在位置 行:1 字符: 118
++ ... anguage=en -Duser.country=US"; .\gradlew.bat compileJava 2>&1 | Out-F ...
++                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Picked up JAVA_...user.country=US 
+   :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by net.rubygrapefruit.platform.
+internal.NativeLibraryLoader in an unnamed module (file:/C:/Users/25463/.gradle
+/wrapper/dists/gradle-9.1.0-bin/9agqghryom9wkf8r80qlhnts3/gradle-9.1.0/lib/nati
+ve-platform-0.22-milestone-28.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers 
+in this module
+WARNING: Restricted methods will be blocked in a future release unless native a
+ccess is enabled
+
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.1.0/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :generateModMetadata UP-TO-DATE
+> Task :createMinecraftArtifacts UP-TO-DATE
+
+> Task :compileJava
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\data\recipe\ConditionalShapelessRecipeBuilder.java:144: w
+arning: [removal] parent(Identifier) in Builder has been deprecated and marked 
+for removal
+        advancement.parent(RecipeBuilder.ROOT_RECIPE_ADVANCEMENT)
+                   ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\trait\HarvesterWeaponTrait.java:86: error: method getClon
+eItemStack in class BlockBehaviour cannot be applied to given types;
+                ItemStack targetSeed = block.getCloneItemStack(levelIn, posIn, 
+state, false);
+                                            ^
+  required: LevelReader,BlockPos,BlockState,boolean
+  found:    Level,BlockPos,BlockState,boolean
+  reason: getCloneItemStack(LevelReader,BlockPos,BlockState,boolean) has protec
+ted access in BlockBehaviour
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\capability\IQuiverItemHandler.java:5: warning: [removal] IIte
+mHandler in net.neoforged.neoforge.items has been deprecated and marked for rem
+oval
+public interface IQuiverItemHandler extends IItemHandler {
+                                            ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\capability\QuiverItemStackHandler.java:15: warning: [removal]
+ ItemStackHandler in net.neoforged.neoforge.items has been deprecated and marke
+d for removal
+public class QuiverItemStackHandler extends ItemStackHandler implements IQuiver
+ItemHandler {
+                                            ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\ClientHelper.java:190: error: cannot find symbol
+        ev.registerBlockEntityRenderer(ModBlockEntities.EXTENDED_SKULL_TYPE.get
+(), SkullBlockRenderer::new);
+                                                                               
+    ^
+  symbol:   class SkullBlockRenderer
+  location: class ClientHelper
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\container\QuiverBaseScreen.java:50: warning: [remo
+val] getSlots() in IItemHandler has been deprecated and marked for removal
+        this.ammoSlots = handler != null ? handler.getSlots() : Defaults.SlotsQ
+uiverSmall;
+                                                  ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\inventory\QuiverBaseMenu.java:41: warning: [removal] getSlots
+() in IItemHandler has been deprecated and marked for removal
+        this.playerInvStart = this.handler.getSlots();
+                                          ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\inventory\QuiverBaseMenu.java:56: warning: [removal] getSlots
+() in IItemHandler has been deprecated and marked for removal
+        slotStartX = switch (this.handler.getSlots()) {
+                                         ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\inventory\QuiverBaseMenu.java:73: warning: [removal] getSlots
+() in IItemHandler has been deprecated and marked for removal
+        for (int i = 0; i < this.handler.getSlots(); i++) {
+                                        ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\inventory\QuiverBaseMenu.java:80: warning: [removal] getSlots
+() in IItemHandler has been deprecated and marked for removal
+        int yOffset = this.handler.getSlots() == Defaults.SlotsQuiverHuge ? 18 
+: 0;
+                                  ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\inventory\QuiverBaseMenu.java:95: warning: [removal] getSlots
+() in IItemHandler has been deprecated and marked for removal
+        this.addSlot(new Slot(inventory, 40, -21, this.handler.getSlots() == De
+faults.SlotsQuiverHuge ? 127 : 109) {
+                                                              ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\inventory\QuiverBaseMenu.java:113: warning: [removal] getSlot
+s() in IItemHandler has been deprecated and marked for removal
+            if (slotIdx >= 0 && slotIdx < this.handler.getSlots()) {
+                                                      ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\KeyBinds.java:15: error: no suitable constructor found
+ for KeyMapping(String,KeyConflictContext,Type,int,String)
+    public static KeyMapping KEY_ACCESS_QUIVER = new KeyMapping("key." + ModSpa
+rtanWeaponry.ID + ".access_quiver", KeyConflictContext.IN_GAME, Type.KEYSYM, GL
+FW.GLFW_KEY_I, "key." + ModSpartanWeaponry.ID + ".category.title");
+                                                 ^
+    constructor KeyMapping.KeyMapping(String,Type,int,Category,int) is not appl
+icable
+      (argument mismatch; KeyConflictContext cannot be converted to Type)
+    constructor KeyMapping.KeyMapping(String,IKeyConflictContext,Type,int,Categ
+ory) is not applicable
+      (argument mismatch; String cannot be converted to Category)
+    constructor KeyMapping.KeyMapping(String,IKeyConflictContext,KeyModifier,Ke
+y,Category) is not applicable
+      (argument mismatch; Type cannot be converted to KeyModifier)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\model\QuiverModelBase.java:14: error: invalid method r
+eference
+        super(rootModel, RenderTypes::entityCutoutNoCull);
+                         ^
+  cannot find symbol
+    symbol:   method entityCutoutNoCull(Identifier)
+    location: class RenderTypes
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\model\LargeArrowQuiverModel.java:99: error: renderToBu
+ffer(@org.jetbrains.annotations.NotNull PoseStack,@org.jetbrains.annotations.No
+tNull VertexConsumer,int,int,int) in LargeArrowQuiverModel cannot override rend
+erToBuffer(PoseStack,VertexConsumer,int,int,int) in Model
+    public void renderToBuffer(@NotNull PoseStack mStack, @NotNull VertexConsum
+er buffer, int packedLight, int packedOverlay,
+                ^
+  overridden method is final
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\model\LargeBoltQuiverModel.java:98: error: renderToBuf
+fer(@org.jetbrains.annotations.NotNull PoseStack,@org.jetbrains.annotations.Not
+Null VertexConsumer,int,int,int) in LargeBoltQuiverModel cannot override render
+ToBuffer(PoseStack,VertexConsumer,int,int,int) in Model
+    public void renderToBuffer(@NotNull PoseStack mStack, @NotNull VertexConsum
+er buffer, int packedLight, int packedOverlay,
+                ^
+  overridden method is final
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\model\MediumArrowQuiverModel.java:83: error: renderToB
+uffer(@org.jetbrains.annotations.NotNull PoseStack,@org.jetbrains.annotations.N
+otNull VertexConsumer,int,int,int) in MediumArrowQuiverModel cannot override re
+nderToBuffer(PoseStack,VertexConsumer,int,int,int) in Model
+    public void renderToBuffer(@NotNull PoseStack mStack, @NotNull VertexConsum
+er buffer, int packedLight, int packedOverlay,
+                ^
+  overridden method is final
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\model\MediumBoltQuiverModel.java:82: error: renderToBu
+ffer(@org.jetbrains.annotations.NotNull PoseStack,@org.jetbrains.annotations.No
+tNull VertexConsumer,int,int,int) in MediumBoltQuiverModel cannot override rend
+erToBuffer(PoseStack,VertexConsumer,int,int,int) in Model
+    public void renderToBuffer(@NotNull PoseStack mStack, @NotNull VertexConsum
+er buffer, int packedLight, int packedOverlay,
+                ^
+  overridden method is final
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\model\SmallArrowQuiverModel.java:83: error: renderToBu
+ffer(@org.jetbrains.annotations.NotNull PoseStack,@org.jetbrains.annotations.No
+tNull VertexConsumer,int,int,int) in SmallArrowQuiverModel cannot override rend
+erToBuffer(PoseStack,VertexConsumer,int,int,int) in Model
+    public void renderToBuffer(@NotNull PoseStack mStack, @NotNull VertexConsum
+er buffer, int packedLight, int packedOverlay,
+                ^
+  overridden method is final
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\model\SmallBoltQuiverModel.java:119: error: renderToBu
+ffer(@org.jetbrains.annotations.NotNull PoseStack,@org.jetbrains.annotations.No
+tNull VertexConsumer,int,int,int) in SmallBoltQuiverModel cannot override rende
+rToBuffer(PoseStack,VertexConsumer,int,int,int) in Model
+    public void renderToBuffer(@NotNull PoseStack mStack, @NotNull VertexConsum
+er buffer, int packedLight, int packedOverlay,
+                ^
+  overridden method is final
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\particle\DamageModifiedParticle.java:9: error: DamageM
+odifiedParticle is not abstract and does not override abstract method getLayer(
+) in SingleQuadParticle
+public class DamageModifiedParticle extends SingleQuadParticle {
+       ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\particle\DamageModifiedParticle.java:12: error: no sui
+table constructor found for SingleQuadParticle(ClientLevel,double,double,double
+,double,double,double)
+        super(levelIn, xPos, yPos, zPos, xDel, yDel, zDel);
+        ^
+    constructor SingleQuadParticle.SingleQuadParticle(ClientLevel,double,double
+,double,TextureAtlasSprite) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor SingleQuadParticle.SingleQuadParticle(ClientLevel,double,double
+,double,double,double,double,TextureAtlasSprite) is not applicable
+      (actual and formal argument lists differ in length)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\particle\DamageModifiedParticle.java:38: error: method
+ does not override or implement a method from a supertype
+    @Override
+    ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\particle\DamageModifiedParticle.java:40: error: cannot
+ find symbol
+        return ParticleRenderType.PARTICLE_SHEET_OPAQUE;
+                                 ^
+  symbol:   variable PARTICLE_SHEET_OPAQUE
+  location: class ParticleRenderType
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\particle\DamageModifiedParticle.java:43: error: Damage
+BoostedProvider is not abstract and does not override abstract method createPar
+ticle(SimpleParticleType,ClientLevel,double,double,double,double,double,double,
+RandomSource) in ParticleProvider
+    public static class DamageBoostedProvider implements ParticleProvider<Simpl
+eParticleType> {
+                  ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\particle\DamageModifiedParticle.java:50: error: method
+ does not override or implement a method from a supertype
+        @Override
+        ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\particle\DamageModifiedParticle.java:57: error: cannot
+ find symbol
+            particle.pickSprite(this.spriteSet);
+                    ^
+  symbol:   method pickSprite(SpriteSet)
+  location: variable particle of type DamageModifiedParticle
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\particle\DamageModifiedParticle.java:62: error: Damage
+ReducedProvider is not abstract and does not override abstract method createPar
+ticle(SimpleParticleType,ClientLevel,double,double,double,double,double,double,
+RandomSource) in ParticleProvider
+    public static class DamageReducedProvider implements ParticleProvider<Simpl
+eParticleType> {
+                  ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\particle\DamageModifiedParticle.java:69: error: method
+ does not override or implement a method from a supertype
+        @Override
+        ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\particle\DamageModifiedParticle.java:76: error: cannot
+ find symbol
+            particle.pickSprite(this.spriteSet);
+                    ^
+  symbol:   method pickSprite(SpriteSet)
+  location: variable particle of type DamageModifiedParticle
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\particle\DamageModifiedParticle.java:81: error: OilDam
+ageBoostedProvider is not abstract and does not override abstract method create
+Particle(SimpleParticleType,ClientLevel,double,double,double,double,double,doub
+le,RandomSource) in ParticleProvider
+    public static class OilDamageBoostedProvider implements ParticleProvider<Si
+mpleParticleType> {
+                  ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\particle\DamageModifiedParticle.java:88: error: method
+ does not override or implement a method from a supertype
+        @Override
+        ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\particle\DamageModifiedParticle.java:95: error: cannot
+ find symbol
+            particle.pickSprite(this.spriteSet);
+                    ^
+  symbol:   method pickSprite(SpriteSet)
+  location: variable particle of type DamageModifiedParticle
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\ArrowBaseEntity.java:81: error: isClientSid
+e has private access in Level
+        if (level.isClientSide /*&& potion != null && potion != Potions.EMPTY*/
+) {
+                 ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\ArrowBaseEntity.java:82: error: cannot find
+ symbol
+            if (this.inGround) {
+                    ^
+  symbol: variable inGround
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\ArrowBaseEntity.java:87: error: cannot find
+ symbol
+        } else if (this.inGround && this.inGroundTime != 0 && this.inGroundTime
+ >= 600) {
+                       ^
+  symbol: variable inGround
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\ArrowBaseEntity.java:112: error: no suitabl
+e method found for create(Level)
+                LightningBolt lightning = EntityType.LIGHTNING_BOLT.create(leve
+l);
+                                                                   ^
+    method EntityType.create(ServerLevel,@org.jspecify.annotations.Nullable Con
+sumer<LightningBolt>,BlockPos,EntitySpawnReason,boolean,boolean) is not applica
+ble
+      (actual and formal argument lists differ in length)
+    method EntityType.create(Level,EntitySpawnReason) is not applicable
+      (actual and formal argument lists differ in length)
+    method EntityType.create(ValueInput,Level,EntitySpawnReason) is not applica
+ble
+      (actual and formal argument lists differ in length)
+    method EntityType.create(EntityType<?>,ValueInput,Level,EntitySpawnReason) 
+is not applicable
+      (actual and formal argument lists differ in length)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\ArrowBaseEntity.java:114: error: cannot fin
+d symbol
+                lightning.moveTo(Vec3.atBottomCenterOf(living.blockPosition()))
+;
+                         ^
+  symbol:   method moveTo(Vec3)
+  location: variable lightning of type LightningBolt
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\ArrowBaseEntity.java:162: error: method doe
+s not override or implement a method from a supertype
+    @Override
+    ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\ArrowBaseEntity.java:171: error: incompatib
+le types: CompoundTag cannot be converted to ValueOutput
+        super.addAdditionalSaveData(compound);
+                                    ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\ArrowBaseEntity.java:178: error: cannot fin
+d symbol
+            compound.put(this.NBT_ARROW, arrowStack.save(this.level().registryA
+ccess()));
+                                                   ^
+  symbol:   method save(RegistryAccess)
+  location: variable arrowStack of type ItemStack
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\ArrowBaseEntity.java:196: error: method doe
+s not override or implement a method from a supertype
+    @Override
+    ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\ArrowBaseEntity.java:198: error: incompatib
+le types: CompoundTag cannot be converted to ValueInput
+        super.readAdditionalSaveData(compound);
+                                     ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\ArrowBaseEntity.java:199: error: incompatib
+le types: Optional<CompoundTag> cannot be converted to CompoundTag
+        CompoundTag nbt = compound.getCompound(this.NBT_ARROW);
+                                              ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\ArrowBaseEntity.java:200: error: cannot fin
+d symbol
+        this.setArrowStack(ItemStack.parseOptional(this.level().registryAccess(
+), nbt));
+                                    ^
+  symbol:   method parseOptional(RegistryAccess,CompoundTag)
+  location: class ItemStack
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\ArrowBaseEntity.java:202: error: method con
+tains in class CompoundTag cannot be applied to given types;
+        if (compound.contains(this.NBT_POTION, 8))
+                    ^
+  required: String
+  found:    String,int
+  reason: actual and formal argument lists differ in length
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\ArrowBaseEntity.java:203: error: incompatib
+le types: Optional<String> cannot be converted to String
+            this.potion = BuiltInRegistries.POTION.get(Identifier.parse(compoun
+d.getString(this.NBT_POTION)));
+                                                                               
+           ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\ArrowBaseEntity.java:205: error: no suitabl
+e method found for set(EntityDataAccessor<Integer>,compound.c[...] : -1)
+        this.getEntityData().set(COLOUR, compound.contains(this.NBT_POTION_COLO
+UR) ? compound.getInt(this.NBT_POTION_COLOUR) : -1);
+                            ^
+    method SynchedEntityData.<T#1>set(EntityDataAccessor<T#1>,T#1) is not appli
+cable
+      (inference variable T#1 has incompatible bounds
+        equality constraints: Integer
+        lower bounds: Integer,Optional<Integer>)
+    method SynchedEntityData.<T#2>set(EntityDataAccessor<T#2>,T#2,boolean) is n
+ot applicable
+      (cannot infer type-variable(s) T#2
+        (actual and formal argument lists differ in length))
+  where T#1,T#2 are type-variables:
+    T#1 extends Object declared in method <T#1>set(EntityDataAccessor<T#1>,T#1)
+    T#2 extends Object declared in method <T#2>set(EntityDataAccessor<T#2>,T#2,
+boolean)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\BoltEntity.java:102: error: isClientSide ha
+s private access in Level
+        if (level.isClientSide) {
+                 ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\BoltEntity.java:103: error: cannot find sym
+bol
+            if (this.inGround) {
+                    ^
+  symbol: variable inGround
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\BoltEntity.java:108: error: cannot find sym
+bol
+        } else if (this.inGround && this.inGroundTime != 0 && this.inGroundTime
+ >= 600) {
+                       ^
+  symbol: variable inGround
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\BoltEntity.java:121: error: cannot find sym
+bol
+        int damage = Mth.ceil(Mth.clamp((double) velocity * this.getBaseDamage(
+), 0.0D, 2.147483647E9D));
+                                                                ^
+  symbol: method getBaseDamage()
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\BoltEntity.java:143: error: incompatible ty
+pes: void cannot be converted to boolean
+        if (entity.hurt(source, (float) damage)) {
+                       ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\BoltEntity.java:148: error: isClientSide ha
+s private access in Level
+                if (!level.isClientSide && this.getPierceLevel() <= 0)
+                          ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\BoltEntity.java:151: error: cannot find sym
+bol
+                int knockback = EnchantmentHelper.getItemEnchantmentLevel(regis
+tryAccess.registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantments
+.KNOCKBACK), this.getPickupItem());
+                                                                               
+         ^
+  symbol:   method registryOrThrow(ResourceKey<Registry<Enchantment>>)
+  location: variable registryAccess of type RegistryAccess
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\BoltEntity.java:160: error: cannot find sym
+bol
+                    ((ServerPlayer) shooter).connection.send(new ClientboundGam
+eEventPacket(ClientboundGameEventPacket.ARROW_HIT_PLAYER, 0.0F));
+                                                                               
+                                       ^
+  symbol:   variable ARROW_HIT_PLAYER
+  location: class ClientboundGameEventPacket
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\BoltEntity.java:163: error: isClientSide ha
+s private access in Level
+                if (!level.isClientSide && shooter instanceof ServerPlayer serv
+erplayerentity && !entity.isAlive() && this.shotFromCrossbow())
+                          ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\BoltEntity.java:163: error: cannot find sym
+bol
+                if (!level.isClientSide && shooter instanceof ServerPlayer serv
+erplayerentity && !entity.isAlive() && this.shotFromCrossbow())
+                                                                               
+                                           ^
+  symbol: method shotFromCrossbow()
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\BoltEntity.java:164: error: cannot find sym
+bol
+                    CriteriaTriggers.KILLED_BY_CROSSBOW.trigger(serverplayerent
+ity, List.of(entity));
+                                    ^
+  symbol:   variable KILLED_BY_CROSSBOW
+  location: class CriteriaTriggers
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\BoltEntity.java:175: error: isClientSide ha
+s private access in Level
+            if (!level.isClientSide && this.getDeltaMovement().lengthSqr() < 1.
+0E-7D) {
+                      ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\BoltEntity.java:177: error: no suitable met
+hod found for spawnAtLocation(ItemStack,float)
+                    this.spawnAtLocation(this.getPickupItem(), 0.1F);
+                        ^
+    method Entity.spawnAtLocation(ServerLevel,ItemLike) is not applicable
+      (argument mismatch; ItemStack cannot be converted to ServerLevel)
+    method Entity.spawnAtLocation(ServerLevel,ItemStack) is not applicable
+      (argument mismatch; ItemStack cannot be converted to ServerLevel)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\BoltEntity.java:201: error: no suitable met
+hod found for create(Level)
+                LightningBolt lightning = EntityType.LIGHTNING_BOLT.create(leve
+l);
+                                                                   ^
+    method EntityType.create(ServerLevel,@org.jspecify.annotations.Nullable Con
+sumer<LightningBolt>,BlockPos,EntitySpawnReason,boolean,boolean) is not applica
+ble
+      (actual and formal argument lists differ in length)
+    method EntityType.create(Level,EntitySpawnReason) is not applicable
+      (actual and formal argument lists differ in length)
+    method EntityType.create(ValueInput,Level,EntitySpawnReason) is not applica
+ble
+      (actual and formal argument lists differ in length)
+    method EntityType.create(EntityType<?>,ValueInput,Level,EntitySpawnReason) 
+is not applicable
+      (actual and formal argument lists differ in length)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\BoltEntity.java:203: error: cannot find sym
+bol
+                lightning.moveTo(Vec3.atBottomCenterOf(living.blockPosition()))
+;
+                         ^
+  symbol:   method moveTo(Vec3)
+  location: variable lightning of type LightningBolt
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\BoltEntity.java:229: error: method does not
+ override or implement a method from a supertype
+    @Override
+    ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\BoltEntity.java:231: error: incompatible ty
+pes: CompoundTag cannot be converted to ValueInput
+        super.readAdditionalSaveData(compound);
+                                     ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\BoltEntity.java:234: error: incompatible ty
+pes: Optional<CompoundTag> cannot be converted to CompoundTag
+            CompoundTag boltNbt = compound.getCompound(this.NBT_BOLT);
+                                                      ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\BoltEntity.java:235: error: cannot find sym
+bol
+            ItemStack boltStack = ItemStack.parseOptional(this.level().registry
+Access(), boltNbt);
+                                           ^
+  symbol:   method parseOptional(RegistryAccess,CompoundTag)
+  location: class ItemStack
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\BoltEntity.java:241: error: method contains
+ in class CompoundTag cannot be applied to given types;
+        if (compound.contains(this.NBT_POTION, 8))
+                    ^
+  required: String
+  found:    String,int
+  reason: actual and formal argument lists differ in length
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\BoltEntity.java:242: error: incompatible ty
+pes: Optional<String> cannot be converted to String
+            this.potion = BuiltInRegistries.POTION.get(Identifier.parse(compoun
+d.getString(this.NBT_POTION)));
+                                                                               
+           ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\BoltEntity.java:244: error: no suitable met
+hod found for set(EntityDataAccessor<Integer>,compound.c[...] : -1)
+        this.getEntityData().set(DATA_COLOUR, compound.contains(this.NBT_POTION
+_COLOUR) ? compound.getInt(this.NBT_POTION_COLOUR) : -1);
+                            ^
+    method SynchedEntityData.<T#1>set(EntityDataAccessor<T#1>,T#1) is not appli
+cable
+      (inference variable T#1 has incompatible bounds
+        equality constraints: Integer
+        lower bounds: Integer,Optional<Integer>)
+    method SynchedEntityData.<T#2>set(EntityDataAccessor<T#2>,T#2,boolean) is n
+ot applicable
+      (cannot infer type-variable(s) T#2
+        (actual and formal argument lists differ in length))
+  where T#1,T#2 are type-variables:
+    T#1 extends Object declared in method <T#1>set(EntityDataAccessor<T#1>,T#1)
+    T#2 extends Object declared in method <T#2>set(EntityDataAccessor<T#2>,T#2,
+boolean)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\BoltEntity.java:254: error: method does not
+ override or implement a method from a supertype
+    @Override
+    ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\BoltEntity.java:262: error: incompatible ty
+pes: CompoundTag cannot be converted to ValueOutput
+        super.addAdditionalSaveData(compound);
+                                    ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\BoltEntity.java:269: error: cannot find sym
+bol
+            compound.put(this.NBT_BOLT, boltStack.save(this.level().registryAcc
+ess()));
+                                                 ^
+  symbol:   method save(RegistryAccess)
+  location: variable boltStack of type ItemStack
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\renderer\entity\BoomerangRenderer.java:16: error: meth
+od does not override or implement a method from a supertype
+    @Override
+    ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:112: error: canno
+t find symbol
+                        this.inGround = false;
+                            ^
+  symbol: variable inGround
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:119: error: canno
+t find symbol
+                        if (this.inGround)
+                                ^
+  symbol: variable inGround
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:120: error: canno
+t find symbol
+                            this.inGround = false;
+                                ^
+  symbol: variable inGround
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:127: error: isCli
+entSide has private access in Level
+                    if (level.isClientSide) {
+                             ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:153: error: canno
+t find symbol
+        if (this.isReturning && this.inGround)
+                                    ^
+  symbol: variable inGround
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:154: error: canno
+t find symbol
+            this.inGround = false;
+                ^
+  symbol: variable inGround
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:156: error: canno
+t find symbol
+        if (!this.inGround)
+                 ^
+  symbol: variable inGround
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:184: error: canno
+t find symbol
+        float damage = Mth.ceil(this.getBaseDamage());
+                                    ^
+  symbol: method getBaseDamage()
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:237: error: incom
+patible types: void cannot be converted to boolean
+        if (entity.hurt(src, damage)) {
+                       ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:244: error: canno
+t find symbol
+                int knockback = EnchantmentHelper.getItemEnchantmentLevel(regis
+tryAccess.registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantments
+.KNOCKBACK), weapon);
+                                                                               
+         ^
+  symbol:   method registryOrThrow(ResourceKey<Registry<Enchantment>>)
+  location: variable registryAccess of type RegistryAccess
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:255: error: canno
+t find symbol
+                    ((ServerPlayer) shooter).connection.send(new ClientboundGam
+eEventPacket(ClientboundGameEventPacket.ARROW_HIT_PLAYER, 0.0F));
+                                                                               
+                                       ^
+  symbol:   variable ARROW_HIT_PLAYER
+  location: class ClientboundGameEventPacket
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:272: error: isCli
+entSide has private access in Level
+            if (!level.isClientSide && this.getDeltaMovement().lengthSqr() < 1.
+0e-7d) {
+                      ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:287: error: isCli
+entSide has private access in Level
+            if (!level.isClientSide) {
+                      ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:289: error: canno
+t find symbol
+                ((ServerLevel) level).sendParticles(new BlockParticleOption(Par
+ticleTypes.BLOCK, state).setPos(hitResult.getBlockPos()), this.getX(), this.get
+Y(), this.getZ(), 5, 0.1d, 0.1d, 0.1d, 0.05d);
+                                                                               
+                        ^
+  symbol:   method setPos(BlockPos)
+  location: class BlockParticleOption
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:307: error: no su
+itable method found for spawnAtLocation(ItemStack,float)
+        this.spawnAtLocation(stack, 0.1F);
+            ^
+    method Entity.spawnAtLocation(ServerLevel,ItemLike) is not applicable
+      (argument mismatch; ItemStack cannot be converted to ServerLevel)
+    method Entity.spawnAtLocation(ServerLevel,ItemStack) is not applicable
+      (argument mismatch; ItemStack cannot be converted to ServerLevel)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:312: error: canno
+t find symbol
+        if (this.inGround || this.isReturning)
+                ^
+  symbol: variable inGround
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:329: error: metho
+d does not override or implement a method from a supertype
+    @Override
+    ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:331: error: incom
+patible types: CompoundTag cannot be converted to ValueInput
+        super.readAdditionalSaveData(compound);
+                                     ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:333: error: incom
+patible types: Optional<CompoundTag> cannot be converted to CompoundTag
+            CompoundTag weaponTag = compound.getCompound(NBT_WEAPON);
+                                                        ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:334: error: canno
+t find symbol
+            ItemStack weapon = ItemStack.parse(this.level().registryAccess(), w
+eaponTag).orElse(ItemStack.EMPTY);
+                                        ^
+  symbol:   method parse(RegistryAccess,CompoundTag)
+  location: class ItemStack
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:340: error: no su
+itable method found for set(EntityDataAccessor<Byte>,Optional<Byte>)
+            this.getEntityData().set(DATA_RETURN, compound.getByte("ReturnLevel
+"));
+                                ^
+    method SynchedEntityData.<T#1>set(EntityDataAccessor<T#1>,T#1) is not appli
+cable
+      (inference variable T#1 has incompatible bounds
+        equality constraints: Byte
+        lower bounds: Optional<Byte>)
+    method SynchedEntityData.<T#2>set(EntityDataAccessor<T#2>,T#2,boolean) is n
+ot applicable
+      (cannot infer type-variable(s) T#2
+        (actual and formal argument lists differ in length))
+  where T#1,T#2 are type-variables:
+    T#1 extends Object declared in method <T#1>set(EntityDataAccessor<T#1>,T#1)
+    T#2 extends Object declared in method <T#2>set(EntityDataAccessor<T#2>,T#2,
+boolean)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:359: error: metho
+d does not override or implement a method from a supertype
+    @Override
+    ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:367: error: incom
+patible types: CompoundTag cannot be converted to ValueOutput
+        super.addAdditionalSaveData(compound);
+                                    ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:375: error: canno
+t find symbol
+            weapon.save(this.level().registryAccess(), weaponTag);
+                  ^
+  symbol:   method save(RegistryAccess,CompoundTag)
+  location: variable weapon of type ItemStack
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:396: error: canno
+t find symbol
+            stack.save(this.level().registryAccess(), original);
+                 ^
+  symbol:   method save(RegistryAccess,CompoundTag)
+  location: variable stack of type ItemStack
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:400: error: canno
+t find symbol
+        int loyalty = EnchantmentHelper.getItemEnchantmentLevel(this.level().re
+gistryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchant
+ments.LOYALTY), stack);
+                                                                               
+              ^
+  symbol:   method registryOrThrow(ResourceKey<Registry<Enchantment>>)
+  location: interface RegistryAccess
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:414: error: isCli
+entSide has private access in Level
+        if (!level.isClientSide && this.shakeTime <= 0) {
+                  ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:427: error: incom
+patible types: Optional<Integer> cannot be converted to int
+                        int currentAmmo = ItemStackDataHelper.getTag(invStack).
+getInt(ThrowingWeaponItem.NBT_AMMO_USED);
+                                                                               
+      ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:430: error: bad o
+perand types for binary operator '-'
+                            ItemStackDataHelper.updateTag(invStack, tag -> tag.
+putInt(ThrowingWeaponItem.NBT_AMMO_USED, Math.max(0, tag.getInt(ThrowingWeaponI
+tem.NBT_AMMO_USED) - 1)));
+                                                                               
+                                                                               
+                   ^
+  first type:  Optional<Integer>
+  second type: int
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\BoomerangEntity.java:99: error: cannot find
+ symbol
+        if (this.inGround) {
+                ^
+  symbol: variable inGround
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\BoomerangEntity.java:156: error: no suitabl
+e method found for startRiding(BoomerangEntity,boolean)
+                        entity.startRiding(this, true);
+                              ^
+    method Entity.startRiding(Entity) is not applicable
+      (actual and formal argument lists differ in length)
+    method Entity.startRiding(Entity,boolean,boolean) is not applicable
+      (actual and formal argument lists differ in length)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\BoomerangEntity.java:168: error: isClientSi
+de has private access in Level
+                if (!level.isClientSide)
+                          ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\BoomerangEntity.java:174: error: isClientSi
+de has private access in Level
+        if (!level.isClientSide && this.tickCount > 200) {
+                  ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\BoomerangEntity.java:182: error: isClientSi
+de has private access in Level
+        if (level.isClientSide && !this.inGround) {
+                 ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\BoomerangEntity.java:182: error: cannot fin
+d symbol
+        if (level.isClientSide && !this.inGround) {
+                                       ^
+  symbol: variable inGround
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\BoomerangEntity.java:208: error: cannot fin
+d symbol
+            Vec3i faceNormali = hitResult.getDirection().getNormal();
+                                                        ^
+  symbol:   method getNormal()
+  location: class Direction
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\data\recipe\TagCookingRecipeBuilder.java:99: warning: [remova
+l] parent(Identifier) in Builder has been deprecated and marked for removal
+        advancement.parent(ROOT_RECIPE_ADVANCEMENT)
+                   ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\event\CommonEventHandler.java:355: warning: [removal] insertI
+tem(int,ItemStack,boolean) in IItemHandler has been deprecated and marked for r
+emoval
+            arrowStack = quiverHandler.insertItem(prioritySlot, arrowStack, fal
+se);
+                                      ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\event\CommonEventHandler.java:357: warning: [removal] getSlot
+s() in IItemHandler has been deprecated and marked for removal
+                for (int j = 0; j < quiverHandler.getSlots(); j++) {
+                                                 ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\event\CommonEventHandler.java:361: warning: [removal] insertI
+tem(int,ItemStack,boolean) in IItemHandler has been deprecated and marked for r
+emoval
+                    arrowStack = quiverHandler.insertItem(j, arrowStack, false)
+;
+                                              ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\event\CommonEventHandler.java:382: warning: [removal] getSlot
+s() in IItemHandler has been deprecated and marked for removal
+            if (prioritySlot <= quiverHandler.getSlots()) {
+                                             ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\event\CommonEventHandler.java:383: warning: [removal] extract
+Item(int,int,boolean) in IItemHandler has been deprecated and marked for remova
+l
+                arrowStack = quiverHandler.extractItem(prioritySlot, 64, false)
+;
+                                          ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\event\CommonEventHandler.java:389: warning: [removal] getSlot
+s() in IItemHandler has been deprecated and marked for removal
+                for (int j = 0; j < quiverHandler.getSlots(); j++) {
+                                                 ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\event\CommonEventHandler.java:393: warning: [removal] extract
+Item(int,int,boolean) in IItemHandler has been deprecated and marked for remova
+l
+                    arrowStack = quiverHandler.extractItem(j, 64, false);
+                                              ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\event\CommonEventHandler.java:423: warning: [removal] getSlot
+s() in IItemHandler has been deprecated and marked for removal
+                        for (int i = 0; i < quiverHandler.getSlots(); i++) {
+                                                         ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\event\CommonEventHandler.java:424: warning: [removal] insertI
+tem(int,ItemStack,boolean) in IItemHandler has been deprecated and marked for r
+emoval
+                            pickedUpStack = quiverHandler.insertItem(i, pickedU
+pStack, false);
+                                                         ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\inventory\SlotFiltered.java:12: warning: [removal] SlotItemHa
+ndler in net.neoforged.neoforge.items has been deprecated and marked for remova
+l
+public class SlotFiltered extends SlotItemHandler {
+                                  ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\inventory\SlotFiltered.java:16: warning: [removal] IItemHandl
+er in net.neoforged.neoforge.items has been deprecated and marked for removal
+    public SlotFiltered(IItemHandler handlerIn, int indexIn, int xPositionIn, i
+nt yPositionIn, Predicate<ItemStack> filterIn) {
+                        ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\inventory\SlotFiltered.java:20: warning: [removal] IItemHandl
+er in net.neoforged.neoforge.items has been deprecated and marked for removal
+    public SlotFiltered(IItemHandler handlerIn, int indexIn, int xPositionIn, i
+nt yPositionIn, Predicate<ItemStack> filterIn, @Nullable Identifier noItemIconI
+n) {
+                        ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\mixin\AbstractArrowMixin.java:63: warning: [removal] getSlots
+() in IItemHandler has been deprecated and marked for removal
+                                for (int i = 0; i < quiverHandler.getSlots(); i
+++) {
+                                                                 ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\mixin\AbstractArrowMixin.java:64: warning: [removal] insertIt
+em(int,ItemStack,boolean) in IItemHandler has been deprecated and marked for re
+moval
+                                    arrowStack = quiverHandler.insertItem(i, ar
+rowStack, false);
+                                                              ^
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sp
+artanweaponryunofficial\data\ModDamageTypeTagsProvider.java uses unchecked or u
+nsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+Note: Some messages have been simplified; recompile with -Xdiags:verbose to get
+ full output
+100 errors
+25 warnings
+
+> Task :compileJava FAILED
+
+[Incubating] Problems report is available at: file:///C:/Users/25463/Desktop/SpartanWeaponry-NeoForge/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':compileJava'.
+> Compilation failed; see the compiler output below.
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\trait\HarvesterWeaponTrait.java:86: error: method getCl
+oneItemStack in class BlockBehaviour cannot be applied to given types;
+                  ItemStack targetSeed = block.getCloneItemStack(levelIn, posIn
+, state, false);
+                                              ^
+    required: LevelReader,BlockPos,BlockState,boolean
+    found:    Level,BlockPos,BlockState,boolean
+    reason: getCloneItemStack(LevelReader,BlockPos,BlockState,boolean) has prot
+ected access in BlockBehaviour
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\ArrowBaseEntity.java:202: error: method c
+ontains in class CompoundTag cannot be applied to given types;
+          if (compound.contains(this.NBT_POTION, 8))
+                      ^
+    required: String
+    found:    String,int
+    reason: actual and formal argument lists differ in length
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\BoltEntity.java:241: error: method contai
+ns in class CompoundTag cannot be applied to given types;
+          if (compound.contains(this.NBT_POTION, 8))
+                      ^
+    required: String
+    found:    String,int
+    reason: actual and formal argument lists differ in length
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\KeyBinds.java:15: error: no suitable constructor fou
+nd for KeyMapping(String,KeyConflictContext,Type,int,String)
+      public static KeyMapping KEY_ACCESS_QUIVER = new KeyMapping("key." + ModS
+partanWeaponry.ID + ".access_quiver", KeyConflictContext.IN_GAME, Type.KEYSYM, 
+GLFW.GLFW_KEY_I, "key." + ModSpartanWeaponry.ID + ".category.title");
+                                                   ^
+      constructor KeyMapping.KeyMapping(String,Type,int,Category,int) is not ap
+plicable
+        (argument mismatch; KeyConflictContext cannot be converted to Type)
+      constructor KeyMapping.KeyMapping(String,IKeyConflictContext,Type,int,Cat
+egory) is not applicable
+        (argument mismatch; String cannot be converted to Category)
+      constructor KeyMapping.KeyMapping(String,IKeyConflictContext,KeyModifier,
+Key,Category) is not applicable
+        (argument mismatch; Type cannot be converted to KeyModifier)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\particle\DamageModifiedParticle.java:12: error: no s
+uitable constructor found for SingleQuadParticle(ClientLevel,double,double,doub
+le,double,double,double)
+          super(levelIn, xPos, yPos, zPos, xDel, yDel, zDel);
+          ^
+      constructor SingleQuadParticle.SingleQuadParticle(ClientLevel,double,doub
+le,double,TextureAtlasSprite) is not applicable
+        (actual and formal argument lists differ in length)
+      constructor SingleQuadParticle.SingleQuadParticle(ClientLevel,double,doub
+le,double,double,double,double,TextureAtlasSprite) is not applicable
+        (actual and formal argument lists differ in length)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\ArrowBaseEntity.java:112: error: no suita
+ble method found for create(Level)
+                  LightningBolt lightning = EntityType.LIGHTNING_BOLT.create(le
+vel);
+                                                                     ^
+      method EntityType.create(ServerLevel,@org.jspecify.annotations.Nullable C
+onsumer<LightningBolt>,BlockPos,EntitySpawnReason,boolean,boolean) is not appli
+cable
+        (actual and formal argument lists differ in length)
+      method EntityType.create(Level,EntitySpawnReason) is not applicable
+        (actual and formal argument lists differ in length)
+      method EntityType.create(ValueInput,Level,EntitySpawnReason) is not appli
+cable
+        (actual and formal argument lists differ in length)
+      method EntityType.create(EntityType<?>,ValueInput,Level,EntitySpawnReason
+) is not applicable
+        (actual and formal argument lists differ in length)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\ArrowBaseEntity.java:205: error: no suita
+ble method found for set(EntityDataAccessor<Integer>,compound.c[...] : -1)
+          this.getEntityData().set(COLOUR, compound.contains(this.NBT_POTION_CO
+LOUR) ? compound.getInt(this.NBT_POTION_COLOUR) : -1);
+                              ^
+      method SynchedEntityData.<T#1>set(EntityDataAccessor<T#1>,T#1) is not app
+licable
+        (inference variable T#1 has incompatible bounds
+          equality constraints: Integer
+          lower bounds: Integer,Optional<Integer>)
+      method SynchedEntityData.<T#2>set(EntityDataAccessor<T#2>,T#2,boolean) is
+ not applicable
+        (cannot infer type-variable(s) T#2
+          (actual and formal argument lists differ in length))
+    where T#1,T#2 are type-variables:
+      T#1 extends Object declared in method <T#1>set(EntityDataAccessor<T#1>,T#
+1)
+      T#2 extends Object declared in method <T#2>set(EntityDataAccessor<T#2>,T#
+2,boolean)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\BoltEntity.java:177: error: no suitable m
+ethod found for spawnAtLocation(ItemStack,float)
+                      this.spawnAtLocation(this.getPickupItem(), 0.1F);
+                          ^
+      method Entity.spawnAtLocation(ServerLevel,ItemLike) is not applicable
+        (argument mismatch; ItemStack cannot be converted to ServerLevel)
+      method Entity.spawnAtLocation(ServerLevel,ItemStack) is not applicable
+        (argument mismatch; ItemStack cannot be converted to ServerLevel)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\BoltEntity.java:201: error: no suitable m
+ethod found for create(Level)
+                  LightningBolt lightning = EntityType.LIGHTNING_BOLT.create(le
+vel);
+                                                                     ^
+      method EntityType.create(ServerLevel,@org.jspecify.annotations.Nullable C
+onsumer<LightningBolt>,BlockPos,EntitySpawnReason,boolean,boolean) is not appli
+cable
+        (actual and formal argument lists differ in length)
+      method EntityType.create(Level,EntitySpawnReason) is not applicable
+        (actual and formal argument lists differ in length)
+      method EntityType.create(ValueInput,Level,EntitySpawnReason) is not appli
+cable
+        (actual and formal argument lists differ in length)
+      method EntityType.create(EntityType<?>,ValueInput,Level,EntitySpawnReason
+) is not applicable
+        (actual and formal argument lists differ in length)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\BoltEntity.java:244: error: no suitable m
+ethod found for set(EntityDataAccessor<Integer>,compound.c[...] : -1)
+          this.getEntityData().set(DATA_COLOUR, compound.contains(this.NBT_POTI
+ON_COLOUR) ? compound.getInt(this.NBT_POTION_COLOUR) : -1);
+                              ^
+      method SynchedEntityData.<T#1>set(EntityDataAccessor<T#1>,T#1) is not app
+licable
+        (inference variable T#1 has incompatible bounds
+          equality constraints: Integer
+          lower bounds: Integer,Optional<Integer>)
+      method SynchedEntityData.<T#2>set(EntityDataAccessor<T#2>,T#2,boolean) is
+ not applicable
+        (cannot infer type-variable(s) T#2
+          (actual and formal argument lists differ in length))
+    where T#1,T#2 are type-variables:
+      T#1 extends Object declared in method <T#1>set(EntityDataAccessor<T#1>,T#
+1)
+      T#2 extends Object declared in method <T#2>set(EntityDataAccessor<T#2>,T#
+2,boolean)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:307: error: no 
+suitable method found for spawnAtLocation(ItemStack,float)
+          this.spawnAtLocation(stack, 0.1F);
+              ^
+      method Entity.spawnAtLocation(ServerLevel,ItemLike) is not applicable
+        (argument mismatch; ItemStack cannot be converted to ServerLevel)
+      method Entity.spawnAtLocation(ServerLevel,ItemStack) is not applicable
+        (argument mismatch; ItemStack cannot be converted to ServerLevel)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:340: error: no 
+suitable method found for set(EntityDataAccessor<Byte>,Optional<Byte>)
+              this.getEntityData().set(DATA_RETURN, compound.getByte("ReturnLev
+el"));
+                                  ^
+      method SynchedEntityData.<T#1>set(EntityDataAccessor<T#1>,T#1) is not app
+licable
+        (inference variable T#1 has incompatible bounds
+          equality constraints: Byte
+          lower bounds: Optional<Byte>)
+      method SynchedEntityData.<T#2>set(EntityDataAccessor<T#2>,T#2,boolean) is
+ not applicable
+        (cannot infer type-variable(s) T#2
+          (actual and formal argument lists differ in length))
+    where T#1,T#2 are type-variables:
+      T#1 extends Object declared in method <T#1>set(EntityDataAccessor<T#1>,T#
+1)
+      T#2 extends Object declared in method <T#2>set(EntityDataAccessor<T#2>,T#
+2,boolean)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\BoomerangEntity.java:156: error: no suita
+ble method found for startRiding(BoomerangEntity,boolean)
+                          entity.startRiding(this, true);
+                                ^
+      method Entity.startRiding(Entity) is not applicable
+        (actual and formal argument lists differ in length)
+      method Entity.startRiding(Entity,boolean,boolean) is not applicable
+        (actual and formal argument lists differ in length)
+  Note: Recompile with -Xlint:deprecation for details.
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\model\QuiverModelBase.java:14: error: invalid method
+ reference
+          super(rootModel, RenderTypes::entityCutoutNoCull);
+                           ^
+    cannot find symbol
+      symbol:   method entityCutoutNoCull(Identifier)
+      location: class RenderTypes
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\ClientHelper.java:190: error: cannot find symbol
+          ev.registerBlockEntityRenderer(ModBlockEntities.EXTENDED_SKULL_TYPE.g
+et(), SkullBlockRenderer::new);
+                                                                               
+      ^
+    symbol:   class SkullBlockRenderer
+    location: class ClientHelper
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\particle\DamageModifiedParticle.java:40: error: cann
+ot find symbol
+          return ParticleRenderType.PARTICLE_SHEET_OPAQUE;
+                                   ^
+    symbol:   variable PARTICLE_SHEET_OPAQUE
+    location: class ParticleRenderType
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\BoltEntity.java:160: error: cannot find s
+ymbol
+                      ((ServerPlayer) shooter).connection.send(new ClientboundG
+ameEventPacket(ClientboundGameEventPacket.ARROW_HIT_PLAYER, 0.0F));
+                                                                               
+                                         ^
+    symbol:   variable ARROW_HIT_PLAYER
+    location: class ClientboundGameEventPacket
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\BoltEntity.java:164: error: cannot find s
+ymbol
+                      CriteriaTriggers.KILLED_BY_CROSSBOW.trigger(serverplayere
+ntity, List.of(entity));
+                                      ^
+    symbol:   variable KILLED_BY_CROSSBOW
+    location: class CriteriaTriggers
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:255: error: can
+not find symbol
+                      ((ServerPlayer) shooter).connection.send(new ClientboundG
+ameEventPacket(ClientboundGameEventPacket.ARROW_HIT_PLAYER, 0.0F));
+                                                                               
+                                         ^
+    symbol:   variable ARROW_HIT_PLAYER
+    location: class ClientboundGameEventPacket
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\ArrowBaseEntity.java:81: error: isClientS
+ide has private access in Level
+          if (level.isClientSide /*&& potion != null && potion != Potions.EMPTY
+*/) {
+                   ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\BoltEntity.java:102: error: isClientSide 
+has private access in Level
+          if (level.isClientSide) {
+                   ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\BoltEntity.java:148: error: isClientSide 
+has private access in Level
+                  if (!level.isClientSide && this.getPierceLevel() <= 0)
+                            ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\BoltEntity.java:163: error: isClientSide 
+has private access in Level
+                  if (!level.isClientSide && shooter instanceof ServerPlayer se
+rverplayerentity && !entity.isAlive() && this.shotFromCrossbow())
+                            ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\BoltEntity.java:175: error: isClientSide 
+has private access in Level
+              if (!level.isClientSide && this.getDeltaMovement().lengthSqr() < 
+1.0E-7D) {
+                        ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:127: error: isC
+lientSide has private access in Level
+                      if (level.isClientSide) {
+                               ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:272: error: isC
+lientSide has private access in Level
+              if (!level.isClientSide && this.getDeltaMovement().lengthSqr() < 
+1.0e-7d) {
+                        ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:287: error: isC
+lientSide has private access in Level
+              if (!level.isClientSide) {
+                        ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:414: error: isC
+lientSide has private access in Level
+          if (!level.isClientSide && this.shakeTime <= 0) {
+                    ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\BoomerangEntity.java:168: error: isClient
+Side has private access in Level
+                  if (!level.isClientSide)
+                            ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\BoomerangEntity.java:174: error: isClient
+Side has private access in Level
+          if (!level.isClientSide && this.tickCount > 200) {
+                    ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\BoomerangEntity.java:182: error: isClient
+Side has private access in Level
+          if (level.isClientSide && !this.inGround) {
+                   ^
+  Note: Recompile with -Xlint:unchecked for details.
+  Note: Some input files use or override a deprecated API.
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\particle\DamageModifiedParticle.java:38: error: meth
+od does not override or implement a method from a supertype
+      @Override
+      ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\particle\DamageModifiedParticle.java:50: error: meth
+od does not override or implement a method from a supertype
+          @Override
+          ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\particle\DamageModifiedParticle.java:69: error: meth
+od does not override or implement a method from a supertype
+          @Override
+          ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\particle\DamageModifiedParticle.java:88: error: meth
+od does not override or implement a method from a supertype
+          @Override
+          ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\ArrowBaseEntity.java:162: error: method d
+oes not override or implement a method from a supertype
+      @Override
+      ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\ArrowBaseEntity.java:196: error: method d
+oes not override or implement a method from a supertype
+      @Override
+      ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\BoltEntity.java:229: error: method does n
+ot override or implement a method from a supertype
+      @Override
+      ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\BoltEntity.java:254: error: method does n
+ot override or implement a method from a supertype
+      @Override
+      ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\renderer\entity\BoomerangRenderer.java:16: error: me
+thod does not override or implement a method from a supertype
+      @Override
+      ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:329: error: met
+hod does not override or implement a method from a supertype
+      @Override
+      ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:359: error: met
+hod does not override or implement a method from a supertype
+      @Override
+      ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\data\recipe\ConditionalShapelessRecipeBuilder.java:144:
+ warning: [removal] parent(Identifier) in Builder has been deprecated and marke
+d for removal
+          advancement.parent(RecipeBuilder.ROOT_RECIPE_ADVANCEMENT)
+                     ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\capability\IQuiverItemHandler.java:5: warning: [removal] II
+temHandler in net.neoforged.neoforge.items has been deprecated and marked for r
+emoval
+  public interface IQuiverItemHandler extends IItemHandler {
+                                              ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\capability\QuiverItemStackHandler.java:15: warning: [remova
+l] ItemStackHandler in net.neoforged.neoforge.items has been deprecated and mar
+ked for removal
+  public class QuiverItemStackHandler extends ItemStackHandler implements IQuiv
+erItemHandler {
+                                              ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\container\QuiverBaseScreen.java:50: warning: [re
+moval] getSlots() in IItemHandler has been deprecated and marked for removal
+          this.ammoSlots = handler != null ? handler.getSlots() : Defaults.Slot
+sQuiverSmall;
+                                                    ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\inventory\QuiverBaseMenu.java:41: warning: [removal] getSlo
+ts() in IItemHandler has been deprecated and marked for removal
+          this.playerInvStart = this.handler.getSlots();
+                                            ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\inventory\QuiverBaseMenu.java:56: warning: [removal] getSlo
+ts() in IItemHandler has been deprecated and marked for removal
+          slotStartX = switch (this.handler.getSlots()) {
+                                           ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\inventory\QuiverBaseMenu.java:73: warning: [removal] getSlo
+ts() in IItemHandler has been deprecated and marked for removal
+          for (int i = 0; i < this.handler.getSlots(); i++) {
+                                          ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\inventory\QuiverBaseMenu.java:80: warning: [removal] getSlo
+ts() in IItemHandler has been deprecated and marked for removal
+          int yOffset = this.handler.getSlots() == Defaults.SlotsQuiverHuge ? 1
+8 : 0;
+                                    ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\inventory\QuiverBaseMenu.java:95: warning: [removal] getSlo
+ts() in IItemHandler has been deprecated and marked for removal
+          this.addSlot(new Slot(inventory, 40, -21, this.handler.getSlots() == 
+Defaults.SlotsQuiverHuge ? 127 : 109) {
+                                                                ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\inventory\QuiverBaseMenu.java:113: warning: [removal] getSl
+ots() in IItemHandler has been deprecated and marked for removal
+              if (slotIdx >= 0 && slotIdx < this.handler.getSlots()) {
+                                                        ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\data\recipe\TagCookingRecipeBuilder.java:99: warning: [remo
+val] parent(Identifier) in Builder has been deprecated and marked for removal
+          advancement.parent(ROOT_RECIPE_ADVANCEMENT)
+                     ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\event\CommonEventHandler.java:355: warning: [removal] inser
+tItem(int,ItemStack,boolean) in IItemHandler has been deprecated and marked for
+ removal
+              arrowStack = quiverHandler.insertItem(prioritySlot, arrowStack, f
+alse);
+                                        ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\event\CommonEventHandler.java:357: warning: [removal] getSl
+ots() in IItemHandler has been deprecated and marked for removal
+                  for (int j = 0; j < quiverHandler.getSlots(); j++) {
+                                                   ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\event\CommonEventHandler.java:361: warning: [removal] inser
+tItem(int,ItemStack,boolean) in IItemHandler has been deprecated and marked for
+ removal
+                      arrowStack = quiverHandler.insertItem(j, arrowStack, fals
+e);
+                                                ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\event\CommonEventHandler.java:382: warning: [removal] getSl
+ots() in IItemHandler has been deprecated and marked for removal
+              if (prioritySlot <= quiverHandler.getSlots()) {
+                                               ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\event\CommonEventHandler.java:383: warning: [removal] extra
+ctItem(int,int,boolean) in IItemHandler has been deprecated and marked for remo
+val
+                  arrowStack = quiverHandler.extractItem(prioritySlot, 64, fals
+e);
+                                            ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\event\CommonEventHandler.java:389: warning: [removal] getSl
+ots() in IItemHandler has been deprecated and marked for removal
+                  for (int j = 0; j < quiverHandler.getSlots(); j++) {
+                                                   ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\event\CommonEventHandler.java:393: warning: [removal] extra
+ctItem(int,int,boolean) in IItemHandler has been deprecated and marked for remo
+val
+                      arrowStack = quiverHandler.extractItem(j, 64, false);
+                                                ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\event\CommonEventHandler.java:423: warning: [removal] getSl
+ots() in IItemHandler has been deprecated and marked for removal
+                          for (int i = 0; i < quiverHandler.getSlots(); i++) {
+                                                           ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\event\CommonEventHandler.java:424: warning: [removal] inser
+tItem(int,ItemStack,boolean) in IItemHandler has been deprecated and marked for
+ removal
+                              pickedUpStack = quiverHandler.insertItem(i, picke
+dUpStack, false);
+                                                           ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\inventory\SlotFiltered.java:12: warning: [removal] SlotItem
+Handler in net.neoforged.neoforge.items has been deprecated and marked for remo
+val
+  public class SlotFiltered extends SlotItemHandler {
+                                    ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\inventory\SlotFiltered.java:16: warning: [removal] IItemHan
+dler in net.neoforged.neoforge.items has been deprecated and marked for removal
+      public SlotFiltered(IItemHandler handlerIn, int indexIn, int xPositionIn,
+ int yPositionIn, Predicate<ItemStack> filterIn) {
+                          ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\inventory\SlotFiltered.java:20: warning: [removal] IItemHan
+dler in net.neoforged.neoforge.items has been deprecated and marked for removal
+      public SlotFiltered(IItemHandler handlerIn, int indexIn, int xPositionIn,
+ int yPositionIn, Predicate<ItemStack> filterIn, @Nullable Identifier noItemIco
+nIn) {
+                          ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\mixin\AbstractArrowMixin.java:63: warning: [removal] getSlo
+ts() in IItemHandler has been deprecated and marked for removal
+                                  for (int i = 0; i < quiverHandler.getSlots();
+ i++) {
+                                                                   ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\mixin\AbstractArrowMixin.java:64: warning: [removal] insert
+Item(int,ItemStack,boolean) in IItemHandler has been deprecated and marked for 
+removal
+                                      arrowStack = quiverHandler.insertItem(i, 
+arrowStack, false);
+                                                                ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\particle\DamageModifiedParticle.java:57: error: cann
+ot find symbol
+              particle.pickSprite(this.spriteSet);
+                      ^
+    symbol:   method pickSprite(SpriteSet)
+    location: variable particle of type DamageModifiedParticle
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\particle\DamageModifiedParticle.java:76: error: cann
+ot find symbol
+              particle.pickSprite(this.spriteSet);
+                      ^
+    symbol:   method pickSprite(SpriteSet)
+    location: variable particle of type DamageModifiedParticle
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\particle\DamageModifiedParticle.java:95: error: cann
+ot find symbol
+              particle.pickSprite(this.spriteSet);
+                      ^
+    symbol:   method pickSprite(SpriteSet)
+    location: variable particle of type DamageModifiedParticle
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\ArrowBaseEntity.java:114: error: cannot f
+ind symbol
+                  lightning.moveTo(Vec3.atBottomCenterOf(living.blockPosition()
+));
+                           ^
+    symbol:   method moveTo(Vec3)
+    location: variable lightning of type LightningBolt
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\ArrowBaseEntity.java:178: error: cannot f
+ind symbol
+              compound.put(this.NBT_ARROW, arrowStack.save(this.level().registr
+yAccess()));
+                                                     ^
+    symbol:   method save(RegistryAccess)
+    location: variable arrowStack of type ItemStack
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\ArrowBaseEntity.java:200: error: cannot f
+ind symbol
+          this.setArrowStack(ItemStack.parseOptional(this.level().registryAcces
+s(), nbt));
+                                      ^
+    symbol:   method parseOptional(RegistryAccess,CompoundTag)
+    location: class ItemStack
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\BoltEntity.java:151: error: cannot find s
+ymbol
+                  int knockback = EnchantmentHelper.getItemEnchantmentLevel(reg
+istryAccess.registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantmen
+ts.KNOCKBACK), this.getPickupItem());
+                                                                               
+           ^
+    symbol:   method registryOrThrow(ResourceKey<Registry<Enchantment>>)
+    location: variable registryAccess of type RegistryAccess
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\BoltEntity.java:203: error: cannot find s
+ymbol
+                  lightning.moveTo(Vec3.atBottomCenterOf(living.blockPosition()
+));
+                           ^
+    symbol:   method moveTo(Vec3)
+    location: variable lightning of type LightningBolt
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\BoltEntity.java:235: error: cannot find s
+ymbol
+              ItemStack boltStack = ItemStack.parseOptional(this.level().regist
+ryAccess(), boltNbt);
+                                             ^
+    symbol:   method parseOptional(RegistryAccess,CompoundTag)
+    location: class ItemStack
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\BoltEntity.java:269: error: cannot find s
+ymbol
+              compound.put(this.NBT_BOLT, boltStack.save(this.level().registryA
+ccess()));
+                                                   ^
+    symbol:   method save(RegistryAccess)
+    location: variable boltStack of type ItemStack
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:244: error: can
+not find symbol
+                  int knockback = EnchantmentHelper.getItemEnchantmentLevel(reg
+istryAccess.registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantmen
+ts.KNOCKBACK), weapon);
+                                                                               
+           ^
+    symbol:   method registryOrThrow(ResourceKey<Registry<Enchantment>>)
+    location: variable registryAccess of type RegistryAccess
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:289: error: can
+not find symbol
+                  ((ServerLevel) level).sendParticles(new BlockParticleOption(P
+articleTypes.BLOCK, state).setPos(hitResult.getBlockPos()), this.getX(), this.g
+etY(), this.getZ(), 5, 0.1d, 0.1d, 0.1d, 0.05d);
+                                                                               
+                          ^
+    symbol:   method setPos(BlockPos)
+    location: class BlockParticleOption
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:334: error: can
+not find symbol
+              ItemStack weapon = ItemStack.parse(this.level().registryAccess(),
+ weaponTag).orElse(ItemStack.EMPTY);
+                                          ^
+    symbol:   method parse(RegistryAccess,CompoundTag)
+    location: class ItemStack
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:375: error: can
+not find symbol
+              weapon.save(this.level().registryAccess(), weaponTag);
+                    ^
+    symbol:   method save(RegistryAccess,CompoundTag)
+    location: variable weapon of type ItemStack
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:396: error: can
+not find symbol
+              stack.save(this.level().registryAccess(), original);
+                   ^
+    symbol:   method save(RegistryAccess,CompoundTag)
+    location: variable stack of type ItemStack
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:400: error: can
+not find symbol
+          int loyalty = EnchantmentHelper.getItemEnchantmentLevel(this.level().
+registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Encha
+ntments.LOYALTY), stack);
+                                                                               
+                ^
+    symbol:   method registryOrThrow(ResourceKey<Registry<Enchantment>>)
+    location: interface RegistryAccess
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\BoomerangEntity.java:208: error: cannot f
+ind symbol
+              Vec3i faceNormali = hitResult.getDirection().getNormal();
+                                                          ^
+    symbol:   method getNormal()
+    location: class Direction
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\model\LargeArrowQuiverModel.java:99: error: renderTo
+Buffer(@org.jetbrains.annotations.NotNull PoseStack,@org.jetbrains.annotations.
+NotNull VertexConsumer,int,int,int) in LargeArrowQuiverModel cannot override re
+nderToBuffer(PoseStack,VertexConsumer,int,int,int) in Model
+      public void renderToBuffer(@NotNull PoseStack mStack, @NotNull VertexCons
+umer buffer, int packedLight, int packedOverlay,
+                  ^
+    overridden method is final
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\model\LargeBoltQuiverModel.java:98: error: renderToB
+uffer(@org.jetbrains.annotations.NotNull PoseStack,@org.jetbrains.annotations.N
+otNull VertexConsumer,int,int,int) in LargeBoltQuiverModel cannot override rend
+erToBuffer(PoseStack,VertexConsumer,int,int,int) in Model
+      public void renderToBuffer(@NotNull PoseStack mStack, @NotNull VertexCons
+umer buffer, int packedLight, int packedOverlay,
+                  ^
+    overridden method is final
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\model\MediumArrowQuiverModel.java:83: error: renderT
+oBuffer(@org.jetbrains.annotations.NotNull PoseStack,@org.jetbrains.annotations
+.NotNull VertexConsumer,int,int,int) in MediumArrowQuiverModel cannot override 
+renderToBuffer(PoseStack,VertexConsumer,int,int,int) in Model
+      public void renderToBuffer(@NotNull PoseStack mStack, @NotNull VertexCons
+umer buffer, int packedLight, int packedOverlay,
+                  ^
+    overridden method is final
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\model\MediumBoltQuiverModel.java:82: error: renderTo
+Buffer(@org.jetbrains.annotations.NotNull PoseStack,@org.jetbrains.annotations.
+NotNull VertexConsumer,int,int,int) in MediumBoltQuiverModel cannot override re
+nderToBuffer(PoseStack,VertexConsumer,int,int,int) in Model
+      public void renderToBuffer(@NotNull PoseStack mStack, @NotNull VertexCons
+umer buffer, int packedLight, int packedOverlay,
+                  ^
+    overridden method is final
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\model\SmallArrowQuiverModel.java:83: error: renderTo
+Buffer(@org.jetbrains.annotations.NotNull PoseStack,@org.jetbrains.annotations.
+NotNull VertexConsumer,int,int,int) in SmallArrowQuiverModel cannot override re
+nderToBuffer(PoseStack,VertexConsumer,int,int,int) in Model
+      public void renderToBuffer(@NotNull PoseStack mStack, @NotNull VertexCons
+umer buffer, int packedLight, int packedOverlay,
+                  ^
+    overridden method is final
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\model\SmallBoltQuiverModel.java:119: error: renderTo
+Buffer(@org.jetbrains.annotations.NotNull PoseStack,@org.jetbrains.annotations.
+NotNull VertexConsumer,int,int,int) in SmallBoltQuiverModel cannot override ren
+derToBuffer(PoseStack,VertexConsumer,int,int,int) in Model
+      public void renderToBuffer(@NotNull PoseStack mStack, @NotNull VertexCons
+umer buffer, int packedLight, int packedOverlay,
+                  ^
+    overridden method is final
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\BoltEntity.java:121: error: cannot find s
+ymbol
+          int damage = Mth.ceil(Mth.clamp((double) velocity * this.getBaseDamag
+e(), 0.0D, 2.147483647E9D));
+                                                                  ^
+    symbol: method getBaseDamage()
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\BoltEntity.java:163: error: cannot find s
+ymbol
+                  if (!level.isClientSide && shooter instanceof ServerPlayer se
+rverplayerentity && !entity.isAlive() && this.shotFromCrossbow())
+                                                                               
+                                             ^
+    symbol: method shotFromCrossbow()
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:184: error: can
+not find symbol
+          float damage = Mth.ceil(this.getBaseDamage());
+                                      ^
+    symbol: method getBaseDamage()
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\ArrowBaseEntity.java:171: error: incompat
+ible types: CompoundTag cannot be converted to ValueOutput
+          super.addAdditionalSaveData(compound);
+                                      ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\ArrowBaseEntity.java:198: error: incompat
+ible types: CompoundTag cannot be converted to ValueInput
+          super.readAdditionalSaveData(compound);
+                                       ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\ArrowBaseEntity.java:199: error: incompat
+ible types: Optional<CompoundTag> cannot be converted to CompoundTag
+          CompoundTag nbt = compound.getCompound(this.NBT_ARROW);
+                                                ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\ArrowBaseEntity.java:203: error: incompat
+ible types: Optional<String> cannot be converted to String
+              this.potion = BuiltInRegistries.POTION.get(Identifier.parse(compo
+und.getString(this.NBT_POTION)));
+                                                                               
+             ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\BoltEntity.java:143: error: incompatible 
+types: void cannot be converted to boolean
+          if (entity.hurt(source, (float) damage)) {
+                         ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\BoltEntity.java:231: error: incompatible 
+types: CompoundTag cannot be converted to ValueInput
+          super.readAdditionalSaveData(compound);
+                                       ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\BoltEntity.java:234: error: incompatible 
+types: Optional<CompoundTag> cannot be converted to CompoundTag
+              CompoundTag boltNbt = compound.getCompound(this.NBT_BOLT);
+                                                        ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\BoltEntity.java:242: error: incompatible 
+types: Optional<String> cannot be converted to String
+              this.potion = BuiltInRegistries.POTION.get(Identifier.parse(compo
+und.getString(this.NBT_POTION)));
+                                                                               
+             ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\BoltEntity.java:262: error: incompatible 
+types: CompoundTag cannot be converted to ValueOutput
+          super.addAdditionalSaveData(compound);
+                                      ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:237: error: inc
+ompatible types: void cannot be converted to boolean
+          if (entity.hurt(src, damage)) {
+                         ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:331: error: inc
+ompatible types: CompoundTag cannot be converted to ValueInput
+          super.readAdditionalSaveData(compound);
+                                       ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:333: error: inc
+ompatible types: Optional<CompoundTag> cannot be converted to CompoundTag
+              CompoundTag weaponTag = compound.getCompound(NBT_WEAPON);
+                                                          ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:367: error: inc
+ompatible types: CompoundTag cannot be converted to ValueOutput
+          super.addAdditionalSaveData(compound);
+                                      ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:427: error: inc
+ompatible types: Optional<Integer> cannot be converted to int
+                          int currentAmmo = ItemStackDataHelper.getTag(invStack
+).getInt(ThrowingWeaponItem.NBT_AMMO_USED);
+                                                                               
+        ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\particle\DamageModifiedParticle.java:9: error: Damag
+eModifiedParticle is not abstract and does not override abstract method getLaye
+r() in SingleQuadParticle
+  public class DamageModifiedParticle extends SingleQuadParticle {
+         ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\particle\DamageModifiedParticle.java:43: error: Dama
+geBoostedProvider is not abstract and does not override abstract method createP
+article(SimpleParticleType,ClientLevel,double,double,double,double,double,doubl
+e,RandomSource) in ParticleProvider
+      public static class DamageBoostedProvider implements ParticleProvider<Sim
+pleParticleType> {
+                    ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\particle\DamageModifiedParticle.java:62: error: Dama
+geReducedProvider is not abstract and does not override abstract method createP
+article(SimpleParticleType,ClientLevel,double,double,double,double,double,doubl
+e,RandomSource) in ParticleProvider
+      public static class DamageReducedProvider implements ParticleProvider<Sim
+pleParticleType> {
+                    ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\particle\DamageModifiedParticle.java:81: error: OilD
+amageBoostedProvider is not abstract and does not override abstract method crea
+teParticle(SimpleParticleType,ClientLevel,double,double,double,double,double,do
+uble,RandomSource) in ParticleProvider
+      public static class OilDamageBoostedProvider implements ParticleProvider<
+SimpleParticleType> {
+                    ^
+  Note: C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\
+spartanweaponryunofficial\data\ModDamageTypeTagsProvider.java uses unchecked or
+ unsafe operations.
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:430: error: bad
+ operand types for binary operator '-'
+                              ItemStackDataHelper.updateTag(invStack, tag -> ta
+g.putInt(ThrowingWeaponItem.NBT_AMMO_USED, Math.max(0, tag.getInt(ThrowingWeapo
+nItem.NBT_AMMO_USED) - 1)));
+                                                                               
+                                                                               
+                     ^
+    first type:  Optional<Integer>
+    second type: int
+  Note: Some messages have been simplified; recompile with -Xdiags:verbose to g
+et full output
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\ArrowBaseEntity.java:82: error: cannot fi
+nd symbol
+              if (this.inGround) {
+                      ^
+    symbol: variable inGround
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\ArrowBaseEntity.java:87: error: cannot fi
+nd symbol
+          } else if (this.inGround && this.inGroundTime != 0 && this.inGroundTi
+me >= 600) {
+                         ^
+    symbol: variable inGround
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\BoltEntity.java:103: error: cannot find s
+ymbol
+              if (this.inGround) {
+                      ^
+    symbol: variable inGround
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\BoltEntity.java:108: error: cannot find s
+ymbol
+          } else if (this.inGround && this.inGroundTime != 0 && this.inGroundTi
+me >= 600) {
+                         ^
+    symbol: variable inGround
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:112: error: can
+not find symbol
+                          this.inGround = false;
+                              ^
+    symbol: variable inGround
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:119: error: can
+not find symbol
+                          if (this.inGround)
+                                  ^
+    symbol: variable inGround
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:120: error: can
+not find symbol
+                              this.inGround = false;
+                                  ^
+    symbol: variable inGround
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:153: error: can
+not find symbol
+          if (this.isReturning && this.inGround)
+                                      ^
+    symbol: variable inGround
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:154: error: can
+not find symbol
+              this.inGround = false;
+                  ^
+    symbol: variable inGround
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:156: error: can
+not find symbol
+          if (!this.inGround)
+                   ^
+    symbol: variable inGround
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:312: error: can
+not find symbol
+          if (this.inGround || this.isReturning)
+                  ^
+    symbol: variable inGround
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\BoomerangEntity.java:99: error: cannot fi
+nd symbol
+          if (this.inGround) {
+                  ^
+    symbol: variable inGround
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\BoomerangEntity.java:182: error: cannot f
+ind symbol
+          if (level.isClientSide && !this.inGround) {
+                                         ^
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/9.1.0/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+3 actionable tasks: 1 executed, 2 up-to-date
+    symbol: variable inGround
+  100 errors
+  25 warnings
+
+* Try:
+> Check your code and dependencies to fix the compilation error(s)
+> Run with --scan to generate a Build Scan (Powered by Develocity).
+
+BUILD FAILED in 12s

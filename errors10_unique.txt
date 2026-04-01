@@ -1,0 +1,112 @@
+﻿org\xiyu\spartanweaponryunofficial\api\trait\HarvesterWeaponTrait.java:86: error: method getCloneItemStack in class BlockBehaviour cannot be applied to given
+org\xiyu\spartanweaponryunofficial\api\trait\HarvesterWeaponTrait.java:86: error: method getCloneItemStack in class BlockBehaviour cannot be applied to given t
+org\xiyu\spartanweaponryunofficial\client\ClientHelper.java:190: error: cannot find symbol
+org\xiyu\spartanweaponryunofficial\client\particle\DamageModifiedParticle.java:44: error: DamageBoostedProvider is not abstract and does not override abstrac
+org\xiyu\spartanweaponryunofficial\client\particle\DamageModifiedParticle.java:44: error: DamageBoostedProvider is not abstract and does not override abstract 
+org\xiyu\spartanweaponryunofficial\client\particle\DamageModifiedParticle.java:51: error: method does not override or implement a method from a supertype
+org\xiyu\spartanweaponryunofficial\client\particle\DamageModifiedParticle.java:54: error: random has protected access in Level
+org\xiyu\spartanweaponryunofficial\client\particle\DamageModifiedParticle.java:62: error: DamageReducedProvider is not abstract and does not override abstrac
+org\xiyu\spartanweaponryunofficial\client\particle\DamageModifiedParticle.java:62: error: DamageReducedProvider is not abstract and does not override abstract 
+org\xiyu\spartanweaponryunofficial\client\particle\DamageModifiedParticle.java:69: error: method does not override or implement a method from a supertype
+org\xiyu\spartanweaponryunofficial\client\particle\DamageModifiedParticle.java:72: error: random has protected access in Level
+org\xiyu\spartanweaponryunofficial\client\particle\DamageModifiedParticle.java:80: error: OilDamageBoostedProvider is not abstract and does not override abst
+org\xiyu\spartanweaponryunofficial\client\particle\DamageModifiedParticle.java:80: error: OilDamageBoostedProvider is not abstract and does not override abstra
+org\xiyu\spartanweaponryunofficial\client\particle\DamageModifiedParticle.java:87: error: method does not override or implement a method from a supertype
+org\xiyu\spartanweaponryunofficial\client\particle\DamageModifiedParticle.java:90: error: random has protected access in Level
+org\xiyu\spartanweaponryunofficial\client\renderer\entity\EndermanHeadModel.java:18: error: constructor SkullModelBase in class SkullModelBase cannot be appl
+org\xiyu\spartanweaponryunofficial\client\renderer\entity\EndermanHeadModel.java:18: error: constructor SkullModelBase in class SkullModelBase cannot be applie
+org\xiyu\spartanweaponryunofficial\client\renderer\entity\EndermanHeadModel.java:33: error: method does not override or implement a method from a supertype
+org\xiyu\spartanweaponryunofficial\client\renderer\entity\EndermanHeadModel.java:40: error: renderToBuffer(@org.jetbrains.annotations.NotNull PoseStack,@org.
+org\xiyu\spartanweaponryunofficial\client\renderer\entity\EndermanHeadModel.java:40: error: renderToBuffer(@org.jetbrains.annotations.NotNull PoseStack,@org.je
+org\xiyu\spartanweaponryunofficial\client\renderer\entity\IllagerHeadModel.java:21: error: constructor SkullModelBase in class SkullModelBase cannot be appli
+org\xiyu\spartanweaponryunofficial\client\renderer\entity\IllagerHeadModel.java:21: error: constructor SkullModelBase in class SkullModelBase cannot be applied
+org\xiyu\spartanweaponryunofficial\client\renderer\entity\IllagerHeadModel.java:36: error: method does not override or implement a method from a supertype
+org\xiyu\spartanweaponryunofficial\client\renderer\entity\IllagerHeadModel.java:43: error: renderToBuffer(@org.jetbrains.annotations.NotNull PoseStack,@org.j
+org\xiyu\spartanweaponryunofficial\client\renderer\entity\IllagerHeadModel.java:43: error: renderToBuffer(@org.jetbrains.annotations.NotNull PoseStack,@org.jet
+org\xiyu\spartanweaponryunofficial\client\renderer\entity\JavelinRenderer.java:16: error: method does not override or implement a method from a supertype
+org\xiyu\spartanweaponryunofficial\client\renderer\entity\TomahawkRenderer.java:16: error: method does not override or implement a method from a supertype
+org\xiyu\spartanweaponryunofficial\client\renderer\entity\WitchHeadModel.java:22: error: constructor SkullModelBase in class SkullModelBase cannot be applied
+org\xiyu\spartanweaponryunofficial\client\renderer\entity\WitchHeadModel.java:22: error: constructor SkullModelBase in class SkullModelBase cannot be applied t
+org\xiyu\spartanweaponryunofficial\client\renderer\entity\WitchHeadModel.java:49: error: method does not override or implement a method from a supertype
+org\xiyu\spartanweaponryunofficial\client\renderer\entity\WitchHeadModel.java:56: error: renderToBuffer(@org.jetbrains.annotations.NotNull PoseStack,@org.jet
+org\xiyu\spartanweaponryunofficial\client\renderer\entity\WitchHeadModel.java:56: error: renderToBuffer(@org.jetbrains.annotations.NotNull PoseStack,@org.jetbr
+org\xiyu\spartanweaponryunofficial\command\OilArgument.java:48: error: cannot find symbol
+org\xiyu\spartanweaponryunofficial\command\OilParser.java:52: error: incompatible types: bad type in conditional expression
+org\xiyu\spartanweaponryunofficial\command\OilParser.java:80: error: cannot find symbol
+org\xiyu\spartanweaponryunofficial\command\PotionParser.java:55: error: incompatible types: Optional<Reference<Potion>> cannot be converted to Potion
+org\xiyu\spartanweaponryunofficial\data\ModAdvancementProvider.java:80: error: incompatible types: TagKey<Item> cannot be converted to HolderGetter<Item>
+org\xiyu\spartanweaponryunofficial\data\ModAdvancementProvider.java:82: error: incompatible types: TagKey<Item> cannot be converted to HolderGetter<Item>
+org\xiyu\spartanweaponryunofficial\data\ModAdvancementProvider.java:84: error: incompatible types: TagKey<Item> cannot be converted to HolderGetter<Item>
+org\xiyu\spartanweaponryunofficial\data\ModAdvancementProvider.java:86: error: incompatible types: TagKey<Item> cannot be converted to HolderGetter<Item>
+org\xiyu\spartanweaponryunofficial\data\ModAdvancementProvider.java:88: error: incompatible types: TagKey<Item> cannot be converted to HolderGetter<Item>
+org\xiyu\spartanweaponryunofficial\data\ModAdvancementProvider.java:91: error: incompatible types: TagKey<Item> cannot be converted to HolderGetter<Item>
+org\xiyu\spartanweaponryunofficial\data\ModAdvancementProvider.java:93: error: incompatible types: TagKey<Item> cannot be converted to HolderGetter<Item>
+org\xiyu\spartanweaponryunofficial\data\ModAdvancementProvider.java:95: error: incompatible types: TagKey<Item> cannot be converted to HolderGetter<Item>
+org\xiyu\spartanweaponryunofficial\data\ModAdvancementProvider.java:98: error: incompatible types: TagKey<Item> cannot be converted to HolderGetter<Item>
+org\xiyu\spartanweaponryunofficial\data\ModItemTagsProvider.java:274: error: cannot find symbol
+org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:102: error: no suitable method found for shapeless(RecipeCategory,Item)
+org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:103: error: no suitable method found for shapeless(RecipeCategory,Item)
+org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:104: error: no suitable method found for shapeless(RecipeCategory,Item,int)
+org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:105: error: no suitable method found for shapeless(RecipeCategory,Item,int)
+org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:107: error: no suitable method found for shaped(RecipeCategory,Item)
+org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:108: error: no suitable method found for shaped(RecipeCategory,Item)
+org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:109: error: no suitable method found for shaped(RecipeCategory,Item,int)
+org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:110: error: no suitable method found for shaped(RecipeCategory,Item,int)
+org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:319: error: no suitable method found for shapeless(RecipeCategory,Item,int)
+org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:320: error: no suitable method found for shapeless(RecipeCategory,Item,int)
+org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:321: error: no suitable method found for shapeless(RecipeCategory,Item,int)
+org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:322: error: no suitable method found for shapeless(RecipeCategory,Item,int)
+org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:323: error: no suitable method found for shapeless(RecipeCategory,Item,int)
+org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:329: error: constructor ApplyOilRecipe in class ApplyOilRecipe cannot be applied to given type
+org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:329: error: constructor ApplyOilRecipe in class ApplyOilRecipe cannot be applied to given types;
+org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:333: error: no suitable method found for of(TagKey<Item>)
+org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:341: error: incompatible types: String cannot be converted to TagKey
+org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:350: error: incompatible types: String cannot be converted to TagKey
+org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:359: error: incompatible types: String cannot be converted to TagKey
+org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:368: error: incompatible types: String cannot be converted to TagKey
+org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:377: error: incompatible types: String cannot be converted to TagKey
+org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:386: error: incompatible types: String cannot be converted to TagKey
+org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:395: error: incompatible types: String cannot be converted to TagKey
+org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:404: error: incompatible types: String cannot be converted to TagKey
+org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:413: error: incompatible types: String cannot be converted to TagKey
+org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:422: error: incompatible types: String cannot be converted to TagKey
+org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:431: error: incompatible types: String cannot be converted to TagKey
+org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:440: error: incompatible types: String cannot be converted to TagKey
+org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:449: error: incompatible types: String cannot be converted to TagKey
+org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:458: error: incompatible types: String cannot be converted to TagKey
+org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:46: error: ModRecipeProvider is not abstract and does not override abstract method buildRecipe
+org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:46: error: ModRecipeProvider is not abstract and does not override abstract method buildRecipes(
+org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:467: error: incompatible types: String cannot be converted to TagKey
+org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:476: error: incompatible types: String cannot be converted to TagKey
+org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:48: error: incompatible types: PackOutput cannot be converted to Provider
+org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:485: error: incompatible types: String cannot be converted to TagKey
+org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:494: error: incompatible types: String cannot be converted to TagKey
+org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:503: error: incompatible types: String cannot be converted to TagKey
+org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:51: error: method does not override or implement a method from a supertype
+org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:512: error: incompatible types: String cannot be converted to TagKey
+org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:521: error: incompatible types: String cannot be converted to TagKey
+org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:530: error: incompatible types: String cannot be converted to TagKey
+org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:539: error: incompatible types: String cannot be converted to TagKey
+org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:548: error: incompatible types: String cannot be converted to TagKey
+org\xiyu\spartanweaponryunofficial\entity\projectile\ArrowBaseEntity.java:113: error: no suitable method found for create(Level)
+org\xiyu\spartanweaponryunofficial\entity\projectile\ArrowBaseEntity.java:115: error: cannot find symbol
+org\xiyu\spartanweaponryunofficial\entity\projectile\ArrowBaseEntity.java:164: error: cannot find symbol
+org\xiyu\spartanweaponryunofficial\entity\projectile\ArrowBaseEntity.java:198: error: cannot find symbol
+org\xiyu\spartanweaponryunofficial\entity\projectile\ArrowBaseEntity.java:8: error: cannot find symbol
+org\xiyu\spartanweaponryunofficial\entity\projectile\ArrowBaseEntity.java:9: error: cannot find symbol
+org\xiyu\spartanweaponryunofficial\entity\projectile\BoltEntity.java:10: error: cannot find symbol
+org\xiyu\spartanweaponryunofficial\entity\projectile\BoltEntity.java:11: error: cannot find symbol
+org\xiyu\spartanweaponryunofficial\entity\projectile\BoltEntity.java:203: error: no suitable method found for create(Level)
+org\xiyu\spartanweaponryunofficial\entity\projectile\BoltEntity.java:205: error: cannot find symbol
+org\xiyu\spartanweaponryunofficial\entity\projectile\BoltEntity.java:232: error: cannot find symbol
+org\xiyu\spartanweaponryunofficial\entity\projectile\BoltEntity.java:256: error: cannot find symbol
+org\xiyu\spartanweaponryunofficial\entity\projectile\BoomerangEntity.java:157: error: no suitable method found for startRiding(BoomerangEntity,boolean)
+org\xiyu\spartanweaponryunofficial\entity\projectile\BoomerangEntity.java:209: error: cannot find symbol
+org\xiyu\spartanweaponryunofficial\entity\projectile\BoomerangEntity.java:251: error: cannot find symbol
+org\xiyu\spartanweaponryunofficial\entity\projectile\BoomerangEntity.java:266: error: cannot find symbol
+org\xiyu\spartanweaponryunofficial\entity\projectile\BoomerangEntity.java:270: error: cannot find symbol
+org\xiyu\spartanweaponryunofficial\entity\projectile\BoomerangEntity.java:6: error: cannot find symbol
+org\xiyu\spartanweaponryunofficial\entity\projectile\BoomerangEntity.java:7: error: cannot find symbol
+org\xiyu\spartanweaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:346: error: cannot find symbol
+org\xiyu\spartanweaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:440: error: incompatible types: Optional<Integer> cannot be converted to int
+org\xiyu\spartanweaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:443: error: bad operand types for binary operator '-'

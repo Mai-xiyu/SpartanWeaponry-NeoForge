@@ -2,11 +2,11 @@ package org.xiyu.spartanweaponryunofficial.item.crafting;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.core.HolderLookup;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.*;
 import org.jetbrains.annotations.NotNull;
 import org.xiyu.spartanweaponryunofficial.capability.IQuiverItemHandler;
@@ -15,41 +15,54 @@ import org.xiyu.spartanweaponryunofficial.init.ModRecipeSerializers;
 import org.xiyu.spartanweaponryunofficial.item.QuiverBaseItem;
 import org.xiyu.spartanweaponryunofficial.util.ItemStackDataHelper;
 
+import java.util.Optional;
+
 public class QuiverUpgradeRecipe extends SmithingTransformRecipe {
     private final Ingredient template;
     private final Ingredient base;
     private final Ingredient addition;
-    private final ItemStack result;
+    private final ItemStackTemplate resultTemplate;
 
-    public QuiverUpgradeRecipe(Ingredient templateIn, Ingredient baseIn, Ingredient additionIn, ItemStack resultIn) {
-        super(templateIn, baseIn, additionIn, resultIn);
+    public static final MapCodec<QuiverUpgradeRecipe> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+            Ingredient.CODEC.fieldOf("template").forGetter(QuiverUpgradeRecipe::getTemplate),
+            Ingredient.CODEC.fieldOf("base").forGetter(QuiverUpgradeRecipe::getBase),
+            Ingredient.CODEC.fieldOf("addition").forGetter(QuiverUpgradeRecipe::getAddition),
+            ItemStackTemplate.MAP_CODEC.forGetter(QuiverUpgradeRecipe::getResultTemplate)
+    ).apply(instance, QuiverUpgradeRecipe::new));
+    public static final StreamCodec<RegistryFriendlyByteBuf, QuiverUpgradeRecipe> STREAM_CODEC = ByteBufCodecs.fromCodecWithRegistries(CODEC.codec());
+
+    public QuiverUpgradeRecipe(Ingredient templateIn, Ingredient baseIn, Ingredient additionIn, ItemStackTemplate resultIn) {
+        super(new Recipe.CommonInfo(true), Optional.of(templateIn), baseIn, Optional.of(additionIn), resultIn);
         this.template = templateIn;
         this.base = baseIn;
         this.addition = additionIn;
-        this.result = resultIn;
+        this.resultTemplate = resultIn;
     }
 
     @Override
-    public @NotNull ItemStack assemble(@NotNull SmithingRecipeInput inv, HolderLookup.@NotNull Provider registryAccessIn) {
-        ItemStack origOutputStack = this.getResultItem(registryAccessIn);
-        ItemStack outputStack = super.assemble(inv, registryAccessIn);
+    public @NotNull ItemStack assemble(@NotNull SmithingRecipeInput inv) {
+        ItemStack origOutputStack = this.resultTemplate.create();
+        ItemStack outputStack = super.assemble(inv);
         // Resize the output tag
-        // NOTE: More consistent, but inefficient
         IQuiverItemHandler itemHandler = outputStack.getCapability(ModCapabilities.QUIVER_ITEM_CAPABILITY);
-        if (itemHandler != null)
-            itemHandler.resize(ItemStackDataHelper.getTag(origOutputStack).getCompound(QuiverBaseItem.NBT_AMMO).getInt("Size"));
-//		outputStack.getOrCreateTagElement(QuiverBaseItem.NBT_AMMO).putInt("Size", origOutputStack.getOrCreateTagElement(QuiverBaseItem.NBT_AMMO).getInt("Size"));
+        if (itemHandler != null) {
+            int size = ItemStackDataHelper.getTag(origOutputStack)
+                    .getCompound(QuiverBaseItem.NBT_AMMO)
+                    .map(tag -> tag.getIntOr("Size", itemHandler.getSlots()))
+                    .orElse(itemHandler.getSlots());
+            itemHandler.resize(size);
+        }
 
         return outputStack;
     }
 
     @Override
-    public @NotNull RecipeSerializer<?> getSerializer() {
-        return ModRecipeSerializers.QUIVER_UPGRADE_SMITHING.get();
+    public @NotNull RecipeSerializer<SmithingTransformRecipe> getSerializer() {
+        return (RecipeSerializer<SmithingTransformRecipe>) (RecipeSerializer<?>) ModRecipeSerializers.QUIVER_UPGRADE_SMITHING.get();
     }
 
     @Override
-    public @NotNull RecipeType<?> getType() {
+    public @NotNull RecipeType<SmithingRecipe> getType() {
         return RecipeType.SMITHING;
     }
 
@@ -65,30 +78,7 @@ public class QuiverUpgradeRecipe extends SmithingTransformRecipe {
         return this.addition;
     }
 
-    public ItemStack getResultStack() {
-        return this.result;
-    }
-
-    public static class Serializer implements RecipeSerializer<QuiverUpgradeRecipe> {
-        public Serializer() {
-        }
-
-        private static final MapCodec<QuiverUpgradeRecipe> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
-                Ingredient.CODEC.fieldOf("template").forGetter(QuiverUpgradeRecipe::getTemplate),
-                Ingredient.CODEC.fieldOf("base").forGetter(QuiverUpgradeRecipe::getBase),
-                Ingredient.CODEC.fieldOf("addition").forGetter(QuiverUpgradeRecipe::getAddition),
-                ItemStack.CODEC.fieldOf("result").forGetter(QuiverUpgradeRecipe::getResultStack)
-        ).apply(instance, QuiverUpgradeRecipe::new));
-        private static final StreamCodec<RegistryFriendlyByteBuf, QuiverUpgradeRecipe> STREAM_CODEC = ByteBufCodecs.fromCodecWithRegistries(CODEC.codec());
-
-        @Override
-        public @NotNull MapCodec<QuiverUpgradeRecipe> codec() {
-            return CODEC;
-        }
-
-        @Override
-        public @NotNull StreamCodec<RegistryFriendlyByteBuf, QuiverUpgradeRecipe> streamCodec() {
-            return STREAM_CODEC;
-        }
+    public ItemStackTemplate getResultTemplate() {
+        return this.resultTemplate;
     }
 }

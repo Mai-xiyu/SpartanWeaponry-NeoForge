@@ -1,9 +1,9 @@
 package org.xiyu.spartanweaponryunofficial.entity.projectile;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Vec3i;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
@@ -11,7 +11,7 @@ import net.minecraft.world.entity.EntitySelector;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.entity.projectile.arrow.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
@@ -96,7 +96,7 @@ public class BoomerangEntity extends ThrowingWeaponEntity {
         super.tick();
 
         // Do nothing more if the Boomerang is in the ground
-        if (this.inGround) {
+        if (this.isInGround()) {
             this.xRotO = this.getXRot();
             this.yRotO = this.getYRot();
             return;
@@ -153,7 +153,7 @@ public class BoomerangEntity extends ThrowingWeaponEntity {
                 List<Entity> catchableEntities = level.getEntities(this, aabb, ITEMS_AND_XP);
                 if (!catchableEntities.isEmpty()) {
                     for (Entity entity : catchableEntities) {
-                        entity.startRiding(this, true);
+                        entity.startRiding(this, true, true);
                         this.caughtItems++;
 
                         if (this.caughtItems >= collectorangLevel)
@@ -165,13 +165,13 @@ public class BoomerangEntity extends ThrowingWeaponEntity {
             // Play the sound every 5 ticks
             if (this.ticksUntilSound <= 0 && !this.isNoPhysics()) {
                 this.ticksUntilSound = this.TICKS_PER_SOUND;
-                if (!level.isClientSide)
+                if (!level.isClientSide())
                     level.playSound(null, this.getX(), this.getY(), this.getZ(), this.getFlySound(), SoundSource.NEUTRAL, 2.0f, 0.5f);
             }
 
             --this.ticksUntilSound;
         }
-        if (!level.isClientSide && this.tickCount > 200) {
+        if (!level.isClientSide() && this.tickCount > 200) {
             if (this.getEntityData().get(DATA_RETURN) > 0 && !this.isNoPhysics())
                 this.setNoPhysics(true);
             else if (this.pickup == AbstractArrow.Pickup.ALLOWED) {
@@ -179,7 +179,7 @@ public class BoomerangEntity extends ThrowingWeaponEntity {
                 this.discard();
             }
         }
-        if (level.isClientSide && !this.inGround) {
+        if (level.isClientSide() && !this.isInGround()) {
             level.addParticle(ParticleTypes.CRIT, this.getX(), this.getY(), this.getZ(), 0.0D, 0.0D, 0.0D);
         }
     }
@@ -205,8 +205,7 @@ public class BoomerangEntity extends ThrowingWeaponEntity {
             // To do this, calculate a reflection vector from the block that was hit.
             // Firstly, the face that was hit for this is needed, and from that, it's normalized direction vector,
             // as well as the current motion vector
-            Vec3i faceNormali = hitResult.getDirection().getNormal();
-            Vec3 faceNormalVec = new Vec3(faceNormali.getX(), faceNormali.getY(), faceNormali.getZ());
+            Vec3 faceNormalVec = new Vec3(hitResult.getDirection().getStepX(), hitResult.getDirection().getStepY(), hitResult.getDirection().getStepZ());
             Vec3 motionVec = this.getDeltaMovement();
             // This should be normalized already, but just to ensure that it is, normalize it anyway.
             faceNormalVec.normalize();
@@ -247,44 +246,33 @@ public class BoomerangEntity extends ThrowingWeaponEntity {
     }
 
     @Override
-    public void readAdditionalSaveData(@NotNull CompoundTag compound) {
-        super.readAdditionalSaveData(compound);
+    public void readAdditionalSaveData(@NotNull ValueInput input) {
+        super.readAdditionalSaveData(input);
 
-        if (compound.contains(this.NBT_RETURN_POSITION)) {
-            double x, y, z;
-            CompoundTag returnPosNBT = compound.getCompound(this.NBT_RETURN_POSITION);
+        input.child(this.NBT_RETURN_POSITION).ifPresentOrElse(returnPosInput -> {
+            double x = returnPosInput.getDoubleOr(this.NBT_X, 0.0);
+            double y = returnPosInput.getDoubleOr(this.NBT_Y, 0.0);
+            double z = returnPosInput.getDoubleOr(this.NBT_Z, 0.0);
+            this.returnPos = new Vec3(x, y, z);
+            this.maxDistance = input.getDoubleOr(this.NBT_DISTANCE_TO_RETURN, DISTANCE_TO_RETURN);
+        }, () -> this.returnPos = null);
 
-            if (!returnPosNBT.isEmpty()) {
-                x = returnPosNBT.getDouble(this.NBT_X);
-                y = returnPosNBT.getDouble(this.NBT_Y);
-                z = returnPosNBT.getDouble(this.NBT_Z);
-
-                this.returnPos = new Vec3(x, y, z);
-            } else
-                this.returnPos = null;
-
-            this.maxDistance = compound.getDouble(this.NBT_DISTANCE_TO_RETURN);
-        } else
-            this.returnPos = null;
-
-        this.isReturning = compound.getBoolean(this.NBT_RETURNING);
+        this.isReturning = input.getBooleanOr(this.NBT_RETURNING, false);
     }
 
     @Override
-    public void addAdditionalSaveData(@NotNull CompoundTag compound) {
-        super.addAdditionalSaveData(compound);
+    public void addAdditionalSaveData(@NotNull ValueOutput output) {
+        super.addAdditionalSaveData(output);
 
         if (this.returnPos != null) {
-            CompoundTag returnPosNBT = new CompoundTag();
-            returnPosNBT.putDouble(this.NBT_X, this.returnPos.x);
-            returnPosNBT.putDouble(this.NBT_Y, this.returnPos.y);
-            returnPosNBT.putDouble(this.NBT_Z, this.returnPos.z);
-            compound.put(this.NBT_RETURN_POSITION, returnPosNBT);
-            compound.putDouble(this.NBT_DISTANCE_TO_RETURN, this.maxDistance);
-        } else
-            compound.remove(this.NBT_RETURN_POSITION);
+            ValueOutput returnPosOutput = output.child(this.NBT_RETURN_POSITION);
+            returnPosOutput.putDouble(this.NBT_X, this.returnPos.x);
+            returnPosOutput.putDouble(this.NBT_Y, this.returnPos.y);
+            returnPosOutput.putDouble(this.NBT_Z, this.returnPos.z);
+            output.putDouble(this.NBT_DISTANCE_TO_RETURN, this.maxDistance);
+        }
 
-        compound.putBoolean(this.NBT_RETURNING, this.isReturning);
+        output.putBoolean(this.NBT_RETURNING, this.isReturning);
     }
 
     @Override

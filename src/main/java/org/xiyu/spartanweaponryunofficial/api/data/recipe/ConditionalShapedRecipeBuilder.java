@@ -3,14 +3,18 @@ package org.xiyu.spartanweaponryunofficial.api.data.recipe;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import net.minecraft.advancements.Criterion;
+import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.conditions.ICondition;
 import net.neoforged.neoforge.common.extensions.IRecipeOutputExtension;
@@ -54,7 +58,7 @@ public class ConditionalShapedRecipeBuilder {
     }
 
     public ConditionalShapedRecipeBuilder define(Character character, TagKey<Item> tagIn) {
-        return this.define(character, Ingredient.of(tagIn));
+        return this.define(character, Ingredient.of(HolderSet.emptyNamed(BuiltInRegistries.ITEM, tagIn)));
     }
 
     public ConditionalShapedRecipeBuilder define(Character character, ItemLike itemIn) {
@@ -99,21 +103,21 @@ public class ConditionalShapedRecipeBuilder {
     }
 
     public void save(RecipeOutput output, String save) {
-        ResourceLocation resultLoc = BuiltInRegistries.ITEM.getKey(this.result);
-        ResourceLocation saveLoc = ResourceLocation.parse(save);
+        Identifier resultLoc = BuiltInRegistries.ITEM.getKey(this.result);
+        Identifier saveLoc = Identifier.parse(save);
         if (saveLoc.equals(resultLoc))
             throw new IllegalStateException("Shaped recipe " + save + " save argument is redundant as it's the same as the item id!");
         else
             this.save(output, saveLoc);
     }
 
-    public void save(RecipeOutput output, ResourceLocation id) {
+    public void save(RecipeOutput output, Identifier id) {
         this.validate(id);
         RecipeOutput conditionedOutput = output;
         if (!this.conditions.isEmpty() && output instanceof IRecipeOutputExtension ext)
             conditionedOutput = ext.withConditions(this.conditions.toArray(ICondition[]::new));
 
-        ShapedRecipeBuilder builder = ShapedRecipeBuilder.shaped(this.category, this.result, this.count);
+        ShapedRecipeBuilder builder = ShapedRecipeBuilder.shaped(BuiltInRegistries.ITEM, this.category, this.result, this.count);
         for (Entry<Character, Ingredient> entry : this.keys.entrySet())
             builder.define(entry.getKey(), entry.getValue());
         for (String line : this.pattern)
@@ -121,10 +125,10 @@ public class ConditionalShapedRecipeBuilder {
         if (this.group != null)
             builder.group(this.group);
         this.criteria.forEach(builder::unlockedBy);
-        builder.save(conditionedOutput, id);
+        builder.save(conditionedOutput, ResourceKey.create(Registries.RECIPE, id));
     }
 
-    private void validate(ResourceLocation id) {
+    private void validate(Identifier id) {
         if (this.pattern.isEmpty())
             throw new IllegalStateException("No pattern was defined for recipe " + id + "!");
         else {

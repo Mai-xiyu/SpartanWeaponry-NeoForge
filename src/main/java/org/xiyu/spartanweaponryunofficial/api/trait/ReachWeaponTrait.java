@@ -1,14 +1,14 @@
 package org.xiyu.spartanweaponryunofficial.api.trait;
 
 import com.google.common.collect.ImmutableMultimap;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import org.xiyu.spartanweaponryunofficial.api.SpartanWeaponryAPI;
 
 public class ReachWeaponTrait extends MeleeCallbackWeaponTrait {
-    public static final ResourceLocation ATTACK_REACH_MODIFIER = ResourceLocation.fromNamespaceAndPath(SpartanWeaponryAPI.MOD_ID, "attack_reach_modifier");
+    public static final Identifier ATTACK_REACH_MODIFIER = Identifier.fromNamespaceAndPath(SpartanWeaponryAPI.MOD_ID, "attack_reach_modifier");
 
     public ReachWeaponTrait(String propType, String propModId) {
         super(propType, propModId, TraitQuality.POSITIVE);

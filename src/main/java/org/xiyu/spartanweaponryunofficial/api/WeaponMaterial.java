@@ -3,6 +3,7 @@ package org.xiyu.spartanweaponryunofficial.api;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
+import net.minecraft.core.HolderSet;
 import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -10,11 +11,10 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
-import net.minecraft.util.LazyLoadedValue;
+// LazyLoadedValue removed in 26.1, using Supplier instead
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Tier;
-import net.minecraft.world.item.Tiers;
+import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Block;
 import org.apache.commons.lang3.tuple.Pair;
@@ -30,17 +30,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 @SuppressWarnings("ALL")
-public class WeaponMaterial implements Tier, IReloadable {
-    public static final WeaponMaterial WOOD = new WeaponMaterial("wood", SpartanWeaponryAPI.MOD_ID, Tiers.WOOD, ItemTags.PLANKS, ModWeaponTraitTags.WOOD);
-    public static final WeaponMaterial STONE = new WeaponMaterial("stone", SpartanWeaponryAPI.MOD_ID, Tiers.STONE, ModItemTags.COBBLESTONE, ModWeaponTraitTags.STONE);
+public class WeaponMaterial implements IReloadable {
+    public static final WeaponMaterial WOOD = new WeaponMaterial("wood", SpartanWeaponryAPI.MOD_ID, ToolMaterial.WOOD, ItemTags.PLANKS, ModWeaponTraitTags.WOOD);
+    public static final WeaponMaterial STONE = new WeaponMaterial("stone", SpartanWeaponryAPI.MOD_ID, ToolMaterial.STONE, ModItemTags.COBBLESTONE, ModWeaponTraitTags.STONE);
     public static final WeaponMaterial LEATHER = new WeaponMaterial("leather", SpartanWeaponryAPI.MOD_ID, 128, 2.0f, 0.0f, 5, ModItemTags.LEATHER, ModWeaponTraitTags.LEATHER);
     public static final WeaponMaterial COPPER = new WeaponMaterial("copper", SpartanWeaponryAPI.MOD_ID, APIConstants.DefaultMaterialDurabilityCopper, 5.0f, APIConstants.DefaultMaterialDamageCopper, 8, ModItemTags.COPPER_INGOT, ModWeaponTraitTags.COPPER);
-    public static final WeaponMaterial IRON = new WeaponMaterial("iron", SpartanWeaponryAPI.MOD_ID, Tiers.IRON, ModItemTags.IRON_INGOT, ModWeaponTraitTags.IRON);
-    public static final WeaponMaterial GOLD = new WeaponMaterial("gold", SpartanWeaponryAPI.MOD_ID, Tiers.GOLD, ModItemTags.GOLD_INGOT, ModWeaponTraitTags.GOLD);
-    public static final WeaponMaterial DIAMOND = new WeaponMaterial("diamond", SpartanWeaponryAPI.MOD_ID, Tiers.DIAMOND, ModItemTags.DIAMOND, ModWeaponTraitTags.DIAMOND);
-    public static final WeaponMaterial NETHERITE = new WeaponMaterial("netherite", SpartanWeaponryAPI.MOD_ID, Tiers.NETHERITE, ModItemTags.NETHERITE_INGOT, ModWeaponTraitTags.NETHERITE);
+    public static final WeaponMaterial IRON = new WeaponMaterial("iron", SpartanWeaponryAPI.MOD_ID, ToolMaterial.IRON, ModItemTags.IRON_INGOT, ModWeaponTraitTags.IRON);
+    public static final WeaponMaterial GOLD = new WeaponMaterial("gold", SpartanWeaponryAPI.MOD_ID, ToolMaterial.GOLD, ModItemTags.GOLD_INGOT, ModWeaponTraitTags.GOLD);
+    public static final WeaponMaterial DIAMOND = new WeaponMaterial("diamond", SpartanWeaponryAPI.MOD_ID, ToolMaterial.DIAMOND, ModItemTags.DIAMOND, ModWeaponTraitTags.DIAMOND);
+    public static final WeaponMaterial NETHERITE = new WeaponMaterial("netherite", SpartanWeaponryAPI.MOD_ID, ToolMaterial.NETHERITE, ModItemTags.NETHERITE_INGOT, ModWeaponTraitTags.NETHERITE);
 
     public static final WeaponMaterial TIN = new WeaponMaterial("tin", SpartanWeaponryAPI.MOD_ID, 0xBEBED8, 0xD2D2FF, APIConstants.DefaultMaterialDurabilityTin, 5.25f, APIConstants.DefaultMaterialDamageTin, 6, ModItemTags.TIN_INGOT, ModWeaponTraitTags.TIN);
     public static final WeaponMaterial BRONZE = new WeaponMaterial("bronze", SpartanWeaponryAPI.MOD_ID, 0xB36D0A, 0xCC9636, APIConstants.DefaultMaterialDurabilityBronze, 5.75f, APIConstants.DefaultMaterialDamageBronze, 12, ModItemTags.BRONZE_INGOT, ModWeaponTraitTags.BRONZE);
@@ -58,7 +59,7 @@ public class WeaponMaterial implements Tier, IReloadable {
     private final float speed;
     private float baseDamage;
     private final int enchantability;
-    private final LazyLoadedValue<Ingredient> repairMaterial;
+    private final Supplier<Ingredient> repairMaterial;
     private final TagKey<Item> repairTag;
 
     private final String name;
@@ -87,7 +88,7 @@ public class WeaponMaterial implements Tier, IReloadable {
         this.baseDamage = baseDamageIn;
         this.enchantability = enchantabilityIn;
         this.repairTag = repairTagIn;
-        this.repairMaterial = new LazyLoadedValue<>(() -> Ingredient.of(repairTagIn));
+        this.repairMaterial = () -> Ingredient.of(HolderSet.emptyNamed(BuiltInRegistries.ITEM, repairTagIn));
         this.traitsTag = traitsTagIn;
 
         ReloadableHandler.addToMaterialReloadList(this);
@@ -97,15 +98,15 @@ public class WeaponMaterial implements Tier, IReloadable {
         this(unlocName, modIdIn, 0x7F7F7F, 0xFFFFFF, maxUses, efficiency, baseDamage, enchantability, tag, traitsTagIn);
     }
 
-    public WeaponMaterial(String nameIn, String modIdIn, Tier itemTierIn, TagKey<Item> tagIn, TagKey<WeaponTrait> traitsTagIn) {
-        this(nameIn, modIdIn, 0x7F7F7F, 0xFFFFFF, itemTierIn.getUses(), itemTierIn.getSpeed(),
-                itemTierIn.getAttackDamageBonus(), itemTierIn.getEnchantmentValue(), tagIn, traitsTagIn);
+    public WeaponMaterial(String nameIn, String modIdIn, ToolMaterial toolMaterialIn, TagKey<Item> tagIn, TagKey<WeaponTrait> traitsTagIn) {
+        this(nameIn, modIdIn, 0x7F7F7F, 0xFFFFFF, toolMaterialIn.durability(), toolMaterialIn.speed(),
+                toolMaterialIn.attackDamageBonus(), toolMaterialIn.enchantmentValue(), tagIn, traitsTagIn);
     }
 
     @Override
     public void reload() {
         RegistryAccess registryAccess = RegistryAccess.fromRegistryOfRegistries(BuiltInRegistries.REGISTRY);
-        Registry<WeaponTrait> registry = registryAccess.registry(WeaponTraits.REGISTRY_KEY).orElse(null);
+        Registry<WeaponTrait> registry = registryAccess.lookup(WeaponTraits.REGISTRY_KEY).orElse(null);
         if (registry == null) {
             Log.error("Weapon Trait registry couldn't be found for weapon material \"" + this.name + "\"!");
             return;
@@ -113,7 +114,7 @@ public class WeaponMaterial implements Tier, IReloadable {
         // Verify the tag and Initialize Weapon Traits
         ImmutableList.Builder<WeaponTrait> builder = ImmutableList.builder();
 
-        this.isValidTag = registry.getTag(this.traitsTag).isPresent();
+        this.isValidTag = registry.getTags().anyMatch((named) -> named.key().equals(this.traitsTag));
         if (!this.isValidTag) {
             Log.error("Weapon Trait tag \"" + this.traitsTag.location() + "\" couldn't be found for weapon material \"" + this.name + "\"!");
             return;
@@ -181,7 +182,6 @@ public class WeaponMaterial implements Tier, IReloadable {
         return this.modId;
     }
 
-    @Override
     public int getUses() {
         return this.durability;
     }
@@ -190,12 +190,10 @@ public class WeaponMaterial implements Tier, IReloadable {
         this.durability = maxUses;
     }
 
-    @Override
     public float getSpeed() {
         return this.speed;
     }
 
-    @Override
     public float getAttackDamageBonus() {
         return this.baseDamage;
     }
@@ -210,18 +208,15 @@ public class WeaponMaterial implements Tier, IReloadable {
         return 0;
     }
 
-    @Override
-    public @NotNull TagKey<Block> getIncorrectBlocksForDrops() {
+    public TagKey<Block> getIncorrectBlocksForDrops() {
         return BlockTags.INCORRECT_FOR_WOODEN_TOOL;
     }
 
-    @Override
     public int getEnchantmentValue() {
         return this.enchantability;
     }
 
-    @Override
-    public @NotNull Ingredient getRepairIngredient() {
+    public Ingredient getRepairIngredient() {
         return this.repairMaterial.get();
     }
 

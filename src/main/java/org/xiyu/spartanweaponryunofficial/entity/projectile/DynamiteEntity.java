@@ -4,9 +4,9 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MoverType;
-import net.minecraft.world.entity.projectile.ThrowableItemProjectile;
+import net.minecraft.world.entity.projectile.throwableitemprojectile.ThrowableItemProjectile;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.GameRules;
+import net.minecraft.world.level.gamerules.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.Level.ExplosionInteraction;
 import net.minecraft.world.phys.HitResult;
@@ -27,12 +27,12 @@ public class DynamiteEntity extends ThrowableItemProjectile {
     }
 
     public DynamiteEntity(double x, double y, double z, Level level) {
-        super(ModEntities.DYNAMITE.get(), x, y, z, level);
+        super(ModEntities.DYNAMITE.get(), x, y, z, level, ModItems.DYNAMITE.get().getDefaultInstance());
         this.fuseTicks = Config.INSTANCE.fuseTicksDynamite.get();
     }
 
     public DynamiteEntity(LivingEntity thrower, Level level) {
-        super(ModEntities.DYNAMITE.get(), thrower, level);
+        super(ModEntities.DYNAMITE.get(), thrower, level, ModItems.DYNAMITE.get().getDefaultInstance());
         this.fuseTicks = Config.INSTANCE.fuseTicksDynamite.get();
     }
 
@@ -85,8 +85,8 @@ public class DynamiteEntity extends ThrowableItemProjectile {
 
     protected void explode() {
         Level level = this.level();
-        if (!level.isClientSide) {
-            boolean mobGriefing = level.getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING);
+        if (!level.isClientSide()) {
+            boolean mobGriefing = level instanceof net.minecraft.server.level.ServerLevel serverLevel && serverLevel.getGameRules().get(GameRules.MOB_GRIEFING);
             level.explode(this, this.getX(), this.getY(), this.getZ(), Config.INSTANCE.explosionStrengthDynamite.get().floatValue(), mobGriefing && !Config.INSTANCE.disableTerrainDamage.get() ? ExplosionInteraction.TNT : ExplosionInteraction.NONE); /*ConfigHandler.enableTerrainDamage &&*/// mobGriefing);
             this.discard();
         }

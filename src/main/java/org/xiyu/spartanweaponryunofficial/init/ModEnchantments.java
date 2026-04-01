@@ -4,7 +4,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -23,7 +23,7 @@ public class ModEnchantments {
     public static final ResourceKey<Enchantment> COLLECTORANG = createKey("collectorang");
 
     private static ResourceKey<Enchantment> createKey(String path) {
-        return ResourceKey.create(Registries.ENCHANTMENT, ResourceLocation.tryBuild(ModSpartanWeaponry.ID, path));
+        return ResourceKey.create(Registries.ENCHANTMENT, Identifier.tryBuild(ModSpartanWeaponry.ID, path));
     }
 
     public static java.util.Optional<Holder.Reference<Enchantment>> getHolder(RegistryAccess access, ResourceKey<Enchantment> key) {

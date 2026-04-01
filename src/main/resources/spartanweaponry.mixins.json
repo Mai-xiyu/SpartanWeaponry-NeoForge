@@ -1,8 +1,8 @@
 {
 	"required": true,
-	"package": "org.xiyu.spartan_weaponry_unofficial.mixin",
-	"compatibilityLevel": "JAVA_17",
-	"refmap": "spartan_weaponry_unofficial.mixins.refmap.json",
+	"package": "org.xiyu.spartanweaponryunofficial.mixin",
+	"compatibilityLevel": "JAVA_21",
+	"refmap": "spartanweaponry.mixins.refmap.json",
 	"mixins": [
 		"EntityMixin",
 		"ProjectileMixin",
@@ -16,8 +16,7 @@
 		"PiglinBruteMixin",
 		"WitherSkeletonMixin"
 	],
-	"client": [ 
-		"ItemModelGeneratorMixin"
+	"client": [
 	],
 	"minVersion": "0.8"
 }

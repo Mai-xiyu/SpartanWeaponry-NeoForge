@@ -1,12 +1,9 @@
 package org.xiyu.spartanweaponryunofficial.client.renderer.entity;
 
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.minecraft.client.model.SkullModelBase;
+import net.minecraft.client.model.object.skull.SkullModelBase;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
-import org.jetbrains.annotations.NotNull;
 
 public class WitchHeadModel extends SkullModelBase {
     private static final String PART_HEAD = "head";
@@ -17,10 +14,10 @@ public class WitchHeadModel extends SkullModelBase {
     private static final String PART_HAT_3 = "hat_3";
     private static final String PART_HAT_4 = "hat_4";
 
-    private final ModelPart root, head;
+    private final ModelPart head;
 
     public WitchHeadModel(ModelPart modelRoot) {
-        this.root = modelRoot;
+        super(modelRoot);
         this.head = modelRoot.getChild(PART_HEAD);
     }
 
@@ -47,13 +44,9 @@ public class WitchHeadModel extends SkullModelBase {
     }
 
     @Override
-    public void setupAnim(float p_170950_, float p_170951_, float p_170952_) {
-        this.head.yRot = p_170951_ * ((float) Math.PI / 180.0f);
-        this.head.xRot = p_170952_ * ((float) Math.PI / 180.0f);
-    }
-
-    @Override
-    public void renderToBuffer(@NotNull PoseStack poseStack, @NotNull VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
-        this.root.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
+    public void setupAnim(State state) {
+        super.setupAnim(state);
+        this.head.yRot = state.yRot * ((float) Math.PI / 180.0f);
+        this.head.xRot = state.xRot * ((float) Math.PI / 180.0f);
     }
 }

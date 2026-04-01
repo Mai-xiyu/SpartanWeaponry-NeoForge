@@ -1,6 +1,5 @@
 {
   "parent": "spartan_weaponry_unofficial:item/base/battle_hammer",
-  "loader": "spartan_weaponry_unofficial:oil_coated_item",
   "overrides": [
     {
       "model": "spartan_weaponry_unofficial:item/bronze_battle_hammer_blocking",

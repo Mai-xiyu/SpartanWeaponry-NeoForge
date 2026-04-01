@@ -10,7 +10,7 @@ import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import org.xiyu.spartanweaponryunofficial.ModSpartanWeaponry;
 import org.xiyu.spartanweaponryunofficial.api.OilEffects;
 import org.xiyu.spartanweaponryunofficial.api.oil.OilEffect;
@@ -47,9 +47,9 @@ public class OilParser {
 
     public void read() throws CommandSyntaxException {
         int idx = this.reader.getCursor();
-        ResourceLocation loc = ResourceLocation.read(this.reader);
+        Identifier loc = Identifier.read(this.reader);
         Registry<OilEffect> registry = getOilRegistry();
-        this.oilEffect = registry != null ? registry.get(loc) : null;
+        this.oilEffect = registry != null ? registry.getValue(loc) : null;
         if (this.oilEffect == null) {
             this.reader.setCursor(idx);
             throw ERROR_UNKNOWN_OIL_EFFECT.createWithContext(this.reader, loc.toString());
@@ -69,7 +69,7 @@ public class OilParser {
     private CompletableFuture<Suggestions> suggestOilEffect(SuggestionsBuilder builderIn, Registry<OilEffect> oilRegistryIn) {
         if (oilRegistryIn == null)
             return builderIn.buildFuture();
-        Set<ResourceLocation> suggestions = oilRegistryIn.keySet().stream()
+        Set<Identifier> suggestions = oilRegistryIn.keySet().stream()
                 .filter((oil) -> !oil.equals(oilRegistryIn.getKey(OilEffects.NONE.get())) && !oil.equals(oilRegistryIn.getKey(OilEffects.POTION.get())))
                 .collect(Collectors.toSet());
         return SharedSuggestionProvider.suggestResource(suggestions, builderIn);
@@ -77,7 +77,7 @@ public class OilParser {
 
     private static Registry<OilEffect> getOilRegistry() {
         RegistryAccess registryAccess = RegistryAccess.fromRegistryOfRegistries(BuiltInRegistries.REGISTRY);
-        return registryAccess.registry(OilEffects.REGISTRY_KEY).orElse(null);
+        return registryAccess.lookup(OilEffects.REGISTRY_KEY).orElse(null);
     }
 
     public CompletableFuture<Suggestions> fillSuggestions(SuggestionsBuilder builderIn, Registry<OilEffect> oilRegistryIn) {

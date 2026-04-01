@@ -1,22 +1,17 @@
 package org.xiyu.spartanweaponryunofficial.client.renderer.entity;
 
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.minecraft.client.model.SkullModelBase;
+import net.minecraft.client.model.object.skull.SkullModelBase;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
-import org.jetbrains.annotations.NotNull;
 
 public class EndermanHeadModel extends SkullModelBase {
     private static final String PART_HEAD = "head";
-    private static final String PART_JAW = "jaw";
 
-    private final ModelPart root;
     private final ModelPart head;
 
     public EndermanHeadModel(ModelPart modelRoot) {
-        this.root = modelRoot;
+        super(modelRoot);
         this.head = modelRoot.getChild(PART_HEAD);
     }
 
@@ -25,19 +20,14 @@ public class EndermanHeadModel extends SkullModelBase {
         PartDefinition partDef = meshDef.getRoot();
 
         partDef.addOrReplaceChild(PART_HEAD, CubeListBuilder.create().texOffs(0, 0).addBox(-4.0f, -8.0f, -4.0f, 8.0f, 8.0f, 8.0f), PartPose.ZERO);
-        partDef.getChild(PART_HEAD).addOrReplaceChild(PART_JAW, CubeListBuilder.create().texOffs(0, 16).addBox(-4.0f, -8.0f, -4.0f, 8.0f, 8.0f, 8.0f, new CubeDeformation(-0.5f)), PartPose.ZERO);
 
         return LayerDefinition.create(meshDef, 32, 32);
     }
 
     @Override
-    public void setupAnim(float p_170950_, float p_170951_, float p_170952_) {
-        this.head.yRot = p_170951_ * ((float) Math.PI / 180.0f);
-        this.head.xRot = p_170952_ * ((float) Math.PI / 180.0f);
-    }
-
-    @Override
-    public void renderToBuffer(@NotNull PoseStack poseStack, @NotNull VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
-        this.root.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
+    public void setupAnim(State state) {
+        super.setupAnim(state);
+        this.head.yRot = state.yRot * ((float) Math.PI / 180.0f);
+        this.head.xRot = state.xRot * ((float) Math.PI / 180.0f);
     }
 }

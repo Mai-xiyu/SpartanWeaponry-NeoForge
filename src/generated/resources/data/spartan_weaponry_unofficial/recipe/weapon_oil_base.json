@@ -11,7 +11,7 @@
   "category": "equipment",
   "ingredients": [
     {
-      "item": "spartan_weaponry_unofficial:grease_ball"
+      "item": "minecraft:slime_ball"
     },
     {
       "item": "minecraft:glass_bottle"

@@ -3,7 +3,6 @@ package org.xiyu.spartanweaponryunofficial.data;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.IntrinsicHolderTagsProvider;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.NotNull;
 import org.xiyu.spartanweaponryunofficial.ModSpartanWeaponry;
 import org.xiyu.spartanweaponryunofficial.api.WeaponTraits;
@@ -14,10 +13,9 @@ import java.util.concurrent.CompletableFuture;
 
 public class ModWeaponTraitTagsProvider extends IntrinsicHolderTagsProvider<WeaponTrait> {
 
-    public ModWeaponTraitTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registry, ExistingFileHelper existingFileHelper) {
+    public ModWeaponTraitTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registry) {
         super(output, WeaponTraits.REGISTRY_KEY, registry,
-                (weaponTrait) -> WeaponTraits.REGISTRY.getRegistry().get().getResourceKey(weaponTrait).orElseThrow(),
-                ModSpartanWeaponry.ID, existingFileHelper);
+                (weaponTrait) -> WeaponTraits.REGISTRY.getRegistry().get().getResourceKey(weaponTrait).orElseThrow());
     }
 
     @Override
@@ -44,7 +42,7 @@ public class ModWeaponTraitTagsProvider extends IntrinsicHolderTagsProvider<Weap
         this.tag(ModWeaponTraitTags.LANCE).add(WeaponTraits.REACH_2.get(), WeaponTraits.DAMAGE_BONUS_RIDING.get(), WeaponTraits.SWEEP_1.get());
         this.tag(ModWeaponTraitTags.THROWING_KNIFE).add(WeaponTraits.DAMAGE_BONUS_THROWN_1.get());
         this.tag(ModWeaponTraitTags.TOMAHAWK).add(WeaponTraits.DAMAGE_BONUS_THROWN_1.get());
-        this.tag(ModWeaponTraitTags.JAVELIN).add(WeaponTraits.DAMAGE_BONUS_THROWN_2.get(), WeaponTraits.REACH_1.get());
+        this.tag(ModWeaponTraitTags.JAVELIN).add(WeaponTraits.DAMAGE_BONUS_THROWN_2.get());
         this.tag(ModWeaponTraitTags.BOOMERANG);
         this.tag(ModWeaponTraitTags.BATTLEAXE).add(WeaponTraits.TWO_HANDED_1.get(), WeaponTraits.VERSATILE_AXE.get());
         this.tag(ModWeaponTraitTags.FLANGED_MACE).add(WeaponTraits.DAMAGE_BONUS_UNDEAD.get());

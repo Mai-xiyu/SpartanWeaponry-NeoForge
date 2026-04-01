@@ -3,7 +3,7 @@ package org.xiyu.spartanweaponryunofficial.item;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.entity.projectile.arrow.AbstractArrow;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -15,8 +15,8 @@ import org.xiyu.spartanweaponryunofficial.entity.projectile.ArrowExplosiveEntity
 import java.util.List;
 
 public class ArrowExplosiveItem extends ArrowItemSW {
-    public ArrowExplosiveItem(float rangeModifier) {
-        super();
+    public ArrowExplosiveItem(Item.Properties properties, float rangeModifier) {
+        super(properties);
         this.rangeModifier = rangeModifier;
     }
 

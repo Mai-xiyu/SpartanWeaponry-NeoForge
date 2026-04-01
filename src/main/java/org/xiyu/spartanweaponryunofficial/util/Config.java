@@ -1,8 +1,9 @@
 package org.xiyu.spartanweaponryunofficial.util;
 
+import com.google.common.collect.ImmutableList;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.config.ModConfigEvent;
@@ -23,12 +24,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
-@EventBusSubscriber(modid = ModSpartanWeaponry.ID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = ModSpartanWeaponry.ID)
 public class Config {
     public static final Config INSTANCE;
     public static final ModConfigSpec CONFIG_SPEC;
 
-    protected final Predicate<Object> IS_VALID_RESOURCE_LOCATION = (entry) -> ResourceLocation.tryParse(entry.toString()) != null;
+    protected final Predicate<Object> IS_VALID_RESOURCE_LOCATION = (entry) -> Identifier.tryParse(entry.toString()) != null;
 
     static {
         final Pair<Config, ModConfigSpec> specPair = new ModConfigSpec.Builder().configure(Config::new);
@@ -73,7 +74,7 @@ public class Config {
     public BooleanValue disableVillagerTrading;
 
     // Trait settings
-    public DoubleValue damageBonusChestMultiplier, damageBonusHeadMultiplier, damageBonusRidingMultiplier, //damageBonusRidingVelocityForMaxBonus,
+    public DoubleValue damageBonusChestMultiplier, damageBonusHeadMultiplier, damageBonusRidingMultiplier, damageBonusRidingVelocityForMaxBonus,
             damageBonusThrowMultiplier, damageBonusThrowJavelinMultiplier,
             damageBonusUnarmoredMultiplier;
     public BooleanValue damageBonusCheckArmorValue;
@@ -196,7 +197,7 @@ public class Config {
         builder.pop();
         this.quiverBowBlacklist = builder.comment("Bows in this blacklist will not get Arrows pulled out of the Arrow Quiver. Use the registry ID of the bow to add to this. e.g. \"minecraft:bow\"|黑名单中的弓不会从箭袋中取箭。使用弓的注册 ID 添加，例如 \"minecraft:bow\"")
                 .translation("config." + ModSpartanWeaponry.ID + ".projectile.quiver_bow_blacklist")
-//								.<String>defineList("quiver_bow_blacklist", Defaults.QuiverArrowBlacklist, /*(value) -> ForgeRegistries.ITEMS.containsKey(ResourceLocation.tryBuild((String)value))*/ (value) -> value.getClass() == String.class);
+//								.<String>defineList("quiver_bow_blacklist", Defaults.QuiverArrowBlacklist, /*(value) -> ForgeRegistries.ITEMS.containsKey(Identifier.tryBuild((String)value))*/ (value) -> value.getClass() == String.class);
                 .defineListAllowEmpty(List.of("quiver_bow_blacklist"), () -> Defaults.QuiverArrowBlacklist, this.IS_VALID_RESOURCE_LOCATION);
         builder.pop();
 
@@ -271,9 +272,9 @@ public class Config {
         this.damageBonusRidingMultiplier = builder.comment("Changes the \"Riding Damage Bonus\" Weapon Trait multiplier value|调整“骑乘伤害加成”特性的倍率")
                 .translation("config." + ModSpartanWeaponry.ID + ".traits.damage_bonus.riding_multiplier")
                 .defineInRange("riding_multiplier", Defaults.DamageBonusRidingMultiplier, 1.0, 50.0);
-/*			damageBonusRidingVelocityForMaxBonus = builder.comment("Velocity required for the \"Riding Damage Bonus\" Weapon Trait to award the max bonus|触发“骑乘伤害加成”特性最高加成所需的速度")
+			damageBonusRidingVelocityForMaxBonus = builder.comment("Velocity required for the \"Riding Damage Bonus\" Weapon Trait to award the max bonus|触发\"骑乘伤害加成\"特性最高加成所需的速度")
 						.translation("config." + ModSpartanWeaponry.ID + ".traits.damage_bonus.riding_velocity_for_max_bonus")
-						.defineInRange("riding_velocity_for_max_bonus", Defaults.DamageBonusRidingVelocityMax, 0.0, 10.0);*/
+						.defineInRange("riding_velocity_for_max_bonus", Defaults.DamageBonusRidingVelocityMax, 0.0, 10.0);
         this.damageBonusThrowMultiplier = builder.comment("Changes the \"Throwing Damage Bonus\" Weapon Trait multiplier value|调整“投掷伤害加成”特性的倍率")
                 .translation("config." + ModSpartanWeaponry.ID + ".traits.damage_bonus.throw_multiplier")
                 .defineInRange("throw_multiplier", Defaults.DamageBonusThrowMultiplier, 1.0, 50.0);
@@ -398,63 +399,63 @@ public class Config {
         updateMaterialValues(WeaponMaterial.PLATINUM, INSTANCE.platinum);
         updateMaterialValues(WeaponMaterial.ALUMINUM, INSTANCE.aluminum);
 
-//		ModItems.DAGGERS.updateSettingsFromConfig(INSTANCE.daggers.baseDamage.get().floatValue(), INSTANCE.daggers.damageMultipler.get().floatValue(), INSTANCE.daggers.speed.get().doubleValue());
+		ModItems.DAGGERS.updateSettingsFromConfig(INSTANCE.daggers.baseDamage.get().floatValue(), INSTANCE.daggers.damageMultipler.get().floatValue(), INSTANCE.daggers.speed.get().doubleValue());
         INSTANCE.daggers.updateDisabledRecipeList();
-//		ModItems.PARRYING_DAGGERS.updateSettingsFromConfig(INSTANCE.parryingDaggers.baseDamage.get().floatValue(), INSTANCE.parryingDaggers.damageMultipler.get().floatValue(), INSTANCE.parryingDaggers.speed.get().doubleValue());
+		ModItems.PARRYING_DAGGERS.updateSettingsFromConfig(INSTANCE.parryingDaggers.baseDamage.get().floatValue(), INSTANCE.parryingDaggers.damageMultipler.get().floatValue(), INSTANCE.parryingDaggers.speed.get().doubleValue());
         INSTANCE.parryingDaggers.updateDisabledRecipeList();
-//		ModItems.LONGSWORDS.updateSettingsFromConfig(INSTANCE.longswords.baseDamage.get().floatValue(), INSTANCE.longswords.damageMultipler.get().floatValue(), INSTANCE.longswords.speed.get().doubleValue());
+		ModItems.LONGSWORDS.updateSettingsFromConfig(INSTANCE.longswords.baseDamage.get().floatValue(), INSTANCE.longswords.damageMultipler.get().floatValue(), INSTANCE.longswords.speed.get().doubleValue());
         INSTANCE.longswords.updateDisabledRecipeList();
-//		ModItems.KATANAS.updateSettingsFromConfig(INSTANCE.katanas.baseDamage.get().floatValue(), INSTANCE.katanas.damageMultipler.get().floatValue(), INSTANCE.katanas.speed.get().doubleValue());
+		ModItems.KATANAS.updateSettingsFromConfig(INSTANCE.katanas.baseDamage.get().floatValue(), INSTANCE.katanas.damageMultipler.get().floatValue(), INSTANCE.katanas.speed.get().doubleValue());
         INSTANCE.katanas.updateDisabledRecipeList();
-//		ModItems.SABERS.updateSettingsFromConfig(INSTANCE.sabers.baseDamage.get().floatValue(), INSTANCE.sabers.damageMultipler.get().floatValue(), INSTANCE.sabers.speed.get().doubleValue());
+		ModItems.SABERS.updateSettingsFromConfig(INSTANCE.sabers.baseDamage.get().floatValue(), INSTANCE.sabers.damageMultipler.get().floatValue(), INSTANCE.sabers.speed.get().doubleValue());
         INSTANCE.sabers.updateDisabledRecipeList();
-//		ModItems.RAPIERS.updateSettingsFromConfig(INSTANCE.rapiers.baseDamage.get().floatValue(), INSTANCE.rapiers.damageMultipler.get().floatValue(), INSTANCE.rapiers.speed.get().doubleValue());
+		ModItems.RAPIERS.updateSettingsFromConfig(INSTANCE.rapiers.baseDamage.get().floatValue(), INSTANCE.rapiers.damageMultipler.get().floatValue(), INSTANCE.rapiers.speed.get().doubleValue());
         INSTANCE.rapiers.updateDisabledRecipeList();
-//		ModItems.GREATSWORDS.updateSettingsFromConfig(INSTANCE.greatswords.baseDamage.get().floatValue(), INSTANCE.greatswords.damageMultipler.get().floatValue(), INSTANCE.greatswords.speed.get().doubleValue());
+		ModItems.GREATSWORDS.updateSettingsFromConfig(INSTANCE.greatswords.baseDamage.get().floatValue(), INSTANCE.greatswords.damageMultipler.get().floatValue(), INSTANCE.greatswords.speed.get().doubleValue());
         INSTANCE.greatswords.updateDisabledRecipeList();
 
-//		ImmutableList.of(ModItems.WOODEN_CLUB, ModItems.STUDDED_CLUB).forEach((club) -> club.get().setAttackDamageAndSpeed(INSTANCE.clubs.baseDamage.get().floatValue(), INSTANCE.clubs.damageMultipler.get().floatValue(), INSTANCE.clubs.speed.get().doubleValue()));
+		ImmutableList.of(ModItems.WOODEN_CLUB, ModItems.STUDDED_CLUB).forEach((club) -> club.get().setAttackDamageAndSpeed(INSTANCE.clubs.baseDamage.get().floatValue(), INSTANCE.clubs.damageMultipler.get().floatValue(), INSTANCE.clubs.speed.get().doubleValue()));
         INSTANCE.clubs.updateDisabledRecipeList();
-//		ImmutableList.of(ModItems.CESTUS, ModItems.STUDDED_CESTUS).forEach((club) -> club.get().setAttackDamageAndSpeed(INSTANCE.cestus.baseDamage.get().floatValue(), INSTANCE.cestus.damageMultipler.get().floatValue(), INSTANCE.cestus.speed.get().doubleValue()));
+		ImmutableList.of(ModItems.CESTUS, ModItems.STUDDED_CESTUS).forEach((club) -> club.get().setAttackDamageAndSpeed(INSTANCE.cestus.baseDamage.get().floatValue(), INSTANCE.cestus.damageMultipler.get().floatValue(), INSTANCE.cestus.speed.get().doubleValue()));
         INSTANCE.cestus.updateDisabledRecipeList();
 
-//		ModItems.BATTLE_HAMMERS.updateSettingsFromConfig(INSTANCE.battleHammers.baseDamage.get().floatValue(), INSTANCE.battleHammers.damageMultipler.get().floatValue(), INSTANCE.battleHammers.speed.get().doubleValue());
+		ModItems.BATTLE_HAMMERS.updateSettingsFromConfig(INSTANCE.battleHammers.baseDamage.get().floatValue(), INSTANCE.battleHammers.damageMultipler.get().floatValue(), INSTANCE.battleHammers.speed.get().doubleValue());
         INSTANCE.battleHammers.updateDisabledRecipeList();
-//		ModItems.WARHAMMERS.updateSettingsFromConfig(INSTANCE.warhammers.baseDamage.get().floatValue(), INSTANCE.warhammers.damageMultipler.get().floatValue(), INSTANCE.warhammers.speed.get().doubleValue());
+		ModItems.WARHAMMERS.updateSettingsFromConfig(INSTANCE.warhammers.baseDamage.get().floatValue(), INSTANCE.warhammers.damageMultipler.get().floatValue(), INSTANCE.warhammers.speed.get().doubleValue());
         INSTANCE.warhammers.updateDisabledRecipeList();
-//		ModItems.SPEARS.updateSettingsFromConfig(INSTANCE.spears.baseDamage.get().floatValue(), INSTANCE.spears.damageMultipler.get().floatValue(), INSTANCE.spears.speed.get().doubleValue());
+		ModItems.SPEARS.updateSettingsFromConfig(INSTANCE.spears.baseDamage.get().floatValue(), INSTANCE.spears.damageMultipler.get().floatValue(), INSTANCE.spears.speed.get().doubleValue());
         INSTANCE.spears.updateDisabledRecipeList();
-//		ModItems.HALBERDS.updateSettingsFromConfig(INSTANCE.halberds.baseDamage.get().floatValue(), INSTANCE.halberds.damageMultipler.get().floatValue(), INSTANCE.halberds.speed.get().doubleValue());
+		ModItems.HALBERDS.updateSettingsFromConfig(INSTANCE.halberds.baseDamage.get().floatValue(), INSTANCE.halberds.damageMultipler.get().floatValue(), INSTANCE.halberds.speed.get().doubleValue());
         INSTANCE.halberds.updateDisabledRecipeList();
-//		ModItems.PIKES.updateSettingsFromConfig(INSTANCE.pikes.baseDamage.get().floatValue(), INSTANCE.pikes.damageMultipler.get().floatValue(), INSTANCE.pikes.speed.get().doubleValue());
+		ModItems.PIKES.updateSettingsFromConfig(INSTANCE.pikes.baseDamage.get().floatValue(), INSTANCE.pikes.damageMultipler.get().floatValue(), INSTANCE.pikes.speed.get().doubleValue());
         INSTANCE.pikes.updateDisabledRecipeList();
-//		ModItems.LANCES.updateSettingsFromConfig(INSTANCE.lances.baseDamage.get().floatValue(), INSTANCE.lances.damageMultipler.get().floatValue(), INSTANCE.lances.speed.get().doubleValue());
+		ModItems.LANCES.updateSettingsFromConfig(INSTANCE.lances.baseDamage.get().floatValue(), INSTANCE.lances.damageMultipler.get().floatValue(), INSTANCE.lances.speed.get().doubleValue());
         INSTANCE.lances.updateDisabledRecipeList();
 
         // Updating configurable values for Longbows and Heavy Crossbows are not required
         INSTANCE.longbows.updateDisabledRecipeList();
         INSTANCE.heavyCrossbows.updateDisabledRecipeList();
 
-//		ModItems.THROWING_KNIVES.updateSettingsFromConfig(INSTANCE.throwingKnives.baseDamage.get().floatValue(), INSTANCE.throwingKnives.damageMultipler.get().floatValue(), INSTANCE.throwingKnives.speed.get().doubleValue(), INSTANCE.throwingKnives.chargeTicks.get());
+		ModItems.THROWING_KNIVES.updateSettingsFromConfig(INSTANCE.throwingKnives.baseDamage.get().floatValue(), INSTANCE.throwingKnives.damageMultipler.get().floatValue(), INSTANCE.throwingKnives.speed.get().doubleValue(), INSTANCE.throwingKnives.chargeTicks.get());
         INSTANCE.throwingKnives.updateDisabledRecipeList();
-//		ModItems.TOMAHAWKS.updateSettingsFromConfig(INSTANCE.tomahawks.baseDamage.get().floatValue(), INSTANCE.tomahawks.damageMultipler.get().floatValue(), INSTANCE.tomahawks.speed.get().doubleValue(), INSTANCE.tomahawks.chargeTicks.get());
+		ModItems.TOMAHAWKS.updateSettingsFromConfig(INSTANCE.tomahawks.baseDamage.get().floatValue(), INSTANCE.tomahawks.damageMultipler.get().floatValue(), INSTANCE.tomahawks.speed.get().doubleValue(), INSTANCE.tomahawks.chargeTicks.get());
         INSTANCE.tomahawks.updateDisabledRecipeList();
-//		ModItems.JAVELINS.updateSettingsFromConfig(INSTANCE.javelins.baseDamage.get().floatValue(), INSTANCE.javelins.damageMultipler.get().floatValue(), INSTANCE.javelins.speed.get().doubleValue(), INSTANCE.javelins.chargeTicks.get());
+		ModItems.JAVELINS.updateSettingsFromConfig(INSTANCE.javelins.baseDamage.get().floatValue(), INSTANCE.javelins.damageMultipler.get().floatValue(), INSTANCE.javelins.speed.get().doubleValue(), INSTANCE.javelins.chargeTicks.get());
         INSTANCE.javelins.updateDisabledRecipeList();
 
-//		ModItems.BOOMERANGS.updateSettingsFromConfig(INSTANCE.boomerangs.baseDamage.get().floatValue(), INSTANCE.boomerangs.damageMultipler.get().floatValue(), INSTANCE.boomerangs.speed.get().doubleValue(), INSTANCE.boomerangs.chargeTicks.get());
+		ModItems.BOOMERANGS.updateSettingsFromConfig(INSTANCE.boomerangs.baseDamage.get().floatValue(), INSTANCE.boomerangs.damageMultipler.get().floatValue(), INSTANCE.boomerangs.speed.get().doubleValue(), INSTANCE.boomerangs.chargeTicks.get());
         INSTANCE.boomerangs.updateDisabledRecipeList();
-//		ModItems.BATTLEAXES.updateSettingsFromConfig(INSTANCE.battleaxes.baseDamage.get().floatValue(), INSTANCE.battleaxes.damageMultipler.get().floatValue(), INSTANCE.battleaxes.speed.get().doubleValue());
+		ModItems.BATTLEAXES.updateSettingsFromConfig(INSTANCE.battleaxes.baseDamage.get().floatValue(), INSTANCE.battleaxes.damageMultipler.get().floatValue(), INSTANCE.battleaxes.speed.get().doubleValue());
         INSTANCE.battleaxes.updateDisabledRecipeList();
-//		ModItems.FLANGED_MACES.updateSettingsFromConfig(INSTANCE.flangedMaces.baseDamage.get().floatValue(), INSTANCE.flangedMaces.damageMultipler.get().floatValue(), INSTANCE.flangedMaces.speed.get().doubleValue());
+		ModItems.FLANGED_MACES.updateSettingsFromConfig(INSTANCE.flangedMaces.baseDamage.get().floatValue(), INSTANCE.flangedMaces.damageMultipler.get().floatValue(), INSTANCE.flangedMaces.speed.get().doubleValue());
         INSTANCE.flangedMaces.updateDisabledRecipeList();
 
-//		ModItems.GLAIVES.updateSettingsFromConfig(INSTANCE.glaives.baseDamage.get().floatValue(), INSTANCE.glaives.damageMultipler.get().floatValue(), INSTANCE.glaives.speed.get().doubleValue());
+		ModItems.GLAIVES.updateSettingsFromConfig(INSTANCE.glaives.baseDamage.get().floatValue(), INSTANCE.glaives.damageMultipler.get().floatValue(), INSTANCE.glaives.speed.get().doubleValue());
         INSTANCE.glaives.updateDisabledRecipeList();
-//		ModItems.QUARTERSTAVES.updateSettingsFromConfig(INSTANCE.quarterstaves.baseDamage.get().floatValue(), INSTANCE.quarterstaves.damageMultipler.get().floatValue(), INSTANCE.quarterstaves.speed.get().doubleValue());
+		ModItems.QUARTERSTAVES.updateSettingsFromConfig(INSTANCE.quarterstaves.baseDamage.get().floatValue(), INSTANCE.quarterstaves.damageMultipler.get().floatValue(), INSTANCE.quarterstaves.speed.get().doubleValue());
         INSTANCE.quarterstaves.updateDisabledRecipeList();
 
-//		ModItems.SCYTHES.updateSettingsFromConfig(INSTANCE.scythes.baseDamage.get().floatValue(), INSTANCE.scythes.damageMultipler.get().floatValue(), INSTANCE.scythes.speed.get().doubleValue());
+		ModItems.SCYTHES.updateSettingsFromConfig(INSTANCE.scythes.baseDamage.get().floatValue(), INSTANCE.scythes.damageMultipler.get().floatValue(), INSTANCE.scythes.speed.get().doubleValue());
         INSTANCE.scythes.updateDisabledRecipeList();
 
         updateDisabledRecipe(TypeDisabledCondition.ARROWS, INSTANCE.disableNewArrowRecipes.get());
@@ -463,6 +464,7 @@ public class Config {
         updateDisabledRecipe(TypeDisabledCondition.NETHERITE_AMMO, INSTANCE.disableNetheriteAmmoRecipes.get());
         updateDisabledRecipe(TypeDisabledCondition.QUIVER, INSTANCE.disableQuiverRecipes.get());
         updateDisabledRecipe(TypeDisabledCondition.BOLTS, INSTANCE.heavyCrossbows.disableRecipes.get());
+        updateDisabledRecipe(TypeDisabledCondition.OIL, INSTANCE.disableOilRecipes.get());
 
         ModItems.WOODEN_ARROW.get().updateFromConfig(INSTANCE.arrowWood.baseDamage.get().floatValue(), INSTANCE.arrowWood.rangeMultiplier.get().floatValue());
         ModItems.TIPPED_WOODEN_ARROW.get().updateFromConfig(INSTANCE.arrowWood.baseDamage.get().floatValue(), INSTANCE.arrowWood.rangeMultiplier.get().floatValue());
@@ -505,8 +507,8 @@ public class Config {
         WeaponTraits.DECAPITATE.get().setMagnitude(INSTANCE.decapitateSkullDropPercentage.get().floatValue());
 
         // Update Oils
-        Registry<OilEffect> oilEffects = (Registry<OilEffect>) BuiltInRegistries.REGISTRY.get(OilEffects.REGISTRY_KEY.location());
-        for (OilEffect effect : oilEffects) {
+        for (var holder : OilEffects.REGISTRY.getEntries()) {
+            OilEffect effect = holder.get();
             switch (effect.getType()) {
                 case STANDARD:
                     effect.updateFromConfig(INSTANCE.oilUsesNormal.get(), INSTANCE.oilDamageModifierNormal.get().floatValue());
@@ -527,7 +529,7 @@ public class Config {
         // Update values required API-side
         APIConfigValues.damageBonusCheckArmorValue = INSTANCE.damageBonusCheckArmorValue.get();
         APIConfigValues.damageBonusMaxArmorValue = INSTANCE.damageBonusMaxArmorValue.get().floatValue();
-//		APIConfigValues.damageBonusRidingVelocityForMaxBonus = INSTANCE.damageBonusRidingVelocityForMaxBonus.get().floatValue();
+		APIConfigValues.damageBonusRidingVelocityForMaxBonus = INSTANCE.damageBonusRidingVelocityForMaxBonus.get().floatValue();
 
         WeaponsmithTrades.initTradeLists();
 

@@ -4,10 +4,9 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.client.renderer.GameRenderer;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.alchemy.Potion;
 import org.joml.Matrix4fStack;
@@ -20,9 +19,9 @@ import org.xiyu.spartanweaponryunofficial.util.OilHelper;
 import java.util.Optional;
 
 public class HudOilUses {
-    protected static final ResourceLocation WIDGETS = ResourceLocation.parse("textures/gui/widgets.png");
+    protected static final Identifier WIDGETS = Identifier.parse("textures/gui/widgets.png");
 
-    public static void render(GuiGraphics guiGraphics, DeltaTracker deltaTracker) {
+    public static void render(GuiGraphicsExtractor guiGraphics, DeltaTracker deltaTracker) {
         RenderSystem.assertOnRenderThread();
 
         Minecraft mc = Minecraft.getInstance();
@@ -58,18 +57,13 @@ public class HudOilUses {
         modelViewStack.translate(0.0f, 0.0f, 200.0f);
 //        MultiBufferSource.BufferSource renderBuffer = MultiBufferSource.immediate(Tesselator.getInstance().getBuilder());
 
-        RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
-        RenderSystem.setShaderTexture(0, WIDGETS);
-        RenderSystem.enableBlend();
+        guiGraphics.fakeItem(oilStack, offsetX - 17, offsetY);
 
-        guiGraphics.renderFakeItem(oilStack, offsetX - 17, offsetY);
-
-        com.mojang.blaze3d.vertex.PoseStack guiPose = guiGraphics.pose();
-        guiPose.pushPose();
-        guiPose.setIdentity();
-        guiGraphics.drawString(font, usesStr, offsetX, offsetY + 6, 0xFFFFFF);
-        guiPose.popPose();
+        org.joml.Matrix3x2fStack guiPose = guiGraphics.pose();
+        guiPose.pushMatrix();
+        guiPose.identity();
+        guiGraphics.text(font, usesStr, offsetX, offsetY + 6, 0xFFFFFF);
+        guiPose.popMatrix();
 //		font.drawInBatch(usesStr, offsetX , offsetY + 6, 0xFFFFFF, true, poseStack.last().pose(), renderBuffer, Font.DisplayMode.NORMAL, 0, 0xF000F0);
 
 //		renderBuffer.endBatch();

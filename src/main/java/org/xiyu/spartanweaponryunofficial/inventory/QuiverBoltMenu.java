@@ -1,7 +1,7 @@
 package org.xiyu.spartanweaponryunofficial.inventory;
 
 import net.minecraft.network.RegistryFriendlyByteBuf;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -12,7 +12,7 @@ import org.xiyu.spartanweaponryunofficial.item.HeavyCrossbowItem;
 import org.xiyu.spartanweaponryunofficial.item.QuiverBaseItem;
 
 public class QuiverBoltMenu extends QuiverBaseMenu {
-    public static final ResourceLocation EMPTY_BOLT_SLOT = ResourceLocation.tryBuild(ModSpartanWeaponry.ID, "slots/empty_bolt_slot");
+    public static final Identifier EMPTY_BOLT_SLOT = Identifier.tryBuild(ModSpartanWeaponry.ID, "slots/empty_bolt_slot");
 
     public QuiverBoltMenu(int id, Inventory inventory, ItemStack quiverStack) {
         super(ModMenus.QUIVER_BOLT.get(), id, inventory, quiverStack, HeavyCrossbowItem.BOLT, EMPTY_BOLT_SLOT);

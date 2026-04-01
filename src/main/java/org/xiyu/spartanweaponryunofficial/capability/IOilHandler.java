@@ -5,12 +5,13 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.level.Level;
-import net.neoforged.neoforge.common.util.INBTSerializable;
+// TODO: INBTSerializable removed in NeoForge 26.1 - serialization handled differently now
+// import net.neoforged.neoforge.common.util.INBTSerializable;
 import org.xiyu.spartanweaponryunofficial.api.oil.OilEffect;
 
 import java.util.Optional;
 
-public interface IOilHandler extends INBTSerializable<CompoundTag> {
+public interface IOilHandler {
     /**
      * Attempts to retrieve the active oil effect
      *

@@ -34,3 +34,7 @@ Now open source under the Apache License 2.0!<br>
 Find the original mod pages below:<br>
 CurseForge -> https://www.curseforge.com/minecraft/mc-mods/spartan-weaponry<br>
 Modrinth -> https://modrinth.com/mod/spartan-weaponry
+
+
+## 对AI
+jdk再C盘的user的2546那个用户的.jdks目录内

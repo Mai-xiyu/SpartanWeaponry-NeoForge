@@ -2,15 +2,12 @@ package org.xiyu.spartanweaponryunofficial.client.renderer.entity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
-import net.minecraft.client.renderer.entity.ItemRenderer;
+import net.minecraft.client.renderer.item.ItemModelResolver;
+import net.minecraft.client.renderer.state.level.CameraRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.client.renderer.texture.TextureAtlas;
-import net.minecraft.client.resources.model.BakedModel;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
@@ -19,43 +16,56 @@ import org.joml.Quaternionf;
 import org.joml.Vector3f;
 import org.xiyu.spartanweaponryunofficial.entity.projectile.ThrowingWeaponEntity;
 
-@SuppressWarnings("deprecation")
-public class ThrowingWeaponRenderer<T extends ThrowingWeaponEntity> extends EntityRenderer<T> {
-    private final ItemRenderer itemRenderer;
+public class ThrowingWeaponRenderer<T extends ThrowingWeaponEntity> extends EntityRenderer<T, SWThrowingWeaponRenderState> {
+    private final ItemModelResolver itemModelResolver;
 
     public ThrowingWeaponRenderer(EntityRendererProvider.Context rendererProvider) {
         super(rendererProvider);
-        this.itemRenderer = Minecraft.getInstance().getItemRenderer();
+        this.itemModelResolver = rendererProvider.getItemModelResolver();
     }
 
     @Override
-    public void render(@NotNull T entityIn, float entityYaw, float partialTicks, PoseStack matrixStackIn,
-                       @NotNull MultiBufferSource bufferIn, int packedLightIn) {
+    public @NotNull SWThrowingWeaponRenderState createRenderState() {
+        return new SWThrowingWeaponRenderState();
+    }
+
+    @Override
+    public void extractRenderState(T entity, SWThrowingWeaponRenderState state, float partialTick) {
+        super.extractRenderState(entity, state, partialTick);
+        state.yRot = entity.getYRot();
+        state.xRot = entity.getXRot();
+        state.yRotO = entity.yRotO;
+        state.xRotO = entity.xRotO;
+        state.partialTick = partialTick;
+        ItemStack weapon = entity.getWeaponItem();
+        state.hasWeapon = !weapon.isEmpty();
+        if (state.hasWeapon) {
+            this.itemModelResolver.updateForTopItem(state.weaponItem, weapon, ItemDisplayContext.GROUND, entity.level(), entity, entity.getId());
+        }
+    }
+
+    @Override
+    public void submit(@NotNull SWThrowingWeaponRenderState state, PoseStack matrixStackIn,
+                       @NotNull SubmitNodeCollector collector, @NotNull CameraRenderState cameraState) {
         matrixStackIn.pushPose();
-        this.doRenderTransformations(entityIn, partialTicks, matrixStackIn);
+        this.doRenderTransformations(state, matrixStackIn);
 
         Vector3f nextRotateAxis = new Vector3f(1.0f, 1.0f, 0.0f);
         nextRotateAxis.normalize();
         matrixStackIn.mulPose(new Quaternionf().setAngleAxis(Mth.PI, nextRotateAxis.x, nextRotateAxis.y, nextRotateAxis.z));
         matrixStackIn.translate(-0.10d, -0.20d, 0.0d);
 
-        ItemStack weapon = entityIn.getWeaponItem();
-        if (!weapon.isEmpty()) {
-            BakedModel bakedModel = this.itemRenderer.getModel(weapon, entityIn.level(), null, entityIn.getId());
-            this.itemRenderer.render(weapon, ItemDisplayContext.GROUND, false, matrixStackIn, bufferIn, packedLightIn, OverlayTexture.NO_OVERLAY, bakedModel);
+        if (state.hasWeapon) {
+            state.weaponItem.submit(matrixStackIn, collector, state.lightCoords, OverlayTexture.NO_OVERLAY, state.outlineColor);
         }
         matrixStackIn.popPose();
-        super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
+        super.submit(state, matrixStackIn, collector, cameraState);
     }
 
-    @Override
-    public @NotNull ResourceLocation getTextureLocation(@NotNull T entity) {
-        return TextureAtlas.LOCATION_BLOCKS;
-    }
-
-    protected void doRenderTransformations(T entity, float partialTicks, PoseStack matrixStack) {
+    protected void doRenderTransformations(SWThrowingWeaponRenderState state, PoseStack matrixStack) {
+        float partialTicks = state.partialTick;
         matrixStack.scale(2.0f, 2.0f, 2.0f);
-        matrixStack.mulPose(Axis.YP.rotationDegrees(Mth.lerp(partialTicks, entity.yRotO, entity.getYRot()) - 90.0f));
-        matrixStack.mulPose(Axis.ZP.rotationDegrees(Mth.lerp(partialTicks, entity.xRotO, entity.getXRot()) - 45.0f));
+        matrixStack.mulPose(Axis.YP.rotationDegrees(Mth.lerp(partialTicks, state.yRotO, state.yRot) - 90.0f));
+        matrixStack.mulPose(Axis.ZP.rotationDegrees(Mth.lerp(partialTicks, state.xRotO, state.xRot) - 45.0f));
     }
 }

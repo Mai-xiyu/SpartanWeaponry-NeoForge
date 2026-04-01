@@ -33,7 +33,7 @@ public class DecapitateLootModifier extends LootModifier {
 
     @Override
     protected @NotNull ObjectArrayList<ItemStack> doApply(@NotNull ObjectArrayList<ItemStack> generatedLoot, LootContext context) {
-        Entity killer = context.getParamOrNull(LootContextParams.ATTACKING_ENTITY);
+        Entity killer = context.getOptionalParameter(LootContextParams.ATTACKING_ENTITY);
         if (killer == null)
             return generatedLoot;
         if (killer instanceof LivingEntity living) {
@@ -45,10 +45,10 @@ public class DecapitateLootModifier extends LootModifier {
 
                 if (container.hasWeaponTraitWithType(WeaponTraits.TYPE_DECAPITATE)) {
                     ItemStack skullStack = new ItemStack(this.skull);
-                    Entity thisEntity = context.getParam(LootContextParams.THIS_ENTITY);
+                    Entity thisEntity = context.getOptionalParameter(LootContextParams.THIS_ENTITY);
                     if (thisEntity instanceof Player player) {
                         // Add the player NBT data to the skull ItemStack
-                        ItemStackDataHelper.updateTag(skullStack, tag -> tag.putString("SkullOwner", player.getGameProfile().getName()));
+                        ItemStackDataHelper.updateTag(skullStack, tag -> tag.putString("SkullOwner", player.getName().getString()));
                     }
                     generatedLoot.add(skullStack);
                 }
@@ -61,10 +61,10 @@ public class DecapitateLootModifier extends LootModifier {
 	{
 		
 		@Override
-		public DecapitateLootModifier read(ResourceLocation location, JsonObject object,
+		public DecapitateLootModifier read(Identifier location, JsonObject object,
 				LootItemCondition[] lootConditions) 
 		{
-			Item skullItem = ForgeRegistries.ITEMS.getValue(ResourceLocation.tryBuild(GsonHelper.getAsString(object, "skull")));
+			Item skullItem = ForgeRegistries.ITEMS.getValue(Identifier.tryBuild(GsonHelper.getAsString(object, "skull")));
 			return new DecapitateLootModifier(lootConditions, skullItem);
 		}
 

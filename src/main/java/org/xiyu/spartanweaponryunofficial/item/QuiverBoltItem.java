@@ -2,7 +2,7 @@ package org.xiyu.spartanweaponryunofficial.item;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
@@ -21,13 +21,13 @@ import java.util.List;
 import java.util.Optional;
 
 public class QuiverBoltItem extends QuiverBaseItem {
-    public static final ResourceLocation TEXTURE_SMALL = ResourceLocation.fromNamespaceAndPath(ModSpartanWeaponry.ID, "textures/model/quiver_bolt_small.png");
-    public static final ResourceLocation TEXTURE_MEDIUM = ResourceLocation.fromNamespaceAndPath(ModSpartanWeaponry.ID, "textures/model/quiver_bolt_medium.png");
-    public static final ResourceLocation TEXTURE_LARGE = ResourceLocation.fromNamespaceAndPath(ModSpartanWeaponry.ID, "textures/model/quiver_bolt_large.png");
-    public static final ResourceLocation TEXTURE_HUGE = ResourceLocation.fromNamespaceAndPath(ModSpartanWeaponry.ID, "textures/model/quiver_bolt_huge.png");
+    public static final Identifier TEXTURE_SMALL = Identifier.fromNamespaceAndPath(ModSpartanWeaponry.ID, "textures/model/quiver_bolt_small.png");
+    public static final Identifier TEXTURE_MEDIUM = Identifier.fromNamespaceAndPath(ModSpartanWeaponry.ID, "textures/model/quiver_bolt_medium.png");
+    public static final Identifier TEXTURE_LARGE = Identifier.fromNamespaceAndPath(ModSpartanWeaponry.ID, "textures/model/quiver_bolt_large.png");
+    public static final Identifier TEXTURE_HUGE = Identifier.fromNamespaceAndPath(ModSpartanWeaponry.ID, "textures/model/quiver_bolt_huge.png");
 
-    public QuiverBoltItem(int inventorySize) {
-        super(inventorySize);
+    public QuiverBoltItem(Item.Properties properties, int inventorySize) {
+        super(properties, inventorySize);
     }
 
     @Override

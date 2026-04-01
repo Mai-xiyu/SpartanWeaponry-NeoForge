@@ -3,29 +3,39 @@ package org.xiyu.spartanweaponryunofficial.item;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.entity.projectile.arrow.AbstractArrow;
 import net.minecraft.world.item.ArrowItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 import org.xiyu.spartanweaponryunofficial.ModSpartanWeaponry;
 import org.xiyu.spartanweaponryunofficial.entity.projectile.ArrowBaseEntity;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class ArrowBaseItem extends ArrowItem {
     protected float damageModifier;
     protected float rangeModifier;
 
-    public ArrowBaseItem(float damageModifier, float rangeModifier) {
-        super(new Item.Properties());
+    public ArrowBaseItem(Item.Properties properties, float damageModifier, float rangeModifier) {
+        super(properties);
         this.damageModifier = damageModifier;
         this.rangeModifier = rangeModifier;
     }
 
     @Override
+    public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext tooltipContext, @NotNull TooltipDisplay tooltipDisplay,
+                                @NotNull Consumer<Component> tooltipAdder, @NotNull TooltipFlag flagIn) {
+        List<Component> tooltip = new ArrayList<>();
+        this.appendHoverText(stack, tooltipContext, tooltip, flagIn);
+        tooltip.forEach(tooltipAdder);
+    }
+
     public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext tooltipContext, List<Component> tooltip, @NotNull TooltipFlag flagIn) {
 //		tooltip.add(Component.translatable("tooltip." + ModSpartanWeaponry.ID + ".modifiers").withStyle(ChatFormatting.GOLD));
         tooltip.add(Component.translatable("tooltip." + ModSpartanWeaponry.ID + ".modifiers.projectile.base_damage", Component.translatable("tooltip." + ModSpartanWeaponry.ID + ".modifiers.projectile.base_damage.value", this.damageModifier).withStyle(ChatFormatting.GRAY)).withStyle(ChatFormatting.DARK_AQUA));
@@ -46,3 +56,5 @@ public class ArrowBaseItem extends ArrowItem {
         this.rangeModifier = rangeModifier;
     }
 }
+
+

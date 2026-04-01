@@ -1,0 +1,1110 @@
+﻿.\gradlew.bat : Picked up JAVA_TOOL_OPTIONS: -Duser.language=en -Duser.country=US
+所在位置 行:1 字符: 118
++ ... anguage=en -Duser.country=US"; .\gradlew.bat compileJava 2>&1 | Out-F ...
++                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Picked up JAVA_...user.country=US:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by net.rubygrapefruit.platform.internal.NativeLibraryLoader in an unnamed module (file:/C:/Users/25463/.gradle/wrapper/dists/gradle-9.1.0-bin/9agqghryom9wkf8r80qlhnts3/gradl
+e-9.1.0/lib/native-platform-0.22-milestone-28.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.1.0/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :generateModMetadata UP-TO-DATE
+> Task :createMinecraftArtifacts UP-TO-DATE
+
+> Task :compileJava
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\api\data\recipe\ConditionalShapelessRecipeBuilder.java:144: warning: [removal] parent(Identifier) in Builder has been deprec
+ated and marked for removal
+        advancement.parent(RecipeBuilder.ROOT_RECIPE_ADVANCEMENT)
+                   ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\capability\IQuiverItemHandler.java:5: warning: [removal] IItemHandler in net.neoforged.neoforge.items has been deprecated an
+d marked for removal
+public interface IQuiverItemHandler extends IItemHandler {
+                                            ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\capability\QuiverItemStackHandler.java:15: warning: [removal] ItemStackHandler in net.neoforged.neoforge.items has been depr
+ecated and marked for removal
+public class QuiverItemStackHandler extends ItemStackHandler implements IQuiverItemHandler {
+                                            ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\client\gui\container\QuiverBaseScreen.java:50: warning: [removal] getSlots() in IItemHandler has been deprecated and marked 
+for removal
+        this.ammoSlots = handler != null ? handler.getSlots() : Defaults.SlotsQuiverSmall;
+                                                  ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\inventory\QuiverBaseMenu.java:41: warning: [removal] getSlots() in IItemHandler has been deprecated and marked for removal
+        this.playerInvStart = this.handler.getSlots();
+                                          ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\inventory\QuiverBaseMenu.java:56: warning: [removal] getSlots() in IItemHandler has been deprecated and marked for removal
+        slotStartX = switch (this.handler.getSlots()) {
+                                         ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\inventory\QuiverBaseMenu.java:73: warning: [removal] getSlots() in IItemHandler has been deprecated and marked for removal
+        for (int i = 0; i < this.handler.getSlots(); i++) {
+                                        ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\inventory\QuiverBaseMenu.java:80: warning: [removal] getSlots() in IItemHandler has been deprecated and marked for removal
+        int yOffset = this.handler.getSlots() == Defaults.SlotsQuiverHuge ? 18 : 0;
+                                  ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\inventory\QuiverBaseMenu.java:95: warning: [removal] getSlots() in IItemHandler has been deprecated and marked for removal
+        this.addSlot(new Slot(inventory, 40, -21, this.handler.getSlots() == Defaults.SlotsQuiverHuge ? 127 : 109) {
+                                                              ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\inventory\QuiverBaseMenu.java:113: warning: [removal] getSlots() in IItemHandler has been deprecated and marked for removal
+            if (slotIdx >= 0 && slotIdx < this.handler.getSlots()) {
+                                                      ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\ClientEventHandler.java:99: error: non-static method isProduction() cannot be referenced from a static context
+        if (!FMLLoader.isProduction() && ItemStackDataHelper.hasTag(stack) && ev.getFlags().isAdvanced()) {
+                      ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:125: error: bad operand types for binary operator '>='
+                    ItemStackDataHelper.getTag(attackerStack).getInt(ThrowingWeaponItem.NBT_AMMO_USED) >= ((ThrowingWeaponItem) attackerStack.getItem()).getMaxAmmo(attackerStack, attacker.level()))
+                                                                                                       ^
+  first type:  Optional<Integer>
+  second type: int
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:153: error: isClientSide has private access in Level
+            if (!level.isClientSide) {
+                      ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:208: error: random has protected access in Level
+                        int extra = drop.level().random.nextInt(luckLevel + 1);
+                                                ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:260: error: incompatible types: Optional<String> cannot be converted to String
+                                String itemId = nbt.getString(QuiverBaseItem.NBT_ITEM_ID);
+                                                             ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:261: error: incompatible types: Optional<Integer> cannot be converted to int
+                                int itemSlot = nbt.getInt(QuiverBaseItem.NBT_ITEM_SLOT);
+                                                         ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:309: error: items has private access in Inventory
+                                for (int i = 0; i < player.getInventory().items.size(); i++) {
+                                                                         ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:310: error: items has private access in Inventory
+                                    ItemStack playerStack = player.getInventory().items.get(i);
+                                                                                 ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:354: error: incompatible types: Optional<Integer> cannot be converted to int
+            int prioritySlot = ItemStackDataHelper.getTag(quiver).getInt(QuiverBaseItem.NBT_PROIRITY_SLOT);
+                                                                        ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:355: warning: [removal] insertItem(int,ItemStack,boolean) in IItemHandler has been deprecated 
+and marked for removal
+            arrowStack = quiverHandler.insertItem(prioritySlot, arrowStack, false);
+                                      ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:357: warning: [removal] getSlots() in IItemHandler has been deprecated and marked for removal
+                for (int j = 0; j < quiverHandler.getSlots(); j++) {
+                                                 ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:361: warning: [removal] insertItem(int,ItemStack,boolean) in IItemHandler has been deprecated 
+and marked for removal
+                    arrowStack = quiverHandler.insertItem(j, arrowStack, false);
+                                              ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:381: error: incompatible types: Optional<Integer> cannot be converted to int
+            int prioritySlot = ItemStackDataHelper.getTag(quiver).getInt(QuiverBaseItem.NBT_PROIRITY_SLOT);
+                                                                        ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:382: warning: [removal] getSlots() in IItemHandler has been deprecated and marked for removal
+            if (prioritySlot <= quiverHandler.getSlots()) {
+                                             ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:383: warning: [removal] extractItem(int,int,boolean) in IItemHandler has been deprecated and m
+arked for removal
+                arrowStack = quiverHandler.extractItem(prioritySlot, 64, false);
+                                          ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:389: warning: [removal] getSlots() in IItemHandler has been deprecated and marked for removal
+                for (int j = 0; j < quiverHandler.getSlots(); j++) {
+                                                 ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:393: warning: [removal] extractItem(int,int,boolean) in IItemHandler has been deprecated and m
+arked for removal
+                    arrowStack = quiverHandler.extractItem(j, 64, false);
+                                              ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:418: error: incompatible types: Optional<Boolean> cannot be converted to boolean
+                    if (ItemStackDataHelper.getTag(quiver).getBoolean(QuiverBaseItem.NBT_AMMO_COLLECT)) {
+                                                                     ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:423: warning: [removal] getSlots() in IItemHandler has been deprecated and marked for removal
+                        for (int i = 0; i < quiverHandler.getSlots(); i++) {
+                                                         ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:424: warning: [removal] insertItem(int,ItemStack,boolean) in IItemHandler has been deprecated 
+and marked for removal
+                            pickedUpStack = quiverHandler.insertItem(i, pickedUpStack, false);
+                                                         ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:444: error: cannot find symbol
+                        ItemStackDataHelper.getTag(slotStack).hasUUID(ThrowingWeaponItem.NBT_UUID) && ItemStackDataHelper.getTag(pickedUpStack).hasUUID(ThrowingWeaponItem.NBT_UUID) &&
+                                                             ^
+  symbol:   method hasUUID(String)
+  location: class CompoundTag
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:444: error: cannot find symbol
+                        ItemStackDataHelper.getTag(slotStack).hasUUID(ThrowingWeaponItem.NBT_UUID) && ItemStackDataHelper.getTag(pickedUpStack).hasUUID(ThrowingWeaponItem.NBT_UUID) &&
+                                                                                                                                               ^
+  symbol:   method hasUUID(String)
+  location: class CompoundTag
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:445: error: cannot find symbol
+                        ItemStackDataHelper.getTag(pickedUpStack).getUUID(ThrowingWeaponItem.NBT_UUID).equals(ItemStackDataHelper.getTag(slotStack).getUUID(ThrowingWeaponItem.NBT_UUID))) {
+                                                                 ^
+  symbol:   method getUUID(String)
+  location: class CompoundTag
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:445: error: cannot find symbol
+                        ItemStackDataHelper.getTag(pickedUpStack).getUUID(ThrowingWeaponItem.NBT_UUID).equals(ItemStackDataHelper.getTag(slotStack).getUUID(ThrowingWeaponItem.NBT_UUID))) {
+                                                                                                                                                   ^
+  symbol:   method getUUID(String)
+  location: class CompoundTag
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:447: error: bad operand types for binary operator '-'
+                    int currentAmmo = maxAmmo - ItemStackDataHelper.getTag(slotStack).getInt(ThrowingWeaponItem.NBT_AMMO_USED);
+                                              ^
+  first type:  int
+  second type: Optional<Integer>
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:448: error: bad operand type Optional<Boolean> for unary operator '!'
+                    boolean currentNotOriginalStack = !ItemStackDataHelper.getTag(slotStack).getBoolean(ThrowingWeaponItem.NBT_ORIGINAL);
+                                                      ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:449: error: incompatible types: Optional<Boolean> cannot be converted to boolean
+                    boolean pickedUpOriginalStack = ItemStackDataHelper.getTag(pickedUpStack).getBoolean(ThrowingWeaponItem.NBT_ORIGINAL);
+                                                                                                        ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:465: error: bad operand types for binary operator '-'
+                            currentAmmo += (maxAmmo - ItemStackDataHelper.getTag(pickedUpStack).getInt(ThrowingWeaponItem.NBT_AMMO_USED));
+                                                    ^
+  first type:  int
+  second type: Optional<Integer>
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:503: error: incompatible types: Optional<Integer> cannot be converted to int
+            int ammoUsed = ItemStackDataHelper.getTag(stack).getInt(ThrowingWeaponItem.NBT_AMMO_USED);
+                                                                   ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:521: error: cannot find symbol
+                ev.getName().equals(BuiltInLootTables.VILLAGE_WEAPONSMITH.location())) {
+                                                                         ^
+  symbol:   method location()
+  location: variable VILLAGE_WEAPONSMITH of type ResourceKey<LootTable>
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:525: error: cannot find symbol
+                ev.getName().equals(BuiltInLootTables.VILLAGE_FLETCHER.location())) {
+                                                                      ^
+  symbol:   method location()
+  location: variable VILLAGE_FLETCHER of type ResourceKey<LootTable>
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:529: error: cannot find symbol
+                ev.getName().equals(BuiltInLootTables.END_CITY_TREASURE.location())) {
+                                                                       ^
+  symbol:   method location()
+  location: variable END_CITY_TREASURE of type ResourceKey<LootTable>
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:644: error: bad operand types for binary operator '&&'
+        if (left.getItem() instanceof ThrowingWeaponItem throwingWeapon && ItemStackDataHelper.hasTag(left) && ItemStackDataHelper.getTag(left).getBoolean(ThrowingWeaponItem.NBT_ORIGINAL)
+                                                                                                            ^
+  first type:  boolean
+  second type: Optional<Boolean>
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:646: error: incompatible types: Optional<Integer> cannot be converted to int
+            int leftAmmo = ItemStackDataHelper.getTag(left).getInt(ThrowingWeaponItem.NBT_AMMO_USED);
+                                                                  ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:647: error: incompatible types: Optional<Integer> cannot be converted to int
+            int rightAmmo = ItemStackDataHelper.getTag(right).getInt(ThrowingWeaponItem.NBT_AMMO_USED);
+                                                                    ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:673: error: cannot find symbol
+            ev.setCost(cost);
+              ^
+  symbol:   method setCost(int)
+  location: variable ev of type AnvilUpdateEvent
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:710: error: incompatible types: Item cannot be converted to ItemStack
+        if (!stack.is(Tags.Items.RODS_WOODEN) || player.getCooldowns().isOnCooldown(stack.getItem()))
+                                                                                                 ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:729: error: no suitable method found for addCooldown(Item,int)
+            player.getCooldowns().addCooldown(stack.getItem(), 5);
+                                 ^
+    method ItemCooldowns.addCooldown(ItemStack,int) is not applicable
+      (argument mismatch; Item cannot be converted to ItemStack)
+    method ItemCooldowns.addCooldown(Identifier,int) is not applicable
+      (argument mismatch; Item cannot be converted to Identifier)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\DataGenEventHandler.java:106: error: no suitable method found for addProvider(boolean,ModItemModelProvider)
+        gen.addProvider(true, new ModItemModelProvider());
+           ^
+    method DataGenerator.<T#1>addProvider(boolean,Factory<T#1>) is not applicable
+      (cannot infer type-variable(s) T#1
+        (argument mismatch; ModItemModelProvider cannot be converted to Factory<T#1>))
+    method DataGenerator.<T#2>addProvider(boolean,T#2) is not applicable
+      (inference variable T#2 has incompatible bounds
+        upper bounds: DataProvider
+        lower bounds: ModItemModelProvider)
+  where T#1,T#2 are type-variables:
+    T#1 extends DataProvider declared in method <T#1>addProvider(boolean,Factory<T#1>)
+    T#2 extends DataProvider declared in method <T#2>addProvider(boolean,T#2)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\SwordBaseItem.java:72: error: cannot find symbol
+        if (FMLEnvironment.dist.isClient()) {}
+                          ^
+  symbol:   variable dist
+  location: class FMLEnvironment
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\SwordBaseItem.java:134: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\SwordBaseItem.java:168: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\SwordBaseItem.java:180: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\SwordBaseItem.java:182: error: cannot find symbol
+        boolean isShiftPressed = Screen.hasShiftDown();
+                                       ^
+  symbol:   method hasShiftDown()
+  location: class Screen
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\SwordBaseItem.java:186: error: cannot find symbol
+                var tag = BuiltInRegistries.ITEM.getTag(this.material.getRepairTag());
+                                                ^
+  symbol:   method getTag(TagKey<Item>)
+  location: variable ITEM of type DefaultedRegistry<Item>
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\SwordBaseItem.java:210: error: method appendHoverText in class Item cannot be applied to given types;
+        super.appendHoverText(stack, tooltipContext, tooltip, flagIn);
+             ^
+  required: ItemStack,TooltipContext,TooltipDisplay,Consumer<Component>,TooltipFlag
+  found:    ItemStack,TooltipContext,List<Component>,TooltipFlag
+  reason: actual and formal argument lists differ in length
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\SwordBaseItem.java:218: error: hurtEnemy(@org.jetbrains.annotations.NotNull ItemStack,@org.jetbrains.annotations.NotNul
+l LivingEntity,@org.jetbrains.annotations.NotNull LivingEntity) in SwordBaseItem cannot override hurtEnemy(ItemStack,LivingEntity,LivingEntity) in Item
+    public boolean hurtEnemy(@NotNull ItemStack stack, @NotNull LivingEntity target, @NotNull LivingEntity attacker) {
+                   ^
+  return type boolean is not compatible with void
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\SwordBaseItem.java:217: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\SwordBaseItem.java:222: error: incompatible types: void cannot be converted to boolean
+        return super.hurtEnemy(stack, target, attacker);
+                              ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\SwordBaseItem.java:249: error: releaseUsing(@org.jetbrains.annotations.NotNull ItemStack,@org.jetbrains.annotations.Not
+Null Level,@org.jetbrains.annotations.NotNull LivingEntity,int) in SwordBaseItem cannot override releaseUsing(ItemStack,Level,LivingEntity,int) in Item
+    public void releaseUsing(@NotNull ItemStack stack, @NotNull Level level, @NotNull LivingEntity entityLiving, int timeLeft) {
+                ^
+  return type void is not compatible with boolean
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\SwordBaseItem.java:248: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\SwordBaseItem.java:298: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\SwordBaseItem.java:301: error: method onCraftedBy in class Item cannot be applied to given types;
+        super.onCraftedBy(stack, levelIn, playerIn);
+             ^
+  required: ItemStack,Player
+  found:    ItemStack,Level,Player
+  reason: actual and formal argument lists differ in length
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\SwordBaseItem.java:304: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\SwordBaseItem.java:322: error: cannot find symbol
+        Identifier enchantmentKey = registryAccess.registry(Registries.ENCHANTMENT)
+                                                  ^
+  symbol:   method registry(ResourceKey<Registry<Enchantment>>)
+  location: variable registryAccess of type RegistryAccess
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\SwordBaseItem.java:325: error: cannot find symbol
+        return enchantmentKey == null || !enchantmentKey.equals(net.minecraft.world.item.enchantment.Enchantments.SWEEPING_EDGE.location());
+                                                                                                                               ^
+  symbol:   method location()
+  location: variable SWEEPING_EDGE of type ResourceKey<Enchantment>
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ArrowBaseItem.java:28: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\BoltItem.java:44: error: cannot find symbol
+        int enchant = EnchantmentHelper.getItemEnchantmentLevel(player.level().registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantments.INFINITY), crossbow);
+                                                                                               ^
+  symbol:   method registryOrThrow(ResourceKey<Registry<Enchantment>>)
+  location: interface RegistryAccess
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\BoltItem.java:48: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\BasicItem.java:20: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\BasicItem.java:23: error: method appendHoverText in class Item cannot be applied to given types;
+        super.appendHoverText(stack, tooltipContext, tooltip, flagIn);
+             ^
+  required: ItemStack,TooltipContext,TooltipDisplay,Consumer<Component>,TooltipFlag
+  found:    ItemStack,TooltipContext,List<Component>,TooltipFlag
+  reason: actual and formal argument lists differ in length
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\WeaponOilItem.java:80: error: cannot find symbol
+                        playerIn.displayClientMessage(Component.translatable("message." + ModSpartanWeaponry.ID + ".oil_applied", stack.getHoverName(), oppositeStack.getHoverName()), true);
+                                ^
+  symbol:   method displayClientMessage(MutableComponent,boolean)
+  location: variable playerIn of type Player
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\WeaponOilItem.java:83: error: cannot find symbol
+                        ItemStack bottleStack = this.getCraftingRemainingItem(stack);
+                                                    ^
+  symbol: method getCraftingRemainingItem(ItemStack)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\WeaponOilItem.java:89: error: cannot find symbol
+                        playerIn.displayClientMessage(Component.translatable("message." + ModSpartanWeaponry.ID + ".weapon_already_oiled", stack.getHoverName(), oppositeStack.getHoverName()).withStyle(ChatFormatting.RED),
+ true);
+                                ^
+  symbol:   method displayClientMessage(MutableComponent,boolean)
+  location: variable playerIn of type Player
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\WeaponOilItem.java:92: error: cannot find symbol
+                playerIn.displayClientMessage(Component.translatable("message." + ModSpartanWeaponry.ID + ".no_oilable_weapon", stack.getHoverName()).withStyle(ChatFormatting.RED), true);
+                        ^
+  symbol:   method displayClientMessage(MutableComponent,boolean)
+  location: variable playerIn of type Player
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\WeaponOilItem.java:99: error: cannot find symbol
+        return (Registry<OilEffect>) BuiltInRegistries.REGISTRY.get(OilEffects.REGISTRY_KEY.location());
+                                                                                           ^
+  symbol:   method location()
+  location: variable REGISTRY_KEY of type ResourceKey<Registry<OilEffect>>
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:87: error: cannot find symbol
+        if (FMLEnvironment.dist.isClient()) {}
+                          ^
+  symbol:   variable dist
+  location: class FMLEnvironment
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:138: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:159: error: isClientSide has private access in Level
+        if (!level.isClientSide && state.getDestroySpeed(level, pos) != 0.0f) {
+                  ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:167: error: bad operand types for binary operator '<'
+        if (stack.isDamageableItem() && ItemStackDataHelper.getTag(stack).getInt(NBT_AMMO_USED) < this.getMaxAmmo(stack, entity.level()) &&
+                                                                                                ^
+  first type:  Optional<Integer>
+  second type: int
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:173: error: incompatible types: Optional<Integer> cannot be converted to int
+                int ammo = ItemStackDataHelper.getTag(stack).getInt(NBT_AMMO_USED);
+                                                                   ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:195: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:197: error: cannot find symbol
+        boolean isShiftPressed = Screen.hasShiftDown();
+                                       ^
+  symbol:   method hasShiftDown()
+  location: class Screen
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:201: error: cannot find symbol
+                var tag = BuiltInRegistries.ITEM.getTag(this.material.getRepairTag());
+                                                ^
+  symbol:   method getTag(TagKey<Item>)
+  location: variable ITEM of type DefaultedRegistry<Item>
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:215: error: bad operand type Optional<Boolean> for unary operator '!'
+        if (stackTag.contains(NBT_ORIGINAL) && !stackTag.getBoolean(NBT_ORIGINAL))
+                                               ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:217: error: cannot find symbol
+        if (stackTag.hasUUID(NBT_UUID) && flagIn.isAdvanced())
+                    ^
+  symbol:   method hasUUID(String)
+  location: variable stackTag of type CompoundTag
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:218: error: cannot find symbol
+            tooltip.add(Component.literal("UUID: " + ChatFormatting.GRAY + stackTag.getUUID(NBT_UUID)).withStyle(ChatFormatting.DARK_PURPLE));
+                                                                                   ^
+  symbol:   method getUUID(String)
+  location: variable stackTag of type CompoundTag
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:220: error: bad operand types for binary operator '-'
+        tooltip.add(Component.translatable(String.format("tooltip.%s.throwable.ammo", ModSpartanWeaponry.ID), Component.translatable(String.format("tooltip.%s.throwable.ammo.value", ModSpartanWeaponry.ID), mxAmmo - stackT
+ag.getInt(NBT_AMMO_USED), mxAmmo).withStyle(ChatFormatting.GRAY)).withStyle(ChatFormatting.DARK_AQUA));
+                                                                                                                                                                                                                     ^
+  first type:  int
+  second type: Optional<Integer>
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:235: error: method appendHoverText in class Item cannot be applied to given types;
+        super.appendHoverText(stack, tooltipContext, tooltip, flagIn);
+             ^
+  required: ItemStack,TooltipContext,TooltipDisplay,Consumer<Component>,TooltipFlag
+  found:    ItemStack,TooltipContext,List<Component>,TooltipFlag
+  reason: actual and formal argument lists differ in length
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:239: error: hurtEnemy(@org.jetbrains.annotations.NotNull ItemStack,@org.jetbrains.annotations.N
+otNull LivingEntity,LivingEntity) in ThrowingWeaponItem cannot override hurtEnemy(ItemStack,LivingEntity,LivingEntity) in Item
+    public boolean hurtEnemy(@NotNull ItemStack stack, @NotNull LivingEntity target, LivingEntity attacker) {
+                   ^
+  return type boolean is not compatible with void
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:238: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:243: error: bad operand types for binary operator '<'
+        if (ItemStackDataHelper.getTag(stack).getInt(NBT_AMMO_USED) < this.getMaxAmmo(stack, attacker.level()))
+                                                                    ^
+  first type:  Optional<Integer>
+  second type: int
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:253: error: bad operand types for binary operator '<'
+        if (ItemStackDataHelper.getTag(stack).getInt(NBT_AMMO_USED) < this.getMaxAmmo(stack, levelIn)) {
+                                                                    ^
+  first type:  Optional<Integer>
+  second type: int
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:261: error: releaseUsing(@org.jetbrains.annotations.NotNull ItemStack,@org.jetbrains.annotation
+s.NotNull Level,@org.jetbrains.annotations.NotNull LivingEntity,int) in ThrowingWeaponItem cannot override releaseUsing(ItemStack,Level,LivingEntity,int) in Item
+    public void releaseUsing(@NotNull ItemStack stack, @NotNull Level levelIn, @NotNull LivingEntity entityLiving, int timeLeft) {
+                ^
+  return type void is not compatible with boolean
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:260: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:267: error: isClientSide has private access in Level
+            if (!levelIn.isClientSide && charge > 2 && ItemStackDataHelper.getTag(stack).getInt(NBT_AMMO_USED) < this.getMaxAmmo(stack, levelIn)) {
+                        ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:267: error: bad operand types for binary operator '<'
+            if (!levelIn.isClientSide && charge > 2 && ItemStackDataHelper.getTag(stack).getInt(NBT_AMMO_USED) < this.getMaxAmmo(stack, levelIn)) {
+                                                                                                               ^
+  first type:  Optional<Integer>
+  second type: int
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:320: error: bad operand types for binary operator '+'
+                    ItemStackDataHelper.updateTag(stack, tag -> tag.putInt(NBT_AMMO_USED, tag.getInt(NBT_AMMO_USED) + 1));
+                                                                                                                    ^
+  first type:  Optional<Integer>
+  second type: int
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:324: error: random has protected access in Level
+                levelIn.playSound(null, player.getX(), player.getY(), player.getZ(), this.getThrowingSound(), SoundSource.PLAYERS, 0.5F, 0.4F / (levelIn.random.nextFloat() * 0.4F + 0.8F));
+                                                                                                                                                        ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:342: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:349: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:366: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:486: error: cannot find symbol
+            if (initUUID && !tag.hasUUID(NBT_UUID)) {
+                                ^
+  symbol:   method hasUUID(String)
+  location: variable tag of type CompoundTag
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:487: error: cannot find symbol
+                tag.putUUID(NBT_UUID, UUID.randomUUID());
+                   ^
+  symbol:   method putUUID(String,UUID)
+  location: variable tag of type CompoundTag
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\util\WeaponArchetype.java:37: error: cannot find symbol
+            () -> Config.INSTANCE.daggers.speed.get(), () -> Config.INSTANCE.daggers.baseDamage.get().floatValue(), () -> Config.INSTANCE.daggers.damageMultipler.get().floatValue(), ItemAbilities.SWORD_DIG);
+                                                                                                                                                                                                   ^
+  symbol:   variable SWORD_DIG
+  location: class ItemAbilities
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\util\WeaponArchetype.java:39: error: cannot find symbol
+            () -> Config.INSTANCE.parryingDaggers.speed.get(), () -> Config.INSTANCE.parryingDaggers.baseDamage.get().floatValue(), () -> Config.INSTANCE.parryingDaggers.damageMultipler.get().floatValue(), ItemAbilities.S
+WORD_DIG);
+                                                                                                                                                                                                                           ^
+  symbol:   variable SWORD_DIG
+  location: class ItemAbilities
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\util\WeaponArchetype.java:41: error: cannot find symbol
+            () -> Config.INSTANCE.longswords.speed.get(), () -> Config.INSTANCE.longswords.baseDamage.get().floatValue(), () -> Config.INSTANCE.longswords.damageMultipler.get().floatValue(), ItemAbilities.SWORD_DIG);
+                                                                                                                                                                                                            ^
+  symbol:   variable SWORD_DIG
+  location: class ItemAbilities
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\util\WeaponArchetype.java:43: error: cannot find symbol
+            () -> Config.INSTANCE.katanas.speed.get(), () -> Config.INSTANCE.katanas.baseDamage.get().floatValue(), () -> Config.INSTANCE.katanas.damageMultipler.get().floatValue(), ItemAbilities.SWORD_DIG);
+                                                                                                                                                                                                   ^
+  symbol:   variable SWORD_DIG
+  location: class ItemAbilities
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\util\WeaponArchetype.java:45: error: cannot find symbol
+            () -> Config.INSTANCE.sabers.speed.get(), () -> Config.INSTANCE.sabers.baseDamage.get().floatValue(), () -> Config.INSTANCE.sabers.damageMultipler.get().floatValue(), ItemAbilities.SWORD_DIG);
+                                                                                                                                                                                                ^
+  symbol:   variable SWORD_DIG
+  location: class ItemAbilities
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\util\WeaponArchetype.java:47: error: cannot find symbol
+            () -> Config.INSTANCE.rapiers.speed.get(), () -> Config.INSTANCE.rapiers.baseDamage.get().floatValue(), () -> Config.INSTANCE.rapiers.damageMultipler.get().floatValue(), ItemAbilities.SWORD_DIG);
+                                                                                                                                                                                                   ^
+  symbol:   variable SWORD_DIG
+  location: class ItemAbilities
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\util\WeaponArchetype.java:49: error: cannot find symbol
+            () -> Config.INSTANCE.greatswords.speed.get(), () -> Config.INSTANCE.greatswords.baseDamage.get().floatValue(), () -> Config.INSTANCE.greatswords.damageMultipler.get().floatValue(), ItemAbilities.SWORD_DIG);
+                                                                                                                                                                                                               ^
+  symbol:   variable SWORD_DIG
+  location: class ItemAbilities
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\util\WeaponArchetype.java:51: error: cannot find symbol
+            () -> Config.INSTANCE.clubs.speed.get(), () -> Config.INSTANCE.clubs.baseDamage.get().floatValue(), () -> Config.INSTANCE.clubs.damageMultipler.get().floatValue(), ItemAbilities.SWORD_DIG);
+                                                                                                                                                                                             ^
+  symbol:   variable SWORD_DIG
+  location: class ItemAbilities
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\util\WeaponArchetype.java:53: error: cannot find symbol
+            () -> Config.INSTANCE.cestus.speed.get(), () -> Config.INSTANCE.cestus.baseDamage.get().floatValue(), () -> Config.INSTANCE.cestus.damageMultipler.get().floatValue(), ItemAbilities.SWORD_DIG);
+                                                                                                                                                                                                ^
+  symbol:   variable SWORD_DIG
+  location: class ItemAbilities
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\util\WeaponArchetype.java:55: error: cannot find symbol
+            () -> Config.INSTANCE.battleHammers.speed.get(), () -> Config.INSTANCE.battleHammers.baseDamage.get().floatValue(), () -> Config.INSTANCE.battleHammers.damageMultipler.get().floatValue(), ItemAbilities.SWORD_D
+IG);
+                                                                                                                                                                                                                     ^
+  symbol:   variable SWORD_DIG
+  location: class ItemAbilities
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\util\WeaponArchetype.java:57: error: cannot find symbol
+            () -> Config.INSTANCE.warhammers.speed.get(), () -> Config.INSTANCE.warhammers.baseDamage.get().floatValue(), () -> Config.INSTANCE.warhammers.damageMultipler.get().floatValue(), ItemAbilities.SWORD_DIG);
+                                                                                                                                                                                                            ^
+  symbol:   variable SWORD_DIG
+  location: class ItemAbilities
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\util\WeaponArchetype.java:59: error: cannot find symbol
+            () -> Config.INSTANCE.spears.speed.get(), () -> Config.INSTANCE.spears.baseDamage.get().floatValue(), () -> Config.INSTANCE.spears.damageMultipler.get().floatValue(), ItemAbilities.SWORD_DIG);
+                                                                                                                                                                                                ^
+  symbol:   variable SWORD_DIG
+  location: class ItemAbilities
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\util\WeaponArchetype.java:61: error: cannot find symbol
+            () -> Config.INSTANCE.halberds.speed.get(), () -> Config.INSTANCE.halberds.baseDamage.get().floatValue(), () -> Config.INSTANCE.halberds.damageMultipler.get().floatValue(), ItemAbilities.SWORD_DIG);
+                                                                                                                                                                                                      ^
+  symbol:   variable SWORD_DIG
+  location: class ItemAbilities
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\util\WeaponArchetype.java:63: error: cannot find symbol
+            () -> Config.INSTANCE.pikes.speed.get(), () -> Config.INSTANCE.pikes.baseDamage.get().floatValue(), () -> Config.INSTANCE.pikes.damageMultipler.get().floatValue(), ItemAbilities.SWORD_DIG);
+                                                                                                                                                                                             ^
+  symbol:   variable SWORD_DIG
+  location: class ItemAbilities
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\util\WeaponArchetype.java:65: error: cannot find symbol
+            () -> Config.INSTANCE.lances.speed.get(), () -> Config.INSTANCE.lances.baseDamage.get().floatValue(), () -> Config.INSTANCE.lances.damageMultipler.get().floatValue(), ItemAbilities.SWORD_DIG);
+                                                                                                                                                                                                ^
+  symbol:   variable SWORD_DIG
+  location: class ItemAbilities
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\inventory\SlotFiltered.java:12: warning: [removal] SlotItemHandler in net.neoforged.neoforge.items has been deprecated and m
+arked for removal
+public class SlotFiltered extends SlotItemHandler {
+                                  ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\inventory\SlotFiltered.java:16: warning: [removal] IItemHandler in net.neoforged.neoforge.items has been deprecated and mark
+ed for removal
+    public SlotFiltered(IItemHandler handlerIn, int indexIn, int xPositionIn, int yPositionIn, Predicate<ItemStack> filterIn) {
+                        ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\inventory\SlotFiltered.java:20: warning: [removal] IItemHandler in net.neoforged.neoforge.items has been deprecated and mark
+ed for removal
+    public SlotFiltered(IItemHandler handlerIn, int indexIn, int xPositionIn, int yPositionIn, Predicate<ItemStack> filterIn, @Nullable Identifier noItemIconIn) {
+                        ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\mixin\AbstractArrowMixin.java:63: warning: [removal] getSlots() in IItemHandler has been deprecated and marked for removal
+                                for (int i = 0; i < quiverHandler.getSlots(); i++) {
+                                                                 ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\mixin\AbstractArrowMixin.java:64: warning: [removal] insertItem(int,ItemStack,boolean) in IItemHandler has been deprecated a
+nd marked for removal
+                                    arrowStack = quiverHandler.insertItem(i, arrowStack, false);
+                                                              ^
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output
+100 errors
+24 warnings
+
+> Task :compileJava FAILED
+
+[Incubating] Problems report is available at: file:///C:/Users/25463/Desktop/SpartanWeaponry-NeoForge/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':compileJava'.
+> Compilation failed; see the compiler output below.
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\SwordBaseItem.java:210: error: method appendHoverText in class Item cannot be applied to given types;
+          super.appendHoverText(stack, tooltipContext, tooltip, flagIn);
+               ^
+    required: ItemStack,TooltipContext,TooltipDisplay,Consumer<Component>,TooltipFlag
+    found:    ItemStack,TooltipContext,List<Component>,TooltipFlag
+    reason: actual and formal argument lists differ in length
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\SwordBaseItem.java:301: error: method onCraftedBy in class Item cannot be applied to given types;
+          super.onCraftedBy(stack, levelIn, playerIn);
+               ^
+    required: ItemStack,Player
+    found:    ItemStack,Level,Player
+    reason: actual and formal argument lists differ in length
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\BasicItem.java:23: error: method appendHoverText in class Item cannot be applied to given types;
+          super.appendHoverText(stack, tooltipContext, tooltip, flagIn);
+               ^
+    required: ItemStack,TooltipContext,TooltipDisplay,Consumer<Component>,TooltipFlag
+    found:    ItemStack,TooltipContext,List<Component>,TooltipFlag
+    reason: actual and formal argument lists differ in length
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:235: error: method appendHoverText in class Item cannot be applied to given types;
+          super.appendHoverText(stack, tooltipContext, tooltip, flagIn);
+               ^
+    required: ItemStack,TooltipContext,TooltipDisplay,Consumer<Component>,TooltipFlag
+    found:    ItemStack,TooltipContext,List<Component>,TooltipFlag
+    reason: actual and formal argument lists differ in length
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:729: error: no suitable method found for addCooldown(Item,int)
+              player.getCooldowns().addCooldown(stack.getItem(), 5);
+                                   ^
+      method ItemCooldowns.addCooldown(ItemStack,int) is not applicable
+        (argument mismatch; Item cannot be converted to ItemStack)
+      method ItemCooldowns.addCooldown(Identifier,int) is not applicable
+        (argument mismatch; Item cannot be converted to Identifier)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\DataGenEventHandler.java:106: error: no suitable method found for addProvider(boolean,ModItemModelProvider)
+          gen.addProvider(true, new ModItemModelProvider());
+             ^
+      method DataGenerator.<T#1>addProvider(boolean,Factory<T#1>) is not applicable
+        (cannot infer type-variable(s) T#1
+          (argument mismatch; ModItemModelProvider cannot be converted to Factory<T#1>))
+      method DataGenerator.<T#2>addProvider(boolean,T#2) is not applicable
+        (inference variable T#2 has incompatible bounds
+          upper bounds: DataProvider
+          lower bounds: ModItemModelProvider)
+    where T#1,T#2 are type-variables:
+      T#1 extends DataProvider declared in method <T#1>addProvider(boolean,Factory<T#1>)
+      T#2 extends DataProvider declared in method <T#2>addProvider(boolean,T#2)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:448: error: bad operand type Optional<Boolean> for unary operator '!'
+                      boolean currentNotOriginalStack = !ItemStackDataHelper.getTag(slotStack).getBoolean(ThrowingWeaponItem.NBT_ORIGINAL);
+                                                        ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:215: error: bad operand type Optional<Boolean> for unary operator '!'
+          if (stackTag.contains(NBT_ORIGINAL) && !stackTag.getBoolean(NBT_ORIGINAL))
+                                                 ^
+  Note: Recompile with -Xlint:deprecation for details.
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\SwordBaseItem.java:72: error: cannot find symbol
+          if (FMLEnvironment.dist.isClient()) {}
+                            ^
+    symbol:   variable dist
+    location: class FMLEnvironment
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:87: error: cannot find symbol
+          if (FMLEnvironment.dist.isClient()) {}
+                            ^
+    symbol:   variable dist
+    location: class FMLEnvironment
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\util\WeaponArchetype.java:37: error: cannot find symbol
+              () -> Config.INSTANCE.daggers.speed.get(), () -> Config.INSTANCE.daggers.baseDamage.get().floatValue(), () -> Config.INSTANCE.daggers.damageMultipler.get().floatValue(), ItemAbilities.SWORD_DIG);
+                                                                                                                                                                                                     ^
+    symbol:   variable SWORD_DIG
+    location: class ItemAbilities
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\util\WeaponArchetype.java:39: error: cannot find symbol
+              () -> Config.INSTANCE.parryingDaggers.speed.get(), () -> Config.INSTANCE.parryingDaggers.baseDamage.get().floatValue(), () -> Config.INSTANCE.parryingDaggers.damageMultipler.get().floatValue(), ItemAbilities
+.SWORD_DIG);
+                                                                                                                                                                                                                             
+^
+    symbol:   variable SWORD_DIG
+    location: class ItemAbilities
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\util\WeaponArchetype.java:41: error: cannot find symbol
+              () -> Config.INSTANCE.longswords.speed.get(), () -> Config.INSTANCE.longswords.baseDamage.get().floatValue(), () -> Config.INSTANCE.longswords.damageMultipler.get().floatValue(), ItemAbilities.SWORD_DIG);
+                                                                                                                                                                                                              ^
+    symbol:   variable SWORD_DIG
+    location: class ItemAbilities
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\util\WeaponArchetype.java:43: error: cannot find symbol
+              () -> Config.INSTANCE.katanas.speed.get(), () -> Config.INSTANCE.katanas.baseDamage.get().floatValue(), () -> Config.INSTANCE.katanas.damageMultipler.get().floatValue(), ItemAbilities.SWORD_DIG);
+                                                                                                                                                                                                     ^
+    symbol:   variable SWORD_DIG
+    location: class ItemAbilities
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\util\WeaponArchetype.java:45: error: cannot find symbol
+              () -> Config.INSTANCE.sabers.speed.get(), () -> Config.INSTANCE.sabers.baseDamage.get().floatValue(), () -> Config.INSTANCE.sabers.damageMultipler.get().floatValue(), ItemAbilities.SWORD_DIG);
+                                                                                                                                                                                                  ^
+    symbol:   variable SWORD_DIG
+    location: class ItemAbilities
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\util\WeaponArchetype.java:47: error: cannot find symbol
+              () -> Config.INSTANCE.rapiers.speed.get(), () -> Config.INSTANCE.rapiers.baseDamage.get().floatValue(), () -> Config.INSTANCE.rapiers.damageMultipler.get().floatValue(), ItemAbilities.SWORD_DIG);
+                                                                                                                                                                                                     ^
+    symbol:   variable SWORD_DIG
+    location: class ItemAbilities
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\util\WeaponArchetype.java:49: error: cannot find symbol
+              () -> Config.INSTANCE.greatswords.speed.get(), () -> Config.INSTANCE.greatswords.baseDamage.get().floatValue(), () -> Config.INSTANCE.greatswords.damageMultipler.get().floatValue(), ItemAbilities.SWORD_DIG);
+                                                                                                                                                                                                                 ^
+    symbol:   variable SWORD_DIG
+    location: class ItemAbilities
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\util\WeaponArchetype.java:51: error: cannot find symbol
+              () -> Config.INSTANCE.clubs.speed.get(), () -> Config.INSTANCE.clubs.baseDamage.get().floatValue(), () -> Config.INSTANCE.clubs.damageMultipler.get().floatValue(), ItemAbilities.SWORD_DIG);
+                                                                                                                                                                                               ^
+    symbol:   variable SWORD_DIG
+    location: class ItemAbilities
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\util\WeaponArchetype.java:53: error: cannot find symbol
+              () -> Config.INSTANCE.cestus.speed.get(), () -> Config.INSTANCE.cestus.baseDamage.get().floatValue(), () -> Config.INSTANCE.cestus.damageMultipler.get().floatValue(), ItemAbilities.SWORD_DIG);
+                                                                                                                                                                                                  ^
+    symbol:   variable SWORD_DIG
+    location: class ItemAbilities
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\util\WeaponArchetype.java:55: error: cannot find symbol
+              () -> Config.INSTANCE.battleHammers.speed.get(), () -> Config.INSTANCE.battleHammers.baseDamage.get().floatValue(), () -> Config.INSTANCE.battleHammers.damageMultipler.get().floatValue(), ItemAbilities.SWORD
+_DIG);
+                                                                                                                                                                                                                       ^
+    symbol:   variable SWORD_DIG
+    location: class ItemAbilities
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\util\WeaponArchetype.java:57: error: cannot find symbol
+              () -> Config.INSTANCE.warhammers.speed.get(), () -> Config.INSTANCE.warhammers.baseDamage.get().floatValue(), () -> Config.INSTANCE.warhammers.damageMultipler.get().floatValue(), ItemAbilities.SWORD_DIG);
+                                                                                                                                                                                                              ^
+    symbol:   variable SWORD_DIG
+    location: class ItemAbilities
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\util\WeaponArchetype.java:59: error: cannot find symbol
+              () -> Config.INSTANCE.spears.speed.get(), () -> Config.INSTANCE.spears.baseDamage.get().floatValue(), () -> Config.INSTANCE.spears.damageMultipler.get().floatValue(), ItemAbilities.SWORD_DIG);
+                                                                                                                                                                                                  ^
+    symbol:   variable SWORD_DIG
+    location: class ItemAbilities
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\util\WeaponArchetype.java:61: error: cannot find symbol
+              () -> Config.INSTANCE.halberds.speed.get(), () -> Config.INSTANCE.halberds.baseDamage.get().floatValue(), () -> Config.INSTANCE.halberds.damageMultipler.get().floatValue(), ItemAbilities.SWORD_DIG);
+                                                                                                                                                                                                        ^
+    symbol:   variable SWORD_DIG
+    location: class ItemAbilities
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\util\WeaponArchetype.java:63: error: cannot find symbol
+              () -> Config.INSTANCE.pikes.speed.get(), () -> Config.INSTANCE.pikes.baseDamage.get().floatValue(), () -> Config.INSTANCE.pikes.damageMultipler.get().floatValue(), ItemAbilities.SWORD_DIG);
+                                                                                                                                                                                               ^
+    symbol:   variable SWORD_DIG
+    location: class ItemAbilities
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\util\WeaponArchetype.java:65: error: cannot find symbol
+              () -> Config.INSTANCE.lances.speed.get(), () -> Config.INSTANCE.lances.baseDamage.get().floatValue(), () -> Config.INSTANCE.lances.damageMultipler.get().floatValue(), ItemAbilities.SWORD_DIG);
+                                                                                                                                                                                                  ^
+    symbol:   variable SWORD_DIG
+    location: class ItemAbilities
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:153: error: isClientSide has private access in Level
+              if (!level.isClientSide) {
+                        ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:208: error: random has protected access in Level
+                          int extra = drop.level().random.nextInt(luckLevel + 1);
+                                                  ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:309: error: items has private access in Inventory
+                                  for (int i = 0; i < player.getInventory().items.size(); i++) {
+                                                                           ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:310: error: items has private access in Inventory
+                                      ItemStack playerStack = player.getInventory().items.get(i);
+                                                                                   ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:159: error: isClientSide has private access in Level
+          if (!level.isClientSide && state.getDestroySpeed(level, pos) != 0.0f) {
+                    ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:267: error: isClientSide has private access in Level
+              if (!levelIn.isClientSide && charge > 2 && ItemStackDataHelper.getTag(stack).getInt(NBT_AMMO_USED) < this.getMaxAmmo(stack, levelIn)) {
+                          ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:324: error: random has protected access in Level
+                  levelIn.playSound(null, player.getX(), player.getY(), player.getZ(), this.getThrowingSound(), SoundSource.PLAYERS, 0.5F, 0.4F / (levelIn.random.nextFloat() * 0.4F + 0.8F));
+                                                                                                                                                          ^
+  Note: Recompile with -Xlint:unchecked for details.
+  Note: Some input files use or override a deprecated API.
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\SwordBaseItem.java:134: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\SwordBaseItem.java:168: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\SwordBaseItem.java:180: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\SwordBaseItem.java:217: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\SwordBaseItem.java:248: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\SwordBaseItem.java:298: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\SwordBaseItem.java:304: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ArrowBaseItem.java:28: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\BoltItem.java:48: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\BasicItem.java:20: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:138: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:195: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:238: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:260: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:342: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:349: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:366: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\api\data\recipe\ConditionalShapelessRecipeBuilder.java:144: warning: [removal] parent(Identifier) in Builder has been depr
+ecated and marked for removal
+          advancement.parent(RecipeBuilder.ROOT_RECIPE_ADVANCEMENT)
+                     ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\capability\IQuiverItemHandler.java:5: warning: [removal] IItemHandler in net.neoforged.neoforge.items has been deprecated 
+and marked for removal
+  public interface IQuiverItemHandler extends IItemHandler {
+                                              ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\capability\QuiverItemStackHandler.java:15: warning: [removal] ItemStackHandler in net.neoforged.neoforge.items has been de
+precated and marked for removal
+  public class QuiverItemStackHandler extends ItemStackHandler implements IQuiverItemHandler {
+                                              ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\client\gui\container\QuiverBaseScreen.java:50: warning: [removal] getSlots() in IItemHandler has been deprecated and marke
+d for removal
+          this.ammoSlots = handler != null ? handler.getSlots() : Defaults.SlotsQuiverSmall;
+                                                    ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\inventory\QuiverBaseMenu.java:41: warning: [removal] getSlots() in IItemHandler has been deprecated and marked for removal
+          this.playerInvStart = this.handler.getSlots();
+                                            ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\inventory\QuiverBaseMenu.java:56: warning: [removal] getSlots() in IItemHandler has been deprecated and marked for removal
+          slotStartX = switch (this.handler.getSlots()) {
+                                           ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\inventory\QuiverBaseMenu.java:73: warning: [removal] getSlots() in IItemHandler has been deprecated and marked for removal
+          for (int i = 0; i < this.handler.getSlots(); i++) {
+                                          ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\inventory\QuiverBaseMenu.java:80: warning: [removal] getSlots() in IItemHandler has been deprecated and marked for removal
+          int yOffset = this.handler.getSlots() == Defaults.SlotsQuiverHuge ? 18 : 0;
+                                    ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\inventory\QuiverBaseMenu.java:95: warning: [removal] getSlots() in IItemHandler has been deprecated and marked for removal
+          this.addSlot(new Slot(inventory, 40, -21, this.handler.getSlots() == Defaults.SlotsQuiverHuge ? 127 : 109) {
+                                                                ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\inventory\QuiverBaseMenu.java:113: warning: [removal] getSlots() in IItemHandler has been deprecated and marked for remova
+l
+              if (slotIdx >= 0 && slotIdx < this.handler.getSlots()) {
+                                                        ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:355: warning: [removal] insertItem(int,ItemStack,boolean) in IItemHandler has been deprecate
+d and marked for removal
+              arrowStack = quiverHandler.insertItem(prioritySlot, arrowStack, false);
+                                        ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:357: warning: [removal] getSlots() in IItemHandler has been deprecated and marked for remova
+l
+                  for (int j = 0; j < quiverHandler.getSlots(); j++) {
+                                                   ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:361: warning: [removal] insertItem(int,ItemStack,boolean) in IItemHandler has been deprecate
+d and marked for removal
+                      arrowStack = quiverHandler.insertItem(j, arrowStack, false);
+                                                ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:382: warning: [removal] getSlots() in IItemHandler has been deprecated and marked for remova
+l
+              if (prioritySlot <= quiverHandler.getSlots()) {
+                                               ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:383: warning: [removal] extractItem(int,int,boolean) in IItemHandler has been deprecated and
+ marked for removal
+                  arrowStack = quiverHandler.extractItem(prioritySlot, 64, false);
+                                            ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:389: warning: [removal] getSlots() in IItemHandler has been deprecated and marked for remova
+l
+                  for (int j = 0; j < quiverHandler.getSlots(); j++) {
+                                                   ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:393: warning: [removal] extractItem(int,int,boolean) in IItemHandler has been deprecated and
+ marked for removal
+                      arrowStack = quiverHandler.extractItem(j, 64, false);
+                                                ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:423: warning: [removal] getSlots() in IItemHandler has been deprecated and marked for remova
+l
+                          for (int i = 0; i < quiverHandler.getSlots(); i++) {
+                                                           ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:424: warning: [removal] insertItem(int,ItemStack,boolean) in IItemHandler has been deprecate
+d and marked for removal
+                              pickedUpStack = quiverHandler.insertItem(i, pickedUpStack, false);
+                                                           ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\inventory\SlotFiltered.java:12: warning: [removal] SlotItemHandler in net.neoforged.neoforge.items has been deprecated and
+ marked for removal
+  public class SlotFiltered extends SlotItemHandler {
+                                    ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\inventory\SlotFiltered.java:16: warning: [removal] IItemHandler in net.neoforged.neoforge.items has been deprecated and ma
+rked for removal
+      public SlotFiltered(IItemHandler handlerIn, int indexIn, int xPositionIn, int yPositionIn, Predicate<ItemStack> filterIn) {
+                          ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\inventory\SlotFiltered.java:20: warning: [removal] IItemHandler in net.neoforged.neoforge.items has been deprecated and ma
+rked for removal
+      public SlotFiltered(IItemHandler handlerIn, int indexIn, int xPositionIn, int yPositionIn, Predicate<ItemStack> filterIn, @Nullable Identifier noItemIconIn) {
+                          ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\mixin\AbstractArrowMixin.java:63: warning: [removal] getSlots() in IItemHandler has been deprecated and marked for removal
+                                  for (int i = 0; i < quiverHandler.getSlots(); i++) {
+                                                                   ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\mixin\AbstractArrowMixin.java:64: warning: [removal] insertItem(int,ItemStack,boolean) in IItemHandler has been deprecated
+ and marked for removal
+                                      arrowStack = quiverHandler.insertItem(i, arrowStack, false);
+                                                                ^
+  Note: Some input files use unchecked or unsafe operations.
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:444: error: cannot find symbol
+                          ItemStackDataHelper.getTag(slotStack).hasUUID(ThrowingWeaponItem.NBT_UUID) && ItemStackDataHelper.getTag(pickedUpStack).hasUUID(ThrowingWeaponItem.NBT_UUID) &&
+                                                               ^
+    symbol:   method hasUUID(String)
+    location: class CompoundTag
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:444: error: cannot find symbol
+                          ItemStackDataHelper.getTag(slotStack).hasUUID(ThrowingWeaponItem.NBT_UUID) && ItemStackDataHelper.getTag(pickedUpStack).hasUUID(ThrowingWeaponItem.NBT_UUID) &&
+                                                                                                                                                 ^
+    symbol:   method hasUUID(String)
+    location: class CompoundTag
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:445: error: cannot find symbol
+                          ItemStackDataHelper.getTag(pickedUpStack).getUUID(ThrowingWeaponItem.NBT_UUID).equals(ItemStackDataHelper.getTag(slotStack).getUUID(ThrowingWeaponItem.NBT_UUID))) {
+                                                                   ^
+    symbol:   method getUUID(String)
+    location: class CompoundTag
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:445: error: cannot find symbol
+                          ItemStackDataHelper.getTag(pickedUpStack).getUUID(ThrowingWeaponItem.NBT_UUID).equals(ItemStackDataHelper.getTag(slotStack).getUUID(ThrowingWeaponItem.NBT_UUID))) {
+                                                                                                                                                     ^
+    symbol:   method getUUID(String)
+    location: class CompoundTag
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:521: error: cannot find symbol
+                  ev.getName().equals(BuiltInLootTables.VILLAGE_WEAPONSMITH.location())) {
+                                                                           ^
+    symbol:   method location()
+    location: variable VILLAGE_WEAPONSMITH of type ResourceKey<LootTable>
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:525: error: cannot find symbol
+                  ev.getName().equals(BuiltInLootTables.VILLAGE_FLETCHER.location())) {
+                                                                        ^
+    symbol:   method location()
+    location: variable VILLAGE_FLETCHER of type ResourceKey<LootTable>
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:529: error: cannot find symbol
+                  ev.getName().equals(BuiltInLootTables.END_CITY_TREASURE.location())) {
+                                                                         ^
+    symbol:   method location()
+    location: variable END_CITY_TREASURE of type ResourceKey<LootTable>
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:673: error: cannot find symbol
+              ev.setCost(cost);
+                ^
+    symbol:   method setCost(int)
+    location: variable ev of type AnvilUpdateEvent
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\SwordBaseItem.java:182: error: cannot find symbol
+          boolean isShiftPressed = Screen.hasShiftDown();
+                                         ^
+    symbol:   method hasShiftDown()
+    location: class Screen
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\SwordBaseItem.java:186: error: cannot find symbol
+                  var tag = BuiltInRegistries.ITEM.getTag(this.material.getRepairTag());
+                                                  ^
+    symbol:   method getTag(TagKey<Item>)
+    location: variable ITEM of type DefaultedRegistry<Item>
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\SwordBaseItem.java:322: error: cannot find symbol
+          Identifier enchantmentKey = registryAccess.registry(Registries.ENCHANTMENT)
+                                                    ^
+    symbol:   method registry(ResourceKey<Registry<Enchantment>>)
+    location: variable registryAccess of type RegistryAccess
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\SwordBaseItem.java:325: error: cannot find symbol
+          return enchantmentKey == null || !enchantmentKey.equals(net.minecraft.world.item.enchantment.Enchantments.SWEEPING_EDGE.location());
+                                                                                                                                 ^
+    symbol:   method location()
+    location: variable SWEEPING_EDGE of type ResourceKey<Enchantment>
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\BoltItem.java:44: error: cannot find symbol
+          int enchant = EnchantmentHelper.getItemEnchantmentLevel(player.level().registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantments.INFINITY), crossbow);
+                                                                                                 ^
+    symbol:   method registryOrThrow(ResourceKey<Registry<Enchantment>>)
+    location: interface RegistryAccess
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\WeaponOilItem.java:80: error: cannot find symbol
+                          playerIn.displayClientMessage(Component.translatable("message." + ModSpartanWeaponry.ID + ".oil_applied", stack.getHoverName(), oppositeStack.getHoverName()), true);
+                                  ^
+    symbol:   method displayClientMessage(MutableComponent,boolean)
+    location: variable playerIn of type Player
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\WeaponOilItem.java:89: error: cannot find symbol
+                          playerIn.displayClientMessage(Component.translatable("message." + ModSpartanWeaponry.ID + ".weapon_already_oiled", stack.getHoverName(), oppositeStack.getHoverName()).withStyle(ChatFormatting.RED
+), true);
+                                  ^
+    symbol:   method displayClientMessage(MutableComponent,boolean)
+    location: variable playerIn of type Player
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\WeaponOilItem.java:92: error: cannot find symbol
+                  playerIn.displayClientMessage(Component.translatable("message." + ModSpartanWeaponry.ID + ".no_oilable_weapon", stack.getHoverName()).withStyle(ChatFormatting.RED), true);
+                          ^
+    symbol:   method displayClientMessage(MutableComponent,boolean)
+    location: variable playerIn of type Player
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\WeaponOilItem.java:99: error: cannot find symbol
+          return (Registry<OilEffect>) BuiltInRegistries.REGISTRY.get(OilEffects.REGISTRY_KEY.location());
+                                                                                             ^
+    symbol:   method location()
+    location: variable REGISTRY_KEY of type ResourceKey<Registry<OilEffect>>
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:197: error: cannot find symbol
+          boolean isShiftPressed = Screen.hasShiftDown();
+                                         ^
+    symbol:   method hasShiftDown()
+    location: class Screen
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:201: error: cannot find symbol
+                  var tag = BuiltInRegistries.ITEM.getTag(this.material.getRepairTag());
+                                                  ^
+    symbol:   method getTag(TagKey<Item>)
+    location: variable ITEM of type DefaultedRegistry<Item>
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:217: error: cannot find symbol
+          if (stackTag.hasUUID(NBT_UUID) && flagIn.isAdvanced())
+                      ^
+    symbol:   method hasUUID(String)
+    location: variable stackTag of type CompoundTag
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:218: error: cannot find symbol
+              tooltip.add(Component.literal("UUID: " + ChatFormatting.GRAY + stackTag.getUUID(NBT_UUID)).withStyle(ChatFormatting.DARK_PURPLE));
+                                                                                     ^
+    symbol:   method getUUID(String)
+    location: variable stackTag of type CompoundTag
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:486: error: cannot find symbol
+              if (initUUID && !tag.hasUUID(NBT_UUID)) {
+                                  ^
+    symbol:   method hasUUID(String)
+    location: variable tag of type CompoundTag
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:487: error: cannot find symbol
+                  tag.putUUID(NBT_UUID, UUID.randomUUID());
+                     ^
+    symbol:   method putUUID(String,UUID)
+    location: variable tag of type CompoundTag
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\WeaponOilItem.java:83: error: cannot find symbol
+                          ItemStack bottleStack = this.getCraftingRemainingItem(stack);
+                                                      ^
+    symbol: method getCraftingRemainingItem(ItemStack)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\SwordBaseItem.java:218: error: hurtEnemy(@org.jetbrains.annotations.NotNull ItemStack,@org.jetbrains.annotations.NotN
+ull LivingEntity,@org.jetbrains.annotations.NotNull LivingEntity) in SwordBaseItem cannot override hurtEnemy(ItemStack,LivingEntity,LivingEntity) in Item
+      public boolean hurtEnemy(@NotNull ItemStack stack, @NotNull LivingEntity target, @NotNull LivingEntity attacker) {
+                     ^
+    return type boolean is not compatible with void
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\SwordBaseItem.java:249: error: releaseUsing(@org.jetbrains.annotations.NotNull ItemStack,@org.jetbrains.annotations.N
+otNull Level,@org.jetbrains.annotations.NotNull LivingEntity,int) in SwordBaseItem cannot override releaseUsing(ItemStack,Level,LivingEntity,int) in Item
+      public void releaseUsing(@NotNull ItemStack stack, @NotNull Level level, @NotNull LivingEntity entityLiving, int timeLeft) {
+                  ^
+    return type void is not compatible with boolean
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:239: error: hurtEnemy(@org.jetbrains.annotations.NotNull ItemStack,@org.jetbrains.annotations
+.NotNull LivingEntity,LivingEntity) in ThrowingWeaponItem cannot override hurtEnemy(ItemStack,LivingEntity,LivingEntity) in Item
+      public boolean hurtEnemy(@NotNull ItemStack stack, @NotNull LivingEntity target, LivingEntity attacker) {
+                     ^
+    return type boolean is not compatible with void
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:261: error: releaseUsing(@org.jetbrains.annotations.NotNull ItemStack,@org.jetbrains.annotati
+ons.NotNull Level,@org.jetbrains.annotations.NotNull LivingEntity,int) in ThrowingWeaponItem cannot override releaseUsing(ItemStack,Level,LivingEntity,int) in Item
+      public void releaseUsing(@NotNull ItemStack stack, @NotNull Level levelIn, @NotNull LivingEntity entityLiving, int timeLeft) {
+                  ^
+    return type void is not compatible with boolean
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:260: error: incompatible types: Optional<String> cannot be converted to String
+                                  String itemId = nbt.getString(QuiverBaseItem.NBT_ITEM_ID);
+                                                               ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:261: error: incompatible types: Optional<Integer> cannot be converted to int
+                                  int itemSlot = nbt.getInt(QuiverBaseItem.NBT_ITEM_SLOT);
+                                                           ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:354: error: incompatible types: Optional<Integer> cannot be converted to int
+              int prioritySlot = ItemStackDataHelper.getTag(quiver).getInt(QuiverBaseItem.NBT_PROIRITY_SLOT);
+                                                                          ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:381: error: incompatible types: Optional<Integer> cannot be converted to int
+              int prioritySlot = ItemStackDataHelper.getTag(quiver).getInt(QuiverBaseItem.NBT_PROIRITY_SLOT);
+                                                                          ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:418: error: incompatible types: Optional<Boolean> cannot be converted to boolean
+                      if (ItemStackDataHelper.getTag(quiver).getBoolean(QuiverBaseItem.NBT_AMMO_COLLECT)) {
+                                                                       ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:449: error: incompatible types: Optional<Boolean> cannot be converted to boolean
+                      boolean pickedUpOriginalStack = ItemStackDataHelper.getTag(pickedUpStack).getBoolean(ThrowingWeaponItem.NBT_ORIGINAL);
+                                                                                                          ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:503: error: incompatible types: Optional<Integer> cannot be converted to int
+              int ammoUsed = ItemStackDataHelper.getTag(stack).getInt(ThrowingWeaponItem.NBT_AMMO_USED);
+                                                                     ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:646: error: incompatible types: Optional<Integer> cannot be converted to int
+              int leftAmmo = ItemStackDataHelper.getTag(left).getInt(ThrowingWeaponItem.NBT_AMMO_USED);
+                                                                    ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:647: error: incompatible types: Optional<Integer> cannot be converted to int
+              int rightAmmo = ItemStackDataHelper.getTag(right).getInt(ThrowingWeaponItem.NBT_AMMO_USED);
+                                                                      ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:710: error: incompatible types: Item cannot be converted to ItemStack
+          if (!stack.is(Tags.Items.RODS_WOODEN) || player.getCooldowns().isOnCooldown(stack.getItem()))
+                                                                                                   ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\SwordBaseItem.java:222: error: incompatible types: void cannot be converted to boolean
+          return super.hurtEnemy(stack, target, attacker);
+                                ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:173: error: incompatible types: Optional<Integer> cannot be converted to int
+                  int ammo = ItemStackDataHelper.getTag(stack).getInt(NBT_AMMO_USED);
+                                                                     ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\ClientEventHandler.java:99: error: non-static method isProduction() cannot be referenced from a static context
+          if (!FMLLoader.isProduction() && ItemStackDataHelper.hasTag(stack) && ev.getFlags().isAdvanced()) {
+                        ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:125: error: bad operand types for binary operator '>='
+                      ItemStackDataHelper.getTag(attackerStack).getInt(ThrowingWeaponItem.NBT_AMMO_USED) >= ((ThrowingWeaponItem) attackerStack.getItem()).getMaxAmmo(attackerStack, attacker.level()))
+                                                                                                         ^
+    first type:  Optional<Integer>
+    second type: int
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:447: error: bad operand types for binary operator '-'
+                      int currentAmmo = maxAmmo - ItemStackDataHelper.getTag(slotStack).getInt(ThrowingWeaponItem.NBT_AMMO_USED);
+                                                ^
+    first type:  int
+    second type: Optional<Integer>
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:465: error: bad operand types for binary operator '-'
+                              currentAmmo += (maxAmmo - ItemStackDataHelper.getTag(pickedUpStack).getInt(ThrowingWeaponItem.NBT_AMMO_USED));
+                                                      ^
+    first type:  int
+    second type: Optional<Integer>
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:644: error: bad operand types for binary operator '&&'
+          if (left.getItem() instanceof ThrowingWeaponItem throwingWeapon && ItemStackDataHelper.hasTag(left) && ItemStackDataHelper.getTag(left).getBoolean(ThrowingWeaponItem.NBT_ORIGINAL)
+                                                                                                              ^
+    first type:  boolean
+    second type: Optional<Boolean>
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:167: error: bad operand types for binary operator '<'
+          if (stack.isDamageableItem() && ItemStackDataHelper.getTag(stack).getInt(NBT_AMMO_USED) < this.getMaxAmmo(stack, entity.level()) &&
+                                                                                                  ^
+    first type:  Optional<Integer>
+    second type: int
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:220: error: bad operand types for binary operator '-'
+          tooltip.add(Component.translatable(String.format("tooltip.%s.throwable.ammo", ModSpartanWeaponry.ID), Component.translatable(String.format("tooltip.%s.throwable.ammo.value", ModSpartanWeaponry.ID), mxAmmo - stac
+kTag.getInt(NBT_AMMO_USED), mxAmmo).withStyle(ChatFormatting.GRAY)).withStyle(ChatFormatting.DARK_AQUA));
+                                                                                                                                                                                                                       ^
+    first type:  int
+    second type: Optional<Integer>
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:243: error: bad operand types for binary operator '<'
+          if (ItemStackDataHelper.getTag(stack).getInt(NBT_AMMO_USED) < this.getMaxAmmo(stack, attacker.level()))
+                                                                      ^
+    first type:  Optional<Integer>
+    second type: int
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:253: error: bad operand types for binary operator '<'
+          if (ItemStackDataHelper.getTag(stack).getInt(NBT_AMMO_USED) < this.getMaxAmmo(stack, levelIn)) {
+                                                                      ^
+    first type:  Optional<Integer>
+    second type: int
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:267: error: bad operand types for binary operator '<'
+              if (!levelIn.isClientSide && charge > 2 && ItemStackDataHelper.getTag(stack).getInt(NBT_AMMO_USED) < this.getMaxAmmo(stack, levelIn)) {
+                                                                                                                 ^
+    first type:  Optional<Integer>
+    second type: int
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\item\ThrowingWeaponItem.java:320: error: bad operand types for binary operator '+'
+                      ItemStackDataHelper.updateTag(stack, tag -> tag.putInt(NBT_AMMO_USED, tag.getInt(NBT_AMMO_USED) + 1));
+                                                                                                                      ^
+    first type:  Optional<Integer>
+    second type: int
+  Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output
+  100 errors
+  24 warnings
+
+* Try:
+> Check your code and dependencies to fix the compilation error(s)
+> Run with --scan to generate a Build Scan (Powered by Develocity).
+
+BUILD FAILED in 9s
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/9.1.0/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+3 actionable tasks: 1 executed, 2 up-to-date

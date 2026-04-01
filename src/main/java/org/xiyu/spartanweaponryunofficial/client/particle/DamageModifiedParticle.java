@@ -2,14 +2,16 @@ package org.xiyu.spartanweaponryunofficial.client.particle;
 
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import org.jetbrains.annotations.NotNull;
 
-public class DamageModifiedParticle extends TextureSheetParticle {
+public class DamageModifiedParticle extends SingleQuadParticle {
     DamageModifiedParticle(ClientLevel levelIn, double xPos, double yPos, double zPos,
-                           double xDel, double yDel, double zDel) {
-        super(levelIn, xPos, yPos, zPos, xDel, yDel, zDel);
+                           double xDel, double yDel, double zDel, TextureAtlasSprite sprite) {
+        super(levelIn, xPos, yPos, zPos, xDel, yDel, zDel, sprite);
         this.friction = 0.7f;
         this.gravity = 0.5f;
         this.xd *= 0.1f;
@@ -36,8 +38,8 @@ public class DamageModifiedParticle extends TextureSheetParticle {
     }
 
     @Override
-    public @NotNull ParticleRenderType getRenderType() {
-        return ParticleRenderType.PARTICLE_SHEET_OPAQUE;
+    public @NotNull Layer getLayer() {
+        return Layer.OPAQUE;
     }
 
     public static class DamageBoostedProvider implements ParticleProvider<SimpleParticleType> {
@@ -49,12 +51,11 @@ public class DamageModifiedParticle extends TextureSheetParticle {
 
         @Override
         public Particle createParticle(@NotNull SimpleParticleType typeIn, @NotNull ClientLevel levelIn, double xPos,
-                                       double yPos, double zPos, double xDel, double yDel, double zDel) {
-            DamageModifiedParticle particle = new DamageModifiedParticle(levelIn, xPos, yPos, zPos, xDel, yDel, zDel);
+                                       double yPos, double zPos, double xDel, double yDel, double zDel, @NotNull RandomSource random) {
+            DamageModifiedParticle particle = new DamageModifiedParticle(levelIn, xPos, yPos, zPos, xDel, yDel, zDel, this.spriteSet.get(random));
             particle.rCol = 0.5f;
             particle.gCol = 1.0f;
             particle.bCol = 0.2f;
-            particle.pickSprite(this.spriteSet);
             return particle;
         }
     }
@@ -68,12 +69,11 @@ public class DamageModifiedParticle extends TextureSheetParticle {
 
         @Override
         public Particle createParticle(@NotNull SimpleParticleType typeIn, @NotNull ClientLevel levelIn, double xPos,
-                                       double yPos, double zPos, double xDel, double yDel, double zDel) {
-            DamageModifiedParticle particle = new DamageModifiedParticle(levelIn, xPos, yPos, zPos, xDel, yDel, zDel);
+                                       double yPos, double zPos, double xDel, double yDel, double zDel, @NotNull RandomSource random) {
+            DamageModifiedParticle particle = new DamageModifiedParticle(levelIn, xPos, yPos, zPos, xDel, yDel, zDel, this.spriteSet.get(random));
             particle.rCol = 0.5f;
             particle.gCol = 0.2f;
             particle.bCol = 0.5f;
-            particle.pickSprite(this.spriteSet);
             return particle;
         }
     }
@@ -87,12 +87,11 @@ public class DamageModifiedParticle extends TextureSheetParticle {
 
         @Override
         public Particle createParticle(@NotNull SimpleParticleType typeIn, @NotNull ClientLevel levelIn, double xPos,
-                                       double yPos, double zPos, double xDel, double yDel, double zDel) {
-            DamageModifiedParticle particle = new DamageModifiedParticle(levelIn, xPos, yPos, zPos, xDel, yDel, zDel);
+                                       double yPos, double zPos, double xDel, double yDel, double zDel, @NotNull RandomSource random) {
+            DamageModifiedParticle particle = new DamageModifiedParticle(levelIn, xPos, yPos, zPos, xDel, yDel, zDel, this.spriteSet.get(random));
             particle.rCol = 1.0f;
             particle.gCol = 0.75f;
             particle.bCol = 0.25f;
-            particle.pickSprite(this.spriteSet);
             return particle;
         }
     }

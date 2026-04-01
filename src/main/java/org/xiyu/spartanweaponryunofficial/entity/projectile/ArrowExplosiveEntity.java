@@ -4,7 +4,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.GameRules;
+import net.minecraft.world.level.gamerules.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.Level.ExplosionInteraction;
 import org.jetbrains.annotations.NotNull;
@@ -40,19 +40,19 @@ public class ArrowExplosiveEntity extends ArrowEntitySW {
         super.tick();
 
         Level level = this.level();
-        if (level.isClientSide && !this.inGround) {
+        if (level.isClientSide() && !this.isInGround()) {
             level.addParticle(ParticleTypes.SMOKE, this.getX(), this.getY(), this.getZ(), 0.0D, 0.0D, 0.0D);
         }
 
-        if (this.inGround) {
+        if (this.isInGround()) {
             this.explode();
         }
     }
 
     protected void explode() {
         Level level = this.level();
-        if (!level.isClientSide) {
-            boolean mobGriefing = level.getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING);
+        if (!level.isClientSide()) {
+            boolean mobGriefing = level instanceof net.minecraft.server.level.ServerLevel serverLevel && serverLevel.getGameRules().get(GameRules.MOB_GRIEFING);
             level.explode(this, this.xOld, this.yOld, this.zOld, Config.INSTANCE.arrowExplosiveExplosionStrength.get().floatValue(), !Config.INSTANCE.disableTerrainDamage.get() && mobGriefing ? ExplosionInteraction.TNT : ExplosionInteraction.NONE);
             this.discard();
         }

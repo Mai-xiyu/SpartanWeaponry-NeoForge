@@ -4,7 +4,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.entity.projectile.arrow.AbstractArrow;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -20,8 +20,8 @@ import java.util.List;
 public class ArrowBaseTippedItem extends ArrowBaseItem {
     protected String baseName;
 
-    public ArrowBaseTippedItem(String baseName, float damageModifier, float rangeModifier) {
-        super(damageModifier, rangeModifier);
+    public ArrowBaseTippedItem(Item.Properties properties, String baseName, float damageModifier, float rangeModifier) {
+        super(properties, damageModifier, rangeModifier);
         this.baseName = baseName;
     }
 

@@ -3,7 +3,7 @@ package org.xiyu.spartanweaponryunofficial.api.crafting.condition;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.neoforged.neoforge.common.conditions.ICondition;
 import org.jetbrains.annotations.NotNull;
 import org.xiyu.spartanweaponryunofficial.api.SpartanWeaponryAPI;
@@ -63,7 +63,7 @@ public class TypeDisabledCondition implements ICondition {
     public static final String PLATINUM = "platinum";
     public static final String ALUMINUM = "aluminum";
 
-    public static final ResourceLocation NAME = ResourceLocation.fromNamespaceAndPath(SpartanWeaponryAPI.MOD_ID, "type_disabled");
+    public static final Identifier NAME = Identifier.fromNamespaceAndPath(SpartanWeaponryAPI.MOD_ID, "type_disabled");
     public static final MapCodec<TypeDisabledCondition> CODEC = RecordCodecBuilder.mapCodec(
             instance -> instance.group(
                     Codec.STRING.listOf().fieldOf("disabled").forGetter(condition -> condition.types)

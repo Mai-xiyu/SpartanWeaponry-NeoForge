@@ -1,6 +1,7 @@
 package org.xiyu.spartanweaponryunofficial.api.oil;
 
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.tags.TagKey;
@@ -29,13 +30,13 @@ public class OilEffect {
     }
 
     public static final IUsePredicate USE_NOTHING = (baseDamage, effect, level, target, user) -> false;
-    public static final IUsePredicate USE_UNDEAD = (baseDamage, effect, level, target, user) -> target.getType().is(EntityTypeTags.UNDEAD);
-    public static final IUsePredicate USE_ARTHROPOD = (baseDamage, effect, level, target, user) -> target.getType().is(EntityTypeTags.ARTHROPOD);
-    public static final IUsePredicate USE_CRYOTIC = (baseDamage, effect, level, target, user) -> target.getType().is(EntityTypeTags.FREEZE_HURTS_EXTRA_TYPES);
-    public static final IUsePredicate USE_NECTROTIC = (baseDamage, effect, level, target, user) -> target.getType().is(ModEntityTypeTags.HUMANOIDS);
-    public static final IUsePredicate USE_CREEPER = (baseDamage, effect, level, target, user) -> target.getType().is(ModEntityTypeTags.CREEPERS);
-    public static final IUsePredicate USE_AQUATIC = (baseDamage, effect, level, target, user) -> target.getType().is(EntityTypeTags.AQUATIC);
-    public static final IUsePredicate USE_ENDER = (baseDamage, effect, level, target, user) -> target.getType().is(ModEntityTypeTags.ENDER);
+    public static final IUsePredicate USE_UNDEAD = (baseDamage, effect, level, target, user) -> BuiltInRegistries.ENTITY_TYPE.wrapAsHolder(target.getType()).is(EntityTypeTags.UNDEAD);
+    public static final IUsePredicate USE_ARTHROPOD = (baseDamage, effect, level, target, user) -> BuiltInRegistries.ENTITY_TYPE.wrapAsHolder(target.getType()).is(EntityTypeTags.ARTHROPOD);
+    public static final IUsePredicate USE_CRYOTIC = (baseDamage, effect, level, target, user) -> BuiltInRegistries.ENTITY_TYPE.wrapAsHolder(target.getType()).is(EntityTypeTags.FREEZE_HURTS_EXTRA_TYPES);
+    public static final IUsePredicate USE_NECTROTIC = (baseDamage, effect, level, target, user) -> BuiltInRegistries.ENTITY_TYPE.wrapAsHolder(target.getType()).is(ModEntityTypeTags.HUMANOIDS);
+    public static final IUsePredicate USE_CREEPER = (baseDamage, effect, level, target, user) -> BuiltInRegistries.ENTITY_TYPE.wrapAsHolder(target.getType()).is(ModEntityTypeTags.CREEPERS);
+    public static final IUsePredicate USE_AQUATIC = (baseDamage, effect, level, target, user) -> BuiltInRegistries.ENTITY_TYPE.wrapAsHolder(target.getType()).is(EntityTypeTags.AQUATIC);
+    public static final IUsePredicate USE_ENDER = (baseDamage, effect, level, target, user) -> BuiltInRegistries.ENTITY_TYPE.wrapAsHolder(target.getType()).is(ModEntityTypeTags.ENDER);
 
     protected final String name;
     protected final OilEffectType type;

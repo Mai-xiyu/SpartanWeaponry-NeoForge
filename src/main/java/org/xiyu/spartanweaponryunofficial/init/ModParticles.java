@@ -12,7 +12,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import org.xiyu.spartanweaponryunofficial.ModSpartanWeaponry;
 import org.xiyu.spartanweaponryunofficial.client.particle.DamageModifiedParticle;
 
-@EventBusSubscriber(modid = ModSpartanWeaponry.ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+@EventBusSubscriber(modid = ModSpartanWeaponry.ID, value = Dist.CLIENT)
 public class ModParticles {
     public static final DeferredRegister<ParticleType<?>> REGISTRY = DeferredRegister.create(Registries.PARTICLE_TYPE, ModSpartanWeaponry.ID);
 

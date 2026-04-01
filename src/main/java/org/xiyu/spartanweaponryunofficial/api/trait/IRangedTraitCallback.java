@@ -1,6 +1,6 @@
 package org.xiyu.spartanweaponryunofficial.api.trait;
 
-import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.entity.projectile.arrow.AbstractArrow;
 import org.xiyu.spartanweaponryunofficial.api.WeaponMaterial;
 
 /**

@@ -7,7 +7,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.RangedBowAttackGoal;
-import net.minecraft.world.entity.monster.AbstractSkeleton;
+import net.minecraft.world.entity.monster.skeleton.AbstractSkeleton;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ProjectileWeaponItem;
 import net.minecraft.world.level.Level;
@@ -39,7 +39,7 @@ public class AbstractSkeletonMixin extends MobMixin {
     @Inject(at = @At("HEAD"), method = "reassessWeaponGoal()V", cancellable = true)
     private void reassessWeaponGoal(CallbackInfo callback) {
         Level level = this.level();
-        if (level != null && !level.isClientSide) {
+        if (level != null && !level.isClientSide()) {
             ItemStack bowStack = this.getItemInHand(InteractionHand.MAIN_HAND);
             if (bowStack.is(ModItemTags.LONGBOWS)) {
                 this.goalSelector.removeGoal(this.bowGoal);
@@ -65,27 +65,6 @@ public class AbstractSkeletonMixin extends MobMixin {
 
     @Inject(at = @At("TAIL"), method = "populateDefaultEquipmentSlots(Lnet/minecraft/util/RandomSource;Lnet/minecraft/world/DifficultyInstance;)V")
     protected void populateDefaultEquipmentSlots(RandomSource randomIn, DifficultyInstance difficultyIn, CallbackInfo callback) {
-		/*if(!Config.INSTANCE.disableSpawningSkeletonWithLongbow.get())
-		{
-			Level level = level();
-			float rand = random.nextFloat();
-			float chance = difficultyIn.isHard() ? 
-					Config.INSTANCE.skeletonWithLongbowSpawnChanceHard.get().floatValue() : 
-					Config.INSTANCE.skeletonWithLongbowSpawnChanceNormal.get().floatValue();
-			
-			if(rand > 1 - chance)
-			{
-				ITag<Item> tag = ForgeRegistries.ITEMS.tags().getTag(ModItemTags.SKELETON_SPAWN_LONGBOWS);
-				if(!tag.isEmpty())
-				{
-					ItemStack weapon = ItemStack.EMPTY;
-					List<Item> possibleWeapons = tag.stream().toList();
-					weapon = ItemRandomizer.generate(level, possibleWeapons);
-					setItemSlot(EquipmentSlot.MAINHAND, weapon);
-				}
-			}
-		}*/
-
         this.spartanWeaponry$attemptReplacingMainHandItemRandom(ModItemTags.SKELETON_SPAWN_LONGBOWS, difficultyIn,
                 Config.INSTANCE.disableSpawningSkeletonWithLongbow.get(),
                 Config.INSTANCE.skeletonWithLongbowSpawnChanceNormal.get().floatValue(),

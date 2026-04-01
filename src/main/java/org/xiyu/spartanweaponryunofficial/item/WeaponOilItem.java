@@ -1,12 +1,9 @@
 package org.xiyu.spartanweaponryunofficial.item;
 
 import net.minecraft.ChatFormatting;
-import net.minecraft.core.Registry;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -28,8 +25,8 @@ import org.xiyu.spartanweaponryunofficial.util.OilHelper;
 import java.util.List;
 
 public class WeaponOilItem extends BasicItem {
-    public WeaponOilItem() {
-        super(new Item.Properties().stacksTo(6).craftRemainder(Items.GLASS_BOTTLE));
+    public WeaponOilItem(Item.Properties properties) {
+        super(properties);
     }
 
     @Override
@@ -47,19 +44,11 @@ public class WeaponOilItem extends BasicItem {
 
     @Override
     public @NotNull Component getName(@NotNull ItemStack stack) {
-        OilEffect oil = OilHelper.getOilFromStack(stack);
-        Potion potion = OilHelper.getPotionFromStack(stack);
-        Registry<OilEffect> registry = getOilRegistry();
-        ResourceLocation itemLoc = BuiltInRegistries.ITEM.getKey(this);
-        Component baseName = Component.translatable("item." + itemLoc.getNamespace() + "." + itemLoc.getPath() + "." + (registry != null ? registry.getKey(oil).getPath() : "unknown"));
-        if (potion == null)
-            return baseName;
-        ResourceLocation potionKey = BuiltInRegistries.POTION.getKey(potion);
-        return potionKey == null ? baseName : Component.translatable("item.spartan_weaponry_unofficial.proj_tipped.effect." + potionKey.getPath(), baseName);
+        return super.getName(stack);
     }
 
     @Override
-    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level levelIn, Player playerIn, @NotNull InteractionHand handIn) {
+    public @NotNull InteractionResult use(@NotNull Level levelIn, Player playerIn, @NotNull InteractionHand handIn) {
         ItemStack stack = playerIn.getItemInHand(handIn);
         OilEffect oil = OilHelper.getOilFromStack(stack);
         if (oil != OilEffects.NONE.get()) {
@@ -77,26 +66,21 @@ public class WeaponOilItem extends BasicItem {
                                 handler.setPotion(potion, stack);
                         } else
                             handler.setEffect(oil, stack);
-                        playerIn.displayClientMessage(Component.translatable("message." + ModSpartanWeaponry.ID + ".oil_applied", stack.getHoverName(), oppositeStack.getHoverName()), true);
+                        playerIn.sendSystemMessage(Component.translatable("message." + ModSpartanWeaponry.ID + ".oil_applied", stack.getHoverName(), oppositeStack.getHoverName()));
                         playerIn.playSound(ModSounds.OIL_APPLIED.get(), 1.0f, 1.0f);
                         // Remove one from the stack and replace the container back into the inventory (a glass bottle)
-                        ItemStack bottleStack = this.getCraftingRemainingItem(stack);
+                        ItemStack bottleStack = new ItemStack(Items.GLASS_BOTTLE);
                         stack.shrink(1);
                         if (stack.getCount() == 0)
                             playerIn.setItemInHand(handIn, ItemStack.EMPTY);
                         playerIn.getInventory().placeItemBackInInventory(bottleStack);
                     } else
-                        playerIn.displayClientMessage(Component.translatable("message." + ModSpartanWeaponry.ID + ".weapon_already_oiled", stack.getHoverName(), oppositeStack.getHoverName()).withStyle(ChatFormatting.RED), true);
+                        playerIn.sendSystemMessage(Component.translatable("message." + ModSpartanWeaponry.ID + ".weapon_already_oiled", stack.getHoverName(), oppositeStack.getHoverName()).withStyle(ChatFormatting.RED));
                 }
             } else
-                playerIn.displayClientMessage(Component.translatable("message." + ModSpartanWeaponry.ID + ".no_oilable_weapon", stack.getHoverName()).withStyle(ChatFormatting.RED), true);
+                playerIn.sendSystemMessage(Component.translatable("message." + ModSpartanWeaponry.ID + ".no_oilable_weapon", stack.getHoverName()).withStyle(ChatFormatting.RED));
         }
         return super.use(levelIn, playerIn, handIn);
-    }
-
-    @SuppressWarnings("unchecked")
-    private static Registry<OilEffect> getOilRegistry() {
-        return (Registry<OilEffect>) BuiltInRegistries.REGISTRY.get(OilEffects.REGISTRY_KEY.location());
     }
 
     @Override

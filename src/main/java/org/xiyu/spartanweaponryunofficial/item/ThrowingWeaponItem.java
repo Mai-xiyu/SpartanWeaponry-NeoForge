@@ -3,16 +3,16 @@ package org.xiyu.spartanweaponryunofficial.item;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMultimap;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
@@ -20,17 +20,19 @@ import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.entity.projectile.arrow.AbstractArrow;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.item.ItemUseAnimation;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
+import net.minecraft.world.item.component.TooltipDisplay;
+import net.neoforged.fml.loading.FMLEnvironment;
+import org.xiyu.spartanweaponryunofficial.client.InputHelper;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.common.ItemAbility;
 import org.jetbrains.annotations.NotNull;
 import org.xiyu.spartanweaponryunofficial.ModSpartanWeaponry;
@@ -49,6 +51,7 @@ import org.xiyu.spartanweaponryunofficial.util.ClientConfig;
 import org.xiyu.spartanweaponryunofficial.util.ItemStackDataHelper;
 import org.xiyu.spartanweaponryunofficial.util.WeaponArchetype;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -84,8 +87,8 @@ public class ThrowingWeaponItem extends Item implements IWeaponTraitContainer<Th
         this.maxAmmo = maxAmmoCapacity;
         this.setChargeTicks(chargeTicks);
 
-        if (FMLEnvironment.dist.isClient())
-            ClientHelper.registerThrowingWeaponPropertyOverrides(this);
+        // TODO: ItemProperties removed in 26.1
+        // ClientHelper.registerThrowingWeaponPropertyOverrides(this);
 
         this.archetype = archetypeIn;
         ReloadableHandler.addToItemReloadList(this);
@@ -134,7 +137,6 @@ public class ThrowingWeaponItem extends Item implements IWeaponTraitContainer<Th
         return this.modifiers != null ? this.modifiers : super.getDefaultAttributeModifiers(stack);
     }
 
-    @Override
     public void inventoryTick(@NotNull ItemStack stack, @NotNull Level level, @NotNull Entity entity, int itemSlot, boolean isSelected) {
         this.initNBT(stack, true);
 
@@ -155,7 +157,7 @@ public class ThrowingWeaponItem extends Item implements IWeaponTraitContainer<Th
     public boolean mineBlock(@NotNull ItemStack stack, Level level, @NotNull BlockState state, @NotNull BlockPos pos,
                              @NotNull LivingEntity entityLiving) {
         // Make the throwing weapon take damage when digging
-        if (!level.isClientSide && state.getDestroySpeed(level, pos) != 0.0f) {
+        if (!level.isClientSide() && state.getDestroySpeed(level, pos) != 0.0f) {
             this.damageThrowingWeapon(stack, 2, entityLiving);
         }
         return false;
@@ -163,13 +165,13 @@ public class ThrowingWeaponItem extends Item implements IWeaponTraitContainer<Th
 
     public void damageThrowingWeapon(ItemStack stack, int damage, LivingEntity entity) {
         //stack.damageItem(damage, entity);
-        if (stack.isDamageableItem() && ItemStackDataHelper.getTag(stack).getInt(NBT_AMMO_USED) < this.getMaxAmmo(stack, entity.level()) &&
+        if (stack.isDamageableItem() && ItemStackDataHelper.getTag(stack).getIntOr(NBT_AMMO_USED, 0) < this.getMaxAmmo(stack, entity.level()) &&
                 (!(entity instanceof Player) || !((Player) entity).getAbilities().instabuild)) {
             int currentDamage = stack.getDamageValue();
             int maxDamage = stack.getMaxDamage();
             int newDamage = currentDamage + damage;
             if (newDamage >= maxDamage) {
-                int ammo = ItemStackDataHelper.getTag(stack).getInt(NBT_AMMO_USED);
+                int ammo = ItemStackDataHelper.getTag(stack).getIntOr(NBT_AMMO_USED, 0);
                 int updatedAmmo = ammo + 1;
                 ItemStackDataHelper.updateTag(stack, tag -> tag.putInt(NBT_AMMO_USED, updatedAmmo));
 
@@ -192,15 +194,18 @@ public class ThrowingWeaponItem extends Item implements IWeaponTraitContainer<Th
     }
 
     @Override
-    public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext tooltipContext, @NotNull List<Component> tooltip, @NotNull TooltipFlag flagIn) {
-        boolean isShiftPressed = Screen.hasShiftDown();
+    public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext tooltipContext, @NotNull TooltipDisplay tooltipDisplay,
+                                @NotNull Consumer<Component> tooltipAdder, @NotNull TooltipFlag flagIn) {
+        List<Component> tooltip = new ArrayList<>();
+        this.appendHoverText(stack, tooltipContext, tooltip, flagIn);
+        tooltip.forEach(tooltipAdder);
+    }
 
-        if (this.doCraftCheck && tooltipContext.level() != null) {
-            if (!ClientConfig.INSTANCE.forceDisableUncraftableTooltips.get() && this.material.getModId().equals(ModSpartanWeaponry.ID)) {
-                var tag = BuiltInRegistries.ITEM.getTag(this.material.getRepairTag());
-                if (tag.isEmpty() || tag.get().size() == 0)
-                    this.canBeCrafted = false;
-            }
+    public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext tooltipContext, @NotNull List<Component> tooltip, @NotNull TooltipFlag flagIn) {
+        boolean isShiftPressed = FMLEnvironment.getDist().isClient() && InputHelper.isShiftDown();
+
+        if (this.doCraftCheck) {
+            this.canBeCrafted = BuiltInRegistries.ITEM.getTagOrEmpty(this.material.getRepairTag()).iterator().hasNext();
             this.doCraftCheck = false;
         }
 
@@ -211,12 +216,13 @@ public class ThrowingWeaponItem extends Item implements IWeaponTraitContainer<Th
         this.material.addTagErrorTooltip(stack, tooltip);
 
         var stackTag = ItemStackDataHelper.getTag(stack);
-        if (stackTag.contains(NBT_ORIGINAL) && !stackTag.getBoolean(NBT_ORIGINAL))
+        if (stackTag.contains(NBT_ORIGINAL) && !stackTag.getBooleanOr(NBT_ORIGINAL, true))
             tooltip.add(Component.translatable(String.format("tooltip.%s.throwable.not_original", ModSpartanWeaponry.ID)).withStyle(ChatFormatting.DARK_RED));
-        if (stackTag.hasUUID(NBT_UUID) && flagIn.isAdvanced())
-            tooltip.add(Component.literal("UUID: " + ChatFormatting.GRAY + stackTag.getUUID(NBT_UUID)).withStyle(ChatFormatting.DARK_PURPLE));
+        Optional<UUID> stackUuid = getWeaponUuid(stackTag);
+        if (stackUuid.isPresent() && flagIn.isAdvanced())
+            tooltip.add(Component.literal("UUID: " + ChatFormatting.GRAY + stackUuid.get()).withStyle(ChatFormatting.DARK_PURPLE));
         int mxAmmo = this.getMaxAmmo(stack, tooltipContext.level());
-        tooltip.add(Component.translatable(String.format("tooltip.%s.throwable.ammo", ModSpartanWeaponry.ID), Component.translatable(String.format("tooltip.%s.throwable.ammo.value", ModSpartanWeaponry.ID), mxAmmo - stackTag.getInt(NBT_AMMO_USED), mxAmmo).withStyle(ChatFormatting.GRAY)).withStyle(ChatFormatting.DARK_AQUA));
+        tooltip.add(Component.translatable(String.format("tooltip.%s.throwable.ammo", ModSpartanWeaponry.ID), Component.translatable(String.format("tooltip.%s.throwable.ammo.value", ModSpartanWeaponry.ID), mxAmmo - stackTag.getIntOr(NBT_AMMO_USED, 0), mxAmmo).withStyle(ChatFormatting.GRAY)).withStyle(ChatFormatting.DARK_AQUA));
         tooltip.add(Component.translatable(String.format("tooltip.%s.throwable.charge_time", ModSpartanWeaponry.ID), Component.translatable(String.format("tooltip.%s.throwable.charge_time.value", ModSpartanWeaponry.ID), this.getMaxChargeTicks(stack, tooltipContext.level()) / 20.0f).withStyle(ChatFormatting.GRAY)).withStyle(ChatFormatting.DARK_AQUA));
 
         if (this.traits != null && !this.traits.isEmpty()) {
@@ -231,43 +237,40 @@ public class ThrowingWeaponItem extends Item implements IWeaponTraitContainer<Th
             tooltip.add(Component.empty());
         }
 
-        super.appendHoverText(stack, tooltipContext, tooltip, flagIn);
+
     }
 
-    @Override
-    public boolean hurtEnemy(@NotNull ItemStack stack, @NotNull LivingEntity target, LivingEntity attacker) {
+    public void hurtEnemy(@NotNull ItemStack stack, @NotNull LivingEntity target, LivingEntity attacker) {
         this.traits.forEach((trait) -> trait.getMeleeCallback().ifPresent((callback) -> callback.onHitEntity(this.material, stack, target, attacker, null)));
 
         // Deal double durability damage when used as a melee weapon
-        if (ItemStackDataHelper.getTag(stack).getInt(NBT_AMMO_USED) < this.getMaxAmmo(stack, attacker.level()))
+        if (ItemStackDataHelper.getTag(stack).getIntOr(NBT_AMMO_USED, 0) < this.getMaxAmmo(stack, attacker.level()))
             this.damageThrowingWeapon(stack, 2, attacker);
-
-        return true;
     }
 
     @Override
-    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level levelIn, Player player, @NotNull InteractionHand hand) {
+    public @NotNull InteractionResult use(@NotNull Level levelIn, Player player, @NotNull InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
         // Check if we have ammo left
-        if (ItemStackDataHelper.getTag(stack).getInt(NBT_AMMO_USED) < this.getMaxAmmo(stack, levelIn)) {
+        if (ItemStackDataHelper.getTag(stack).getIntOr(NBT_AMMO_USED, 0) < this.getMaxAmmo(stack, levelIn)) {
             player.startUsingItem(hand);
-            return InteractionResultHolder.consume(stack);
+            return InteractionResult.CONSUME;
         }
-        return InteractionResultHolder.fail(stack);
+        return InteractionResult.FAIL;
     }
 
     @Override
-    public void releaseUsing(@NotNull ItemStack stack, @NotNull Level levelIn, @NotNull LivingEntity entityLiving, int timeLeft) {
+    public boolean releaseUsing(@NotNull ItemStack stack, @NotNull Level levelIn, @NotNull LivingEntity entityLiving, int timeLeft) {
         if (entityLiving instanceof Player player) {
 
             int maxCharge = this.getMaxChargeTicks(stack, levelIn);
             int charge = Math.min(this.getUseDuration(stack, entityLiving) - timeLeft, maxCharge);
 
-            if (!levelIn.isClientSide && charge > 2 && ItemStackDataHelper.getTag(stack).getInt(NBT_AMMO_USED) < this.getMaxAmmo(stack, levelIn)) {
+            if (!levelIn.isClientSide() && charge > 2 && ItemStackDataHelper.getTag(stack).getIntOr(NBT_AMMO_USED, 0) < this.getMaxAmmo(stack, levelIn)) {
                 ThrowingWeaponEntity thrown = this.createThrowingWeaponEntity(levelIn, player, stack, charge);
                 float chargePerc = (charge / (float) maxCharge);
 
-                if (thrown == null) return;
+                if (thrown == null) return false;
 
                 thrown.setWeapon(stack);
                 int velocityBonus = ModEnchantments.getLevel(levelIn.registryAccess(), ModEnchantments.PROPEL, stack);
@@ -316,16 +319,17 @@ public class ThrowingWeaponItem extends Item implements IWeaponTraitContainer<Th
                     thrown.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
                 else if (thrown.isValidThrowingWeapon()) {
                     // Use ammo system - increment ammo used counter
-                    ItemStackDataHelper.updateTag(stack, tag -> tag.putInt(NBT_AMMO_USED, tag.getInt(NBT_AMMO_USED) + 1));
+                    ItemStackDataHelper.updateTag(stack, tag -> tag.putInt(NBT_AMMO_USED, tag.getIntOr(NBT_AMMO_USED, 0) + 1));
                 }
 
                 stack.setDamageValue(0);
-                levelIn.playSound(null, player.getX(), player.getY(), player.getZ(), this.getThrowingSound(), SoundSource.PLAYERS, 0.5F, 0.4F / (levelIn.random.nextFloat() * 0.4F + 0.8F));
+                levelIn.playSound(null, player.getX(), player.getY(), player.getZ(), this.getThrowingSound(), SoundSource.PLAYERS, 0.5F, 0.4F / (levelIn.getRandom().nextFloat() * 0.4F + 0.8F));
                 levelIn.addFreshEntity(thrown);
 
                 player.awardStat(Stats.ITEM_USED.get(this));
             }
         }
+        return true;
     }
 
     @Override
@@ -334,18 +338,21 @@ public class ThrowingWeaponItem extends Item implements IWeaponTraitContainer<Th
     }
 
     @Override
-    public @NotNull UseAnim getUseAnimation(@NotNull ItemStack stack) {
-        return UseAnim.SPEAR;
+    public @NotNull ItemUseAnimation getUseAnimation(@NotNull ItemStack stack) {
+        return ItemUseAnimation.TRIDENT;
     }
 
     @Override
+    public void onCraftedBy(@NotNull ItemStack stack, @NotNull Player playerIn) {
+        this.onCraftedBy(stack, playerIn.level(), playerIn);
+        super.onCraftedBy(stack, playerIn);
+    }
+
     public void onCraftedBy(@NotNull ItemStack stack, @NotNull Level levelIn, @NotNull Player playerIn) {
         this.traits.forEach((trait) -> this.getGenericCallback(trait).ifPresent((callback) -> callback.onCreateItem(this.material, stack)));
-
         this.initNBT(stack, true);
     }
 
-    @Override
     public boolean canPerformAction(@NotNull ItemStack stack, @NotNull ItemAbility toolAction) {
         for (WeaponTrait trait : this.traits) {
             // Pass the action to another trait if false
@@ -362,7 +369,6 @@ public class ThrowingWeaponItem extends Item implements IWeaponTraitContainer<Th
         return stack;
     }
 
-    @Override
     public int getEnchantmentValue(@NotNull ItemStack stack) {
         return this.material.getEnchantmentValue();
     }
@@ -482,11 +488,28 @@ public class ThrowingWeaponItem extends Item implements IWeaponTraitContainer<Th
                 tag.putInt(NBT_AMMO_USED, 0);
             }
             // Initialise UUID tag if necessary, and flag as original stack
-            if (initUUID && !tag.hasUUID(NBT_UUID)) {
-                tag.putUUID(NBT_UUID, UUID.randomUUID());
+            if (initUUID && !getWeaponUuid(tag).isPresent()) {
+                tag.putString(NBT_UUID, UUID.randomUUID().toString());
                 tag.putBoolean(NBT_ORIGINAL, true);
             }
         });
+    }
+
+    public static Optional<UUID> getWeaponUuid(CompoundTag tag) {
+        if (!tag.contains(NBT_UUID)) {
+            return Optional.empty();
+        }
+
+        String uuidRaw = tag.getStringOr(NBT_UUID, "");
+        if (uuidRaw.isEmpty()) {
+            return Optional.empty();
+        }
+
+        try {
+            return Optional.of(UUID.fromString(uuidRaw));
+        } catch (IllegalArgumentException ex) {
+            return Optional.empty();
+        }
     }
 
     public int getMaxAmmo(ItemStack stack, RegistryAccess access) {
@@ -528,3 +551,5 @@ public class ThrowingWeaponItem extends Item implements IWeaponTraitContainer<Th
         return HudCrosshairThrowingWeapon::render;
     }
 }
+
+

@@ -9,8 +9,6 @@ import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -18,7 +16,6 @@ import org.jetbrains.annotations.NotNull;
  * Created using Tabula 8.0.0; Also edited manually by ObliviousSpartan
  * To allow arrows to be rendered if there is sufficient arrows in the quiver
  */
-@OnlyIn(Dist.CLIENT)
 public class LargeBoltQuiverModel extends QuiverModelBase {
     protected static final String PART_QUIVER = "quiver";
     protected static final String PART_STRAP_FRONT = "strap_front";
@@ -92,12 +89,6 @@ public class LargeBoltQuiverModel extends QuiverModelBase {
         part.addOrReplaceChild(PART_ARROW_5_PART_1, CubeListBuilder.create().texOffs(26, 0).addBox(-6.1f, -3.6f, 3.6f, 3.0f, 5.0f, 0.0f), PartPose.offsetAndRotation(0.0f, -0.5f, 0.0f, 0.0f, 0.7853981633974483f, -0.5235987755982988f));
         part.addOrReplaceChild(PART_ARROW_5_PART_2, CubeListBuilder.create().texOffs(26, 0).addBox(2.1f, -3.6f, 4.6f, 3.0f, 5.0f, 0.0f), PartPose.offsetAndRotation(0.0f, -0.5f, 0.0f, 0.0f, -0.7853981633974483f, -0.5235987755982988f));
         return LayerDefinition.create(mesh, 32, 32);
-    }
-
-    @Override
-    public void renderToBuffer(@NotNull PoseStack mStack, @NotNull VertexConsumer buffer, int packedLight, int packedOverlay,
-                               int color) {
-        ImmutableList.of(this.quiver, this.strapFront, this.strapTop, this.strapBack, this.strapBottom).forEach((part) -> part.render(mStack, buffer, packedLight, packedOverlay, color));
     }
 
     @Override

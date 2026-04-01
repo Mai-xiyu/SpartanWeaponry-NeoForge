@@ -9,7 +9,7 @@ import net.minecraft.commands.SharedSuggestionProvider;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.alchemy.Potion;
 import org.xiyu.spartanweaponryunofficial.ModSpartanWeaponry;
 
@@ -22,8 +22,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class PotionParser {
-    private static final List<ResourceLocation> invalidPotionNames = Stream.of("water", "mundane", "thick", "awkward")
-            .map(ResourceLocation::withDefaultNamespace)
+    private static final List<Identifier> invalidPotionNames = Stream.of("water", "mundane", "thick", "awkward")
+            .map(Identifier::withDefaultNamespace)
             .toList();
 
     public static final DynamicCommandExceptionType ERROR_UNKNOWN_POTION = new DynamicCommandExceptionType((object) ->
@@ -51,8 +51,8 @@ public class PotionParser {
 
     public void read() throws CommandSyntaxException {
         int idx = this.reader.getCursor();
-        ResourceLocation loc = ResourceLocation.read(this.reader);
-        this.potion = BuiltInRegistries.POTION.get(loc);
+        Identifier loc = Identifier.read(this.reader);
+        this.potion = BuiltInRegistries.POTION.getValue(loc);
 
         if (this.potion == null) {
             this.reader.setCursor(idx);
@@ -71,7 +71,7 @@ public class PotionParser {
     }
 
     private CompletableFuture<Suggestions> suggestPotionEffect(SuggestionsBuilder builderIn, Registry<Potion> potionRegistryIn) {
-        Set<ResourceLocation> suggestions = potionRegistryIn.keySet().stream().filter((potion) -> !invalidPotionNames.contains(potion)).collect(Collectors.toSet());
+        Set<Identifier> suggestions = potionRegistryIn.keySet().stream().filter((potion) -> !invalidPotionNames.contains(potion)).collect(Collectors.toSet());
         return SharedSuggestionProvider.suggestResource(suggestions, builderIn);
     }
 

@@ -5,8 +5,8 @@ import java.util.Collections;
 import org.xiyu.spartanweaponryunofficial.api.crafting.condition.TypeDisabledCondition;
 
 import net.minecraft.advancements.Criterion;
-import net.minecraft.advancements.critereon.InventoryChangeTrigger;
-import net.minecraft.advancements.critereon.ItemPredicate;
+import net.minecraft.advancements.criterion.InventoryChangeTrigger;
+import net.minecraft.advancements.criterion.ItemPredicate;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.SmithingTransformRecipeBuilder;
@@ -16,6 +16,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
+import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.BuiltInRegistries;
 
 /**
@@ -36,7 +37,7 @@ public class RecipeProviderHelper
 	 */
 	public static void smithingRecipe(RecipeOutput consumer, ItemLike base, TagKey<Item> additionTag, ItemLike result, String hasItemCriterionName)
 	{
-		SmithingTransformRecipeBuilder.smithing(Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE), Ingredient.of(base), Ingredient.of(additionTag), RecipeCategory.MISC, result.asItem()).unlocks(hasItemCriterionName, hasItem(additionTag)).
+		SmithingTransformRecipeBuilder.smithing(Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE), Ingredient.of(base), tagIngredient(additionTag), RecipeCategory.MISC, result.asItem()).unlocks(hasItemCriterionName, hasItem(additionTag)).
 			save(consumer, BuiltInRegistries.ITEM.getKey(result.asItem()) + "_smithing");
 	}
 	
@@ -471,7 +472,7 @@ public class RecipeProviderHelper
 	public static void recipeLongbow(RecipeOutput consumer, TagKey<Item> stick, TagKey<Item> string, ItemLike handle, TagKey<Item> material, ItemLike result, 
 			String hasItemCriterionName)
 	{
-		recipeLongbow(consumer, Ingredient.of(stick), Ingredient.of(string), handle, material, result, hasItemCriterionName, "");
+		recipeLongbow(consumer, tagIngredient(stick), tagIngredient(string), handle, material, result, hasItemCriterionName, "");
 	}
 
 	/**
@@ -509,7 +510,7 @@ public class RecipeProviderHelper
 	public static void recipeHeavyCrossbow(RecipeOutput consumer, TagKey<Item> planks, ItemLike bow, ItemLike handle, TagKey<Item> material, ItemLike result, 
 			String hasItemCriterionName)
 	{
-		recipeHeavyCrossbow(consumer, Ingredient.of(planks), bow, handle, material, result, hasItemCriterionName, "");
+		recipeHeavyCrossbow(consumer, tagIngredient(planks), bow, handle, material, result, hasItemCriterionName, "");
 	}
 
 	/**
@@ -638,7 +639,7 @@ public class RecipeProviderHelper
 	 */
 	public static void recipeBoomerang(RecipeOutput consumer, TagKey<Item> planks, TagKey<Item> material, ItemLike result, String hasItemCriterionName)
 	{
-		recipeBoomerang(consumer, Ingredient.of(planks), material, result, hasItemCriterionName, "");
+		recipeBoomerang(consumer, tagIngredient(planks), material, result, hasItemCriterionName, "");
 	}
 
 	/**
@@ -671,7 +672,7 @@ public class RecipeProviderHelper
 	 */
 	public static void recipeBattleaxe(RecipeOutput consumer, TagKey<Item> stick, ItemLike handle, TagKey<Item> material, ItemLike result, String hasItemCriterionName)
 	{
-		recipeBattleaxe(consumer, Ingredient.of(stick), handle, material, result, hasItemCriterionName, "");
+		recipeBattleaxe(consumer, tagIngredient(stick), handle, material, result, hasItemCriterionName, "");
 	}
 
 	/**
@@ -706,7 +707,7 @@ public class RecipeProviderHelper
 	 */
 	public static void recipeFlangedMace(RecipeOutput consumer, TagKey<Item> stick, ItemLike handle, TagKey<Item> material, ItemLike result, String hasItemCriterionName)
 	{
-		recipeFlangedMace(consumer, Ingredient.of(stick), handle, material, result, hasItemCriterionName, "");
+		recipeFlangedMace(consumer, tagIngredient(stick), handle, material, result, hasItemCriterionName, "");
 	}
 
 	/**
@@ -833,7 +834,7 @@ public class RecipeProviderHelper
 	 */
 	protected static Criterion<?> hasItem(ItemLike item)
 	{
-		return InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(item).build());
+		return InventoryChangeTrigger.TriggerInstance.hasItems(item);
 	}
 
 	/**
@@ -843,6 +844,11 @@ public class RecipeProviderHelper
 	 */
 	protected static Criterion<?> hasItem(TagKey<Item> tag)
 	{
-		return InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(tag).build());
+		return InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(BuiltInRegistries.ITEM, tag));
+	}
+
+	private static Ingredient tagIngredient(TagKey<Item> tag)
+	{
+		return Ingredient.of(HolderSet.emptyNamed(BuiltInRegistries.ITEM, tag));
 	}
 }

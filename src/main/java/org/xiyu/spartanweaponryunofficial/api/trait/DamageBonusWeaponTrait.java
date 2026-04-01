@@ -1,5 +1,6 @@
 package org.xiyu.spartanweaponryunofficial.api.trait;
 
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.util.Mth;
@@ -49,16 +50,16 @@ public class DamageBonusWeaponTrait extends MeleeCallbackWeaponTrait {
 
     public static final DamageCalculationFunc DAMAGE_RIDING = (material, baseDamage, bonusDamage, source, attacker, victim) ->
     {
-			/*if(attacker.getVehicle() == null)
-				return baseDamage;
-			float velocity = attacker.getPersistentData().getFloat(SpartanWeaponryAPI.MOD_ID + "_riding_velocity");
-			attacker.getPersistentData().putFloat(SpartanWeaponryAPI.MOD_ID + "_riding_velocity", 0.0f);
-			bonusDamage *= Mth.clamp(velocity / APIConfigValues.damageBonusRidingVelocityForMaxBonus, 0.0f, 1.0f);*/
-        return attacker.getVehicle() != null ? baseDamage + bonusDamage : baseDamage;
+        if (attacker.getVehicle() == null)
+            return baseDamage;
+        float velocity = attacker.getPersistentData().getFloatOr(SpartanWeaponryAPI.MOD_ID + "_riding_velocity", 0.0f);
+        attacker.getPersistentData().putFloat(SpartanWeaponryAPI.MOD_ID + "_riding_velocity", 0.0f);
+        bonusDamage *= Mth.clamp(velocity / APIConfigValues.damageBonusRidingVelocityForMaxBonus, 0.0f, 1.0f);
+        return baseDamage + bonusDamage;
     };
 
     public static final DamageCalculationFunc DAMAGE_UNDEAD = (material, baseDamage, bonusDamage, source, attacker, victim) ->
-            victim.getType().is(EntityTypeTags.UNDEAD) ? baseDamage + bonusDamage : baseDamage;
+            BuiltInRegistries.ENTITY_TYPE.wrapAsHolder(victim.getType()).is(EntityTypeTags.UNDEAD) ? baseDamage + bonusDamage : baseDamage;
 
     public static final DamageCalculationFunc DAMAGE_BACKSTAB = (material, baseDamage, bonusDamage, source, attacker, victim) ->
     {

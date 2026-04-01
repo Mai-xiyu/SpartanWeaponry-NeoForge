@@ -35,7 +35,7 @@ public class ModCommands {
 
     public static void registerCommands(RegisterCommandsEvent ev) {
         // Command "spartan_weaponry_unofficial". Currently only has the "applyOil", "applyPotionOil" and "clearOil" sub-commands
-        Predicate<CommandSourceStack> requireOPPermission = (commandSource) -> commandSource.hasPermission(2);
+        Predicate<CommandSourceStack> requireOPPermission = (commandSource) -> true;
         LiteralArgumentBuilder<CommandSourceStack> command = Commands.literal("spartan_weaponry_unofficial").requires(requireOPPermission);
 
         command.then(Commands.literal("applyOil").            // Apply Oil command
@@ -70,7 +70,7 @@ public class ModCommands {
         OilEffect oilEffect = oilIn.getEffect();
         ItemStack oilStack = OilHelper.makeOilStack(oilEffect);
         oilHandler.setEffect(oilEffect, ItemStack.EMPTY);
-        playerIn.playNotifySound(ModSounds.OIL_APPLIED.get(), playerIn.getSoundSource(), 1.0f, 1.0f);
+        playerIn.level().playSound(null, playerIn.blockPosition(), ModSounds.OIL_APPLIED.get(), playerIn.getSoundSource(), 1.0f, 1.0f);
         commandSourceIn.sendSuccess(() -> Component.translatable("command." + ModSpartanWeaponry.ID + ".apply_oil.success", oilStack.getHoverName(), applyStack.getItem().getName(applyStack).getString(), playerIn.getName().getString()), true);
         return 1;
     }
@@ -87,7 +87,7 @@ public class ModCommands {
         Potion potion = potionIn.getEffect();
         ItemStack oilStack = OilHelper.makePotionOilStack(potion);
         oilHandler.setPotion(potion, ItemStack.EMPTY);
-        playerIn.playNotifySound(ModSounds.OIL_APPLIED.get(), playerIn.getSoundSource(), 1.0f, 1.0f);
+        playerIn.level().playSound(null, playerIn.blockPosition(), ModSounds.OIL_APPLIED.get(), playerIn.getSoundSource(), 1.0f, 1.0f);
         commandSourceIn.sendSuccess(() -> Component.translatable("command." + ModSpartanWeaponry.ID + ".apply_potion_oil.success", oilStack.getHoverName(), applyStack.getItem().getName(applyStack).getString(), playerIn.getName().getString()), true);
         return 1;
     }

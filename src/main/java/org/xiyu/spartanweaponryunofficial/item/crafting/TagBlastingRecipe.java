@@ -1,67 +1,43 @@
 package org.xiyu.spartanweaponryunofficial.item.crafting;
 
-import net.minecraft.core.HolderLookup;
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
 import org.jetbrains.annotations.NotNull;
 import org.xiyu.spartanweaponryunofficial.init.ModRecipeSerializers;
 
 public class TagBlastingRecipe extends BlastingRecipe implements ITagCookingRecipe {
-    protected final Ingredient result;
     protected final TagKey<Item> resultTag;
 
-    public TagBlastingRecipe(String groupIn,
-                             CookingBookCategory categoryIn, Ingredient inputIngredientIn, TagKey<Item> resultTagIn, float experienceIn,
-                             int cookTimeIn) {
-        super(groupIn, categoryIn, inputIngredientIn, ItemStack.EMPTY, experienceIn, cookTimeIn);
+    public TagBlastingRecipe(String groupIn, CookingBookCategory categoryIn,
+                             Ingredient inputIngredientIn, TagKey<Item> resultTagIn,
+                             float experienceIn, int cookTimeIn) {
+        super(new Recipe.CommonInfo(true),
+              new AbstractCookingRecipe.CookingBookInfo(categoryIn, groupIn),
+              inputIngredientIn, new ItemStackTemplate(Items.BARRIER), experienceIn, cookTimeIn);
         this.resultTag = resultTagIn;
-        this.result = Ingredient.of(resultTagIn);
     }
 
     @Override
-    public @NotNull ItemStack getResultItem(HolderLookup.@NotNull Provider provider) {
-        return this.result.getItems()[0];
+    public @NotNull ItemStack assemble(@NotNull SingleRecipeInput input) {
+        for (Holder<Item> holder : BuiltInRegistries.ITEM.getTagOrEmpty(this.resultTag)) {
+            return new ItemStack(holder);
+        }
+        return ItemStack.EMPTY;
     }
 
     @Override
-    public @NotNull ItemStack assemble(@NotNull SingleRecipeInput input, HolderLookup.@NotNull Provider provider) {
-        return this.getResultItem(provider).copy();
-    }
-
-    @Override
-    public @NotNull RecipeSerializer<?> getSerializer() {
-        return ModRecipeSerializers.TAGGED_BLASTING.get();
-    }
-
-    @Override
-    public CookingBookCategory getCategory() {
-        return this.category();
-    }
-
-    @Override
-    public Ingredient getInputIngredient() {
-        return this.ingredient;
-    }
-
-    @Override
-    public Ingredient getResultIngredient() {
-        return this.result;
+    public @NotNull RecipeSerializer<BlastingRecipe> getSerializer() {
+        return (RecipeSerializer<BlastingRecipe>) (RecipeSerializer<?>) ModRecipeSerializers.TAGGED_BLASTING.get();
     }
 
     @Override
     public TagKey<Item> getResultTag() {
         return this.resultTag;
-    }
-
-    @Override
-    public int getCookTime() {
-        return this.getCookingTime();
-    }
-
-    @Override
-    public float getExperienceDrop() {
-        return this.getExperience();
     }
 }

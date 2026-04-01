@@ -2,7 +2,6 @@ package org.xiyu.spartanweaponryunofficial.item;
 
 import com.google.common.collect.ImmutableMultimap;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -17,14 +16,16 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.entity.projectile.arrow.AbstractArrow;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
+import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.event.EventHooks;
+import org.xiyu.spartanweaponryunofficial.client.InputHelper;
 import org.jetbrains.annotations.NotNull;
 import org.xiyu.spartanweaponryunofficial.ModSpartanWeaponry;
 import org.xiyu.spartanweaponryunofficial.api.IReloadable;
@@ -33,11 +34,11 @@ import org.xiyu.spartanweaponryunofficial.api.WeaponMaterial;
 import org.xiyu.spartanweaponryunofficial.api.trait.IGenericTraitCallback;
 import org.xiyu.spartanweaponryunofficial.api.trait.IRangedTraitCallback;
 import org.xiyu.spartanweaponryunofficial.api.trait.WeaponTrait;
-import org.xiyu.spartanweaponryunofficial.client.ClientHelper;
 import org.xiyu.spartanweaponryunofficial.util.ClientConfig;
 import org.xiyu.spartanweaponryunofficial.util.Defaults;
 import org.xiyu.spartanweaponryunofficial.util.WeaponType;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -60,8 +61,8 @@ public class LongbowItem extends BowItem implements IReloadable {
         this.material = material;
         this.maxVelocity = Defaults.MultiplierLongbow;
 
-        if (FMLEnvironment.dist.isClient())
-            ClientHelper.registerLongbowPropertyOverrides(this);
+        // TODO: ItemProperties removed in 26.1
+        // ClientHelper.registerLongbowPropertyOverrides(this);
 
         ReloadableHandler.addToItemReloadList(this);
     }
@@ -100,15 +101,15 @@ public class LongbowItem extends BowItem implements IReloadable {
      * Called when the player stops using an Item (stops holding the right mouse button).
      */
     @Override
-    public void releaseUsing(@NotNull ItemStack stack, @NotNull Level level, @NotNull LivingEntity entityLiving, int timeLeft) {
+    public boolean releaseUsing(@NotNull ItemStack stack, @NotNull Level level, @NotNull LivingEntity entityLiving, int timeLeft) {
         if (entityLiving instanceof Player player) {
             RegistryAccess registryAccess = level.registryAccess();
-            boolean flag = player.getAbilities().instabuild || EnchantmentHelper.getItemEnchantmentLevel(registryAccess.registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantments.INFINITY), stack) > 0;
+            boolean flag = player.getAbilities().instabuild || EnchantmentHelper.getItemEnchantmentLevel(registryAccess.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.INFINITY), stack) > 0;
             ItemStack itemstack = player.getProjectile(stack);
 
             int i = this.getUseDuration(stack, entityLiving) - timeLeft;
             i = EventHooks.onArrowLoose(stack, level, player, i, !itemstack.isEmpty() || flag);
-            if (i < 0) return;
+            if (i < 0) return false;
 
             if (!itemstack.isEmpty() || flag) {
                 if (itemstack.isEmpty())
@@ -117,9 +118,9 @@ public class LongbowItem extends BowItem implements IReloadable {
                 float f = this.getArrowSpeed(i);
 
                 if (f >= 0.1D) {
-                    boolean flag1 = player.getAbilities().instabuild || (itemstack.getItem() instanceof ArrowItem && ((ArrowItem) itemstack.getItem()).isInfinite(itemstack, stack, player));
+                    boolean flag1 = player.getAbilities().instabuild || (itemstack.is(Items.ARROW) && flag);
 
-                    if (!level.isClientSide) {
+                    if (!level.isClientSide()) {
                         ArrowItem itemarrow = ((ArrowItem) (itemstack.getItem() instanceof ArrowItem ? itemstack.getItem() : Items.ARROW));
                         AbstractArrow entityarrow = itemarrow.createArrow(level, itemstack, player, stack);
                         entityarrow.shootFromRotation(player, player.xRotO, player.yRotO, 0.0f, f * 3.0f, 0.5f);
@@ -130,15 +131,15 @@ public class LongbowItem extends BowItem implements IReloadable {
                         if (f >= this.maxVelocity)
                             entityarrow.setCritArrow(true);
 
-                        int j = EnchantmentHelper.getItemEnchantmentLevel(registryAccess.registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantments.POWER), stack);
+                        int j = EnchantmentHelper.getItemEnchantmentLevel(registryAccess.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.POWER), stack);
                         if (j > 0)
-                            entityarrow.setBaseDamage(entityarrow.getBaseDamage() + j * 0.5d + 0.5d);
+                            entityarrow.setBaseDamage(2.0 + j * 0.5d + 0.5d);
 
-                        int k = EnchantmentHelper.getItemEnchantmentLevel(registryAccess.registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantments.PUNCH), stack);
+                        int k = EnchantmentHelper.getItemEnchantmentLevel(registryAccess.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.PUNCH), stack);
                         if (k > 0)
                             entityarrow.setDeltaMovement(entityarrow.getDeltaMovement().add(0.0D, 0.1D * k, 0.0D));
 
-                        if (EnchantmentHelper.getItemEnchantmentLevel(registryAccess.registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantments.FLAME), stack) > 0)
+                        if (EnchantmentHelper.getItemEnchantmentLevel(registryAccess.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.FLAME), stack) > 0)
                             entityarrow.igniteForSeconds(100.0F);
 
                         EquipmentSlot breakSlot = player.getUsedItemHand() == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND;
@@ -150,7 +151,7 @@ public class LongbowItem extends BowItem implements IReloadable {
                         level.addFreshEntity(entityarrow);
                     }
 
-                    level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ARROW_SHOOT, SoundSource.NEUTRAL, 1.0F, 1.0F / (level.random.nextFloat() * 0.4f + 1.2f) + f * 0.5f);
+                    level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ARROW_SHOOT, SoundSource.NEUTRAL, 1.0F, 1.0F / (level.getRandom().nextFloat() * 0.4f + 1.2f) + f * 0.5f);
 
                     if (!flag1) {
                         itemstack.shrink(1);
@@ -162,6 +163,7 @@ public class LongbowItem extends BowItem implements IReloadable {
                 }
             }
         }
+        return true;
     }
 
 
@@ -179,12 +181,10 @@ public class LongbowItem extends BowItem implements IReloadable {
         return f;
     }
 
-    @Override
     public int getEnchantmentValue(@NotNull ItemStack stack) {
         return this.material.getEnchantmentValue();
     }
 
-    @Override
     public boolean isValidRepairItem(@NotNull ItemStack toRepair, @NotNull ItemStack repair) {
         return this.material.getRepairIngredient().test(repair);
     }
@@ -209,15 +209,18 @@ public class LongbowItem extends BowItem implements IReloadable {
     }
 
     @Override
-    public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext tooltipContext, @NotNull List<Component> tooltip, @NotNull TooltipFlag flagIn) {
-        boolean isShiftPressed = Screen.hasShiftDown();
+    public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext tooltipContext, @NotNull TooltipDisplay tooltipDisplay,
+                                @NotNull Consumer<Component> tooltipAdder, @NotNull TooltipFlag flagIn) {
+        List<Component> tooltip = new ArrayList<>();
+        this.appendHoverText(stack, tooltipContext, tooltip, flagIn);
+        tooltip.forEach(tooltipAdder);
+    }
 
-        if (this.doCraftCheck && tooltipContext.level() != null) {
-            if (!ClientConfig.INSTANCE.forceDisableUncraftableTooltips.get() && this.material.getModId().equals(ModSpartanWeaponry.ID)) {
-                var tag = BuiltInRegistries.ITEM.getTag(this.material.getRepairTag());
-                if (tag.isEmpty() || tag.get().size() == 0)
-                    this.canBeCrafted = false;
-            }
+    public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext tooltipContext, @NotNull List<Component> tooltip, @NotNull TooltipFlag flagIn) {
+        boolean isShiftPressed = FMLEnvironment.getDist().isClient() && InputHelper.isShiftDown();
+
+        if (this.doCraftCheck) {
+            this.canBeCrafted = BuiltInRegistries.ITEM.getTagOrEmpty(this.material.getRepairTag()).iterator().hasNext();
             this.doCraftCheck = false;
         }
 

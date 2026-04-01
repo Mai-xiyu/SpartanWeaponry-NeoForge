@@ -4,7 +4,7 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -20,7 +20,7 @@ import org.xiyu.spartanweaponryunofficial.util.QuiverHelper;
 import org.xiyu.spartanweaponryunofficial.util.QuiverHelper.IQuiverInfo;
 
 public record QuiverPrioritySlotPacket(int prioritySlot) implements CustomPacketPayload {
-    public static final Type<QuiverPrioritySlotPacket> TYPE = new Type<>(ResourceLocation.tryBuild(ModSpartanWeaponry.ID, "quiver_priority_slot"));
+    public static final Type<QuiverPrioritySlotPacket> TYPE = new Type<>(Identifier.tryBuild(ModSpartanWeaponry.ID, "quiver_priority_slot"));
     public static final StreamCodec<RegistryFriendlyByteBuf, QuiverPrioritySlotPacket> STREAM_CODEC = StreamCodec.composite(
             ByteBufCodecs.VAR_INT,
             QuiverPrioritySlotPacket::prioritySlot,

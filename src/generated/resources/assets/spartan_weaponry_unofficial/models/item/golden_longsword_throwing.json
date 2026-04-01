@@ -1,6 +1,5 @@
 {
   "parent": "spartan_weaponry_unofficial:item/base/longsword_throwing",
-  "loader": "spartan_weaponry_unofficial:oil_coated_item",
   "textures": {
     "coating": "spartan_weaponry_unofficial:item/coating/longsword",
     "layer0": "spartan_weaponry_unofficial:item/golden_longsword"
