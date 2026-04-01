@@ -1029,6 +1029,16 @@
 	"block.spartan_weaponry_unofficial.drowned_head": "溺尸的头",
 	"block.spartan_weaponry_unofficial.illager_head": "灾厄村民的头",
 	"block.spartan_weaponry_unofficial.witch_head": "女巫的头",
+	"item.spartan_weaponry_unofficial.blaze_head": "烈焰人的头",
+	"item.spartan_weaponry_unofficial.enderman_head": "末影人的头",
+	"item.spartan_weaponry_unofficial.spider_head": "蜘蛛的头",
+	"item.spartan_weaponry_unofficial.cave_spider_head": "洞穴蜘蛛的头",
+	"item.spartan_weaponry_unofficial.zombified_piglin_head": "僵尸猪灵的头",
+	"item.spartan_weaponry_unofficial.husk_head": "尸壳的头",
+	"item.spartan_weaponry_unofficial.stray_skull": "流浪者头颅",
+	"item.spartan_weaponry_unofficial.drowned_head": "溺尸的头",
+	"item.spartan_weaponry_unofficial.illager_head": "灾厄村民的头",
+	"item.spartan_weaponry_unofficial.witch_head": "女巫的头",
 	
 	// 实体
 	"entity.spartan_weaponry_unofficial.arrow": "箭",

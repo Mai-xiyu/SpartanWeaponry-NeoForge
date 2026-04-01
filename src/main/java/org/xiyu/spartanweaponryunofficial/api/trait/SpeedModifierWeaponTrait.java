@@ -1,7 +1,7 @@
 package org.xiyu.spartanweaponryunofficial.api.trait;
 
 import com.google.common.collect.ImmutableMultimap;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -13,7 +13,7 @@ import org.xiyu.spartanweaponryunofficial.api.WeaponMaterial;
 import java.util.Optional;
 
 public class SpeedModifierWeaponTrait extends WeaponTrait implements IMeleeTraitCallback, IRangedTraitCallback, IThrowingTraitCallback {
-    public static final ResourceLocation SPEED_MODIFIER = ResourceLocation.fromNamespaceAndPath(SpartanWeaponryAPI.MOD_ID, "speed_modifier");
+    public static final Identifier SPEED_MODIFIER = Identifier.fromNamespaceAndPath(SpartanWeaponryAPI.MOD_ID, "speed_modifier");
 
     public SpeedModifierWeaponTrait(String type, TraitQuality quality) {
         super(type, SpartanWeaponryAPI.MOD_ID, quality);

@@ -1,5 +1,7 @@
 package org.xiyu.spartanweaponryunofficial.capability;
 
+// TODO: Curios API not available for 26.1 yet - stub out
+/*
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
@@ -58,4 +60,7 @@ public class CurioHandler implements ICurio {
     private static RegistryAccess getRegistryAccess() {
         return RegistryAccess.fromRegistryOfRegistries(BuiltInRegistries.REGISTRY);
     }
+}
+*/
+public class CurioHandler {
 }

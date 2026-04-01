@@ -8,7 +8,6 @@ import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.alchemy.PotionContents;
 import net.neoforged.neoforge.common.brewing.IBrewingRecipe;
 import org.jetbrains.annotations.NotNull;
-import org.xiyu.spartanweaponryunofficial.init.ModItems;
 import org.xiyu.spartanweaponryunofficial.util.Config;
 import org.xiyu.spartanweaponryunofficial.util.OilHelper;
 
@@ -22,7 +21,7 @@ public class PotionToOilBrewingRecipe implements IBrewingRecipe {
 
     @Override
     public boolean isIngredient(@NotNull ItemStack ingredient) {
-        return !Config.INSTANCE.disableOilRecipes.get() && ingredient.is(ModItems.GREASE_BALL.get());
+        return !Config.INSTANCE.disableOilRecipes.get() && ingredient.is(Items.SLIME_BALL);
     }
 
     @Override

@@ -2,7 +2,6 @@ package org.xiyu.spartanweaponryunofficial.util;
 
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.Tag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.CustomData;
 
@@ -28,14 +27,14 @@ public final class ItemStackDataHelper {
     @Nullable
     public static CompoundTag getTagElement(ItemStack stack, String key) {
         CompoundTag tag = getTag(stack);
-        return tag.contains(key, Tag.TAG_COMPOUND) ? tag.getCompound(key) : null;
+        return tag.getCompound(key).orElse(null);
     }
 
     public static CompoundTag getOrCreateTagElement(ItemStack stack, String key) {
         final CompoundTag[] result = new CompoundTag[1];
         updateTag(stack, tag -> {
-            CompoundTag element = tag.getCompound(key);
-            if (element.isEmpty()) {
+            CompoundTag element = tag.getCompound(key).orElse(null);
+            if (element == null || element.isEmpty()) {
                 element = new CompoundTag();
                 tag.put(key, element);
             }

@@ -5,12 +5,12 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.entity.projectile.arrow.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.item.ItemUseAnimation;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
@@ -28,14 +28,14 @@ public class ThrowableMeleeWeaponTrait extends WeaponTrait implements IActionTra
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(ItemStack usingStackIn, Level levelIn, Player playerIn, InteractionHand handIn) {
+    public InteractionResult use(ItemStack usingStackIn, Level levelIn, Player playerIn, InteractionHand handIn) {
         playerIn.startUsingItem(handIn);
-        return InteractionResultHolder.consume(usingStackIn);
+        return InteractionResult.CONSUME;
     }
 
     @Override
-    public UseAnim getUseAnimation(ItemStack stack) {
-        return UseAnim.SPEAR;
+    public ItemUseAnimation getUseAnimation(ItemStack stack) {
+        return ItemUseAnimation.TRIDENT;
     }
 
     @Override
@@ -52,21 +52,22 @@ public class ThrowableMeleeWeaponTrait extends WeaponTrait implements IActionTra
             if (charge >= 5)
                 charge = 5;
 
-            if (!levelIn.isClientSide && charge > 2) {
+            if (!levelIn.isClientSide() && charge > 2) {
                 ThrowingWeaponEntity thrown = new ThrowingWeaponEntity(ModEntities.THROWING_WEAPON.get(), player, levelIn, stackIn);
                 thrown.setWeapon(stackIn);
                 thrown.shootFromRotation(player, player.xRotO, player.yRotO, 0.0F, 1.5f * (charge / 10.0f + 0.5f), 0.5f);
-                thrown.setBaseDamage(attackDamage + 1.0f);
+                double baseDamage = attackDamage + 1.0f;
+                thrown.setBaseDamage(baseDamage);
 
                 // Apply enchantments as necessary - using new 1.21 API
                 RegistryAccess registryAccess = levelIn.registryAccess();
-                int j = EnchantmentHelper.getItemEnchantmentLevel(registryAccess.registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantments.SHARPNESS), stackIn);
+                int j = EnchantmentHelper.getItemEnchantmentLevel(registryAccess.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.SHARPNESS), stackIn);
                 if (j > 0) {
-                    thrown.setBaseDamage(thrown.getBaseDamage() + j * 0.5d + 0.5d);
+                    thrown.setBaseDamage(baseDamage + j * 0.5d + 0.5d);
                 }
                 // Knockback is handled in ThrowingWeaponEntity.onHitEntity by reading from weapon enchantments
                 // Fire aspect - set entity on fire
-                int fireAspect = EnchantmentHelper.getItemEnchantmentLevel(registryAccess.registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantments.FIRE_ASPECT), stackIn);
+                int fireAspect = EnchantmentHelper.getItemEnchantmentLevel(registryAccess.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.FIRE_ASPECT), stackIn);
                 if (fireAspect > 0) {
                     thrown.setRemainingFireTicks(100 * 20); // 100 seconds in ticks
                 }
@@ -80,7 +81,7 @@ public class ThrowableMeleeWeaponTrait extends WeaponTrait implements IActionTra
                 }
 
                 if (thrown.isValidThrowingWeapon()) {
-                    levelIn.playSound(null, player.getX(), player.getY(), player.getZ(), ModSounds.THROWN_WEAPON_THROW.get(), SoundSource.PLAYERS, 0.5f, 0.4f / (levelIn.random.nextFloat() * 0.4f + 0.8f));
+                    levelIn.playSound(null, player.getX(), player.getY(), player.getZ(), ModSounds.THROWN_WEAPON_THROW.get(), SoundSource.PLAYERS, 0.5f, 0.4f / (levelIn.getRandom().nextFloat() * 0.4f + 0.8f));
                     levelIn.addFreshEntity(thrown);
                 }
             }

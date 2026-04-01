@@ -10,7 +10,7 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.fml.loading.FMLLoader;
+import net.minecraft.SharedConstants;
 import net.neoforged.neoforge.client.event.InputEvent;
 import net.neoforged.neoforge.client.event.RenderGuiLayerEvent;
 import net.neoforged.neoforge.client.event.RenderTooltipEvent;
@@ -35,7 +35,7 @@ import org.xiyu.spartanweaponryunofficial.util.OilHelper;
 
 import java.util.Optional;
 
-@EventBusSubscriber(modid = ModSpartanWeaponry.ID, bus = EventBusSubscriber.Bus.GAME, value = Dist.CLIENT)
+@EventBusSubscriber(modid = ModSpartanWeaponry.ID, value = Dist.CLIENT)
 public class ClientEventHandler {
     // NeoForge 1.21: MouseButton is now abstract, must use Post subclass
     @SubscribeEvent(priority = EventPriority.NORMAL, receiveCanceled = true)
@@ -96,7 +96,7 @@ public class ClientEventHandler {
 
         // Debug (Show NBT data on *EVERYTHING*)
 
-        if (!FMLLoader.isProduction() && ItemStackDataHelper.hasTag(stack) && ev.getFlags().isAdvanced()) {
+        if (SharedConstants.IS_RUNNING_IN_IDE && ItemStackDataHelper.hasTag(stack) && ev.getFlags().isAdvanced()) {
             // Format NBT debug string
             String nbtStr = ItemStackDataHelper.getTag(stack).toString();
             ev.getToolTip().add(Component.literal("NBT: " + ChatFormatting.DARK_GRAY + nbtStr).withStyle(ChatFormatting.DARK_PURPLE));

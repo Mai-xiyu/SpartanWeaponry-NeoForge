@@ -1,0 +1,1664 @@
+﻿.\gradlew.bat : Picked up JAVA_TOOL_OPTIONS: -Duser.language=en -Duser.country=
+US
+所在位置 行:1 字符: 118
++ ... anguage=en -Duser.country=US"; .\gradlew.bat compileJava 2>&1 | Out-F ...
++                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Picked up JAVA_...user.country=US 
+   :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by net.rubygrapefruit.platform.
+internal.NativeLibraryLoader in an unnamed module (file:/C:/Users/25463/.gradle
+/wrapper/dists/gradle-9.1.0-bin/9agqghryom9wkf8r80qlhnts3/gradle-9.1.0/lib/nati
+ve-platform-0.22-milestone-28.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers 
+in this module
+WARNING: Restricted methods will be blocked in a future release unless native a
+ccess is enabled
+
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.1.0/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :generateModMetadata UP-TO-DATE
+> Task :createMinecraftArtifacts UP-TO-DATE
+
+> Task :compileJava
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\data\model\ModelGenerator.java:6: error: package net.neof
+orged.neoforge.client.model.generators does not exist
+import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
+                                                     ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\data\model\ModelGenerator.java:7: error: package net.neof
+orged.neoforge.client.model.generators.ModelFile does not exist
+import net.neoforged.neoforge.client.model.generators.ModelFile.ExistingModelFi
+le;
+                                                               ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\data\model\ModelGenerator.java:20: error: cannot find sym
+bol
+    protected final ItemModelProvider itemModelProvider;
+                    ^
+  symbol:   class ItemModelProvider
+  location: class ModelGenerator
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\data\model\ModelGenerator.java:22: error: cannot find sym
+bol
+    public ModelGenerator(ItemModelProvider itemModelProviderIn) {
+                          ^
+  symbol:   class ItemModelProvider
+  location: class ModelGenerator
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\data\model\OilCoatingItemModelBuilder.java:4: error: pack
+age net.neoforged.neoforge.client.model.generators does not exist
+import net.neoforged.neoforge.client.model.generators.CustomLoaderBuilder;
+                                                     ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\data\model\OilCoatingItemModelBuilder.java:5: error: pack
+age net.neoforged.neoforge.client.model.generators does not exist
+import net.neoforged.neoforge.client.model.generators.ModelBuilder;
+                                                     ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\data\model\OilCoatingItemModelBuilder.java:6: error: cann
+ot find symbol
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
+                                         ^
+  symbol:   class ExistingFileHelper
+  location: package net.neoforged.neoforge.common.data
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\data\model\OilCoatingItemModelBuilder.java:9: error: cann
+ot find symbol
+public class OilCoatingItemModelBuilder<T extends ModelBuilder<T>> extends Cust
+omLoaderBuilder<T> {
+                                                                           ^
+  symbol: class CustomLoaderBuilder
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\data\model\OilCoatingItemModelBuilder.java:9: error: cann
+ot find symbol
+public class OilCoatingItemModelBuilder<T extends ModelBuilder<T>> extends Cust
+omLoaderBuilder<T> {
+                                                  ^
+  symbol: class ModelBuilder
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\data\model\OilCoatingItemModelBuilder.java:10: error: can
+not find symbol
+    protected OilCoatingItemModelBuilder(T parent, ExistingFileHelper existingF
+ileHelper) {
+                                                   ^
+  symbol:   class ExistingFileHelper
+  location: class OilCoatingItemModelBuilder<T>
+  where T is a type-variable:
+    T declared in class OilCoatingItemModelBuilder
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\WeaponMaterial.java:13: error: cannot find symbol
+import net.minecraft.util.LazyLoadedValue;
+                         ^
+  symbol:   class LazyLoadedValue
+  location: package net.minecraft.util
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\WeaponMaterial.java:16: error: cannot find symbol
+import net.minecraft.world.item.Tier;
+                               ^
+  symbol:   class Tier
+  location: package net.minecraft.world.item
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\WeaponMaterial.java:17: error: cannot find symbol
+import net.minecraft.world.item.Tiers;
+                               ^
+  symbol:   class Tiers
+  location: package net.minecraft.world.item
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\WeaponMaterial.java:35: error: cannot find symbol
+public class WeaponMaterial implements Tier, IReloadable {
+                                       ^
+  symbol: class Tier
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\WeaponMaterial.java:61: error: cannot find symbol
+    private final LazyLoadedValue<Ingredient> repairMaterial;
+                  ^
+  symbol:   class LazyLoadedValue
+  location: class WeaponMaterial
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\WeaponMaterial.java:100: error: cannot find symbol
+    public WeaponMaterial(String nameIn, String modIdIn, Tier itemTierIn, TagKe
+y<Item> tagIn, TagKey<WeaponTrait> traitsTagIn) {
+                                                         ^
+  symbol:   class Tier
+  location: class WeaponMaterial
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\trait\IRangedTraitCallback.java:3: error: cannot find sym
+bol
+import net.minecraft.world.entity.projectile.AbstractArrow;
+                                            ^
+  symbol:   class AbstractArrow
+  location: package net.minecraft.world.entity.projectile
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\trait\IThrowingTraitCallback.java:3: error: cannot find s
+ymbol
+import net.minecraft.world.entity.projectile.AbstractArrow;
+                                            ^
+  symbol:   class AbstractArrow
+  location: package net.minecraft.world.entity.projectile
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\trait\IActionTraitCallback.java:6: error: cannot find sym
+bol
+import net.minecraft.world.InteractionResultHolder;
+                          ^
+  symbol:   class InteractionResultHolder
+  location: package net.minecraft.world
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\trait\IActionTraitCallback.java:11: error: cannot find sy
+mbol
+import net.minecraft.world.item.UseAnim;
+                               ^
+  symbol:   class UseAnim
+  location: package net.minecraft.world.item
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\trait\IActionTraitCallback.java:43: error: cannot find sy
+mbol
+    InteractionResultHolder<ItemStack> use(ItemStack usingStackIn, Level levelI
+n, Player playerIn, InteractionHand handIn);
+    ^
+  symbol:   class InteractionResultHolder
+  location: interface IActionTraitCallback
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\trait\IActionTraitCallback.java:86: error: cannot find sy
+mbol
+    default UseAnim getUseAnimation(ItemStack stackIn) {
+            ^
+  symbol:   class UseAnim
+  location: interface IActionTraitCallback
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\trait\IThrowingTraitCallback.java:25: error: cannot find 
+symbol
+    default void onThrowingProjectileSpawn(WeaponMaterial material, AbstractArr
+ow projectile) {
+                                                                    ^
+  symbol:   class AbstractArrow
+  location: interface IThrowingTraitCallback
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\trait\IRangedTraitCallback.java:43: error: cannot find sy
+mbol
+    default void onProjectileSpawn(WeaponMaterial material, AbstractArrow proje
+ctile) {
+                                                            ^
+  symbol:   class AbstractArrow
+  location: interface IRangedTraitCallback
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\trait\HammerSlamWeaponTrait.java:9: error: cannot find sy
+mbol
+import net.minecraft.world.InteractionResultHolder;
+                          ^
+  symbol:   class InteractionResultHolder
+  location: package net.minecraft.world
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\trait\HammerSlamWeaponTrait.java:65: error: cannot find s
+ymbol
+    public InteractionResultHolder<ItemStack> use(ItemStack usingStackIn, Level
+ levelIn, Player playerIn,
+           ^
+  symbol:   class InteractionResultHolder
+  location: class HammerSlamWeaponTrait
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\trait\HarvesterWeaponTrait.java:8: error: cannot find sym
+bol
+import net.minecraft.world.InteractionResultHolder;
+                          ^
+  symbol:   class InteractionResultHolder
+  location: package net.minecraft.world
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\trait\HarvesterWeaponTrait.java:64: error: cannot find sy
+mbol
+    public InteractionResultHolder<ItemStack> use(ItemStack usingStackIn, Level
+ levelIn, Player playerIn,
+           ^
+  symbol:   class InteractionResultHolder
+  location: class HarvesterWeaponTrait
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\trait\MeleeBlockWeaponTrait.java:4: error: cannot find sy
+mbol
+import net.minecraft.world.InteractionResultHolder;
+                          ^
+  symbol:   class InteractionResultHolder
+  location: package net.minecraft.world
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\trait\MeleeBlockWeaponTrait.java:10: error: cannot find s
+ymbol
+import net.minecraft.world.item.UseAnim;
+                               ^
+  symbol:   class UseAnim
+  location: package net.minecraft.world.item
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\trait\MeleeBlockWeaponTrait.java:30: error: cannot find s
+ymbol
+    public InteractionResultHolder<ItemStack> use(ItemStack usingStackIn, Level
+ levelIn, Player playerIn,
+           ^
+  symbol:   class InteractionResultHolder
+  location: class MeleeBlockWeaponTrait
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\trait\MeleeBlockWeaponTrait.java:39: error: cannot find s
+ymbol
+    public UseAnim getUseAnimation(ItemStack stackIn) {
+           ^
+  symbol:   class UseAnim
+  location: class MeleeBlockWeaponTrait
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\trait\ThrowableMeleeWeaponTrait.java:8: error: cannot fin
+d symbol
+import net.minecraft.world.InteractionResultHolder;
+                          ^
+  symbol:   class InteractionResultHolder
+  location: package net.minecraft.world
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\trait\ThrowableMeleeWeaponTrait.java:11: error: cannot fi
+nd symbol
+import net.minecraft.world.entity.projectile.AbstractArrow;
+                                            ^
+  symbol:   class AbstractArrow
+  location: package net.minecraft.world.entity.projectile
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\trait\ThrowableMeleeWeaponTrait.java:13: error: cannot fi
+nd symbol
+import net.minecraft.world.item.UseAnim;
+                               ^
+  symbol:   class UseAnim
+  location: package net.minecraft.world.item
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\trait\ThrowableMeleeWeaponTrait.java:31: error: cannot fi
+nd symbol
+    public InteractionResultHolder<ItemStack> use(ItemStack usingStackIn, Level
+ levelIn, Player playerIn, InteractionHand handIn) {
+           ^
+  symbol:   class InteractionResultHolder
+  location: class ThrowableMeleeWeaponTrait
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\trait\ThrowableMeleeWeaponTrait.java:37: error: cannot fi
+nd symbol
+    public UseAnim getUseAnimation(ItemStack stack) {
+           ^
+  symbol:   class UseAnim
+  location: class ThrowableMeleeWeaponTrait
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\capability\CurioHandler.java:11: error: package top.theillusi
+vec4.curios.api does not exist
+import top.theillusivec4.curios.api.SlotContext;
+                                   ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\capability\CurioHandler.java:12: error: package top.theillusi
+vec4.curios.api.type.capability does not exist
+import top.theillusivec4.curios.api.type.capability.ICurio;
+                                                   ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\capability\CurioHandler.java:14: error: cannot find symbol
+public class CurioHandler implements ICurio {
+                                     ^
+  symbol: class ICurio
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\item\QuiverBaseItem.java:13: error: cannot find symbol
+import net.minecraft.world.InteractionResultHolder;
+                          ^
+  symbol:   class InteractionResultHolder
+  location: package net.minecraft.world
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\capability\CurioHandler.java:29: error: cannot find symbol
+    public boolean canSync(SlotContext slotContext) {
+                           ^
+  symbol:   class SlotContext
+  location: class CurioHandler
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\capability\CurioHandler.java:34: error: cannot find symbol
+    public void readSyncData(SlotContext slotContext, CompoundTag compound) {
+                             ^
+  symbol:   class SlotContext
+  location: class CurioHandler
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\capability\CurioHandler.java:54: error: cannot find symbol
+    public @NotNull CompoundTag writeSyncData(SlotContext slotContext) {
+                                              ^
+  symbol:   class SlotContext
+  location: class CurioHandler
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\item\QuiverBaseItem.java:86: error: cannot find symbol
+    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level level
+In, Player playerIn, @NotNull InteractionHand handIn) {
+                    ^
+  symbol:   class InteractionResultHolder
+  location: class QuiverBaseItem
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\capability\CuriosHelper.java:7: error: cannot find symbol
+import net.neoforged.neoforge.client.event.RegisterClientReloadListenersEvent;
+                                          ^
+  symbol:   class RegisterClientReloadListenersEvent
+  location: package net.neoforged.neoforge.client.event
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\capability\CuriosHelper.java:10: error: package top.theillusi
+vec4.curios.api does not exist
+import top.theillusivec4.curios.api.CuriosCapability;
+                                   ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\capability\CuriosHelper.java:25: error: cannot find symbol
+        public static void registerReloadListener(RegisterClientReloadListeners
+Event ev) {
+                                                  ^
+  symbol:   class RegisterClientReloadListenersEvent
+  location: class Client
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\capability\IOilHandler.java:8: error: cannot find symbol
+import net.neoforged.neoforge.common.util.INBTSerializable;
+                                         ^
+  symbol:   class INBTSerializable
+  location: package net.neoforged.neoforge.common.util
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\capability\IOilHandler.java:13: error: cannot find symbol
+public interface IOilHandler extends INBTSerializable<CompoundTag> {
+                                     ^
+  symbol: class INBTSerializable
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\ClientHelper.java:4: error: cannot find symbol
+import net.minecraft.client.color.item.ItemColor;
+                                      ^
+  symbol:   class ItemColor
+  location: package net.minecraft.client.color.item
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\ClientHelper.java:5: error: cannot find symbol
+import net.minecraft.client.gui.LayeredDraw;
+                               ^
+  symbol:   class LayeredDraw
+  location: package net.minecraft.client.gui
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\ClientHelper.java:6: error: cannot find symbol
+import net.minecraft.client.model.PiglinHeadModel;
+                                 ^
+  symbol:   class PiglinHeadModel
+  location: package net.minecraft.client.model
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\ClientHelper.java:7: error: cannot find symbol
+import net.minecraft.client.model.SkullModel;
+                                 ^
+  symbol:   class SkullModel
+  location: package net.minecraft.client.model
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\ClientHelper.java:12: error: cannot find symbol
+import net.minecraft.client.renderer.item.ItemProperties;
+                                         ^
+  symbol:   class ItemProperties
+  location: package net.minecraft.client.renderer.item
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\ClientHelper.java:72: error: package LayeredDraw does 
+not exist
+    public static final LayeredDraw.Layer LOAD_STATE = HudLoadState::render;
+                                   ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\ClientHelper.java:73: error: package LayeredDraw does 
+not exist
+    public static final LayeredDraw.Layer QUIVER_AMMO = HudQuiverAmmo::render;
+                                   ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\ClientHelper.java:74: error: package LayeredDraw does 
+not exist
+    public static final LayeredDraw.Layer OIL_USES = HudOilUses::render;
+                                   ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\ClientHelper.java:75: error: package LayeredDraw does 
+not exist
+    public static final LayeredDraw.Layer NEW_CROSSHAIR = HudCrosshair::render;
+                                   ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\ClientHelper.java:77: error: cannot find symbol
+    public static final ItemColor COLOR_TIPPED_PROJECTILE = (stack, idx) -> idx
+ == 1 ? stack.getOrDefault(DataComponents.POTION_CONTENTS, PotionContents.EMPTY
+).getColor() : -1;
+                        ^
+  symbol:   class ItemColor
+  location: class ClientHelper
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\ClientHelper.java:78: error: cannot find symbol
+    public static final ItemColor COLOR_OIL = (stack, idx) ->
+                        ^
+  symbol:   class ItemColor
+  location: class ClientHelper
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\ClientHelper.java:87: error: cannot find symbol
+    public static void registerItemColoursHandler(RegisterColorHandlersEvent.It
+em ev) {
+                                                                            ^
+  symbol:   class Item
+  location: class RegisterColorHandlersEvent
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\item\SwordBaseItem.java:15: error: cannot find symbol
+import net.minecraft.world.InteractionResultHolder;
+                          ^
+  symbol:   class InteractionResultHolder
+  location: package net.minecraft.world
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\item\SwordBaseItem.java:48: error: cannot find symbol
+public class SwordBaseItem extends SwordItem implements IWeaponTraitContainer<S
+wordBaseItem>, IReloadable {
+                                   ^
+  symbol: class SwordItem
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\item\HeavyCrossbowItem.java:18: error: cannot find symbol
+import net.minecraft.world.InteractionResultHolder;
+                          ^
+  symbol:   class InteractionResultHolder
+  location: package net.minecraft.world
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\item\HeavyCrossbowItem.java:24: error: cannot find symbol
+import net.minecraft.world.entity.projectile.AbstractArrow;
+                                            ^
+  symbol:   class AbstractArrow
+  location: package net.minecraft.world.entity.projectile
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\item\LongbowItem.java:20: error: cannot find symbol
+import net.minecraft.world.entity.projectile.AbstractArrow;
+                                            ^
+  symbol:   class AbstractArrow
+  location: package net.minecraft.world.entity.projectile
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\item\ThrowingWeaponItem.java:15: error: cannot find symbol
+import net.minecraft.world.InteractionResultHolder;
+                          ^
+  symbol:   class InteractionResultHolder
+  location: package net.minecraft.world
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\item\ThrowingWeaponItem.java:23: error: cannot find symbol
+import net.minecraft.world.entity.projectile.AbstractArrow;
+                                            ^
+  symbol:   class AbstractArrow
+  location: package net.minecraft.world.entity.projectile
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\item\ThrowingWeaponItem.java:27: error: cannot find symbol
+import net.minecraft.world.item.UseAnim;
+                               ^
+  symbol:   class UseAnim
+  location: package net.minecraft.world.item
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\item\ThrowingWeaponItem.java:249: error: cannot find symbol
+    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level level
+In, Player player, @NotNull InteractionHand hand) {
+                    ^
+  symbol:   class InteractionResultHolder
+  location: class ThrowingWeaponItem
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\item\ThrowingWeaponItem.java:337: error: cannot find symbol
+    public @NotNull UseAnim getUseAnimation(@NotNull ItemStack stack) {
+                    ^
+  symbol:   class UseAnim
+  location: class ThrowingWeaponItem
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:23: error: cannot
+ find symbol
+import net.minecraft.world.entity.projectile.AbstractArrow;
+                                            ^
+  symbol:   class AbstractArrow
+  location: package net.minecraft.world.entity.projectile
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:50: error: cannot
+ find symbol
+public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithC
+omplexSpawn {
+                                          ^
+  symbol: class AbstractArrow
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\ICrosshairOverlay.java:4: error: cannot find symbo
+l
+import net.minecraft.client.gui.GuiGraphics;
+                               ^
+  symbol:   class GuiGraphics
+  location: package net.minecraft.client.gui
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\ICrosshairOverlay.java:8: error: cannot find symbo
+l
+    void render(GuiGraphics guiGraphics, DeltaTracker deltaTracker, ItemStack s
+tack);
+                ^
+  symbol:   class GuiGraphics
+  location: interface ICrosshairOverlay
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\BoltEntity.java:26: error: cannot find symb
+ol
+import net.minecraft.world.entity.projectile.AbstractArrow;
+                                            ^
+  symbol:   class AbstractArrow
+  location: package net.minecraft.world.entity.projectile
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\BoltEntity.java:46: error: cannot find symb
+ol
+public class BoltEntity extends AbstractArrow implements IEntityWithComplexSpaw
+n {
+                                ^
+  symbol: class AbstractArrow
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\item\HeavyCrossbowItem.java:284: error: cannot find symbol
+    public @NotNull UseAnim getUseAnimation(@NotNull ItemStack stack) {
+                    ^
+  symbol:   class UseAnim
+  location: class HeavyCrossbowItem
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\item\HeavyCrossbowItem.java:291: error: cannot find symbol
+    public @NotNull InteractionResultHolder<ItemStack> use(Level levelIn, Playe
+r playerIn, @NotNull InteractionHand handIn) {
+                    ^
+  symbol:   class InteractionResultHolder
+  location: class HeavyCrossbowItem
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\item\SwordBaseItem.java:237: error: cannot find symbol
+    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level level
+In, Player player, @NotNull InteractionHand hand) {
+                    ^
+  symbol:   class InteractionResultHolder
+  location: class SwordBaseItem
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\item\SwordBaseItem.java:277: error: cannot find symbol
+    public @NotNull UseAnim getUseAnimation(@NotNull ItemStack stack) {
+                    ^
+  symbol:   class UseAnim
+  location: class SwordBaseItem
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\components\ToggleImageButton.java:4: error: cannot
+ find symbol
+import net.minecraft.client.gui.GuiGraphics;
+                               ^
+  symbol:   class GuiGraphics
+  location: package net.minecraft.client.gui
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\components\ToggleImageButton.java:39: error: canno
+t find symbol
+    public void renderWidget(@NotNull GuiGraphics guiGraphics, int renderX, int
+ renderY, float p_94285_) {
+                                      ^
+  symbol:   class GuiGraphics
+  location: class ToggleImageButton
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\container\QuiverBaseScreen.java:4: error: cannot f
+ind symbol
+import net.minecraft.client.gui.GuiGraphics;
+                               ^
+  symbol:   class GuiGraphics
+  location: package net.minecraft.client.gui
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\inventory\QuiverBaseMenu.java:14: error: package top.theillus
+ivec4.curios.api does not exist
+import top.theillusivec4.curios.api.CuriosApi;
+                                   ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\inventory\QuiverBaseMenu.java:15: error: package top.theillus
+ivec4.curios.api does not exist
+import top.theillusivec4.curios.api.SlotResult;
+                                   ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\inventory\QuiverBaseMenu.java:134: error: cannot find symbol
+    public void clicked(int slot, int dragType, @NotNull ClickType clickType, @
+NotNull Player player) {
+                                                         ^
+  symbol:   class ClickType
+  location: class QuiverBaseMenu
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\container\QuiverBaseScreen.java:104: error: cannot
+ find symbol
+    public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY
+, float partialTicks) {
+                                ^
+  symbol:   class GuiGraphics
+  location: class QuiverBaseScreen<T>
+  where T is a type-variable:
+    T extends QuiverBaseMenu declared in class QuiverBaseScreen
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\container\QuiverBaseScreen.java:120: error: cannot
+ find symbol
+    protected void renderBg(GuiGraphics guiGraphics, float partialTicks, int mo
+useX, int mouseY) {
+                            ^
+  symbol:   class GuiGraphics
+  location: class QuiverBaseScreen<T>
+  where T is a type-variable:
+    T extends QuiverBaseMenu declared in class QuiverBaseScreen
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\container\QuiverBaseScreen.java:132: error: cannot
+ find symbol
+    protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY
+) {
+                                ^
+  symbol:   class GuiGraphics
+  location: class QuiverBaseScreen<T>
+  where T is a type-variable:
+    T extends QuiverBaseMenu declared in class QuiverBaseScreen
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\HudCrosshair.java:9: error: cannot find symbol
+import net.minecraft.client.gui.GuiGraphics;
+                               ^
+  symbol:   class GuiGraphics
+  location: package net.minecraft.client.gui
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\HudCrosshair.java:32: error: cannot find symbol
+    public static void render(GuiGraphics guiGraphics, DeltaTracker deltaTracke
+r) {
+                              ^
+  symbol:   class GuiGraphics
+  location: class HudCrosshair
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\HudCrosshairHeavyCrossbow.java:3: error: package c
+om.mojang.blaze3d.platform.GlStateManager does not exist
+import com.mojang.blaze3d.platform.GlStateManager.DestFactor;
+                                                 ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\HudCrosshairHeavyCrossbow.java:4: error: package c
+om.mojang.blaze3d.platform.GlStateManager does not exist
+import com.mojang.blaze3d.platform.GlStateManager.SourceFactor;
+                                                 ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\HudCrosshairHeavyCrossbow.java:8: error: cannot fi
+nd symbol
+import net.minecraft.client.gui.GuiGraphics;
+                               ^
+  symbol:   class GuiGraphics
+  location: package net.minecraft.client.gui
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\HudCrosshairHeavyCrossbow.java:19: error: cannot f
+ind symbol
+    public static void render(GuiGraphics guiGraphics, DeltaTracker deltaTracke
+r, ItemStack equippedStack) {
+                              ^
+  symbol:   class GuiGraphics
+  location: class HudCrosshairHeavyCrossbow
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\HudCrosshairThrowingWeapon.java:3: error: cannot f
+ind symbol
+import com.mojang.blaze3d.platform.GlStateManager;
+                                  ^
+  symbol:   class GlStateManager
+  location: package com.mojang.blaze3d.platform
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\HudCrosshairThrowingWeapon.java:4: error: package 
+com.mojang.blaze3d.platform.GlStateManager does not exist
+import com.mojang.blaze3d.platform.GlStateManager.DestFactor;
+                                                 ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\HudCrosshairThrowingWeapon.java:5: error: package 
+com.mojang.blaze3d.platform.GlStateManager does not exist
+import com.mojang.blaze3d.platform.GlStateManager.SourceFactor;
+                                                 ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\data\recipe\ConditionalShapelessRecipeBuilder.java:138: w
+arning: [removal] parent(Identifier) in Builder has been deprecated and marked 
+for removal
+        advancement.parent(RecipeBuilder.ROOT_RECIPE_ADVANCEMENT)
+                   ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\capability\IQuiverItemHandler.java:5: warning: [removal] IIte
+mHandler in net.neoforged.neoforge.items has been deprecated and marked for rem
+oval
+public interface IQuiverItemHandler extends IItemHandler {
+                                            ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\capability\QuiverItemStackHandler.java:12: warning: [removal]
+ ItemStackHandler in net.neoforged.neoforge.items has been deprecated and marke
+d for removal
+public class QuiverItemStackHandler extends ItemStackHandler implements IQuiver
+ItemHandler {
+                                            ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\container\QuiverBaseScreen.java:53: warning: [remo
+val] getSlots() in IItemHandler has been deprecated and marked for removal
+        this.ammoSlots = handler != null ? handler.getSlots() : Defaults.SlotsQ
+uiverSmall;
+                                                  ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\inventory\QuiverBaseMenu.java:40: warning: [removal] getSlots
+() in IItemHandler has been deprecated and marked for removal
+        this.playerInvStart = this.handler.getSlots();
+                                          ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\inventory\QuiverBaseMenu.java:55: warning: [removal] getSlots
+() in IItemHandler has been deprecated and marked for removal
+        slotStartX = switch (this.handler.getSlots()) {
+                                         ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\inventory\QuiverBaseMenu.java:72: warning: [removal] getSlots
+() in IItemHandler has been deprecated and marked for removal
+        for (int i = 0; i < this.handler.getSlots(); i++) {
+                                        ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\inventory\QuiverBaseMenu.java:79: warning: [removal] getSlots
+() in IItemHandler has been deprecated and marked for removal
+        int yOffset = this.handler.getSlots() == Defaults.SlotsQuiverHuge ? 18 
+: 0;
+                                  ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\inventory\QuiverBaseMenu.java:94: warning: [removal] getSlots
+() in IItemHandler has been deprecated and marked for removal
+        this.addSlot(new Slot(inventory, 40, -21, this.handler.getSlots() == De
+faults.SlotsQuiverHuge ? 127 : 109).setBackground(InventoryMenu.BLOCK_ATLAS, In
+ventoryMenu.EMPTY_ARMOR_SLOT_SHIELD));
+                                                              ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\inventory\QuiverBaseMenu.java:107: warning: [removal] getSlot
+s() in IItemHandler has been deprecated and marked for removal
+            if (slotIdx >= 0 && slotIdx < this.handler.getSlots()) {
+                                                      ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\data\recipe\TagCookingRecipeBuilder.java:99: warning: [remova
+l] parent(Identifier) in Builder has been deprecated and marked for removal
+        advancement.parent(ROOT_RECIPE_ADVANCEMENT)
+                   ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\event\CommonEventHandler.java:352: warning: [removal] insertI
+tem(int,ItemStack,boolean) in IItemHandler has been deprecated and marked for r
+emoval
+            arrowStack = quiverHandler.insertItem(prioritySlot, arrowStack, fal
+se);
+                                      ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\event\CommonEventHandler.java:354: warning: [removal] getSlot
+s() in IItemHandler has been deprecated and marked for removal
+                for (int j = 0; j < quiverHandler.getSlots(); j++) {
+                                                 ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\event\CommonEventHandler.java:358: warning: [removal] insertI
+tem(int,ItemStack,boolean) in IItemHandler has been deprecated and marked for r
+emoval
+                    arrowStack = quiverHandler.insertItem(j, arrowStack, false)
+;
+                                              ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\event\CommonEventHandler.java:379: warning: [removal] getSlot
+s() in IItemHandler has been deprecated and marked for removal
+            if (prioritySlot <= quiverHandler.getSlots()) {
+                                             ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\event\CommonEventHandler.java:380: warning: [removal] extract
+Item(int,int,boolean) in IItemHandler has been deprecated and marked for remova
+l
+                arrowStack = quiverHandler.extractItem(prioritySlot, 64, false)
+;
+                                          ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\event\CommonEventHandler.java:386: warning: [removal] getSlot
+s() in IItemHandler has been deprecated and marked for removal
+                for (int j = 0; j < quiverHandler.getSlots(); j++) {
+                                                 ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\event\CommonEventHandler.java:390: warning: [removal] extract
+Item(int,int,boolean) in IItemHandler has been deprecated and marked for remova
+l
+                    arrowStack = quiverHandler.extractItem(j, 64, false);
+                                              ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\event\CommonEventHandler.java:420: warning: [removal] getSlot
+s() in IItemHandler has been deprecated and marked for removal
+                        for (int i = 0; i < quiverHandler.getSlots(); i++) {
+                                                         ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\event\CommonEventHandler.java:421: warning: [removal] insertI
+tem(int,ItemStack,boolean) in IItemHandler has been deprecated and marked for r
+emoval
+                            pickedUpStack = quiverHandler.insertItem(i, pickedU
+pStack, false);
+                                                         ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\inventory\SlotFiltered.java:10: warning: [removal] SlotItemHa
+ndler in net.neoforged.neoforge.items has been deprecated and marked for remova
+l
+public class SlotFiltered extends SlotItemHandler {
+                                  ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\inventory\SlotFiltered.java:13: warning: [removal] IItemHandl
+er in net.neoforged.neoforge.items has been deprecated and marked for removal
+    public SlotFiltered(IItemHandler handlerIn, int indexIn, int xPositionIn, i
+nt yPositionIn, Predicate<ItemStack> filterIn) {
+                        ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\mixin\AbstractArrowMixin.java:63: warning: [removal] getSlots
+() in IItemHandler has been deprecated and marked for removal
+                                for (int i = 0; i < quiverHandler.getSlots(); i
+++) {
+                                                                 ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\mixin\AbstractArrowMixin.java:64: warning: [removal] insertIt
+em(int,ItemStack,boolean) in IItemHandler has been deprecated and marked for re
+moval
+                                    arrowStack = quiverHandler.insertItem(i, ar
+rowStack, false);
+                                                              ^
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+Note: Some messages have been simplified; recompile with -Xdiags:verbose to get
+ full output
+100 errors
+24 warnings
+
+> Task :compileJava FAILED
+
+
+[Incubating] Problems report is available at: file:///C:/Users/25463/Desktop/SpartanWeaponry-NeoForge/build/reports/problems/problems-report.html
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':compileJava'.
+> Compilation failed; see the compiler output below.
+  Note: Recompile with -Xlint:deprecation for details.
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\data\model\ModelGenerator.java:20: error: cannot find s
+ymbol
+      protected final ItemModelProvider itemModelProvider;
+                      ^
+    symbol:   class ItemModelProvider
+    location: class ModelGenerator
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\data\model\ModelGenerator.java:22: error: cannot find s
+ymbol
+      public ModelGenerator(ItemModelProvider itemModelProviderIn) {
+                            ^
+    symbol:   class ItemModelProvider
+    location: class ModelGenerator
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\data\model\OilCoatingItemModelBuilder.java:6: error: ca
+nnot find symbol
+  import net.neoforged.neoforge.common.data.ExistingFileHelper;
+                                           ^
+    symbol:   class ExistingFileHelper
+    location: package net.neoforged.neoforge.common.data
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\data\model\OilCoatingItemModelBuilder.java:10: error: c
+annot find symbol
+      protected OilCoatingItemModelBuilder(T parent, ExistingFileHelper existin
+gFileHelper) {
+                                                     ^
+    symbol:   class ExistingFileHelper
+    location: class OilCoatingItemModelBuilder<T>
+    where T is a type-variable:
+      T declared in class OilCoatingItemModelBuilder
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\WeaponMaterial.java:13: error: cannot find symbol
+  import net.minecraft.util.LazyLoadedValue;
+                           ^
+    symbol:   class LazyLoadedValue
+    location: package net.minecraft.util
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\WeaponMaterial.java:16: error: cannot find symbol
+  import net.minecraft.world.item.Tier;
+                                 ^
+    symbol:   class Tier
+    location: package net.minecraft.world.item
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\WeaponMaterial.java:17: error: cannot find symbol
+  import net.minecraft.world.item.Tiers;
+                                 ^
+    symbol:   class Tiers
+    location: package net.minecraft.world.item
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\WeaponMaterial.java:61: error: cannot find symbol
+      private final LazyLoadedValue<Ingredient> repairMaterial;
+                    ^
+    symbol:   class LazyLoadedValue
+    location: class WeaponMaterial
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\WeaponMaterial.java:100: error: cannot find symbol
+      public WeaponMaterial(String nameIn, String modIdIn, Tier itemTierIn, Tag
+Key<Item> tagIn, TagKey<WeaponTrait> traitsTagIn) {
+                                                           ^
+    symbol:   class Tier
+    location: class WeaponMaterial
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\trait\IRangedTraitCallback.java:3: error: cannot find s
+ymbol
+  import net.minecraft.world.entity.projectile.AbstractArrow;
+                                              ^
+    symbol:   class AbstractArrow
+    location: package net.minecraft.world.entity.projectile
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\trait\IThrowingTraitCallback.java:3: error: cannot find
+ symbol
+  import net.minecraft.world.entity.projectile.AbstractArrow;
+                                              ^
+    symbol:   class AbstractArrow
+    location: package net.minecraft.world.entity.projectile
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\trait\IActionTraitCallback.java:6: error: cannot find s
+ymbol
+  import net.minecraft.world.InteractionResultHolder;
+                            ^
+    symbol:   class InteractionResultHolder
+    location: package net.minecraft.world
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\trait\IActionTraitCallback.java:11: error: cannot find 
+symbol
+  import net.minecraft.world.item.UseAnim;
+                                 ^
+    symbol:   class UseAnim
+    location: package net.minecraft.world.item
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\trait\IActionTraitCallback.java:43: error: cannot find 
+symbol
+      InteractionResultHolder<ItemStack> use(ItemStack usingStackIn, Level leve
+lIn, Player playerIn, InteractionHand handIn);
+      ^
+    symbol:   class InteractionResultHolder
+    location: interface IActionTraitCallback
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\trait\IActionTraitCallback.java:86: error: cannot find 
+symbol
+      default UseAnim getUseAnimation(ItemStack stackIn) {
+              ^
+    symbol:   class UseAnim
+    location: interface IActionTraitCallback
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\trait\IThrowingTraitCallback.java:25: error: cannot fin
+d symbol
+      default void onThrowingProjectileSpawn(WeaponMaterial material, AbstractA
+rrow projectile) {
+                                                                      ^
+    symbol:   class AbstractArrow
+    location: interface IThrowingTraitCallback
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\trait\IRangedTraitCallback.java:43: error: cannot find 
+symbol
+      default void onProjectileSpawn(WeaponMaterial material, AbstractArrow pro
+jectile) {
+                                                              ^
+    symbol:   class AbstractArrow
+    location: interface IRangedTraitCallback
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\trait\HammerSlamWeaponTrait.java:9: error: cannot find 
+symbol
+  import net.minecraft.world.InteractionResultHolder;
+                            ^
+    symbol:   class InteractionResultHolder
+    location: package net.minecraft.world
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\trait\HammerSlamWeaponTrait.java:65: error: cannot find
+ symbol
+      public InteractionResultHolder<ItemStack> use(ItemStack usingStackIn, Lev
+el levelIn, Player playerIn,
+             ^
+    symbol:   class InteractionResultHolder
+    location: class HammerSlamWeaponTrait
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\trait\HarvesterWeaponTrait.java:8: error: cannot find s
+ymbol
+  import net.minecraft.world.InteractionResultHolder;
+                            ^
+    symbol:   class InteractionResultHolder
+    location: package net.minecraft.world
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\trait\HarvesterWeaponTrait.java:64: error: cannot find 
+symbol
+      public InteractionResultHolder<ItemStack> use(ItemStack usingStackIn, Lev
+el levelIn, Player playerIn,
+             ^
+    symbol:   class InteractionResultHolder
+    location: class HarvesterWeaponTrait
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\trait\MeleeBlockWeaponTrait.java:4: error: cannot find 
+symbol
+  import net.minecraft.world.InteractionResultHolder;
+                            ^
+    symbol:   class InteractionResultHolder
+    location: package net.minecraft.world
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\trait\MeleeBlockWeaponTrait.java:10: error: cannot find
+ symbol
+  import net.minecraft.world.item.UseAnim;
+                                 ^
+    symbol:   class UseAnim
+    location: package net.minecraft.world.item
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\trait\MeleeBlockWeaponTrait.java:30: error: cannot find
+ symbol
+      public InteractionResultHolder<ItemStack> use(ItemStack usingStackIn, Lev
+el levelIn, Player playerIn,
+             ^
+    symbol:   class InteractionResultHolder
+    location: class MeleeBlockWeaponTrait
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\trait\MeleeBlockWeaponTrait.java:39: error: cannot find
+ symbol
+      public UseAnim getUseAnimation(ItemStack stackIn) {
+             ^
+    symbol:   class UseAnim
+    location: class MeleeBlockWeaponTrait
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\trait\ThrowableMeleeWeaponTrait.java:8: error: cannot f
+ind symbol
+  import net.minecraft.world.InteractionResultHolder;
+                            ^
+    symbol:   class InteractionResultHolder
+    location: package net.minecraft.world
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\trait\ThrowableMeleeWeaponTrait.java:11: error: cannot 
+find symbol
+  import net.minecraft.world.entity.projectile.AbstractArrow;
+                                              ^
+    symbol:   class AbstractArrow
+    location: package net.minecraft.world.entity.projectile
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\trait\ThrowableMeleeWeaponTrait.java:13: error: cannot 
+find symbol
+  import net.minecraft.world.item.UseAnim;
+                                 ^
+    symbol:   class UseAnim
+    location: package net.minecraft.world.item
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\trait\ThrowableMeleeWeaponTrait.java:31: error: cannot 
+find symbol
+      public InteractionResultHolder<ItemStack> use(ItemStack usingStackIn, Lev
+el levelIn, Player playerIn, InteractionHand handIn) {
+             ^
+    symbol:   class InteractionResultHolder
+    location: class ThrowableMeleeWeaponTrait
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\trait\ThrowableMeleeWeaponTrait.java:37: error: cannot 
+find symbol
+      public UseAnim getUseAnimation(ItemStack stack) {
+             ^
+    symbol:   class UseAnim
+    location: class ThrowableMeleeWeaponTrait
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\item\QuiverBaseItem.java:13: error: cannot find symbol
+  import net.minecraft.world.InteractionResultHolder;
+                            ^
+    symbol:   class InteractionResultHolder
+    location: package net.minecraft.world
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\capability\CurioHandler.java:29: error: cannot find symbol
+      public boolean canSync(SlotContext slotContext) {
+                             ^
+    symbol:   class SlotContext
+    location: class CurioHandler
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\capability\CurioHandler.java:34: error: cannot find symbol
+      public void readSyncData(SlotContext slotContext, CompoundTag compound) {
+                               ^
+    symbol:   class SlotContext
+    location: class CurioHandler
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\capability\CurioHandler.java:54: error: cannot find symbol
+      public @NotNull CompoundTag writeSyncData(SlotContext slotContext) {
+                                                ^
+    symbol:   class SlotContext
+    location: class CurioHandler
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\item\QuiverBaseItem.java:86: error: cannot find symbol
+      public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level lev
+elIn, Player playerIn, @NotNull InteractionHand handIn) {
+                      ^
+    symbol:   class InteractionResultHolder
+    location: class QuiverBaseItem
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\capability\CuriosHelper.java:7: error: cannot find symbol
+  import net.neoforged.neoforge.client.event.RegisterClientReloadListenersEvent
+;
+                                            ^
+    symbol:   class RegisterClientReloadListenersEvent
+    location: package net.neoforged.neoforge.client.event
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\capability\CuriosHelper.java:25: error: cannot find symbol
+          public static void registerReloadListener(RegisterClientReloadListene
+rsEvent ev) {
+                                                    ^
+    symbol:   class RegisterClientReloadListenersEvent
+    location: class Client
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\capability\IOilHandler.java:8: error: cannot find symbol
+  import net.neoforged.neoforge.common.util.INBTSerializable;
+                                           ^
+    symbol:   class INBTSerializable
+    location: package net.neoforged.neoforge.common.util
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\ClientHelper.java:4: error: cannot find symbol
+  import net.minecraft.client.color.item.ItemColor;
+                                        ^
+    symbol:   class ItemColor
+    location: package net.minecraft.client.color.item
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\ClientHelper.java:5: error: cannot find symbol
+  import net.minecraft.client.gui.LayeredDraw;
+                                 ^
+    symbol:   class LayeredDraw
+    location: package net.minecraft.client.gui
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\ClientHelper.java:6: error: cannot find symbol
+  import net.minecraft.client.model.PiglinHeadModel;
+                                   ^
+    symbol:   class PiglinHeadModel
+    location: package net.minecraft.client.model
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\ClientHelper.java:7: error: cannot find symbol
+  import net.minecraft.client.model.SkullModel;
+                                   ^
+    symbol:   class SkullModel
+    location: package net.minecraft.client.model
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\ClientHelper.java:12: error: cannot find symbol
+  import net.minecraft.client.renderer.item.ItemProperties;
+                                           ^
+    symbol:   class ItemProperties
+    location: package net.minecraft.client.renderer.item
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\ClientHelper.java:77: error: cannot find symbol
+      public static final ItemColor COLOR_TIPPED_PROJECTILE = (stack, idx) -> i
+dx == 1 ? stack.getOrDefault(DataComponents.POTION_CONTENTS, PotionContents.EMP
+TY).getColor() : -1;
+                          ^
+    symbol:   class ItemColor
+    location: class ClientHelper
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\ClientHelper.java:78: error: cannot find symbol
+      public static final ItemColor COLOR_OIL = (stack, idx) ->
+                          ^
+    symbol:   class ItemColor
+    location: class ClientHelper
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\ClientHelper.java:87: error: cannot find symbol
+      public static void registerItemColoursHandler(RegisterColorHandlersEvent.
+Item ev) {
+                                                                              ^
+    symbol:   class Item
+    location: class RegisterColorHandlersEvent
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\item\SwordBaseItem.java:15: error: cannot find symbol
+  import net.minecraft.world.InteractionResultHolder;
+                            ^
+    symbol:   class InteractionResultHolder
+    location: package net.minecraft.world
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\item\HeavyCrossbowItem.java:18: error: cannot find symbol
+  import net.minecraft.world.InteractionResultHolder;
+                            ^
+    symbol:   class InteractionResultHolder
+    location: package net.minecraft.world
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\item\HeavyCrossbowItem.java:24: error: cannot find symbol
+  import net.minecraft.world.entity.projectile.AbstractArrow;
+                                              ^
+    symbol:   class AbstractArrow
+    location: package net.minecraft.world.entity.projectile
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\item\LongbowItem.java:20: error: cannot find symbol
+  import net.minecraft.world.entity.projectile.AbstractArrow;
+                                              ^
+    symbol:   class AbstractArrow
+    location: package net.minecraft.world.entity.projectile
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\item\ThrowingWeaponItem.java:15: error: cannot find symbol
+  import net.minecraft.world.InteractionResultHolder;
+                            ^
+    symbol:   class InteractionResultHolder
+    location: package net.minecraft.world
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\item\ThrowingWeaponItem.java:23: error: cannot find symbol
+  import net.minecraft.world.entity.projectile.AbstractArrow;
+                                              ^
+    symbol:   class AbstractArrow
+    location: package net.minecraft.world.entity.projectile
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\item\ThrowingWeaponItem.java:27: error: cannot find symbol
+  import net.minecraft.world.item.UseAnim;
+                                 ^
+    symbol:   class UseAnim
+    location: package net.minecraft.world.item
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\item\ThrowingWeaponItem.java:249: error: cannot find symbol
+      public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level lev
+elIn, Player player, @NotNull InteractionHand hand) {
+                      ^
+    symbol:   class InteractionResultHolder
+    location: class ThrowingWeaponItem
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\item\ThrowingWeaponItem.java:337: error: cannot find symbol
+      public @NotNull UseAnim getUseAnimation(@NotNull ItemStack stack) {
+                      ^
+    symbol:   class UseAnim
+    location: class ThrowingWeaponItem
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:23: error: cann
+ot find symbol
+  import net.minecraft.world.entity.projectile.AbstractArrow;
+                                              ^
+    symbol:   class AbstractArrow
+    location: package net.minecraft.world.entity.projectile
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\ICrosshairOverlay.java:4: error: cannot find sym
+bol
+  import net.minecraft.client.gui.GuiGraphics;
+                                 ^
+    symbol:   class GuiGraphics
+    location: package net.minecraft.client.gui
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\ICrosshairOverlay.java:8: error: cannot find sym
+bol
+      void render(GuiGraphics guiGraphics, DeltaTracker deltaTracker, ItemStack
+ stack);
+                  ^
+    symbol:   class GuiGraphics
+    location: interface ICrosshairOverlay
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\BoltEntity.java:26: error: cannot find sy
+mbol
+  import net.minecraft.world.entity.projectile.AbstractArrow;
+                                              ^
+    symbol:   class AbstractArrow
+    location: package net.minecraft.world.entity.projectile
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\item\HeavyCrossbowItem.java:284: error: cannot find symbol
+      public @NotNull UseAnim getUseAnimation(@NotNull ItemStack stack) {
+                      ^
+    symbol:   class UseAnim
+    location: class HeavyCrossbowItem
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\item\HeavyCrossbowItem.java:291: error: cannot find symbol
+      public @NotNull InteractionResultHolder<ItemStack> use(Level levelIn, Pla
+yer playerIn, @NotNull InteractionHand handIn) {
+                      ^
+    symbol:   class InteractionResultHolder
+    location: class HeavyCrossbowItem
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\item\SwordBaseItem.java:237: error: cannot find symbol
+      public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level lev
+elIn, Player player, @NotNull InteractionHand hand) {
+                      ^
+    symbol:   class InteractionResultHolder
+    location: class SwordBaseItem
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\item\SwordBaseItem.java:277: error: cannot find symbol
+      public @NotNull UseAnim getUseAnimation(@NotNull ItemStack stack) {
+                      ^
+    symbol:   class UseAnim
+    location: class SwordBaseItem
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\components\ToggleImageButton.java:4: error: cann
+ot find symbol
+  import net.minecraft.client.gui.GuiGraphics;
+                                 ^
+    symbol:   class GuiGraphics
+    location: package net.minecraft.client.gui
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\components\ToggleImageButton.java:39: error: can
+not find symbol
+      public void renderWidget(@NotNull GuiGraphics guiGraphics, int renderX, i
+nt renderY, float p_94285_) {
+                                        ^
+    symbol:   class GuiGraphics
+    location: class ToggleImageButton
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\container\QuiverBaseScreen.java:4: error: cannot
+ find symbol
+  import net.minecraft.client.gui.GuiGraphics;
+                                 ^
+    symbol:   class GuiGraphics
+    location: package net.minecraft.client.gui
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\inventory\QuiverBaseMenu.java:134: error: cannot find symbo
+l
+      public void clicked(int slot, int dragType, @NotNull ClickType clickType,
+ @NotNull Player player) {
+                                                           ^
+    symbol:   class ClickType
+    location: class QuiverBaseMenu
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\container\QuiverBaseScreen.java:104: error: cann
+ot find symbol
+      public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mous
+eY, float partialTicks) {
+                                  ^
+    symbol:   class GuiGraphics
+    location: class QuiverBaseScreen<T>
+    where T is a type-variable:
+      T extends QuiverBaseMenu declared in class QuiverBaseScreen
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\container\QuiverBaseScreen.java:120: error: cann
+ot find symbol
+      protected void renderBg(GuiGraphics guiGraphics, float partialTicks, int 
+mouseX, int mouseY) {
+                              ^
+    symbol:   class GuiGraphics
+    location: class QuiverBaseScreen<T>
+    where T is a type-variable:
+      T extends QuiverBaseMenu declared in class QuiverBaseScreen
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\container\QuiverBaseScreen.java:132: error: cann
+ot find symbol
+      protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mous
+eY) {
+                                  ^
+    symbol:   class GuiGraphics
+    location: class QuiverBaseScreen<T>
+    where T is a type-variable:
+      T extends QuiverBaseMenu declared in class QuiverBaseScreen
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\HudCrosshair.java:9: error: cannot find symbol
+  import net.minecraft.client.gui.GuiGraphics;
+                                 ^
+    symbol:   class GuiGraphics
+    location: package net.minecraft.client.gui
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\HudCrosshair.java:32: error: cannot find symbol
+      public static void render(GuiGraphics guiGraphics, DeltaTracker deltaTrac
+ker) {
+                                ^
+    symbol:   class GuiGraphics
+    location: class HudCrosshair
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\HudCrosshairHeavyCrossbow.java:8: error: cannot 
+find symbol
+  import net.minecraft.client.gui.GuiGraphics;
+                                 ^
+    symbol:   class GuiGraphics
+    location: package net.minecraft.client.gui
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\HudCrosshairHeavyCrossbow.java:19: error: cannot
+ find symbol
+      public static void render(GuiGraphics guiGraphics, DeltaTracker deltaTrac
+ker, ItemStack equippedStack) {
+                                ^
+    symbol:   class GuiGraphics
+    location: class HudCrosshairHeavyCrossbow
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\HudCrosshairThrowingWeapon.java:3: error: cannot
+ find symbol
+  import com.mojang.blaze3d.platform.GlStateManager;
+                                    ^
+    symbol:   class GlStateManager
+    location: package com.mojang.blaze3d.platform
+  Note: Recompile with -Xlint:unchecked for details.
+  Note: Some input files use or override a deprecated API.
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\data\recipe\ConditionalShapelessRecipeBuilder.java:138:
+ warning: [removal] parent(Identifier) in Builder has been deprecated and marke
+d for removal
+          advancement.parent(RecipeBuilder.ROOT_RECIPE_ADVANCEMENT)
+                     ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\capability\IQuiverItemHandler.java:5: warning: [removal] II
+temHandler in net.neoforged.neoforge.items has been deprecated and marked for r
+emoval
+  public interface IQuiverItemHandler extends IItemHandler {
+                                              ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\capability\QuiverItemStackHandler.java:12: warning: [remova
+l] ItemStackHandler in net.neoforged.neoforge.items has been deprecated and mar
+ked for removal
+  public class QuiverItemStackHandler extends ItemStackHandler implements IQuiv
+erItemHandler {
+                                              ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\container\QuiverBaseScreen.java:53: warning: [re
+moval] getSlots() in IItemHandler has been deprecated and marked for removal
+          this.ammoSlots = handler != null ? handler.getSlots() : Defaults.Slot
+sQuiverSmall;
+                                                    ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\inventory\QuiverBaseMenu.java:40: warning: [removal] getSlo
+ts() in IItemHandler has been deprecated and marked for removal
+          this.playerInvStart = this.handler.getSlots();
+                                            ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\inventory\QuiverBaseMenu.java:55: warning: [removal] getSlo
+ts() in IItemHandler has been deprecated and marked for removal
+          slotStartX = switch (this.handler.getSlots()) {
+                                           ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\inventory\QuiverBaseMenu.java:72: warning: [removal] getSlo
+ts() in IItemHandler has been deprecated and marked for removal
+          for (int i = 0; i < this.handler.getSlots(); i++) {
+                                          ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\inventory\QuiverBaseMenu.java:79: warning: [removal] getSlo
+ts() in IItemHandler has been deprecated and marked for removal
+          int yOffset = this.handler.getSlots() == Defaults.SlotsQuiverHuge ? 1
+8 : 0;
+                                    ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\inventory\QuiverBaseMenu.java:94: warning: [removal] getSlo
+ts() in IItemHandler has been deprecated and marked for removal
+          this.addSlot(new Slot(inventory, 40, -21, this.handler.getSlots() == 
+Defaults.SlotsQuiverHuge ? 127 : 109).setBackground(InventoryMenu.BLOCK_ATLAS, 
+InventoryMenu.EMPTY_ARMOR_SLOT_SHIELD));
+                                                                ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\inventory\QuiverBaseMenu.java:107: warning: [removal] getSl
+ots() in IItemHandler has been deprecated and marked for removal
+              if (slotIdx >= 0 && slotIdx < this.handler.getSlots()) {
+                                                        ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\data\recipe\TagCookingRecipeBuilder.java:99: warning: [remo
+val] parent(Identifier) in Builder has been deprecated and marked for removal
+          advancement.parent(ROOT_RECIPE_ADVANCEMENT)
+                     ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\event\CommonEventHandler.java:352: warning: [removal] inser
+tItem(int,ItemStack,boolean) in IItemHandler has been deprecated and marked for
+ removal
+              arrowStack = quiverHandler.insertItem(prioritySlot, arrowStack, f
+alse);
+                                        ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\event\CommonEventHandler.java:354: warning: [removal] getSl
+ots() in IItemHandler has been deprecated and marked for removal
+                  for (int j = 0; j < quiverHandler.getSlots(); j++) {
+                                                   ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\event\CommonEventHandler.java:358: warning: [removal] inser
+tItem(int,ItemStack,boolean) in IItemHandler has been deprecated and marked for
+ removal
+                      arrowStack = quiverHandler.insertItem(j, arrowStack, fals
+e);
+                                                ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\event\CommonEventHandler.java:379: warning: [removal] getSl
+ots() in IItemHandler has been deprecated and marked for removal
+              if (prioritySlot <= quiverHandler.getSlots()) {
+                                               ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\event\CommonEventHandler.java:380: warning: [removal] extra
+ctItem(int,int,boolean) in IItemHandler has been deprecated and marked for remo
+val
+                  arrowStack = quiverHandler.extractItem(prioritySlot, 64, fals
+e);
+                                            ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\event\CommonEventHandler.java:386: warning: [removal] getSl
+ots() in IItemHandler has been deprecated and marked for removal
+                  for (int j = 0; j < quiverHandler.getSlots(); j++) {
+                                                   ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\event\CommonEventHandler.java:390: warning: [removal] extra
+ctItem(int,int,boolean) in IItemHandler has been deprecated and marked for remo
+val
+                      arrowStack = quiverHandler.extractItem(j, 64, false);
+                                                ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\event\CommonEventHandler.java:420: warning: [removal] getSl
+ots() in IItemHandler has been deprecated and marked for removal
+                          for (int i = 0; i < quiverHandler.getSlots(); i++) {
+                                                           ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\event\CommonEventHandler.java:421: warning: [removal] inser
+tItem(int,ItemStack,boolean) in IItemHandler has been deprecated and marked for
+ removal
+                              pickedUpStack = quiverHandler.insertItem(i, picke
+dUpStack, false);
+                                                           ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\inventory\SlotFiltered.java:10: warning: [removal] SlotItem
+Handler in net.neoforged.neoforge.items has been deprecated and marked for remo
+val
+  public class SlotFiltered extends SlotItemHandler {
+                                    ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\inventory\SlotFiltered.java:13: warning: [removal] IItemHan
+dler in net.neoforged.neoforge.items has been deprecated and marked for removal
+      public SlotFiltered(IItemHandler handlerIn, int indexIn, int xPositionIn,
+ int yPositionIn, Predicate<ItemStack> filterIn) {
+                          ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\mixin\AbstractArrowMixin.java:63: warning: [removal] getSlo
+ts() in IItemHandler has been deprecated and marked for removal
+                                  for (int i = 0; i < quiverHandler.getSlots();
+ i++) {
+                                                                   ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\mixin\AbstractArrowMixin.java:64: warning: [removal] insert
+Item(int,ItemStack,boolean) in IItemHandler has been deprecated and marked for 
+removal
+                                      arrowStack = quiverHandler.insertItem(i, 
+arrowStack, false);
+                                                                ^
+  Note: Some messages have been simplified; recompile with -Xdiags:verbose to g
+et full output
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\data\model\OilCoatingItemModelBuilder.java:9: error: ca
+nnot find symbol
+  public class OilCoatingItemModelBuilder<T extends ModelBuilder<T>> extends Cu
+stomLoaderBuilder<T> {
+                                                                             ^
+    symbol: class CustomLoaderBuilder
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\data\model\OilCoatingItemModelBuilder.java:9: error: ca
+nnot find symbol
+  public class OilCoatingItemModelBuilder<T extends ModelBuilder<T>> extends Cu
+stomLoaderBuilder<T> {
+                                                    ^
+    symbol: class ModelBuilder
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\WeaponMaterial.java:35: error: cannot find symbol
+  public class WeaponMaterial implements Tier, IReloadable {
+                                         ^
+    symbol: class Tier
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\capability\CurioHandler.java:14: error: cannot find symbol
+  public class CurioHandler implements ICurio {
+                                       ^
+    symbol: class ICurio
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\capability\IOilHandler.java:13: error: cannot find symbol
+  public interface IOilHandler extends INBTSerializable<CompoundTag> {
+                                       ^
+    symbol: class INBTSerializable
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\item\SwordBaseItem.java:48: error: cannot find symbol
+  public class SwordBaseItem extends SwordItem implements IWeaponTraitContainer
+<SwordBaseItem>, IReloadable {
+                                     ^
+    symbol: class SwordItem
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\ThrowingWeaponEntity.java:50: error: cann
+ot find symbol
+  public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWit
+hComplexSpawn {
+                                            ^
+    symbol: class AbstractArrow
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\BoltEntity.java:46: error: cannot find sy
+mbol
+  public class BoltEntity extends AbstractArrow implements IEntityWithComplexSp
+awn {
+                                  ^
+    symbol: class AbstractArrow
+  Note: Some input files use unchecked or unsafe operations.
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\data\model\ModelGenerator.java:6: error: package net.ne
+oforged.neoforge.client.model.generators does not exist
+  import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
+                                                       ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\data\model\ModelGenerator.java:7: error: package net.ne
+oforged.neoforge.client.model.generators.ModelFile does not exist
+  import net.neoforged.neoforge.client.model.generators.ModelFile.ExistingModel
+File;
+                                                                 ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\data\model\OilCoatingItemModelBuilder.java:4: error: pa
+ckage net.neoforged.neoforge.client.model.generators does not exist
+  import net.neoforged.neoforge.client.model.generators.CustomLoaderBuilder;
+                                                       ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\data\model\OilCoatingItemModelBuilder.java:5: error: pa
+ckage net.neoforged.neoforge.client.model.generators does not exist
+  import net.neoforged.neoforge.client.model.generators.ModelBuilder;
+                                                       ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\capability\CurioHandler.java:11: error: package top.theillu
+sivec4.curios.api does not exist
+  import top.theillusivec4.curios.api.SlotContext;
+                                     ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\capability\CurioHandler.java:12: error: package top.theillu
+sivec4.curios.api.type.capability does not exist
+  import top.theillusivec4.curios.api.type.capability.ICurio;
+                                                     ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\capability\CuriosHelper.java:10: error: package top.theillu
+sivec4.curios.api does not exist
+  import top.theillusivec4.curios.api.CuriosCapability;
+                                     ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\ClientHelper.java:72: error: package LayeredDraw doe
+s not exist
+      public static final LayeredDraw.Layer LOAD_STATE = HudLoadState::render;
+                                     ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\ClientHelper.java:73: error: package LayeredDraw doe
+s not exist
+      public static final LayeredDraw.Layer QUIVER_AMMO = HudQuiverAmmo::render
+;
+                                     ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\ClientHelper.java:74: error: package LayeredDraw doe
+s not exist
+      public static final LayeredDraw.Layer OIL_USES = HudOilUses::render;
+                                     ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\ClientHelper.java:75: error: package LayeredDraw doe
+s not exist
+      public static final LayeredDraw.Layer NEW_CROSSHAIR = HudCrosshair::rende
+r;
+                                     ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\inventory\QuiverBaseMenu.java:14: error: package top.theill
+usivec4.curios.api does not exist
+  import top.theillusivec4.curios.api.CuriosApi;
+                                     ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\inventory\QuiverBaseMenu.java:15: error: package top.theill
+usivec4.curios.api does not exist
+  import top.theillusivec4.curios.api.SlotResult;
+                                     ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\HudCrosshairHeavyCrossbow.java:3: error: package
+ com.mojang.blaze3d.platform.GlStateManager does not exist
+  import com.mojang.blaze3d.platform.GlStateManager.DestFactor;
+                                                   ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\HudCrosshairHeavyCrossbow.java:4: error: package
+ com.mojang.blaze3d.platform.GlStateManager does not exist
+  import com.mojang.blaze3d.platform.GlStateManager.SourceFactor;
+                                                   ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\HudCrosshairThrowingWeapon.java:4: error: packag
+e com.mojang.blaze3d.platform.GlStateManager does not exist
+  import com.mojang.blaze3d.platform.GlStateManager.DestFactor;
+                                                   ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\HudCrosshairThrowingWeapon.java:5: error: packag
+e com.mojang.blaze3d.platform.GlStateManager does not exist
+  import com.mojang.blaze3d.platform.GlStateManager.SourceFactor;
+                                                   ^
+  100 errors
+  24 warnings
+
+* Try:
+> Check your code and dependencies to fix the compilation error(s)
+> Run with --scan to generate a Build Scan (Powered by Develocity).
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/9.1.0/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+3 actionable tasks: 1 executed, 2 up-to-date
+
+BUILD FAILED in 8s

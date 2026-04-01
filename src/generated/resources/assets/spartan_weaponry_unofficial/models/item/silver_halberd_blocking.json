@@ -1,6 +1,5 @@
 {
   "parent": "spartan_weaponry_unofficial:item/base/halberd_blocking",
-  "loader": "spartan_weaponry_unofficial:oil_coated_item",
   "textures": {
     "coating": "spartan_weaponry_unofficial:item/coating/halberd",
     "layer0": "spartan_weaponry_unofficial:item/silver_halberd"

@@ -19,8 +19,8 @@ import java.util.List;
 public class BoltDiamondTippedItem extends BoltDiamondItem {
     protected String baseName;
 
-    public BoltDiamondTippedItem(String baseName, float damageModifier, float rangeModifier, float armorPiercingFactor) {
-        super(damageModifier, rangeModifier, armorPiercingFactor);
+    public BoltDiamondTippedItem(Item.Properties properties, String baseName, float damageModifier, float rangeModifier, float armorPiercingFactor) {
+        super(properties, damageModifier, rangeModifier, armorPiercingFactor);
         this.baseName = baseName;
     }
 

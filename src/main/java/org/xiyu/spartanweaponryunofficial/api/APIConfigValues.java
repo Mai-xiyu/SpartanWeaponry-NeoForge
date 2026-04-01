@@ -17,4 +17,9 @@ public class APIConfigValues {
      * Maximum armor value that is allowed to provide the maximum damage bonus for armor-related Damage Bonus traits
      */
     public static float damageBonusMaxArmorValue = 0.0f;
+
+    /**
+     * Velocity required for the Riding Damage Bonus Weapon Trait to award the max bonus
+     */
+    public static float damageBonusRidingVelocityForMaxBonus = 0.25f;
 }

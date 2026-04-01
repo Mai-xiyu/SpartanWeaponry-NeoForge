@@ -1,6 +1,6 @@
 package org.xiyu.spartanweaponryunofficial.inventory;
 
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
@@ -11,8 +11,9 @@ import org.xiyu.spartanweaponryunofficial.capability.QuiverItemStackHandler;
 import org.xiyu.spartanweaponryunofficial.init.ModCapabilities;
 import org.xiyu.spartanweaponryunofficial.item.QuiverBaseItem;
 import org.xiyu.spartanweaponryunofficial.util.Defaults;
-import top.theillusivec4.curios.api.CuriosApi;
-import top.theillusivec4.curios.api.SlotResult;
+// TODO: Curios API not available for 26.1 yet
+// import top.theillusivec4.curios.api.CuriosApi;
+// import top.theillusivec4.curios.api.SlotResult;
 
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -22,12 +23,12 @@ public abstract class QuiverBaseMenu extends AbstractContainerMenu {
 
     protected final IQuiverItemHandler handler;
     protected final Predicate<ItemStack> slotFilter;
-    protected final ResourceLocation emptySlotTexture;
+    protected final Identifier emptySlotTexture;
 
     protected int playerInvStart, playerInvEnd, hotbarStart, hotbarEnd;
 
 
-    protected QuiverBaseMenu(MenuType<?> type, int id, Inventory inventory, ItemStack quiverStackIn, Predicate<ItemStack> slotFilterIn, ResourceLocation emptySlotTextureIn) {
+    protected QuiverBaseMenu(MenuType<?> type, int id, Inventory inventory, ItemStack quiverStackIn, Predicate<ItemStack> slotFilterIn, Identifier emptySlotTextureIn) {
         super(type, id);
         this.slotFilter = slotFilterIn;
         this.quiverStack = quiverStackIn;
@@ -70,7 +71,7 @@ public abstract class QuiverBaseMenu extends AbstractContainerMenu {
 
         // Quiver inventory
         for (int i = 0; i < this.handler.getSlots(); i++) {
-            this.addSlot(new SlotFiltered(this.handler, i, slotStartX + (18 * (i % columns)), slotStartY + (i / columns * 18), this.slotFilter).setBackground(InventoryMenu.BLOCK_ATLAS, this.emptySlotTexture));
+            this.addSlot(new SlotFiltered(this.handler, i, slotStartX + (18 * (i % columns)), slotStartY + (i / columns * 18), this.slotFilter, this.emptySlotTexture));
             // 52, 19
         }
     }
@@ -91,7 +92,12 @@ public abstract class QuiverBaseMenu extends AbstractContainerMenu {
         }
 
         // Offhand slot
-        this.addSlot(new Slot(inventory, 40, -21, this.handler.getSlots() == Defaults.SlotsQuiverHuge ? 127 : 109).setBackground(InventoryMenu.BLOCK_ATLAS, InventoryMenu.EMPTY_ARMOR_SLOT_SHIELD));
+        this.addSlot(new Slot(inventory, 40, -21, this.handler.getSlots() == Defaults.SlotsQuiverHuge ? 127 : 109) {
+            @Override
+            public Identifier getNoItemIcon() {
+                return InventoryMenu.EMPTY_ARMOR_SLOT_SHIELD;
+            }
+        });
     }
 
     @Override
@@ -131,7 +137,7 @@ public abstract class QuiverBaseMenu extends AbstractContainerMenu {
     }
 
     @Override
-    public void clicked(int slot, int dragType, @NotNull ClickType clickType, @NotNull Player player) {
+    public void clicked(int slot, int dragType, @NotNull ContainerInput clickType, @NotNull Player player) {
         if (slot >= 0) {
             this.getSlot(slot);
             if (ItemStack.isSameItemSameComponents(this.getSlot(slot).getItem(), this.quiverStack)) return;
@@ -150,11 +156,14 @@ public abstract class QuiverBaseMenu extends AbstractContainerMenu {
                 quiverStack = inventory.getItem(slot);
                 break;
             case CURIO:
+                // TODO: Curios API not available for 26.1 yet
+                /*
                 Optional<SlotResult> opt = CuriosApi.getCuriosInventory(inventory.player)
                         .flatMap(handler -> handler.findFirstCurio((stack) -> stack.getItem() instanceof QuiverBaseItem));
                 if (opt.isPresent()) {
                     quiverStack = opt.get().stack();
                 }
+                */
                 break;
             case MAIN_HAND:
                 quiverStack = inventory.player.getMainHandItem();

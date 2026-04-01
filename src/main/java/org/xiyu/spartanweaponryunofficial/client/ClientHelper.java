@@ -1,17 +1,16 @@
 package org.xiyu.spartanweaponryunofficial.client;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.color.item.ItemColor;
-import net.minecraft.client.gui.LayeredDraw;
-import net.minecraft.client.model.PiglinHeadModel;
-import net.minecraft.client.model.SkullModel;
-import net.minecraft.client.model.geom.EntityModelSet;
+import net.minecraft.client.model.object.skull.PiglinHeadModel;
+import net.minecraft.client.model.object.skull.SkullModel;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
+import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.blockentity.SkullBlockRenderer;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
-import net.minecraft.client.renderer.item.ItemProperties;
+// TODO: ItemProperties removed in 26.1 - item models are now data-driven
+// import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.level.Level;
@@ -21,6 +20,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
+import net.neoforged.neoforge.client.gui.GuiLayer;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 import org.xiyu.spartanweaponryunofficial.ModSpartanWeaponry;
@@ -30,6 +30,7 @@ import org.xiyu.spartanweaponryunofficial.api.WeaponTraits;
 import org.xiyu.spartanweaponryunofficial.api.oil.OilEffect;
 import org.xiyu.spartanweaponryunofficial.block.ExtendedSkullBlock;
 import org.xiyu.spartanweaponryunofficial.capability.CuriosHelper;
+import org.xiyu.spartanweaponryunofficial.client.color.OilTintSource;
 import org.xiyu.spartanweaponryunofficial.client.gui.HudCrosshair;
 import org.xiyu.spartanweaponryunofficial.client.gui.HudLoadState;
 import org.xiyu.spartanweaponryunofficial.client.gui.HudOilUses;
@@ -51,7 +52,7 @@ import org.xiyu.spartanweaponryunofficial.util.ItemStackDataHelper;
 import org.xiyu.spartanweaponryunofficial.util.Log;
 import org.xiyu.spartanweaponryunofficial.util.OilHelper;
 
-@EventBusSubscriber(modid = ModSpartanWeaponry.ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+@EventBusSubscriber(modid = ModSpartanWeaponry.ID, value = Dist.CLIENT)
 public class ClientHelper {
 
     // Holds the last opened config screen instance for Discord button injection
@@ -69,38 +70,21 @@ public class ClientHelper {
         });
     }
 
-    public static final LayeredDraw.Layer LOAD_STATE = HudLoadState::render;
-    public static final LayeredDraw.Layer QUIVER_AMMO = HudQuiverAmmo::render;
-    public static final LayeredDraw.Layer OIL_USES = HudOilUses::render;
-    public static final LayeredDraw.Layer NEW_CROSSHAIR = HudCrosshair::render;
-
-    public static final ItemColor COLOR_TIPPED_PROJECTILE = (stack, idx) -> idx == 1 ? stack.getOrDefault(DataComponents.POTION_CONTENTS, PotionContents.EMPTY).getColor() : -1;
-    public static final ItemColor COLOR_OIL = (stack, idx) ->
-    {
-        OilEffect oilEffect = OilHelper.getOilFromStack(stack);
-        // 确保颜色值包含完整的 alpha 通道 (0xFF000000 | color)
-        int color = oilEffect.getColor(stack);
-        return idx == 1 ? (0xFF000000 | color) : -1;
-    };
+    public static final GuiLayer LOAD_STATE = HudLoadState::render;
+    public static final GuiLayer QUIVER_AMMO = HudQuiverAmmo::render;
+    public static final GuiLayer OIL_USES = HudOilUses::render;
+    public static final GuiLayer NEW_CROSSHAIR = HudCrosshair::render;
 
     @SubscribeEvent
-    public static void registerItemColoursHandler(RegisterColorHandlersEvent.Item ev) {
-        ev.register(COLOR_TIPPED_PROJECTILE, ModItems.TIPPED_WOODEN_ARROW.get(),
-                ModItems.TIPPED_COPPER_ARROW.get(),
-                ModItems.TIPPED_IRON_ARROW.get(),
-                ModItems.TIPPED_DIAMOND_ARROW.get(),
-                ModItems.TIPPED_NETHERITE_ARROW.get(),
-                ModItems.TIPPED_BOLT.get(),
-                ModItems.TIPPED_COPPER_BOLT.get(),
-                ModItems.TIPPED_DIAMOND_BOLT.get(),
-                ModItems.TIPPED_NETHERITE_BOLT.get());
-        ev.register(COLOR_OIL, ModItems.WEAPON_OIL.get());
+    public static void registerItemTintSources(RegisterColorHandlersEvent.ItemTintSources ev) {
+        ev.register(Identifier.fromNamespaceAndPath(ModSpartanWeaponry.ID, "oil"), OilTintSource.MAP_CODEC);
     }
 
     public static void registerCurioRenders() {
         if (CuriosHelper.LOADED) CurioRenderer.register();
     }
 
+    /* TODO: ItemProperties removed in 26.1 - item models are now data-driven
     public static void registerMeleeWeaponPropertyOverrides(SwordBaseItem meleeWeapon) {
         ItemProperties.register(meleeWeapon, ModelOverrides.BLOCKING, (stack, world, living, value) ->
                 meleeWeapon.canPerformAction(stack, ModToolActions.MELEE_BLOCK) && living != null && living.isUsingItem() && living.getUseItem() == stack ? 1.0f : 0.0f);
@@ -116,7 +100,8 @@ public class ClientHelper {
     public static void registerHeavyCrossbowPropertyOverrides(HeavyCrossbowItem crossbow) {
         ItemProperties.register(crossbow, ModelOverrides.PULL, (stack, world, living, value) ->
         {
-            if (living != null /*&& stack.getItem() == crossbow*/)
+            if (living != null //&& stack.getItem() == crossbow
+            )
                 return crossbow.isLoaded(stack) ? 0.0f : (float) (crossbow.getLoadingTicks(stack, living)) / crossbow.getFullLoadTicks(stack, world);
             return 0.0f;
         });
@@ -151,6 +136,7 @@ public class ClientHelper {
         ItemProperties.register(quiver, ModelOverrides.ARROW, (stack, world, living, value) ->
                 quiver.getAmmoCount(stack));
     }
+    */
 	
 /*	public static void registerMeleeWeaponBlockingPropertyOverrides(Item meleeWeapon)
 	{
@@ -173,7 +159,7 @@ public class ClientHelper {
         Log.info("Registering Entity Renderers!");
         ev.registerEntityRenderer(ModEntities.ARROW_SW.get(), ArrowBaseRenderer::new);
         ev.registerEntityRenderer(ModEntities.ARROW_EXPLOSIVE.get(), (rendererProvider) ->
-                new SimpleArrowRenderer<>(rendererProvider, ResourceLocation.tryBuild(ModSpartanWeaponry.ID, "textures/entity/projectiles/explosive_arrow.png")));
+                new SimpleArrowRenderer<>(rendererProvider, Identifier.tryBuild(ModSpartanWeaponry.ID, "textures/entity/projectiles/explosive_arrow.png")));
         ev.registerEntityRenderer(ModEntities.BOLT.get(), BoltRenderer::new);
         ev.registerEntityRenderer(ModEntities.BOLT_SPECTRAL.get(), BoltRenderer::new);
         ev.registerEntityRenderer(ModEntities.THROWING_WEAPON.get(), ThrowingWeaponRenderer::new);
@@ -197,7 +183,7 @@ public class ClientHelper {
         ev.registerLayerDefinition(ModelLayers.MEDIUM_BOLT_QUIVER, MediumBoltQuiverModel::createLayer);
         ev.registerLayerDefinition(ModelLayers.LARGE_BOLT_QUIVER, LargeBoltQuiverModel::createLayer);
 
-        ev.registerLayerDefinition(ModelLayers.BLAZE_HEAD, SkullModel::createMobHeadLayer);
+        ev.registerLayerDefinition(ModelLayers.BLAZE_HEAD, ExtendedSkullHelper::createBlazeLayer);
         ev.registerLayerDefinition(ModelLayers.ENDERMAN_HEAD, EndermanHeadModel::createLayer);
         ev.registerLayerDefinition(ModelLayers.SPIDER_HEAD, ExtendedSkullHelper::createSpiderLayer);
         ev.registerLayerDefinition(ModelLayers.CAVE_SPIDER_HEAD, ExtendedSkullHelper::createSpiderLayer);
@@ -213,31 +199,22 @@ public class ClientHelper {
 
     @SubscribeEvent
     public static void registerSkullModels(EntityRenderersEvent.CreateSkullModels ev) {
-        EntityModelSet entityModelSet = ev.getEntityModelSet();
-        ev.registerSkullModel(ExtendedSkullBlock.Types.BLAZE, new SkullModel(entityModelSet.bakeLayer(ModelLayers.BLAZE_HEAD)));
-        ev.registerSkullModel(ExtendedSkullBlock.Types.ENDERMAN, new EndermanHeadModel(entityModelSet.bakeLayer(ModelLayers.ENDERMAN_HEAD)));
-        ev.registerSkullModel(ExtendedSkullBlock.Types.SPIDER, new SkullModel(entityModelSet.bakeLayer(ModelLayers.SPIDER_HEAD)));
-        ev.registerSkullModel(ExtendedSkullBlock.Types.CAVE_SPIDER, new SkullModel(entityModelSet.bakeLayer(ModelLayers.CAVE_SPIDER_HEAD)));
-        ev.registerSkullModel(ExtendedSkullBlock.Types.ZOMBIE_PIGLIN, new PiglinHeadModel(entityModelSet.bakeLayer(ModelLayers.ZOMBIFIED_PIGLIN_HEAD)));
-        ev.registerSkullModel(ExtendedSkullBlock.Types.HUSK, new SkullModel(entityModelSet.bakeLayer(ModelLayers.HUSK_HEAD)));
-        ev.registerSkullModel(ExtendedSkullBlock.Types.STRAY, new SkullModel(entityModelSet.bakeLayer(ModelLayers.STRAY_SKULL)));
-        ev.registerSkullModel(ExtendedSkullBlock.Types.DROWNED, new SkullModel(entityModelSet.bakeLayer(ModelLayers.DROWNED_HEAD)));
-        ev.registerSkullModel(ExtendedSkullBlock.Types.ILLAGER, new SkullModel(entityModelSet.bakeLayer(ModelLayers.ILLAGER_HEAD)));
-        ev.registerSkullModel(ExtendedSkullBlock.Types.WITCH, new SkullModel(entityModelSet.bakeLayer(ModelLayers.WITCH_HEAD)));
+        // In 26.1, registerSkullModel takes (Type, ModelLayerLocation, texture) for default SkullModel,
+        // or (Type, ModelLayerLocation, Function<ModelPart, SkullModelBase>, texture) for custom models.
+        // getEntityModelSet() and SkullBlockRenderer.SKIN_BY_TYPE are removed.
+        ev.registerSkullModel(ExtendedSkullBlock.Types.BLAZE, ModelLayers.BLAZE_HEAD, Identifier.tryBuild("minecraft", "textures/entity/blaze/blaze.png"));
+        ev.registerSkullModel(ExtendedSkullBlock.Types.ENDERMAN, ModelLayers.ENDERMAN_HEAD, EndermanHeadModel::new, Identifier.tryBuild(ModSpartanWeaponry.ID, "textures/entity/skull/enderman_head.png"));
+        ev.registerSkullModel(ExtendedSkullBlock.Types.SPIDER, ModelLayers.SPIDER_HEAD, Identifier.tryBuild("minecraft", "textures/entity/spider/spider.png"));
+        ev.registerSkullModel(ExtendedSkullBlock.Types.CAVE_SPIDER, ModelLayers.CAVE_SPIDER_HEAD, Identifier.tryBuild("minecraft", "textures/entity/spider/cave_spider.png"));
+        ev.registerSkullModel(ExtendedSkullBlock.Types.ZOMBIE_PIGLIN, ModelLayers.ZOMBIFIED_PIGLIN_HEAD, PiglinHeadModel::new, Identifier.tryBuild("minecraft", "textures/entity/piglin/zombified_piglin.png"));
+        ev.registerSkullModel(ExtendedSkullBlock.Types.HUSK, ModelLayers.HUSK_HEAD, Identifier.fromNamespaceAndPath("minecraft", "textures/entity/zombie/husk.png"));
+        ev.registerSkullModel(ExtendedSkullBlock.Types.STRAY, ModelLayers.STRAY_SKULL, Identifier.fromNamespaceAndPath(ModSpartanWeaponry.ID, "textures/entity/skull/stray_skull.png"));
+        ev.registerSkullModel(ExtendedSkullBlock.Types.DROWNED, ModelLayers.DROWNED_HEAD, Identifier.fromNamespaceAndPath(ModSpartanWeaponry.ID, "textures/entity/skull/drowned_head.png"));
+        ev.registerSkullModel(ExtendedSkullBlock.Types.ILLAGER, ModelLayers.ILLAGER_HEAD, IllagerHeadModel::new, Identifier.fromNamespaceAndPath("minecraft", "textures/entity/illager/pillager.png"));
+        ev.registerSkullModel(ExtendedSkullBlock.Types.WITCH, ModelLayers.WITCH_HEAD, WitchHeadModel::new, Identifier.fromNamespaceAndPath("minecraft", "textures/entity/witch/witch.png"));
     }
 
-    public static void registerSkullTextures() {
-        SkullBlockRenderer.SKIN_BY_TYPE.put(ExtendedSkullBlock.Types.BLAZE, ResourceLocation.tryBuild("minecraft", "textures/entity/blaze.png"));
-        SkullBlockRenderer.SKIN_BY_TYPE.put(ExtendedSkullBlock.Types.ENDERMAN, ResourceLocation.tryBuild(ModSpartanWeaponry.ID, "textures/entity/skull/enderman_head.png"));
-        SkullBlockRenderer.SKIN_BY_TYPE.put(ExtendedSkullBlock.Types.SPIDER, ResourceLocation.tryBuild("minecraft", "textures/entity/spider/spider.png"));
-        SkullBlockRenderer.SKIN_BY_TYPE.put(ExtendedSkullBlock.Types.CAVE_SPIDER, ResourceLocation.tryBuild("minecraft", "textures/entity/spider/cave_spider.png"));
-        SkullBlockRenderer.SKIN_BY_TYPE.put(ExtendedSkullBlock.Types.ZOMBIE_PIGLIN, ResourceLocation.tryBuild("minecraft", "textures/entity/piglin/zombified_piglin.png"));
-        SkullBlockRenderer.SKIN_BY_TYPE.put(ExtendedSkullBlock.Types.HUSK, ResourceLocation.fromNamespaceAndPath("minecraft", "textures/entity/zombie/husk.png"));
-        SkullBlockRenderer.SKIN_BY_TYPE.put(ExtendedSkullBlock.Types.STRAY, ResourceLocation.fromNamespaceAndPath(ModSpartanWeaponry.ID, "textures/entity/skull/stray_skull.png"));
-        SkullBlockRenderer.SKIN_BY_TYPE.put(ExtendedSkullBlock.Types.DROWNED, ResourceLocation.fromNamespaceAndPath(ModSpartanWeaponry.ID, "textures/entity/skull/drowned_head.png"));
-        SkullBlockRenderer.SKIN_BY_TYPE.put(ExtendedSkullBlock.Types.ILLAGER, ResourceLocation.fromNamespaceAndPath("minecraft", "textures/entity/illager/pillager.png"));
-        SkullBlockRenderer.SKIN_BY_TYPE.put(ExtendedSkullBlock.Types.WITCH, ResourceLocation.fromNamespaceAndPath("minecraft", "textures/entity/witch.png"));
-    }
+    // registerSkullTextures() removed - textures are now registered via registerSkullModel() in 26.1
 
     @SubscribeEvent
     public static void registerScreens(RegisterMenuScreensEvent ev) {
@@ -247,10 +224,10 @@ public class ClientHelper {
 
     @SubscribeEvent
     public static void registerHudOverlays(RegisterGuiLayersEvent ev) {
-        ev.registerAboveAll(ResourceLocation.fromNamespaceAndPath(ModSpartanWeaponry.ID, "load_state"), LOAD_STATE);
-        ev.registerAboveAll(ResourceLocation.fromNamespaceAndPath(ModSpartanWeaponry.ID, "quiver_ammo"), QUIVER_AMMO);
-        ev.registerAboveAll(ResourceLocation.fromNamespaceAndPath(ModSpartanWeaponry.ID, "oil_uses"), OIL_USES);
-        ev.registerAbove(VanillaGuiLayers.CROSSHAIR, ResourceLocation.fromNamespaceAndPath(ModSpartanWeaponry.ID, "crosshair"), NEW_CROSSHAIR);
+        ev.registerAboveAll(Identifier.fromNamespaceAndPath(ModSpartanWeaponry.ID, "load_state"), LOAD_STATE);
+        ev.registerAboveAll(Identifier.fromNamespaceAndPath(ModSpartanWeaponry.ID, "quiver_ammo"), QUIVER_AMMO);
+        ev.registerAboveAll(Identifier.fromNamespaceAndPath(ModSpartanWeaponry.ID, "oil_uses"), OIL_USES);
+        ev.registerAbove(VanillaGuiLayers.CROSSHAIR, Identifier.fromNamespaceAndPath(ModSpartanWeaponry.ID, "crosshair"), NEW_CROSSHAIR);
     }
 
     @SubscribeEvent

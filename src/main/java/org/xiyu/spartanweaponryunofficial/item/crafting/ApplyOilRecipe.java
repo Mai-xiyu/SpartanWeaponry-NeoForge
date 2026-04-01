@@ -1,9 +1,10 @@
 package org.xiyu.spartanweaponryunofficial.item.crafting;
 
-import net.minecraft.core.HolderLookup;
+import com.mojang.serialization.MapCodec;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.alchemy.Potion;
-import net.minecraft.world.item.crafting.CraftingBookCategory;
 import net.minecraft.world.item.crafting.CraftingInput;
 import net.minecraft.world.item.crafting.CustomRecipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -19,8 +20,12 @@ import org.xiyu.spartanweaponryunofficial.init.ModRecipeSerializers;
 import org.xiyu.spartanweaponryunofficial.util.OilHelper;
 
 public class ApplyOilRecipe extends CustomRecipe {
-    public ApplyOilRecipe(CraftingBookCategory craftingBookCategoryIn) {
-        super(craftingBookCategoryIn);
+
+    public static final MapCodec<ApplyOilRecipe> CODEC = MapCodec.unit(ApplyOilRecipe::new);
+    public static final StreamCodec<RegistryFriendlyByteBuf, ApplyOilRecipe> STREAM_CODEC = StreamCodec.unit(new ApplyOilRecipe());
+
+    public ApplyOilRecipe() {
+        super();
     }
 
     @Override
@@ -33,14 +38,14 @@ public class ApplyOilRecipe extends CustomRecipe {
                 ItemStack stack = containerIn.getItem(j * containerIn.width() + i);
                 // Oil found
                 if (stack.is(ModItems.WEAPON_OIL.get())) {
-                    // Aleady have an oil; not a valid recipe
+                    // Already have an oil; not a valid recipe
                     if (foundOil)
                         return false;
                     foundOil = true;
                 }
                 // Oilable weapon found
                 else if (stack.is(ModItemTags.OILABLE_WEAPONS)) {
-                    // Aleady have an oilable weapon; not a valid recipe
+                    // Already have an oilable weapon; not a valid recipe
                     if (foundWeapon)
                         return false;
                     foundWeapon = true;
@@ -54,7 +59,7 @@ public class ApplyOilRecipe extends CustomRecipe {
     }
 
     @Override
-    public @NotNull ItemStack assemble(CraftingInput containerIn, HolderLookup.@NotNull Provider registryAccessIn) {
+    public @NotNull ItemStack assemble(CraftingInput containerIn) {
         ItemStack oilStack = ItemStack.EMPTY,
                 weaponStack = ItemStack.EMPTY;
 
@@ -63,14 +68,14 @@ public class ApplyOilRecipe extends CustomRecipe {
                 ItemStack stack = containerIn.getItem(j * containerIn.width() + i);
                 // Oil found
                 if (stack.is(ModItems.WEAPON_OIL.get())) {
-                    // Aleady have an oil; not a valid recipe
+                    // Already have an oil; not a valid recipe
                     if (!oilStack.isEmpty())
                         return ItemStack.EMPTY;
                     oilStack = stack;
                 }
                 // Oilable weapon found
                 else if (stack.is(ModItemTags.OILABLE_WEAPONS)) {
-                    // Aleady have an oilable weapon; not a valid recipe
+                    // Already have an oilable weapon; not a valid recipe
                     if (!weaponStack.isEmpty())
                         return ItemStack.EMPTY;
                     weaponStack = stack;
@@ -97,14 +102,8 @@ public class ApplyOilRecipe extends CustomRecipe {
         return ItemStack.EMPTY;
     }
 
-    // Crafting need to have a minimum of 2 slots
     @Override
-    public boolean canCraftInDimensions(int width, int height) {
-        return width * height >= 1;
-    }
-
-    @Override
-    public @NotNull RecipeSerializer<?> getSerializer() {
+    public @NotNull RecipeSerializer<? extends CustomRecipe> getSerializer() {
         return ModRecipeSerializers.APPLY_OIL.get();
     }
 }

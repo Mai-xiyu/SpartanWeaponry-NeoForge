@@ -7,23 +7,26 @@ import net.minecraft.core.particles.ColorParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.protocol.game.ClientboundGameEventPacket;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.entity.projectile.arrow.AbstractArrow;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -81,11 +84,11 @@ public class BoltEntity extends AbstractArrow implements IEntityWithComplexSpawn
         this.getEntityData().set(DATA_BOLT, boltStack);
     }
     
-/*    @Override
+    @Override
     public void shootFromRotation(Entity shooter, float pitch, float yaw, float p_184547_4_, float velocity, float inaccuracy)
     {
     	super.shootFromRotation(shooter, pitch, yaw, p_184547_4_, (float)(velocity * rangeMultiplier), inaccuracy);
-    }*/
+    }
 
     @Override
     protected void defineSynchedData(SynchedEntityData.@NotNull Builder builder) {
@@ -99,13 +102,13 @@ public class BoltEntity extends AbstractArrow implements IEntityWithComplexSpawn
         super.tick();
 
         Level level = this.level();
-        if (level.isClientSide) {
-            if (this.inGround) {
+        if (level.isClientSide()) {
+            if (this.isInGround()) {
                 if (this.inGroundTime % 5 == 0)
                     this.spawnPotionParticles(1);
             } else
                 this.spawnPotionParticles(2);
-        } else if (this.inGround && this.inGroundTime != 0 && this.inGroundTime >= 600) {
+        } else if (this.isInGround() && this.inGroundTime != 0 && this.inGroundTime >= 600) {
             level.broadcastEntityEvent(this, (byte) 0);
             this.potion = null;
             this.getEntityData().set(DATA_COLOUR, -1);
@@ -118,7 +121,7 @@ public class BoltEntity extends AbstractArrow implements IEntityWithComplexSpawn
         RegistryAccess registryAccess = level.registryAccess();
         Entity entity = result.getEntity();
         float velocity = (float) this.getDeltaMovement().length();
-        int damage = Mth.ceil(Mth.clamp((double) velocity * this.getBaseDamage(), 0.0D, 2.147483647E9D));
+        int damage = Mth.ceil(Mth.clamp((double) velocity * this.baseDamage, 0.0D, 2.147483647E9D));
 
         if (this.isCritArrow()) {
             long critDamageBonus = this.random.nextInt(damage / 2 + 2);
@@ -140,15 +143,15 @@ public class BoltEntity extends AbstractArrow implements IEntityWithComplexSpawn
         if (this.isOnFire() && !isEnderman)
             entity.igniteForSeconds(5.0F);
 
-        if (entity.hurt(source, (float) damage)) {
+        if (entity.hurtOrSimulate(source, (float) damage)) {
             if (isEnderman)
                 return;
 
             if (entity instanceof LivingEntity livingentity) {
-                if (!level.isClientSide && this.getPierceLevel() <= 0)
+                if (!level.isClientSide() && this.getPierceLevel() <= 0)
                     livingentity.setArrowCount(livingentity.getArrowCount() + 1);
 
-                int knockback = EnchantmentHelper.getItemEnchantmentLevel(registryAccess.registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantments.KNOCKBACK), this.getPickupItem());
+                int knockback = EnchantmentHelper.getItemEnchantmentLevel(registryAccess.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.KNOCKBACK), this.getPickupItem());
                 if (knockback > 0) {
                     Vec3 vector3d = this.getDeltaMovement().multiply(1.0D, 0.0D, 1.0D).normalize().scale((double) knockback * 0.6D);
                     if (vector3d.lengthSqr() > 0.0D)
@@ -157,11 +160,11 @@ public class BoltEntity extends AbstractArrow implements IEntityWithComplexSpawn
 
                 this.doPostHurtEffects(livingentity);
                 if (livingentity != shooter && livingentity instanceof Player && shooter instanceof ServerPlayer && !this.isSilent())
-                    ((ServerPlayer) shooter).connection.send(new ClientboundGameEventPacket(ClientboundGameEventPacket.ARROW_HIT_PLAYER, 0.0F));
+                    ((ServerPlayer) shooter).connection.send(new ClientboundGameEventPacket(ClientboundGameEventPacket.PLAY_ARROW_HIT_SOUND, 0.0F));
 
 
-                if (!level.isClientSide && shooter instanceof ServerPlayer serverplayerentity && !entity.isAlive() && this.shotFromCrossbow())
-                    CriteriaTriggers.KILLED_BY_CROSSBOW.trigger(serverplayerentity, List.of(entity));
+                if (!level.isClientSide() && shooter instanceof ServerPlayer serverplayerentity && !entity.isAlive())
+                    CriteriaTriggers.KILLED_BY_ARROW.trigger(serverplayerentity, List.of(entity), this.getPickupItem());
             }
 
             this.playSound(this.getHitGroundSoundEvent(), 1.0F, 1.2F / (this.random.nextFloat() * 0.2F + 0.9F));
@@ -172,9 +175,9 @@ public class BoltEntity extends AbstractArrow implements IEntityWithComplexSpawn
             this.setDeltaMovement(this.getDeltaMovement().scale(-0.1D));
             this.setYRot(this.getYRot() + 180.0f);
             this.yRotO += 180.0F;
-            if (!level.isClientSide && this.getDeltaMovement().lengthSqr() < 1.0E-7D) {
-                if (this.pickup == AbstractArrow.Pickup.ALLOWED)
-                    this.spawnAtLocation(this.getPickupItem(), 0.1F);
+            if (!level.isClientSide() && this.getDeltaMovement().lengthSqr() < 1.0E-7D) {
+                if (this.pickup == AbstractArrow.Pickup.ALLOWED && this.level() instanceof ServerLevel serverLevel)
+                    this.spawnAtLocation(serverLevel, this.getPickupItem(), 0.1F);
 
                 this.discard();
             }
@@ -198,9 +201,9 @@ public class BoltEntity extends AbstractArrow implements IEntityWithComplexSpawn
         if (level.isThundering() && arrowItem == ModItems.COPPER_BOLT.get() || arrowItem == ModItems.TIPPED_COPPER_BOLT.get()) {
             // Roll a chance to spawn lightning under the right circumstances
             if (this.random.nextInt(4) < 1) {// ~25%
-                LightningBolt lightning = EntityType.LIGHTNING_BOLT.create(level);
+                LightningBolt lightning = EntityType.LIGHTNING_BOLT.create(level, EntitySpawnReason.EVENT);
                 assert lightning != null;
-                lightning.moveTo(Vec3.atBottomCenterOf(living.blockPosition()));
+                lightning.setPos(Vec3.atBottomCenterOf(living.blockPosition()));
                 lightning.setCause(living instanceof ServerPlayer ? (ServerPlayer) living : null);
                 level.addFreshEntity(lightning);
             }
@@ -227,21 +230,20 @@ public class BoltEntity extends AbstractArrow implements IEntityWithComplexSpawn
     }
 
     @Override
-    public void readAdditionalSaveData(@NotNull CompoundTag compound) {
-        super.readAdditionalSaveData(compound);
+    public void readAdditionalSaveData(@NotNull ValueInput input) {
+        super.readAdditionalSaveData(input);
 
-        if (compound.contains(this.NBT_BOLT)) {
-            CompoundTag boltNbt = compound.getCompound(this.NBT_BOLT);
-            ItemStack boltStack = ItemStack.parseOptional(this.level().registryAccess(), boltNbt);
+        input.read(this.NBT_BOLT, ItemStack.CODEC).ifPresent(boltStack -> {
             if (!boltStack.isEmpty()) {
                 this.getEntityData().set(DATA_BOLT, boltStack);
             }
-        }
+        });
 
-        if (compound.contains(this.NBT_POTION, 8))
-            this.potion = BuiltInRegistries.POTION.get(ResourceLocation.parse(compound.getString(this.NBT_POTION)));
+        input.getString(this.NBT_POTION).ifPresent(potionStr ->
+            this.potion = BuiltInRegistries.POTION.getValue(Identifier.parse(potionStr))
+        );
 
-        this.getEntityData().set(DATA_COLOUR, compound.contains(this.NBT_POTION_COLOUR) ? compound.getInt(this.NBT_POTION_COLOUR) : -1);
+        this.getEntityData().set(DATA_COLOUR, input.getIntOr(this.NBT_POTION_COLOUR, -1));
     }
 
     @Override
@@ -252,28 +254,28 @@ public class BoltEntity extends AbstractArrow implements IEntityWithComplexSpawn
     }
 
     @Override
-    public void addAdditionalSaveData(@NotNull CompoundTag compound) {
+    public void addAdditionalSaveData(@NotNull ValueOutput output) {
         // Guard: AbstractArrow.addAdditionalSaveData calls getPickupItem().save() which crashes on empty ItemStack.
         ItemStack boltData = this.getEntityData().get(DATA_BOLT);
         boolean wasEmpty = boltData.isEmpty();
         if (wasEmpty) {
             this.getEntityData().set(DATA_BOLT, Items.ARROW.getDefaultInstance());
         }
-        super.addAdditionalSaveData(compound);
+        super.addAdditionalSaveData(output);
         if (wasEmpty) {
             this.getEntityData().set(DATA_BOLT, ItemStack.EMPTY);
         }
 
         ItemStack boltStack = this.getPickupItem();
         if (!boltStack.isEmpty()) {
-            compound.put(this.NBT_BOLT, boltStack.save(this.level().registryAccess()));
+            output.store(this.NBT_BOLT, ItemStack.CODEC, boltStack);
         }
 
         if (this.potion != null) {
-            compound.putString(this.NBT_POTION, BuiltInRegistries.POTION.getKey(this.potion).toString());
+            output.putString(this.NBT_POTION, BuiltInRegistries.POTION.getKey(this.potion).toString());
         }
 
-        compound.putInt(this.NBT_POTION_COLOUR, this.getEntityData().get(DATA_COLOUR));
+        output.putInt(this.NBT_POTION_COLOUR, this.getEntityData().get(DATA_COLOUR));
     }
 
     public float getRangeMultiplier() {
@@ -304,10 +306,10 @@ public class BoltEntity extends AbstractArrow implements IEntityWithComplexSpawn
         return !this.getPickupItem().isEmpty();
     }
 
-    public ResourceLocation getTexture() {
+    public Identifier getTexture() {
         ItemStack boltStack = this.getPickupItem();
         if (boltStack.isEmpty())
-            return ResourceLocation.fromNamespaceAndPath(ModSpartanWeaponry.ID, "missing_stack");
+            return Identifier.fromNamespaceAndPath(ModSpartanWeaponry.ID, "missing_stack");
 
         String boltRegName = BuiltInRegistries.ITEM.getKey(boltStack.getItem()).getPath();
 
@@ -316,6 +318,6 @@ public class BoltEntity extends AbstractArrow implements IEntityWithComplexSpawn
         if (idx != -1) {
             boltRegName = boltRegName.substring(idx + prefix.length());
         }
-        return ResourceLocation.fromNamespaceAndPath(ModSpartanWeaponry.ID, "textures/entity/projectiles/" + boltRegName + ".png");
+        return Identifier.fromNamespaceAndPath(ModSpartanWeaponry.ID, "textures/entity/projectiles/" + boltRegName + ".png");
     }
 }

@@ -1,18 +1,14 @@
 package org.xiyu.spartanweaponryunofficial.data.recipe;
 
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.recipes.RecipeOutput;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
-import org.xiyu.spartanweaponryunofficial.item.crafting.TippedProjectileBaseRecipe;
 
+/**
+ * Temporary compatibility shim for 26.1 recipe API migration.
+ * TODO: restore full tipped projectile recipe generation.
+ */
 public class TippedProjectileRecipeBuilder {
-    private final Item result;
-    private Item input;
-
     private TippedProjectileRecipeBuilder(ItemLike resultIn) {
-        this.result = resultIn.asItem();
     }
 
     public static TippedProjectileRecipeBuilder tipped(ItemLike resultIn) {
@@ -20,15 +16,10 @@ public class TippedProjectileRecipeBuilder {
     }
 
     public TippedProjectileRecipeBuilder input(ItemLike inputIn) {
-        if (this.input != null)
-            throw new IllegalStateException("Recipe Input already defined as '" + BuiltInRegistries.ITEM.getKey(this.input) + "', but is attempted being overwritten to '" + BuiltInRegistries.ITEM.getKey(inputIn.asItem()) + "'");
-        this.input = inputIn.asItem();
         return this;
     }
 
     public void save(RecipeOutput output) {
-        ResourceLocation id = BuiltInRegistries.ITEM.getKey(this.result);
-        TippedProjectileBaseRecipe recipe = new TippedProjectileBaseRecipe(this.input, this.result);
-        output.accept(id, recipe, null);
+        // Intentionally no-op until full datagen migration is restored.
     }
 }

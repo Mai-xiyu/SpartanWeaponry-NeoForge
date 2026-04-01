@@ -5,18 +5,21 @@ import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.AdvancementRequirements;
 import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.Criterion;
-import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
-import net.minecraft.core.NonNullList;
+import net.minecraft.advancements.criterion.RecipeUnlockedTrigger;
+import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.CraftingBookCategory;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.ShapelessRecipe;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.conditions.ICondition;
@@ -66,11 +69,11 @@ public class ConditionalShapelessRecipeBuilder {
     }
 
     public ConditionalShapelessRecipeBuilder requires(TagKey<Item> tagIn) {
-        return this.requires(Ingredient.of(tagIn));
+        return this.requires(Ingredient.of(HolderSet.emptyNamed(BuiltInRegistries.ITEM, tagIn)));
     }
 
     public ConditionalShapelessRecipeBuilder requires(TagKey<Item> tagIn, int countIn) {
-        return this.requires(Ingredient.of(tagIn), countIn);
+        return this.requires(Ingredient.of(HolderSet.emptyNamed(BuiltInRegistries.ITEM, tagIn)), countIn);
     }
 
     public ConditionalShapelessRecipeBuilder requires(ItemLike itemIn) {
@@ -112,38 +115,41 @@ public class ConditionalShapelessRecipeBuilder {
     }
 
     public void save(RecipeOutput output, String save) {
-        ResourceLocation resultLoc = BuiltInRegistries.ITEM.getKey(this.result.getItem());
-        ResourceLocation saveLoc = ResourceLocation.parse(save);
+        Identifier resultLoc = BuiltInRegistries.ITEM.getKey(this.result.getItem());
+        Identifier saveLoc = Identifier.parse(save);
         if (saveLoc.equals(resultLoc))
             throw new IllegalStateException("Shapeless recipe " + save + " save argument is redundant as it's the same as the item id!");
         else
             this.save(output, saveLoc);
     }
 
-    public void save(RecipeOutput output, ResourceLocation id) {
+    public void save(RecipeOutput output, Identifier id) {
         this.validate(id);
         RecipeOutput conditionedOutput = output;
         if (!this.conditions.isEmpty() && output instanceof IRecipeOutputExtension ext)
             conditionedOutput = ext.withConditions(this.conditions.toArray(ICondition[]::new));
 
-        CraftingBookCategory bookCategory = RecipeBuilder.determineBookCategory(this.category);
-        ItemStack outputStack = this.result.copy();
-        outputStack.setCount(this.count);
-        NonNullList<Ingredient> ingredientList = NonNullList.copyOf(this.ingredients);
-        ShapelessRecipe recipe = new ShapelessRecipe(this.group == null ? "" : this.group, bookCategory, outputStack, ingredientList);
+        ResourceKey<Recipe<?>> recipeKey = ResourceKey.create(Registries.RECIPE, id);
+        ItemStackTemplate outputTemplate = new ItemStackTemplate(this.result.getItem(), this.count);
+        ShapelessRecipe recipe = new ShapelessRecipe(
+                RecipeBuilder.createCraftingCommonInfo(true),
+                RecipeBuilder.createCraftingBookInfo(this.category, this.group == null ? "" : this.group),
+                outputTemplate,
+                this.ingredients
+        );
 
-        ResourceLocation advancementId = id.withPrefix("recipes/" + this.category.getFolderName() + "/");
+        Identifier advancementId = id.withPrefix("recipes/" + this.category.getFolderName() + "/");
         var advancement = output.advancement();
         this.criteria.forEach(advancement::addCriterion);
         advancement.parent(RecipeBuilder.ROOT_RECIPE_ADVANCEMENT)
-                .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(id))
-                .rewards(AdvancementRewards.Builder.recipe(id))
+                .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(recipeKey))
+                .rewards(AdvancementRewards.Builder.recipe(recipeKey))
                 .requirements(AdvancementRequirements.Strategy.OR);
         AdvancementHolder advancementHolder = advancement.build(advancementId);
-        conditionedOutput.accept(id, recipe, advancementHolder);
+        conditionedOutput.accept(recipeKey, recipe, advancementHolder);
     }
 
-    private void validate(ResourceLocation id) {
+    private void validate(Identifier id) {
         if (this.criteria.isEmpty())
             throw new IllegalStateException("Impossible to obtain recipe " + id + "!");
     }

@@ -14,16 +14,22 @@ public class BoomerangRenderer extends ThrowingWeaponRenderer<BoomerangEntity> {
     }
 
     @Override
-    protected void doRenderTransformations(BoomerangEntity entity, float partialTicks, PoseStack matrixStack) {
-        float rotationInAir = entity.getTicksInAir() != 0 && (!entity.isUnderWater()) ? (entity.getTicksInAir() + partialTicks) * 40.0f % 360.0f : 0.0f;
-        if (entity.getTicksInAir() != 0)
-            entity.setNoGravity(true);
+    public void extractRenderState(BoomerangEntity entity, SWThrowingWeaponRenderState state, float partialTick) {
+        super.extractRenderState(entity, state, partialTick);
+        state.ticksInAir = entity.getTicksInAir();
+        state.isUnderWater = entity.isUnderWater();
+        state.partialTick = partialTick;
+    }
 
-        float partTicks = rotationInAir == 0.0f ? 0.0f : partialTicks;
+    @Override
+    protected void doRenderTransformations(SWThrowingWeaponRenderState state, PoseStack matrixStack) {
+        float rotationInAir = state.ticksInAir != 0 && !state.isUnderWater ? (state.ticksInAir + state.partialTick) * 40.0f % 360.0f : 0.0f;
+
+        float partTicks = rotationInAir == 0.0f ? 0.0f : state.partialTick;
 
         matrixStack.scale(2.0f, 2.0f, 2.0f);
-        matrixStack.mulPose(Axis.YP.rotationDegrees(Mth.lerp(partTicks, entity.yRotO, entity.getYRot()) - 90.0f));
-        matrixStack.mulPose(Axis.ZP.rotationDegrees(Mth.lerp(partTicks, entity.xRotO, entity.getXRot()) - 135.0f));
+        matrixStack.mulPose(Axis.YP.rotationDegrees(Mth.lerp(partTicks, state.yRotO, state.yRot) - 90.0f));
+        matrixStack.mulPose(Axis.ZP.rotationDegrees(Mth.lerp(partTicks, state.xRotO, state.xRot) - 135.0f));
         Vector3f rotation = new Vector3f(1.0f, 1.0f, 0.0f);
         rotation.normalize();
         matrixStack.mulPose(new Quaternionf().setAngleAxis(Mth.PI, rotation.x, rotation.y, rotation.z));            // NOTE: PI = 180 degrees

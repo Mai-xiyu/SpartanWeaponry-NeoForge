@@ -9,8 +9,6 @@ import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -18,7 +16,6 @@ import org.jetbrains.annotations.NotNull;
  * Created using Tabula 8.0.0; Also edited manually by ObliviousSpartan
  * To allow arrows to be rendered if there is sufficient arrows in the quiver
  */
-@OnlyIn(Dist.CLIENT)
 public class SmallBoltQuiverModel extends QuiverModelBase {
 /* public ModelRenderer quiver;
     public ModelRenderer strap_front;
@@ -113,12 +110,6 @@ public class SmallBoltQuiverModel extends QuiverModelBase {
         this.arrow_3_2.setRotationPoint(0.0F, 5.0F, 0.0F);
         this.arrow_3_2.addBox(1.5F, -8.0F, 3.0F, 3.0F, 5.0F, 0.0F, 0.0F, 0.0F, 0.0F);
         this.setRotateAngle(arrow_3_2, 0.0F, -0.7853981633974483F, -0.5235987755982988F);*/
-    }
-
-    @Override
-    public void renderToBuffer(@NotNull PoseStack mStack, @NotNull VertexConsumer buffer, int packedLight, int packedOverlay,
-                               int color) {
-        ImmutableList.of(this.quiver, this.strapFront, this.strapTop, this.strapBack, this.strapBottom).forEach((part) -> part.render(mStack, buffer, packedLight, packedOverlay, color));
     }
 
     @Override

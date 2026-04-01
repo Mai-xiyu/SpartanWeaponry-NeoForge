@@ -1,12 +1,16 @@
 package org.xiyu.spartanweaponryunofficial.entity.projectile;
 
+import com.mojang.serialization.DataResult;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtOps;
+import net.minecraft.nbt.Tag;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.protocol.game.ClientboundGameEventPacket;
+import net.minecraft.resources.RegistryOps;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -20,7 +24,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.entity.projectile.arrow.AbstractArrow;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -28,6 +32,8 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult.Type;
@@ -56,6 +62,7 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
     protected boolean isReturning = false;
     protected boolean playedReturnSound = false;
     protected int despawnTicks = 0;
+    protected double cachedBaseDamage = 2.0;
 
     public ThrowingWeaponEntity(EntityType<? extends ThrowingWeaponEntity> type, Level level) {
         super(type, level);
@@ -109,22 +116,22 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
                     // Return to thrower - ensure we're in the returning state
                     if (!this.isReturning) {
                         this.setNoPhysics(true);
-                        this.inGround = false;
+                        this.setInGround(false);
                         this.isReturning = true;
                         this.setNoGravity(true);
                     }
 
                     // Keep forcing these states while returning to prevent position conflicts
                     if (this.isReturning) {
-                        if (this.inGround)
-                            this.inGround = false;
+                        if (this.isInGround())
+                            this.setInGround(false);
                         if (!this.isNoPhysics())
                             this.setNoPhysics(true);
                     }
 
                     Vec3 distance = thrower.getEyePosition().subtract(this.position());
                     this.setPosRaw(this.getX(), this.getY() + distance.y * 0.015 * (double) returnLevel, this.getZ());
-                    if (level.isClientSide) {
+                    if (level.isClientSide()) {
                         this.yOld = this.getY();
                     }
 
@@ -150,10 +157,10 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
         super.tick();
 
         // Post-tick: ensure returning state is maintained (fix for position snap-back issues)
-        if (this.isReturning && this.inGround)
-            this.inGround = false;
+        if (this.isReturning && this.isInGround())
+            this.setInGround(false);
 
-        if (!this.inGround)
+        if (!this.isInGround())
             ++this.ticksInAir;
         else if (this.ticksInAir != 0)
             this.ticksInAir = 0;
@@ -181,7 +188,7 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
         Entity shooter = this.getOwner();    //func_234616_v_();
 
         ItemStack weapon = this.getWeaponItem();
-        float damage = Mth.ceil(this.getBaseDamage());
+        float damage = Mth.ceil(this.cachedBaseDamage);
         DamageSource src;
 
         if (this.isCritArrow()) {
@@ -234,14 +241,14 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
             entity.igniteForSeconds(5.0F);
         }
 
-        if (entity.hurt(src, damage)) {
+        if (entity.hurtOrSimulate(src, damage)) {
             if (level instanceof ServerLevel serverLevel && shooter instanceof LivingEntity)
                 weapon.hurtAndBreak(1, serverLevel, (LivingEntity) shooter, item -> {
                 });
 
             if (entity instanceof LivingEntity entitylivingbase) {
 
-                int knockback = EnchantmentHelper.getItemEnchantmentLevel(registryAccess.registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantments.KNOCKBACK), weapon);
+                int knockback = EnchantmentHelper.getItemEnchantmentLevel(registryAccess.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.KNOCKBACK), weapon);
                 if (knockback > 0) {
                     Vec3 knockVec = this.getDeltaMovement().multiply(1.0D, 0.0D, 1.0D).normalize().scale((double) knockback * 0.6D);
 
@@ -252,7 +259,7 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
                 this.doPostHurtEffects(entitylivingbase);
 
                 if (entitylivingbase != shooter && entitylivingbase instanceof Player && shooter instanceof ServerPlayer) {
-                    ((ServerPlayer) shooter).connection.send(new ClientboundGameEventPacket(ClientboundGameEventPacket.ARROW_HIT_PLAYER, 0.0F));
+                    ((ServerPlayer) shooter).connection.send(new ClientboundGameEventPacket(ClientboundGameEventPacket.PLAY_ARROW_HIT_SOUND, 0.0F));
                 }
             }
 
@@ -269,7 +276,7 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
             this.yRotO += 180.0F;
             this.ticksInAir = 0;
 
-            if (!level.isClientSide && this.getDeltaMovement().lengthSqr() < 1.0e-7d) {
+            if (!level.isClientSide() && this.getDeltaMovement().lengthSqr() < 1.0e-7d) {
                 if (this.getEntityData().get(DATA_RETURN) > 0 && !this.isNoPhysics())
                     this.setNoPhysics(true);
                 else if (this.pickup == Pickup.ALLOWED) {
@@ -284,9 +291,9 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
     protected void onHitBlock(BlockHitResult hitResult) {
         Level level = this.level();
         if (hitResult.getType() == Type.BLOCK) {
-            if (!level.isClientSide) {
+            if (!level.isClientSide()) {
                 BlockState state = level.getBlockState(hitResult.getBlockPos());
-                ((ServerLevel) level).sendParticles(new BlockParticleOption(ParticleTypes.BLOCK, state).setPos(hitResult.getBlockPos()), this.getX(), this.getY(), this.getZ(), 5, 0.1d, 0.1d, 0.1d, 0.05d);
+                ((ServerLevel) level).sendParticles(new BlockParticleOption(ParticleTypes.BLOCK, state), this.getX(), this.getY(), this.getZ(), 5, 0.1d, 0.1d, 0.1d, 0.05d);
             }
 
             // Weapon retains enchantments - duplication is prevented by the AmmoUsed merge system
@@ -304,12 +311,14 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
                 ItemStackDataHelper.updateTag(stack, t -> t.putInt(ThrowingWeaponItem.NBT_AMMO_USED, 0));
             }
         }
-        this.spawnAtLocation(stack, 0.1F);
+        if (this.level() instanceof ServerLevel serverLevel) {
+            this.spawnAtLocation(serverLevel, stack, 0.1F);
+        }
     }
 
     @Override
     public void playerTouch(@NotNull Player entityIn) {
-        if (this.inGround || this.isReturning)
+        if (this.isInGround() || this.isReturning)
             this.attemptCatch(entityIn);
     }
 
@@ -327,18 +336,14 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
     }
 
     @Override
-    public void readAdditionalSaveData(@NotNull CompoundTag compound) {
-        super.readAdditionalSaveData(compound);
-        if (compound.contains(NBT_WEAPON)) {
-            CompoundTag weaponTag = compound.getCompound(NBT_WEAPON);
-            ItemStack weapon = ItemStack.parse(this.level().registryAccess(), weaponTag).orElse(ItemStack.EMPTY);
+    public void readAdditionalSaveData(@NotNull ValueInput input) {
+        super.readAdditionalSaveData(input);
+        input.read(NBT_WEAPON, ItemStack.CODEC).ifPresent(weapon -> {
             if (!weapon.isEmpty()) {
                 this.getEntityData().set(DATA_WEAPON, weapon);
             }
-        }
-        if (compound.contains("ReturnLevel")) {
-            this.getEntityData().set(DATA_RETURN, compound.getByte("ReturnLevel"));
-        }
+        });
+        this.getEntityData().set(DATA_RETURN, input.getByteOr("ReturnLevel", (byte)0));
     }
 
     @Override
@@ -357,25 +362,23 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
     }
 
     @Override
-    public void addAdditionalSaveData(@NotNull CompoundTag compound) {
+    public void addAdditionalSaveData(@NotNull ValueOutput output) {
         // Guard: AbstractArrow.addAdditionalSaveData calls getPickupItem().save() which crashes on empty ItemStack.
         ItemStack weaponData = this.getEntityData().get(DATA_WEAPON);
         boolean wasEmpty = weaponData.isEmpty();
         if (wasEmpty) {
             this.getEntityData().set(DATA_WEAPON, Items.ARROW.getDefaultInstance());
         }
-        super.addAdditionalSaveData(compound);
+        super.addAdditionalSaveData(output);
         if (wasEmpty) {
             this.getEntityData().set(DATA_WEAPON, ItemStack.EMPTY);
         }
 
         ItemStack weapon = this.getWeaponItem();
         if (!weapon.isEmpty()) {
-            CompoundTag weaponTag = new CompoundTag();
-            weapon.save(this.level().registryAccess(), weaponTag);
-            compound.put(NBT_WEAPON, weaponTag);
+            output.store(NBT_WEAPON, ItemStack.CODEC, weapon);
         }
-        compound.putByte("ReturnLevel", this.getEntityData().get(DATA_RETURN));
+        output.putByte("ReturnLevel", this.getEntityData().get(DATA_RETURN));
     }
 
     // New Methods
@@ -392,12 +395,12 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
         // Store original weapon data for ammo system
         if (!ItemStackDataHelper.getTag(stack).contains(ThrowingWeaponItem.NBT_ORIGINAL)) {
             // Save the original weapon state before modifying ammo counter
-            CompoundTag original = new CompoundTag();
-            stack.save(this.level().registryAccess(), original);
-            ItemStackDataHelper.updateTag(stack, tag -> tag.put(ThrowingWeaponItem.NBT_ORIGINAL, original));
+            RegistryOps<Tag> ops = this.level().registryAccess().createSerializationContext(NbtOps.INSTANCE);
+            Tag originalTag = ItemStack.CODEC.encodeStart(ops, stack).getOrThrow();
+            ItemStackDataHelper.updateTag(stack, tag -> tag.put(ThrowingWeaponItem.NBT_ORIGINAL, originalTag));
         }
         this.getEntityData().set(DATA_WEAPON, stack);
-        int loyalty = EnchantmentHelper.getItemEnchantmentLevel(this.level().registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantments.LOYALTY), stack);
+        int loyalty = EnchantmentHelper.getItemEnchantmentLevel(this.level().registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.LOYALTY), stack);
         this.getEntityData().set(DATA_RETURN, (byte) loyalty);
     }
 
@@ -409,9 +412,19 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
         return this.ticksInAir;
     }
 
+    @Override
+    public void setBaseDamage(double damage) {
+        super.setBaseDamage(damage);
+        this.cachedBaseDamage = damage;
+    }
+
+    public double getBaseDamage() {
+        return this.cachedBaseDamage;
+    }
+
     protected boolean attemptCatch(Player player) {
         Level level = this.level();
-        if (!level.isClientSide && this.shakeTime <= 0) {
+        if (!level.isClientSide() && this.shakeTime <= 0) {
             boolean canBePickedUp = this.pickup == AbstractArrow.Pickup.ALLOWED || this.pickup == AbstractArrow.Pickup.CREATIVE_ONLY && player.getAbilities().instabuild;
 
             if (this.pickup == AbstractArrow.Pickup.ALLOWED) {
@@ -424,10 +437,10 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
                     ItemStack invStack = player.getInventory().getItem(i);
                     if (!invStack.isEmpty() && ItemStack.isSameItem(invStack, pickUpStack)) {
                         // Found matching weapon, decrease its ammo counter
-                        int currentAmmo = ItemStackDataHelper.getTag(invStack).getInt(ThrowingWeaponItem.NBT_AMMO_USED);
+                        int currentAmmo = ItemStackDataHelper.getTag(invStack).getIntOr(ThrowingWeaponItem.NBT_AMMO_USED, 0);
                         if (currentAmmo > 0) {
                             invStack.setDamageValue(invStack.getDamageValue() + pickUpStack.getDamageValue());
-                            ItemStackDataHelper.updateTag(invStack, tag -> tag.putInt(ThrowingWeaponItem.NBT_AMMO_USED, Math.max(0, tag.getInt(ThrowingWeaponItem.NBT_AMMO_USED) - 1)));
+                            ItemStackDataHelper.updateTag(invStack, tag -> tag.putInt(ThrowingWeaponItem.NBT_AMMO_USED, Math.max(0, tag.getIntOr(ThrowingWeaponItem.NBT_AMMO_USED, 0) - 1)));
                             merged = true;
                             break;
                         }

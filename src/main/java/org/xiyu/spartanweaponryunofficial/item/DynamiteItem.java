@@ -6,18 +6,21 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 import org.xiyu.spartanweaponryunofficial.ModSpartanWeaponry;
 import org.xiyu.spartanweaponryunofficial.entity.projectile.DynamiteEntity;
 import org.xiyu.spartanweaponryunofficial.util.Config;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class DynamiteItem extends Item {
     public DynamiteItem(Properties properties) {
@@ -25,33 +28,39 @@ public class DynamiteItem extends Item {
     }
 
     @Override
-    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level levelIn, Player playerIn, @NotNull InteractionHand handIn) {
+    public @NotNull InteractionResult use(@NotNull Level levelIn, Player playerIn, @NotNull InteractionHand handIn) {
         ItemStack itemstack = playerIn.getItemInHand(handIn);
 
         if (!playerIn.getAbilities().instabuild) {
             itemstack.shrink(1);
         }
 
-        levelIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), SoundEvents.SNOWBALL_THROW, SoundSource.NEUTRAL, 0.5F, 0.4F / (levelIn.random.nextFloat() * 0.4F + 0.8F));
+        levelIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), SoundEvents.SNOWBALL_THROW, SoundSource.NEUTRAL, 0.5F, 0.4F / (levelIn.getRandom().nextFloat() * 0.4F + 0.8F));
         levelIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), SoundEvents.TNT_PRIMED, SoundSource.NEUTRAL, 1.0F, 1.0F);
 
-        if (!levelIn.isClientSide) {
+        if (!levelIn.isClientSide()) {
             DynamiteEntity entityDyanmite = new DynamiteEntity(playerIn, levelIn);
             entityDyanmite.shootFromRotation(playerIn, playerIn.xRotO, playerIn.yRotO, 0.0F, 0.75F, 1.0F);
             levelIn.addFreshEntity(entityDyanmite);
         }
 
         playerIn.awardStat(Stats.ITEM_USED.get(this));
-        return InteractionResultHolder.success(itemstack);
+        return InteractionResult.SUCCESS;
     }
 
     @Override
+    public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext tooltipContext, @NotNull TooltipDisplay tooltipDisplay,
+                                @NotNull Consumer<Component> tooltipAdder, @NotNull TooltipFlag flagIn) {
+        List<Component> tooltip = new ArrayList<>();
+        this.appendHoverText(stack, tooltipContext, tooltip, flagIn);
+        tooltip.forEach(tooltipAdder);
+    }
+
     public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext tooltipContext, List<Component> tooltip, @NotNull TooltipFlag flagIn) {
         tooltip.add(Component.translatable("tooltip." + ModSpartanWeaponry.ID + ".dynamite.desc", (float) Config.INSTANCE.fuseTicksDynamite.get() / 20.0f).withStyle(ChatFormatting.GRAY));
         if (Config.INSTANCE.disableTerrainDamage.get())
             tooltip.add(Component.translatable("tooltip." + ModSpartanWeaponry.ID + ".dynamite.no_terrain_damage").withStyle(ChatFormatting.GRAY));
         else
             tooltip.add(Component.translatable("tooltip." + ModSpartanWeaponry.ID + ".dynamite.terrain_damage").withStyle(ChatFormatting.GRAY));
-        super.appendHoverText(stack, tooltipContext, tooltip, flagIn);
     }
 }

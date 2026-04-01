@@ -1,12 +1,16 @@
 package org.xiyu.spartanweaponryunofficial.client.renderer.entity;
 
-import net.minecraft.client.model.SkullModel;
+import net.minecraft.client.model.object.skull.SkullModel;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 
 public class ExtendedSkullHelper {
     private static final String PART_HEAD = "head";
     private static final String PART_HAT = "hat";
+
+    public static LayerDefinition createBlazeLayer() {
+        return LayerDefinition.create(SkullModel.createHeadModel(), 64, 32);
+    }
 
     public static LayerDefinition createSpiderLayer() {
         MeshDefinition meshDef = createOffsetHeadLayer(32, 4);

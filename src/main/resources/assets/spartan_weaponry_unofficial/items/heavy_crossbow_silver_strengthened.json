@@ -1,0 +1,34 @@
+﻿{
+  "model": {
+    "type": "minecraft:condition",
+    "property": "minecraft:using_item",
+    "on_true": {
+      "type": "minecraft:range_dispatch",
+      "property": "minecraft:crossbow/pull",
+      "fallback": {
+        "type": "minecraft:model",
+        "model": "spartan_weaponry_unofficial:item/heavy_crossbow_silver_strengthened_pulling_0"
+      },
+      "entries": [
+        {
+          "threshold": 0.58,
+          "model": {
+            "type": "minecraft:model",
+            "model": "spartan_weaponry_unofficial:item/heavy_crossbow_silver_strengthened_pulling_1"
+          }
+        },
+        {
+          "threshold": 1.0,
+          "model": {
+            "type": "minecraft:model",
+            "model": "spartan_weaponry_unofficial:item/heavy_crossbow_silver_strengthened_pulling_2"
+          }
+        }
+      ]
+    },
+    "on_false": {
+      "type": "minecraft:model",
+      "model": "spartan_weaponry_unofficial:item/heavy_crossbow_silver_strengthened"
+    }
+  }
+}

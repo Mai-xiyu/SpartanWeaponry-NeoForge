@@ -1,6 +1,6 @@
 package org.xiyu.spartanweaponryunofficial.api.tags;
 
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import org.xiyu.spartanweaponryunofficial.api.SpartanWeaponryAPI;
 import org.xiyu.spartanweaponryunofficial.api.WeaponTraits;
@@ -56,19 +56,19 @@ public class ModWeaponTraitTags {
     public static final TagKey<WeaponTrait> LEAD = create("materials/lead");
     public static final TagKey<WeaponTrait> NICKEL = create("materials/nickel");
     public static final TagKey<WeaponTrait> INVAR = create("materials/invar");
-    public static final TagKey<WeaponTrait> CONSTANTAN = create("materials/invar");
+    public static final TagKey<WeaponTrait> CONSTANTAN = create("materials/constantan");
     public static final TagKey<WeaponTrait> PLATINUM = create("materials/platinum");
     public static final TagKey<WeaponTrait> ALUMINUM = create("materials/aluminum");
 
-    public static TagKey<WeaponTrait> create(ResourceLocation loc) {
+    public static TagKey<WeaponTrait> create(Identifier loc) {
         return WeaponTraits.REGISTRY.createTagKey(loc);
     }
 
     public static TagKey<WeaponTrait> create(String namespace, String path) {
-        return create(ResourceLocation.tryBuild(namespace, path));
+        return create(Identifier.tryBuild(namespace, path));
     }
 
     public static TagKey<WeaponTrait> create(String path) {
-        return create(ResourceLocation.tryBuild(SpartanWeaponryAPI.MOD_ID, path));
+        return create(Identifier.tryBuild(SpartanWeaponryAPI.MOD_ID, path));
     }
 }

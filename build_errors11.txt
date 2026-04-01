@@ -1,0 +1,1140 @@
+﻿.\gradlew.bat : Picked up JAVA_TOOL_OPTIONS: -Duser.language=en -Duser.country=US
+所在位置 行:1 字符: 118
++ ... anguage=en -Duser.country=US"; .\gradlew.bat compileJava 2>&1 | Out-F ...
++                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Picked up JAVA_...user.country=US:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by net.rubygrapefruit.platform.internal.NativeLibraryLoader in an unnamed module (file:/C:/Users/25463/.gradle/wrapper/dists/gradle-9.1.0-bin/9agqghryom9wkf8r80qlhnts3/gradl
+e-9.1.0/lib/native-platform-0.22-milestone-28.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.1.0/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :generateModMetadata UP-TO-DATE
+> Task :createMinecraftArtifacts UP-TO-DATE
+
+> Task :compileJava
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\api\data\recipe\ConditionalShapelessRecipeBuilder.java:144: warning: [removal] parent(Identifier) in Builder has been deprec
+ated and marked for removal
+        advancement.parent(RecipeBuilder.ROOT_RECIPE_ADVANCEMENT)
+                   ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\capability\IQuiverItemHandler.java:5: warning: [removal] IItemHandler in net.neoforged.neoforge.items has been deprecated an
+d marked for removal
+public interface IQuiverItemHandler extends IItemHandler {
+                                            ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\capability\QuiverItemStackHandler.java:15: warning: [removal] ItemStackHandler in net.neoforged.neoforge.items has been depr
+ecated and marked for removal
+public class QuiverItemStackHandler extends ItemStackHandler implements IQuiverItemHandler {
+                                            ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\client\gui\container\QuiverBaseScreen.java:50: warning: [removal] getSlots() in IItemHandler has been deprecated and marked 
+for removal
+        this.ammoSlots = handler != null ? handler.getSlots() : Defaults.SlotsQuiverSmall;
+                                                  ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\inventory\QuiverBaseMenu.java:41: warning: [removal] getSlots() in IItemHandler has been deprecated and marked for removal
+        this.playerInvStart = this.handler.getSlots();
+                                          ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\inventory\QuiverBaseMenu.java:56: warning: [removal] getSlots() in IItemHandler has been deprecated and marked for removal
+        slotStartX = switch (this.handler.getSlots()) {
+                                         ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\inventory\QuiverBaseMenu.java:73: warning: [removal] getSlots() in IItemHandler has been deprecated and marked for removal
+        for (int i = 0; i < this.handler.getSlots(); i++) {
+                                        ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\inventory\QuiverBaseMenu.java:80: warning: [removal] getSlots() in IItemHandler has been deprecated and marked for removal
+        int yOffset = this.handler.getSlots() == Defaults.SlotsQuiverHuge ? 18 : 0;
+                                  ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\inventory\QuiverBaseMenu.java:95: warning: [removal] getSlots() in IItemHandler has been deprecated and marked for removal
+        this.addSlot(new Slot(inventory, 40, -21, this.handler.getSlots() == Defaults.SlotsQuiverHuge ? 127 : 109) {
+                                                              ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\inventory\QuiverBaseMenu.java:113: warning: [removal] getSlots() in IItemHandler has been deprecated and marked for removal
+            if (slotIdx >= 0 && slotIdx < this.handler.getSlots()) {
+                                                      ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\client\particle\DamageModifiedParticle.java:11: error: DamageModifiedParticle is not abstract and does not override abstract
+ method getLayer() in SingleQuadParticle
+public class DamageModifiedParticle extends SingleQuadParticle {
+       ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModAdvancementProvider.java:80: error: incompatible types: TagKey<Item> cannot be converted to HolderGetter<Item>
+                    null, AdvancementType.TASK, true, true, false).addCriterion("has_battleaxe", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(ModItemTags.BATTLEAXES).build())).save(saver
+, ModSpartanWeaponry.ID + ":battleaxe");
+                                                                                                                                                                                            ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModAdvancementProvider.java:82: error: incompatible types: TagKey<Item> cannot be converted to HolderGetter<Item>
+                    null, AdvancementType.TASK, true, true, false).addCriterion("has_flanged_mace", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(ModItemTags.FLANGED_MACES).build())).save
+(saver, ModSpartanWeaponry.ID + ":flanged_mace");
+                                                                                                                                                                                               ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModAdvancementProvider.java:84: error: incompatible types: TagKey<Item> cannot be converted to HolderGetter<Item>
+                    null, AdvancementType.TASK, true, true, false).addCriterion("has_glaive", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(ModItemTags.GLAIVES).build())).save(saver, ModS
+partanWeaponry.ID + ":glaive");
+                                                                                                                                                                                         ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModAdvancementProvider.java:86: error: incompatible types: TagKey<Item> cannot be converted to HolderGetter<Item>
+                    null, AdvancementType.TASK, true, true, false).addCriterion("has_quarterstaff", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(ModItemTags.QUARTERSTAVES).build())).save
+(saver, ModSpartanWeaponry.ID + ":quarterstaff");
+                                                                                                                                                                                               ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModAdvancementProvider.java:88: error: incompatible types: TagKey<Item> cannot be converted to HolderGetter<Item>
+                    null, AdvancementType.TASK, true, true, false).addCriterion("has_scythe", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(ModItemTags.SCYTHES).build())).save(saver, ModS
+partanWeaponry.ID + ":scythe");
+                                                                                                                                                                                         ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModAdvancementProvider.java:91: error: incompatible types: TagKey<Item> cannot be converted to HolderGetter<Item>
+                    null, AdvancementType.TASK, true, true, false).addCriterion("has_quiver", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(ModItemTags.SMALL_QUIVERS).build())).save(saver
+, ModSpartanWeaponry.ID + ":small_quiver");
+                                                                                                                                                                                         ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModAdvancementProvider.java:93: error: incompatible types: TagKey<Item> cannot be converted to HolderGetter<Item>
+                    null, AdvancementType.TASK, true, true, false).addCriterion("has_upgraded_quiver", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(ModItemTags.UPGRADED_QUIVERS).build())
+).save(saver, ModSpartanWeaponry.ID + ":upgrade_quiver");
+                                                                                                                                                                                                  ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModAdvancementProvider.java:95: error: incompatible types: TagKey<Item> cannot be converted to HolderGetter<Item>
+                    null, AdvancementType.GOAL, true, true, false).addCriterion("has_max_upgraded_quiver", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(ModItemTags.UPGRADED_QUIVERS_MAX).
+build())).save(saver, ModSpartanWeaponry.ID + ":upgrade_quiver_max");
+                                                                                                                                                                                                      ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModAdvancementProvider.java:98: error: incompatible types: TagKey<Item> cannot be converted to HolderGetter<Item>
+                    null, AdvancementType.GOAL, true, true, false).addCriterion("has_netherite_weapon", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(ModItemTags.NETHERITE_WEAPONS).build(
+))).save(saver, ModSpartanWeaponry.ID + ":upgrade_netherite_weapon");
+                                                                                                                                                                                                   ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModItemTagsProvider.java:274: error: cannot find symbol
+        this.copy(ModBlockTags.GRASS, ModItemTags.GRASS);
+            ^
+  symbol: method copy(TagKey<Block>,TagKey<Item>)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:46: error: ModRecipeProvider is not abstract and does not override abstract method buildRecipes(
+) in RecipeProvider
+public class ModRecipeProvider extends RecipeProvider {
+       ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:48: error: incompatible types: PackOutput cannot be converted to Provider
+        super(output, lookupProvider);
+              ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:51: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:102: error: no suitable method found for shapeless(RecipeCategory,Item)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.COMBAT, ModItems.SIMPLE_HANDLE.get()).requires(stick).requires(ModItemTags.GRASS).unlockedBy("has_stick", hasItem(stick)).save(recipeFunc);
+                              ^
+    method ShapelessRecipeBuilder.shapeless(HolderGetter<Item>,RecipeCategory,ItemStackTemplate) is not applicable
+      (actual and formal argument lists differ in length)
+    method ShapelessRecipeBuilder.shapeless(HolderGetter<Item>,RecipeCategory,ItemLike) is not applicable
+      (actual and formal argument lists differ in length)
+    method ShapelessRecipeBuilder.shapeless(HolderGetter<Item>,RecipeCategory,ItemLike,int) is not applicable
+      (actual and formal argument lists differ in length)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:103: error: no suitable method found for shapeless(RecipeCategory,Item)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.COMBAT, ModItems.HANDLE.get()).requires(stick).requires(string).group("spartan_weaponry_unofficial:handle").unlockedBy("has_string", hasItem(string)).save(recipeFunc
+, ModSpartanWeaponry.ID + ":handle_from_string");
+                              ^
+    method ShapelessRecipeBuilder.shapeless(HolderGetter<Item>,RecipeCategory,ItemStackTemplate) is not applicable
+      (actual and formal argument lists differ in length)
+    method ShapelessRecipeBuilder.shapeless(HolderGetter<Item>,RecipeCategory,ItemLike) is not applicable
+      (actual and formal argument lists differ in length)
+    method ShapelessRecipeBuilder.shapeless(HolderGetter<Item>,RecipeCategory,ItemLike,int) is not applicable
+      (actual and formal argument lists differ in length)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:104: error: no suitable method found for shapeless(RecipeCategory,Item,int)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.COMBAT, ModItems.HANDLE.get(), 4).requires(stick).requires(stick).requires(stick).requires(stick).requires(ItemTags.WOOL).group("spartan_weaponry_unofficial:handle")
+.unlockedBy("has_stick", hasItem(stick)).save(recipeFunc, ModSpartanWeaponry.ID + ":handle_from_wool");
+                              ^
+    method ShapelessRecipeBuilder.shapeless(HolderGetter<Item>,RecipeCategory,ItemStackTemplate) is not applicable
+      (argument mismatch; RecipeCategory cannot be converted to HolderGetter<Item>)
+    method ShapelessRecipeBuilder.shapeless(HolderGetter<Item>,RecipeCategory,ItemLike) is not applicable
+      (argument mismatch; RecipeCategory cannot be converted to HolderGetter<Item>)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:105: error: no suitable method found for shapeless(RecipeCategory,Item,int)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.COMBAT, ModItems.HANDLE.get(), 4).requires(stick).requires(stick).requires(stick).requires(stick).requires(leather).group("spartan_weaponry_unofficial:handle").unloc
+kedBy("has_stick", hasItem(stick)).save(recipeFunc, ModSpartanWeaponry.ID + ":handle_from_leather");
+                              ^
+    method ShapelessRecipeBuilder.shapeless(HolderGetter<Item>,RecipeCategory,ItemStackTemplate) is not applicable
+      (argument mismatch; RecipeCategory cannot be converted to HolderGetter<Item>)
+    method ShapelessRecipeBuilder.shapeless(HolderGetter<Item>,RecipeCategory,ItemLike) is not applicable
+      (argument mismatch; RecipeCategory cannot be converted to HolderGetter<Item>)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:107: error: no suitable method found for shaped(RecipeCategory,Item)
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.SIMPLE_POLE.get()).define('#', ModItems.SIMPLE_HANDLE.get()).define('/', stick).pattern("/").pattern("#").pattern("/").unlockedBy("has_handle", hasItem(Mo
+dItems.SIMPLE_HANDLE.get())).save(recipeFunc);
+                           ^
+    method ShapedRecipeBuilder.shaped(HolderGetter<Item>,RecipeCategory,ItemLike) is not applicable
+      (actual and formal argument lists differ in length)
+    method ShapedRecipeBuilder.shaped(HolderGetter<Item>,RecipeCategory,ItemLike,int) is not applicable
+      (actual and formal argument lists differ in length)
+    method ShapedRecipeBuilder.shaped(HolderGetter<Item>,RecipeCategory,ItemStackTemplate) is not applicable
+      (actual and formal argument lists differ in length)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:108: error: no suitable method found for shaped(RecipeCategory,Item)
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.POLE.get()).define('|', stick).define('#', string).pattern("| ").pattern("|#").pattern("| ").group("spartan_weaponry_unofficial:pole").unlockedBy("has_sti
+ck", hasItem(stick)).save(recipeFunc, ModSpartanWeaponry.ID + ":pole_from_string");
+                           ^
+    method ShapedRecipeBuilder.shaped(HolderGetter<Item>,RecipeCategory,ItemLike) is not applicable
+      (actual and formal argument lists differ in length)
+    method ShapedRecipeBuilder.shaped(HolderGetter<Item>,RecipeCategory,ItemLike,int) is not applicable
+      (actual and formal argument lists differ in length)
+    method ShapedRecipeBuilder.shaped(HolderGetter<Item>,RecipeCategory,ItemStackTemplate) is not applicable
+      (actual and formal argument lists differ in length)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:109: error: no suitable method found for shaped(RecipeCategory,Item,int)
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.POLE.get(), 4).define('|', stick).define('#', ItemTags.WOOL).pattern("|||").pattern("|||").pattern("||#").group("spartan_weaponry_unofficial:pole").unlock
+edBy("has_stick", hasItem(stick)).save(recipeFunc, ModSpartanWeaponry.ID + ":pole_from_wool");
+                           ^
+    method ShapedRecipeBuilder.shaped(HolderGetter<Item>,RecipeCategory,ItemLike) is not applicable
+      (argument mismatch; RecipeCategory cannot be converted to HolderGetter<Item>)
+    method ShapedRecipeBuilder.shaped(HolderGetter<Item>,RecipeCategory,ItemStackTemplate) is not applicable
+      (argument mismatch; RecipeCategory cannot be converted to HolderGetter<Item>)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:110: error: no suitable method found for shaped(RecipeCategory,Item,int)
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.POLE.get(), 4).define('|', stick).define('#', leather).pattern("|||").pattern("|||").pattern("||#").group("spartan_weaponry_unofficial:pole").unlockedBy("
+has_stick", hasItem(stick)).save(recipeFunc, ModSpartanWeaponry.ID + ":pole_from_leather");
+                           ^
+    method ShapedRecipeBuilder.shaped(HolderGetter<Item>,RecipeCategory,ItemLike) is not applicable
+      (argument mismatch; RecipeCategory cannot be converted to HolderGetter<Item>)
+    method ShapedRecipeBuilder.shaped(HolderGetter<Item>,RecipeCategory,ItemStackTemplate) is not applicable
+      (argument mismatch; RecipeCategory cannot be converted to HolderGetter<Item>)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:319: error: no suitable method found for shapeless(RecipeCategory,Item,int)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.BLAZE_POWDER, 4).requires(Ingredient.of(ModItems.BLAZE_HEAD.get())).unlockedBy("has_blaze_head", hasItem(ModItems.BLAZE_HEAD.get())).save(recipeFunc, Mod
+SpartanWeaponry.ID + ":" + BuiltInRegistries.ITEM.getKey(Items.BLAZE_POWDER).getPath() + "_from_blaze_head");
+                              ^
+    method ShapelessRecipeBuilder.shapeless(HolderGetter<Item>,RecipeCategory,ItemStackTemplate) is not applicable
+      (argument mismatch; RecipeCategory cannot be converted to HolderGetter<Item>)
+    method ShapelessRecipeBuilder.shapeless(HolderGetter<Item>,RecipeCategory,ItemLike) is not applicable
+      (argument mismatch; RecipeCategory cannot be converted to HolderGetter<Item>)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:320: error: no suitable method found for shapeless(RecipeCategory,Item,int)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.ENDER_PEARL, 2).requires(Ingredient.of(ModItems.ENDERMAN_HEAD.get())).unlockedBy("has_enderman_head", hasItem(ModItems.ENDERMAN_HEAD.get())).save(recipeF
+unc, ModSpartanWeaponry.ID + ":" + BuiltInRegistries.ITEM.getKey(Items.ENDER_PEARL).getPath() + "_from_enderman_head");
+                              ^
+    method ShapelessRecipeBuilder.shapeless(HolderGetter<Item>,RecipeCategory,ItemStackTemplate) is not applicable
+      (argument mismatch; RecipeCategory cannot be converted to HolderGetter<Item>)
+    method ShapelessRecipeBuilder.shapeless(HolderGetter<Item>,RecipeCategory,ItemLike) is not applicable
+      (argument mismatch; RecipeCategory cannot be converted to HolderGetter<Item>)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:321: error: no suitable method found for shapeless(RecipeCategory,Item,int)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.SPIDER_EYE, 4).requires(Ingredient.of(ModItems.SPIDER_HEAD.get(), ModItems.CAVE_SPIDER_HEAD.get())).unlockedBy("has_spider_head", hasItem(ModItems.SPIDER
+_HEAD.get(), ModItems.CAVE_SPIDER_HEAD.get())).save(recipeFunc, ModSpartanWeaponry.ID + ":" + BuiltInRegistries.ITEM.getKey(Items.SPIDER_EYE).getPath() + "_from_spider_head");
+                              ^
+    method ShapelessRecipeBuilder.shapeless(HolderGetter<Item>,RecipeCategory,ItemStackTemplate) is not applicable
+      (argument mismatch; RecipeCategory cannot be converted to HolderGetter<Item>)
+    method ShapelessRecipeBuilder.shapeless(HolderGetter<Item>,RecipeCategory,ItemLike) is not applicable
+      (argument mismatch; RecipeCategory cannot be converted to HolderGetter<Item>)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:322: error: no suitable method found for shapeless(RecipeCategory,Item,int)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.ROTTEN_FLESH, 4).requires(Ingredient.of(ModItems.ZOMBIFIED_PIGLIN_HEAD.get(), ModItems.HUSK_HEAD.get(), ModItems.DROWNED_HEAD.get())).unlockedBy("has_zom
+bified_piglin_head", hasItem(ModItems.ZOMBIFIED_PIGLIN_HEAD.get(), ModItems.HUSK_HEAD.get(), ModItems.DROWNED_HEAD.get())).save(recipeFunc, ModSpartanWeaponry.ID + ":" + BuiltInRegistries.ITEM.getKey(Items.ROTTEN_FLESH).g
+etPath() + "_from_zombie_variants_head");
+                              ^
+    method ShapelessRecipeBuilder.shapeless(HolderGetter<Item>,RecipeCategory,ItemStackTemplate) is not applicable
+      (argument mismatch; RecipeCategory cannot be converted to HolderGetter<Item>)
+    method ShapelessRecipeBuilder.shapeless(HolderGetter<Item>,RecipeCategory,ItemLike) is not applicable
+      (argument mismatch; RecipeCategory cannot be converted to HolderGetter<Item>)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:323: error: no suitable method found for shapeless(RecipeCategory,Item,int)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.BONE_MEAL, 4).requires(Ingredient.of(ModItems.STRAY_SKULL.get())).unlockedBy("has_stray_skull", hasItem(ModItems.STRAY_SKULL.get())).save(recipeFunc, Mod
+SpartanWeaponry.ID + ":" + BuiltInRegistries.ITEM.getKey(Items.BONE_MEAL).getPath() + "_from_stray_skull");
+                              ^
+    method ShapelessRecipeBuilder.shapeless(HolderGetter<Item>,RecipeCategory,ItemStackTemplate) is not applicable
+      (argument mismatch; RecipeCategory cannot be converted to HolderGetter<Item>)
+    method ShapelessRecipeBuilder.shapeless(HolderGetter<Item>,RecipeCategory,ItemLike) is not applicable
+      (argument mismatch; RecipeCategory cannot be converted to HolderGetter<Item>)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:329: error: constructor ApplyOilRecipe in class ApplyOilRecipe cannot be applied to given types;
+        recipeFunc.accept(Identifier.fromNamespaceAndPath(ModSpartanWeaponry.ID, "apply_oil"), new ApplyOilRecipe(CraftingBookCategory.MISC), null);
+                                                                                               ^
+  required: no arguments
+  found:    CraftingBookCategory
+  reason: actual and formal argument lists differ in length
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:333: error: no suitable method found for of(TagKey<Item>)
+        SmithingTransformRecipeBuilder.smithing(Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE), Ingredient.of(base), Ingredient.of(data.getMaterialTag()), RecipeCategory.COMBAT, result.asItem()).unlocks(data.get
+Criterion(), hasItem(data.getMaterialTag())).save(consumer, BuiltInRegistries.ITEM.getKey(result.asItem()) + "_smithing");
+                                                                                                                                         ^
+    method Ingredient.of(ItemLike) is not applicable
+      (argument mismatch; TagKey<Item> cannot be converted to ItemLike)
+    method Ingredient.of(ItemLike...) is not applicable
+      (varargs mismatch; TagKey<Item> cannot be converted to ItemLike)
+    method Ingredient.of(Stream<? extends ItemLike>) is not applicable
+      (argument mismatch; TagKey<Item> cannot be converted to Stream<? extends ItemLike>)
+    method Ingredient.of(HolderSet<Item>) is not applicable
+      (argument mismatch; TagKey<Item> cannot be converted to HolderSet<Item>)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:341: error: incompatible types: String cannot be converted to TagKey
+            builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
+                                                                                                              ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:350: error: incompatible types: String cannot be converted to TagKey
+            builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
+                                                                                                              ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:359: error: incompatible types: String cannot be converted to TagKey
+            builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
+                                                                                                              ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:368: error: incompatible types: String cannot be converted to TagKey
+            builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
+                                                                                                              ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:377: error: incompatible types: String cannot be converted to TagKey
+            builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
+                                                                                                              ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:386: error: incompatible types: String cannot be converted to TagKey
+            builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
+                                                                                                              ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:395: error: incompatible types: String cannot be converted to TagKey
+            builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
+                                                                                                              ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:404: error: incompatible types: String cannot be converted to TagKey
+            builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
+                                                                                                              ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:413: error: incompatible types: String cannot be converted to TagKey
+            builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
+                                                                                                              ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:422: error: incompatible types: String cannot be converted to TagKey
+            builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
+                                                                                                              ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:431: error: incompatible types: String cannot be converted to TagKey
+            builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
+                                                                                                              ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:440: error: incompatible types: String cannot be converted to TagKey
+            builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
+                                                                                                              ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:449: error: incompatible types: String cannot be converted to TagKey
+            builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
+                                                                                                              ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:458: error: incompatible types: String cannot be converted to TagKey
+            builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
+                                                                                                              ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:467: error: incompatible types: String cannot be converted to TagKey
+            builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
+                                                                                                              ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:476: error: incompatible types: String cannot be converted to TagKey
+            builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
+                                                                                                              ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:485: error: incompatible types: String cannot be converted to TagKey
+            builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
+                                                                                                              ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:494: error: incompatible types: String cannot be converted to TagKey
+            builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
+                                                                                                              ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:503: error: incompatible types: String cannot be converted to TagKey
+            builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
+                                                                                                              ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:512: error: incompatible types: String cannot be converted to TagKey
+            builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
+                                                                                                              ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:521: error: incompatible types: String cannot be converted to TagKey
+            builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
+                                                                                                              ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:530: error: incompatible types: String cannot be converted to TagKey
+            builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
+                                                                                                              ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:539: error: incompatible types: String cannot be converted to TagKey
+            builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
+                                                                                                              ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:548: error: incompatible types: String cannot be converted to TagKey
+            builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
+                                                                                                              ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:569: error: incompatible types: Item cannot be converted to ItemStackTemplate
+        SmithingTransformRecipeBuilder recipe = new SmithingTransformRecipeBuilder(Ingredient.of(template), Ingredient.of(base), Ingredient.of(addition), RecipeCategory.COMBAT, result.asItem());
+                                                                                                                                                                                              ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:574: error: incompatible types: TagKey<Item> cannot be converted to HolderGetter<Item>
+        return InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(tag));
+                                                                                               ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\recipe\TagCookingRecipeBuilder.java:36: error: TagCookingRecipeBuilder is not abstract and does not override abstract m
+ethod save(RecipeOutput,ResourceKey<Recipe<?>>) in RecipeBuilder
+public class TagCookingRecipeBuilder implements RecipeBuilder {
+       ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\recipe\TagCookingRecipeBuilder.java:87: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\recipe\TagCookingRecipeBuilder.java:92: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\recipe\TagCookingRecipeBuilder.java:99: warning: [removal] parent(Identifier) in Builder has been deprecated and marked
+ for removal
+        advancement.parent(ROOT_RECIPE_ADVANCEMENT)
+                   ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\recipe\TagCookingRecipeBuilder.java:100: error: incompatible types: Identifier cannot be converted to ResourceKey<Recip
+e<?>>
+                .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(idIn))
+                                                                               ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\recipe\TagCookingRecipeBuilder.java:101: error: incompatible types: Identifier cannot be converted to ResourceKey<Recip
+e<?>>
+                .rewards(AdvancementRewards.Builder.recipe(idIn))
+                                                           ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\recipe\TagCookingRecipeBuilder.java:104: error: no suitable method found for accept(Identifier,ITagCookingRecipe,Advanc
+ementHolder)
+        output.accept(idIn, recipe, advancementHolder);
+              ^
+    method IRecipeOutputExtension.accept(ResourceKey<Recipe<?>>,Recipe<?>,@org.jspecify.annotations.Nullable AdvancementHolder,ICondition...) is not applicable
+      (argument mismatch; Identifier cannot be converted to ResourceKey<Recipe<?>>)
+    method RecipeOutput.accept(ResourceKey<Recipe<?>>,Recipe<?>,@org.jspecify.annotations.Nullable AdvancementHolder) is not applicable
+      (argument mismatch; Identifier cannot be converted to ResourceKey<Recipe<?>>)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\recipe\TippedProjectileRecipeBuilder.java:32: error: no suitable method found for accept(Identifier,TippedProjectileBas
+eRecipe,<null>)
+        output.accept(id, recipe, null);
+              ^
+    method IRecipeOutputExtension.accept(ResourceKey<Recipe<?>>,Recipe<?>,@org.jspecify.annotations.Nullable AdvancementHolder,ICondition...) is not applicable
+      (argument mismatch; Identifier cannot be converted to ResourceKey<Recipe<?>>)
+    method RecipeOutput.accept(ResourceKey<Recipe<?>>,Recipe<?>,@org.jspecify.annotations.Nullable AdvancementHolder) is not applicable
+      (argument mismatch; Identifier cannot be converted to ResourceKey<Recipe<?>>)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\entity\projectile\ArrowExplosiveEntity.java:43: error: isClientSide has private access in Level
+        if (level.isClientSide && !this.inGround) {
+                 ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\entity\projectile\ArrowExplosiveEntity.java:43: error: cannot find symbol
+        if (level.isClientSide && !this.inGround) {
+                                       ^
+  symbol: variable inGround
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\entity\projectile\ArrowExplosiveEntity.java:47: error: cannot find symbol
+        if (this.inGround) {
+                ^
+  symbol: variable inGround
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\entity\projectile\ArrowExplosiveEntity.java:54: error: isClientSide has private access in Level
+        if (!level.isClientSide) {
+                  ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\entity\projectile\ArrowExplosiveEntity.java:55: error: cannot find symbol
+            boolean mobGriefing = level.getGameRules().get(GameRules.MOB_GRIEFING);
+                                       ^
+  symbol:   method getGameRules()
+  location: variable level of type Level
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\entity\projectile\BoltSpectralEntity.java:37: error: isClientSide has private access in Level
+        if (level.isClientSide && !this.inGround)
+                 ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\entity\projectile\BoltSpectralEntity.java:37: error: cannot find symbol
+        if (level.isClientSide && !this.inGround)
+                                       ^
+  symbol: variable inGround
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\entity\projectile\BoltSpectralEntity.java:38: error: incompatible types: ParticleType<SpellParticleOption> cannot be convert
+ed to ParticleOptions
+            level.addParticle(ParticleTypes.INSTANT_EFFECT, this.getX(), this.getY(), this.getZ(), 0.0d, 0.0d, 0.0d);
+                                           ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\entity\projectile\BoltSpectralEntity.java:58: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\entity\projectile\BoltSpectralEntity.java:60: error: incompatible types: CompoundTag cannot be converted to ValueInput
+        super.readAdditionalSaveData(compound);
+                                     ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\entity\projectile\BoltSpectralEntity.java:62: error: incompatible types: Optional<Integer> cannot be converted to int
+            this.duration = compound.getInt(this.NBT_DURATION);
+                                           ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\entity\projectile\BoltSpectralEntity.java:65: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\entity\projectile\BoltSpectralEntity.java:67: error: incompatible types: CompoundTag cannot be converted to ValueOutput
+        super.addAdditionalSaveData(compound);
+                                    ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\entity\projectile\DynamiteEntity.java:30: error: no suitable constructor found for ThrowableItemProjectile(EntityType<Dynami
+teEntity>,double,double,double,Level)
+        super(ModEntities.DYNAMITE.get(), x, y, z, level);
+        ^
+    constructor ThrowableItemProjectile.ThrowableItemProjectile(EntityType<? extends ThrowableItemProjectile>,Level) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor ThrowableItemProjectile.ThrowableItemProjectile(EntityType<? extends ThrowableItemProjectile>,double,double,double,Level,ItemStack) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor ThrowableItemProjectile.ThrowableItemProjectile(EntityType<? extends ThrowableItemProjectile>,LivingEntity,Level,ItemStack) is not applicable
+      (actual and formal argument lists differ in length)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\entity\projectile\DynamiteEntity.java:35: error: no suitable constructor found for ThrowableItemProjectile(EntityType<Dynami
+teEntity>,LivingEntity,Level)
+        super(ModEntities.DYNAMITE.get(), thrower, level);
+        ^
+    constructor ThrowableItemProjectile.ThrowableItemProjectile(EntityType<? extends ThrowableItemProjectile>,Level) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor ThrowableItemProjectile.ThrowableItemProjectile(EntityType<? extends ThrowableItemProjectile>,double,double,double,Level,ItemStack) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor ThrowableItemProjectile.ThrowableItemProjectile(EntityType<? extends ThrowableItemProjectile>,LivingEntity,Level,ItemStack) is not applicable
+      (actual and formal argument lists differ in length)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\entity\projectile\DynamiteEntity.java:89: error: cannot find symbol
+            boolean mobGriefing = level.getGameRules().get(GameRules.MOB_GRIEFING);
+                                       ^
+  symbol:   method getGameRules()
+  location: variable level of type Level
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\ClientEventHandler.java:99: error: non-static method isProduction() cannot be referenced from a static context
+        if (!FMLLoader.isProduction() && ItemStackDataHelper.hasTag(stack) && ev.getFlags().isAdvanced()) {
+                      ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:125: error: bad operand types for binary operator '>='
+                    ItemStackDataHelper.getTag(attackerStack).getInt(ThrowingWeaponItem.NBT_AMMO_USED) >= ((ThrowingWeaponItem) attackerStack.getItem()).getMaxAmmo(attackerStack, attacker.level()))
+                                                                                                       ^
+  first type:  Optional<Integer>
+  second type: int
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:153: error: isClientSide has private access in Level
+            if (!level.isClientSide) {
+                      ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:208: error: random has protected access in Level
+                        int extra = drop.level().random.nextInt(luckLevel + 1);
+                                                ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:260: error: incompatible types: Optional<String> cannot be converted to String
+                                String itemId = nbt.getString(QuiverBaseItem.NBT_ITEM_ID);
+                                                             ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:261: error: incompatible types: Optional<Integer> cannot be converted to int
+                                int itemSlot = nbt.getInt(QuiverBaseItem.NBT_ITEM_SLOT);
+                                                         ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:309: error: items has private access in Inventory
+                                for (int i = 0; i < player.getInventory().items.size(); i++) {
+                                                                         ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:310: error: items has private access in Inventory
+                                    ItemStack playerStack = player.getInventory().items.get(i);
+                                                                                 ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:354: error: incompatible types: Optional<Integer> cannot be converted to int
+            int prioritySlot = ItemStackDataHelper.getTag(quiver).getInt(QuiverBaseItem.NBT_PROIRITY_SLOT);
+                                                                        ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:355: warning: [removal] insertItem(int,ItemStack,boolean) in IItemHandler has been deprecated 
+and marked for removal
+            arrowStack = quiverHandler.insertItem(prioritySlot, arrowStack, false);
+                                      ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:357: warning: [removal] getSlots() in IItemHandler has been deprecated and marked for removal
+                for (int j = 0; j < quiverHandler.getSlots(); j++) {
+                                                 ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:361: warning: [removal] insertItem(int,ItemStack,boolean) in IItemHandler has been deprecated 
+and marked for removal
+                    arrowStack = quiverHandler.insertItem(j, arrowStack, false);
+                                              ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:381: error: incompatible types: Optional<Integer> cannot be converted to int
+            int prioritySlot = ItemStackDataHelper.getTag(quiver).getInt(QuiverBaseItem.NBT_PROIRITY_SLOT);
+                                                                        ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:382: warning: [removal] getSlots() in IItemHandler has been deprecated and marked for removal
+            if (prioritySlot <= quiverHandler.getSlots()) {
+                                             ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:383: warning: [removal] extractItem(int,int,boolean) in IItemHandler has been deprecated and m
+arked for removal
+                arrowStack = quiverHandler.extractItem(prioritySlot, 64, false);
+                                          ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:389: warning: [removal] getSlots() in IItemHandler has been deprecated and marked for removal
+                for (int j = 0; j < quiverHandler.getSlots(); j++) {
+                                                 ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:393: warning: [removal] extractItem(int,int,boolean) in IItemHandler has been deprecated and m
+arked for removal
+                    arrowStack = quiverHandler.extractItem(j, 64, false);
+                                              ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:418: error: incompatible types: Optional<Boolean> cannot be converted to boolean
+                    if (ItemStackDataHelper.getTag(quiver).getBoolean(QuiverBaseItem.NBT_AMMO_COLLECT)) {
+                                                                     ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:423: warning: [removal] getSlots() in IItemHandler has been deprecated and marked for removal
+                        for (int i = 0; i < quiverHandler.getSlots(); i++) {
+                                                         ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:424: warning: [removal] insertItem(int,ItemStack,boolean) in IItemHandler has been deprecated 
+and marked for removal
+                            pickedUpStack = quiverHandler.insertItem(i, pickedUpStack, false);
+                                                         ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:444: error: cannot find symbol
+                        ItemStackDataHelper.getTag(slotStack).hasUUID(ThrowingWeaponItem.NBT_UUID) && ItemStackDataHelper.getTag(pickedUpStack).hasUUID(ThrowingWeaponItem.NBT_UUID) &&
+                                                             ^
+  symbol:   method hasUUID(String)
+  location: class CompoundTag
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:444: error: cannot find symbol
+                        ItemStackDataHelper.getTag(slotStack).hasUUID(ThrowingWeaponItem.NBT_UUID) && ItemStackDataHelper.getTag(pickedUpStack).hasUUID(ThrowingWeaponItem.NBT_UUID) &&
+                                                                                                                                               ^
+  symbol:   method hasUUID(String)
+  location: class CompoundTag
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:445: error: cannot find symbol
+                        ItemStackDataHelper.getTag(pickedUpStack).getUUID(ThrowingWeaponItem.NBT_UUID).equals(ItemStackDataHelper.getTag(slotStack).getUUID(ThrowingWeaponItem.NBT_UUID))) {
+                                                                 ^
+  symbol:   method getUUID(String)
+  location: class CompoundTag
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:445: error: cannot find symbol
+                        ItemStackDataHelper.getTag(pickedUpStack).getUUID(ThrowingWeaponItem.NBT_UUID).equals(ItemStackDataHelper.getTag(slotStack).getUUID(ThrowingWeaponItem.NBT_UUID))) {
+                                                                                                                                                   ^
+  symbol:   method getUUID(String)
+  location: class CompoundTag
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:447: error: bad operand types for binary operator '-'
+                    int currentAmmo = maxAmmo - ItemStackDataHelper.getTag(slotStack).getInt(ThrowingWeaponItem.NBT_AMMO_USED);
+                                              ^
+  first type:  int
+  second type: Optional<Integer>
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:448: error: bad operand type Optional<Boolean> for unary operator '!'
+                    boolean currentNotOriginalStack = !ItemStackDataHelper.getTag(slotStack).getBoolean(ThrowingWeaponItem.NBT_ORIGINAL);
+                                                      ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:449: error: incompatible types: Optional<Boolean> cannot be converted to boolean
+                    boolean pickedUpOriginalStack = ItemStackDataHelper.getTag(pickedUpStack).getBoolean(ThrowingWeaponItem.NBT_ORIGINAL);
+                                                                                                        ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:465: error: bad operand types for binary operator '-'
+                            currentAmmo += (maxAmmo - ItemStackDataHelper.getTag(pickedUpStack).getInt(ThrowingWeaponItem.NBT_AMMO_USED));
+                                                    ^
+  first type:  int
+  second type: Optional<Integer>
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:503: error: incompatible types: Optional<Integer> cannot be converted to int
+            int ammoUsed = ItemStackDataHelper.getTag(stack).getInt(ThrowingWeaponItem.NBT_AMMO_USED);
+                                                                   ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:521: error: cannot find symbol
+                ev.getName().equals(BuiltInLootTables.VILLAGE_WEAPONSMITH.location())) {
+                                                                         ^
+  symbol:   method location()
+  location: variable VILLAGE_WEAPONSMITH of type ResourceKey<LootTable>
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:525: error: cannot find symbol
+                ev.getName().equals(BuiltInLootTables.VILLAGE_FLETCHER.location())) {
+                                                                      ^
+  symbol:   method location()
+  location: variable VILLAGE_FLETCHER of type ResourceKey<LootTable>
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\inventory\SlotFiltered.java:12: warning: [removal] SlotItemHandler in net.neoforged.neoforge.items has been deprecated and m
+arked for removal
+public class SlotFiltered extends SlotItemHandler {
+                                  ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\inventory\SlotFiltered.java:16: warning: [removal] IItemHandler in net.neoforged.neoforge.items has been deprecated and mark
+ed for removal
+    public SlotFiltered(IItemHandler handlerIn, int indexIn, int xPositionIn, int yPositionIn, Predicate<ItemStack> filterIn) {
+                        ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\inventory\SlotFiltered.java:20: warning: [removal] IItemHandler in net.neoforged.neoforge.items has been deprecated and mark
+ed for removal
+    public SlotFiltered(IItemHandler handlerIn, int indexIn, int xPositionIn, int yPositionIn, Predicate<ItemStack> filterIn, @Nullable Identifier noItemIconIn) {
+                        ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\mixin\AbstractArrowMixin.java:63: warning: [removal] getSlots() in IItemHandler has been deprecated and marked for removal
+                                for (int i = 0; i < quiverHandler.getSlots(); i++) {
+                                                                 ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\mixin\AbstractArrowMixin.java:64: warning: [removal] insertItem(int,ItemStack,boolean) in IItemHandler has been deprecated a
+nd marked for removal
+                                    arrowStack = quiverHandler.insertItem(i, arrowStack, false);
+                                                              ^
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModDamageTypeTagsProvider.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output
+100 errors
+25 warnings
+
+> Task :compileJava FAILED
+
+[Incubating] Problems report is available at: file:///C:/Users/25463/Desktop/SpartanWeaponry-NeoForge/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':compileJava'.
+> Compilation failed; see the compiler output below.
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:329: error: constructor ApplyOilRecipe in class ApplyOilRecipe cannot be applied to given type
+s;
+          recipeFunc.accept(Identifier.fromNamespaceAndPath(ModSpartanWeaponry.ID, "apply_oil"), new ApplyOilRecipe(CraftingBookCategory.MISC), null);
+                                                                                                 ^
+    required: no arguments
+    found:    CraftingBookCategory
+    reason: actual and formal argument lists differ in length
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:102: error: no suitable method found for shapeless(RecipeCategory,Item)
+          ShapelessRecipeBuilder.shapeless(RecipeCategory.COMBAT, ModItems.SIMPLE_HANDLE.get()).requires(stick).requires(ModItemTags.GRASS).unlockedBy("has_stick", hasItem(stick)).save(recipeFunc);
+                                ^
+      method ShapelessRecipeBuilder.shapeless(HolderGetter<Item>,RecipeCategory,ItemStackTemplate) is not applicable
+        (actual and formal argument lists differ in length)
+      method ShapelessRecipeBuilder.shapeless(HolderGetter<Item>,RecipeCategory,ItemLike) is not applicable
+        (actual and formal argument lists differ in length)
+      method ShapelessRecipeBuilder.shapeless(HolderGetter<Item>,RecipeCategory,ItemLike,int) is not applicable
+        (actual and formal argument lists differ in length)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:103: error: no suitable method found for shapeless(RecipeCategory,Item)
+          ShapelessRecipeBuilder.shapeless(RecipeCategory.COMBAT, ModItems.HANDLE.get()).requires(stick).requires(string).group("spartan_weaponry_unofficial:handle").unlockedBy("has_string", hasItem(string)).save(recipeFu
+nc, ModSpartanWeaponry.ID + ":handle_from_string");
+                                ^
+      method ShapelessRecipeBuilder.shapeless(HolderGetter<Item>,RecipeCategory,ItemStackTemplate) is not applicable
+        (actual and formal argument lists differ in length)
+      method ShapelessRecipeBuilder.shapeless(HolderGetter<Item>,RecipeCategory,ItemLike) is not applicable
+        (actual and formal argument lists differ in length)
+      method ShapelessRecipeBuilder.shapeless(HolderGetter<Item>,RecipeCategory,ItemLike,int) is not applicable
+        (actual and formal argument lists differ in length)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:104: error: no suitable method found for shapeless(RecipeCategory,Item,int)
+          ShapelessRecipeBuilder.shapeless(RecipeCategory.COMBAT, ModItems.HANDLE.get(), 4).requires(stick).requires(stick).requires(stick).requires(stick).requires(ItemTags.WOOL).group("spartan_weaponry_unofficial:handle
+").unlockedBy("has_stick", hasItem(stick)).save(recipeFunc, ModSpartanWeaponry.ID + ":handle_from_wool");
+                                ^
+      method ShapelessRecipeBuilder.shapeless(HolderGetter<Item>,RecipeCategory,ItemStackTemplate) is not applicable
+        (argument mismatch; RecipeCategory cannot be converted to HolderGetter<Item>)
+      method ShapelessRecipeBuilder.shapeless(HolderGetter<Item>,RecipeCategory,ItemLike) is not applicable
+        (argument mismatch; RecipeCategory cannot be converted to HolderGetter<Item>)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:105: error: no suitable method found for shapeless(RecipeCategory,Item,int)
+          ShapelessRecipeBuilder.shapeless(RecipeCategory.COMBAT, ModItems.HANDLE.get(), 4).requires(stick).requires(stick).requires(stick).requires(stick).requires(leather).group("spartan_weaponry_unofficial:handle").unl
+ockedBy("has_stick", hasItem(stick)).save(recipeFunc, ModSpartanWeaponry.ID + ":handle_from_leather");
+                                ^
+      method ShapelessRecipeBuilder.shapeless(HolderGetter<Item>,RecipeCategory,ItemStackTemplate) is not applicable
+        (argument mismatch; RecipeCategory cannot be converted to HolderGetter<Item>)
+      method ShapelessRecipeBuilder.shapeless(HolderGetter<Item>,RecipeCategory,ItemLike) is not applicable
+        (argument mismatch; RecipeCategory cannot be converted to HolderGetter<Item>)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:107: error: no suitable method found for shaped(RecipeCategory,Item)
+          ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.SIMPLE_POLE.get()).define('#', ModItems.SIMPLE_HANDLE.get()).define('/', stick).pattern("/").pattern("#").pattern("/").unlockedBy("has_handle", hasItem(
+ModItems.SIMPLE_HANDLE.get())).save(recipeFunc);
+                             ^
+      method ShapedRecipeBuilder.shaped(HolderGetter<Item>,RecipeCategory,ItemLike) is not applicable
+        (actual and formal argument lists differ in length)
+      method ShapedRecipeBuilder.shaped(HolderGetter<Item>,RecipeCategory,ItemLike,int) is not applicable
+        (actual and formal argument lists differ in length)
+      method ShapedRecipeBuilder.shaped(HolderGetter<Item>,RecipeCategory,ItemStackTemplate) is not applicable
+        (actual and formal argument lists differ in length)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:108: error: no suitable method found for shaped(RecipeCategory,Item)
+          ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.POLE.get()).define('|', stick).define('#', string).pattern("| ").pattern("|#").pattern("| ").group("spartan_weaponry_unofficial:pole").unlockedBy("has_s
+tick", hasItem(stick)).save(recipeFunc, ModSpartanWeaponry.ID + ":pole_from_string");
+                             ^
+      method ShapedRecipeBuilder.shaped(HolderGetter<Item>,RecipeCategory,ItemLike) is not applicable
+        (actual and formal argument lists differ in length)
+      method ShapedRecipeBuilder.shaped(HolderGetter<Item>,RecipeCategory,ItemLike,int) is not applicable
+        (actual and formal argument lists differ in length)
+      method ShapedRecipeBuilder.shaped(HolderGetter<Item>,RecipeCategory,ItemStackTemplate) is not applicable
+        (actual and formal argument lists differ in length)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:109: error: no suitable method found for shaped(RecipeCategory,Item,int)
+          ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.POLE.get(), 4).define('|', stick).define('#', ItemTags.WOOL).pattern("|||").pattern("|||").pattern("||#").group("spartan_weaponry_unofficial:pole").unlo
+ckedBy("has_stick", hasItem(stick)).save(recipeFunc, ModSpartanWeaponry.ID + ":pole_from_wool");
+                             ^
+      method ShapedRecipeBuilder.shaped(HolderGetter<Item>,RecipeCategory,ItemLike) is not applicable
+        (argument mismatch; RecipeCategory cannot be converted to HolderGetter<Item>)
+      method ShapedRecipeBuilder.shaped(HolderGetter<Item>,RecipeCategory,ItemStackTemplate) is not applicable
+        (argument mismatch; RecipeCategory cannot be converted to HolderGetter<Item>)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:110: error: no suitable method found for shaped(RecipeCategory,Item,int)
+          ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.POLE.get(), 4).define('|', stick).define('#', leather).pattern("|||").pattern("|||").pattern("||#").group("spartan_weaponry_unofficial:pole").unlockedBy
+("has_stick", hasItem(stick)).save(recipeFunc, ModSpartanWeaponry.ID + ":pole_from_leather");
+                             ^
+      method ShapedRecipeBuilder.shaped(HolderGetter<Item>,RecipeCategory,ItemLike) is not applicable
+        (argument mismatch; RecipeCategory cannot be converted to HolderGetter<Item>)
+      method ShapedRecipeBuilder.shaped(HolderGetter<Item>,RecipeCategory,ItemStackTemplate) is not applicable
+        (argument mismatch; RecipeCategory cannot be converted to HolderGetter<Item>)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:319: error: no suitable method found for shapeless(RecipeCategory,Item,int)
+          ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.BLAZE_POWDER, 4).requires(Ingredient.of(ModItems.BLAZE_HEAD.get())).unlockedBy("has_blaze_head", hasItem(ModItems.BLAZE_HEAD.get())).save(recipeFunc, M
+odSpartanWeaponry.ID + ":" + BuiltInRegistries.ITEM.getKey(Items.BLAZE_POWDER).getPath() + "_from_blaze_head");
+                                ^
+      method ShapelessRecipeBuilder.shapeless(HolderGetter<Item>,RecipeCategory,ItemStackTemplate) is not applicable
+        (argument mismatch; RecipeCategory cannot be converted to HolderGetter<Item>)
+      method ShapelessRecipeBuilder.shapeless(HolderGetter<Item>,RecipeCategory,ItemLike) is not applicable
+        (argument mismatch; RecipeCategory cannot be converted to HolderGetter<Item>)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:320: error: no suitable method found for shapeless(RecipeCategory,Item,int)
+          ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.ENDER_PEARL, 2).requires(Ingredient.of(ModItems.ENDERMAN_HEAD.get())).unlockedBy("has_enderman_head", hasItem(ModItems.ENDERMAN_HEAD.get())).save(recip
+eFunc, ModSpartanWeaponry.ID + ":" + BuiltInRegistries.ITEM.getKey(Items.ENDER_PEARL).getPath() + "_from_enderman_head");
+                                ^
+      method ShapelessRecipeBuilder.shapeless(HolderGetter<Item>,RecipeCategory,ItemStackTemplate) is not applicable
+        (argument mismatch; RecipeCategory cannot be converted to HolderGetter<Item>)
+      method ShapelessRecipeBuilder.shapeless(HolderGetter<Item>,RecipeCategory,ItemLike) is not applicable
+        (argument mismatch; RecipeCategory cannot be converted to HolderGetter<Item>)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:321: error: no suitable method found for shapeless(RecipeCategory,Item,int)
+          ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.SPIDER_EYE, 4).requires(Ingredient.of(ModItems.SPIDER_HEAD.get(), ModItems.CAVE_SPIDER_HEAD.get())).unlockedBy("has_spider_head", hasItem(ModItems.SPID
+ER_HEAD.get(), ModItems.CAVE_SPIDER_HEAD.get())).save(recipeFunc, ModSpartanWeaponry.ID + ":" + BuiltInRegistries.ITEM.getKey(Items.SPIDER_EYE).getPath() + "_from_spider_head");
+                                ^
+      method ShapelessRecipeBuilder.shapeless(HolderGetter<Item>,RecipeCategory,ItemStackTemplate) is not applicable
+        (argument mismatch; RecipeCategory cannot be converted to HolderGetter<Item>)
+      method ShapelessRecipeBuilder.shapeless(HolderGetter<Item>,RecipeCategory,ItemLike) is not applicable
+        (argument mismatch; RecipeCategory cannot be converted to HolderGetter<Item>)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:322: error: no suitable method found for shapeless(RecipeCategory,Item,int)
+          ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.ROTTEN_FLESH, 4).requires(Ingredient.of(ModItems.ZOMBIFIED_PIGLIN_HEAD.get(), ModItems.HUSK_HEAD.get(), ModItems.DROWNED_HEAD.get())).unlockedBy("has_z
+ombified_piglin_head", hasItem(ModItems.ZOMBIFIED_PIGLIN_HEAD.get(), ModItems.HUSK_HEAD.get(), ModItems.DROWNED_HEAD.get())).save(recipeFunc, ModSpartanWeaponry.ID + ":" + BuiltInRegistries.ITEM.getKey(Items.ROTTEN_FLESH)
+.getPath() + "_from_zombie_variants_head");
+                                ^
+      method ShapelessRecipeBuilder.shapeless(HolderGetter<Item>,RecipeCategory,ItemStackTemplate) is not applicable
+        (argument mismatch; RecipeCategory cannot be converted to HolderGetter<Item>)
+      method ShapelessRecipeBuilder.shapeless(HolderGetter<Item>,RecipeCategory,ItemLike) is not applicable
+        (argument mismatch; RecipeCategory cannot be converted to HolderGetter<Item>)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:323: error: no suitable method found for shapeless(RecipeCategory,Item,int)
+          ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.BONE_MEAL, 4).requires(Ingredient.of(ModItems.STRAY_SKULL.get())).unlockedBy("has_stray_skull", hasItem(ModItems.STRAY_SKULL.get())).save(recipeFunc, M
+odSpartanWeaponry.ID + ":" + BuiltInRegistries.ITEM.getKey(Items.BONE_MEAL).getPath() + "_from_stray_skull");
+                                ^
+      method ShapelessRecipeBuilder.shapeless(HolderGetter<Item>,RecipeCategory,ItemStackTemplate) is not applicable
+        (argument mismatch; RecipeCategory cannot be converted to HolderGetter<Item>)
+      method ShapelessRecipeBuilder.shapeless(HolderGetter<Item>,RecipeCategory,ItemLike) is not applicable
+        (argument mismatch; RecipeCategory cannot be converted to HolderGetter<Item>)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:333: error: no suitable method found for of(TagKey<Item>)
+          SmithingTransformRecipeBuilder.smithing(Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE), Ingredient.of(base), Ingredient.of(data.getMaterialTag()), RecipeCategory.COMBAT, result.asItem()).unlocks(data.g
+etCriterion(), hasItem(data.getMaterialTag())).save(consumer, BuiltInRegistries.ITEM.getKey(result.asItem()) + "_smithing");
+                                                                                                                                           ^
+      method Ingredient.of(ItemLike) is not applicable
+        (argument mismatch; TagKey<Item> cannot be converted to ItemLike)
+      method Ingredient.of(ItemLike...) is not applicable
+        (varargs mismatch; TagKey<Item> cannot be converted to ItemLike)
+      method Ingredient.of(Stream<? extends ItemLike>) is not applicable
+        (argument mismatch; TagKey<Item> cannot be converted to Stream<? extends ItemLike>)
+      method Ingredient.of(HolderSet<Item>) is not applicable
+        (argument mismatch; TagKey<Item> cannot be converted to HolderSet<Item>)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\recipe\TagCookingRecipeBuilder.java:104: error: no suitable method found for accept(Identifier,ITagCookingRecipe,Adva
+ncementHolder)
+          output.accept(idIn, recipe, advancementHolder);
+                ^
+      method IRecipeOutputExtension.accept(ResourceKey<Recipe<?>>,Recipe<?>,@org.jspecify.annotations.Nullable AdvancementHolder,ICondition...) is not applicable
+        (argument mismatch; Identifier cannot be converted to ResourceKey<Recipe<?>>)
+      method RecipeOutput.accept(ResourceKey<Recipe<?>>,Recipe<?>,@org.jspecify.annotations.Nullable AdvancementHolder) is not applicable
+        (argument mismatch; Identifier cannot be converted to ResourceKey<Recipe<?>>)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\recipe\TippedProjectileRecipeBuilder.java:32: error: no suitable method found for accept(Identifier,TippedProjectileB
+aseRecipe,<null>)
+          output.accept(id, recipe, null);
+                ^
+      method IRecipeOutputExtension.accept(ResourceKey<Recipe<?>>,Recipe<?>,@org.jspecify.annotations.Nullable AdvancementHolder,ICondition...) is not applicable
+        (argument mismatch; Identifier cannot be converted to ResourceKey<Recipe<?>>)
+      method RecipeOutput.accept(ResourceKey<Recipe<?>>,Recipe<?>,@org.jspecify.annotations.Nullable AdvancementHolder) is not applicable
+        (argument mismatch; Identifier cannot be converted to ResourceKey<Recipe<?>>)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\entity\projectile\DynamiteEntity.java:30: error: no suitable constructor found for ThrowableItemProjectile(EntityType<Dyna
+miteEntity>,double,double,double,Level)
+          super(ModEntities.DYNAMITE.get(), x, y, z, level);
+          ^
+      constructor ThrowableItemProjectile.ThrowableItemProjectile(EntityType<? extends ThrowableItemProjectile>,Level) is not applicable
+        (actual and formal argument lists differ in length)
+      constructor ThrowableItemProjectile.ThrowableItemProjectile(EntityType<? extends ThrowableItemProjectile>,double,double,double,Level,ItemStack) is not applicable
+        (actual and formal argument lists differ in length)
+      constructor ThrowableItemProjectile.ThrowableItemProjectile(EntityType<? extends ThrowableItemProjectile>,LivingEntity,Level,ItemStack) is not applicable
+        (actual and formal argument lists differ in length)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\entity\projectile\DynamiteEntity.java:35: error: no suitable constructor found for ThrowableItemProjectile(EntityType<Dyna
+miteEntity>,LivingEntity,Level)
+          super(ModEntities.DYNAMITE.get(), thrower, level);
+          ^
+      constructor ThrowableItemProjectile.ThrowableItemProjectile(EntityType<? extends ThrowableItemProjectile>,Level) is not applicable
+        (actual and formal argument lists differ in length)
+      constructor ThrowableItemProjectile.ThrowableItemProjectile(EntityType<? extends ThrowableItemProjectile>,double,double,double,Level,ItemStack) is not applicable
+        (actual and formal argument lists differ in length)
+      constructor ThrowableItemProjectile.ThrowableItemProjectile(EntityType<? extends ThrowableItemProjectile>,LivingEntity,Level,ItemStack) is not applicable
+        (actual and formal argument lists differ in length)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:448: error: bad operand type Optional<Boolean> for unary operator '!'
+                      boolean currentNotOriginalStack = !ItemStackDataHelper.getTag(slotStack).getBoolean(ThrowingWeaponItem.NBT_ORIGINAL);
+                                                        ^
+  Note: Recompile with -Xlint:deprecation for details.
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\entity\projectile\ArrowExplosiveEntity.java:43: error: isClientSide has private access in Level
+          if (level.isClientSide && !this.inGround) {
+                   ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\entity\projectile\ArrowExplosiveEntity.java:54: error: isClientSide has private access in Level
+          if (!level.isClientSide) {
+                    ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\entity\projectile\BoltSpectralEntity.java:37: error: isClientSide has private access in Level
+          if (level.isClientSide && !this.inGround)
+                   ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:153: error: isClientSide has private access in Level
+              if (!level.isClientSide) {
+                        ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:208: error: random has protected access in Level
+                          int extra = drop.level().random.nextInt(luckLevel + 1);
+                                                  ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:309: error: items has private access in Inventory
+                                  for (int i = 0; i < player.getInventory().items.size(); i++) {
+                                                                           ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:310: error: items has private access in Inventory
+                                      ItemStack playerStack = player.getInventory().items.get(i);
+                                                                                   ^
+  Note: Recompile with -Xlint:unchecked for details.
+  Note: Some input files use or override a deprecated API.
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:51: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\recipe\TagCookingRecipeBuilder.java:87: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\recipe\TagCookingRecipeBuilder.java:92: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\entity\projectile\BoltSpectralEntity.java:58: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\entity\projectile\BoltSpectralEntity.java:65: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\api\data\recipe\ConditionalShapelessRecipeBuilder.java:144: warning: [removal] parent(Identifier) in Builder has been depr
+ecated and marked for removal
+          advancement.parent(RecipeBuilder.ROOT_RECIPE_ADVANCEMENT)
+                     ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\capability\IQuiverItemHandler.java:5: warning: [removal] IItemHandler in net.neoforged.neoforge.items has been deprecated 
+and marked for removal
+  public interface IQuiverItemHandler extends IItemHandler {
+                                              ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\capability\QuiverItemStackHandler.java:15: warning: [removal] ItemStackHandler in net.neoforged.neoforge.items has been de
+precated and marked for removal
+  public class QuiverItemStackHandler extends ItemStackHandler implements IQuiverItemHandler {
+                                              ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\client\gui\container\QuiverBaseScreen.java:50: warning: [removal] getSlots() in IItemHandler has been deprecated and marke
+d for removal
+          this.ammoSlots = handler != null ? handler.getSlots() : Defaults.SlotsQuiverSmall;
+                                                    ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\inventory\QuiverBaseMenu.java:41: warning: [removal] getSlots() in IItemHandler has been deprecated and marked for removal
+          this.playerInvStart = this.handler.getSlots();
+                                            ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\inventory\QuiverBaseMenu.java:56: warning: [removal] getSlots() in IItemHandler has been deprecated and marked for removal
+          slotStartX = switch (this.handler.getSlots()) {
+                                           ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\inventory\QuiverBaseMenu.java:73: warning: [removal] getSlots() in IItemHandler has been deprecated and marked for removal
+          for (int i = 0; i < this.handler.getSlots(); i++) {
+                                          ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\inventory\QuiverBaseMenu.java:80: warning: [removal] getSlots() in IItemHandler has been deprecated and marked for removal
+          int yOffset = this.handler.getSlots() == Defaults.SlotsQuiverHuge ? 18 : 0;
+                                    ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\inventory\QuiverBaseMenu.java:95: warning: [removal] getSlots() in IItemHandler has been deprecated and marked for removal
+          this.addSlot(new Slot(inventory, 40, -21, this.handler.getSlots() == Defaults.SlotsQuiverHuge ? 127 : 109) {
+                                                                ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\inventory\QuiverBaseMenu.java:113: warning: [removal] getSlots() in IItemHandler has been deprecated and marked for remova
+l
+              if (slotIdx >= 0 && slotIdx < this.handler.getSlots()) {
+                                                        ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\recipe\TagCookingRecipeBuilder.java:99: warning: [removal] parent(Identifier) in Builder has been deprecated and mark
+ed for removal
+          advancement.parent(ROOT_RECIPE_ADVANCEMENT)
+                     ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:355: warning: [removal] insertItem(int,ItemStack,boolean) in IItemHandler has been deprecate
+d and marked for removal
+              arrowStack = quiverHandler.insertItem(prioritySlot, arrowStack, false);
+                                        ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:357: warning: [removal] getSlots() in IItemHandler has been deprecated and marked for remova
+l
+                  for (int j = 0; j < quiverHandler.getSlots(); j++) {
+                                                   ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:361: warning: [removal] insertItem(int,ItemStack,boolean) in IItemHandler has been deprecate
+d and marked for removal
+                      arrowStack = quiverHandler.insertItem(j, arrowStack, false);
+                                                ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:382: warning: [removal] getSlots() in IItemHandler has been deprecated and marked for remova
+l
+              if (prioritySlot <= quiverHandler.getSlots()) {
+                                               ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:383: warning: [removal] extractItem(int,int,boolean) in IItemHandler has been deprecated and
+ marked for removal
+                  arrowStack = quiverHandler.extractItem(prioritySlot, 64, false);
+                                            ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:389: warning: [removal] getSlots() in IItemHandler has been deprecated and marked for remova
+l
+                  for (int j = 0; j < quiverHandler.getSlots(); j++) {
+                                                   ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:393: warning: [removal] extractItem(int,int,boolean) in IItemHandler has been deprecated and
+ marked for removal
+                      arrowStack = quiverHandler.extractItem(j, 64, false);
+                                                ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:423: warning: [removal] getSlots() in IItemHandler has been deprecated and marked for remova
+l
+                          for (int i = 0; i < quiverHandler.getSlots(); i++) {
+                                                           ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:424: warning: [removal] insertItem(int,ItemStack,boolean) in IItemHandler has been deprecate
+d and marked for removal
+                              pickedUpStack = quiverHandler.insertItem(i, pickedUpStack, false);
+                                                           ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\inventory\SlotFiltered.java:12: warning: [removal] SlotItemHandler in net.neoforged.neoforge.items has been deprecated and
+ marked for removal
+  public class SlotFiltered extends SlotItemHandler {
+                                    ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\inventory\SlotFiltered.java:16: warning: [removal] IItemHandler in net.neoforged.neoforge.items has been deprecated and ma
+rked for removal
+      public SlotFiltered(IItemHandler handlerIn, int indexIn, int xPositionIn, int yPositionIn, Predicate<ItemStack> filterIn) {
+                          ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\inventory\SlotFiltered.java:20: warning: [removal] IItemHandler in net.neoforged.neoforge.items has been deprecated and ma
+rked for removal
+      public SlotFiltered(IItemHandler handlerIn, int indexIn, int xPositionIn, int yPositionIn, Predicate<ItemStack> filterIn, @Nullable Identifier noItemIconIn) {
+                          ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\mixin\AbstractArrowMixin.java:63: warning: [removal] getSlots() in IItemHandler has been deprecated and marked for removal
+                                  for (int i = 0; i < quiverHandler.getSlots(); i++) {
+                                                                   ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\mixin\AbstractArrowMixin.java:64: warning: [removal] insertItem(int,ItemStack,boolean) in IItemHandler has been deprecated
+ and marked for removal
+                                      arrowStack = quiverHandler.insertItem(i, arrowStack, false);
+                                                                ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\entity\projectile\ArrowExplosiveEntity.java:55: error: cannot find symbol
+              boolean mobGriefing = level.getGameRules().get(GameRules.MOB_GRIEFING);
+                                         ^
+    symbol:   method getGameRules()
+    location: variable level of type Level
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\entity\projectile\DynamiteEntity.java:89: error: cannot find symbol
+              boolean mobGriefing = level.getGameRules().get(GameRules.MOB_GRIEFING);
+                                         ^
+    symbol:   method getGameRules()
+    location: variable level of type Level
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:444: error: cannot find symbol
+                          ItemStackDataHelper.getTag(slotStack).hasUUID(ThrowingWeaponItem.NBT_UUID) && ItemStackDataHelper.getTag(pickedUpStack).hasUUID(ThrowingWeaponItem.NBT_UUID) &&
+                                                               ^
+    symbol:   method hasUUID(String)
+    location: class CompoundTag
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:444: error: cannot find symbol
+                          ItemStackDataHelper.getTag(slotStack).hasUUID(ThrowingWeaponItem.NBT_UUID) && ItemStackDataHelper.getTag(pickedUpStack).hasUUID(ThrowingWeaponItem.NBT_UUID) &&
+                                                                                                                                                 ^
+    symbol:   method hasUUID(String)
+    location: class CompoundTag
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:445: error: cannot find symbol
+                          ItemStackDataHelper.getTag(pickedUpStack).getUUID(ThrowingWeaponItem.NBT_UUID).equals(ItemStackDataHelper.getTag(slotStack).getUUID(ThrowingWeaponItem.NBT_UUID))) {
+                                                                   ^
+    symbol:   method getUUID(String)
+    location: class CompoundTag
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:445: error: cannot find symbol
+                          ItemStackDataHelper.getTag(pickedUpStack).getUUID(ThrowingWeaponItem.NBT_UUID).equals(ItemStackDataHelper.getTag(slotStack).getUUID(ThrowingWeaponItem.NBT_UUID))) {
+                                                                                                                                                     ^
+    symbol:   method getUUID(String)
+    location: class CompoundTag
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:521: error: cannot find symbol
+                  ev.getName().equals(BuiltInLootTables.VILLAGE_WEAPONSMITH.location())) {
+                                                                           ^
+    symbol:   method location()
+    location: variable VILLAGE_WEAPONSMITH of type ResourceKey<LootTable>
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:525: error: cannot find symbol
+                  ev.getName().equals(BuiltInLootTables.VILLAGE_FLETCHER.location())) {
+                                                                        ^
+    symbol:   method location()
+    location: variable VILLAGE_FLETCHER of type ResourceKey<LootTable>
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModItemTagsProvider.java:274: error: cannot find symbol
+          this.copy(ModBlockTags.GRASS, ModItemTags.GRASS);
+              ^
+    symbol: method copy(TagKey<Block>,TagKey<Item>)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModAdvancementProvider.java:80: error: incompatible types: TagKey<Item> cannot be converted to HolderGetter<Item>
+                      null, AdvancementType.TASK, true, true, false).addCriterion("has_battleaxe", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(ModItemTags.BATTLEAXES).build())).save(sav
+er, ModSpartanWeaponry.ID + ":battleaxe");
+                                                                                                                                                                                              ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModAdvancementProvider.java:82: error: incompatible types: TagKey<Item> cannot be converted to HolderGetter<Item>
+                      null, AdvancementType.TASK, true, true, false).addCriterion("has_flanged_mace", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(ModItemTags.FLANGED_MACES).build())).sa
+ve(saver, ModSpartanWeaponry.ID + ":flanged_mace");
+                                                                                                                                                                                                 ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModAdvancementProvider.java:84: error: incompatible types: TagKey<Item> cannot be converted to HolderGetter<Item>
+                      null, AdvancementType.TASK, true, true, false).addCriterion("has_glaive", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(ModItemTags.GLAIVES).build())).save(saver, Mo
+dSpartanWeaponry.ID + ":glaive");
+                                                                                                                                                                                           ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModAdvancementProvider.java:86: error: incompatible types: TagKey<Item> cannot be converted to HolderGetter<Item>
+                      null, AdvancementType.TASK, true, true, false).addCriterion("has_quarterstaff", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(ModItemTags.QUARTERSTAVES).build())).sa
+ve(saver, ModSpartanWeaponry.ID + ":quarterstaff");
+                                                                                                                                                                                                 ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModAdvancementProvider.java:88: error: incompatible types: TagKey<Item> cannot be converted to HolderGetter<Item>
+                      null, AdvancementType.TASK, true, true, false).addCriterion("has_scythe", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(ModItemTags.SCYTHES).build())).save(saver, Mo
+dSpartanWeaponry.ID + ":scythe");
+                                                                                                                                                                                           ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModAdvancementProvider.java:91: error: incompatible types: TagKey<Item> cannot be converted to HolderGetter<Item>
+                      null, AdvancementType.TASK, true, true, false).addCriterion("has_quiver", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(ModItemTags.SMALL_QUIVERS).build())).save(sav
+er, ModSpartanWeaponry.ID + ":small_quiver");
+                                                                                                                                                                                           ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModAdvancementProvider.java:93: error: incompatible types: TagKey<Item> cannot be converted to HolderGetter<Item>
+                      null, AdvancementType.TASK, true, true, false).addCriterion("has_upgraded_quiver", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(ModItemTags.UPGRADED_QUIVERS).build(
+))).save(saver, ModSpartanWeaponry.ID + ":upgrade_quiver");
+                                                                                                                                                                                                    ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModAdvancementProvider.java:95: error: incompatible types: TagKey<Item> cannot be converted to HolderGetter<Item>
+                      null, AdvancementType.GOAL, true, true, false).addCriterion("has_max_upgraded_quiver", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(ModItemTags.UPGRADED_QUIVERS_MAX
+).build())).save(saver, ModSpartanWeaponry.ID + ":upgrade_quiver_max");
+                                                                                                                                                                                                        ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModAdvancementProvider.java:98: error: incompatible types: TagKey<Item> cannot be converted to HolderGetter<Item>
+                      null, AdvancementType.GOAL, true, true, false).addCriterion("has_netherite_weapon", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(ModItemTags.NETHERITE_WEAPONS).buil
+d())).save(saver, ModSpartanWeaponry.ID + ":upgrade_netherite_weapon");
+                                                                                                                                                                                                     ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:48: error: incompatible types: PackOutput cannot be converted to Provider
+          super(output, lookupProvider);
+                ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:341: error: incompatible types: String cannot be converted to TagKey
+              builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
+                                                                                                                ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:350: error: incompatible types: String cannot be converted to TagKey
+              builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
+                                                                                                                ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:359: error: incompatible types: String cannot be converted to TagKey
+              builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
+                                                                                                                ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:368: error: incompatible types: String cannot be converted to TagKey
+              builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
+                                                                                                                ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:377: error: incompatible types: String cannot be converted to TagKey
+              builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
+                                                                                                                ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:386: error: incompatible types: String cannot be converted to TagKey
+              builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
+                                                                                                                ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:395: error: incompatible types: String cannot be converted to TagKey
+              builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
+                                                                                                                ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:404: error: incompatible types: String cannot be converted to TagKey
+              builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
+                                                                                                                ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:413: error: incompatible types: String cannot be converted to TagKey
+              builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
+                                                                                                                ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:422: error: incompatible types: String cannot be converted to TagKey
+              builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
+                                                                                                                ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:431: error: incompatible types: String cannot be converted to TagKey
+              builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
+                                                                                                                ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:440: error: incompatible types: String cannot be converted to TagKey
+              builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
+                                                                                                                ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:449: error: incompatible types: String cannot be converted to TagKey
+              builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
+                                                                                                                ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:458: error: incompatible types: String cannot be converted to TagKey
+              builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
+                                                                                                                ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:467: error: incompatible types: String cannot be converted to TagKey
+              builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
+                                                                                                                ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:476: error: incompatible types: String cannot be converted to TagKey
+              builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
+                                                                                                                ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:485: error: incompatible types: String cannot be converted to TagKey
+              builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
+                                                                                                                ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:494: error: incompatible types: String cannot be converted to TagKey
+              builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
+                                                                                                                ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:503: error: incompatible types: String cannot be converted to TagKey
+              builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
+                                                                                                                ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:512: error: incompatible types: String cannot be converted to TagKey
+              builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
+                                                                                                                ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:521: error: incompatible types: String cannot be converted to TagKey
+              builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
+                                                                                                                ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:530: error: incompatible types: String cannot be converted to TagKey
+              builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
+                                                                                                                ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:539: error: incompatible types: String cannot be converted to TagKey
+              builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
+                                                                                                                ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:548: error: incompatible types: String cannot be converted to TagKey
+              builder.condition(new NotCondition(new TagEmptyCondition(data.getMaterialTag().location().toString())));
+                                                                                                                ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:569: error: incompatible types: Item cannot be converted to ItemStackTemplate
+          SmithingTransformRecipeBuilder recipe = new SmithingTransformRecipeBuilder(Ingredient.of(template), Ingredient.of(base), Ingredient.of(addition), RecipeCategory.COMBAT, result.asItem());
+                                                                                                                                                                                                ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:574: error: incompatible types: TagKey<Item> cannot be converted to HolderGetter<Item>
+          return InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(tag));
+                                                                                                 ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\recipe\TagCookingRecipeBuilder.java:100: error: incompatible types: Identifier cannot be converted to ResourceKey<Rec
+ipe<?>>
+                  .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(idIn))
+                                                                                 ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\recipe\TagCookingRecipeBuilder.java:101: error: incompatible types: Identifier cannot be converted to ResourceKey<Rec
+ipe<?>>
+                  .rewards(AdvancementRewards.Builder.recipe(idIn))
+                                                             ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\entity\projectile\BoltSpectralEntity.java:38: error: incompatible types: ParticleType<SpellParticleOption> cannot be conve
+rted to ParticleOptions
+              level.addParticle(ParticleTypes.INSTANT_EFFECT, this.getX(), this.getY(), this.getZ(), 0.0d, 0.0d, 0.0d);
+                                             ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\entity\projectile\BoltSpectralEntity.java:60: error: incompatible types: CompoundTag cannot be converted to ValueInput
+          super.readAdditionalSaveData(compound);
+                                       ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\entity\projectile\BoltSpectralEntity.java:62: error: incompatible types: Optional<Integer> cannot be converted to int
+              this.duration = compound.getInt(this.NBT_DURATION);
+                                             ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\entity\projectile\BoltSpectralEntity.java:67: error: incompatible types: CompoundTag cannot be converted to ValueOutput
+          super.addAdditionalSaveData(compound);
+                                      ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:260: error: incompatible types: Optional<String> cannot be converted to String
+                                  String itemId = nbt.getString(QuiverBaseItem.NBT_ITEM_ID);
+                                                               ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:261: error: incompatible types: Optional<Integer> cannot be converted to int
+                                  int itemSlot = nbt.getInt(QuiverBaseItem.NBT_ITEM_SLOT);
+                                                           ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:354: error: incompatible types: Optional<Integer> cannot be converted to int
+              int prioritySlot = ItemStackDataHelper.getTag(quiver).getInt(QuiverBaseItem.NBT_PROIRITY_SLOT);
+                                                                          ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:381: error: incompatible types: Optional<Integer> cannot be converted to int
+              int prioritySlot = ItemStackDataHelper.getTag(quiver).getInt(QuiverBaseItem.NBT_PROIRITY_SLOT);
+                                                                          ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:418: error: incompatible types: Optional<Boolean> cannot be converted to boolean
+                      if (ItemStackDataHelper.getTag(quiver).getBoolean(QuiverBaseItem.NBT_AMMO_COLLECT)) {
+                                                                       ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:449: error: incompatible types: Optional<Boolean> cannot be converted to boolean
+                      boolean pickedUpOriginalStack = ItemStackDataHelper.getTag(pickedUpStack).getBoolean(ThrowingWeaponItem.NBT_ORIGINAL);
+                                                                                                          ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:503: error: incompatible types: Optional<Integer> cannot be converted to int
+              int ammoUsed = ItemStackDataHelper.getTag(stack).getInt(ThrowingWeaponItem.NBT_AMMO_USED);
+                                                                     ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\client\particle\DamageModifiedParticle.java:11: error: DamageModifiedParticle is not abstract and does not override abstra
+ct method getLayer() in SingleQuadParticle
+  public class DamageModifiedParticle extends SingleQuadParticle {
+         ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModRecipeProvider.java:46: error: ModRecipeProvider is not abstract and does not override abstract method buildRecipe
+s() in RecipeProvider
+  public class ModRecipeProvider extends RecipeProvider {
+         ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\recipe\TagCookingRecipeBuilder.java:36: error: TagCookingRecipeBuilder is not abstract and does not override abstract
+ method save(RecipeOutput,ResourceKey<Recipe<?>>) in RecipeBuilder
+  public class TagCookingRecipeBuilder implements RecipeBuilder {
+         ^
+  Note: C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\data\ModDamageTypeTagsProvider.java uses unchecked or unsafe operations.
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\ClientEventHandler.java:99: error: non-static method isProduction() cannot be referenced from a static context
+          if (!FMLLoader.isProduction() && ItemStackDataHelper.hasTag(stack) && ev.getFlags().isAdvanced()) {
+                        ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:125: error: bad operand types for binary operator '>='
+                      ItemStackDataHelper.getTag(attackerStack).getInt(ThrowingWeaponItem.NBT_AMMO_USED) >= ((ThrowingWeaponItem) attackerStack.getItem()).getMaxAmmo(attackerStack, attacker.level()))
+                                                                                                         ^
+    first type:  Optional<Integer>
+    second type: int
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:447: error: bad operand types for binary operator '-'
+                      int currentAmmo = maxAmmo - ItemStackDataHelper.getTag(slotStack).getInt(ThrowingWeaponItem.NBT_AMMO_USED);
+                                                ^
+    first type:  int
+    second type: Optional<Integer>
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\event\CommonEventHandler.java:465: error: bad operand types for binary operator '-'
+                              currentAmmo += (maxAmmo - ItemStackDataHelper.getTag(pickedUpStack).getInt(ThrowingWeaponItem.NBT_AMMO_USED));
+                                                      ^
+    first type:  int
+    second type: Optional<Integer>
+  Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\entity\projectile\ArrowExplosiveEntity.java:43: error: cannot find symbol
+          if (level.isClientSide && !this.inGround) {
+                                         ^
+    symbol: variable inGround
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\entity\projectile\ArrowExplosiveEntity.java:47: error: cannot find symbol
+          if (this.inGround) {
+                  ^
+    symbol: variable inGround
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanweaponryunofficial\entity\projectile\BoltSpectralEntity.java:37: error: cannot find symbol
+          if (level.isClientSide && !this.inGround)
+                                         ^
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/9.1.0/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+3 actionable tasks: 1 executed, 2 up-to-date
+    symbol: variable inGround
+  100 errors
+  25 warnings
+
+* Try:
+> Check your code and dependencies to fix the compilation error(s)
+> Run with --scan to generate a Build Scan (Powered by Develocity).
+
+BUILD FAILED in 10s

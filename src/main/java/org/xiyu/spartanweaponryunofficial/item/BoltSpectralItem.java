@@ -15,8 +15,8 @@ import org.xiyu.spartanweaponryunofficial.entity.projectile.BoltSpectralEntity;
 import java.util.List;
 
 public class BoltSpectralItem extends BoltItem {
-    public BoltSpectralItem(float damageModifier, float rangeModifier, float armorPiercingFactor) {
-        super(damageModifier, rangeModifier, armorPiercingFactor);
+    public BoltSpectralItem(Item.Properties properties, float damageModifier, float rangeModifier, float armorPiercingFactor) {
+        super(properties, damageModifier, rangeModifier, armorPiercingFactor);
     }
 
     @Override

@@ -1,18 +1,19 @@
 package org.xiyu.spartanweaponryunofficial;
 
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.common.NeoForge;
+import net.minecraft.world.level.block.SkullBlock;
 import org.xiyu.spartanweaponryunofficial.api.OilEffects;
 import org.xiyu.spartanweaponryunofficial.api.SpartanWeaponryAPI;
 import org.xiyu.spartanweaponryunofficial.api.WeaponTraits;
 import org.xiyu.spartanweaponryunofficial.api.trait.MeleeBlockWeaponTrait;
+import org.xiyu.spartanweaponryunofficial.block.ExtendedSkullBlock;
 import org.xiyu.spartanweaponryunofficial.capability.CuriosHelper;
 import org.xiyu.spartanweaponryunofficial.client.ClientHelper;
 import org.xiyu.spartanweaponryunofficial.init.*;
@@ -55,31 +56,47 @@ public class ModSpartanWeaponry {
         });
         WeaponTraits.REGISTRY.register(modBus);
         ModMobEffects.REGISTRY.register(modBus);
-        OilEffects.REGISTRY.makeRegistry(registryBuilder -> registryBuilder.defaultKey(ResourceLocation.fromNamespaceAndPath(ID, "none")));
+        OilEffects.REGISTRY.makeRegistry(registryBuilder -> registryBuilder.defaultKey(Identifier.fromNamespaceAndPath(ID, "none")));
         OilEffects.REGISTRY.register(modBus);
 
         modBus.addListener(ModCapabilities::registerCapabilities);
         NeoForge.EVENT_BUS.addListener(MeleeBlockWeaponTrait::onBlockEvent);
         NeoForge.EVENT_BUS.addListener(ModCommands::registerCommands);
         NeoForge.EVENT_BUS.addListener(ModOilRecipes::initOilRecipes);
-        if (CuriosHelper.LOADED && FMLEnvironment.dist.isClient())
-            modBus.addListener(CuriosHelper.Client::registerReloadListener);
 
         // Place Config registration here...
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.CONFIG_SPEC);
         modContainer.registerConfig(ModConfig.Type.CLIENT, ClientConfig.CONFIG_SPEC);
 //        ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, ServerConfig.CONFIG_SPEC);
-        // Register extension points (client-only)
-        if (FMLEnvironment.dist.isClient()) {
-            ClientHelper.registerConfigScreen(modContainer);
-        }
+        // Register extension points
+        ClientHelper.registerConfigScreen(modContainer);
         // NeoForge 1.21: Removed register(this) as it requires @SubscribeEvent methods
     }
 
     private void onSetup(FMLCommonSetupEvent ev) {
         Log.info("Setting up " + NAME + "!");
         // NeoForge 1.21: LootConditions and CriteriaTriggers now registered via DeferredRegister
-        ev.enqueueWork(ModCommands::registerArgumentSerializers);
+        ev.enqueueWork(() -> {
+            ModCommands.registerArgumentSerializers();
+            registerCustomSkullTypes();
+        });
+    }
+
+    private static void registerCustomSkullTypes() {
+        registerSkullType("blaze", ExtendedSkullBlock.Types.BLAZE);
+        registerSkullType("enderman", ExtendedSkullBlock.Types.ENDERMAN);
+        registerSkullType("spider", ExtendedSkullBlock.Types.SPIDER);
+        registerSkullType("cave_spider", ExtendedSkullBlock.Types.CAVE_SPIDER);
+        registerSkullType("zombie_piglin", ExtendedSkullBlock.Types.ZOMBIE_PIGLIN);
+        registerSkullType("husk", ExtendedSkullBlock.Types.HUSK);
+        registerSkullType("stray", ExtendedSkullBlock.Types.STRAY);
+        registerSkullType("drowned", ExtendedSkullBlock.Types.DROWNED);
+        registerSkullType("illager", ExtendedSkullBlock.Types.ILLAGER);
+        registerSkullType("witch", ExtendedSkullBlock.Types.WITCH);
+    }
+
+    private static void registerSkullType(String kind, SkullBlock.Type type) {
+        SkullBlock.Type.TYPES.putIfAbsent(kind, type);
     }
 
     private void onClientSetup(FMLClientSetupEvent ev) {
@@ -87,7 +104,7 @@ public class ModSpartanWeaponry {
         ev.enqueueWork(() ->
         {
             ClientHelper.registerCurioRenders();
-            ClientHelper.registerSkullTextures();
+            // registerSkullTextures() removed - textures now registered via CreateSkullModels event
             // registerScreens is now handled by @SubscribeEvent on RegisterMenuScreensEvent
         });
     }

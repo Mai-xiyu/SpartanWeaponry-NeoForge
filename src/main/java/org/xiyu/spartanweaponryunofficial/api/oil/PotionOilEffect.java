@@ -3,6 +3,7 @@ package org.xiyu.spartanweaponryunofficial.api.oil;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
@@ -26,7 +27,7 @@ public class PotionOilEffect extends OilEffect {
     @Override
     public int getColor(ItemStack stackIn) {
         Potion potion;
-        CompoundTag oilTag = ItemStackDataHelper.getTag(stackIn).getCompound(OilHandler.NBT_OIL);
+        CompoundTag oilTag = ItemStackDataHelper.getTag(stackIn).getCompoundOrEmpty(OilHandler.NBT_OIL);
         if (!oilTag.isEmpty()) {
             potion = OilHelper.getPotionFromStack(stackIn);
             if (potion != null) {
@@ -39,7 +40,7 @@ public class PotionOilEffect extends OilEffect {
     @Override
     public float onUse(float baseDamageIn, Level levelIn, LivingEntity targetEntityIn, LivingEntity userEntityIn, ItemStack oilStackIn) {
         Potion potion;
-        CompoundTag oilTag = ItemStackDataHelper.getTag(oilStackIn).getCompound(OilHandler.NBT_OIL);
+        CompoundTag oilTag = ItemStackDataHelper.getTag(oilStackIn).getCompoundOrEmpty(OilHandler.NBT_OIL);
         if (!oilTag.isEmpty()) {
             potion = OilHelper.getPotionFromStack(oilStackIn);
             if (potion == null)
@@ -49,7 +50,9 @@ public class PotionOilEffect extends OilEffect {
                     // Temporarily bypass hurt time
                     int targetHurtTime = targetEntityIn.hurtTime;
                     targetEntityIn.hurtTime = 0;
-                    effect.getEffect().value().applyInstantenousEffect(userEntityIn, userEntityIn, targetEntityIn, effect.getAmplifier(), 1.0d);
+                    if (targetEntityIn.level() instanceof net.minecraft.server.level.ServerLevel serverLevel) {
+                        effect.getEffect().value().applyInstantenousEffect(serverLevel, userEntityIn, userEntityIn, targetEntityIn, effect.getAmplifier(), 1.0d);
+                    }
                     // Restore hurt time
                     targetEntityIn.hurtTime = targetHurtTime;
                 } else

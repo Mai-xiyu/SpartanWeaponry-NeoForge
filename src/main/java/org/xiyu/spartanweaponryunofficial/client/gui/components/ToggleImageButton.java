@@ -1,22 +1,22 @@
 package org.xiyu.spartanweaponryunofficial.client.gui.components;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
-import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.input.InputWithModifiers;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import org.jetbrains.annotations.NotNull;
 
 public class ToggleImageButton extends Button {
-    protected final ResourceLocation textureLocation;
+    protected final Identifier textureLocation;
     protected final int texStartU, texStartV;
     protected final int toggleDiffU, hoverDiffV;
     protected final int textureWidth, textureHeight;
     private boolean toggleState;
 
     public ToggleImageButton(boolean isToggled, int xPos, int yPos, int width, int height, int texU, int texV,
-                             int texToggleDiffU, int texHoverDiffV, ResourceLocation textureLoc, int texWidth, int texHeight, OnPress onPress,
+                             int texToggleDiffU, int texHoverDiffV, Identifier textureLoc, int texWidth, int texHeight, OnPress onPress,
                              Component component) {
         super(xPos, yPos, width, height, component, onPress, DEFAULT_NARRATION);
         this.texStartU = texU;
@@ -30,16 +30,14 @@ public class ToggleImageButton extends Button {
     }
 
     @Override
-    public void onPress() {
+    public void onPress(@NotNull InputWithModifiers input) {
         this.toggleState = !this.toggleState;
-        super.onPress();
+        super.onPress(input);
     }
 
     @Override
-    public void renderWidget(@NotNull GuiGraphics guiGraphics, int renderX, int renderY, float p_94285_) {
-        super.renderWidget(guiGraphics, renderX, renderY, p_94285_);
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
-        RenderSystem.setShaderTexture(0, this.textureLocation);
+    protected void extractContents(@NotNull GuiGraphicsExtractor guiGraphics, int renderX, int renderY, float partialTicks) {
+        extractDefaultSprite(guiGraphics);
         float u = this.texStartU;
         float v = this.texStartV;
 
@@ -48,9 +46,6 @@ public class ToggleImageButton extends Button {
         if (this.isHovered())
             v += this.hoverDiffV;
 
-        RenderSystem.enableDepthTest();
-        guiGraphics.blit(this.textureLocation, this.getX(), this.getY(), u, v, this.width, this.height, this.textureWidth, this.textureHeight);
-//		if(isHovered)
-//			renderToolTip(guiGraphics, renderX, renderY);
+        guiGraphics.blit(RenderPipelines.GUI_TEXTURED, this.textureLocation, this.getX(), this.getY(), u, v, this.width, this.height, this.textureWidth, this.textureHeight);
     }
 }

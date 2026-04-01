@@ -1,7 +1,7 @@
 package org.xiyu.spartanweaponryunofficial.api.tags;
 
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
 
@@ -17,6 +17,6 @@ public class ModEntityTypeTags {
     public static final TagKey<EntityType<?>> ENDER = createTag("c:ender");
 
     public static TagKey<EntityType<?>> createTag(String tagName) {
-        return TagKey.create(Registries.ENTITY_TYPE, ResourceLocation.parse(tagName));
+        return TagKey.create(Registries.ENTITY_TYPE, Identifier.parse(tagName));
     }
 }

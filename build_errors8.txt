@@ -1,0 +1,2031 @@
+﻿.\gradlew.bat : Picked up JAVA_TOOL_OPTIONS: -Duser.language=en -Duser.country=
+US
+所在位置 行:1 字符: 118
++ ... anguage=en -Duser.country=US"; .\gradlew.bat compileJava 2>&1 | Out-F ...
++                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Picked up JAVA_...user.country=US 
+   :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by net.rubygrapefruit.platform.
+internal.NativeLibraryLoader in an unnamed module (file:/C:/Users/25463/.gradle
+/wrapper/dists/gradle-9.1.0-bin/9agqghryom9wkf8r80qlhnts3/gradle-9.1.0/lib/nati
+ve-platform-0.22-milestone-28.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers 
+in this module
+WARNING: Restricted methods will be blocked in a future release unless native a
+ccess is enabled
+
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.1.0/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :generateModMetadata UP-TO-DATE
+> Task :createMinecraftArtifacts UP-TO-DATE
+
+> Task :compileJava
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\network\QuiverAccessPacket.java:18: error: package top.theill
+usivec4.curios.api does not exist
+import top.theillusivec4.curios.api.SlotResult;
+                                   ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\data\recipe\ConditionalShapelessRecipeBuilder.java:144: w
+arning: [removal] parent(Identifier) in Builder has been deprecated and marked 
+for removal
+        advancement.parent(RecipeBuilder.ROOT_RECIPE_ADVANCEMENT)
+                   ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\oil\PotionOilEffect.java:43: error: incompatible types: O
+ptional<CompoundTag> cannot be converted to CompoundTag
+        CompoundTag oilTag = ItemStackDataHelper.getTag(oilStackIn).getCompound
+(OilHandler.NBT_OIL);
+                                                                               
+^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\oil\PotionOilEffect.java:53: error: method applyInstanten
+ousEffect in class MobEffect cannot be applied to given types;
+                    effect.getEffect().value().applyInstantenousEffect(userEnti
+tyIn, userEntityIn, targetEntityIn, effect.getAmplifier(), 1.0d);
+                                              ^
+  required: ServerLevel,Entity,Entity,LivingEntity,int,double
+  found:    LivingEntity,LivingEntity,LivingEntity,int,double
+  reason: actual and formal argument lists differ in length
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\oil\PotionOilEffect.java:53: error: incompatible types: L
+ivingEntity cannot be converted to ServerLevel
+                    effect.getEffect().value().applyInstantenousEffect(userEnti
+tyIn, userEntityIn, targetEntityIn, effect.getAmplifier(), 1.0d);
+                                                                       ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\trait\HarvesterWeaponTrait.java:86: error: no suitable me
+thod found for getCloneItemStack(Level,BlockPos,BlockState)
+                ItemStack targetSeed = block.getCloneItemStack(levelIn, posIn, 
+state);
+                                            ^
+    method IBlockExtension.getCloneItemStack(LevelReader,BlockPos,BlockState,bo
+olean,Player) is not applicable
+      (actual and formal argument lists differ in length)
+    method BlockBehaviour.getCloneItemStack(LevelReader,BlockPos,BlockState,boo
+lean) is not applicable
+      (actual and formal argument lists differ in length)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\trait\ThrowableMeleeWeaponTrait.java:64: error: cannot fi
+nd symbol
+                int j = EnchantmentHelper.getItemEnchantmentLevel(registryAcces
+s.lookupOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantments.SHARPNESS
+), stackIn);
+                                                                               
+                                       ^
+  symbol:   method getHolderOrThrow(ResourceKey<Enchantment>)
+  location: interface Registry<Enchantment>
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\trait\ThrowableMeleeWeaponTrait.java:70: error: cannot fi
+nd symbol
+                int fireAspect = EnchantmentHelper.getItemEnchantmentLevel(regi
+stryAccess.lookupOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantments.
+FIRE_ASPECT), stackIn);
+                                                                               
+                                                ^
+  symbol:   method getHolderOrThrow(ResourceKey<Enchantment>)
+  location: interface Registry<Enchantment>
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\capability\IQuiverItemHandler.java:5: warning: [removal] IIte
+mHandler in net.neoforged.neoforge.items has been deprecated and marked for rem
+oval
+public interface IQuiverItemHandler extends IItemHandler {
+                                            ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\capability\OilHandler.java:106: error: method does not overri
+de or implement a method from a supertype
+    @Override
+    ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\capability\OilHandler.java:122: error: method does not overri
+de or implement a method from a supertype
+    @Override
+    ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\capability\QuiverItemStackHandler.java:12: warning: [removal]
+ ItemStackHandler in net.neoforged.neoforge.items has been deprecated and marke
+d for removal
+public class QuiverItemStackHandler extends ItemStackHandler implements IQuiver
+ItemHandler {
+                                            ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\capability\QuiverItemStackHandler.java:20: error: cannot find
+ symbol
+            this.deserializeNBT(getRegistryAccess(), tag);
+                ^
+  symbol: method deserializeNBT(RegistryAccess,CompoundTag)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\capability\QuiverItemStackHandler.java:44: error: cannot find
+ symbol
+        ItemStackDataHelper.updateTag(this.quiverStack, tag -> tag.put(QuiverBa
+seItem.NBT_AMMO, this.serializeNBT(getRegistryAccess())));
+                                                                               
+                     ^
+  symbol: method serializeNBT(RegistryAccess)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\ClientHelper.java:221: error: cannot find symbol
+        EntityModelSet entityModelSet = ev.getEntityModelSet();
+                                          ^
+  symbol:   method getEntityModelSet()
+  location: variable ev of type CreateSkullModels
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\ClientHelper.java:222: error: no suitable method found
+ for registerSkullModel(Types,SkullModel)
+        ev.registerSkullModel(ExtendedSkullBlock.Types.BLAZE, new SkullModel(en
+tityModelSet.bakeLayer(ModelLayers.BLAZE_HEAD)));
+          ^
+    method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,@org.js
+pecify.annotations.Nullable Identifier) is not applicable
+      (actual and formal argument lists differ in length)
+    method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,Functio
+n<ModelPart,SkullModelBase>,@org.jspecify.annotations.Nullable Identifier) is n
+ot applicable
+      (actual and formal argument lists differ in length)
+    method CreateSkullModels.registerSkullModel(Type,Function<EntityModelSet,Sk
+ullModelBase>,@org.jspecify.annotations.Nullable Identifier) is not applicable
+      (actual and formal argument lists differ in length)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\ClientHelper.java:223: error: no suitable method found
+ for registerSkullModel(Types,EndermanHeadModel)
+        ev.registerSkullModel(ExtendedSkullBlock.Types.ENDERMAN, new EndermanHe
+adModel(entityModelSet.bakeLayer(ModelLayers.ENDERMAN_HEAD)));
+          ^
+    method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,@org.js
+pecify.annotations.Nullable Identifier) is not applicable
+      (actual and formal argument lists differ in length)
+    method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,Functio
+n<ModelPart,SkullModelBase>,@org.jspecify.annotations.Nullable Identifier) is n
+ot applicable
+      (actual and formal argument lists differ in length)
+    method CreateSkullModels.registerSkullModel(Type,Function<EntityModelSet,Sk
+ullModelBase>,@org.jspecify.annotations.Nullable Identifier) is not applicable
+      (actual and formal argument lists differ in length)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\ClientHelper.java:224: error: no suitable method found
+ for registerSkullModel(Types,SkullModel)
+        ev.registerSkullModel(ExtendedSkullBlock.Types.SPIDER, new SkullModel(e
+ntityModelSet.bakeLayer(ModelLayers.SPIDER_HEAD)));
+          ^
+    method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,@org.js
+pecify.annotations.Nullable Identifier) is not applicable
+      (actual and formal argument lists differ in length)
+    method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,Functio
+n<ModelPart,SkullModelBase>,@org.jspecify.annotations.Nullable Identifier) is n
+ot applicable
+      (actual and formal argument lists differ in length)
+    method CreateSkullModels.registerSkullModel(Type,Function<EntityModelSet,Sk
+ullModelBase>,@org.jspecify.annotations.Nullable Identifier) is not applicable
+      (actual and formal argument lists differ in length)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\ClientHelper.java:225: error: no suitable method found
+ for registerSkullModel(Types,SkullModel)
+        ev.registerSkullModel(ExtendedSkullBlock.Types.CAVE_SPIDER, new SkullMo
+del(entityModelSet.bakeLayer(ModelLayers.CAVE_SPIDER_HEAD)));
+          ^
+    method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,@org.js
+pecify.annotations.Nullable Identifier) is not applicable
+      (actual and formal argument lists differ in length)
+    method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,Functio
+n<ModelPart,SkullModelBase>,@org.jspecify.annotations.Nullable Identifier) is n
+ot applicable
+      (actual and formal argument lists differ in length)
+    method CreateSkullModels.registerSkullModel(Type,Function<EntityModelSet,Sk
+ullModelBase>,@org.jspecify.annotations.Nullable Identifier) is not applicable
+      (actual and formal argument lists differ in length)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\ClientHelper.java:226: error: no suitable method found
+ for registerSkullModel(Types,PiglinHeadModel)
+        ev.registerSkullModel(ExtendedSkullBlock.Types.ZOMBIE_PIGLIN, new Pigli
+nHeadModel(entityModelSet.bakeLayer(ModelLayers.ZOMBIFIED_PIGLIN_HEAD)));
+          ^
+    method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,@org.js
+pecify.annotations.Nullable Identifier) is not applicable
+      (actual and formal argument lists differ in length)
+    method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,Functio
+n<ModelPart,SkullModelBase>,@org.jspecify.annotations.Nullable Identifier) is n
+ot applicable
+      (actual and formal argument lists differ in length)
+    method CreateSkullModels.registerSkullModel(Type,Function<EntityModelSet,Sk
+ullModelBase>,@org.jspecify.annotations.Nullable Identifier) is not applicable
+      (actual and formal argument lists differ in length)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\ClientHelper.java:227: error: no suitable method found
+ for registerSkullModel(Types,SkullModel)
+        ev.registerSkullModel(ExtendedSkullBlock.Types.HUSK, new SkullModel(ent
+ityModelSet.bakeLayer(ModelLayers.HUSK_HEAD)));
+          ^
+    method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,@org.js
+pecify.annotations.Nullable Identifier) is not applicable
+      (actual and formal argument lists differ in length)
+    method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,Functio
+n<ModelPart,SkullModelBase>,@org.jspecify.annotations.Nullable Identifier) is n
+ot applicable
+      (actual and formal argument lists differ in length)
+    method CreateSkullModels.registerSkullModel(Type,Function<EntityModelSet,Sk
+ullModelBase>,@org.jspecify.annotations.Nullable Identifier) is not applicable
+      (actual and formal argument lists differ in length)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\ClientHelper.java:228: error: no suitable method found
+ for registerSkullModel(Types,SkullModel)
+        ev.registerSkullModel(ExtendedSkullBlock.Types.STRAY, new SkullModel(en
+tityModelSet.bakeLayer(ModelLayers.STRAY_SKULL)));
+          ^
+    method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,@org.js
+pecify.annotations.Nullable Identifier) is not applicable
+      (actual and formal argument lists differ in length)
+    method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,Functio
+n<ModelPart,SkullModelBase>,@org.jspecify.annotations.Nullable Identifier) is n
+ot applicable
+      (actual and formal argument lists differ in length)
+    method CreateSkullModels.registerSkullModel(Type,Function<EntityModelSet,Sk
+ullModelBase>,@org.jspecify.annotations.Nullable Identifier) is not applicable
+      (actual and formal argument lists differ in length)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\ClientHelper.java:229: error: no suitable method found
+ for registerSkullModel(Types,SkullModel)
+        ev.registerSkullModel(ExtendedSkullBlock.Types.DROWNED, new SkullModel(
+entityModelSet.bakeLayer(ModelLayers.DROWNED_HEAD)));
+          ^
+    method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,@org.js
+pecify.annotations.Nullable Identifier) is not applicable
+      (actual and formal argument lists differ in length)
+    method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,Functio
+n<ModelPart,SkullModelBase>,@org.jspecify.annotations.Nullable Identifier) is n
+ot applicable
+      (actual and formal argument lists differ in length)
+    method CreateSkullModels.registerSkullModel(Type,Function<EntityModelSet,Sk
+ullModelBase>,@org.jspecify.annotations.Nullable Identifier) is not applicable
+      (actual and formal argument lists differ in length)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\ClientHelper.java:230: error: no suitable method found
+ for registerSkullModel(Types,SkullModel)
+        ev.registerSkullModel(ExtendedSkullBlock.Types.ILLAGER, new SkullModel(
+entityModelSet.bakeLayer(ModelLayers.ILLAGER_HEAD)));
+          ^
+    method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,@org.js
+pecify.annotations.Nullable Identifier) is not applicable
+      (actual and formal argument lists differ in length)
+    method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,Functio
+n<ModelPart,SkullModelBase>,@org.jspecify.annotations.Nullable Identifier) is n
+ot applicable
+      (actual and formal argument lists differ in length)
+    method CreateSkullModels.registerSkullModel(Type,Function<EntityModelSet,Sk
+ullModelBase>,@org.jspecify.annotations.Nullable Identifier) is not applicable
+      (actual and formal argument lists differ in length)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\ClientHelper.java:231: error: no suitable method found
+ for registerSkullModel(Types,SkullModel)
+        ev.registerSkullModel(ExtendedSkullBlock.Types.WITCH, new SkullModel(en
+tityModelSet.bakeLayer(ModelLayers.WITCH_HEAD)));
+          ^
+    method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,@org.js
+pecify.annotations.Nullable Identifier) is not applicable
+      (actual and formal argument lists differ in length)
+    method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,Functio
+n<ModelPart,SkullModelBase>,@org.jspecify.annotations.Nullable Identifier) is n
+ot applicable
+      (actual and formal argument lists differ in length)
+    method CreateSkullModels.registerSkullModel(Type,Function<EntityModelSet,Sk
+ullModelBase>,@org.jspecify.annotations.Nullable Identifier) is not applicable
+      (actual and formal argument lists differ in length)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\components\ToggleImageButton.java:11: error: Toggl
+eImageButton is not abstract and does not override abstract method extractConte
+nts(GuiGraphicsExtractor,int,int,float) in AbstractButton
+public class ToggleImageButton extends Button {
+       ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\components\ToggleImageButton.java:32: error: metho
+d does not override or implement a method from a supertype
+    @Override
+    ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\components\ToggleImageButton.java:35: error: metho
+d onPress in class Button cannot be applied to given types;
+        super.onPress();
+             ^
+  required: InputWithModifiers
+  found:    no arguments
+  reason: actual and formal argument lists differ in length
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\components\ToggleImageButton.java:38: error: metho
+d does not override or implement a method from a supertype
+    @Override
+    ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\components\ToggleImageButton.java:40: error: canno
+t find symbol
+        super.renderWidget(guiGraphics, renderX, renderY, p_94285_);
+             ^
+  symbol: method renderWidget(GuiGraphicsExtractor,int,int,float)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\components\ToggleImageButton.java:41: error: inval
+id method reference
+        RenderSystem.setShader(GameRenderer::getPositionTexShader);
+                               ^
+  cannot find symbol
+    symbol:   method getPositionTexShader()
+    location: class GameRenderer
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\components\ToggleImageButton.java:42: error: canno
+t find symbol
+        RenderSystem.setShaderTexture(0, this.textureLocation);
+                    ^
+  symbol:   method setShaderTexture(int,Identifier)
+  location: class RenderSystem
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\components\ToggleImageButton.java:51: error: canno
+t find symbol
+        RenderSystem.enableDepthTest();
+                    ^
+  symbol:   method enableDepthTest()
+  location: class RenderSystem
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\components\ToggleImageButton.java:52: error: incom
+patible types: possible lossy conversion from float to int
+        guiGraphics.blit(this.textureLocation, this.getX(), this.getY(), u, v, 
+this.width, this.height, this.textureWidth, this.textureHeight);
+                                                                         ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\container\QuiverBaseScreen.java:49: error: incompa
+tible types: Optional<Integer> cannot be converted to int
+        this.prioritySlot = ItemStackDataHelper.getTag(this.quiver).getInt(Quiv
+erBaseItem.NBT_PROIRITY_SLOT);
+                                                                          ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\container\QuiverBaseScreen.java:50: error: incompa
+tible types: Optional<Boolean> cannot be converted to boolean
+        this.isAmmoCollectEnabled = ItemStackDataHelper.getTag(this.quiver).get
+Boolean(QuiverBaseItem.NBT_AMMO_COLLECT);
+                                                                               
+       ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\container\QuiverBaseScreen.java:53: warning: [remo
+val] getSlots() in IItemHandler has been deprecated and marked for removal
+        this.ammoSlots = handler != null ? handler.getSlots() : Defaults.SlotsQ
+uiverSmall;
+                                                  ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\container\QuiverBaseScreen.java:103: error: method
+ does not override or implement a method from a supertype
+    @Override
+    ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\container\QuiverBaseScreen.java:105: error: cannot
+ find symbol
+        super.render(guiGraphics, mouseX, mouseY, partialTicks);
+             ^
+  symbol: method render(GuiGraphicsExtractor,int,int,float)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\container\QuiverBaseScreen.java:115: error: cannot
+ find symbol
+            this.renderTooltip(guiGraphics, mouseX, mouseY);
+                ^
+  symbol: method renderTooltip(GuiGraphicsExtractor,int,int)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\container\QuiverBaseScreen.java:119: error: method
+ does not override or implement a method from a supertype
+    @Override
+    ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\container\QuiverBaseScreen.java:121: error: cannot
+ find symbol
+        RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
+                    ^
+  symbol:   method setShaderColor(float,float,float,float)
+  location: class RenderSystem
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\container\QuiverBaseScreen.java:122: error: invali
+d method reference
+        RenderSystem.setShader(GameRenderer::getPositionTexShader);
+                               ^
+  cannot find symbol
+    symbol:   method getPositionTexShader()
+    location: class GameRenderer
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\container\QuiverBaseScreen.java:123: error: no sui
+table method found for blit(Identifier,int,int,int,int,int,int)
+        guiGraphics.blit(this.texture, this.leftPos, this.topPos, 0, 0, this.im
+ageWidth, this.imageHeight);
+                   ^
+    method GuiGraphicsExtractor.blit(RenderPipeline,Identifier,int,int,float,fl
+oat,int,int,int,int,int) is not applicable
+      (actual and formal argument lists differ in length)
+    method GuiGraphicsExtractor.blit(RenderPipeline,Identifier,int,int,float,fl
+oat,int,int,int,int) is not applicable
+      (actual and formal argument lists differ in length)
+    method GuiGraphicsExtractor.blit(RenderPipeline,Identifier,int,int,float,fl
+oat,int,int,int,int,int,int) is not applicable
+      (actual and formal argument lists differ in length)
+    method GuiGraphicsExtractor.blit(RenderPipeline,Identifier,int,int,float,fl
+oat,int,int,int,int,int,int,int) is not applicable
+      (actual and formal argument lists differ in length)
+    method GuiGraphicsExtractor.blit(Identifier,int,int,int,int,float,float,flo
+at,float) is not applicable
+      (actual and formal argument lists differ in length)
+    method GuiGraphicsExtractor.blit(GpuTextureView,GpuSampler,int,int,int,int,
+float,float,float,float) is not applicable
+      (actual and formal argument lists differ in length)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\container\QuiverBaseScreen.java:125: error: no sui
+table method found for blit(Identifier,int,int,int,int,int,int)
+        guiGraphics.blit(this.texture, this.leftPos - 27, this.topPos + offhand
+Y, 178, offhandY, 27, 29);
+                   ^
+    method GuiGraphicsExtractor.blit(RenderPipeline,Identifier,int,int,float,fl
+oat,int,int,int,int,int) is not applicable
+      (actual and formal argument lists differ in length)
+    method GuiGraphicsExtractor.blit(RenderPipeline,Identifier,int,int,float,fl
+oat,int,int,int,int) is not applicable
+      (actual and formal argument lists differ in length)
+    method GuiGraphicsExtractor.blit(RenderPipeline,Identifier,int,int,float,fl
+oat,int,int,int,int,int,int) is not applicable
+      (actual and formal argument lists differ in length)
+    method GuiGraphicsExtractor.blit(RenderPipeline,Identifier,int,int,float,fl
+oat,int,int,int,int,int,int,int) is not applicable
+      (actual and formal argument lists differ in length)
+    method GuiGraphicsExtractor.blit(Identifier,int,int,int,int,float,float,flo
+at,float) is not applicable
+      (actual and formal argument lists differ in length)
+    method GuiGraphicsExtractor.blit(GpuTextureView,GpuSampler,int,int,int,int,
+float,float,float,float) is not applicable
+      (actual and formal argument lists differ in length)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\container\QuiverBaseScreen.java:128: error: cannot
+ find symbol
+        renderSlotHighlight(guiGraphics, this.leftPos + highlightedSlot.x, this
+.topPos + highlightedSlot.y, 0, 0x8040C040);
+        ^
+  symbol:   method renderSlotHighlight(GuiGraphicsExtractor,int,int,int,int)
+  location: class QuiverBaseScreen<T>
+  where T is a type-variable:
+    T extends QuiverBaseMenu declared in class QuiverBaseScreen
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\container\QuiverBaseScreen.java:131: error: method
+ does not override or implement a method from a supertype
+    @Override
+    ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\container\QuiverBaseScreen.java:134: error: cannot
+ find symbol
+        guiGraphics.drawString(this.font, this.quiver.getHoverName(), this.imag
+eWidth / 2 - this.font.width(name) / 2, 5, 0x404040, false);
+                   ^
+  symbol:   method drawString(Font,Component,int,int,int,boolean)
+  location: variable guiGraphics of type GuiGraphicsExtractor
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\container\QuiverBaseScreen.java:135: error: cannot
+ find symbol
+        guiGraphics.drawString(this.font, this.playerInventoryTitle, 8, 42 + (t
+his.ammoSlots == Defaults.SlotsQuiverHuge ? 18 : 0), 0x404040, false);
+                   ^
+  symbol:   method drawString(Font,Component,int,int,int,boolean)
+  location: variable guiGraphics of type GuiGraphicsExtractor
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\inventory\QuiverBaseMenu.java:41: warning: [removal] getSlots
+() in IItemHandler has been deprecated and marked for removal
+        this.playerInvStart = this.handler.getSlots();
+                                          ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\inventory\QuiverBaseMenu.java:56: warning: [removal] getSlots
+() in IItemHandler has been deprecated and marked for removal
+        slotStartX = switch (this.handler.getSlots()) {
+                                         ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\inventory\QuiverBaseMenu.java:73: warning: [removal] getSlots
+() in IItemHandler has been deprecated and marked for removal
+        for (int i = 0; i < this.handler.getSlots(); i++) {
+                                        ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\inventory\QuiverBaseMenu.java:74: error: cannot find symbol
+            this.addSlot(new SlotFiltered(this.handler, i, slotStartX + (18 * (
+i % columns)), slotStartY + (i / columns * 18), this.slotFilter).setBackground(
+InventoryMenu.BLOCK_ATLAS, this.emptySlotTexture));
+                                                                               
+                                                                               
+             ^
+  symbol:   variable BLOCK_ATLAS
+  location: class InventoryMenu
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\inventory\QuiverBaseMenu.java:80: warning: [removal] getSlots
+() in IItemHandler has been deprecated and marked for removal
+        int yOffset = this.handler.getSlots() == Defaults.SlotsQuiverHuge ? 18 
+: 0;
+                                  ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\inventory\QuiverBaseMenu.java:95: error: cannot find symbol
+        this.addSlot(new Slot(inventory, 40, -21, this.handler.getSlots() == De
+faults.SlotsQuiverHuge ? 127 : 109).setBackground(InventoryMenu.BLOCK_ATLAS, In
+ventoryMenu.EMPTY_ARMOR_SLOT_SHIELD));
+                                                                               
+                                                               ^
+  symbol:   variable BLOCK_ATLAS
+  location: class InventoryMenu
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\inventory\QuiverBaseMenu.java:95: warning: [removal] getSlots
+() in IItemHandler has been deprecated and marked for removal
+        this.addSlot(new Slot(inventory, 40, -21, this.handler.getSlots() == De
+faults.SlotsQuiverHuge ? 127 : 109).setBackground(InventoryMenu.BLOCK_ATLAS, In
+ventoryMenu.EMPTY_ARMOR_SLOT_SHIELD));
+                                                              ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\inventory\QuiverBaseMenu.java:108: warning: [removal] getSlot
+s() in IItemHandler has been deprecated and marked for removal
+            if (slotIdx >= 0 && slotIdx < this.handler.getSlots()) {
+                                                      ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\item\QuiverBaseItem.java:54: error: cannot find symbol
+        if (FMLEnvironment.dist.isClient()) {}
+                          ^
+  symbol:   variable dist
+  location: class FMLEnvironment
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\item\QuiverBaseItem.java:65: error: cannot find symbol
+        list = ItemStackDataHelper.getTag(stack).getCompound(NBT_AMMO).getList(
+"Items", Tag.TAG_COMPOUND);
+                                                                      ^
+  symbol:   method getList(String,byte)
+  location: class Optional<CompoundTag>
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\item\QuiverBaseItem.java:68: error: cannot find symbol
+            ItemStack item = ItemStack.parseOptional(getRegistryAccess(), list.
+getCompound(i));
+                                      ^
+  symbol:   method parseOptional(RegistryAccess,Optional<CompoundTag>)
+  location: class ItemStack
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\item\QuiverBaseItem.java:94: error: incompatible types: Optio
+nal<Integer> cannot be converted to int
+        int size = ItemStackDataHelper.getOrCreateTagElement(heldItem, NBT_AMMO
+).getInt("Size");
+                                                                               
+        ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\item\QuiverBaseItem.java:98: error: isClientSide has private 
+access in Level
+        if (!levelIn.isClientSide) {
+                    ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\item\QuiverBaseItem.java:105: error: bad operand type Optiona
+l<Boolean> for unary operator '!'
+                boolean ammoCollect = !ItemStackDataHelper.getTag(heldItem).get
+Boolean(NBT_AMMO_COLLECT);
+                                      ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\item\QuiverBaseItem.java:110: error: cannot find symbol
+                playerIn.displayClientMessage(Component.translatable("message."
+ + ModSpartanWeaponry.ID + ".ammo_collect_toggle", Component.translatable("tool
+tip." + ModSpartanWeaponry.ID + "." + collectStatus).withStyle(collectColour)),
+ true);
+                        ^
+  symbol:   method displayClientMessage(MutableComponent,boolean)
+  location: variable playerIn of type Player
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\item\QuiverBaseItem.java:117: error: method does not override
+ or implement a method from a supertype
+    @Override
+    ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\item\QuiverBaseItem.java:122: error: method appendHoverText i
+n class Item cannot be applied to given types;
+        super.appendHoverText(stack, tooltipContext, tooltip, flagIn);
+             ^
+  required: ItemStack,TooltipContext,TooltipDisplay,Consumer<Component>,Tooltip
+Flag
+  found:    ItemStack,TooltipContext,List<Component>,TooltipFlag
+  reason: actual and formal argument lists differ in length
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\item\QuiverBaseItem.java:124: error: incompatible types: Opti
+onal<Boolean> cannot be converted to boolean
+        boolean ammoCollect = ItemStackDataHelper.getTag(stack).getBoolean(NBT_
+AMMO_COLLECT);
+                                                                          ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\item\QuiverBaseItem.java:134: error: cannot find symbol
+        ListTag list = ItemStackDataHelper.getTag(stackIn).getCompound(NBT_AMMO
+).getList("Items", Tag.TAG_COMPOUND);
+                                                                               
+ ^
+  symbol:   method getList(String,byte)
+  location: class Optional<CompoundTag>
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\item\QuiverBaseItem.java:135: error: incompatible types: Opti
+onal<Integer> cannot be converted to int
+        int prioritySlot = ItemStackDataHelper.getTag(stackIn).getInt(NBT_PROIR
+ITY_SLOT);
+                                                                     ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\item\QuiverBaseItem.java:139: error: incompatible types: Opti
+onal<CompoundTag> cannot be converted to CompoundTag
+            CompoundTag tag = list.getCompound(i);
+                                              ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\item\QuiverBaseItem.java:140: error: cannot find symbol
+            ItemStack slotStack = ItemStack.parseOptional(getRegistryAccess(), 
+tag);
+                                           ^
+  symbol:   method parseOptional(RegistryAccess,CompoundTag)
+  location: class ItemStack
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\item\QuiverBaseItem.java:141: error: incompatible types: Opti
+onal<Integer> cannot be converted to int
+            int slot = tag.getInt(NBT_ITEM_SLOT);
+                                 ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\HudCrosshair.java:68: error: cannot find symbol
+                        modelViewStack.rotate(Axis.XN.rotationDegrees(camera.ge
+tXRot()));
+                                                                            ^
+  symbol:   method getXRot()
+  location: variable camera of type Camera
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\HudCrosshair.java:69: error: cannot find symbol
+                        modelViewStack.rotate(Axis.YP.rotationDegrees(camera.ge
+tYRot()));
+                                                                            ^
+  symbol:   method getYRot()
+  location: variable camera of type Camera
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\HudCrosshair.java:71: error: cannot find symbol
+                        RenderSystem.renderCrosshair(10);
+                                    ^
+  symbol:   method renderCrosshair(int)
+  location: class RenderSystem
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\HudCrosshairHeavyCrossbow.java:31: error: bad oper
+and types for binary operator '&&'
+            if (!equippedStack.isEmpty() && ItemStackDataHelper.getTag(equipped
+Stack).getBoolean(HeavyCrossbowItem.NBT_CHARGED) && player.getTicksUsingItem() 
+!= 0) {
+                                         ^
+  first type:  boolean
+  second type: Optional<Boolean>
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\HudCrosshairThrowingWeapon.java:82: error: bad ope
+rand types for binary operator '-'
+                int ammo = maxAmmo - ItemStackDataHelper.getTag(equippedStack).
+getInt(ThrowingWeaponItem.NBT_AMMO_USED);
+                                   ^
+  first type:  int
+  second type: Optional<Integer>
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\HudCrosshairThrowingWeapon.java:86: error: incompa
+tible types: Matrix3x2fStack cannot be converted to PoseStack
+                PoseStack guiPose = guiGraphics.pose();
+                                                    ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\HudCrosshairThrowingWeapon.java:89: error: cannot 
+find symbol
+                guiGraphics.drawString(mc.font, text, screenWidth / 2 - (mc.fon
+t.width(text) / 2), screenHeight / 2 + 20, 0xFFFFFFFF);
+                           ^
+  symbol:   method drawString(Font,String,int,int,int)
+  location: variable guiGraphics of type GuiGraphicsExtractor
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\HudLoadState.java:42: error: selected has private 
+access in Inventory
+                    loadSlot = player.getInventory().selected;
+                                                    ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\HudOilUses.java:61: error: cannot find symbol
+        RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
+                    ^
+  symbol:   method setShaderColor(float,float,float,float)
+  location: class RenderSystem
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\HudOilUses.java:62: error: invalid method referenc
+e
+        RenderSystem.setShader(GameRenderer::getPositionTexShader);
+                               ^
+  cannot find symbol
+    symbol:   method getPositionTexShader()
+    location: class GameRenderer
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\HudOilUses.java:63: error: cannot find symbol
+        RenderSystem.setShaderTexture(0, WIDGETS);
+                    ^
+  symbol:   method setShaderTexture(int,Identifier)
+  location: class RenderSystem
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\HudOilUses.java:64: error: cannot find symbol
+        RenderSystem.enableBlend();
+                    ^
+  symbol:   method enableBlend()
+  location: class RenderSystem
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\HudOilUses.java:66: error: cannot find symbol
+        guiGraphics.renderFakeItem(oilStack, offsetX - 17, offsetY);
+                   ^
+  symbol:   method renderFakeItem(ItemStack,int,int)
+  location: variable guiGraphics of type GuiGraphicsExtractor
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\HudOilUses.java:68: error: incompatible types: Mat
+rix3x2fStack cannot be converted to PoseStack
+        com.mojang.blaze3d.vertex.PoseStack guiPose = guiGraphics.pose();
+                                                                      ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\HudOilUses.java:71: error: cannot find symbol
+        guiGraphics.drawString(font, usesStr, offsetX, offsetY + 6, 0xFFFFFF);
+                   ^
+  symbol:   method drawString(Font,String,int,int,int)
+  location: variable guiGraphics of type GuiGraphicsExtractor
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\HudQuiverAmmo.java:57: error: cannot find symbol
+        ListTag list = ItemStackDataHelper.getTag(quiverStack).getCompound(Quiv
+erBaseItem.NBT_AMMO).getList("Items", Tag.TAG_COMPOUND);
+                                                                               
+                    ^
+  symbol:   method getList(String,byte)
+  location: class Optional<CompoundTag>
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\HudQuiverAmmo.java:60: error: cannot find symbol
+            ItemStack ammoStack = ItemStack.parseOptional(mc.level.registryAcce
+ss(), list.getCompound(i));
+                                           ^
+  symbol:   method parseOptional(RegistryAccess,Optional<CompoundTag>)
+  location: class ItemStack
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\HudQuiverAmmo.java:70: error: incompatible types: 
+Matrix3x2fStack cannot be converted to PoseStack
+        PoseStack poseStack = guiGraphics.pose();
+                                              ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\HudQuiverAmmo.java:74: error: cannot find symbol
+        RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
+                    ^
+  symbol:   method setShaderColor(float,float,float,float)
+  location: class RenderSystem
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\HudQuiverAmmo.java:75: error: invalid method refer
+ence
+        RenderSystem.setShader(GameRenderer::getPositionTexShader);
+                               ^
+  cannot find symbol
+    symbol:   method getPositionTexShader()
+    location: class GameRenderer
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\HudQuiverAmmo.java:78: error: no suitable method f
+ound for blit(Identifier,int,int,int,int,int,int)
+        guiGraphics.blit(WIDGETS, offsetX, offsetY, 24, 23, 22, 22);
+                   ^
+    method GuiGraphicsExtractor.blit(RenderPipeline,Identifier,int,int,float,fl
+oat,int,int,int,int,int) is not applicable
+      (actual and formal argument lists differ in length)
+    method GuiGraphicsExtractor.blit(RenderPipeline,Identifier,int,int,float,fl
+oat,int,int,int,int) is not applicable
+      (actual and formal argument lists differ in length)
+    method GuiGraphicsExtractor.blit(RenderPipeline,Identifier,int,int,float,fl
+oat,int,int,int,int,int,int) is not applicable
+      (actual and formal argument lists differ in length)
+    method GuiGraphicsExtractor.blit(RenderPipeline,Identifier,int,int,float,fl
+oat,int,int,int,int,int,int,int) is not applicable
+      (actual and formal argument lists differ in length)
+    method GuiGraphicsExtractor.blit(Identifier,int,int,int,int,float,float,flo
+at,float) is not applicable
+      (actual and formal argument lists differ in length)
+    method GuiGraphicsExtractor.blit(GpuTextureView,GpuSampler,int,int,int,int,
+float,float,float,float) is not applicable
+      (actual and formal argument lists differ in length)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\HudQuiverAmmo.java:79: error: cannot find symbol
+        guiGraphics.renderFakeItem(quiverStack, offsetX + 3, offsetY + 3);
+                   ^
+  symbol:   method renderFakeItem(ItemStack,int,int)
+  location: variable guiGraphics of type GuiGraphicsExtractor
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\HudQuiverAmmo.java:81: error: cannot find symbol
+        guiGraphics.drawString(font, ammoStr, offsetX + 20 - font.width(ammoStr
+), offsetY + 13, ammoCount == 0 ? 0xFF6060 : 0xFFC000, true);
+                   ^
+  symbol:   method drawString(Font,String,int,int,int,boolean)
+  location: variable guiGraphics of type GuiGraphicsExtractor
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\HudQuiverAmmo.java:88: error: cannot find symbol
+            guiGraphics.drawString(font, inventoryKey, offsetX + 11 - ((float) 
+font.width(inventoryKey) / 2.0f), offsetY + keyTextYOffset, 0xFFFFFF, true);
+                       ^
+  symbol:   method drawString(Font,String,float,int,int,boolean)
+  location: variable guiGraphics of type GuiGraphicsExtractor
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\inventory\ClientOilCoatingTooltip.java:13: error: Clie
+ntOilCoatingTooltip is not abstract and does not override abstract method getHe
+ight(Font) in ClientTooltipComponent
+public class ClientOilCoatingTooltip implements ClientTooltipComponent {
+       ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\inventory\ClientOilCoatingTooltip.java:22: error: meth
+od does not override or implement a method from a supertype
+    @Override
+    ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\inventory\ClientOilCoatingTooltip.java:33: error: meth
+od does not override or implement a method from a supertype
+    @Override
+    ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\inventory\ClientOilCoatingTooltip.java:35: error: cann
+ot find symbol
+        guiGraphics.renderItem(this.oilStack, posXIn, posYIn + 1);
+                   ^
+  symbol:   method renderItem(ItemStack,int,int)
+  location: variable guiGraphics of type GuiGraphicsExtractor
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\inventory\ClientOilCoatingTooltip.java:38: error: meth
+od does not override or implement a method from a supertype
+    @Override
+    ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\inventory\ClientQuiverTooltip.java:22: error: ClientQu
+iverTooltip is not abstract and does not override abstract method getHeight(Fon
+t) in ClientTooltipComponent
+public class ClientQuiverTooltip implements ClientTooltipComponent {
+       ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\inventory\ClientQuiverTooltip.java:47: error: method d
+oes not override or implement a method from a supertype
+    @Override
+    ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\inventory\ClientQuiverTooltip.java:65: error: method d
+oes not override or implement a method from a supertype
+    @Override
+    ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\inventory\ClientQuiverTooltip.java:95: error: cannot f
+ind symbol
+        RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
+                    ^
+  symbol:   method setShaderColor(float,float,float,float)
+  location: class RenderSystem
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\inventory\ClientQuiverTooltip.java:97: error: cannot f
+ind symbol
+        TextureAtlasSprite sprite = mc.getTextureAtlas(InventoryMenu.BLOCK_ATLA
+S).apply(this.isBoltQuiver ? QuiverBoltMenu.EMPTY_BOLT_SLOT : QuiverArrowMenu.E
+MPTY_ARROW_SLOT);
+                                                                    ^
+  symbol:   variable BLOCK_ATLAS
+  location: class InventoryMenu
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\inventory\ClientQuiverTooltip.java:99: error: no suita
+ble method found for blit(int,int,int,int,int,TextureAtlasSprite)
+        guiGraphics.blit(slotX + 1, slotY + 1, BLIT_OFFSET, 16, 16, sprite);
+                   ^
+    method GuiGraphicsExtractor.blit(RenderPipeline,Identifier,int,int,float,fl
+oat,int,int,int,int,int) is not applicable
+      (actual and formal argument lists differ in length)
+    method GuiGraphicsExtractor.blit(RenderPipeline,Identifier,int,int,float,fl
+oat,int,int,int,int) is not applicable
+      (actual and formal argument lists differ in length)
+    method GuiGraphicsExtractor.blit(RenderPipeline,Identifier,int,int,float,fl
+oat,int,int,int,int,int,int) is not applicable
+      (actual and formal argument lists differ in length)
+    method GuiGraphicsExtractor.blit(RenderPipeline,Identifier,int,int,float,fl
+oat,int,int,int,int,int,int,int) is not applicable
+      (actual and formal argument lists differ in length)
+    method GuiGraphicsExtractor.blit(Identifier,int,int,int,int,float,float,flo
+at,float) is not applicable
+      (actual and formal argument lists differ in length)
+    method GuiGraphicsExtractor.blit(GpuTextureView,GpuSampler,int,int,int,int,
+float,float,float,float) is not applicable
+      (actual and formal argument lists differ in length)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\inventory\ClientQuiverTooltip.java:102: error: cannot 
+find symbol
+            AbstractContainerScreen.renderSlotHighlight(guiGraphics, slotX + 1,
+ slotY + 1, BLIT_OFFSET + 10, 0x8040C040);
+                                   ^
+  symbol:   method renderSlotHighlight(GuiGraphicsExtractor,int,int,int,int)
+  location: class AbstractContainerScreen
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\inventory\ClientQuiverTooltip.java:104: error: cannot 
+find symbol
+            guiGraphics.renderItem(stackToDraw, slotX + 1, slotY + 1);
+                       ^
+  symbol:   method renderItem(ItemStack,int,int)
+  location: variable guiGraphics of type GuiGraphicsExtractor
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\inventory\ClientQuiverTooltip.java:105: error: cannot 
+find symbol
+            guiGraphics.renderItemDecorations(fontIn, stackToDraw, slotX + 1, s
+lotY + 1);
+                       ^
+  symbol:   method renderItemDecorations(Font,ItemStack,int,int)
+  location: variable guiGraphics of type GuiGraphicsExtractor
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\data\recipe\TagCookingRecipeBuilder.java:99: warning: [remova
+l] parent(Identifier) in Builder has been deprecated and marked for removal
+        advancement.parent(ROOT_RECIPE_ADVANCEMENT)
+                   ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\event\CommonEventHandler.java:355: warning: [removal] insertI
+tem(int,ItemStack,boolean) in IItemHandler has been deprecated and marked for r
+emoval
+            arrowStack = quiverHandler.insertItem(prioritySlot, arrowStack, fal
+se);
+                                      ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\event\CommonEventHandler.java:357: warning: [removal] getSlot
+s() in IItemHandler has been deprecated and marked for removal
+                for (int j = 0; j < quiverHandler.getSlots(); j++) {
+                                                 ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\event\CommonEventHandler.java:361: warning: [removal] insertI
+tem(int,ItemStack,boolean) in IItemHandler has been deprecated and marked for r
+emoval
+                    arrowStack = quiverHandler.insertItem(j, arrowStack, false)
+;
+                                              ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\event\CommonEventHandler.java:382: warning: [removal] getSlot
+s() in IItemHandler has been deprecated and marked for removal
+            if (prioritySlot <= quiverHandler.getSlots()) {
+                                             ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\event\CommonEventHandler.java:383: warning: [removal] extract
+Item(int,int,boolean) in IItemHandler has been deprecated and marked for remova
+l
+                arrowStack = quiverHandler.extractItem(prioritySlot, 64, false)
+;
+                                          ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\event\CommonEventHandler.java:389: warning: [removal] getSlot
+s() in IItemHandler has been deprecated and marked for removal
+                for (int j = 0; j < quiverHandler.getSlots(); j++) {
+                                                 ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\event\CommonEventHandler.java:393: warning: [removal] extract
+Item(int,int,boolean) in IItemHandler has been deprecated and marked for remova
+l
+                    arrowStack = quiverHandler.extractItem(j, 64, false);
+                                              ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\event\CommonEventHandler.java:423: warning: [removal] getSlot
+s() in IItemHandler has been deprecated and marked for removal
+                        for (int i = 0; i < quiverHandler.getSlots(); i++) {
+                                                         ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\event\CommonEventHandler.java:424: warning: [removal] insertI
+tem(int,ItemStack,boolean) in IItemHandler has been deprecated and marked for r
+emoval
+                            pickedUpStack = quiverHandler.insertItem(i, pickedU
+pStack, false);
+                                                         ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\inventory\SlotFiltered.java:10: warning: [removal] SlotItemHa
+ndler in net.neoforged.neoforge.items has been deprecated and marked for remova
+l
+public class SlotFiltered extends SlotItemHandler {
+                                  ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\inventory\SlotFiltered.java:13: warning: [removal] IItemHandl
+er in net.neoforged.neoforge.items has been deprecated and marked for removal
+    public SlotFiltered(IItemHandler handlerIn, int indexIn, int xPositionIn, i
+nt yPositionIn, Predicate<ItemStack> filterIn) {
+                        ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\mixin\AbstractArrowMixin.java:63: warning: [removal] getSlots
+() in IItemHandler has been deprecated and marked for removal
+                                for (int i = 0; i < quiverHandler.getSlots(); i
+++) {
+                                                                 ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\mixin\AbstractArrowMixin.java:64: warning: [removal] insertIt
+em(int,ItemStack,boolean) in IItemHandler has been deprecated and marked for re
+moval
+                                    arrowStack = quiverHandler.insertItem(i, ar
+rowStack, false);
+                                                              ^
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sp
+artanweaponryunofficial\data\ModDamageTypeTagsProvider.java uses unchecked or u
+nsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+Note: Some messages have been simplified; recompile with -Xdiags:verbose to get
+ full output
+100 errors
+24 warnings
+
+
+> Task :compileJava FAILED
+
+[Incubating] Problems report is available at: file:///C:/Users/25463/Desktop/SpartanWeaponry-NeoForge/build/reports/problems/problems-report.html
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':compileJava'.
+> Compilation failed; see the compiler output below.
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\oil\PotionOilEffect.java:53: error: method applyInstant
+enousEffect in class MobEffect cannot be applied to given types;
+                      effect.getEffect().value().applyInstantenousEffect(userEn
+tityIn, userEntityIn, targetEntityIn, effect.getAmplifier(), 1.0d);
+                                                ^
+    required: ServerLevel,Entity,Entity,LivingEntity,int,double
+    found:    LivingEntity,LivingEntity,LivingEntity,int,double
+    reason: actual and formal argument lists differ in length
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\components\ToggleImageButton.java:35: error: met
+hod onPress in class Button cannot be applied to given types;
+          super.onPress();
+               ^
+    required: InputWithModifiers
+    found:    no arguments
+    reason: actual and formal argument lists differ in length
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\item\QuiverBaseItem.java:122: error: method appendHoverText
+ in class Item cannot be applied to given types;
+          super.appendHoverText(stack, tooltipContext, tooltip, flagIn);
+               ^
+    required: ItemStack,TooltipContext,TooltipDisplay,Consumer<Component>,Toolt
+ipFlag
+    found:    ItemStack,TooltipContext,List<Component>,TooltipFlag
+    reason: actual and formal argument lists differ in length
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\trait\HarvesterWeaponTrait.java:86: error: no suitable 
+method found for getCloneItemStack(Level,BlockPos,BlockState)
+                  ItemStack targetSeed = block.getCloneItemStack(levelIn, posIn
+, state);
+                                              ^
+      method IBlockExtension.getCloneItemStack(LevelReader,BlockPos,BlockState,
+boolean,Player) is not applicable
+        (actual and formal argument lists differ in length)
+      method BlockBehaviour.getCloneItemStack(LevelReader,BlockPos,BlockState,b
+oolean) is not applicable
+        (actual and formal argument lists differ in length)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\ClientHelper.java:222: error: no suitable method fou
+nd for registerSkullModel(Types,SkullModel)
+          ev.registerSkullModel(ExtendedSkullBlock.Types.BLAZE, new SkullModel(
+entityModelSet.bakeLayer(ModelLayers.BLAZE_HEAD)));
+            ^
+      method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,@org.
+jspecify.annotations.Nullable Identifier) is not applicable
+        (actual and formal argument lists differ in length)
+      method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,Funct
+ion<ModelPart,SkullModelBase>,@org.jspecify.annotations.Nullable Identifier) is
+ not applicable
+        (actual and formal argument lists differ in length)
+      method CreateSkullModels.registerSkullModel(Type,Function<EntityModelSet,
+SkullModelBase>,@org.jspecify.annotations.Nullable Identifier) is not applicabl
+e
+        (actual and formal argument lists differ in length)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\ClientHelper.java:223: error: no suitable method fou
+nd for registerSkullModel(Types,EndermanHeadModel)
+          ev.registerSkullModel(ExtendedSkullBlock.Types.ENDERMAN, new Enderman
+HeadModel(entityModelSet.bakeLayer(ModelLayers.ENDERMAN_HEAD)));
+            ^
+      method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,@org.
+jspecify.annotations.Nullable Identifier) is not applicable
+        (actual and formal argument lists differ in length)
+      method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,Funct
+ion<ModelPart,SkullModelBase>,@org.jspecify.annotations.Nullable Identifier) is
+ not applicable
+        (actual and formal argument lists differ in length)
+      method CreateSkullModels.registerSkullModel(Type,Function<EntityModelSet,
+SkullModelBase>,@org.jspecify.annotations.Nullable Identifier) is not applicabl
+e
+        (actual and formal argument lists differ in length)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\ClientHelper.java:224: error: no suitable method fou
+nd for registerSkullModel(Types,SkullModel)
+          ev.registerSkullModel(ExtendedSkullBlock.Types.SPIDER, new SkullModel
+(entityModelSet.bakeLayer(ModelLayers.SPIDER_HEAD)));
+            ^
+      method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,@org.
+jspecify.annotations.Nullable Identifier) is not applicable
+        (actual and formal argument lists differ in length)
+      method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,Funct
+ion<ModelPart,SkullModelBase>,@org.jspecify.annotations.Nullable Identifier) is
+ not applicable
+        (actual and formal argument lists differ in length)
+      method CreateSkullModels.registerSkullModel(Type,Function<EntityModelSet,
+SkullModelBase>,@org.jspecify.annotations.Nullable Identifier) is not applicabl
+e
+        (actual and formal argument lists differ in length)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\ClientHelper.java:225: error: no suitable method fou
+nd for registerSkullModel(Types,SkullModel)
+          ev.registerSkullModel(ExtendedSkullBlock.Types.CAVE_SPIDER, new Skull
+Model(entityModelSet.bakeLayer(ModelLayers.CAVE_SPIDER_HEAD)));
+            ^
+      method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,@org.
+jspecify.annotations.Nullable Identifier) is not applicable
+        (actual and formal argument lists differ in length)
+      method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,Funct
+ion<ModelPart,SkullModelBase>,@org.jspecify.annotations.Nullable Identifier) is
+ not applicable
+        (actual and formal argument lists differ in length)
+      method CreateSkullModels.registerSkullModel(Type,Function<EntityModelSet,
+SkullModelBase>,@org.jspecify.annotations.Nullable Identifier) is not applicabl
+e
+        (actual and formal argument lists differ in length)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\ClientHelper.java:226: error: no suitable method fou
+nd for registerSkullModel(Types,PiglinHeadModel)
+          ev.registerSkullModel(ExtendedSkullBlock.Types.ZOMBIE_PIGLIN, new Pig
+linHeadModel(entityModelSet.bakeLayer(ModelLayers.ZOMBIFIED_PIGLIN_HEAD)));
+            ^
+      method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,@org.
+jspecify.annotations.Nullable Identifier) is not applicable
+        (actual and formal argument lists differ in length)
+      method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,Funct
+ion<ModelPart,SkullModelBase>,@org.jspecify.annotations.Nullable Identifier) is
+ not applicable
+        (actual and formal argument lists differ in length)
+      method CreateSkullModels.registerSkullModel(Type,Function<EntityModelSet,
+SkullModelBase>,@org.jspecify.annotations.Nullable Identifier) is not applicabl
+e
+        (actual and formal argument lists differ in length)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\ClientHelper.java:227: error: no suitable method fou
+nd for registerSkullModel(Types,SkullModel)
+          ev.registerSkullModel(ExtendedSkullBlock.Types.HUSK, new SkullModel(e
+ntityModelSet.bakeLayer(ModelLayers.HUSK_HEAD)));
+            ^
+      method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,@org.
+jspecify.annotations.Nullable Identifier) is not applicable
+        (actual and formal argument lists differ in length)
+      method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,Funct
+ion<ModelPart,SkullModelBase>,@org.jspecify.annotations.Nullable Identifier) is
+ not applicable
+        (actual and formal argument lists differ in length)
+      method CreateSkullModels.registerSkullModel(Type,Function<EntityModelSet,
+SkullModelBase>,@org.jspecify.annotations.Nullable Identifier) is not applicabl
+e
+        (actual and formal argument lists differ in length)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\ClientHelper.java:228: error: no suitable method fou
+nd for registerSkullModel(Types,SkullModel)
+          ev.registerSkullModel(ExtendedSkullBlock.Types.STRAY, new SkullModel(
+entityModelSet.bakeLayer(ModelLayers.STRAY_SKULL)));
+            ^
+      method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,@org.
+jspecify.annotations.Nullable Identifier) is not applicable
+        (actual and formal argument lists differ in length)
+      method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,Funct
+ion<ModelPart,SkullModelBase>,@org.jspecify.annotations.Nullable Identifier) is
+ not applicable
+        (actual and formal argument lists differ in length)
+      method CreateSkullModels.registerSkullModel(Type,Function<EntityModelSet,
+SkullModelBase>,@org.jspecify.annotations.Nullable Identifier) is not applicabl
+e
+        (actual and formal argument lists differ in length)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\ClientHelper.java:229: error: no suitable method fou
+nd for registerSkullModel(Types,SkullModel)
+          ev.registerSkullModel(ExtendedSkullBlock.Types.DROWNED, new SkullMode
+l(entityModelSet.bakeLayer(ModelLayers.DROWNED_HEAD)));
+            ^
+      method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,@org.
+jspecify.annotations.Nullable Identifier) is not applicable
+        (actual and formal argument lists differ in length)
+      method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,Funct
+ion<ModelPart,SkullModelBase>,@org.jspecify.annotations.Nullable Identifier) is
+ not applicable
+        (actual and formal argument lists differ in length)
+      method CreateSkullModels.registerSkullModel(Type,Function<EntityModelSet,
+SkullModelBase>,@org.jspecify.annotations.Nullable Identifier) is not applicabl
+e
+        (actual and formal argument lists differ in length)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\ClientHelper.java:230: error: no suitable method fou
+nd for registerSkullModel(Types,SkullModel)
+          ev.registerSkullModel(ExtendedSkullBlock.Types.ILLAGER, new SkullMode
+l(entityModelSet.bakeLayer(ModelLayers.ILLAGER_HEAD)));
+            ^
+      method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,@org.
+jspecify.annotations.Nullable Identifier) is not applicable
+        (actual and formal argument lists differ in length)
+      method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,Funct
+ion<ModelPart,SkullModelBase>,@org.jspecify.annotations.Nullable Identifier) is
+ not applicable
+        (actual and formal argument lists differ in length)
+      method CreateSkullModels.registerSkullModel(Type,Function<EntityModelSet,
+SkullModelBase>,@org.jspecify.annotations.Nullable Identifier) is not applicabl
+e
+        (actual and formal argument lists differ in length)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\ClientHelper.java:231: error: no suitable method fou
+nd for registerSkullModel(Types,SkullModel)
+          ev.registerSkullModel(ExtendedSkullBlock.Types.WITCH, new SkullModel(
+entityModelSet.bakeLayer(ModelLayers.WITCH_HEAD)));
+            ^
+      method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,@org.
+jspecify.annotations.Nullable Identifier) is not applicable
+        (actual and formal argument lists differ in length)
+      method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,Funct
+ion<ModelPart,SkullModelBase>,@org.jspecify.annotations.Nullable Identifier) is
+ not applicable
+        (actual and formal argument lists differ in length)
+      method CreateSkullModels.registerSkullModel(Type,Function<EntityModelSet,
+SkullModelBase>,@org.jspecify.annotations.Nullable Identifier) is not applicabl
+e
+        (actual and formal argument lists differ in length)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\container\QuiverBaseScreen.java:123: error: no s
+uitable method found for blit(Identifier,int,int,int,int,int,int)
+          guiGraphics.blit(this.texture, this.leftPos, this.topPos, 0, 0, this.
+imageWidth, this.imageHeight);
+                     ^
+      method GuiGraphicsExtractor.blit(RenderPipeline,Identifier,int,int,float,
+float,int,int,int,int,int) is not applicable
+        (actual and formal argument lists differ in length)
+      method GuiGraphicsExtractor.blit(RenderPipeline,Identifier,int,int,float,
+float,int,int,int,int) is not applicable
+        (actual and formal argument lists differ in length)
+      method GuiGraphicsExtractor.blit(RenderPipeline,Identifier,int,int,float,
+float,int,int,int,int,int,int) is not applicable
+        (actual and formal argument lists differ in length)
+      method GuiGraphicsExtractor.blit(RenderPipeline,Identifier,int,int,float,
+float,int,int,int,int,int,int,int) is not applicable
+        (actual and formal argument lists differ in length)
+      method GuiGraphicsExtractor.blit(Identifier,int,int,int,int,float,float,f
+loat,float) is not applicable
+        (actual and formal argument lists differ in length)
+      method GuiGraphicsExtractor.blit(GpuTextureView,GpuSampler,int,int,int,in
+t,float,float,float,float) is not applicable
+        (actual and formal argument lists differ in length)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\container\QuiverBaseScreen.java:125: error: no s
+uitable method found for blit(Identifier,int,int,int,int,int,int)
+          guiGraphics.blit(this.texture, this.leftPos - 27, this.topPos + offha
+ndY, 178, offhandY, 27, 29);
+                     ^
+      method GuiGraphicsExtractor.blit(RenderPipeline,Identifier,int,int,float,
+float,int,int,int,int,int) is not applicable
+        (actual and formal argument lists differ in length)
+      method GuiGraphicsExtractor.blit(RenderPipeline,Identifier,int,int,float,
+float,int,int,int,int) is not applicable
+        (actual and formal argument lists differ in length)
+      method GuiGraphicsExtractor.blit(RenderPipeline,Identifier,int,int,float,
+float,int,int,int,int,int,int) is not applicable
+        (actual and formal argument lists differ in length)
+      method GuiGraphicsExtractor.blit(RenderPipeline,Identifier,int,int,float,
+float,int,int,int,int,int,int,int) is not applicable
+        (actual and formal argument lists differ in length)
+      method GuiGraphicsExtractor.blit(Identifier,int,int,int,int,float,float,f
+loat,float) is not applicable
+        (actual and formal argument lists differ in length)
+      method GuiGraphicsExtractor.blit(GpuTextureView,GpuSampler,int,int,int,in
+t,float,float,float,float) is not applicable
+        (actual and formal argument lists differ in length)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\HudQuiverAmmo.java:78: error: no suitable method
+ found for blit(Identifier,int,int,int,int,int,int)
+          guiGraphics.blit(WIDGETS, offsetX, offsetY, 24, 23, 22, 22);
+                     ^
+      method GuiGraphicsExtractor.blit(RenderPipeline,Identifier,int,int,float,
+float,int,int,int,int,int) is not applicable
+        (actual and formal argument lists differ in length)
+      method GuiGraphicsExtractor.blit(RenderPipeline,Identifier,int,int,float,
+float,int,int,int,int) is not applicable
+        (actual and formal argument lists differ in length)
+      method GuiGraphicsExtractor.blit(RenderPipeline,Identifier,int,int,float,
+float,int,int,int,int,int,int) is not applicable
+        (actual and formal argument lists differ in length)
+      method GuiGraphicsExtractor.blit(RenderPipeline,Identifier,int,int,float,
+float,int,int,int,int,int,int,int) is not applicable
+        (actual and formal argument lists differ in length)
+      method GuiGraphicsExtractor.blit(Identifier,int,int,int,int,float,float,f
+loat,float) is not applicable
+        (actual and formal argument lists differ in length)
+      method GuiGraphicsExtractor.blit(GpuTextureView,GpuSampler,int,int,int,in
+t,float,float,float,float) is not applicable
+        (actual and formal argument lists differ in length)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\inventory\ClientQuiverTooltip.java:99: error: no sui
+table method found for blit(int,int,int,int,int,TextureAtlasSprite)
+          guiGraphics.blit(slotX + 1, slotY + 1, BLIT_OFFSET, 16, 16, sprite);
+                     ^
+      method GuiGraphicsExtractor.blit(RenderPipeline,Identifier,int,int,float,
+float,int,int,int,int,int) is not applicable
+        (actual and formal argument lists differ in length)
+      method GuiGraphicsExtractor.blit(RenderPipeline,Identifier,int,int,float,
+float,int,int,int,int) is not applicable
+        (actual and formal argument lists differ in length)
+      method GuiGraphicsExtractor.blit(RenderPipeline,Identifier,int,int,float,
+float,int,int,int,int,int,int) is not applicable
+        (actual and formal argument lists differ in length)
+      method GuiGraphicsExtractor.blit(RenderPipeline,Identifier,int,int,float,
+float,int,int,int,int,int,int,int) is not applicable
+        (actual and formal argument lists differ in length)
+      method GuiGraphicsExtractor.blit(Identifier,int,int,int,int,float,float,f
+loat,float) is not applicable
+        (actual and formal argument lists differ in length)
+      method GuiGraphicsExtractor.blit(GpuTextureView,GpuSampler,int,int,int,in
+t,float,float,float,float) is not applicable
+        (actual and formal argument lists differ in length)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\item\QuiverBaseItem.java:105: error: bad operand type Optio
+nal<Boolean> for unary operator '!'
+                  boolean ammoCollect = !ItemStackDataHelper.getTag(heldItem).g
+etBoolean(NBT_AMMO_COLLECT);
+                                        ^
+  Note: Recompile with -Xlint:deprecation for details.
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\components\ToggleImageButton.java:41: error: inv
+alid method reference
+          RenderSystem.setShader(GameRenderer::getPositionTexShader);
+                                 ^
+    cannot find symbol
+      symbol:   method getPositionTexShader()
+      location: class GameRenderer
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\container\QuiverBaseScreen.java:122: error: inva
+lid method reference
+          RenderSystem.setShader(GameRenderer::getPositionTexShader);
+                                 ^
+    cannot find symbol
+      symbol:   method getPositionTexShader()
+      location: class GameRenderer
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\HudOilUses.java:62: error: invalid method refere
+nce
+          RenderSystem.setShader(GameRenderer::getPositionTexShader);
+                                 ^
+    cannot find symbol
+      symbol:   method getPositionTexShader()
+      location: class GameRenderer
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\HudQuiverAmmo.java:75: error: invalid method ref
+erence
+          RenderSystem.setShader(GameRenderer::getPositionTexShader);
+                                 ^
+    cannot find symbol
+      symbol:   method getPositionTexShader()
+      location: class GameRenderer
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\inventory\QuiverBaseMenu.java:74: error: cannot find symbol
+              this.addSlot(new SlotFiltered(this.handler, i, slotStartX + (18 *
+ (i % columns)), slotStartY + (i / columns * 18), this.slotFilter).setBackgroun
+d(InventoryMenu.BLOCK_ATLAS, this.emptySlotTexture));
+                                                                               
+                                                                               
+               ^
+    symbol:   variable BLOCK_ATLAS
+    location: class InventoryMenu
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\inventory\QuiverBaseMenu.java:95: error: cannot find symbol
+          this.addSlot(new Slot(inventory, 40, -21, this.handler.getSlots() == 
+Defaults.SlotsQuiverHuge ? 127 : 109).setBackground(InventoryMenu.BLOCK_ATLAS, 
+InventoryMenu.EMPTY_ARMOR_SLOT_SHIELD));
+                                                                               
+                                                                 ^
+    symbol:   variable BLOCK_ATLAS
+    location: class InventoryMenu
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\item\QuiverBaseItem.java:54: error: cannot find symbol
+          if (FMLEnvironment.dist.isClient()) {}
+                            ^
+    symbol:   variable dist
+    location: class FMLEnvironment
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\inventory\ClientQuiverTooltip.java:97: error: cannot
+ find symbol
+          TextureAtlasSprite sprite = mc.getTextureAtlas(InventoryMenu.BLOCK_AT
+LAS).apply(this.isBoltQuiver ? QuiverBoltMenu.EMPTY_BOLT_SLOT : QuiverArrowMenu
+.EMPTY_ARROW_SLOT);
+                                                                      ^
+    symbol:   variable BLOCK_ATLAS
+    location: class InventoryMenu
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\item\QuiverBaseItem.java:98: error: isClientSide has privat
+e access in Level
+          if (!levelIn.isClientSide) {
+                      ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\HudLoadState.java:42: error: selected has privat
+e access in Inventory
+                      loadSlot = player.getInventory().selected;
+                                                      ^
+  Note: Recompile with -Xlint:unchecked for details.
+  Note: Some input files use or override a deprecated API.
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\capability\OilHandler.java:106: error: method does not over
+ride or implement a method from a supertype
+      @Override
+      ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\capability\OilHandler.java:122: error: method does not over
+ride or implement a method from a supertype
+      @Override
+      ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\components\ToggleImageButton.java:32: error: met
+hod does not override or implement a method from a supertype
+      @Override
+      ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\components\ToggleImageButton.java:38: error: met
+hod does not override or implement a method from a supertype
+      @Override
+      ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\container\QuiverBaseScreen.java:103: error: meth
+od does not override or implement a method from a supertype
+      @Override
+      ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\container\QuiverBaseScreen.java:119: error: meth
+od does not override or implement a method from a supertype
+      @Override
+      ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\container\QuiverBaseScreen.java:131: error: meth
+od does not override or implement a method from a supertype
+      @Override
+      ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\item\QuiverBaseItem.java:117: error: method does not overri
+de or implement a method from a supertype
+      @Override
+      ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\inventory\ClientOilCoatingTooltip.java:22: error: me
+thod does not override or implement a method from a supertype
+      @Override
+      ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\inventory\ClientOilCoatingTooltip.java:33: error: me
+thod does not override or implement a method from a supertype
+      @Override
+      ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\inventory\ClientOilCoatingTooltip.java:38: error: me
+thod does not override or implement a method from a supertype
+      @Override
+      ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\inventory\ClientQuiverTooltip.java:47: error: method
+ does not override or implement a method from a supertype
+      @Override
+      ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\inventory\ClientQuiverTooltip.java:65: error: method
+ does not override or implement a method from a supertype
+      @Override
+      ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\data\recipe\ConditionalShapelessRecipeBuilder.java:144:
+ warning: [removal] parent(Identifier) in Builder has been deprecated and marke
+d for removal
+          advancement.parent(RecipeBuilder.ROOT_RECIPE_ADVANCEMENT)
+                     ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\capability\IQuiverItemHandler.java:5: warning: [removal] II
+temHandler in net.neoforged.neoforge.items has been deprecated and marked for r
+emoval
+  public interface IQuiverItemHandler extends IItemHandler {
+                                              ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\capability\QuiverItemStackHandler.java:12: warning: [remova
+l] ItemStackHandler in net.neoforged.neoforge.items has been deprecated and mar
+ked for removal
+  public class QuiverItemStackHandler extends ItemStackHandler implements IQuiv
+erItemHandler {
+                                              ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\container\QuiverBaseScreen.java:53: warning: [re
+moval] getSlots() in IItemHandler has been deprecated and marked for removal
+          this.ammoSlots = handler != null ? handler.getSlots() : Defaults.Slot
+sQuiverSmall;
+                                                    ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\inventory\QuiverBaseMenu.java:41: warning: [removal] getSlo
+ts() in IItemHandler has been deprecated and marked for removal
+          this.playerInvStart = this.handler.getSlots();
+                                            ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\inventory\QuiverBaseMenu.java:56: warning: [removal] getSlo
+ts() in IItemHandler has been deprecated and marked for removal
+          slotStartX = switch (this.handler.getSlots()) {
+                                           ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\inventory\QuiverBaseMenu.java:73: warning: [removal] getSlo
+ts() in IItemHandler has been deprecated and marked for removal
+          for (int i = 0; i < this.handler.getSlots(); i++) {
+                                          ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\inventory\QuiverBaseMenu.java:80: warning: [removal] getSlo
+ts() in IItemHandler has been deprecated and marked for removal
+          int yOffset = this.handler.getSlots() == Defaults.SlotsQuiverHuge ? 1
+8 : 0;
+                                    ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\inventory\QuiverBaseMenu.java:95: warning: [removal] getSlo
+ts() in IItemHandler has been deprecated and marked for removal
+          this.addSlot(new Slot(inventory, 40, -21, this.handler.getSlots() == 
+Defaults.SlotsQuiverHuge ? 127 : 109).setBackground(InventoryMenu.BLOCK_ATLAS, 
+InventoryMenu.EMPTY_ARMOR_SLOT_SHIELD));
+                                                                ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\inventory\QuiverBaseMenu.java:108: warning: [removal] getSl
+ots() in IItemHandler has been deprecated and marked for removal
+              if (slotIdx >= 0 && slotIdx < this.handler.getSlots()) {
+                                                        ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\data\recipe\TagCookingRecipeBuilder.java:99: warning: [remo
+val] parent(Identifier) in Builder has been deprecated and marked for removal
+          advancement.parent(ROOT_RECIPE_ADVANCEMENT)
+                     ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\event\CommonEventHandler.java:355: warning: [removal] inser
+tItem(int,ItemStack,boolean) in IItemHandler has been deprecated and marked for
+ removal
+              arrowStack = quiverHandler.insertItem(prioritySlot, arrowStack, f
+alse);
+                                        ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\event\CommonEventHandler.java:357: warning: [removal] getSl
+ots() in IItemHandler has been deprecated and marked for removal
+                  for (int j = 0; j < quiverHandler.getSlots(); j++) {
+                                                   ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\event\CommonEventHandler.java:361: warning: [removal] inser
+tItem(int,ItemStack,boolean) in IItemHandler has been deprecated and marked for
+ removal
+                      arrowStack = quiverHandler.insertItem(j, arrowStack, fals
+e);
+                                                ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\event\CommonEventHandler.java:382: warning: [removal] getSl
+ots() in IItemHandler has been deprecated and marked for removal
+              if (prioritySlot <= quiverHandler.getSlots()) {
+                                               ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\event\CommonEventHandler.java:383: warning: [removal] extra
+ctItem(int,int,boolean) in IItemHandler has been deprecated and marked for remo
+val
+                  arrowStack = quiverHandler.extractItem(prioritySlot, 64, fals
+e);
+                                            ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\event\CommonEventHandler.java:389: warning: [removal] getSl
+ots() in IItemHandler has been deprecated and marked for removal
+                  for (int j = 0; j < quiverHandler.getSlots(); j++) {
+                                                   ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\event\CommonEventHandler.java:393: warning: [removal] extra
+ctItem(int,int,boolean) in IItemHandler has been deprecated and marked for remo
+val
+                      arrowStack = quiverHandler.extractItem(j, 64, false);
+                                                ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\event\CommonEventHandler.java:423: warning: [removal] getSl
+ots() in IItemHandler has been deprecated and marked for removal
+                          for (int i = 0; i < quiverHandler.getSlots(); i++) {
+                                                           ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\event\CommonEventHandler.java:424: warning: [removal] inser
+tItem(int,ItemStack,boolean) in IItemHandler has been deprecated and marked for
+ removal
+                              pickedUpStack = quiverHandler.insertItem(i, picke
+dUpStack, false);
+                                                           ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\inventory\SlotFiltered.java:10: warning: [removal] SlotItem
+Handler in net.neoforged.neoforge.items has been deprecated and marked for remo
+val
+  public class SlotFiltered extends SlotItemHandler {
+                                    ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\inventory\SlotFiltered.java:13: warning: [removal] IItemHan
+dler in net.neoforged.neoforge.items has been deprecated and marked for removal
+      public SlotFiltered(IItemHandler handlerIn, int indexIn, int xPositionIn,
+ int yPositionIn, Predicate<ItemStack> filterIn) {
+                          ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\mixin\AbstractArrowMixin.java:63: warning: [removal] getSlo
+ts() in IItemHandler has been deprecated and marked for removal
+                                  for (int i = 0; i < quiverHandler.getSlots();
+ i++) {
+                                                                   ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\mixin\AbstractArrowMixin.java:64: warning: [removal] insert
+Item(int,ItemStack,boolean) in IItemHandler has been deprecated and marked for 
+removal
+                                      arrowStack = quiverHandler.insertItem(i, 
+arrowStack, false);
+                                                                ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\trait\ThrowableMeleeWeaponTrait.java:64: error: cannot 
+find symbol
+                  int j = EnchantmentHelper.getItemEnchantmentLevel(registryAcc
+ess.lookupOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantments.SHARPNE
+SS), stackIn);
+                                                                               
+                                         ^
+    symbol:   method getHolderOrThrow(ResourceKey<Enchantment>)
+    location: interface Registry<Enchantment>
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\trait\ThrowableMeleeWeaponTrait.java:70: error: cannot 
+find symbol
+                  int fireAspect = EnchantmentHelper.getItemEnchantmentLevel(re
+gistryAccess.lookupOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantment
+s.FIRE_ASPECT), stackIn);
+                                                                               
+                                                  ^
+    symbol:   method getHolderOrThrow(ResourceKey<Enchantment>)
+    location: interface Registry<Enchantment>
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\ClientHelper.java:221: error: cannot find symbol
+          EntityModelSet entityModelSet = ev.getEntityModelSet();
+                                            ^
+    symbol:   method getEntityModelSet()
+    location: variable ev of type CreateSkullModels
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\components\ToggleImageButton.java:42: error: can
+not find symbol
+          RenderSystem.setShaderTexture(0, this.textureLocation);
+                      ^
+    symbol:   method setShaderTexture(int,Identifier)
+    location: class RenderSystem
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\components\ToggleImageButton.java:51: error: can
+not find symbol
+          RenderSystem.enableDepthTest();
+                      ^
+    symbol:   method enableDepthTest()
+    location: class RenderSystem
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\container\QuiverBaseScreen.java:121: error: cann
+ot find symbol
+          RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
+                      ^
+    symbol:   method setShaderColor(float,float,float,float)
+    location: class RenderSystem
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\container\QuiverBaseScreen.java:128: error: cann
+ot find symbol
+          renderSlotHighlight(guiGraphics, this.leftPos + highlightedSlot.x, th
+is.topPos + highlightedSlot.y, 0, 0x8040C040);
+          ^
+    symbol:   method renderSlotHighlight(GuiGraphicsExtractor,int,int,int,int)
+    location: class QuiverBaseScreen<T>
+    where T is a type-variable:
+      T extends QuiverBaseMenu declared in class QuiverBaseScreen
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\container\QuiverBaseScreen.java:134: error: cann
+ot find symbol
+          guiGraphics.drawString(this.font, this.quiver.getHoverName(), this.im
+ageWidth / 2 - this.font.width(name) / 2, 5, 0x404040, false);
+                     ^
+    symbol:   method drawString(Font,Component,int,int,int,boolean)
+    location: variable guiGraphics of type GuiGraphicsExtractor
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\container\QuiverBaseScreen.java:135: error: cann
+ot find symbol
+          guiGraphics.drawString(this.font, this.playerInventoryTitle, 8, 42 + 
+(this.ammoSlots == Defaults.SlotsQuiverHuge ? 18 : 0), 0x404040, false);
+                     ^
+    symbol:   method drawString(Font,Component,int,int,int,boolean)
+    location: variable guiGraphics of type GuiGraphicsExtractor
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\item\QuiverBaseItem.java:65: error: cannot find symbol
+          list = ItemStackDataHelper.getTag(stack).getCompound(NBT_AMMO).getLis
+t("Items", Tag.TAG_COMPOUND);
+                                                                        ^
+    symbol:   method getList(String,byte)
+    location: class Optional<CompoundTag>
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\item\QuiverBaseItem.java:68: error: cannot find symbol
+              ItemStack item = ItemStack.parseOptional(getRegistryAccess(), lis
+t.getCompound(i));
+                                        ^
+    symbol:   method parseOptional(RegistryAccess,Optional<CompoundTag>)
+    location: class ItemStack
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\item\QuiverBaseItem.java:110: error: cannot find symbol
+                  playerIn.displayClientMessage(Component.translatable("message
+." + ModSpartanWeaponry.ID + ".ammo_collect_toggle", Component.translatable("to
+oltip." + ModSpartanWeaponry.ID + "." + collectStatus).withStyle(collectColour)
+), true);
+                          ^
+    symbol:   method displayClientMessage(MutableComponent,boolean)
+    location: variable playerIn of type Player
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\item\QuiverBaseItem.java:134: error: cannot find symbol
+          ListTag list = ItemStackDataHelper.getTag(stackIn).getCompound(NBT_AM
+MO).getList("Items", Tag.TAG_COMPOUND);
+                                                                               
+   ^
+    symbol:   method getList(String,byte)
+    location: class Optional<CompoundTag>
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\item\QuiverBaseItem.java:140: error: cannot find symbol
+              ItemStack slotStack = ItemStack.parseOptional(getRegistryAccess()
+, tag);
+                                             ^
+    symbol:   method parseOptional(RegistryAccess,CompoundTag)
+    location: class ItemStack
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\HudCrosshair.java:68: error: cannot find symbol
+                          modelViewStack.rotate(Axis.XN.rotationDegrees(camera.
+getXRot()));
+                                                                              ^
+    symbol:   method getXRot()
+    location: variable camera of type Camera
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\HudCrosshair.java:69: error: cannot find symbol
+                          modelViewStack.rotate(Axis.YP.rotationDegrees(camera.
+getYRot()));
+                                                                              ^
+    symbol:   method getYRot()
+    location: variable camera of type Camera
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\HudCrosshair.java:71: error: cannot find symbol
+                          RenderSystem.renderCrosshair(10);
+                                      ^
+    symbol:   method renderCrosshair(int)
+    location: class RenderSystem
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\HudCrosshairThrowingWeapon.java:89: error: canno
+t find symbol
+                  guiGraphics.drawString(mc.font, text, screenWidth / 2 - (mc.f
+ont.width(text) / 2), screenHeight / 2 + 20, 0xFFFFFFFF);
+                             ^
+    symbol:   method drawString(Font,String,int,int,int)
+    location: variable guiGraphics of type GuiGraphicsExtractor
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\HudOilUses.java:61: error: cannot find symbol
+          RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
+                      ^
+    symbol:   method setShaderColor(float,float,float,float)
+    location: class RenderSystem
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\HudOilUses.java:63: error: cannot find symbol
+          RenderSystem.setShaderTexture(0, WIDGETS);
+                      ^
+    symbol:   method setShaderTexture(int,Identifier)
+    location: class RenderSystem
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\HudOilUses.java:64: error: cannot find symbol
+          RenderSystem.enableBlend();
+                      ^
+    symbol:   method enableBlend()
+    location: class RenderSystem
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\HudOilUses.java:66: error: cannot find symbol
+          guiGraphics.renderFakeItem(oilStack, offsetX - 17, offsetY);
+                     ^
+    symbol:   method renderFakeItem(ItemStack,int,int)
+    location: variable guiGraphics of type GuiGraphicsExtractor
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\HudOilUses.java:71: error: cannot find symbol
+          guiGraphics.drawString(font, usesStr, offsetX, offsetY + 6, 0xFFFFFF)
+;
+                     ^
+    symbol:   method drawString(Font,String,int,int,int)
+    location: variable guiGraphics of type GuiGraphicsExtractor
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\HudQuiverAmmo.java:57: error: cannot find symbol
+          ListTag list = ItemStackDataHelper.getTag(quiverStack).getCompound(Qu
+iverBaseItem.NBT_AMMO).getList("Items", Tag.TAG_COMPOUND);
+                                                                               
+                      ^
+    symbol:   method getList(String,byte)
+    location: class Optional<CompoundTag>
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\HudQuiverAmmo.java:60: error: cannot find symbol
+              ItemStack ammoStack = ItemStack.parseOptional(mc.level.registryAc
+cess(), list.getCompound(i));
+                                             ^
+    symbol:   method parseOptional(RegistryAccess,Optional<CompoundTag>)
+    location: class ItemStack
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\HudQuiverAmmo.java:74: error: cannot find symbol
+          RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
+                      ^
+    symbol:   method setShaderColor(float,float,float,float)
+    location: class RenderSystem
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\HudQuiverAmmo.java:79: error: cannot find symbol
+          guiGraphics.renderFakeItem(quiverStack, offsetX + 3, offsetY + 3);
+                     ^
+    symbol:   method renderFakeItem(ItemStack,int,int)
+    location: variable guiGraphics of type GuiGraphicsExtractor
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\HudQuiverAmmo.java:81: error: cannot find symbol
+          guiGraphics.drawString(font, ammoStr, offsetX + 20 - font.width(ammoS
+tr), offsetY + 13, ammoCount == 0 ? 0xFF6060 : 0xFFC000, true);
+                     ^
+    symbol:   method drawString(Font,String,int,int,int,boolean)
+    location: variable guiGraphics of type GuiGraphicsExtractor
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\HudQuiverAmmo.java:88: error: cannot find symbol
+              guiGraphics.drawString(font, inventoryKey, offsetX + 11 - ((float
+) font.width(inventoryKey) / 2.0f), offsetY + keyTextYOffset, 0xFFFFFF, true);
+                         ^
+    symbol:   method drawString(Font,String,float,int,int,boolean)
+    location: variable guiGraphics of type GuiGraphicsExtractor
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\inventory\ClientOilCoatingTooltip.java:35: error: ca
+nnot find symbol
+          guiGraphics.renderItem(this.oilStack, posXIn, posYIn + 1);
+                     ^
+    symbol:   method renderItem(ItemStack,int,int)
+    location: variable guiGraphics of type GuiGraphicsExtractor
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\inventory\ClientQuiverTooltip.java:95: error: cannot
+ find symbol
+          RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
+                      ^
+    symbol:   method setShaderColor(float,float,float,float)
+    location: class RenderSystem
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\inventory\ClientQuiverTooltip.java:102: error: canno
+t find symbol
+              AbstractContainerScreen.renderSlotHighlight(guiGraphics, slotX + 
+1, slotY + 1, BLIT_OFFSET + 10, 0x8040C040);
+                                     ^
+    symbol:   method renderSlotHighlight(GuiGraphicsExtractor,int,int,int,int)
+    location: class AbstractContainerScreen
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\inventory\ClientQuiverTooltip.java:104: error: canno
+t find symbol
+              guiGraphics.renderItem(stackToDraw, slotX + 1, slotY + 1);
+                         ^
+    symbol:   method renderItem(ItemStack,int,int)
+    location: variable guiGraphics of type GuiGraphicsExtractor
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\inventory\ClientQuiverTooltip.java:105: error: canno
+t find symbol
+              guiGraphics.renderItemDecorations(fontIn, stackToDraw, slotX + 1,
+ slotY + 1);
+                         ^
+    symbol:   method renderItemDecorations(Font,ItemStack,int,int)
+    location: variable guiGraphics of type GuiGraphicsExtractor
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\capability\QuiverItemStackHandler.java:20: error: cannot fi
+nd symbol
+              this.deserializeNBT(getRegistryAccess(), tag);
+                  ^
+    symbol: method deserializeNBT(RegistryAccess,CompoundTag)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\capability\QuiverItemStackHandler.java:44: error: cannot fi
+nd symbol
+          ItemStackDataHelper.updateTag(this.quiverStack, tag -> tag.put(Quiver
+BaseItem.NBT_AMMO, this.serializeNBT(getRegistryAccess())));
+                                                                               
+                       ^
+    symbol: method serializeNBT(RegistryAccess)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\components\ToggleImageButton.java:40: error: can
+not find symbol
+          super.renderWidget(guiGraphics, renderX, renderY, p_94285_);
+               ^
+    symbol: method renderWidget(GuiGraphicsExtractor,int,int,float)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\container\QuiverBaseScreen.java:105: error: cann
+ot find symbol
+          super.render(guiGraphics, mouseX, mouseY, partialTicks);
+               ^
+    symbol: method render(GuiGraphicsExtractor,int,int,float)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\container\QuiverBaseScreen.java:115: error: cann
+ot find symbol
+              this.renderTooltip(guiGraphics, mouseX, mouseY);
+                  ^
+    symbol: method renderTooltip(GuiGraphicsExtractor,int,int)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\components\ToggleImageButton.java:11: error: Tog
+gleImageButton is not abstract and does not override abstract method extractCon
+tents(GuiGraphicsExtractor,int,int,float) in AbstractButton
+  public class ToggleImageButton extends Button {
+         ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\inventory\ClientOilCoatingTooltip.java:13: error: Cl
+ientOilCoatingTooltip is not abstract and does not override abstract method get
+Height(Font) in ClientTooltipComponent
+  public class ClientOilCoatingTooltip implements ClientTooltipComponent {
+         ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\inventory\ClientQuiverTooltip.java:22: error: Client
+QuiverTooltip is not abstract and does not override abstract method getHeight(F
+ont) in ClientTooltipComponent
+  public class ClientQuiverTooltip implements ClientTooltipComponent {
+         ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\oil\PotionOilEffect.java:43: error: incompatible types:
+ Optional<CompoundTag> cannot be converted to CompoundTag
+          CompoundTag oilTag = ItemStackDataHelper.getTag(oilStackIn).getCompou
+nd(OilHandler.NBT_OIL);
+                                                                               
+  ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\oil\PotionOilEffect.java:53: error: incompatible types:
+ LivingEntity cannot be converted to ServerLevel
+                      effect.getEffect().value().applyInstantenousEffect(userEn
+tityIn, userEntityIn, targetEntityIn, effect.getAmplifier(), 1.0d);
+                                                                         ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\components\ToggleImageButton.java:52: error: inc
+ompatible types: possible lossy conversion from float to int
+          guiGraphics.blit(this.textureLocation, this.getX(), this.getY(), u, v
+, this.width, this.height, this.textureWidth, this.textureHeight);
+                                                                           ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\container\QuiverBaseScreen.java:49: error: incom
+patible types: Optional<Integer> cannot be converted to int
+          this.prioritySlot = ItemStackDataHelper.getTag(this.quiver).getInt(Qu
+iverBaseItem.NBT_PROIRITY_SLOT);
+                                                                            ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\container\QuiverBaseScreen.java:50: error: incom
+patible types: Optional<Boolean> cannot be converted to boolean
+          this.isAmmoCollectEnabled = ItemStackDataHelper.getTag(this.quiver).g
+etBoolean(QuiverBaseItem.NBT_AMMO_COLLECT);
+                                                                               
+         ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\item\QuiverBaseItem.java:94: error: incompatible types: Opt
+ional<Integer> cannot be converted to int
+          int size = ItemStackDataHelper.getOrCreateTagElement(heldItem, NBT_AM
+MO).getInt("Size");
+                                                                               
+          ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\item\QuiverBaseItem.java:124: error: incompatible types: Op
+tional<Boolean> cannot be converted to boolean
+          boolean ammoCollect = ItemStackDataHelper.getTag(stack).getBoolean(NB
+T_AMMO_COLLECT);
+                                                                            ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\item\QuiverBaseItem.java:135: error: incompatible types: Op
+tional<Integer> cannot be converted to int
+          int prioritySlot = ItemStackDataHelper.getTag(stackIn).getInt(NBT_PRO
+IRITY_SLOT);
+                                                                       ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\item\QuiverBaseItem.java:139: error: incompatible types: Op
+tional<CompoundTag> cannot be converted to CompoundTag
+              CompoundTag tag = list.getCompound(i);
+                                                ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\item\QuiverBaseItem.java:141: error: incompatible types: Op
+tional<Integer> cannot be converted to int
+              int slot = tag.getInt(NBT_ITEM_SLOT);
+                                   ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\HudCrosshairThrowingWeapon.java:86: error: incom
+patible types: Matrix3x2fStack cannot be converted to PoseStack
+                  PoseStack guiPose = guiGraphics.pose();
+                                                      ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\HudOilUses.java:68: error: incompatible types: M
+atrix3x2fStack cannot be converted to PoseStack
+          com.mojang.blaze3d.vertex.PoseStack guiPose = guiGraphics.pose();
+                                                                        ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\HudQuiverAmmo.java:70: error: incompatible types
+: Matrix3x2fStack cannot be converted to PoseStack
+          PoseStack poseStack = guiGraphics.pose();
+                                                ^
+  Note: C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\
+spartanweaponryunofficial\data\ModDamageTypeTagsProvider.java uses unchecked or
+ unsafe operations.
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\HudCrosshairHeavyCrossbow.java:31: error: bad op
+erand types for binary operator '&&'
+              if (!equippedStack.isEmpty() && ItemStackDataHelper.getTag(equipp
+edStack).getBoolean(HeavyCrossbowItem.NBT_CHARGED) && player.getTicksUsingItem(
+) != 0) {
+                                           ^
+    first type:  boolean
+    second type: Optional<Boolean>
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\HudCrosshairThrowingWeapon.java:82: error: bad o
+perand types for binary operator '-'
+                  int ammo = maxAmmo - ItemStackDataHelper.getTag(equippedStack
+).getInt(ThrowingWeaponItem.NBT_AMMO_USED);
+                                     ^
+    first type:  int
+    second type: Optional<Integer>
+  Note: Some messages have been simplified; recompile with -Xdiags:verbose to g
+et full output
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\network\QuiverAccessPacket.java:18: error: package top.thei
+llusivec4.curios.api does not exist
+  import top.theillusivec4.curios.api.SlotResult;
+                                     ^
+  100 errors
+  24 warnings
+
+* Try:
+> Check your code and dependencies to fix the compilation error(s)
+> Run with --scan to generate a Build Scan (Powered by Develocity).
+
+BUILD FAILED in 7s
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/9.1.0/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+3 actionable tasks: 1 executed, 2 up-to-date

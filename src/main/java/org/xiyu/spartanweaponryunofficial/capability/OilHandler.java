@@ -5,7 +5,7 @@ import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -39,7 +39,7 @@ public class OilHandler implements IOilHandler {
         this.usesLeft = 0;
         // Load the values contained in the NBT if available
         if (ItemStackDataHelper.getTag(this.stack).contains(NBT_OIL))
-            this.deserializeNBT(getRegistryAccess(), ItemStackDataHelper.getTag(this.stack).getCompound(NBT_OIL));
+            this.deserializeNBT(getRegistryAccess(), ItemStackDataHelper.getTag(this.stack).getCompoundOrEmpty(NBT_OIL));
     }
 
     @Override
@@ -87,7 +87,7 @@ public class OilHandler implements IOilHandler {
 
         if (this.usesLeft <= 0) {
             if (userIn instanceof Player)
-                ((Player) userIn).displayClientMessage(Component.translatable("message." + ModSpartanWeaponry.ID + ".oil_depleted", oilStack.getHoverName(), userWeaponIn.getHoverName()), true);
+                ((Player) userIn).sendOverlayMessage(Component.translatable("message." + ModSpartanWeaponry.ID + ".oil_depleted", oilStack.getHoverName(), userWeaponIn.getHoverName()));
             this.clearEffect();
         }
         return resultDamage;
@@ -103,39 +103,37 @@ public class OilHandler implements IOilHandler {
         return this.usesLeft;
     }
 
-    @Override
     public CompoundTag serializeNBT(HolderLookup.@NotNull Provider provider) {
         CompoundTag nbt = new CompoundTag();
         Registry<OilEffect> registry = getOilRegistry();
         if (registry != null && this.effect.isPresent()) {
             if (this.potion.isPresent()) {
-                ResourceLocation potionLoc = BuiltInRegistries.POTION.getKey(this.potion.get());
+                Identifier potionLoc = BuiltInRegistries.POTION.getKey(this.potion.get());
                 nbt.putString(NBT_POTION, potionLoc.toString());
             }
-            ResourceLocation loc = registry.getKey(this.effect.get());
+            Identifier loc = registry.getKey(this.effect.get());
             nbt.putString(NBT_OIL_EFFECT, loc.toString());
             nbt.putInt(NBT_USES_LEFT, this.usesLeft);
         }
         return nbt;
     }
 
-    @Override
     public void deserializeNBT(HolderLookup.@NotNull Provider provider, CompoundTag nbt) {
-        String oilEffectReg = nbt.getString(NBT_OIL_EFFECT);
+        String oilEffectReg = nbt.getStringOr(NBT_OIL_EFFECT, "");
         Registry<OilEffect> registry = getOilRegistry();
         if (registry != null) {
-            this.effect = !oilEffectReg.isEmpty() ? Optional.ofNullable(registry.get(ResourceLocation.parse(oilEffectReg))) : Optional.empty();
+            this.effect = !oilEffectReg.isEmpty() ? Optional.ofNullable(registry.getValue(Identifier.parse(oilEffectReg))) : Optional.empty();
             if (nbt.contains(NBT_POTION)) {
-                String potionReg = nbt.getString(NBT_POTION);
-                this.potion = !potionReg.isEmpty() ? Optional.ofNullable(BuiltInRegistries.POTION.get(ResourceLocation.parse(potionReg))) : Optional.empty();
+                String potionReg = nbt.getStringOr(NBT_POTION, "");
+                this.potion = !potionReg.isEmpty() ? Optional.ofNullable(BuiltInRegistries.POTION.getValue(Identifier.parse(potionReg))) : Optional.empty();
             }
         }
-        this.usesLeft = nbt.getInt(NBT_USES_LEFT);
+        this.usesLeft = nbt.getIntOr(NBT_USES_LEFT, 0);
     }
 
     @SuppressWarnings("unchecked")
     private static Registry<OilEffect> getOilRegistry() {
-        return (Registry<OilEffect>) BuiltInRegistries.REGISTRY.get(OilEffects.REGISTRY_KEY.location());
+        return (Registry<OilEffect>) BuiltInRegistries.REGISTRY.getValue(OilEffects.REGISTRY_KEY.identifier());
     }
 
     private static HolderLookup.Provider getRegistryAccess() {

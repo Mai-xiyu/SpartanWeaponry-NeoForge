@@ -1,0 +1,2169 @@
+﻿.\gradlew.bat : Picked up JAVA_TOOL_OPTIONS: -Duser.language=en -Duser.country=
+US
+所在位置 行:1 字符: 172
++ ... top\SpartanWeaponry-NeoForge"; .\gradlew.bat compileJava 2>&1 | Out-F ...
++                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Picked up JAVA_...user.country=US 
+   :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by net.rubygrapefruit.platform.
+internal.NativeLibraryLoader in an unnamed module (file:/C:/Users/25463/.gradle
+/wrapper/dists/gradle-9.1.0-bin/9agqghryom9wkf8r80qlhnts3/gradle-9.1.0/lib/nati
+ve-platform-0.22-milestone-28.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers 
+in this module
+WARNING: Restricted methods will be blocked in a future release unless native a
+ccess is enabled
+
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.1.0/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :generateModMetadata UP-TO-DATE
+> Task :createMinecraftArtifacts UP-TO-DATE
+
+> Task :compileJava
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\particle\DamageModifiedParticle.java:9: error: cannot 
+find symbol
+public class DamageModifiedParticle extends TextureSheetParticle {
+                                            ^
+  symbol: class TextureSheetParticle
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\data\ModAdvancementProvider.java:14: error: cannot find symbo
+l
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
+                                         ^
+  symbol:   class ExistingFileHelper
+  location: package net.neoforged.neoforge.common.data
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\data\ModAdvancementProvider.java:26: error: cannot find symbo
+l
+    public ModAdvancementProvider(PackOutput output, CompletableFuture<HolderLo
+okup.Provider> registries, ExistingFileHelper existingFileHelperIn) {
+                                                                               
+                           ^
+  symbol:   class ExistingFileHelper
+  location: class ModAdvancementProvider
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\DynamiteEntity.java:7: error: cannot find s
+ymbol
+import net.minecraft.world.entity.projectile.ThrowableItemProjectile;
+                                            ^
+  symbol:   class ThrowableItemProjectile
+  location: package net.minecraft.world.entity.projectile
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\entity\projectile\DynamiteEntity.java:19: error: cannot find 
+symbol
+public class DynamiteEntity extends ThrowableItemProjectile {
+                                    ^
+  symbol: class ThrowableItemProjectile
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\mixin\AbstractSkeletonMixin.java:10: error: cannot find symbo
+l
+import net.minecraft.world.entity.monster.AbstractSkeleton;
+                                         ^
+  symbol:   class AbstractSkeleton
+  location: package net.minecraft.world.entity.monster
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\mixin\AbstractSkeletonMixin.java:28: error: cannot find symbo
+l
+    private RangedBowAttackGoal<AbstractSkeleton> bowGoal;
+                                ^
+  symbol:   class AbstractSkeleton
+  location: class AbstractSkeletonMixin
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\mixin\WitherSkeletonMixin.java:6: error: cannot find symbol
+import net.minecraft.world.entity.monster.WitherSkeleton;
+                                         ^
+  symbol:   class WitherSkeleton
+  location: package net.minecraft.world.entity.monster
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\mixin\ZombieMixin.java:5: error: cannot find symbol
+import net.minecraft.world.entity.monster.Zombie;
+                                         ^
+  symbol:   class Zombie
+  location: package net.minecraft.world.entity.monster
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\network\QuiverAccessPacket.java:18: error: package top.theill
+usivec4.curios.api does not exist
+import top.theillusivec4.curios.api.SlotResult;
+                                   ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\ClientHelper.java:54: error: cannot find symbol
+@EventBusSubscriber(modid = ModSpartanWeaponry.ID, bus = EventBusSubscriber.Bus
+.MOD, value = Dist.CLIENT)
+                                                   ^
+  symbol:   method bus()
+  location: @interface EventBusSubscriber
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\ClientHelper.java:54: error: cannot find symbol
+@EventBusSubscriber(modid = ModSpartanWeaponry.ID, bus = EventBusSubscriber.Bus
+.MOD, value = Dist.CLIENT)
+                                                                           ^
+  symbol:   variable Bus
+  location: @interface EventBusSubscriber
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\KeyBinds.java:13: error: cannot find symbol
+@EventBusSubscriber(modid = ModSpartanWeaponry.ID, value = Dist.CLIENT, bus = E
+ventBusSubscriber.Bus.MOD)
+                                                                        ^
+  symbol:   method bus()
+  location: @interface EventBusSubscriber
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\KeyBinds.java:13: error: cannot find symbol
+@EventBusSubscriber(modid = ModSpartanWeaponry.ID, value = Dist.CLIENT, bus = E
+ventBusSubscriber.Bus.MOD)
+                                                                               
+                 ^
+  symbol:   variable Bus
+  location: @interface EventBusSubscriber
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\event\ClientEventHandler.java:38: error: cannot find symbol
+@EventBusSubscriber(modid = ModSpartanWeaponry.ID, bus = EventBusSubscriber.Bus
+.GAME, value = Dist.CLIENT)
+                                                   ^
+  symbol:   method bus()
+  location: @interface EventBusSubscriber
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\event\ClientEventHandler.java:38: error: cannot find symbol
+@EventBusSubscriber(modid = ModSpartanWeaponry.ID, bus = EventBusSubscriber.Bus
+.GAME, value = Dist.CLIENT)
+                                                                           ^
+  symbol:   variable Bus
+  location: @interface EventBusSubscriber
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\event\CommonEventHandler.java:83: error: cannot find symbol
+@EventBusSubscriber(modid = ModSpartanWeaponry.ID, bus = EventBusSubscriber.Bus
+.GAME)
+                                                   ^
+  symbol:   method bus()
+  location: @interface EventBusSubscriber
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\event\CommonEventHandler.java:83: error: cannot find symbol
+@EventBusSubscriber(modid = ModSpartanWeaponry.ID, bus = EventBusSubscriber.Bus
+.GAME)
+                                                                           ^
+  symbol:   variable Bus
+  location: @interface EventBusSubscriber
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\event\DataGenEventHandler.java:15: error: cannot find symbol
+@EventBusSubscriber(modid = ModSpartanWeaponry.ID, bus = EventBusSubscriber.Bus
+.MOD)
+                                                   ^
+  symbol:   method bus()
+  location: @interface EventBusSubscriber
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\event\DataGenEventHandler.java:15: error: cannot find symbol
+@EventBusSubscriber(modid = ModSpartanWeaponry.ID, bus = EventBusSubscriber.Bus
+.MOD)
+                                                                           ^
+  symbol:   variable Bus
+  location: @interface EventBusSubscriber
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\event\ReloadResourceEventHandler.java:20: error: cannot find 
+symbol
+@EventBusSubscriber(modid = ModSpartanWeaponry.ID, bus = EventBusSubscriber.Bus
+.GAME)
+                                                   ^
+  symbol:   method bus()
+  location: @interface EventBusSubscriber
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\event\ReloadResourceEventHandler.java:20: error: cannot find 
+symbol
+@EventBusSubscriber(modid = ModSpartanWeaponry.ID, bus = EventBusSubscriber.Bus
+.GAME)
+                                                                           ^
+  symbol:   variable Bus
+  location: @interface EventBusSubscriber
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\init\ModParticles.java:15: error: cannot find symbol
+@EventBusSubscriber(modid = ModSpartanWeaponry.ID, bus = EventBusSubscriber.Bus
+.MOD, value = Dist.CLIENT)
+                                                   ^
+  symbol:   method bus()
+  location: @interface EventBusSubscriber
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\init\ModParticles.java:15: error: cannot find symbol
+@EventBusSubscriber(modid = ModSpartanWeaponry.ID, bus = EventBusSubscriber.Bus
+.MOD, value = Dist.CLIENT)
+                                                                           ^
+  symbol:   variable Bus
+  location: @interface EventBusSubscriber
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\mixin\AbstractSkeletonMixin.java:24: error: cannot find symbo
+l
+@Mixin(AbstractSkeleton.class)
+       ^
+  symbol: class AbstractSkeleton
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\mixin\WitherSkeletonMixin.java:15: error: cannot find symbol
+@Mixin(WitherSkeleton.class)
+       ^
+  symbol: class WitherSkeleton
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\mixin\ZombieMixin.java:13: error: cannot find symbol
+@Mixin(Zombie.class)
+       ^
+  symbol: class Zombie
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\util\Config.java:26: error: cannot find symbol
+@EventBusSubscriber(modid = ModSpartanWeaponry.ID, bus = EventBusSubscriber.Bus
+.MOD)
+                                                   ^
+  symbol:   method bus()
+  location: @interface EventBusSubscriber
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\util\Config.java:26: error: cannot find symbol
+@EventBusSubscriber(modid = ModSpartanWeaponry.ID, bus = EventBusSubscriber.Bus
+.MOD)
+                                                                           ^
+  symbol:   variable Bus
+  location: @interface EventBusSubscriber
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\advancement\criterion\BrewOilTrigger.java:53: error: cannot f
+ind symbol
+            Registry<OilEffect> registry = registryAccess.registry(OilEffects.R
+EGISTRY_KEY).orElse(null);
+                                                         ^
+  symbol:   method registry(ResourceKey<Registry<OilEffect>>)
+  location: variable registryAccess of type RegistryAccess
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\oil\OilEffect.java:32: error: cannot find symbol
+    public static final IUsePredicate USE_UNDEAD = (baseDamage, effect, level, 
+target, user) -> target.getType().is(EntityTypeTags.UNDEAD);
+                                                                               
+                                 ^
+  symbol:   method is(TagKey<EntityType<?>>)
+  location: class EntityType<CAP#1>
+  where CAP#1 is a fresh type-variable:
+    CAP#1 extends Entity from capture of ?
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\oil\OilEffect.java:33: error: cannot find symbol
+    public static final IUsePredicate USE_ARTHROPOD = (baseDamage, effect, leve
+l, target, user) -> target.getType().is(EntityTypeTags.ARTHROPOD);
+                                                                               
+                                    ^
+  symbol:   method is(TagKey<EntityType<?>>)
+  location: class EntityType<CAP#1>
+  where CAP#1 is a fresh type-variable:
+    CAP#1 extends Entity from capture of ?
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\oil\OilEffect.java:34: error: cannot find symbol
+    public static final IUsePredicate USE_CRYOTIC = (baseDamage, effect, level,
+ target, user) -> target.getType().is(EntityTypeTags.FREEZE_HURTS_EXTRA_TYPES);
+                                                                               
+                                  ^
+  symbol:   method is(TagKey<EntityType<?>>)
+  location: class EntityType<CAP#1>
+  where CAP#1 is a fresh type-variable:
+    CAP#1 extends Entity from capture of ?
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\oil\OilEffect.java:35: error: cannot find symbol
+    public static final IUsePredicate USE_NECTROTIC = (baseDamage, effect, leve
+l, target, user) -> target.getType().is(ModEntityTypeTags.HUMANOIDS);
+                                                                               
+                                    ^
+  symbol:   method is(TagKey<EntityType<?>>)
+  location: class EntityType<CAP#1>
+  where CAP#1 is a fresh type-variable:
+    CAP#1 extends Entity from capture of ?
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\oil\OilEffect.java:36: error: cannot find symbol
+    public static final IUsePredicate USE_CREEPER = (baseDamage, effect, level,
+ target, user) -> target.getType().is(ModEntityTypeTags.CREEPERS);
+                                                                               
+                                  ^
+  symbol:   method is(TagKey<EntityType<?>>)
+  location: class EntityType<CAP#1>
+  where CAP#1 is a fresh type-variable:
+    CAP#1 extends Entity from capture of ?
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\oil\OilEffect.java:37: error: cannot find symbol
+    public static final IUsePredicate USE_AQUATIC = (baseDamage, effect, level,
+ target, user) -> target.getType().is(EntityTypeTags.AQUATIC);
+                                                                               
+                                  ^
+  symbol:   method is(TagKey<EntityType<?>>)
+  location: class EntityType<CAP#1>
+  where CAP#1 is a fresh type-variable:
+    CAP#1 extends Entity from capture of ?
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\oil\OilEffect.java:38: error: cannot find symbol
+    public static final IUsePredicate USE_ENDER = (baseDamage, effect, level, t
+arget, user) -> target.getType().is(ModEntityTypeTags.ENDER);
+                                                                               
+                                ^
+  symbol:   method is(TagKey<EntityType<?>>)
+  location: class EntityType<CAP#1>
+  where CAP#1 is a fresh type-variable:
+    CAP#1 extends Entity from capture of ?
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\data\recipe\ConditionalShapedRecipeBuilder.java:57: error
+: no suitable method found for of(TagKey<Item>)
+        return this.define(character, Ingredient.of(tagIn));
+                                                ^
+    method Ingredient.of(ItemLike) is not applicable
+      (argument mismatch; TagKey<Item> cannot be converted to ItemLike)
+    method Ingredient.of(ItemLike...) is not applicable
+      (varargs mismatch; TagKey<Item> cannot be converted to ItemLike)
+    method Ingredient.of(Stream<? extends ItemLike>) is not applicable
+      (argument mismatch; TagKey<Item> cannot be converted to Stream<? extends 
+ItemLike>)
+    method Ingredient.of(HolderSet<Item>) is not applicable
+      (argument mismatch; TagKey<Item> cannot be converted to HolderSet<Item>)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\data\recipe\ConditionalShapedRecipeBuilder.java:116: erro
+r: no suitable method found for shaped(RecipeCategory,Item,int)
+        ShapedRecipeBuilder builder = ShapedRecipeBuilder.shaped(this.category,
+ this.result, this.count);
+                                                         ^
+    method ShapedRecipeBuilder.shaped(HolderGetter<Item>,RecipeCategory,ItemLik
+e) is not applicable
+      (argument mismatch; RecipeCategory cannot be converted to HolderGetter<It
+em>)
+    method ShapedRecipeBuilder.shaped(HolderGetter<Item>,RecipeCategory,ItemSta
+ckTemplate) is not applicable
+      (argument mismatch; RecipeCategory cannot be converted to HolderGetter<It
+em>)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\data\recipe\ConditionalShapedRecipeBuilder.java:124: erro
+r: no suitable method found for save(RecipeOutput,Identifier)
+        builder.save(conditionedOutput, id);
+               ^
+    method RecipeBuilder.save(RecipeOutput,String) is not applicable
+      (argument mismatch; Identifier cannot be converted to String)
+    method ShapedRecipeBuilder.save(RecipeOutput,ResourceKey<Recipe<?>>) is not
+ applicable
+      (argument mismatch; Identifier cannot be converted to ResourceKey<Recipe<
+?>>)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\data\recipe\ConditionalShapelessRecipeBuilder.java:69: er
+ror: no suitable method found for of(TagKey<Item>)
+        return this.requires(Ingredient.of(tagIn));
+                                       ^
+    method Ingredient.of(ItemLike) is not applicable
+      (argument mismatch; TagKey<Item> cannot be converted to ItemLike)
+    method Ingredient.of(ItemLike...) is not applicable
+      (varargs mismatch; TagKey<Item> cannot be converted to ItemLike)
+    method Ingredient.of(Stream<? extends ItemLike>) is not applicable
+      (argument mismatch; TagKey<Item> cannot be converted to Stream<? extends 
+ItemLike>)
+    method Ingredient.of(HolderSet<Item>) is not applicable
+      (argument mismatch; TagKey<Item> cannot be converted to HolderSet<Item>)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\data\recipe\ConditionalShapelessRecipeBuilder.java:73: er
+ror: no suitable method found for of(TagKey<Item>)
+        return this.requires(Ingredient.of(tagIn), countIn);
+                                       ^
+    method Ingredient.of(ItemLike) is not applicable
+      (argument mismatch; TagKey<Item> cannot be converted to ItemLike)
+    method Ingredient.of(ItemLike...) is not applicable
+      (varargs mismatch; TagKey<Item> cannot be converted to ItemLike)
+    method Ingredient.of(Stream<? extends ItemLike>) is not applicable
+      (argument mismatch; TagKey<Item> cannot be converted to Stream<? extends 
+ItemLike>)
+    method Ingredient.of(HolderSet<Item>) is not applicable
+      (argument mismatch; TagKey<Item> cannot be converted to HolderSet<Item>)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\data\recipe\ConditionalShapelessRecipeBuilder.java:129: e
+rror: cannot find symbol
+        CraftingBookCategory bookCategory = RecipeBuilder.determineBookCategory
+(this.category);
+                                                         ^
+  symbol:   method determineBookCategory(RecipeCategory)
+  location: interface RecipeBuilder
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\data\recipe\ConditionalShapelessRecipeBuilder.java:133: e
+rror: incompatible types: bad type in conditional expression
+        ShapelessRecipe recipe = new ShapelessRecipe(this.group == null ? "" : 
+this.group, bookCategory, outputStack, ingredientList);
+                                                                          ^
+    String cannot be converted to CommonInfo
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\data\recipe\ConditionalShapelessRecipeBuilder.java:138: w
+arning: [removal] parent(Identifier) in Builder has been deprecated and marked 
+for removal
+        advancement.parent(RecipeBuilder.ROOT_RECIPE_ADVANCEMENT)
+                   ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\data\recipe\ConditionalShapelessRecipeBuilder.java:139: e
+rror: incompatible types: Identifier cannot be converted to ResourceKey<Recipe<
+?>>
+                .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(
+id))
+                                                                               
+^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\data\recipe\ConditionalShapelessRecipeBuilder.java:140: e
+rror: incompatible types: Identifier cannot be converted to ResourceKey<Recipe<
+?>>
+                .rewards(AdvancementRewards.Builder.recipe(id))
+                                                           ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\data\recipe\ConditionalShapelessRecipeBuilder.java:143: e
+rror: no suitable method found for accept(Identifier,ShapelessRecipe,Advancemen
+tHolder)
+        conditionedOutput.accept(id, recipe, advancementHolder);
+                         ^
+    method IRecipeOutputExtension.accept(ResourceKey<Recipe<?>>,Recipe<?>,@org.
+jspecify.annotations.Nullable AdvancementHolder,ICondition...) is not applicabl
+e
+      (argument mismatch; Identifier cannot be converted to ResourceKey<Recipe<
+?>>)
+    method RecipeOutput.accept(ResourceKey<Recipe<?>>,Recipe<?>,@org.jspecify.a
+nnotations.Nullable AdvancementHolder) is not applicable
+      (argument mismatch; Identifier cannot be converted to ResourceKey<Recipe<
+?>>)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\data\recipe\RecipeProviderHelper.java:39: error: no suita
+ble method found for of(TagKey<Item>)
+		SmithingTransformRecipeBuilder.smithing(Ingredient.of(Items.NETHERITE_UPGRADE
+_SMITHING_TEMPLATE), Ingredient.of(base), Ingredient.of(additionTag), RecipeCat
+egory.MISC, result.asItem()).unlocks(hasItemCriterionName, hasItem(additionTag)
+).
+		                                                                             
+                                                    ^
+    method Ingredient.of(ItemLike) is not applicable
+      (argument mismatch; TagKey<Item> cannot be converted to ItemLike)
+    method Ingredient.of(ItemLike...) is not applicable
+      (varargs mismatch; TagKey<Item> cannot be converted to ItemLike)
+    method Ingredient.of(Stream<? extends ItemLike>) is not applicable
+      (argument mismatch; TagKey<Item> cannot be converted to Stream<? extends 
+ItemLike>)
+    method Ingredient.of(HolderSet<Item>) is not applicable
+      (argument mismatch; TagKey<Item> cannot be converted to HolderSet<Item>)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\data\recipe\RecipeProviderHelper.java:474: error: no suit
+able method found for of(TagKey<Item>)
+		recipeLongbow(consumer, Ingredient.of(stick), Ingredient.of(string), handle, 
+material, result, hasItemCriterionName, "");
+		                                  ^
+    method Ingredient.of(ItemLike) is not applicable
+      (argument mismatch; TagKey<Item> cannot be converted to ItemLike)
+    method Ingredient.of(ItemLike...) is not applicable
+      (varargs mismatch; TagKey<Item> cannot be converted to ItemLike)
+    method Ingredient.of(Stream<? extends ItemLike>) is not applicable
+      (argument mismatch; TagKey<Item> cannot be converted to Stream<? extends 
+ItemLike>)
+    method Ingredient.of(HolderSet<Item>) is not applicable
+      (argument mismatch; TagKey<Item> cannot be converted to HolderSet<Item>)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\data\recipe\RecipeProviderHelper.java:474: error: no suit
+able method found for of(TagKey<Item>)
+		recipeLongbow(consumer, Ingredient.of(stick), Ingredient.of(string), handle, 
+material, result, hasItemCriterionName, "");
+		                                                        ^
+    method Ingredient.of(ItemLike) is not applicable
+      (argument mismatch; TagKey<Item> cannot be converted to ItemLike)
+    method Ingredient.of(ItemLike...) is not applicable
+      (varargs mismatch; TagKey<Item> cannot be converted to ItemLike)
+    method Ingredient.of(Stream<? extends ItemLike>) is not applicable
+      (argument mismatch; TagKey<Item> cannot be converted to Stream<? extends 
+ItemLike>)
+    method Ingredient.of(HolderSet<Item>) is not applicable
+      (argument mismatch; TagKey<Item> cannot be converted to HolderSet<Item>)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\data\recipe\RecipeProviderHelper.java:512: error: no suit
+able method found for of(TagKey<Item>)
+		recipeHeavyCrossbow(consumer, Ingredient.of(planks), bow, handle, material, r
+esult, hasItemCriterionName, "");
+		                                        ^
+    method Ingredient.of(ItemLike) is not applicable
+      (argument mismatch; TagKey<Item> cannot be converted to ItemLike)
+    method Ingredient.of(ItemLike...) is not applicable
+      (varargs mismatch; TagKey<Item> cannot be converted to ItemLike)
+    method Ingredient.of(Stream<? extends ItemLike>) is not applicable
+      (argument mismatch; TagKey<Item> cannot be converted to Stream<? extends 
+ItemLike>)
+    method Ingredient.of(HolderSet<Item>) is not applicable
+      (argument mismatch; TagKey<Item> cannot be converted to HolderSet<Item>)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\data\recipe\RecipeProviderHelper.java:641: error: no suit
+able method found for of(TagKey<Item>)
+		recipeBoomerang(consumer, Ingredient.of(planks), material, result, hasItemCri
+terionName, "");
+		                                    ^
+    method Ingredient.of(ItemLike) is not applicable
+      (argument mismatch; TagKey<Item> cannot be converted to ItemLike)
+    method Ingredient.of(ItemLike...) is not applicable
+      (varargs mismatch; TagKey<Item> cannot be converted to ItemLike)
+    method Ingredient.of(Stream<? extends ItemLike>) is not applicable
+      (argument mismatch; TagKey<Item> cannot be converted to Stream<? extends 
+ItemLike>)
+    method Ingredient.of(HolderSet<Item>) is not applicable
+      (argument mismatch; TagKey<Item> cannot be converted to HolderSet<Item>)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\data\recipe\RecipeProviderHelper.java:674: error: no suit
+able method found for of(TagKey<Item>)
+		recipeBattleaxe(consumer, Ingredient.of(stick), handle, material, result, has
+ItemCriterionName, "");
+		                                    ^
+    method Ingredient.of(ItemLike) is not applicable
+      (argument mismatch; TagKey<Item> cannot be converted to ItemLike)
+    method Ingredient.of(ItemLike...) is not applicable
+      (varargs mismatch; TagKey<Item> cannot be converted to ItemLike)
+    method Ingredient.of(Stream<? extends ItemLike>) is not applicable
+      (argument mismatch; TagKey<Item> cannot be converted to Stream<? extends 
+ItemLike>)
+    method Ingredient.of(HolderSet<Item>) is not applicable
+      (argument mismatch; TagKey<Item> cannot be converted to HolderSet<Item>)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\data\recipe\RecipeProviderHelper.java:709: error: no suit
+able method found for of(TagKey<Item>)
+		recipeFlangedMace(consumer, Ingredient.of(stick), handle, material, result, h
+asItemCriterionName, "");
+		                                      ^
+    method Ingredient.of(ItemLike) is not applicable
+      (argument mismatch; TagKey<Item> cannot be converted to ItemLike)
+    method Ingredient.of(ItemLike...) is not applicable
+      (varargs mismatch; TagKey<Item> cannot be converted to ItemLike)
+    method Ingredient.of(Stream<? extends ItemLike>) is not applicable
+      (argument mismatch; TagKey<Item> cannot be converted to Stream<? extends 
+ItemLike>)
+    method Ingredient.of(HolderSet<Item>) is not applicable
+      (argument mismatch; TagKey<Item> cannot be converted to HolderSet<Item>)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\data\recipe\RecipeProviderHelper.java:836: error: incompa
+tible types: ItemLike cannot be converted to HolderGetter<Item>
+		return InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.
+item().of(item).build());
+		                                                                             
+          ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\data\recipe\RecipeProviderHelper.java:846: error: incompa
+tible types: TagKey<Item> cannot be converted to HolderGetter<Item>
+		return InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.
+item().of(tag).build());
+		                                                                             
+          ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\WeaponMaterial.java:90: error: no suitable method found f
+or of(TagKey<Item>)
+        this.repairMaterial = () -> Ingredient.of(repairTagIn);
+                                              ^
+    method Ingredient.of(ItemLike) is not applicable
+      (argument mismatch; TagKey<Item> cannot be converted to ItemLike)
+    method Ingredient.of(ItemLike...) is not applicable
+      (varargs mismatch; TagKey<Item> cannot be converted to ItemLike)
+    method Ingredient.of(Stream<? extends ItemLike>) is not applicable
+      (argument mismatch; TagKey<Item> cannot be converted to Stream<? extends 
+ItemLike>)
+    method Ingredient.of(HolderSet<Item>) is not applicable
+      (argument mismatch; TagKey<Item> cannot be converted to HolderSet<Item>)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\WeaponMaterial.java:108: error: cannot find symbol
+        Registry<WeaponTrait> registry = registryAccess.registry(WeaponTraits.R
+EGISTRY_KEY).orElse(null);
+                                                       ^
+  symbol:   method registry(ResourceKey<Registry<WeaponTrait>>)
+  location: variable registryAccess of type RegistryAccess
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\WeaponMaterial.java:116: error: cannot find symbol
+        this.isValidTag = registry.getTag(this.traitsTag).isPresent();
+                                  ^
+  symbol:   method getTag(TagKey<WeaponTrait>)
+  location: variable registry of type Registry<WeaponTrait>
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\WeaponMaterial.java:184: error: method does not override 
+or implement a method from a supertype
+    @Override
+    ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\oil\PotionOilEffect.java:29: error: incompatible types: O
+ptional<CompoundTag> cannot be converted to CompoundTag
+        CompoundTag oilTag = ItemStackDataHelper.getTag(stackIn).getCompound(Oi
+lHandler.NBT_OIL);
+                                                                            ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\oil\PotionOilEffect.java:42: error: incompatible types: O
+ptional<CompoundTag> cannot be converted to CompoundTag
+        CompoundTag oilTag = ItemStackDataHelper.getTag(oilStackIn).getCompound
+(OilHandler.NBT_OIL);
+                                                                               
+^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\oil\PotionOilEffect.java:52: error: method applyInstanten
+ousEffect in class MobEffect cannot be applied to given types;
+                    effect.getEffect().value().applyInstantenousEffect(userEnti
+tyIn, userEntityIn, targetEntityIn, effect.getAmplifier(), 1.0d);
+                                              ^
+  required: ServerLevel,Entity,Entity,LivingEntity,int,double
+  found:    LivingEntity,LivingEntity,LivingEntity,int,double
+  reason: actual and formal argument lists differ in length
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\oil\PotionOilEffect.java:52: error: incompatible types: L
+ivingEntity cannot be converted to ServerLevel
+                    effect.getEffect().value().applyInstantenousEffect(userEnti
+tyIn, userEntityIn, targetEntityIn, effect.getAmplifier(), 1.0d);
+                                                                       ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\trait\DamageBonusWeaponTrait.java:61: error: cannot find 
+symbol
+            victim.getType().is(EntityTypeTags.UNDEAD) ? baseDamage + bonusDama
+ge : baseDamage;
+                            ^
+  symbol:   method is(TagKey<EntityType<?>>)
+  location: class EntityType<CAP#1>
+  where CAP#1 is a fresh type-variable:
+    CAP#1 extends Entity from capture of ?
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\trait\HammerSlamWeaponTrait.java:43: error: isClientSide 
+has private access in Level
+        if (!level.isClientSide && !player.getCooldowns().isOnCooldown(weapon.g
+etItem()) && player.getAttackStrengthScale(0.0f) == 1.0f) {
+                  ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\trait\HammerSlamWeaponTrait.java:43: error: incompatible 
+types: Item cannot be converted to ItemStack
+        if (!level.isClientSide && !player.getCooldowns().isOnCooldown(weapon.g
+etItem()) && player.getAttackStrengthScale(0.0f) == 1.0f) {
+                                                                               
+      ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\trait\HammerSlamWeaponTrait.java:55: error: cannot find s
+ymbol
+            player.playNotifySound(ModSounds.HAMMER_SLAMS_INTO_GROUND.get(), So
+undSource.PLAYERS, 1.0f, 0.6f);
+                  ^
+  symbol:   method playNotifySound(SoundEvent,SoundSource,float,float)
+  location: variable player of type Player
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\trait\HammerSlamWeaponTrait.java:58: error: no suitable m
+ethod found for addCooldown(Item,int)
+            player.getCooldowns().addCooldown(weapon.getItem(), 60);
+                                 ^
+    method ItemCooldowns.addCooldown(ItemStack,int) is not applicable
+      (argument mismatch; Item cannot be converted to ItemStack)
+    method ItemCooldowns.addCooldown(Identifier,int) is not applicable
+      (argument mismatch; Item cannot be converted to Identifier)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\trait\HarvesterWeaponTrait.java:46: error: isClientSide h
+as private access in Level
+        if (!level.isClientSide) {
+                  ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\trait\HarvesterWeaponTrait.java:55: error: no suitable me
+thod found for addCooldown(Item,int)
+                player.getCooldowns().addCooldown(contextIn.getItemInHand().get
+Item(), 10);
+                                     ^
+    method ItemCooldowns.addCooldown(ItemStack,int) is not applicable
+      (argument mismatch; Item cannot be converted to ItemStack)
+    method ItemCooldowns.addCooldown(Identifier,int) is not applicable
+      (argument mismatch; Item cannot be converted to Identifier)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\trait\HarvesterWeaponTrait.java:86: error: no suitable me
+thod found for getCloneItemStack(Level,BlockPos,BlockState)
+                ItemStack targetSeed = block.getCloneItemStack(levelIn, posIn, 
+state);
+                                            ^
+    method IBlockExtension.getCloneItemStack(LevelReader,BlockPos,BlockState,bo
+olean,Player) is not applicable
+      (actual and formal argument lists differ in length)
+    method BlockBehaviour.getCloneItemStack(LevelReader,BlockPos,BlockState,boo
+lean) is not applicable
+      (actual and formal argument lists differ in length)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\trait\MeleeBlockWeaponTrait.java:58: error: cannot find s
+ymbol
+                ev.setCanceled(true);
+                  ^
+  symbol:   method setCanceled(boolean)
+  location: variable ev of type LivingShieldBlockEvent
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\trait\NauseaWeaponTrait.java:29: error: cannot find symbo
+l
+            target.addEffect(new MobEffectInstance(MobEffects.CONFUSION, (int) 
+(this.getMagnitude() * 20.0f), 1));
+                                                             ^
+  symbol:   variable CONFUSION
+  location: class MobEffects
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\trait\ThrowableMeleeWeaponTrait.java:55: error: isClientS
+ide has private access in Level
+            if (!levelIn.isClientSide && charge > 2) {
+                        ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\trait\ThrowableMeleeWeaponTrait.java:63: error: cannot fi
+nd symbol
+                int j = EnchantmentHelper.getItemEnchantmentLevel(registryAcces
+s.registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantments.SHARPNE
+SS), stackIn);
+                                                                               
+ ^
+  symbol:   method registryOrThrow(ResourceKey<Registry<Enchantment>>)
+  location: variable registryAccess of type RegistryAccess
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\trait\ThrowableMeleeWeaponTrait.java:65: error: cannot fi
+nd symbol
+                    thrown.setBaseDamage(thrown.getBaseDamage() + j * 0.5d + 0.
+5d);
+                                               ^
+  symbol:   method getBaseDamage()
+  location: variable thrown of type ThrowingWeaponEntity
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\trait\ThrowableMeleeWeaponTrait.java:69: error: cannot fi
+nd symbol
+                int fireAspect = EnchantmentHelper.getItemEnchantmentLevel(regi
+stryAccess.registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantment
+s.FIRE_ASPECT), stackIn);
+                                                                               
+          ^
+  symbol:   method registryOrThrow(ResourceKey<Registry<Enchantment>>)
+  location: variable registryAccess of type RegistryAccess
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\api\trait\ThrowableMeleeWeaponTrait.java:83: error: random ha
+s protected access in Level
+                    levelIn.playSound(null, player.getX(), player.getY(), playe
+r.getZ(), ModSounds.THROWN_WEAPON_THROW.get(), SoundSource.PLAYERS, 0.5f, 0.4f 
+/ (levelIn.random.nextFloat() * 0.4f + 0.8f));
+                                                                               
+                                                                               
+          ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\capability\IQuiverItemHandler.java:5: warning: [removal] IIte
+mHandler in net.neoforged.neoforge.items has been deprecated and marked for rem
+oval
+public interface IQuiverItemHandler extends IItemHandler {
+                                            ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\capability\OilHandler.java:42: error: incompatible types: Opt
+ional<CompoundTag> cannot be converted to CompoundTag
+            this.deserializeNBT(getRegistryAccess(), ItemStackDataHelper.getTag
+(this.stack).getCompound(NBT_OIL));
+                                                                               
+                        ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\capability\OilHandler.java:90: error: cannot find symbol
+                ((Player) userIn).displayClientMessage(Component.translatable("
+message." + ModSpartanWeaponry.ID + ".oil_depleted", oilStack.getHoverName(), u
+serWeaponIn.getHoverName()), true);
+                                 ^
+  symbol:   method displayClientMessage(MutableComponent,boolean)
+  location: class Player
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\capability\OilHandler.java:106: error: method does not overri
+de or implement a method from a supertype
+    @Override
+    ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\capability\OilHandler.java:122: error: method does not overri
+de or implement a method from a supertype
+    @Override
+    ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\capability\OilHandler.java:124: error: incompatible types: Op
+tional<String> cannot be converted to String
+        String oilEffectReg = nbt.getString(NBT_OIL_EFFECT);
+                                           ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\capability\OilHandler.java:127: error: incompatible types: ba
+d type in conditional expression
+            this.effect = !oilEffectReg.isEmpty() ? Optional.ofNullable(registr
+y.get(Identifier.parse(oilEffectReg))) : Optional.empty();
+                                                                       ^
+    inference variable T has incompatible bounds
+      equality constraints: OilEffect
+      lower bounds: Optional<Reference<OilEffect>>
+  where T is a type-variable:
+    T extends Object declared in method <T>ofNullable(T)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\capability\OilHandler.java:129: error: incompatible types: Op
+tional<String> cannot be converted to String
+                String potionReg = nbt.getString(NBT_POTION);
+                                                ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\capability\OilHandler.java:130: error: incompatible types: ba
+d type in conditional expression
+                this.potion = !potionReg.isEmpty() ? Optional.ofNullable(BuiltI
+nRegistries.POTION.get(Identifier.parse(potionReg))) : Optional.empty();
+                                                                        ^
+    inference variable T has incompatible bounds
+      equality constraints: Potion
+      lower bounds: Optional<Reference<Potion>>
+  where T is a type-variable:
+    T extends Object declared in method <T>ofNullable(T)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\capability\OilHandler.java:133: error: incompatible types: Op
+tional<Integer> cannot be converted to int
+        this.usesLeft = nbt.getInt(NBT_USES_LEFT);
+                                  ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\capability\OilHandler.java:138: error: cannot find symbol
+        return (Registry<OilEffect>) BuiltInRegistries.REGISTRY.get(OilEffects.
+REGISTRY_KEY.location());
+                                                                               
+            ^
+  symbol:   method location()
+  location: variable REGISTRY_KEY of type ResourceKey<Registry<OilEffect>>
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\capability\QuiverItemStackHandler.java:12: warning: [removal]
+ ItemStackHandler in net.neoforged.neoforge.items has been deprecated and marke
+d for removal
+public class QuiverItemStackHandler extends ItemStackHandler implements IQuiver
+ItemHandler {
+                                            ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\capability\QuiverItemStackHandler.java:18: error: incompatibl
+e types: Optional<CompoundTag> cannot be converted to CompoundTag
+        CompoundTag tag = ItemStackDataHelper.getTag(stack).getCompound(QuiverB
+aseItem.NBT_AMMO);
+                                                                       ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\capability\QuiverItemStackHandler.java:20: error: cannot find
+ symbol
+            this.deserializeNBT(getRegistryAccess(), tag);
+                ^
+  symbol: method deserializeNBT(RegistryAccess,CompoundTag)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\capability\QuiverItemStackHandler.java:44: error: cannot find
+ symbol
+        ItemStackDataHelper.updateTag(this.quiverStack, tag -> tag.put(QuiverBa
+seItem.NBT_AMMO, this.serializeNBT(getRegistryAccess())));
+                                                                               
+                     ^
+  symbol: method serializeNBT(RegistryAccess)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\ClientHelper.java:189: error: method registerEntityRen
+derer in class RegisterRenderers cannot be applied to given types;
+        ev.registerEntityRenderer(ModEntities.DYNAMITE.get(), ThrownItemRendere
+r::new);
+          ^
+  required: EntityType<? extends T>,EntityRendererProvider<T>
+  found:    EntityType<DynamiteEntity>,ThrownItem[...]::new
+  reason: inference variable T has incompatible bounds
+    upper bounds: Entity
+    lower bounds: DynamiteEntity
+  where T is a type-variable:
+    T extends Entity declared in method <T>registerEntityRenderer(EntityType<? 
+extends T>,EntityRendererProvider<T>)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\ClientHelper.java:221: error: cannot find symbol
+        EntityModelSet entityModelSet = ev.getEntityModelSet();
+                                          ^
+  symbol:   method getEntityModelSet()
+  location: variable ev of type CreateSkullModels
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\ClientHelper.java:222: error: no suitable method found
+ for registerSkullModel(Types,SkullModel)
+        ev.registerSkullModel(ExtendedSkullBlock.Types.BLAZE, new SkullModel(en
+tityModelSet.bakeLayer(ModelLayers.BLAZE_HEAD)));
+          ^
+    method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,@org.js
+pecify.annotations.Nullable Identifier) is not applicable
+      (actual and formal argument lists differ in length)
+    method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,Functio
+n<ModelPart,SkullModelBase>,@org.jspecify.annotations.Nullable Identifier) is n
+ot applicable
+      (actual and formal argument lists differ in length)
+    method CreateSkullModels.registerSkullModel(Type,Function<EntityModelSet,Sk
+ullModelBase>,@org.jspecify.annotations.Nullable Identifier) is not applicable
+      (actual and formal argument lists differ in length)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\ClientHelper.java:223: error: no suitable method found
+ for registerSkullModel(Types,EndermanHeadModel)
+        ev.registerSkullModel(ExtendedSkullBlock.Types.ENDERMAN, new EndermanHe
+adModel(entityModelSet.bakeLayer(ModelLayers.ENDERMAN_HEAD)));
+          ^
+    method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,@org.js
+pecify.annotations.Nullable Identifier) is not applicable
+      (actual and formal argument lists differ in length)
+    method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,Functio
+n<ModelPart,SkullModelBase>,@org.jspecify.annotations.Nullable Identifier) is n
+ot applicable
+      (actual and formal argument lists differ in length)
+    method CreateSkullModels.registerSkullModel(Type,Function<EntityModelSet,Sk
+ullModelBase>,@org.jspecify.annotations.Nullable Identifier) is not applicable
+      (actual and formal argument lists differ in length)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\ClientHelper.java:224: error: no suitable method found
+ for registerSkullModel(Types,SkullModel)
+        ev.registerSkullModel(ExtendedSkullBlock.Types.SPIDER, new SkullModel(e
+ntityModelSet.bakeLayer(ModelLayers.SPIDER_HEAD)));
+          ^
+    method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,@org.js
+pecify.annotations.Nullable Identifier) is not applicable
+      (actual and formal argument lists differ in length)
+    method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,Functio
+n<ModelPart,SkullModelBase>,@org.jspecify.annotations.Nullable Identifier) is n
+ot applicable
+      (actual and formal argument lists differ in length)
+    method CreateSkullModels.registerSkullModel(Type,Function<EntityModelSet,Sk
+ullModelBase>,@org.jspecify.annotations.Nullable Identifier) is not applicable
+      (actual and formal argument lists differ in length)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\ClientHelper.java:225: error: no suitable method found
+ for registerSkullModel(Types,SkullModel)
+        ev.registerSkullModel(ExtendedSkullBlock.Types.CAVE_SPIDER, new SkullMo
+del(entityModelSet.bakeLayer(ModelLayers.CAVE_SPIDER_HEAD)));
+          ^
+    method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,@org.js
+pecify.annotations.Nullable Identifier) is not applicable
+      (actual and formal argument lists differ in length)
+    method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,Functio
+n<ModelPart,SkullModelBase>,@org.jspecify.annotations.Nullable Identifier) is n
+ot applicable
+      (actual and formal argument lists differ in length)
+    method CreateSkullModels.registerSkullModel(Type,Function<EntityModelSet,Sk
+ullModelBase>,@org.jspecify.annotations.Nullable Identifier) is not applicable
+      (actual and formal argument lists differ in length)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\ClientHelper.java:226: error: no suitable method found
+ for registerSkullModel(Types,PiglinHeadModel)
+        ev.registerSkullModel(ExtendedSkullBlock.Types.ZOMBIE_PIGLIN, new Pigli
+nHeadModel(entityModelSet.bakeLayer(ModelLayers.ZOMBIFIED_PIGLIN_HEAD)));
+          ^
+    method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,@org.js
+pecify.annotations.Nullable Identifier) is not applicable
+      (actual and formal argument lists differ in length)
+    method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,Functio
+n<ModelPart,SkullModelBase>,@org.jspecify.annotations.Nullable Identifier) is n
+ot applicable
+      (actual and formal argument lists differ in length)
+    method CreateSkullModels.registerSkullModel(Type,Function<EntityModelSet,Sk
+ullModelBase>,@org.jspecify.annotations.Nullable Identifier) is not applicable
+      (actual and formal argument lists differ in length)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\ClientHelper.java:227: error: no suitable method found
+ for registerSkullModel(Types,SkullModel)
+        ev.registerSkullModel(ExtendedSkullBlock.Types.HUSK, new SkullModel(ent
+ityModelSet.bakeLayer(ModelLayers.HUSK_HEAD)));
+          ^
+    method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,@org.js
+pecify.annotations.Nullable Identifier) is not applicable
+      (actual and formal argument lists differ in length)
+    method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,Functio
+n<ModelPart,SkullModelBase>,@org.jspecify.annotations.Nullable Identifier) is n
+ot applicable
+      (actual and formal argument lists differ in length)
+    method CreateSkullModels.registerSkullModel(Type,Function<EntityModelSet,Sk
+ullModelBase>,@org.jspecify.annotations.Nullable Identifier) is not applicable
+      (actual and formal argument lists differ in length)
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\client\gui\container\QuiverBaseScreen.java:53: warning: [remo
+val] getSlots() in IItemHandler has been deprecated and marked for removal
+        this.ammoSlots = handler != null ? handler.getSlots() : Defaults.SlotsQ
+uiverSmall;
+                                                  ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\inventory\QuiverBaseMenu.java:41: warning: [removal] getSlots
+() in IItemHandler has been deprecated and marked for removal
+        this.playerInvStart = this.handler.getSlots();
+                                          ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\inventory\QuiverBaseMenu.java:56: warning: [removal] getSlots
+() in IItemHandler has been deprecated and marked for removal
+        slotStartX = switch (this.handler.getSlots()) {
+                                         ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\inventory\QuiverBaseMenu.java:73: warning: [removal] getSlots
+() in IItemHandler has been deprecated and marked for removal
+        for (int i = 0; i < this.handler.getSlots(); i++) {
+                                        ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\inventory\QuiverBaseMenu.java:80: warning: [removal] getSlots
+() in IItemHandler has been deprecated and marked for removal
+        int yOffset = this.handler.getSlots() == Defaults.SlotsQuiverHuge ? 18 
+: 0;
+                                  ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\inventory\QuiverBaseMenu.java:95: warning: [removal] getSlots
+() in IItemHandler has been deprecated and marked for removal
+        this.addSlot(new Slot(inventory, 40, -21, this.handler.getSlots() == De
+faults.SlotsQuiverHuge ? 127 : 109).setBackground(InventoryMenu.BLOCK_ATLAS, In
+ventoryMenu.EMPTY_ARMOR_SLOT_SHIELD));
+                                                              ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\inventory\QuiverBaseMenu.java:108: warning: [removal] getSlot
+s() in IItemHandler has been deprecated and marked for removal
+            if (slotIdx >= 0 && slotIdx < this.handler.getSlots()) {
+                                                      ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\data\recipe\TagCookingRecipeBuilder.java:99: warning: [remova
+l] parent(Identifier) in Builder has been deprecated and marked for removal
+        advancement.parent(ROOT_RECIPE_ADVANCEMENT)
+                   ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\event\CommonEventHandler.java:355: warning: [removal] insertI
+tem(int,ItemStack,boolean) in IItemHandler has been deprecated and marked for r
+emoval
+            arrowStack = quiverHandler.insertItem(prioritySlot, arrowStack, fal
+se);
+                                      ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\event\CommonEventHandler.java:357: warning: [removal] getSlot
+s() in IItemHandler has been deprecated and marked for removal
+                for (int j = 0; j < quiverHandler.getSlots(); j++) {
+                                                 ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\event\CommonEventHandler.java:361: warning: [removal] insertI
+tem(int,ItemStack,boolean) in IItemHandler has been deprecated and marked for r
+emoval
+                    arrowStack = quiverHandler.insertItem(j, arrowStack, false)
+;
+                                              ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\event\CommonEventHandler.java:382: warning: [removal] getSlot
+s() in IItemHandler has been deprecated and marked for removal
+            if (prioritySlot <= quiverHandler.getSlots()) {
+                                             ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\event\CommonEventHandler.java:383: warning: [removal] extract
+Item(int,int,boolean) in IItemHandler has been deprecated and marked for remova
+l
+                arrowStack = quiverHandler.extractItem(prioritySlot, 64, false)
+;
+                                          ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\event\CommonEventHandler.java:389: warning: [removal] getSlot
+s() in IItemHandler has been deprecated and marked for removal
+                for (int j = 0; j < quiverHandler.getSlots(); j++) {
+                                                 ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\event\CommonEventHandler.java:393: warning: [removal] extract
+Item(int,int,boolean) in IItemHandler has been deprecated and marked for remova
+l
+                    arrowStack = quiverHandler.extractItem(j, 64, false);
+                                              ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\event\CommonEventHandler.java:423: warning: [removal] getSlot
+s() in IItemHandler has been deprecated and marked for removal
+                        for (int i = 0; i < quiverHandler.getSlots(); i++) {
+                                                         ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\event\CommonEventHandler.java:424: warning: [removal] insertI
+tem(int,ItemStack,boolean) in IItemHandler has been deprecated and marked for r
+emoval
+                            pickedUpStack = quiverHandler.insertItem(i, pickedU
+pStack, false);
+                                                         ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\inventory\SlotFiltered.java:10: warning: [removal] SlotItemHa
+ndler in net.neoforged.neoforge.items has been deprecated and marked for remova
+l
+public class SlotFiltered extends SlotItemHandler {
+                                  ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\inventory\SlotFiltered.java:13: warning: [removal] IItemHandl
+er in net.neoforged.neoforge.items has been deprecated and marked for removal
+    public SlotFiltered(IItemHandler handlerIn, int indexIn, int xPositionIn, i
+nt yPositionIn, Predicate<ItemStack> filterIn) {
+                        ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\mixin\AbstractArrowMixin.java:63: warning: [removal] getSlots
+() in IItemHandler has been deprecated and marked for removal
+                                for (int i = 0; i < quiverHandler.getSlots(); i
+++) {
+                                                                 ^
+C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\spartanw
+eaponryunofficial\mixin\AbstractArrowMixin.java:64: warning: [removal] insertIt
+em(int,ItemStack,boolean) in IItemHandler has been deprecated and marked for re
+moval
+                                    arrowStack = quiverHandler.insertItem(i, ar
+rowStack, false);
+                                                              ^
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sp
+artanweaponryunofficial\data\ModDamageTypeTagsProvider.java uses unchecked or u
+nsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+Note: Some messages have been simplified; recompile with -Xdiags:verbose to get
+ full output
+100 errors
+24 warnings
+
+> Task :compileJava FAILED
+
+[Incubating] Problems report is available at: file:///C:/Users/25463/Desktop/SpartanWeaponry-NeoForge/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':compileJava'.
+> Compilation failed; see the compiler output below.
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\oil\PotionOilEffect.java:52: error: method applyInstant
+enousEffect in class MobEffect cannot be applied to given types;
+                      effect.getEffect().value().applyInstantenousEffect(userEn
+tityIn, userEntityIn, targetEntityIn, effect.getAmplifier(), 1.0d);
+                                                ^
+    required: ServerLevel,Entity,Entity,LivingEntity,int,double
+    found:    LivingEntity,LivingEntity,LivingEntity,int,double
+    reason: actual and formal argument lists differ in length
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\ClientHelper.java:189: error: method registerEntityR
+enderer in class RegisterRenderers cannot be applied to given types;
+          ev.registerEntityRenderer(ModEntities.DYNAMITE.get(), ThrownItemRende
+rer::new);
+            ^
+    required: EntityType<? extends T>,EntityRendererProvider<T>
+    found:    EntityType<DynamiteEntity>,ThrownItem[...]::new
+    reason: inference variable T has incompatible bounds
+      upper bounds: Entity
+      lower bounds: DynamiteEntity
+    where T is a type-variable:
+      T extends Entity declared in method <T>registerEntityRenderer(EntityType<
+? extends T>,EntityRendererProvider<T>)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\data\recipe\ConditionalShapedRecipeBuilder.java:57: err
+or: no suitable method found for of(TagKey<Item>)
+          return this.define(character, Ingredient.of(tagIn));
+                                                  ^
+      method Ingredient.of(ItemLike) is not applicable
+        (argument mismatch; TagKey<Item> cannot be converted to ItemLike)
+      method Ingredient.of(ItemLike...) is not applicable
+        (varargs mismatch; TagKey<Item> cannot be converted to ItemLike)
+      method Ingredient.of(Stream<? extends ItemLike>) is not applicable
+        (argument mismatch; TagKey<Item> cannot be converted to Stream<? extend
+s ItemLike>)
+      method Ingredient.of(HolderSet<Item>) is not applicable
+        (argument mismatch; TagKey<Item> cannot be converted to HolderSet<Item>
+)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\data\recipe\ConditionalShapedRecipeBuilder.java:116: er
+ror: no suitable method found for shaped(RecipeCategory,Item,int)
+          ShapedRecipeBuilder builder = ShapedRecipeBuilder.shaped(this.categor
+y, this.result, this.count);
+                                                           ^
+      method ShapedRecipeBuilder.shaped(HolderGetter<Item>,RecipeCategory,ItemL
+ike) is not applicable
+        (argument mismatch; RecipeCategory cannot be converted to HolderGetter<
+Item>)
+      method ShapedRecipeBuilder.shaped(HolderGetter<Item>,RecipeCategory,ItemS
+tackTemplate) is not applicable
+        (argument mismatch; RecipeCategory cannot be converted to HolderGetter<
+Item>)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\data\recipe\ConditionalShapedRecipeBuilder.java:124: er
+ror: no suitable method found for save(RecipeOutput,Identifier)
+          builder.save(conditionedOutput, id);
+                 ^
+      method RecipeBuilder.save(RecipeOutput,String) is not applicable
+        (argument mismatch; Identifier cannot be converted to String)
+      method ShapedRecipeBuilder.save(RecipeOutput,ResourceKey<Recipe<?>>) is n
+ot applicable
+        (argument mismatch; Identifier cannot be converted to ResourceKey<Recip
+e<?>>)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\data\recipe\ConditionalShapelessRecipeBuilder.java:69: 
+error: no suitable method found for of(TagKey<Item>)
+          return this.requires(Ingredient.of(tagIn));
+                                         ^
+      method Ingredient.of(ItemLike) is not applicable
+        (argument mismatch; TagKey<Item> cannot be converted to ItemLike)
+      method Ingredient.of(ItemLike...) is not applicable
+        (varargs mismatch; TagKey<Item> cannot be converted to ItemLike)
+      method Ingredient.of(Stream<? extends ItemLike>) is not applicable
+        (argument mismatch; TagKey<Item> cannot be converted to Stream<? extend
+s ItemLike>)
+      method Ingredient.of(HolderSet<Item>) is not applicable
+        (argument mismatch; TagKey<Item> cannot be converted to HolderSet<Item>
+)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\data\recipe\ConditionalShapelessRecipeBuilder.java:73: 
+error: no suitable method found for of(TagKey<Item>)
+          return this.requires(Ingredient.of(tagIn), countIn);
+                                         ^
+      method Ingredient.of(ItemLike) is not applicable
+        (argument mismatch; TagKey<Item> cannot be converted to ItemLike)
+      method Ingredient.of(ItemLike...) is not applicable
+        (varargs mismatch; TagKey<Item> cannot be converted to ItemLike)
+      method Ingredient.of(Stream<? extends ItemLike>) is not applicable
+        (argument mismatch; TagKey<Item> cannot be converted to Stream<? extend
+s ItemLike>)
+      method Ingredient.of(HolderSet<Item>) is not applicable
+        (argument mismatch; TagKey<Item> cannot be converted to HolderSet<Item>
+)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\data\recipe\ConditionalShapelessRecipeBuilder.java:143:
+ error: no suitable method found for accept(Identifier,ShapelessRecipe,Advancem
+entHolder)
+          conditionedOutput.accept(id, recipe, advancementHolder);
+                           ^
+      method IRecipeOutputExtension.accept(ResourceKey<Recipe<?>>,Recipe<?>,@or
+g.jspecify.annotations.Nullable AdvancementHolder,ICondition...) is not applica
+ble
+        (argument mismatch; Identifier cannot be converted to ResourceKey<Recip
+e<?>>)
+      method RecipeOutput.accept(ResourceKey<Recipe<?>>,Recipe<?>,@org.jspecify
+.annotations.Nullable AdvancementHolder) is not applicable
+        (argument mismatch; Identifier cannot be converted to ResourceKey<Recip
+e<?>>)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\data\recipe\RecipeProviderHelper.java:39: error: no sui
+table method found for of(TagKey<Item>)
+  		SmithingTransformRecipeBuilder.smithing(Ingredient.of(Items.NETHERITE_UPGRA
+DE_SMITHING_TEMPLATE), Ingredient.of(base), Ingredient.of(additionTag), RecipeC
+ategory.MISC, result.asItem()).unlocks(hasItemCriterionName, hasItem(additionTa
+g)).
+  		                                                                           
+                                                      ^
+      method Ingredient.of(ItemLike) is not applicable
+        (argument mismatch; TagKey<Item> cannot be converted to ItemLike)
+      method Ingredient.of(ItemLike...) is not applicable
+        (varargs mismatch; TagKey<Item> cannot be converted to ItemLike)
+      method Ingredient.of(Stream<? extends ItemLike>) is not applicable
+        (argument mismatch; TagKey<Item> cannot be converted to Stream<? extend
+s ItemLike>)
+      method Ingredient.of(HolderSet<Item>) is not applicable
+        (argument mismatch; TagKey<Item> cannot be converted to HolderSet<Item>
+)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\data\recipe\RecipeProviderHelper.java:474: error: no su
+itable method found for of(TagKey<Item>)
+  		recipeLongbow(consumer, Ingredient.of(stick), Ingredient.of(string), handle
+, material, result, hasItemCriterionName, "");
+  		                                  ^
+      method Ingredient.of(ItemLike) is not applicable
+        (argument mismatch; TagKey<Item> cannot be converted to ItemLike)
+      method Ingredient.of(ItemLike...) is not applicable
+        (varargs mismatch; TagKey<Item> cannot be converted to ItemLike)
+      method Ingredient.of(Stream<? extends ItemLike>) is not applicable
+        (argument mismatch; TagKey<Item> cannot be converted to Stream<? extend
+s ItemLike>)
+      method Ingredient.of(HolderSet<Item>) is not applicable
+        (argument mismatch; TagKey<Item> cannot be converted to HolderSet<Item>
+)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\data\recipe\RecipeProviderHelper.java:474: error: no su
+itable method found for of(TagKey<Item>)
+  		recipeLongbow(consumer, Ingredient.of(stick), Ingredient.of(string), handle
+, material, result, hasItemCriterionName, "");
+  		                                                        ^
+      method Ingredient.of(ItemLike) is not applicable
+        (argument mismatch; TagKey<Item> cannot be converted to ItemLike)
+      method Ingredient.of(ItemLike...) is not applicable
+        (varargs mismatch; TagKey<Item> cannot be converted to ItemLike)
+      method Ingredient.of(Stream<? extends ItemLike>) is not applicable
+        (argument mismatch; TagKey<Item> cannot be converted to Stream<? extend
+s ItemLike>)
+      method Ingredient.of(HolderSet<Item>) is not applicable
+        (argument mismatch; TagKey<Item> cannot be converted to HolderSet<Item>
+)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\data\recipe\RecipeProviderHelper.java:512: error: no su
+itable method found for of(TagKey<Item>)
+  		recipeHeavyCrossbow(consumer, Ingredient.of(planks), bow, handle, material,
+ result, hasItemCriterionName, "");
+  		                                        ^
+      method Ingredient.of(ItemLike) is not applicable
+        (argument mismatch; TagKey<Item> cannot be converted to ItemLike)
+      method Ingredient.of(ItemLike...) is not applicable
+        (varargs mismatch; TagKey<Item> cannot be converted to ItemLike)
+      method Ingredient.of(Stream<? extends ItemLike>) is not applicable
+        (argument mismatch; TagKey<Item> cannot be converted to Stream<? extend
+s ItemLike>)
+      method Ingredient.of(HolderSet<Item>) is not applicable
+        (argument mismatch; TagKey<Item> cannot be converted to HolderSet<Item>
+)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\data\recipe\RecipeProviderHelper.java:641: error: no su
+itable method found for of(TagKey<Item>)
+  		recipeBoomerang(consumer, Ingredient.of(planks), material, result, hasItemC
+riterionName, "");
+  		                                    ^
+      method Ingredient.of(ItemLike) is not applicable
+        (argument mismatch; TagKey<Item> cannot be converted to ItemLike)
+      method Ingredient.of(ItemLike...) is not applicable
+        (varargs mismatch; TagKey<Item> cannot be converted to ItemLike)
+      method Ingredient.of(Stream<? extends ItemLike>) is not applicable
+        (argument mismatch; TagKey<Item> cannot be converted to Stream<? extend
+s ItemLike>)
+      method Ingredient.of(HolderSet<Item>) is not applicable
+        (argument mismatch; TagKey<Item> cannot be converted to HolderSet<Item>
+)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\data\recipe\RecipeProviderHelper.java:674: error: no su
+itable method found for of(TagKey<Item>)
+  		recipeBattleaxe(consumer, Ingredient.of(stick), handle, material, result, h
+asItemCriterionName, "");
+  		                                    ^
+      method Ingredient.of(ItemLike) is not applicable
+        (argument mismatch; TagKey<Item> cannot be converted to ItemLike)
+      method Ingredient.of(ItemLike...) is not applicable
+        (varargs mismatch; TagKey<Item> cannot be converted to ItemLike)
+      method Ingredient.of(Stream<? extends ItemLike>) is not applicable
+        (argument mismatch; TagKey<Item> cannot be converted to Stream<? extend
+s ItemLike>)
+      method Ingredient.of(HolderSet<Item>) is not applicable
+        (argument mismatch; TagKey<Item> cannot be converted to HolderSet<Item>
+)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\data\recipe\RecipeProviderHelper.java:709: error: no su
+itable method found for of(TagKey<Item>)
+  		recipeFlangedMace(consumer, Ingredient.of(stick), handle, material, result,
+ hasItemCriterionName, "");
+  		                                      ^
+      method Ingredient.of(ItemLike) is not applicable
+        (argument mismatch; TagKey<Item> cannot be converted to ItemLike)
+      method Ingredient.of(ItemLike...) is not applicable
+        (varargs mismatch; TagKey<Item> cannot be converted to ItemLike)
+      method Ingredient.of(Stream<? extends ItemLike>) is not applicable
+        (argument mismatch; TagKey<Item> cannot be converted to Stream<? extend
+s ItemLike>)
+      method Ingredient.of(HolderSet<Item>) is not applicable
+        (argument mismatch; TagKey<Item> cannot be converted to HolderSet<Item>
+)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\WeaponMaterial.java:90: error: no suitable method found
+ for of(TagKey<Item>)
+          this.repairMaterial = () -> Ingredient.of(repairTagIn);
+                                                ^
+      method Ingredient.of(ItemLike) is not applicable
+        (argument mismatch; TagKey<Item> cannot be converted to ItemLike)
+      method Ingredient.of(ItemLike...) is not applicable
+        (varargs mismatch; TagKey<Item> cannot be converted to ItemLike)
+      method Ingredient.of(Stream<? extends ItemLike>) is not applicable
+        (argument mismatch; TagKey<Item> cannot be converted to Stream<? extend
+s ItemLike>)
+      method Ingredient.of(HolderSet<Item>) is not applicable
+        (argument mismatch; TagKey<Item> cannot be converted to HolderSet<Item>
+)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\trait\HammerSlamWeaponTrait.java:58: error: no suitable
+ method found for addCooldown(Item,int)
+              player.getCooldowns().addCooldown(weapon.getItem(), 60);
+                                   ^
+      method ItemCooldowns.addCooldown(ItemStack,int) is not applicable
+        (argument mismatch; Item cannot be converted to ItemStack)
+      method ItemCooldowns.addCooldown(Identifier,int) is not applicable
+        (argument mismatch; Item cannot be converted to Identifier)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\trait\HarvesterWeaponTrait.java:55: error: no suitable 
+method found for addCooldown(Item,int)
+                  player.getCooldowns().addCooldown(contextIn.getItemInHand().g
+etItem(), 10);
+                                       ^
+      method ItemCooldowns.addCooldown(ItemStack,int) is not applicable
+        (argument mismatch; Item cannot be converted to ItemStack)
+      method ItemCooldowns.addCooldown(Identifier,int) is not applicable
+        (argument mismatch; Item cannot be converted to Identifier)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\trait\HarvesterWeaponTrait.java:86: error: no suitable 
+method found for getCloneItemStack(Level,BlockPos,BlockState)
+                  ItemStack targetSeed = block.getCloneItemStack(levelIn, posIn
+, state);
+                                              ^
+      method IBlockExtension.getCloneItemStack(LevelReader,BlockPos,BlockState,
+boolean,Player) is not applicable
+        (actual and formal argument lists differ in length)
+      method BlockBehaviour.getCloneItemStack(LevelReader,BlockPos,BlockState,b
+oolean) is not applicable
+        (actual and formal argument lists differ in length)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\ClientHelper.java:222: error: no suitable method fou
+nd for registerSkullModel(Types,SkullModel)
+          ev.registerSkullModel(ExtendedSkullBlock.Types.BLAZE, new SkullModel(
+entityModelSet.bakeLayer(ModelLayers.BLAZE_HEAD)));
+            ^
+      method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,@org.
+jspecify.annotations.Nullable Identifier) is not applicable
+        (actual and formal argument lists differ in length)
+      method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,Funct
+ion<ModelPart,SkullModelBase>,@org.jspecify.annotations.Nullable Identifier) is
+ not applicable
+        (actual and formal argument lists differ in length)
+      method CreateSkullModels.registerSkullModel(Type,Function<EntityModelSet,
+SkullModelBase>,@org.jspecify.annotations.Nullable Identifier) is not applicabl
+e
+        (actual and formal argument lists differ in length)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\ClientHelper.java:223: error: no suitable method fou
+nd for registerSkullModel(Types,EndermanHeadModel)
+          ev.registerSkullModel(ExtendedSkullBlock.Types.ENDERMAN, new Enderman
+HeadModel(entityModelSet.bakeLayer(ModelLayers.ENDERMAN_HEAD)));
+            ^
+      method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,@org.
+jspecify.annotations.Nullable Identifier) is not applicable
+        (actual and formal argument lists differ in length)
+      method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,Funct
+ion<ModelPart,SkullModelBase>,@org.jspecify.annotations.Nullable Identifier) is
+ not applicable
+        (actual and formal argument lists differ in length)
+      method CreateSkullModels.registerSkullModel(Type,Function<EntityModelSet,
+SkullModelBase>,@org.jspecify.annotations.Nullable Identifier) is not applicabl
+e
+        (actual and formal argument lists differ in length)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\ClientHelper.java:224: error: no suitable method fou
+nd for registerSkullModel(Types,SkullModel)
+          ev.registerSkullModel(ExtendedSkullBlock.Types.SPIDER, new SkullModel
+(entityModelSet.bakeLayer(ModelLayers.SPIDER_HEAD)));
+            ^
+      method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,@org.
+jspecify.annotations.Nullable Identifier) is not applicable
+        (actual and formal argument lists differ in length)
+      method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,Funct
+ion<ModelPart,SkullModelBase>,@org.jspecify.annotations.Nullable Identifier) is
+ not applicable
+        (actual and formal argument lists differ in length)
+      method CreateSkullModels.registerSkullModel(Type,Function<EntityModelSet,
+SkullModelBase>,@org.jspecify.annotations.Nullable Identifier) is not applicabl
+e
+        (actual and formal argument lists differ in length)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\ClientHelper.java:225: error: no suitable method fou
+nd for registerSkullModel(Types,SkullModel)
+          ev.registerSkullModel(ExtendedSkullBlock.Types.CAVE_SPIDER, new Skull
+Model(entityModelSet.bakeLayer(ModelLayers.CAVE_SPIDER_HEAD)));
+            ^
+      method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,@org.
+jspecify.annotations.Nullable Identifier) is not applicable
+        (actual and formal argument lists differ in length)
+      method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,Funct
+ion<ModelPart,SkullModelBase>,@org.jspecify.annotations.Nullable Identifier) is
+ not applicable
+        (actual and formal argument lists differ in length)
+      method CreateSkullModels.registerSkullModel(Type,Function<EntityModelSet,
+SkullModelBase>,@org.jspecify.annotations.Nullable Identifier) is not applicabl
+e
+        (actual and formal argument lists differ in length)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\ClientHelper.java:226: error: no suitable method fou
+nd for registerSkullModel(Types,PiglinHeadModel)
+          ev.registerSkullModel(ExtendedSkullBlock.Types.ZOMBIE_PIGLIN, new Pig
+linHeadModel(entityModelSet.bakeLayer(ModelLayers.ZOMBIFIED_PIGLIN_HEAD)));
+            ^
+      method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,@org.
+jspecify.annotations.Nullable Identifier) is not applicable
+        (actual and formal argument lists differ in length)
+      method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,Funct
+ion<ModelPart,SkullModelBase>,@org.jspecify.annotations.Nullable Identifier) is
+ not applicable
+        (actual and formal argument lists differ in length)
+      method CreateSkullModels.registerSkullModel(Type,Function<EntityModelSet,
+SkullModelBase>,@org.jspecify.annotations.Nullable Identifier) is not applicabl
+e
+        (actual and formal argument lists differ in length)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\ClientHelper.java:227: error: no suitable method fou
+nd for registerSkullModel(Types,SkullModel)
+          ev.registerSkullModel(ExtendedSkullBlock.Types.HUSK, new SkullModel(e
+ntityModelSet.bakeLayer(ModelLayers.HUSK_HEAD)));
+            ^
+      method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,@org.
+jspecify.annotations.Nullable Identifier) is not applicable
+        (actual and formal argument lists differ in length)
+      method CreateSkullModels.registerSkullModel(Type,ModelLayerLocation,Funct
+ion<ModelPart,SkullModelBase>,@org.jspecify.annotations.Nullable Identifier) is
+ not applicable
+        (actual and formal argument lists differ in length)
+      method CreateSkullModels.registerSkullModel(Type,Function<EntityModelSet,
+SkullModelBase>,@org.jspecify.annotations.Nullable Identifier) is not applicabl
+e
+        (actual and formal argument lists differ in length)
+  Note: Recompile with -Xlint:deprecation for details.
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\data\ModAdvancementProvider.java:14: error: cannot find sym
+bol
+  import net.neoforged.neoforge.common.data.ExistingFileHelper;
+                                           ^
+    symbol:   class ExistingFileHelper
+    location: package net.neoforged.neoforge.common.data
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\data\ModAdvancementProvider.java:26: error: cannot find sym
+bol
+      public ModAdvancementProvider(PackOutput output, CompletableFuture<Holder
+Lookup.Provider> registries, ExistingFileHelper existingFileHelperIn) {
+                                                                               
+                             ^
+    symbol:   class ExistingFileHelper
+    location: class ModAdvancementProvider
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\DynamiteEntity.java:7: error: cannot find
+ symbol
+  import net.minecraft.world.entity.projectile.ThrowableItemProjectile;
+                                              ^
+    symbol:   class ThrowableItemProjectile
+    location: package net.minecraft.world.entity.projectile
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\mixin\AbstractSkeletonMixin.java:10: error: cannot find sym
+bol
+  import net.minecraft.world.entity.monster.AbstractSkeleton;
+                                           ^
+    symbol:   class AbstractSkeleton
+    location: package net.minecraft.world.entity.monster
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\mixin\AbstractSkeletonMixin.java:28: error: cannot find sym
+bol
+      private RangedBowAttackGoal<AbstractSkeleton> bowGoal;
+                                  ^
+    symbol:   class AbstractSkeleton
+    location: class AbstractSkeletonMixin
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\mixin\WitherSkeletonMixin.java:6: error: cannot find symbol
+  import net.minecraft.world.entity.monster.WitherSkeleton;
+                                           ^
+    symbol:   class WitherSkeleton
+    location: package net.minecraft.world.entity.monster
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\mixin\ZombieMixin.java:5: error: cannot find symbol
+  import net.minecraft.world.entity.monster.Zombie;
+                                           ^
+    symbol:   class Zombie
+    location: package net.minecraft.world.entity.monster
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\ClientHelper.java:54: error: cannot find symbol
+  @EventBusSubscriber(modid = ModSpartanWeaponry.ID, bus = EventBusSubscriber.B
+us.MOD, value = Dist.CLIENT)
+                                                                             ^
+    symbol:   variable Bus
+    location: @interface EventBusSubscriber
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\KeyBinds.java:13: error: cannot find symbol
+  @EventBusSubscriber(modid = ModSpartanWeaponry.ID, value = Dist.CLIENT, bus =
+ EventBusSubscriber.Bus.MOD)
+                                                                               
+                   ^
+    symbol:   variable Bus
+    location: @interface EventBusSubscriber
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\event\ClientEventHandler.java:38: error: cannot find symbol
+  @EventBusSubscriber(modid = ModSpartanWeaponry.ID, bus = EventBusSubscriber.B
+us.GAME, value = Dist.CLIENT)
+                                                                             ^
+    symbol:   variable Bus
+    location: @interface EventBusSubscriber
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\event\CommonEventHandler.java:83: error: cannot find symbol
+  @EventBusSubscriber(modid = ModSpartanWeaponry.ID, bus = EventBusSubscriber.B
+us.GAME)
+                                                                             ^
+    symbol:   variable Bus
+    location: @interface EventBusSubscriber
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\event\DataGenEventHandler.java:15: error: cannot find symbo
+l
+  @EventBusSubscriber(modid = ModSpartanWeaponry.ID, bus = EventBusSubscriber.B
+us.MOD)
+                                                                             ^
+    symbol:   variable Bus
+    location: @interface EventBusSubscriber
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\event\ReloadResourceEventHandler.java:20: error: cannot fin
+d symbol
+  @EventBusSubscriber(modid = ModSpartanWeaponry.ID, bus = EventBusSubscriber.B
+us.GAME)
+                                                                             ^
+    symbol:   variable Bus
+    location: @interface EventBusSubscriber
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\init\ModParticles.java:15: error: cannot find symbol
+  @EventBusSubscriber(modid = ModSpartanWeaponry.ID, bus = EventBusSubscriber.B
+us.MOD, value = Dist.CLIENT)
+                                                                             ^
+    symbol:   variable Bus
+    location: @interface EventBusSubscriber
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\util\Config.java:26: error: cannot find symbol
+  @EventBusSubscriber(modid = ModSpartanWeaponry.ID, bus = EventBusSubscriber.B
+us.MOD)
+                                                                             ^
+    symbol:   variable Bus
+    location: @interface EventBusSubscriber
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\trait\NauseaWeaponTrait.java:29: error: cannot find sym
+bol
+              target.addEffect(new MobEffectInstance(MobEffects.CONFUSION, (int
+) (this.getMagnitude() * 20.0f), 1));
+                                                               ^
+    symbol:   variable CONFUSION
+    location: class MobEffects
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\trait\HammerSlamWeaponTrait.java:43: error: isClientSid
+e has private access in Level
+          if (!level.isClientSide && !player.getCooldowns().isOnCooldown(weapon
+.getItem()) && player.getAttackStrengthScale(0.0f) == 1.0f) {
+                    ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\trait\HarvesterWeaponTrait.java:46: error: isClientSide
+ has private access in Level
+          if (!level.isClientSide) {
+                    ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\trait\ThrowableMeleeWeaponTrait.java:55: error: isClien
+tSide has private access in Level
+              if (!levelIn.isClientSide && charge > 2) {
+                          ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\trait\ThrowableMeleeWeaponTrait.java:83: error: random 
+has protected access in Level
+                      levelIn.playSound(null, player.getX(), player.getY(), pla
+yer.getZ(), ModSounds.THROWN_WEAPON_THROW.get(), SoundSource.PLAYERS, 0.5f, 0.4
+f / (levelIn.random.nextFloat() * 0.4f + 0.8f));
+                                                                               
+                                                                               
+            ^
+  Note: Recompile with -Xlint:unchecked for details.
+  Note: Some input files use or override a deprecated API.
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\WeaponMaterial.java:184: error: method does not overrid
+e or implement a method from a supertype
+      @Override
+      ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\capability\OilHandler.java:106: error: method does not over
+ride or implement a method from a supertype
+      @Override
+      ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\capability\OilHandler.java:122: error: method does not over
+ride or implement a method from a supertype
+      @Override
+      ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\data\recipe\ConditionalShapelessRecipeBuilder.java:138:
+ warning: [removal] parent(Identifier) in Builder has been deprecated and marke
+d for removal
+          advancement.parent(RecipeBuilder.ROOT_RECIPE_ADVANCEMENT)
+                     ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\capability\IQuiverItemHandler.java:5: warning: [removal] II
+temHandler in net.neoforged.neoforge.items has been deprecated and marked for r
+emoval
+  public interface IQuiverItemHandler extends IItemHandler {
+                                              ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\capability\QuiverItemStackHandler.java:12: warning: [remova
+l] ItemStackHandler in net.neoforged.neoforge.items has been deprecated and mar
+ked for removal
+  public class QuiverItemStackHandler extends ItemStackHandler implements IQuiv
+erItemHandler {
+                                              ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\gui\container\QuiverBaseScreen.java:53: warning: [re
+moval] getSlots() in IItemHandler has been deprecated and marked for removal
+          this.ammoSlots = handler != null ? handler.getSlots() : Defaults.Slot
+sQuiverSmall;
+                                                    ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\inventory\QuiverBaseMenu.java:41: warning: [removal] getSlo
+ts() in IItemHandler has been deprecated and marked for removal
+          this.playerInvStart = this.handler.getSlots();
+                                            ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\inventory\QuiverBaseMenu.java:56: warning: [removal] getSlo
+ts() in IItemHandler has been deprecated and marked for removal
+          slotStartX = switch (this.handler.getSlots()) {
+                                           ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\inventory\QuiverBaseMenu.java:73: warning: [removal] getSlo
+ts() in IItemHandler has been deprecated and marked for removal
+          for (int i = 0; i < this.handler.getSlots(); i++) {
+                                          ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\inventory\QuiverBaseMenu.java:80: warning: [removal] getSlo
+ts() in IItemHandler has been deprecated and marked for removal
+          int yOffset = this.handler.getSlots() == Defaults.SlotsQuiverHuge ? 1
+8 : 0;
+                                    ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\inventory\QuiverBaseMenu.java:95: warning: [removal] getSlo
+ts() in IItemHandler has been deprecated and marked for removal
+          this.addSlot(new Slot(inventory, 40, -21, this.handler.getSlots() == 
+Defaults.SlotsQuiverHuge ? 127 : 109).setBackground(InventoryMenu.BLOCK_ATLAS, 
+InventoryMenu.EMPTY_ARMOR_SLOT_SHIELD));
+                                                                ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\inventory\QuiverBaseMenu.java:108: warning: [removal] getSl
+ots() in IItemHandler has been deprecated and marked for removal
+              if (slotIdx >= 0 && slotIdx < this.handler.getSlots()) {
+                                                        ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\data\recipe\TagCookingRecipeBuilder.java:99: warning: [remo
+val] parent(Identifier) in Builder has been deprecated and marked for removal
+          advancement.parent(ROOT_RECIPE_ADVANCEMENT)
+                     ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\event\CommonEventHandler.java:355: warning: [removal] inser
+tItem(int,ItemStack,boolean) in IItemHandler has been deprecated and marked for
+ removal
+              arrowStack = quiverHandler.insertItem(prioritySlot, arrowStack, f
+alse);
+                                        ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\event\CommonEventHandler.java:357: warning: [removal] getSl
+ots() in IItemHandler has been deprecated and marked for removal
+                  for (int j = 0; j < quiverHandler.getSlots(); j++) {
+                                                   ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\event\CommonEventHandler.java:361: warning: [removal] inser
+tItem(int,ItemStack,boolean) in IItemHandler has been deprecated and marked for
+ removal
+                      arrowStack = quiverHandler.insertItem(j, arrowStack, fals
+e);
+                                                ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\event\CommonEventHandler.java:382: warning: [removal] getSl
+ots() in IItemHandler has been deprecated and marked for removal
+              if (prioritySlot <= quiverHandler.getSlots()) {
+                                               ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\event\CommonEventHandler.java:383: warning: [removal] extra
+ctItem(int,int,boolean) in IItemHandler has been deprecated and marked for remo
+val
+                  arrowStack = quiverHandler.extractItem(prioritySlot, 64, fals
+e);
+                                            ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\event\CommonEventHandler.java:389: warning: [removal] getSl
+ots() in IItemHandler has been deprecated and marked for removal
+                  for (int j = 0; j < quiverHandler.getSlots(); j++) {
+                                                   ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\event\CommonEventHandler.java:393: warning: [removal] extra
+ctItem(int,int,boolean) in IItemHandler has been deprecated and marked for remo
+val
+                      arrowStack = quiverHandler.extractItem(j, 64, false);
+                                                ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\event\CommonEventHandler.java:423: warning: [removal] getSl
+ots() in IItemHandler has been deprecated and marked for removal
+                          for (int i = 0; i < quiverHandler.getSlots(); i++) {
+                                                           ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\event\CommonEventHandler.java:424: warning: [removal] inser
+tItem(int,ItemStack,boolean) in IItemHandler has been deprecated and marked for
+ removal
+                              pickedUpStack = quiverHandler.insertItem(i, picke
+dUpStack, false);
+                                                           ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\inventory\SlotFiltered.java:10: warning: [removal] SlotItem
+Handler in net.neoforged.neoforge.items has been deprecated and marked for remo
+val
+  public class SlotFiltered extends SlotItemHandler {
+                                    ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\inventory\SlotFiltered.java:13: warning: [removal] IItemHan
+dler in net.neoforged.neoforge.items has been deprecated and marked for removal
+      public SlotFiltered(IItemHandler handlerIn, int indexIn, int xPositionIn,
+ int yPositionIn, Predicate<ItemStack> filterIn) {
+                          ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\mixin\AbstractArrowMixin.java:63: warning: [removal] getSlo
+ts() in IItemHandler has been deprecated and marked for removal
+                                  for (int i = 0; i < quiverHandler.getSlots();
+ i++) {
+                                                                   ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\mixin\AbstractArrowMixin.java:64: warning: [removal] insert
+Item(int,ItemStack,boolean) in IItemHandler has been deprecated and marked for 
+removal
+                                      arrowStack = quiverHandler.insertItem(i, 
+arrowStack, false);
+                                                                ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\ClientHelper.java:54: error: cannot find symbol
+  @EventBusSubscriber(modid = ModSpartanWeaponry.ID, bus = EventBusSubscriber.B
+us.MOD, value = Dist.CLIENT)
+                                                     ^
+    symbol:   method bus()
+    location: @interface EventBusSubscriber
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\KeyBinds.java:13: error: cannot find symbol
+  @EventBusSubscriber(modid = ModSpartanWeaponry.ID, value = Dist.CLIENT, bus =
+ EventBusSubscriber.Bus.MOD)
+                                                                          ^
+    symbol:   method bus()
+    location: @interface EventBusSubscriber
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\event\ClientEventHandler.java:38: error: cannot find symbol
+  @EventBusSubscriber(modid = ModSpartanWeaponry.ID, bus = EventBusSubscriber.B
+us.GAME, value = Dist.CLIENT)
+                                                     ^
+    symbol:   method bus()
+    location: @interface EventBusSubscriber
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\event\CommonEventHandler.java:83: error: cannot find symbol
+  @EventBusSubscriber(modid = ModSpartanWeaponry.ID, bus = EventBusSubscriber.B
+us.GAME)
+                                                     ^
+    symbol:   method bus()
+    location: @interface EventBusSubscriber
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\event\DataGenEventHandler.java:15: error: cannot find symbo
+l
+  @EventBusSubscriber(modid = ModSpartanWeaponry.ID, bus = EventBusSubscriber.B
+us.MOD)
+                                                     ^
+    symbol:   method bus()
+    location: @interface EventBusSubscriber
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\event\ReloadResourceEventHandler.java:20: error: cannot fin
+d symbol
+  @EventBusSubscriber(modid = ModSpartanWeaponry.ID, bus = EventBusSubscriber.B
+us.GAME)
+                                                     ^
+    symbol:   method bus()
+    location: @interface EventBusSubscriber
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\init\ModParticles.java:15: error: cannot find symbol
+  @EventBusSubscriber(modid = ModSpartanWeaponry.ID, bus = EventBusSubscriber.B
+us.MOD, value = Dist.CLIENT)
+                                                     ^
+    symbol:   method bus()
+    location: @interface EventBusSubscriber
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\util\Config.java:26: error: cannot find symbol
+  @EventBusSubscriber(modid = ModSpartanWeaponry.ID, bus = EventBusSubscriber.B
+us.MOD)
+                                                     ^
+    symbol:   method bus()
+    location: @interface EventBusSubscriber
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\advancement\criterion\BrewOilTrigger.java:53: error: cannot
+ find symbol
+              Registry<OilEffect> registry = registryAccess.registry(OilEffects
+.REGISTRY_KEY).orElse(null);
+                                                           ^
+    symbol:   method registry(ResourceKey<Registry<OilEffect>>)
+    location: variable registryAccess of type RegistryAccess
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\oil\OilEffect.java:32: error: cannot find symbol
+      public static final IUsePredicate USE_UNDEAD = (baseDamage, effect, level
+, target, user) -> target.getType().is(EntityTypeTags.UNDEAD);
+                                                                               
+                                   ^
+    symbol:   method is(TagKey<EntityType<?>>)
+    location: class EntityType<CAP#1>
+    where CAP#1 is a fresh type-variable:
+      CAP#1 extends Entity from capture of ?
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\oil\OilEffect.java:33: error: cannot find symbol
+      public static final IUsePredicate USE_ARTHROPOD = (baseDamage, effect, le
+vel, target, user) -> target.getType().is(EntityTypeTags.ARTHROPOD);
+                                                                               
+                                      ^
+    symbol:   method is(TagKey<EntityType<?>>)
+    location: class EntityType<CAP#1>
+    where CAP#1 is a fresh type-variable:
+      CAP#1 extends Entity from capture of ?
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\oil\OilEffect.java:34: error: cannot find symbol
+      public static final IUsePredicate USE_CRYOTIC = (baseDamage, effect, leve
+l, target, user) -> target.getType().is(EntityTypeTags.FREEZE_HURTS_EXTRA_TYPES
+);
+                                                                               
+                                    ^
+    symbol:   method is(TagKey<EntityType<?>>)
+    location: class EntityType<CAP#1>
+    where CAP#1 is a fresh type-variable:
+      CAP#1 extends Entity from capture of ?
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\oil\OilEffect.java:35: error: cannot find symbol
+      public static final IUsePredicate USE_NECTROTIC = (baseDamage, effect, le
+vel, target, user) -> target.getType().is(ModEntityTypeTags.HUMANOIDS);
+                                                                               
+                                      ^
+    symbol:   method is(TagKey<EntityType<?>>)
+    location: class EntityType<CAP#1>
+    where CAP#1 is a fresh type-variable:
+      CAP#1 extends Entity from capture of ?
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\oil\OilEffect.java:36: error: cannot find symbol
+      public static final IUsePredicate USE_CREEPER = (baseDamage, effect, leve
+l, target, user) -> target.getType().is(ModEntityTypeTags.CREEPERS);
+                                                                               
+                                    ^
+    symbol:   method is(TagKey<EntityType<?>>)
+    location: class EntityType<CAP#1>
+    where CAP#1 is a fresh type-variable:
+      CAP#1 extends Entity from capture of ?
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\oil\OilEffect.java:37: error: cannot find symbol
+      public static final IUsePredicate USE_AQUATIC = (baseDamage, effect, leve
+l, target, user) -> target.getType().is(EntityTypeTags.AQUATIC);
+                                                                               
+                                    ^
+    symbol:   method is(TagKey<EntityType<?>>)
+    location: class EntityType<CAP#1>
+    where CAP#1 is a fresh type-variable:
+      CAP#1 extends Entity from capture of ?
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\oil\OilEffect.java:38: error: cannot find symbol
+      public static final IUsePredicate USE_ENDER = (baseDamage, effect, level,
+ target, user) -> target.getType().is(ModEntityTypeTags.ENDER);
+                                                                               
+                                  ^
+    symbol:   method is(TagKey<EntityType<?>>)
+    location: class EntityType<CAP#1>
+    where CAP#1 is a fresh type-variable:
+      CAP#1 extends Entity from capture of ?
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\data\recipe\ConditionalShapelessRecipeBuilder.java:129:
+ error: cannot find symbol
+          CraftingBookCategory bookCategory = RecipeBuilder.determineBookCatego
+ry(this.category);
+                                                           ^
+    symbol:   method determineBookCategory(RecipeCategory)
+    location: interface RecipeBuilder
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\WeaponMaterial.java:108: error: cannot find symbol
+          Registry<WeaponTrait> registry = registryAccess.registry(WeaponTraits
+.REGISTRY_KEY).orElse(null);
+                                                         ^
+    symbol:   method registry(ResourceKey<Registry<WeaponTrait>>)
+    location: variable registryAccess of type RegistryAccess
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\WeaponMaterial.java:116: error: cannot find symbol
+          this.isValidTag = registry.getTag(this.traitsTag).isPresent();
+                                    ^
+    symbol:   method getTag(TagKey<WeaponTrait>)
+    location: variable registry of type Registry<WeaponTrait>
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\trait\DamageBonusWeaponTrait.java:61: error: cannot fin
+d symbol
+              victim.getType().is(EntityTypeTags.UNDEAD) ? baseDamage + bonusDa
+mage : baseDamage;
+                              ^
+    symbol:   method is(TagKey<EntityType<?>>)
+    location: class EntityType<CAP#1>
+    where CAP#1 is a fresh type-variable:
+      CAP#1 extends Entity from capture of ?
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\trait\HammerSlamWeaponTrait.java:55: error: cannot find
+ symbol
+              player.playNotifySound(ModSounds.HAMMER_SLAMS_INTO_GROUND.get(), 
+SoundSource.PLAYERS, 1.0f, 0.6f);
+                    ^
+    symbol:   method playNotifySound(SoundEvent,SoundSource,float,float)
+    location: variable player of type Player
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\trait\MeleeBlockWeaponTrait.java:58: error: cannot find
+ symbol
+                  ev.setCanceled(true);
+                    ^
+    symbol:   method setCanceled(boolean)
+    location: variable ev of type LivingShieldBlockEvent
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\trait\ThrowableMeleeWeaponTrait.java:63: error: cannot 
+find symbol
+                  int j = EnchantmentHelper.getItemEnchantmentLevel(registryAcc
+ess.registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantments.SHARP
+NESS), stackIn);
+                                                                               
+   ^
+    symbol:   method registryOrThrow(ResourceKey<Registry<Enchantment>>)
+    location: variable registryAccess of type RegistryAccess
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\trait\ThrowableMeleeWeaponTrait.java:65: error: cannot 
+find symbol
+                      thrown.setBaseDamage(thrown.getBaseDamage() + j * 0.5d + 
+0.5d);
+                                                 ^
+    symbol:   method getBaseDamage()
+    location: variable thrown of type ThrowingWeaponEntity
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\trait\ThrowableMeleeWeaponTrait.java:69: error: cannot 
+find symbol
+                  int fireAspect = EnchantmentHelper.getItemEnchantmentLevel(re
+gistryAccess.registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantme
+nts.FIRE_ASPECT), stackIn);
+                                                                               
+            ^
+    symbol:   method registryOrThrow(ResourceKey<Registry<Enchantment>>)
+    location: variable registryAccess of type RegistryAccess
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\capability\OilHandler.java:90: error: cannot find symbol
+                  ((Player) userIn).displayClientMessage(Component.translatable
+("message." + ModSpartanWeaponry.ID + ".oil_depleted", oilStack.getHoverName(),
+ userWeaponIn.getHoverName()), true);
+                                   ^
+    symbol:   method displayClientMessage(MutableComponent,boolean)
+    location: class Player
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\capability\OilHandler.java:138: error: cannot find symbol
+          return (Registry<OilEffect>) BuiltInRegistries.REGISTRY.get(OilEffect
+s.REGISTRY_KEY.location());
+                                                                               
+              ^
+    symbol:   method location()
+    location: variable REGISTRY_KEY of type ResourceKey<Registry<OilEffect>>
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\ClientHelper.java:221: error: cannot find symbol
+          EntityModelSet entityModelSet = ev.getEntityModelSet();
+                                            ^
+    symbol:   method getEntityModelSet()
+    location: variable ev of type CreateSkullModels
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\capability\QuiverItemStackHandler.java:20: error: cannot fi
+nd symbol
+              this.deserializeNBT(getRegistryAccess(), tag);
+                  ^
+    symbol: method deserializeNBT(RegistryAccess,CompoundTag)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\capability\QuiverItemStackHandler.java:44: error: cannot fi
+nd symbol
+          ItemStackDataHelper.updateTag(this.quiverStack, tag -> tag.put(Quiver
+BaseItem.NBT_AMMO, this.serializeNBT(getRegistryAccess())));
+                                                                               
+                       ^
+    symbol: method serializeNBT(RegistryAccess)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\data\recipe\ConditionalShapelessRecipeBuilder.java:133:
+ error: incompatible types: bad type in conditional expression
+          ShapelessRecipe recipe = new ShapelessRecipe(this.group == null ? "" 
+: this.group, bookCategory, outputStack, ingredientList);
+                                                                            ^
+      String cannot be converted to CommonInfo
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\data\recipe\ConditionalShapelessRecipeBuilder.java:139:
+ error: incompatible types: Identifier cannot be converted to ResourceKey<Recip
+e<?>>
+                  .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocke
+d(id))
+                                                                               
+  ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\data\recipe\ConditionalShapelessRecipeBuilder.java:140:
+ error: incompatible types: Identifier cannot be converted to ResourceKey<Recip
+e<?>>
+                  .rewards(AdvancementRewards.Builder.recipe(id))
+                                                             ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\data\recipe\RecipeProviderHelper.java:836: error: incom
+patible types: ItemLike cannot be converted to HolderGetter<Item>
+  		return InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builde
+r.item().of(item).build());
+  		                                                                           
+            ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\data\recipe\RecipeProviderHelper.java:846: error: incom
+patible types: TagKey<Item> cannot be converted to HolderGetter<Item>
+  		return InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builde
+r.item().of(tag).build());
+  		                                                                           
+            ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\oil\PotionOilEffect.java:29: error: incompatible types:
+ Optional<CompoundTag> cannot be converted to CompoundTag
+          CompoundTag oilTag = ItemStackDataHelper.getTag(stackIn).getCompound(
+OilHandler.NBT_OIL);
+                                                                              ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\oil\PotionOilEffect.java:42: error: incompatible types:
+ Optional<CompoundTag> cannot be converted to CompoundTag
+          CompoundTag oilTag = ItemStackDataHelper.getTag(oilStackIn).getCompou
+nd(OilHandler.NBT_OIL);
+                                                                               
+  ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\oil\PotionOilEffect.java:52: error: incompatible types:
+ LivingEntity cannot be converted to ServerLevel
+                      effect.getEffect().value().applyInstantenousEffect(userEn
+tityIn, userEntityIn, targetEntityIn, effect.getAmplifier(), 1.0d);
+                                                                         ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\api\trait\HammerSlamWeaponTrait.java:43: error: incompatibl
+e types: Item cannot be converted to ItemStack
+          if (!level.isClientSide && !player.getCooldowns().isOnCooldown(weapon
+.getItem()) && player.getAttackStrengthScale(0.0f) == 1.0f) {
+                                                                               
+        ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\capability\OilHandler.java:42: error: incompatible types: O
+ptional<CompoundTag> cannot be converted to CompoundTag
+              this.deserializeNBT(getRegistryAccess(), ItemStackDataHelper.getT
+ag(this.stack).getCompound(NBT_OIL));
+                                                                               
+                          ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\capability\OilHandler.java:124: error: incompatible types: 
+Optional<String> cannot be converted to String
+          String oilEffectReg = nbt.getString(NBT_OIL_EFFECT);
+                                             ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\capability\OilHandler.java:127: error: incompatible types: 
+bad type in conditional expression
+              this.effect = !oilEffectReg.isEmpty() ? Optional.ofNullable(regis
+try.get(Identifier.parse(oilEffectReg))) : Optional.empty();
+                                                                         ^
+      inference variable T has incompatible bounds
+        equality constraints: OilEffect
+        lower bounds: Optional<Reference<OilEffect>>
+    where T is a type-variable:
+      T extends Object declared in method <T>ofNullable(T)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\capability\OilHandler.java:129: error: incompatible types: 
+Optional<String> cannot be converted to String
+                  String potionReg = nbt.getString(NBT_POTION);
+                                                  ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\capability\OilHandler.java:130: error: incompatible types: 
+bad type in conditional expression
+                  this.potion = !potionReg.isEmpty() ? Optional.ofNullable(Buil
+tInRegistries.POTION.get(Identifier.parse(potionReg))) : Optional.empty();
+                                                                          ^
+      inference variable T has incompatible bounds
+        equality constraints: Potion
+        lower bounds: Optional<Reference<Potion>>
+    where T is a type-variable:
+      T extends Object declared in method <T>ofNullable(T)
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\capability\OilHandler.java:133: error: incompatible types: 
+Optional<Integer> cannot be converted to int
+          this.usesLeft = nbt.getInt(NBT_USES_LEFT);
+                                    ^
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\capability\QuiverItemStackHandler.java:18: error: incompati
+ble types: Optional<CompoundTag> cannot be converted to CompoundTag
+          CompoundTag tag = ItemStackDataHelper.getTag(stack).getCompound(Quive
+rBaseItem.NBT_AMMO);
+                                                                         ^
+  Note: C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\
+spartanweaponryunofficial\data\ModDamageTypeTagsProvider.java uses unchecked or
+ unsafe operations.
+  Note: Some messages have been simplified; recompile with -Xdiags:verbose to g
+et full output
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\client\particle\DamageModifiedParticle.java:9: error: canno
+t find symbol
+  public class DamageModifiedParticle extends TextureSheetParticle {
+                                              ^
+    symbol: class TextureSheetParticle
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\entity\projectile\DynamiteEntity.java:19: error: cannot fin
+d symbol
+  public class DynamiteEntity extends ThrowableItemProjectile {
+                                      ^
+    symbol: class ThrowableItemProjectile
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\mixin\AbstractSkeletonMixin.java:24: error: cannot find sym
+bol
+  @Mixin(AbstractSkeleton.class)
+         ^
+    symbol: class AbstractSkeleton
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\mixin\WitherSkeletonMixin.java:15: error: cannot find symbo
+l
+  @Mixin(WitherSkeleton.class)
+         ^
+    symbol: class WitherSkeleton
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\mixin\ZombieMixin.java:13: error: cannot find symbol
+  @Mixin(Zombie.class)
+         ^
+    symbol: class Zombie
+  C:\Users\25463\Desktop\SpartanWeaponry-NeoForge\src\main\java\org\xiyu\sparta
+nweaponryunofficial\network\QuiverAccessPacket.java:18: error: package top.thei
+llusivec4.curios.api does not exist
+  import top.theillusivec4.curios.api.SlotResult;
+                                     ^
+  100 errors
+  24 warnings
+
+* Try:
+> Check your code and dependencies to fix the compilation error(s)
+> Run with --scan to generate a Build Scan (Powered by Develocity).
+
+BUILD FAILED in 8s
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/9.1.0/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+3 actionable tasks: 1 executed, 2 up-to-date

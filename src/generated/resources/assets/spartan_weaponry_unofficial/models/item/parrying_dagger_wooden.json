@@ -1,6 +1,5 @@
 {
   "parent": "spartan_weaponry_unofficial:item/base/parrying_dagger",
-  "loader": "spartan_weaponry_unofficial:oil_coated_item",
   "overrides": [
     {
       "model": "spartan_weaponry_unofficial:item/parrying_dagger_wooden_blocking",

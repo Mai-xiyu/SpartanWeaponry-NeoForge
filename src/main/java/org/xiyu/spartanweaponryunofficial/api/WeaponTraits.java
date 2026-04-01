@@ -2,7 +2,7 @@ package org.xiyu.spartanweaponryunofficial.api;
 
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.BlockTags;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -11,7 +11,7 @@ import org.xiyu.spartanweaponryunofficial.api.trait.*;
 import org.xiyu.spartanweaponryunofficial.api.trait.WeaponTrait.TraitQuality;
 
 public class WeaponTraits {
-    public static final ResourceKey<Registry<WeaponTrait>> REGISTRY_KEY = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(ModSpartanWeaponry.ID, "weapon_traits"));
+    public static final ResourceKey<Registry<WeaponTrait>> REGISTRY_KEY = ResourceKey.createRegistryKey(Identifier.fromNamespaceAndPath(ModSpartanWeaponry.ID, "weapon_traits"));
     public static final DeferredRegister<WeaponTrait> REGISTRY = DeferredRegister.create(REGISTRY_KEY, ModSpartanWeaponry.ID);
 
     // Weapon Trait Types

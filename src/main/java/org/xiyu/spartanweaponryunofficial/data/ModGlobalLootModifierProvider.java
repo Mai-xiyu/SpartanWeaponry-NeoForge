@@ -6,7 +6,7 @@ import org.xiyu.spartanweaponryunofficial.init.ModItems;
 import org.xiyu.spartanweaponryunofficial.loot.ConfigLootCondition;
 import org.xiyu.spartanweaponryunofficial.loot.DecapitateLootModifier;
 
-import net.minecraft.advancements.critereon.EntityPredicate;
+import net.minecraft.advancements.criterion.EntityPredicate;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Items;

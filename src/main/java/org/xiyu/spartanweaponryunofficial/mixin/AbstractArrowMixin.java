@@ -4,8 +4,8 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.AbstractArrow;
-import net.minecraft.world.entity.projectile.AbstractArrow.Pickup;
+import net.minecraft.world.entity.projectile.arrow.AbstractArrow;
+import net.minecraft.world.entity.projectile.arrow.AbstractArrow.Pickup;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
@@ -30,7 +30,7 @@ public abstract class AbstractArrowMixin extends ProjectileMixin {
     @Inject(at = @At("HEAD"), method = "playerTouch(Lnet/minecraft/world/entity/player/Player;)V", cancellable = true)
     private void playerTouch(Player entityIn, CallbackInfo callback) {
         Level level = this.level();
-        if (!level.isClientSide && (this.inGround || this.isNoPhysics()) && this.shakeTime <= 0) {
+        if (!level.isClientSide() && (this.isInGround() || this.isNoPhysics()) && this.shakeTime <= 0) {
 //			Log.debug("Player collision with arrow entity intercepted!");
 //			boolean pickupItem = pickup == Pickup.ALLOWED || pickup == Pickup.CREATIVE_ONLY && entityIn.abilities.isCreativeMode || getNoClip() && getShooter().getUniqueID() == entityIn.getUniqueID();
 
@@ -54,7 +54,7 @@ public abstract class AbstractArrowMixin extends ProjectileMixin {
                         if (!arrowStack.isEmpty() && !quiver.isEmpty() && ((QuiverBaseItem) quiver.getItem()).isAmmoValid(arrowStack, quiver)) {
                             //Log.debug("Found a quiver to place the arrow into!");
                             // Make sure auto-collect is enabled.
-                            if (ItemStackDataHelper.getTag(quiver).getBoolean(QuiverBaseItem.NBT_AMMO_COLLECT)) {
+                            if (ItemStackDataHelper.getTag(quiver).getBooleanOr(QuiverBaseItem.NBT_AMMO_COLLECT, false)) {
                                 //Log.debug("Inserting arrows into a quiver!");
                                 // Attempt to place the arrows into the quiver.
                                 IQuiverItemHandler quiverHandler = quiver.getCapability(ModCapabilities.QUIVER_ITEM_CAPABILITY);
@@ -84,7 +84,7 @@ public abstract class AbstractArrowMixin extends ProjectileMixin {
     }
 
     @Shadow
-    protected boolean inGround;
+    public abstract boolean isInGround();
     @Shadow
     public int shakeTime;
     @Shadow
@@ -100,3 +100,4 @@ public abstract class AbstractArrowMixin extends ProjectileMixin {
         throw new IllegalStateException("Mixin failed to shadow the \"AbstractArrow.getPickupItem()\" method!");
     }
 }
+

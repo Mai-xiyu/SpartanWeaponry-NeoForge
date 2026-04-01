@@ -14,11 +14,11 @@ public class JavelinRenderer<T extends JavelinEntity> extends ThrowingWeaponRend
     }
 
     @Override
-    protected void doRenderTransformations(T entity, float partialTicks, PoseStack matrixStack) {
+    protected void doRenderTransformations(SWThrowingWeaponRenderState state, PoseStack matrixStack) {
         this.scale = 1.5f;
         matrixStack.scale(this.scale, this.scale, this.scale);
-        matrixStack.mulPose(Axis.YP.rotationDegrees(Mth.lerp(partialTicks, entity.yRotO, entity.getYRot()) - 90.0f));
-        matrixStack.mulPose(Axis.ZP.rotationDegrees(Mth.lerp(partialTicks, entity.xRotO, entity.getXRot()) - 45.0f));
+        matrixStack.mulPose(Axis.YP.rotationDegrees(Mth.lerp(state.partialTick, state.yRotO, state.yRot) - 90.0f));
+        matrixStack.mulPose(Axis.ZP.rotationDegrees(Mth.lerp(state.partialTick, state.xRotO, state.xRot) - 45.0f));
 
         matrixStack.translate(-0.45f, -0.35f, 0.0f);
     }

@@ -1,13 +1,12 @@
 package org.xiyu.spartanweaponryunofficial.client.gui.container;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
@@ -25,19 +24,17 @@ import org.xiyu.spartanweaponryunofficial.util.Defaults;
 import org.xiyu.spartanweaponryunofficial.util.ItemStackDataHelper;
 import org.xiyu.spartanweaponryunofficial.util.Log;
 
-import java.util.List;
-
 public class QuiverBaseScreen<T extends QuiverBaseMenu> extends AbstractContainerScreen<T> {
-    protected final ResourceLocation GUI_TEXTURE_SMALL = ResourceLocation.fromNamespaceAndPath(ModSpartanWeaponry.ID, "textures/gui/quiver_small.png");
-    protected final ResourceLocation GUI_TEXTURE_MEDIUM = ResourceLocation.fromNamespaceAndPath(ModSpartanWeaponry.ID, "textures/gui/quiver_medium.png");
-    protected final ResourceLocation GUI_TEXTURE_LARGE = ResourceLocation.fromNamespaceAndPath(ModSpartanWeaponry.ID, "textures/gui/quiver_large.png");
-    protected final ResourceLocation GUI_TEXTURE_HUGE = ResourceLocation.fromNamespaceAndPath(ModSpartanWeaponry.ID, "textures/gui/quiver_huge.png");
+    protected final Identifier GUI_TEXTURE_SMALL = Identifier.fromNamespaceAndPath(ModSpartanWeaponry.ID, "textures/gui/quiver_small.png");
+    protected final Identifier GUI_TEXTURE_MEDIUM = Identifier.fromNamespaceAndPath(ModSpartanWeaponry.ID, "textures/gui/quiver_medium.png");
+    protected final Identifier GUI_TEXTURE_LARGE = Identifier.fromNamespaceAndPath(ModSpartanWeaponry.ID, "textures/gui/quiver_large.png");
+    protected final Identifier GUI_TEXTURE_HUGE = Identifier.fromNamespaceAndPath(ModSpartanWeaponry.ID, "textures/gui/quiver_huge.png");
 
     protected final Component PRIORITY_BUTTON_TOOLTIP = Component.literal("[").append(Component.translatable("gui." + ModSpartanWeaponry.ID + ".set_priority_slot")).append(Component.literal("]"));
     protected final Component AMMO_COLLECT_ENABLED_BUTTON_TOOLTIP = Component.translatable("gui." + ModSpartanWeaponry.ID + ".ammo_collect_enabled");
     protected final Component AMMO_COLLECT_DISABLED_BUTTON_TOOLTIP = Component.translatable("gui." + ModSpartanWeaponry.ID + ".ammo_collect_disabled");
 
-    protected final ResourceLocation texture;
+    protected final Identifier texture;
     protected final ItemStack quiver;
     protected final int ammoSlots;
     protected int prioritySlot;
@@ -46,8 +43,8 @@ public class QuiverBaseScreen<T extends QuiverBaseMenu> extends AbstractContaine
     public QuiverBaseScreen(T screenContainer, Inventory inv, Component title) {
         super(screenContainer, inv, title);
         this.quiver = screenContainer.getQuiverStack();
-        this.prioritySlot = ItemStackDataHelper.getTag(this.quiver).getInt(QuiverBaseItem.NBT_PROIRITY_SLOT);
-        this.isAmmoCollectEnabled = ItemStackDataHelper.getTag(this.quiver).getBoolean(QuiverBaseItem.NBT_AMMO_COLLECT);
+        this.prioritySlot = ItemStackDataHelper.getTag(this.quiver).getIntOr(QuiverBaseItem.NBT_PROIRITY_SLOT, 0);
+        this.isAmmoCollectEnabled = ItemStackDataHelper.getTag(this.quiver).getBooleanOr(QuiverBaseItem.NBT_AMMO_COLLECT, false);
 
         IQuiverItemHandler handler = this.quiver.getCapability(ModCapabilities.QUIVER_ITEM_CAPABILITY);
         this.ammoSlots = handler != null ? handler.getSlots() : Defaults.SlotsQuiverSmall;
@@ -66,7 +63,7 @@ public class QuiverBaseScreen<T extends QuiverBaseMenu> extends AbstractContaine
                 this.texture = this.GUI_TEXTURE_SMALL;
                 break;
             default:
-                this.texture = ResourceLocation.fromNamespaceAndPath(ModSpartanWeaponry.ID, "textures/gui/missingno.png");
+                this.texture = Identifier.fromNamespaceAndPath(ModSpartanWeaponry.ID, "textures/gui/missingno.png");
                 Log.error("Missing texture for GUI for quiver: " + this.quiver.getHoverName());
                 break;
         }
@@ -101,38 +98,25 @@ public class QuiverBaseScreen<T extends QuiverBaseMenu> extends AbstractContaine
     }
 
     @Override
-    public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
-        super.render(guiGraphics, mouseX, mouseY, partialTicks);
-        if (this.menu.getCarried().isEmpty() && this.hoveredSlot != null && this.hoveredSlot.hasItem()) {
-            List<Component> tooltipList = getTooltipFromItem(this.minecraft, this.hoveredSlot.getItem());
-
-            // Show the priority button tooltip if the button is being hovered over
-            if (this.hoveredSlot.index < this.ammoSlots &&
-                    mouseX > this.leftPos + this.hoveredSlot.x - 1 && mouseX < this.leftPos + this.hoveredSlot.x + 6 &&
-                    mouseY > this.topPos + this.hoveredSlot.y - 1 && mouseY < this.topPos + this.hoveredSlot.y + 6)
-                tooltipList.addFirst(this.PRIORITY_BUTTON_TOOLTIP);
-
-            this.renderTooltip(guiGraphics, mouseX, mouseY);
-        }
+    public void extractRenderState(@NotNull GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTicks) {
+        super.extractRenderState(guiGraphics, mouseX, mouseY, partialTicks);
     }
 
     @Override
-    protected void renderBg(GuiGraphics guiGraphics, float partialTicks, int mouseX, int mouseY) {
-        RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
-        guiGraphics.blit(this.texture, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
+    public void extractContents(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTicks) {
+        guiGraphics.blit(RenderPipelines.GUI_TEXTURED, this.texture, this.leftPos, this.topPos, 0f, 0f, this.imageWidth, this.imageHeight, 256, 256);
         int offhandY = this.ammoSlots == Defaults.SlotsQuiverHuge ? 122 : 104;
-        guiGraphics.blit(this.texture, this.leftPos - 27, this.topPos + offhandY, 178, offhandY, 27, 29);
+        guiGraphics.blit(RenderPipelines.GUI_TEXTURED, this.texture, this.leftPos - 27, this.topPos + offhandY, 178f, (float) offhandY, 27, 29, 256, 256);
 
         Slot highlightedSlot = this.menu.slots.get(this.prioritySlot);
-        renderSlotHighlight(guiGraphics, this.leftPos + highlightedSlot.x, this.topPos + highlightedSlot.y, 0, 0x8040C040);
+        guiGraphics.fill(this.leftPos + highlightedSlot.x, this.topPos + highlightedSlot.y, this.leftPos + highlightedSlot.x + 16, this.topPos + highlightedSlot.y + 16, 0x8040C040);
     }
 
     @Override
-    protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
+    protected void extractLabels(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY) {
         String name = this.quiver.getHoverName().getString();
-        guiGraphics.drawString(this.font, this.quiver.getHoverName(), this.imageWidth / 2 - this.font.width(name) / 2, 5, 0x404040, false);
-        guiGraphics.drawString(this.font, this.playerInventoryTitle, 8, 42 + (this.ammoSlots == Defaults.SlotsQuiverHuge ? 18 : 0), 0x404040, false);
+        guiGraphics.text(this.font, this.quiver.getHoverName(), this.imageWidth / 2 - this.font.width(name) / 2, 5, 0x404040, false);
+        guiGraphics.text(this.font, this.playerInventoryTitle, 8, 42 + (this.ammoSlots == Defaults.SlotsQuiverHuge ? 18 : 0), 0x404040, false);
     }
 	
 /*	protected void drawButtonTooltip(Button button, PoseStack poseStack, int x, int y)

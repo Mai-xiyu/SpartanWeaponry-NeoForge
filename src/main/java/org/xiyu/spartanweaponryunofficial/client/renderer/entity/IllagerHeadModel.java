@@ -1,25 +1,21 @@
 package org.xiyu.spartanweaponryunofficial.client.renderer.entity;
 
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.minecraft.client.model.SkullModelBase;
+import net.minecraft.client.model.object.skull.SkullModelBase;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
-import org.jetbrains.annotations.NotNull;
 
 public class IllagerHeadModel extends SkullModelBase {
     private static final String PART_HEAD = "head";
     private static final String PART_NOSE = "nose";
 
-    private final ModelPart root;
     private final ModelPart head;
 
     public IllagerHeadModel(ModelPart modelRoot) {
-        this.root = modelRoot;
+        super(modelRoot);
         this.head = modelRoot.getChild(PART_HEAD);
     }
 
@@ -34,13 +30,9 @@ public class IllagerHeadModel extends SkullModelBase {
     }
 
     @Override
-    public void setupAnim(float p_170950_, float p_170951_, float p_170952_) {
-        this.head.yRot = p_170951_ * ((float) Math.PI / 180.0f);
-        this.head.xRot = p_170952_ * ((float) Math.PI / 180.0f);
-    }
-
-    @Override
-    public void renderToBuffer(@NotNull PoseStack poseStack, @NotNull VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
-        this.root.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
+    public void setupAnim(State state) {
+        super.setupAnim(state);
+        this.head.yRot = state.yRot * ((float) Math.PI / 180.0f);
+        this.head.xRot = state.xRot * ((float) Math.PI / 180.0f);
     }
 }

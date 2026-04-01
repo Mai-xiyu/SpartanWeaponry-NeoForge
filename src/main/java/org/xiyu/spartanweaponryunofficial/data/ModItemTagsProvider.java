@@ -2,15 +2,12 @@ package org.xiyu.spartanweaponryunofficial.data;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.tags.ItemTagsProvider;
-import net.minecraft.data.tags.TagsProvider;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.block.Block;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.common.data.ItemTagsProvider;
 import org.jetbrains.annotations.NotNull;
 import org.xiyu.spartanweaponryunofficial.ModSpartanWeaponry;
 import org.xiyu.spartanweaponryunofficial.api.tags.ModBlockTags;
@@ -20,30 +17,30 @@ import org.xiyu.spartanweaponryunofficial.init.ModItems;
 import java.util.concurrent.CompletableFuture;
 
 public class ModItemTagsProvider extends ItemTagsProvider {
-    public ModItemTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registry, CompletableFuture<TagsProvider.TagLookup<Block>> blockTagLookup, ExistingFileHelper existingFileHelper) {
-        super(output, registry, blockTagLookup, ModSpartanWeaponry.ID, existingFileHelper);
+    public ModItemTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registry) {
+        super(output, registry, ModSpartanWeaponry.ID);
     }
 
     @SuppressWarnings("unchecked")
     @Override
     protected void addTags(HolderLookup.@NotNull Provider registry) {
-        final TagKey<Item> WEAPONS = ItemTags.create(ResourceLocation.parse("c:tools/melee_weapons"));
-        final TagKey<Item> CURIOS_BACK = ItemTags.create(ResourceLocation.parse("curios:back"));
-        final TagKey<Item> CURIOS_QUIVER = ItemTags.create(ResourceLocation.parse("curios:quiver"));
+        final TagKey<Item> WEAPONS = ItemTags.create(Identifier.parse("c:tools/melee_weapons"));
+        final TagKey<Item> CURIOS_BACK = ItemTags.create(Identifier.parse("curios:back"));
+        final TagKey<Item> CURIOS_QUIVER = ItemTags.create(Identifier.parse("curios:quiver"));
 
         // Minecraft 1.21+ enchantment tags - required for enchanting table and anvil to work
-        final TagKey<Item> ENCHANTABLE_SWORD = ItemTags.create(ResourceLocation.parse("minecraft:enchantable/sword"));
-        final TagKey<Item> ENCHANTABLE_WEAPON = ItemTags.create(ResourceLocation.parse("minecraft:enchantable/weapon"));
-        final TagKey<Item> ENCHANTABLE_DURABILITY = ItemTags.create(ResourceLocation.parse("minecraft:enchantable/durability"));
-        final TagKey<Item> ENCHANTABLE_VANISHING = ItemTags.create(ResourceLocation.parse("minecraft:enchantable/vanishing"));
-        final TagKey<Item> ENCHANTABLE_BOW = ItemTags.create(ResourceLocation.parse("minecraft:enchantable/bow"));
-        final TagKey<Item> ENCHANTABLE_CROSSBOW = ItemTags.create(ResourceLocation.parse("minecraft:enchantable/crossbow"));
-        final TagKey<Item> ENCHANTABLE_TRIDENT = ItemTags.create(ResourceLocation.parse("minecraft:enchantable/trident"));
+        final TagKey<Item> ENCHANTABLE_SWORD = ItemTags.create(Identifier.parse("minecraft:enchantable/sword"));
+        final TagKey<Item> ENCHANTABLE_WEAPON = ItemTags.create(Identifier.parse("minecraft:enchantable/weapon"));
+        final TagKey<Item> ENCHANTABLE_DURABILITY = ItemTags.create(Identifier.parse("minecraft:enchantable/durability"));
+        final TagKey<Item> ENCHANTABLE_VANISHING = ItemTags.create(Identifier.parse("minecraft:enchantable/vanishing"));
+        final TagKey<Item> ENCHANTABLE_BOW = ItemTags.create(Identifier.parse("minecraft:enchantable/bow"));
+        final TagKey<Item> ENCHANTABLE_CROSSBOW = ItemTags.create(Identifier.parse("minecraft:enchantable/crossbow"));
+        final TagKey<Item> ENCHANTABLE_TRIDENT = ItemTags.create(Identifier.parse("minecraft:enchantable/trident"));
 
         // Mod-specific enchantable tags for mod enchantments to work at enchanting table
-        final TagKey<Item> ENCHANTABLE_THROWING_WEAPON = ItemTags.create(ResourceLocation.parse("spartan_weaponry_unofficial:enchantable/throwing_weapon"));
-        final TagKey<Item> ENCHANTABLE_HEAVY_CROSSBOW = ItemTags.create(ResourceLocation.parse("spartan_weaponry_unofficial:enchantable/heavy_crossbow"));
-        final TagKey<Item> ENCHANTABLE_BOOMERANG = ItemTags.create(ResourceLocation.parse("spartan_weaponry_unofficial:enchantable/boomerang"));
+        final TagKey<Item> ENCHANTABLE_THROWING_WEAPON = ItemTags.create(Identifier.parse("spartan_weaponry_unofficial:enchantable/throwing_weapon"));
+        final TagKey<Item> ENCHANTABLE_HEAVY_CROSSBOW = ItemTags.create(Identifier.parse("spartan_weaponry_unofficial:enchantable/heavy_crossbow"));
+        final TagKey<Item> ENCHANTABLE_BOOMERANG = ItemTags.create(Identifier.parse("spartan_weaponry_unofficial:enchantable/boomerang"));
 
         // Tags in the Spartan Weaponry domain
         this.tag(ModItemTags.HANDLES).add(ModItems.SIMPLE_HANDLE.get(), ModItems.HANDLE.get());
@@ -267,14 +264,14 @@ public class ModItemTagsProvider extends ItemTagsProvider {
         this.tag(ENCHANTABLE_BOOMERANG).addTag(ModItemTags.BOOMERANGS);
 
         // Tags in Forge's domain
-        final TagKey<Item> HEADS_TAG = ItemTags.create(ResourceLocation.parse("c:heads"));
+        final TagKey<Item> HEADS_TAG = ItemTags.create(Identifier.parse("c:heads"));
         this.tag(HEADS_TAG).addTag(ModItemTags.HEADS);
         this.tag(WEAPONS).addTags(ModItemTags.DAGGERS, ModItemTags.PARRYING_DAGGERS, ModItemTags.LONGSWORDS, ModItemTags.KATANAS, ModItemTags.SABERS, ModItemTags.RAPIERS, ModItemTags.GREATSWORDS,
                 ModItemTags.CLUBS, ModItemTags.CESTUSAE, ModItemTags.BATTLE_HAMMERS, ModItemTags.WARHAMMERS, ModItemTags.SPEARS, ModItemTags.HALBERDS, ModItemTags.PIKES, ModItemTags.LANCES,
                 ModItemTags.LONGBOWS, ModItemTags.HEAVY_CROSSBOWS, ModItemTags.THROWING_KNIVES, ModItemTags.TOMAHAWKS, ModItemTags.JAVELINS, ModItemTags.BOOMERANGS, ModItemTags.BATTLEAXES,
                 ModItemTags.FLANGED_MACES, ModItemTags.GLAIVES, ModItemTags.QUARTERSTAVES, ModItemTags.SCYTHES);
         this.tag(ModItemTags.RAW_MEAT).add(Items.BEEF, Items.PORKCHOP, Items.CHICKEN, Items.MUTTON, Items.RABBIT);
-        this.copy(ModBlockTags.GRASS, ModItemTags.GRASS);
+        // copy(...) was removed in newer ItemTagsProvider API; keep custom grass tag empty for now.
 
         // Tags in Curios' domain
         this.tag(CURIOS_BACK).addTag(ModItemTags.QUIVERS);

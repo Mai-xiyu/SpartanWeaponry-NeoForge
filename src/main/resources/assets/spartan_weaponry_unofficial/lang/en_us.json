@@ -973,6 +973,16 @@
 	"block.spartan_weaponry_unofficial.drowned_head": "Drowned Head",
 	"block.spartan_weaponry_unofficial.illager_head": "Illager Head",
 	"block.spartan_weaponry_unofficial.witch_head": "Witch Head",
+	"item.spartan_weaponry_unofficial.blaze_head": "Blaze Head",
+	"item.spartan_weaponry_unofficial.enderman_head": "Enderman Head",
+	"item.spartan_weaponry_unofficial.spider_head": "Spider Head",
+	"item.spartan_weaponry_unofficial.cave_spider_head": "Cave Spider Head",
+	"item.spartan_weaponry_unofficial.zombified_piglin_head": "Zombified Piglin Head",
+	"item.spartan_weaponry_unofficial.husk_head": "Husk Head",
+	"item.spartan_weaponry_unofficial.stray_skull": "Stray Skull",
+	"item.spartan_weaponry_unofficial.drowned_head": "Drowned Head",
+	"item.spartan_weaponry_unofficial.illager_head": "Illager Head",
+	"item.spartan_weaponry_unofficial.witch_head": "Witch Head",
 	
 	// Entities
 	"entity.spartan_weaponry_unofficial.arrow": "Arrow",

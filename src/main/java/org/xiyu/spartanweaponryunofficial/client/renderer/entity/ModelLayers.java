@@ -1,7 +1,7 @@
 package org.xiyu.spartanweaponryunofficial.client.renderer.entity;
 
 import net.minecraft.client.model.geom.ModelLayerLocation;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import org.xiyu.spartanweaponryunofficial.ModSpartanWeaponry;
 
 public class ModelLayers {
@@ -25,6 +25,6 @@ public class ModelLayers {
     public static final ModelLayerLocation WITCH_HEAD = createMainModelLayer("witch_head");
 
     public static ModelLayerLocation createMainModelLayer(String location) {
-        return new ModelLayerLocation(ResourceLocation.tryBuild(ModSpartanWeaponry.ID, location), "main");
+        return new ModelLayerLocation(Identifier.tryBuild(ModSpartanWeaponry.ID, location), "main");
     }
 }

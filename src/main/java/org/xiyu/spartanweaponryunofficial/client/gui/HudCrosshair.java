@@ -1,15 +1,12 @@
 package org.xiyu.spartanweaponryunofficial.client.gui;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.math.Axis;
-import net.minecraft.client.Camera;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.Options;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.GameType;
@@ -18,18 +15,17 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.neoforged.fml.ModList;
-import org.joml.Matrix4fStack;
 import org.xiyu.spartanweaponryunofficial.ModSpartanWeaponry;
 import org.xiyu.spartanweaponryunofficial.compat.shouldersurfing.ShoulderSurfingCompat;
 import org.xiyu.spartanweaponryunofficial.item.IHudCrosshair;
 import org.xiyu.spartanweaponryunofficial.util.ClientConfig;
 
 public class HudCrosshair {
-    public static final ResourceLocation CROSSHAIR_TEXTURES = ResourceLocation.fromNamespaceAndPath(ModSpartanWeaponry.ID, "textures/gui/crosshairs.png");
-    public static final ResourceLocation ICONS_LOCATION = ResourceLocation.parse("textures/gui/icons.png");
+    public static final Identifier CROSSHAIR_TEXTURES = Identifier.fromNamespaceAndPath(ModSpartanWeaponry.ID, "textures/gui/crosshairs.png");
+    public static final Identifier ICONS_LOCATION = Identifier.parse("textures/gui/icons.png");
     protected static boolean isVanillaCrosshairDisabled = false;
 
-    public static void render(GuiGraphics guiGraphics, DeltaTracker deltaTracker) {
+    public static void render(GuiGraphicsExtractor guiGraphics, DeltaTracker deltaTracker) {
         Minecraft mc = Minecraft.getInstance();
         Options options = mc.options;
         LocalPlayer player = mc.player;
@@ -59,19 +55,7 @@ public class HudCrosshair {
 
                 if ((options.getCameraType().isFirstPerson() || ModList.get().isLoaded("leawind_third_person") || (!ClientConfig.INSTANCE.disableShoulderSurfingIntegration.get() && ModList.get().isLoaded("shouldersurfing") && ShoulderSurfingCompat.isShoulderSurfing()))
                         && (mc.gameMode.getPlayerMode() != GameType.SPECTATOR || canRenderCrosshairForSpectator(mc))) {
-                    // Do the debug rendering for crosshairs even with the custom crosshairs enabled
-                    if (mc.getDebugOverlay().showDebugScreen() && !options.hideGui && !player.isReducedDebugInfo() && !options.reducedDebugInfo().get()) {
-                        Camera camera = mc.gameRenderer.getMainCamera();
-                        Matrix4fStack modelViewStack = RenderSystem.getModelViewStack();
-                        modelViewStack.pushMatrix();
-                        modelViewStack.translate((float) (screenWidth / 2), (float) (screenHeight / 2), 0.0f);
-                        modelViewStack.rotate(Axis.XN.rotationDegrees(camera.getXRot()));
-                        modelViewStack.rotate(Axis.YP.rotationDegrees(camera.getYRot()));
-                        modelViewStack.scale(-1.0F, -1.0F, -1.0F);
-                        RenderSystem.renderCrosshair(10);
-                        modelViewStack.popMatrix();
-                    } else
-                        crosshairItem.getCrosshairHudElement().render(guiGraphics, deltaTracker, equipStack);
+                    crosshairItem.getCrosshairHudElement().render(guiGraphics, deltaTracker, equipStack);
                 }
             }
         }

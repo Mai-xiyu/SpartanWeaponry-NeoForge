@@ -45,7 +45,7 @@ public class OilArgument implements ArgumentType<OilInput> {
         }
 
         RegistryAccess registryAccess = RegistryAccess.fromRegistryOfRegistries(BuiltInRegistries.REGISTRY);
-        Registry<OilEffect> registry = registryAccess.registry(OilEffects.REGISTRY_KEY).orElse(null);
+        Registry<OilEffect> registry = registryAccess.lookup(OilEffects.REGISTRY_KEY).orElse(null);
         return parser.fillSuggestions(builder, registry);
     }
 
