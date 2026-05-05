@@ -659,8 +659,6 @@
     "tooltip.spartan_weaponry_unofficial.trait.throwable.desc": "Essa arma pode ser arremessada em inimigos",
     "tooltip.spartan_weaponry_unofficial.trait.block_melee": "Melee Block",
     "tooltip.spartan_weaponry_unofficial.trait.block_melee.desc": "Can block melee attacks, but will not block projectiles",
-    "tooltip.spartan_weaponry_unofficial.trait.two_handed": "De duas mãos %s",
-    "tooltip.spartan_weaponry_unofficial.trait.two_handed.desc": "Qualquer item usado na outra mão reduzirá a velocidade de ataque",
     "tooltip.spartan_weaponry_unofficial.trait.extra_damage_chest": "Dano Bônus em Torso",
     "tooltip.spartan_weaponry_unofficial.trait.extra_damage_chest.desc": "+%f%% de dano quando o inimigo está sem peitoral",
     "tooltip.spartan_weaponry_unofficial.trait.extra_damage_chest.desc.armor_points": "+%f%% damage when the foe has no Chest Armor and has less than %f armor points",

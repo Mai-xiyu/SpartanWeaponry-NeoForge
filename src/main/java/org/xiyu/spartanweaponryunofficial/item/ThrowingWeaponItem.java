@@ -56,9 +56,12 @@ import java.util.UUID;
 import java.util.function.Consumer;
 
 public class ThrowingWeaponItem extends Item implements IWeaponTraitContainer<ThrowingWeaponItem>, IReloadable, IHudCrosshair {
+    private static final int MIN_THROW_CHARGE_TICKS = 3;
+
     public static final String NBT_AMMO_USED = "AmmoUsed";
     public static final String NBT_UUID = "UUID";
     public static final String NBT_ORIGINAL = "Original";
+    public static final String NBT_RECOVERED = "Recovered";
 
     protected float attackDamage = 1.0f;
     protected double attackSpeed = 0.0D;
@@ -508,7 +511,7 @@ public class ThrowingWeaponItem extends Item implements IWeaponTraitContainer<Th
 
     public int getMaxChargeTicks(ItemStack stack, RegistryAccess access) {
         if (access == null)
-            return this.maxChargeTicks;
+            return Math.max(MIN_THROW_CHARGE_TICKS, this.maxChargeTicks);
         int chargeTicks = (int) (this.maxChargeTicks * (1 - ModEnchantments.getLevel(access, ModEnchantments.SUPERCHARGE, stack) * 0.2f));
         if (this.traits != null)
             for (WeaponTrait trait : this.traits) {
@@ -516,7 +519,7 @@ public class ThrowingWeaponItem extends Item implements IWeaponTraitContainer<Th
                 if (opt.isPresent())
                     chargeTicks = opt.get().modifyThrowingChargeTime(this.material, chargeTicks);
             }
-        return chargeTicks;
+        return Math.max(MIN_THROW_CHARGE_TICKS, chargeTicks);
     }
 
     public int getMaxChargeTicks(ItemStack stack, Level level) {

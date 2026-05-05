@@ -589,8 +589,6 @@
 	"tooltip.spartan_weaponry_unofficial.trait.throwable.desc": "Cette arme peut être jetée sur vos ennemis",
 	"tooltip.spartan_weaponry_unofficial.trait.melee_block": "Parrer",
 	"tooltip.spartan_weaponry_unofficial.trait.melee_block.desc": "Peut parrer les attaques de mêlée",
-	"tooltip.spartan_weaponry_unofficial.trait.two_handed": "Deux-mains %s",
-	"tooltip.spartan_weaponry_unofficial.trait.two_handed.desc": "N'importe quel objet dans la main opposée ralenti la vitesse d'attaque de l'arme",
 	"tooltip.spartan_weaponry_unofficial.trait.extra_damage_chest": "Bonus de dégâts plastron",
 	"tooltip.spartan_weaponry_unofficial.trait.extra_damage_chest.desc": "+%f%% de dégâts lorsque l'ennemi n'a pas de plastron",
 	"tooltip.spartan_weaponry_unofficial.trait.extra_damage_unarmored": "Bonus de dégâts sans-armure",
