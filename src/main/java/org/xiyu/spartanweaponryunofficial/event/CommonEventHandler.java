@@ -41,6 +41,7 @@ import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.common.util.TriState;
 import net.neoforged.neoforge.event.AnvilUpdateEvent;
 import net.neoforged.neoforge.event.LootTableLoadEvent;
 import net.neoforged.neoforge.event.brewing.PlayerBrewedPotionEvent;
@@ -434,58 +435,55 @@ public class CommonEventHandler {
         }
         // Merge compatible itemstacks for throwing weapons (ammo restoration on pickup)
         if (pickedUpStack.getItem() instanceof ThrowingWeaponItem throwingWeapon) {
-            // Find any stack with matching UUID that needs ammo restored
-            for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
-                ItemStack slotStack = player.getInventory().getItem(i);
-                if (ItemStack.isSameItem(slotStack, pickedUpStack) && ItemStackDataHelper.hasTag(pickedUpStack) && ItemStackDataHelper.hasTag(slotStack) &&
-                        ItemStackDataHelper.getTag(slotStack).hasUUID(ThrowingWeaponItem.NBT_UUID) && ItemStackDataHelper.getTag(pickedUpStack).hasUUID(ThrowingWeaponItem.NBT_UUID) &&
-                        ItemStackDataHelper.getTag(pickedUpStack).getUUID(ThrowingWeaponItem.NBT_UUID).equals(ItemStackDataHelper.getTag(slotStack).getUUID(ThrowingWeaponItem.NBT_UUID))) {
-                    int maxAmmo = throwingWeapon.getMaxAmmo(slotStack, player.level());
-                    int currentAmmo = maxAmmo - ItemStackDataHelper.getTag(slotStack).getInt(ThrowingWeaponItem.NBT_AMMO_USED);
-                    boolean currentNotOriginalStack = !ItemStackDataHelper.getTag(slotStack).getBoolean(ThrowingWeaponItem.NBT_ORIGINAL);
-                    boolean pickedUpOriginalStack = ItemStackDataHelper.getTag(pickedUpStack).getBoolean(ThrowingWeaponItem.NBT_ORIGINAL);
-
-                    if (currentAmmo < maxAmmo || (currentNotOriginalStack && pickedUpOriginalStack)) {
-                        int itemDamage = slotStack.getDamageValue() + pickedUpStack.getDamageValue();
-
-                        // If the total damage exceeds the damage of the equipped stack, then "break" one of the ammo items and not increment the ammo count
-                        if (itemDamage > slotStack.getMaxDamage()) {
-                            // TODO: Reimplement broken item particles
-//    						this.playSound(SoundEvents.ENTITY_ITEM_BREAK, 0.8F, 0.8F + this.world.rand.nextFloat() * 0.4F);
-//    						player.renderBrokenItemStack(pickedUpStack);
-//    						player.breakItem(slotStack);
-                            level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ITEM_BREAK, player.getSoundSource(), 0.8f, 0.8f + player.getRandom().nextFloat() * 0.4f);
-//    						if(!level.isClientSide)
-//    							((ServerLevel)level).getChunkSource().broadcast(player, new ClientboundEntityEventPacket(player, (byte) 47));
-                            itemDamage -= slotStack.getMaxDamage() + 1;
-                        } else {
-                            currentAmmo += (maxAmmo - ItemStackDataHelper.getTag(pickedUpStack).getInt(ThrowingWeaponItem.NBT_AMMO_USED));
-                            currentAmmo = Mth.clamp(currentAmmo, 0, maxAmmo);
-                            final int finalCurrentAmmo = currentAmmo;
-                            ItemStackDataHelper.updateTag(slotStack, tag -> tag.putInt(ThrowingWeaponItem.NBT_AMMO_USED, maxAmmo - finalCurrentAmmo));
-                            if (currentNotOriginalStack && pickedUpOriginalStack) {
-                                ItemStackDataHelper.updateTag(slotStack, tag -> tag.putBoolean(ThrowingWeaponItem.NBT_ORIGINAL, true));
-
-                                // Additionally, restore any enchantments from the original stack
-                                if (pickedUpStack.isEnchanted()) {
-                                    ItemEnchantments enchantments = EnchantmentHelper.getEnchantmentsForCrafting(pickedUpStack);
-                                    EnchantmentHelper.setEnchantments(slotStack, enchantments);
-                                }
-                            }
-                        }
-                        slotStack.setDamageValue(itemDamage);
-
-                        // Consume the picked-up item entity and play pickup effects
-                        player.take(ev.getItemEntity(), 1);
-                        level.playSound(null, ev.getItemEntity().getX(), ev.getItemEntity().getY(), ev.getItemEntity().getZ(), SoundEvents.ITEM_PICKUP, SoundSource.PLAYERS, 0.2F, (rand.nextFloat() - rand.nextFloat()) * 0.7F + 0.0F);
-                        ev.getItemEntity().getItem().setCount(0);
-                        break;
-                    }
-                }
+            boolean recoveredThrowingWeapon = ItemStackDataHelper.hasTag(pickedUpStack) && ItemStackDataHelper.getTag(pickedUpStack).getBoolean(ThrowingWeaponItem.NBT_RECOVERED);
+            if (tryMergeThrowingWeaponPickup(player, pickedUpStack, throwingWeapon, level)) {
+                player.take(ev.getItemEntity(), 1);
+                level.playSound(null, ev.getItemEntity().getX(), ev.getItemEntity().getY(), ev.getItemEntity().getZ(), SoundEvents.ITEM_PICKUP, SoundSource.PLAYERS, 0.2F, (rand.nextFloat() - rand.nextFloat()) * 0.7F + 0.0F);
+                ev.getItemEntity().getItem().setCount(0);
+                ev.setCanPickup(TriState.FALSE);
+            } else if (recoveredThrowingWeapon) {
+                ev.setCanPickup(TriState.FALSE);
             }
-            // If no UUID match found, let vanilla pickup logic handle it normally
-            // (this allows Q-key dropping to work - the item stays on the ground as expected)
         }
+    }
+
+    private static boolean tryMergeThrowingWeaponPickup(Player player, ItemStack pickedUpStack, ThrowingWeaponItem throwingWeapon, Level level) {
+        if (!ItemStackDataHelper.hasTag(pickedUpStack) || !ItemStackDataHelper.getTag(pickedUpStack).hasUUID(ThrowingWeaponItem.NBT_UUID))
+            return false;
+
+        CompoundTag pickedUpTag = ItemStackDataHelper.getTag(pickedUpStack);
+        for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
+            ItemStack slotStack = player.getInventory().getItem(i);
+            if (!canMergeThrowingWeaponStacks(slotStack, pickedUpStack, pickedUpTag))
+                continue;
+
+            int maxAmmo = throwingWeapon.getMaxAmmo(slotStack, player.level());
+            int currentAmmo = maxAmmo - ItemStackDataHelper.getTag(slotStack).getInt(ThrowingWeaponItem.NBT_AMMO_USED);
+            if (currentAmmo >= maxAmmo)
+                return true;
+
+            int itemDamage = slotStack.getDamageValue() + pickedUpStack.getDamageValue();
+            if (itemDamage > slotStack.getMaxDamage()) {
+                level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ITEM_BREAK, player.getSoundSource(), 0.8f, 0.8f + player.getRandom().nextFloat() * 0.4f);
+                itemDamage -= slotStack.getMaxDamage() + 1;
+            } else {
+                int ammoToRestore = Math.max(1, maxAmmo - pickedUpTag.getInt(ThrowingWeaponItem.NBT_AMMO_USED));
+                int restoredAmmo = Mth.clamp(currentAmmo + ammoToRestore, 0, maxAmmo);
+                ItemStackDataHelper.updateTag(slotStack, tag -> tag.putInt(ThrowingWeaponItem.NBT_AMMO_USED, maxAmmo - restoredAmmo));
+            }
+            slotStack.setDamageValue(Mth.clamp(itemDamage, 0, slotStack.getMaxDamage()));
+            return true;
+        }
+        return false;
+    }
+
+    private static boolean canMergeThrowingWeaponStacks(ItemStack slotStack, ItemStack pickedUpStack, CompoundTag pickedUpTag) {
+        if (slotStack.isEmpty() || !ItemStack.isSameItem(slotStack, pickedUpStack) || !ItemStackDataHelper.hasTag(slotStack))
+            return false;
+
+        CompoundTag slotTag = ItemStackDataHelper.getTag(slotStack);
+        return slotTag.hasUUID(ThrowingWeaponItem.NBT_UUID) &&
+                slotTag.getUUID(ThrowingWeaponItem.NBT_UUID).equals(pickedUpTag.getUUID(ThrowingWeaponItem.NBT_UUID));
     }
 
     /**

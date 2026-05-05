@@ -17,7 +17,6 @@ public class WeaponTraits {
     // Weapon Trait Types
     public static final String TYPE_THROWABLE = "throwable",
             TYPE_BLOCK_MELEE = "block_melee",
-            TYPE_TWO_HANDED = "two_handed",
             TYPE_DAMAGE_BONUS = "extra_damage",
             TYPE_DAMAGE_BONUS_CHEST = "extra_damage_chest",
             TYPE_DAMAGE_BONUS_HELMET = "extra_damage_helmet",
@@ -44,8 +43,6 @@ public class WeaponTraits {
 
     public static final DeferredHolder<WeaponTrait, WeaponTrait> THROWABLE = REGISTRY.register("throwable", () -> new ThrowableMeleeWeaponTrait(TYPE_THROWABLE, SpartanWeaponryAPI.MOD_ID, TraitQuality.POSITIVE));
     public static final DeferredHolder<WeaponTrait, WeaponTrait> BLOCK_MELEE = REGISTRY.register("block_melee", () -> new MeleeBlockWeaponTrait(TYPE_BLOCK_MELEE, SpartanWeaponryAPI.MOD_ID, TraitQuality.POSITIVE));
-    public static final DeferredHolder<WeaponTrait, WeaponTrait> TWO_HANDED_1 = REGISTRY.register("two_handed_1", () -> new TwoHandedWeaponTrait(TYPE_TWO_HANDED, SpartanWeaponryAPI.MOD_ID).setLevel(1).setMagnitude(0.5f));
-    public static final DeferredHolder<WeaponTrait, WeaponTrait> TWO_HANDED_2 = REGISTRY.register("two_handed_2", () -> new TwoHandedWeaponTrait(TYPE_TWO_HANDED, SpartanWeaponryAPI.MOD_ID).setLevel(2).setMagnitude(0.75f));
     public static final DeferredHolder<WeaponTrait, WeaponTrait> DAMAGE_BONUS_CHEST = REGISTRY.register("chest_damage_bonus", () -> new DamageBonusWeaponTrait(TYPE_DAMAGE_BONUS_CHEST, SpartanWeaponryAPI.MOD_ID, DamageBonusWeaponTrait.DAMAGE_CHEST).setMagnitude(2.0f));
     public static final DeferredHolder<WeaponTrait, WeaponTrait> DAMAGE_BONUS_HEAD = REGISTRY.register("head_damage_bonus", () -> new DamageBonusWeaponTrait(TYPE_DAMAGE_BONUS_HELMET, SpartanWeaponryAPI.MOD_ID, DamageBonusWeaponTrait.DAMAGE_HELMET).setMagnitude(1.5f));
     public static final DeferredHolder<WeaponTrait, WeaponTrait> DAMAGE_BONUS_RIDING = REGISTRY.register("riding_damage_bonus", () -> new DamageBonusWeaponTrait(TYPE_DAMAGE_BONUS_RIDING, SpartanWeaponryAPI.MOD_ID, DamageBonusWeaponTrait.DAMAGE_RIDING).setMagnitude(2.0f));

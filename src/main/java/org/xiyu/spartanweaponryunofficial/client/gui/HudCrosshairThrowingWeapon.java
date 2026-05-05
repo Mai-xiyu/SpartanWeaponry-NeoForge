@@ -34,7 +34,8 @@ public class HudCrosshairThrowingWeapon {
         {
             int offset = ClientConfig.INSTANCE.forceCompatibilityCrosshairs.get() ? 20 : 10;
             if (player.isUsingItem()) {
-                float percentage = Mth.clamp((player.getTicksUsingItem() + partialTicks) / throwingWeapon.getMaxChargeTicks(equippedStack, mc.level), 0.0f, 1.0f);
+                int maxChargeTicks = Math.max(1, throwingWeapon.getMaxChargeTicks(equippedStack, mc.level));
+                float percentage = Mth.clamp((player.getTicksUsingItem() + partialTicks) / maxChargeTicks, 0.0f, 1.0f);
                 offset = (int) (offset * (1.0f - percentage));
             }
 
