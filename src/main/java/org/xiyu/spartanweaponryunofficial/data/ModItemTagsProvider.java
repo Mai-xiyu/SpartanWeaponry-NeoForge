@@ -33,6 +33,8 @@ public class ModItemTagsProvider extends ItemTagsProvider {
 
         // Minecraft 1.21+ enchantment tags - required for enchanting table and anvil to work
         final TagKey<Item> ENCHANTABLE_SWORD = ItemTags.create(ResourceLocation.parse("minecraft:enchantable/sword"));
+        final TagKey<Item> ENCHANTABLE_FIRE_ASPECT = ItemTags.create(ResourceLocation.parse("minecraft:enchantable/fire_aspect"));
+        final TagKey<Item> ENCHANTABLE_SHARP_WEAPON = ItemTags.create(ResourceLocation.parse("minecraft:enchantable/sharp_weapon"));
         final TagKey<Item> ENCHANTABLE_WEAPON = ItemTags.create(ResourceLocation.parse("minecraft:enchantable/weapon"));
         final TagKey<Item> ENCHANTABLE_DURABILITY = ItemTags.create(ResourceLocation.parse("minecraft:enchantable/durability"));
         final TagKey<Item> ENCHANTABLE_VANISHING = ItemTags.create(ResourceLocation.parse("minecraft:enchantable/vanishing"));
@@ -229,7 +231,21 @@ public class ModItemTagsProvider extends ItemTagsProvider {
         // Throwing weapons - also receive sword enchantments for melee use
         this.tag(ENCHANTABLE_SWORD).addTags(ModItemTags.THROWING_KNIVES, ModItemTags.TOMAHAWKS, ModItemTags.JAVELINS, ModItemTags.BOOMERANGS);
 
-        // Weapon enchantments (Fire Aspect, Knockback, Looting)
+        // Sharp weapon enchantments (Sharpness, Smite, Bane of Arthropods)
+        this.tag(ENCHANTABLE_SHARP_WEAPON).addTags(ModItemTags.DAGGERS, ModItemTags.PARRYING_DAGGERS, ModItemTags.LONGSWORDS, ModItemTags.KATANAS,
+                ModItemTags.SABERS, ModItemTags.RAPIERS, ModItemTags.GREATSWORDS, ModItemTags.CLUBS, ModItemTags.CESTUSAE,
+                ModItemTags.BATTLE_HAMMERS, ModItemTags.WARHAMMERS, ModItemTags.SPEARS, ModItemTags.HALBERDS, ModItemTags.PIKES,
+                ModItemTags.LANCES, ModItemTags.BATTLEAXES, ModItemTags.FLANGED_MACES, ModItemTags.GLAIVES, ModItemTags.QUARTERSTAVES,
+                ModItemTags.SCYTHES, ModItemTags.THROWING_KNIVES, ModItemTags.TOMAHAWKS, ModItemTags.JAVELINS, ModItemTags.BOOMERANGS);
+
+        // Fire Aspect has its own vanilla tag in 1.21+
+        this.tag(ENCHANTABLE_FIRE_ASPECT).addTags(ModItemTags.DAGGERS, ModItemTags.PARRYING_DAGGERS, ModItemTags.LONGSWORDS, ModItemTags.KATANAS,
+                ModItemTags.SABERS, ModItemTags.RAPIERS, ModItemTags.GREATSWORDS, ModItemTags.CLUBS, ModItemTags.CESTUSAE,
+                ModItemTags.BATTLE_HAMMERS, ModItemTags.WARHAMMERS, ModItemTags.SPEARS, ModItemTags.HALBERDS, ModItemTags.PIKES,
+                ModItemTags.LANCES, ModItemTags.BATTLEAXES, ModItemTags.FLANGED_MACES, ModItemTags.GLAIVES, ModItemTags.QUARTERSTAVES,
+                ModItemTags.SCYTHES, ModItemTags.THROWING_KNIVES, ModItemTags.TOMAHAWKS, ModItemTags.JAVELINS, ModItemTags.BOOMERANGS);
+
+        // Weapon enchantments (Knockback, Looting)
         this.tag(ENCHANTABLE_WEAPON).addTags(ModItemTags.DAGGERS, ModItemTags.PARRYING_DAGGERS, ModItemTags.LONGSWORDS, ModItemTags.KATANAS,
                 ModItemTags.SABERS, ModItemTags.RAPIERS, ModItemTags.GREATSWORDS, ModItemTags.CLUBS, ModItemTags.CESTUSAE,
                 ModItemTags.BATTLE_HAMMERS, ModItemTags.WARHAMMERS, ModItemTags.SPEARS, ModItemTags.HALBERDS, ModItemTags.PIKES,

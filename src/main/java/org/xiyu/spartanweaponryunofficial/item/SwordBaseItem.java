@@ -3,13 +3,12 @@ package org.xiyu.spartanweaponryunofficial.item;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMultimap;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.Holder;
+import net.minecraft.core.HolderSet;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
@@ -24,6 +23,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Blocks;
@@ -311,18 +311,40 @@ public class SwordBaseItem extends SwordItem implements IWeaponTraitContainer<Sw
         return this.archetype.canPerformToolAction(toolAction);
     }
 
-    public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
+    @Override
+    public int getEnchantmentValue(@NotNull ItemStack stack) {
+        return this.material.getEnchantmentValue();
+    }
+
+    @Override
+    public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
+        Optional<Boolean> traitCompatibility = this.getTraitEnchantmentCompatibility(enchantment.value());
+        if (traitCompatibility.isPresent())
+            return traitCompatibility.get();
+        if (enchantment.is(Enchantments.SWEEPING_EDGE))
+            return false;
+        return stack.is(Items.ENCHANTED_BOOK) || enchantment.value().isSupportedItem(stack);
+    }
+
+    @Override
+    public boolean isPrimaryItemFor(ItemStack stack, Holder<Enchantment> enchantment) {
+        Optional<Boolean> traitCompatibility = this.getTraitEnchantmentCompatibility(enchantment.value());
+        if (traitCompatibility.isPresent())
+            return traitCompatibility.get();
+        if (enchantment.is(Enchantments.SWEEPING_EDGE))
+            return false;
+        Optional<HolderSet<Item>> primaryItems = enchantment.value().definition().primaryItems();
+        return this.supportsEnchantment(stack, enchantment) && (primaryItems.isEmpty() || stack.is(primaryItems.get()));
+    }
+
+    private Optional<Boolean> getTraitEnchantmentCompatibility(Enchantment enchantment) {
         for (WeaponTrait trait : this.traits) {
             if (trait.isEnchantmentIncompatible(enchantment))
-                return false;
+                return Optional.of(false);
             else if (trait.isEnchantmentCompatible(enchantment))
-                return true;
+                return Optional.of(true);
         }
-        RegistryAccess registryAccess = RegistryAccess.fromRegistryOfRegistries(BuiltInRegistries.REGISTRY);
-        ResourceLocation enchantmentKey = registryAccess.registry(Registries.ENCHANTMENT)
-                .map(registry -> registry.getKey(enchantment))
-                .orElse(null);
-        return enchantmentKey == null || !enchantmentKey.equals(net.minecraft.world.item.enchantment.Enchantments.SWEEPING_EDGE.location());
+        return Optional.empty();
     }
 
     @Override
