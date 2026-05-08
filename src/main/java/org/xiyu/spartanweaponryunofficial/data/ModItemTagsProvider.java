@@ -10,6 +10,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.NotNull;
 import org.xiyu.spartanweaponryunofficial.ModSpartanWeaponry;
@@ -27,7 +28,6 @@ public class ModItemTagsProvider extends ItemTagsProvider {
     @SuppressWarnings("unchecked")
     @Override
     protected void addTags(HolderLookup.@NotNull Provider registry) {
-        final TagKey<Item> WEAPONS = ItemTags.create(ResourceLocation.parse("c:tools/melee_weapons"));
         final TagKey<Item> CURIOS_BACK = ItemTags.create(ResourceLocation.parse("curios:back"));
         final TagKey<Item> CURIOS_QUIVER = ItemTags.create(ResourceLocation.parse("curios:quiver"));
 
@@ -219,6 +219,8 @@ public class ModItemTagsProvider extends ItemTagsProvider {
 
         // Tags in vanilla Minecraft's domain
         this.tag(ItemTags.ARROWS).addTag(ModItemTags.ARROWS);
+        this.tag(ItemTags.SWORDS).addTags(ModItemTags.DAGGERS, ModItemTags.PARRYING_DAGGERS, ModItemTags.LONGSWORDS, ModItemTags.KATANAS,
+                ModItemTags.SABERS, ModItemTags.RAPIERS, ModItemTags.GREATSWORDS);
 
         // Minecraft 1.21+ enchantment compatibility tags
         // Melee weapons - can receive sword enchantments (Sharpness, Smite, Bane of Arthropods, etc.)
@@ -285,10 +287,19 @@ public class ModItemTagsProvider extends ItemTagsProvider {
         // Tags in Forge's domain
         final TagKey<Item> HEADS_TAG = ItemTags.create(ResourceLocation.parse("c:heads"));
         this.tag(HEADS_TAG).addTag(ModItemTags.HEADS);
-        this.tag(WEAPONS).addTags(ModItemTags.DAGGERS, ModItemTags.PARRYING_DAGGERS, ModItemTags.LONGSWORDS, ModItemTags.KATANAS, ModItemTags.SABERS, ModItemTags.RAPIERS, ModItemTags.GREATSWORDS,
+        this.tag(Tags.Items.TOOLS).addTags(ModItemTags.DAGGERS, ModItemTags.PARRYING_DAGGERS, ModItemTags.LONGSWORDS, ModItemTags.KATANAS, ModItemTags.SABERS, ModItemTags.RAPIERS, ModItemTags.GREATSWORDS,
                 ModItemTags.CLUBS, ModItemTags.CESTUSAE, ModItemTags.BATTLE_HAMMERS, ModItemTags.WARHAMMERS, ModItemTags.SPEARS, ModItemTags.HALBERDS, ModItemTags.PIKES, ModItemTags.LANCES,
                 ModItemTags.LONGBOWS, ModItemTags.HEAVY_CROSSBOWS, ModItemTags.THROWING_KNIVES, ModItemTags.TOMAHAWKS, ModItemTags.JAVELINS, ModItemTags.BOOMERANGS, ModItemTags.BATTLEAXES,
                 ModItemTags.FLANGED_MACES, ModItemTags.GLAIVES, ModItemTags.QUARTERSTAVES, ModItemTags.SCYTHES);
+        this.tag(Tags.Items.MELEE_WEAPON_TOOLS).addTags(ModItemTags.DAGGERS, ModItemTags.PARRYING_DAGGERS, ModItemTags.LONGSWORDS, ModItemTags.KATANAS, ModItemTags.SABERS, ModItemTags.RAPIERS, ModItemTags.GREATSWORDS,
+                ModItemTags.CLUBS, ModItemTags.CESTUSAE, ModItemTags.BATTLE_HAMMERS, ModItemTags.WARHAMMERS, ModItemTags.SPEARS, ModItemTags.HALBERDS, ModItemTags.PIKES, ModItemTags.LANCES,
+                ModItemTags.BATTLEAXES, ModItemTags.FLANGED_MACES, ModItemTags.GLAIVES, ModItemTags.QUARTERSTAVES, ModItemTags.SCYTHES);
+        this.tag(Tags.Items.RANGED_WEAPON_TOOLS).addTags(ModItemTags.LONGBOWS, ModItemTags.HEAVY_CROSSBOWS, ModItemTags.THROWING_KNIVES, ModItemTags.TOMAHAWKS,
+                ModItemTags.JAVELINS, ModItemTags.BOOMERANGS);
+        this.tag(Tags.Items.TOOLS_BOW).addTag(ModItemTags.LONGBOWS);
+        this.tag(Tags.Items.TOOLS_CROSSBOW).addTag(ModItemTags.HEAVY_CROSSBOWS);
+        this.tag(Tags.Items.TOOLS_SPEAR).addTags(ModItemTags.SPEARS, ModItemTags.JAVELINS);
+        this.tag(Tags.Items.TOOLS_MACE).addTag(ModItemTags.FLANGED_MACES);
         this.tag(ModItemTags.RAW_MEAT).add(Items.BEEF, Items.PORKCHOP, Items.CHICKEN, Items.MUTTON, Items.RABBIT);
         this.copy(ModBlockTags.GRASS, ModItemTags.GRASS);
 
