@@ -28,11 +28,14 @@ import org.xiyu.spartanweaponryunofficial.util.WeaponType;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
 
-@SuppressWarnings("ALL")
 public class WeaponMaterial implements Tier, IReloadable {
+    public static final int DEFAULT_PRIMARY_COLOUR = 0x7F7F7F;
+    public static final int DEFAULT_SECONDARY_COLOUR = 0xFFFFFF;
+
     public static final WeaponMaterial WOOD = new WeaponMaterial("wood", SpartanWeaponryAPI.MOD_ID, Tiers.WOOD, ItemTags.PLANKS, ModWeaponTraitTags.WOOD);
     public static final WeaponMaterial STONE = new WeaponMaterial("stone", SpartanWeaponryAPI.MOD_ID, Tiers.STONE, ModItemTags.COBBLESTONE, ModWeaponTraitTags.STONE);
     public static final WeaponMaterial LEATHER = new WeaponMaterial("leather", SpartanWeaponryAPI.MOD_ID, 128, 2.0f, 0.0f, 5, ModItemTags.LEATHER, ModWeaponTraitTags.LEATHER);
@@ -76,6 +79,14 @@ public class WeaponMaterial implements Tier, IReloadable {
     protected boolean isValidTag;
     protected Optional<List<Pair<WeaponTrait, WeaponTrait.InvalidReason>>> invalidTraits = Optional.empty();
 
+    /**
+     * Creates a builder for addon materials. Existing constructors remain supported; the builder is a
+     * named alternative for call sites where positional numeric arguments are hard to audit.
+     */
+    public static Builder builder(String name, String modId) {
+        return new Builder(name, modId);
+    }
+
     public WeaponMaterial(String nameIn, String modIdIn, int colourPrimaryIn, int colourSecondaryIn, int durabilityIn, float speedIn, float baseDamageIn, int enchantabilityIn, TagKey<Item> repairTagIn, TagKey<WeaponTrait> traitsTagIn) {
         this.name = nameIn;
         this.modId = modIdIn;
@@ -94,11 +105,11 @@ public class WeaponMaterial implements Tier, IReloadable {
     }
 
     public WeaponMaterial(String unlocName, String modIdIn, int maxUses, float efficiency, float baseDamage, int enchantability, TagKey<Item> tag, TagKey<WeaponTrait> traitsTagIn) {
-        this(unlocName, modIdIn, 0x7F7F7F, 0xFFFFFF, maxUses, efficiency, baseDamage, enchantability, tag, traitsTagIn);
+        this(unlocName, modIdIn, DEFAULT_PRIMARY_COLOUR, DEFAULT_SECONDARY_COLOUR, maxUses, efficiency, baseDamage, enchantability, tag, traitsTagIn);
     }
 
     public WeaponMaterial(String nameIn, String modIdIn, Tier itemTierIn, TagKey<Item> tagIn, TagKey<WeaponTrait> traitsTagIn) {
-        this(nameIn, modIdIn, 0x7F7F7F, 0xFFFFFF, itemTierIn.getUses(), itemTierIn.getSpeed(),
+        this(nameIn, modIdIn, DEFAULT_PRIMARY_COLOUR, DEFAULT_SECONDARY_COLOUR, itemTierIn.getUses(), itemTierIn.getSpeed(),
                 itemTierIn.getAttackDamageBonus(), itemTierIn.getEnchantmentValue(), tagIn, traitsTagIn);
     }
 
@@ -117,26 +128,26 @@ public class WeaponMaterial implements Tier, IReloadable {
         if (!this.isValidTag) {
             Log.error("Weapon Trait tag \"" + this.traitsTag.location() + "\" couldn't be found for weapon material \"" + this.name + "\"!");
             return;
-        } else {
-            Iterable<Holder<WeaponTrait>> tag = registry.getTagOrEmpty(this.traitsTag);
-            this.invalidTraits = Optional.empty();
-            List<Pair<WeaponTrait, WeaponTrait.InvalidReason>> invalidTraitList = new ArrayList<>();
-            List<String> invalidTraitValues = new ArrayList<>();
-            for (Holder<WeaponTrait> holder : tag) {
-                WeaponTrait trait = holder.value();
-                boolean isActionTrait = trait.isActionTrait();
-                if (isActionTrait) {
-                    invalidTraitList.add(Pair.of(trait, WeaponTrait.InvalidReason.MATERIAL_ACTION_TRAIT));
-                    invalidTraitValues.add(String.valueOf(registry.getKey(trait)));
-                } else {
-                    builder.add(trait);
-                }
-            }
+        }
 
-            if (!invalidTraitValues.isEmpty()) {
-                Log.warn("Found non-material Weapon Traits for weapon material \"" + this.name + "\" which have not been added: " + String.join(", ", invalidTraitValues));
-                this.invalidTraits = Optional.of(invalidTraitList);
+        Iterable<Holder<WeaponTrait>> tag = registry.getTagOrEmpty(this.traitsTag);
+        this.invalidTraits = Optional.empty();
+        List<Pair<WeaponTrait, WeaponTrait.InvalidReason>> invalidTraitList = new ArrayList<>();
+        List<String> invalidTraitValues = new ArrayList<>();
+        for (Holder<WeaponTrait> holder : tag) {
+            WeaponTrait trait = holder.value();
+            boolean isActionTrait = trait.isActionTrait();
+            if (isActionTrait) {
+                invalidTraitList.add(Pair.of(trait, WeaponTrait.InvalidReason.MATERIAL_ACTION_TRAIT));
+                invalidTraitValues.add(String.valueOf(registry.getKey(trait)));
+            } else {
+                builder.add(trait);
             }
+        }
+
+        if (!invalidTraitValues.isEmpty()) {
+            Log.warn("Found non-material Weapon Traits for weapon material \"" + this.name + "\" which have not been added: " + String.join(", ", invalidTraitValues));
+            this.invalidTraits = Optional.of(invalidTraitList);
         }
         this.traits = builder.build();
 
@@ -248,24 +259,8 @@ public class WeaponMaterial implements Tier, IReloadable {
     }
 
     public boolean hasAnyBonusTraits(WeaponType type) {
-        List<WeaponTrait> weaponTraits;
-
-        switch (type) {
-            case MELEE:
-                weaponTraits = this.meleeTraits;
-                break;
-            case RANGED:
-                weaponTraits = this.rangedTraits;
-                break;
-            case THROWING:
-                weaponTraits = this.throwingTraits;
-                break;
-            default:
-                return false;
-        }
-
+        List<WeaponTrait> weaponTraits = this.getBonusTraits(type);
         return weaponTraits != null && (!weaponTraits.isEmpty() || this.invalidTraits.isPresent());
-
     }
 
     @Deprecated(since = "3.1.1", forRemoval = true)
@@ -316,5 +311,103 @@ public class WeaponMaterial implements Tier, IReloadable {
      */
     public static int colorRGB(byte r, byte g, byte b) {
         return ((int) r << 16) + ((int) g << 8) + b;
+    }
+
+    public static final class Builder {
+        private final String name;
+        private final String modId;
+
+        private int colourPrimary = DEFAULT_PRIMARY_COLOUR;
+        private int colourSecondary = DEFAULT_SECONDARY_COLOUR;
+        private Integer durability;
+        private Float speed;
+        private Float baseDamage;
+        private Integer enchantability;
+        private TagKey<Item> repairTag;
+        private TagKey<WeaponTrait> traitsTag;
+
+        private Builder(String name, String modId) {
+            this.name = Objects.requireNonNull(name, "name");
+            this.modId = Objects.requireNonNull(modId, "modId");
+        }
+
+        public Builder colours(int primary, int secondary) {
+            this.colourPrimary = primary;
+            this.colourSecondary = secondary;
+            return this;
+        }
+
+        public Builder colors(int primary, int secondary) {
+            return this.colours(primary, secondary);
+        }
+
+        public Builder tier(Tier tier) {
+            Objects.requireNonNull(tier, "tier");
+            this.durability = tier.getUses();
+            this.speed = tier.getSpeed();
+            this.baseDamage = tier.getAttackDamageBonus();
+            this.enchantability = tier.getEnchantmentValue();
+            return this;
+        }
+
+        public Builder durability(int durability) {
+            this.durability = durability;
+            return this;
+        }
+
+        public Builder speed(float speed) {
+            this.speed = speed;
+            return this;
+        }
+
+        public Builder baseDamage(float baseDamage) {
+            this.baseDamage = baseDamage;
+            return this;
+        }
+
+        public Builder attackDamageBonus(float attackDamageBonus) {
+            return this.baseDamage(attackDamageBonus);
+        }
+
+        public Builder enchantability(int enchantability) {
+            this.enchantability = enchantability;
+            return this;
+        }
+
+        public Builder enchantmentValue(int enchantmentValue) {
+            return this.enchantability(enchantmentValue);
+        }
+
+        public Builder repairTag(TagKey<Item> repairTag) {
+            this.repairTag = Objects.requireNonNull(repairTag, "repairTag");
+            return this;
+        }
+
+        public Builder traitsTag(TagKey<WeaponTrait> traitsTag) {
+            this.traitsTag = Objects.requireNonNull(traitsTag, "traitsTag");
+            return this;
+        }
+
+        public WeaponMaterial build() {
+            return new WeaponMaterial(
+                    this.name,
+                    this.modId,
+                    this.colourPrimary,
+                    this.colourSecondary,
+                    require("durability", this.durability),
+                    require("speed", this.speed),
+                    require("baseDamage", this.baseDamage),
+                    require("enchantability", this.enchantability),
+                    require("repairTag", this.repairTag),
+                    require("traitsTag", this.traitsTag)
+            );
+        }
+
+        private static <T> T require(String fieldName, T value) {
+            if (value == null) {
+                throw new IllegalStateException("WeaponMaterial builder is missing required field: " + fieldName);
+            }
+            return value;
+        }
     }
 }

@@ -2,270 +2,350 @@ package org.xiyu.spartanweaponryunofficial.api;
 
 import net.minecraft.world.item.Item;
 import org.xiyu.spartanweaponryunofficial.util.Log;
+import org.xiyu.spartanweaponryunofficial.util.WeaponType;
+
+import java.util.Objects;
+import java.util.function.BiFunction;
 
 public class SpartanWeaponryAPI {
-    public static final int API_VERSION = 12;
+    public static final int API_VERSION = 13;
     public static final String MOD_ID = "spartan_weaponry_unofficial";
 
+    private static IInternalMethodHandler internalHandler = null;
+
     /**
-     * Use this method in your addon mod to ensure that the API is of the correct version.
-     * Use in your mod class constructor.
-     * Will throw an exception if the version of the API in Spartan Weaponry is too old.
-     *
-     * @param version The minimum expected version
+     * Addon-facing weapon descriptors for the built-in Spartan Weaponry weapon factories.
+     * <p>
+     * These descriptors are a stable API layer over the existing {@code createXxx(WeaponMaterial)}
+     * methods. They do not register items and they do not replace the existing methods.
      */
-    public static void assertAPIVersion(String modId, int version) {
-        if (version > API_VERSION)
-            throw new IllegalStateException("API version mismatch! Addon " + modId + " expects version: " + version + " - has version: " + API_VERSION);
+    public enum WeaponItemType {
+        DAGGER("dagger", WeaponType.MELEE, IInternalMethodHandler::addDagger),
+        PARRYING_DAGGER("parrying_dagger", WeaponType.MELEE, IInternalMethodHandler::addParryingDagger),
+        LONGSWORD("longsword", WeaponType.MELEE, IInternalMethodHandler::addLongsword),
+        KATANA("katana", WeaponType.MELEE, IInternalMethodHandler::addKatana),
+        SABER("saber", WeaponType.MELEE, IInternalMethodHandler::addSaber),
+        RAPIER("rapier", WeaponType.MELEE, IInternalMethodHandler::addRapier),
+        GREATSWORD("greatsword", WeaponType.MELEE, IInternalMethodHandler::addGreatsword),
+        BATTLE_HAMMER("battle_hammer", WeaponType.MELEE, IInternalMethodHandler::addBattleHammer),
+        WARHAMMER("warhammer", WeaponType.MELEE, IInternalMethodHandler::addWarhammer),
+        SPEAR("spear", WeaponType.MELEE, IInternalMethodHandler::addSpear),
+        HALBERD("halberd", WeaponType.MELEE, IInternalMethodHandler::addHalberd),
+        PIKE("pike", WeaponType.MELEE, IInternalMethodHandler::addPike),
+        LANCE("lance", WeaponType.MELEE, IInternalMethodHandler::addLance),
+        LONGBOW("longbow", WeaponType.RANGED, IInternalMethodHandler::addLongbow),
+        HEAVY_CROSSBOW("heavy_crossbow", WeaponType.RANGED, IInternalMethodHandler::addHeavyCrossbow),
+        THROWING_KNIFE("throwing_knife", WeaponType.THROWING, IInternalMethodHandler::addThrowingKnife),
+        TOMAHAWK("tomahawk", WeaponType.THROWING, IInternalMethodHandler::addTomahawk),
+        JAVELIN("javelin", WeaponType.THROWING, IInternalMethodHandler::addJavelin),
+        BOOMERANG("boomerang", WeaponType.THROWING, IInternalMethodHandler::addBoomerang),
+        BATTLEAXE("battleaxe", WeaponType.MELEE, IInternalMethodHandler::addBattleaxe),
+        FLANGED_MACE("flanged_mace", WeaponType.MELEE, IInternalMethodHandler::addFlangedMace),
+        GLAIVE("glaive", WeaponType.MELEE, IInternalMethodHandler::addGlaive),
+        QUARTERSTAFF("quarterstaff", WeaponType.MELEE, IInternalMethodHandler::addQuarterstaff),
+        SCYTHE("scythe", WeaponType.MELEE, IInternalMethodHandler::addScythe);
+
+        private final String serializedName;
+        private final WeaponType weaponType;
+        private final BiFunction<IInternalMethodHandler, WeaponMaterial, Item> factory;
+
+        WeaponItemType(String serializedName, WeaponType weaponType, BiFunction<IInternalMethodHandler, WeaponMaterial, Item> factory) {
+            this.serializedName = serializedName;
+            this.weaponType = weaponType;
+            this.factory = factory;
+        }
+
+        /**
+         * Returns the stable lowercase id segment used by this weapon type, for example
+         * {@code longsword} or {@code heavy_crossbow}.
+         */
+        public String getSerializedName() {
+            return this.serializedName;
+        }
+
+        /**
+         * Returns the broad trait category used by this weapon type.
+         */
+        public WeaponType getWeaponType() {
+            return this.weaponType;
+        }
+
+        private Item create(IInternalMethodHandler handler, WeaponMaterial material) {
+            return this.factory.apply(handler, material);
+        }
     }
 
     /**
-     * Used to to access internal methods for the mod.
+     * Use this method in your addon mod to ensure that the API is of the correct version.
+     * Use in your mod class constructor. This will throw an exception if the loaded
+     * Spartan Weaponry API is older than the requested version.
+     *
+     * @param modId   The addon mod id requesting the API version
+     * @param version The minimum expected version
      */
-    private static IInternalMethodHandler internalHandler = null;
+    public static void assertAPIVersion(String modId, int version) {
+        if (version > API_VERSION) {
+            throw new IllegalStateException("Spartan Weaponry API version mismatch for addon \"" + modId
+                    + "\": expected at least " + version + ", but loaded " + API_VERSION + ".");
+        }
+    }
+
+    /**
+     * Creates a weapon item using an addon-facing descriptor.
+     * <p>
+     * This is equivalent to the matching {@code createXxx(WeaponMaterial)} method. The returned
+     * item is not registered; the caller is responsible for registering the item and recipe.
+     *
+     * @param weaponType The built-in Spartan Weaponry weapon type to create
+     * @param material   The material that the weapon is made of
+     * @return The newly created weapon
+     */
+    public static Item createWeapon(WeaponItemType weaponType, WeaponMaterial material) {
+        return Objects.requireNonNull(weaponType, "weaponType").create(requireInternalHandler(), material);
+    }
 
     //---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
     // Weapon Creation methods
     //---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
 
     /**
-     * Creates a new dagger, using the specified material. Gives the new item the registry name of "item.[modId].dagger_[material.unlocName]". The caller is responsible for registering the weapon item and recipe
+     * Creates a new dagger using the specified material. The caller is responsible for registering the weapon item and recipe.
      *
-     * @param material The Material that the weapon is made of
+     * @param material The material that the weapon is made of
      * @return The newly created weapon
      */
     public static Item createDagger(WeaponMaterial material) {
-        return internalHandler.addDagger(material);
+        return createWeapon(WeaponItemType.DAGGER, material);
     }
 
     /**
-     * Creates a new parrying dagger, using the specified material. Gives the new item the registry name of "item.[modId].parrying_dagger_[material.unlocName]". The caller is responsible for registering the weapon item and recipe
+     * Creates a new parrying dagger using the specified material. The caller is responsible for registering the weapon item and recipe.
      *
-     * @param material The Material that the weapon is made of
+     * @param material The material that the weapon is made of
      * @return The newly created weapon
      */
     public static Item createParryingDagger(WeaponMaterial material) {
-        return internalHandler.addParryingDagger(material);
+        return createWeapon(WeaponItemType.PARRYING_DAGGER, material);
     }
 
     /**
-     * Creates a new longsword, using the specified material. Gives the new item the registry name of "item.[modId].dagger_[material.unlocName]". The caller is responsible for registering the weapon item and recipe
+     * Creates a new longsword using the specified material. The caller is responsible for registering the weapon item and recipe.
      *
-     * @param material The Material that the weapon is made of
+     * @param material The material that the weapon is made of
      * @return The newly created weapon
      */
     public static Item createLongsword(WeaponMaterial material) {
-        return internalHandler.addLongsword(material);
+        return createWeapon(WeaponItemType.LONGSWORD, material);
     }
 
     /**
-     * Creates a new katana, using the specified material. Gives the new item the registry name of "item.[modId].dagger_[material.unlocName]". The caller is responsible for registering the weapon item and recipe
+     * Creates a new katana using the specified material. The caller is responsible for registering the weapon item and recipe.
      *
-     * @param material The Material that the weapon is made of
+     * @param material The material that the weapon is made of
      * @return The newly created weapon
      */
     public static Item createKatana(WeaponMaterial material) {
-        return internalHandler.addKatana(material);
+        return createWeapon(WeaponItemType.KATANA, material);
     }
 
     /**
-     * Creates a new saber, using the specified material. Gives the new item the registry name of "item.[modId].saber_[material.unlocName]". The caller is responsible for registering the weapon item and recipe
+     * Creates a new saber using the specified material. The caller is responsible for registering the weapon item and recipe.
      *
-     * @param material The Material that the weapon is made of
+     * @param material The material that the weapon is made of
      * @return The newly created weapon
      */
     public static Item createSaber(WeaponMaterial material) {
-        return internalHandler.addSaber(material);
+        return createWeapon(WeaponItemType.SABER, material);
     }
 
     /**
-     * Creates a new rapier, using the specified material. Gives the new item the registry name of "item.[modId].rapier_[material.unlocName]". The caller is responsible for registering the weapon item and recipe
+     * Creates a new rapier using the specified material. The caller is responsible for registering the weapon item and recipe.
      *
-     * @param material The Material that the weapon is made of
+     * @param material The material that the weapon is made of
      * @return The newly created weapon
      */
     public static Item createRapier(WeaponMaterial material) {
-        return internalHandler.addRapier(material);
+        return createWeapon(WeaponItemType.RAPIER, material);
     }
 
     /**
-     * Creates a new greatsword, using the specified material. Gives the new item the registry name of "item.[modId].greatsword_[material.unlocName]". The caller is responsible for registering the weapon item and recipe
+     * Creates a new greatsword using the specified material. The caller is responsible for registering the weapon item and recipe.
      *
-     * @param material The Material that the weapon is made of
+     * @param material The material that the weapon is made of
      * @return The newly created weapon
      */
     public static Item createGreatsword(WeaponMaterial material) {
-        return internalHandler.addGreatsword(material);
+        return createWeapon(WeaponItemType.GREATSWORD, material);
     }
 
     /**
-     * Creates a new battle hammer, using the specified material. Gives the new item the registry name of "item.[modId].hammer_[material.unlocName]". The caller is responsible for registering the weapon item and recipe
+     * Creates a new battle hammer using the specified material. The caller is responsible for registering the weapon item and recipe.
      *
-     * @param material The Material that the weapon is made of
+     * @param material The material that the weapon is made of
      * @return The newly created weapon
      */
     public static Item createBattleHammer(WeaponMaterial material) {
-        return internalHandler.addBattleHammer(material);
+        return createWeapon(WeaponItemType.BATTLE_HAMMER, material);
     }
 
     /**
-     * Creates a new warhammer, using the specified material. Gives the new item the registry name of "item.[modId].warhammer_[material.unlocName]". The caller is responsible for registering the weapon item and recipe
+     * Creates a new warhammer using the specified material. The caller is responsible for registering the weapon item and recipe.
      *
-     * @param material The Material that the weapon is made of
+     * @param material The material that the weapon is made of
      * @return The newly created weapon
      */
     public static Item createWarhammer(WeaponMaterial material) {
-        return internalHandler.addWarhammer(material);
+        return createWeapon(WeaponItemType.WARHAMMER, material);
     }
 
     /**
-     * Creates a new spear, using the specified material. Gives the new item the registry name of "item.[modId].spear_[material.unlocName]". The caller is responsible for registering the weapon item and recipe
+     * Creates a new spear using the specified material. The caller is responsible for registering the weapon item and recipe.
      *
-     * @param material The Material that the weapon is made of
+     * @param material The material that the weapon is made of
      * @return The newly created weapon
      */
     public static Item createSpear(WeaponMaterial material) {
-        return internalHandler.addSpear(material);
+        return createWeapon(WeaponItemType.SPEAR, material);
     }
 
     /**
-     * Creates a new halberd, using the specified material. Gives the new item the registry name of "item.[modId].halberd_[material.unlocName]". The caller is responsible for registering the weapon item and recipe
+     * Creates a new halberd using the specified material. The caller is responsible for registering the weapon item and recipe.
      *
-     * @param material The Material that the weapon is made of
+     * @param material The material that the weapon is made of
      * @return The newly created weapon
      */
     public static Item createHalberd(WeaponMaterial material) {
-        return internalHandler.addHalberd(material);
+        return createWeapon(WeaponItemType.HALBERD, material);
     }
 
     /**
-     * Creates a new pike, using the specified material. Gives the new item the registry name of "item.[modId].pike_[material.unlocName]". The caller is responsible for registering the weapon item and recipe
+     * Creates a new pike using the specified material. The caller is responsible for registering the weapon item and recipe.
      *
-     * @param material The Material that the weapon is made of
+     * @param material The material that the weapon is made of
      * @return The newly created weapon
      */
     public static Item createPike(WeaponMaterial material) {
-        return internalHandler.addPike(material);
+        return createWeapon(WeaponItemType.PIKE, material);
     }
 
     /**
-     * Creates a new lance, using the specified material. Gives the new item the registry name of "item.[modId].lance_[material.unlocName]". The caller is responsible for registering the weapon item and recipe
+     * Creates a new lance using the specified material. The caller is responsible for registering the weapon item and recipe.
      *
-     * @param material The Material that the weapon is made of
+     * @param material The material that the weapon is made of
      * @return The newly created weapon
      */
     public static Item createLance(WeaponMaterial material) {
-        return internalHandler.addLance(material);
+        return createWeapon(WeaponItemType.LANCE, material);
     }
 
     /**
-     * Creates a new longbow, using the specified material. Give the new item the registry name of "item.[modId].longbow_[material.unlocName]_strengthened". The caller is responsible for registering the weapon item and recipe
+     * Creates a new longbow using the specified material. The caller is responsible for registering the weapon item and recipe.
      *
-     * @param material The Material that the weapon is made of
+     * @param material The material that the weapon is made of
      * @return The newly created weapon
      */
     public static Item createLongbow(WeaponMaterial material) {
-        return internalHandler.addLongbow(material);
+        return createWeapon(WeaponItemType.LONGBOW, material);
     }
 
     /**
-     * Creates a new heavy crossbow, using the specified material. Give the new item the registry name of "item.[modId].heavy_crossbow_[material.unlocName]_strengthened". The caller is responsible for registering the weapon item and recipe
+     * Creates a new heavy crossbow using the specified material. The caller is responsible for registering the weapon item and recipe.
      *
-     * @param material The Material that the weapon is made of
+     * @param material The material that the weapon is made of
      * @return The newly created weapon
      */
     public static Item createHeavyCrossbow(WeaponMaterial material) {
-        return internalHandler.addHeavyCrossbow(material);
+        return createWeapon(WeaponItemType.HEAVY_CROSSBOW, material);
     }
 
     /**
-     * Creates a new throwing knife, using the specified material. Gives the new item the registry name of "item.[modId].throwing_knife_[material.unlocName]". The caller is responsible for registering the weapon item and recipe
+     * Creates a new throwing knife using the specified material. The caller is responsible for registering the weapon item and recipe.
      *
-     * @param material The Material that the weapon is made of
+     * @param material The material that the weapon is made of
      * @return The newly created weapon
      */
     public static Item createThrowingKnife(WeaponMaterial material) {
-        return internalHandler.addThrowingKnife(material);
+        return createWeapon(WeaponItemType.THROWING_KNIFE, material);
     }
 
     /**
-     * Creates a new throwing axe, using the specified material. Gives the new item the registry name of "item.[modId].throwing_axe_[material.unlocName]". The caller is responsible for registering the weapon item and recipe
+     * Creates a new tomahawk using the specified material. The caller is responsible for registering the weapon item and recipe.
      *
-     * @param material The Material that the weapon is made of
+     * @param material The material that the weapon is made of
      * @return The newly created weapon
      */
     public static Item createTomahawk(WeaponMaterial material) {
-        return internalHandler.addTomahawk(material);
+        return createWeapon(WeaponItemType.TOMAHAWK, material);
     }
 
     /**
-     * Creates a new javelin, using the specified material. Gives the new item the registry name of "item.[modId].javelin_[material.unlocName]". The caller is responsible for registering the weapon item and recipe
+     * Creates a new javelin using the specified material. The caller is responsible for registering the weapon item and recipe.
      *
-     * @param material The Material that the weapon is made of
+     * @param material The material that the weapon is made of
      * @return The newly created weapon
      */
     public static Item createJavelin(WeaponMaterial material) {
-        return internalHandler.addJavelin(material);
+        return createWeapon(WeaponItemType.JAVELIN, material);
     }
 
     /**
-     * Creates a new boomerang, using the specified material. Gives the new item the registry name of "item.[modId].boomerang_[material.unlocName]". The caller is responsible for registering the weapon item and recipe
+     * Creates a new boomerang using the specified material. The caller is responsible for registering the weapon item and recipe.
      *
-     * @param material The Material that the weapon is made of
+     * @param material The material that the weapon is made of
      * @return The newly created weapon
      */
     public static Item createBoomerang(WeaponMaterial material) {
-        return internalHandler.addBoomerang(material);
+        return createWeapon(WeaponItemType.BOOMERANG, material);
     }
 
     /**
-     * Creates a new battleaxe, using the specified material. Gives the new item the registry name of "item.[modId].battleaxe_[material.unlocName]". The caller is responsible for registering the weapon item and recipe
+     * Creates a new battleaxe using the specified material. The caller is responsible for registering the weapon item and recipe.
      *
-     * @param material The Material that the weapon is made of
+     * @param material The material that the weapon is made of
      * @return The newly created weapon
      */
     public static Item createBattleaxe(WeaponMaterial material) {
-        return internalHandler.addBattleaxe(material);
+        return createWeapon(WeaponItemType.BATTLEAXE, material);
     }
 
     /**
-     * Creates a new mace, using the specified material. Gives the new item the registry name of "item.[modId].flanged_mace_[material.unlocName]". The caller is responsible for registering the weapon item and recipe
+     * Creates a new flanged mace using the specified material. The caller is responsible for registering the weapon item and recipe.
      *
-     * @param material The Material that the weapon is made of
+     * @param material The material that the weapon is made of
      * @return The newly created weapon
      */
     public static Item createFlangedMace(WeaponMaterial material) {
-        return internalHandler.addFlangedMace(material);
+        return createWeapon(WeaponItemType.FLANGED_MACE, material);
     }
 
     /**
-     * Creates a new glaive, using the specified material. Gives the new item the registry name of "item.[modId].glaive_[material.unlocName]". The caller is responsible for registering the weapon item and recipe
+     * Creates a new glaive using the specified material. The caller is responsible for registering the weapon item and recipe.
      *
-     * @param material The Material that the weapon is made of
+     * @param material The material that the weapon is made of
      * @return The newly created weapon
      */
     public static Item createGlaive(WeaponMaterial material) {
-        return internalHandler.addGlaive(material);
+        return createWeapon(WeaponItemType.GLAIVE, material);
     }
 
     /**
-     * Creates a new quarterstaff, using the specified material. Gives the new item the registry name of "item.[modId].quarterstaff_[material.unlocName]". The caller is responsible for registering the weapon item and recipe
+     * Creates a new quarterstaff using the specified material. The caller is responsible for registering the weapon item and recipe.
      *
-     * @param material The Material that the weapon is made of
+     * @param material The material that the weapon is made of
      * @return The newly created weapon
      */
     public static Item createQuarterstaff(WeaponMaterial material) {
-        return internalHandler.addQuarterstaff(material);
+        return createWeapon(WeaponItemType.QUARTERSTAFF, material);
     }
 
     /**
-     * Creates a new scythe, using the specified material. Gives the new item the registry name of "item.[modId].scythe_[material.unlocName]". The caller is responsible for registering the weapon item and recipe
+     * Creates a new scythe using the specified material. The caller is responsible for registering the weapon item and recipe.
      *
-     * @param material The Material that the weapon is made of
+     * @param material The material that the weapon is made of
      * @return The newly created weapon
      */
     public static Item createScythe(WeaponMaterial material) {
-        return internalHandler.addScythe(material);
+        return createWeapon(WeaponItemType.SCYTHE, material);
     }
 
     //---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
@@ -273,17 +353,24 @@ public class SpartanWeaponryAPI {
     //---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
 
     /**
-     * This is used to initialize the API and it's internal handler and should only *EVER* be called once during execution.<br>
+     * This is used to initialize the API and its internal handler and should only be called once during execution.<br>
      * This is already called during Spartan Weaponry's mod construction. Calling it a second time will cause a crash.
-     *
      */
     public static void init(IInternalMethodHandler handler) {
-        if (internalHandler != null)
-            throw new IllegalStateException("Wait, that's illegal! Something has attempted to tamper with the Spartan Weaponry API Internal Handler!\n"
-                    + "Remove the mod that has tampered with that handler!");
-        else {
-            internalHandler = handler;
-            Log.info("Spartan Weaponry API version " + API_VERSION + " has been initalized!");
+        if (internalHandler != null) {
+            throw new IllegalStateException("Something attempted to replace the Spartan Weaponry API internal handler.\n"
+                    + "Remove the mod that has tampered with that handler.");
         }
+
+        internalHandler = Objects.requireNonNull(handler, "handler");
+        Log.info("Spartan Weaponry API version " + API_VERSION + " has been initialized!");
+    }
+
+    private static IInternalMethodHandler requireInternalHandler() {
+        if (internalHandler == null) {
+            throw new IllegalStateException("Spartan Weaponry API has not been initialized yet. "
+                    + "Weapon creation is only available after Spartan Weaponry finishes mod construction.");
+        }
+        return internalHandler;
     }
 }
