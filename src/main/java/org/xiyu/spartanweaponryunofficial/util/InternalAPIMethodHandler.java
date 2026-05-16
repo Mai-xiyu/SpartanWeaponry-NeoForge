@@ -3,6 +3,7 @@ package org.xiyu.spartanweaponryunofficial.util;
 import net.minecraft.world.item.Item;
 import org.xiyu.spartanweaponryunofficial.api.IInternalMethodHandler;
 import org.xiyu.spartanweaponryunofficial.api.WeaponMaterial;
+import org.xiyu.spartanweaponryunofficial.util.WeaponFactory.WeaponFunction;
 
 public class InternalAPIMethodHandler implements IInternalMethodHandler {
     //---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
@@ -11,122 +12,125 @@ public class InternalAPIMethodHandler implements IInternalMethodHandler {
 
     @Override
     public Item addDagger(WeaponMaterial material) {
-        return WeaponFactory.DAGGER.create(material, new Item.Properties());
+        return create(WeaponFactory.DAGGER, material);
     }
 
     @Override
     public Item addParryingDagger(WeaponMaterial material) {
-        return WeaponFactory.PARRYING_DAGGER.create(material, new Item.Properties());
+        return create(WeaponFactory.PARRYING_DAGGER, material);
     }
 
     @Override
     public Item addLongsword(WeaponMaterial material) {
-        return WeaponFactory.LONGSWORD.create(material, new Item.Properties());
+        return create(WeaponFactory.LONGSWORD, material);
     }
 
     @Override
     public Item addKatana(WeaponMaterial material) {
-        return WeaponFactory.KATANA.create(material, new Item.Properties());
+        return create(WeaponFactory.KATANA, material);
     }
 
     @Override
     public Item addSaber(WeaponMaterial material) {
-        return WeaponFactory.SABER.create(material, new Item.Properties());
+        return create(WeaponFactory.SABER, material);
     }
 
     @Override
     public Item addRapier(WeaponMaterial material) {
-        return WeaponFactory.RAPIER.create(material, new Item.Properties());
+        return create(WeaponFactory.RAPIER, material);
     }
 
     @Override
     public Item addGreatsword(WeaponMaterial material) {
-        return WeaponFactory.GREATSWORD.create(material, new Item.Properties());
+        return create(WeaponFactory.GREATSWORD, material);
     }
 
     @Override
     public Item addBattleHammer(WeaponMaterial material) {
-        return WeaponFactory.BATTLE_HAMMER.create(material, new Item.Properties());
+        return create(WeaponFactory.BATTLE_HAMMER, material);
     }
 
     @Override
     public Item addWarhammer(WeaponMaterial material) {
-        return WeaponFactory.WARHAMMER.create(material, new Item.Properties());
+        return create(WeaponFactory.WARHAMMER, material);
     }
 
     @Override
     public Item addSpear(WeaponMaterial material) {
-        return WeaponFactory.SPEAR.create(material, new Item.Properties());
+        return create(WeaponFactory.SPEAR, material);
     }
 
     @Override
     public Item addHalberd(WeaponMaterial material) {
-        return WeaponFactory.HALBERD.create(material, new Item.Properties());
+        return create(WeaponFactory.HALBERD, material);
     }
 
     @Override
     public Item addPike(WeaponMaterial material) {
-        return WeaponFactory.PIKE.create(material, new Item.Properties());
+        return create(WeaponFactory.PIKE, material);
     }
 
     @Override
     public Item addLance(WeaponMaterial material) {
-        return WeaponFactory.LANCE.create(material, new Item.Properties());
+        return create(WeaponFactory.LANCE, material);
     }
 
     @Override
     public Item addLongbow(WeaponMaterial material) {
-        return WeaponFactory.LONGBOW.create(material, new Item.Properties());
+        return create(WeaponFactory.LONGBOW, material);
     }
 
     @Override
     public Item addHeavyCrossbow(WeaponMaterial material) {
-        return WeaponFactory.HEAVY_CROSSBOW.create(material, new Item.Properties());
+        return create(WeaponFactory.HEAVY_CROSSBOW, material);
     }
 
     @Override
     public Item addThrowingKnife(WeaponMaterial material) {
-        return WeaponFactory.THROWING_KNIFE.create(material, new Item.Properties());
+        return create(WeaponFactory.THROWING_KNIFE, material);
     }
 
     @Override
     public Item addTomahawk(WeaponMaterial material) {
-        return WeaponFactory.TOMAHAWK.create(material, new Item.Properties());
+        return create(WeaponFactory.TOMAHAWK, material);
     }
 
     @Override
     public Item addJavelin(WeaponMaterial material) {
-        return WeaponFactory.JAVELIN.create(material, new Item.Properties());
+        return create(WeaponFactory.JAVELIN, material);
     }
 
     @Override
     public Item addBoomerang(WeaponMaterial material) {
-        return WeaponFactory.BOOMERANG.create(material, new Item.Properties());
+        return create(WeaponFactory.BOOMERANG, material);
     }
 
     @Override
     public Item addBattleaxe(WeaponMaterial material) {
-        return WeaponFactory.BATTLEAXE.create(material, new Item.Properties());
+        return create(WeaponFactory.BATTLEAXE, material);
     }
 
     @Override
     public Item addFlangedMace(WeaponMaterial material) {
-        return WeaponFactory.FLANGED_MACE.create(material, new Item.Properties());
+        return create(WeaponFactory.FLANGED_MACE, material);
     }
 
     @Override
     public Item addGlaive(WeaponMaterial material) {
-        return WeaponFactory.GLAIVE.create(material, new Item.Properties());
+        return create(WeaponFactory.GLAIVE, material);
     }
 
     @Override
     public Item addQuarterstaff(WeaponMaterial material) {
-        return WeaponFactory.QUARTERSTAFF.create(material, new Item.Properties());
+        return create(WeaponFactory.QUARTERSTAFF, material);
     }
 
     @Override
     public Item addScythe(WeaponMaterial material) {
-        return WeaponFactory.SCYTHE.create(material, new Item.Properties());
+        return create(WeaponFactory.SCYTHE, material);
     }
 
+    private static Item create(WeaponFunction<? extends Item> factory, WeaponMaterial material) {
+        return factory.create(material, new Item.Properties());
+    }
 }

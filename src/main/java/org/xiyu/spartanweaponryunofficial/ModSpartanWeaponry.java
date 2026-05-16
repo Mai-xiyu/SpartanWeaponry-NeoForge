@@ -30,14 +30,29 @@ public class ModSpartanWeaponry {
 
     public ModSpartanWeaponry(ModContainer modContainer, IEventBus modBus) {
         Log.info("Constructing Mod: " + NAME);
+
+        initApi();
+        registerModBusListeners(modBus);
+        registerDeferredRegistries(modBus);
+        registerCapabilityListeners(modBus);
+        registerForgeEventHandlers();
+        registerOptionalClientHandlers(modBus);
+        registerConfigs(modContainer);
+        registerClientExtensions(modContainer);
+    }
+
+    private static void initApi() {
         Log.info("Initialising API! Version: " + SpartanWeaponryAPI.API_VERSION);
         SpartanWeaponryAPI.init(new InternalAPIMethodHandler());
+    }
 
+    private void registerModBusListeners(IEventBus modBus) {
         modBus.addListener(this::onSetup);
         modBus.addListener(this::onClientSetup);
         modBus.addListener(NetworkHandler::registerPayloads);
+    }
 
-        // Registering Deferred Registries
+    private static void registerDeferredRegistries(IEventBus modBus) {
         ModBlocks.REGISTRY.register(modBus);
         ModItems.REGISTRY.register(modBus);
         ModCreativeTabs.REGISTRY.register(modBus);
@@ -57,23 +72,33 @@ public class ModSpartanWeaponry {
         ModMobEffects.REGISTRY.register(modBus);
         OilEffects.REGISTRY.makeRegistry(registryBuilder -> registryBuilder.defaultKey(ResourceLocation.fromNamespaceAndPath(ID, "none")));
         OilEffects.REGISTRY.register(modBus);
+    }
 
+    private static void registerCapabilityListeners(IEventBus modBus) {
         modBus.addListener(ModCapabilities::registerCapabilities);
+    }
+
+    private static void registerForgeEventHandlers() {
         NeoForge.EVENT_BUS.addListener(MeleeBlockWeaponTrait::onBlockEvent);
         NeoForge.EVENT_BUS.addListener(ModCommands::registerCommands);
         NeoForge.EVENT_BUS.addListener(ModOilRecipes::initOilRecipes);
-        if (CuriosHelper.LOADED && FMLEnvironment.dist.isClient())
-            modBus.addListener(CuriosHelper.Client::registerReloadListener);
+    }
 
-        // Place Config registration here...
-        modContainer.registerConfig(ModConfig.Type.COMMON, Config.CONFIG_SPEC);
-        modContainer.registerConfig(ModConfig.Type.CLIENT, ClientConfig.CONFIG_SPEC);
-//        ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, ServerConfig.CONFIG_SPEC);
-        // Register extension points (client-only)
+    private static void registerOptionalClientHandlers(IEventBus modBus) {
+        if (CuriosHelper.LOADED && FMLEnvironment.dist.isClient()) {
+            modBus.addListener(CuriosHelper.Client::registerReloadListener);
+        }
+    }
+
+    private static void registerClientExtensions(ModContainer modContainer) {
         if (FMLEnvironment.dist.isClient()) {
             ClientHelper.registerConfigScreen(modContainer);
         }
-        // NeoForge 1.21: Removed register(this) as it requires @SubscribeEvent methods
+    }
+
+    private static void registerConfigs(ModContainer modContainer) {
+        modContainer.registerConfig(ModConfig.Type.COMMON, Config.CONFIG_SPEC);
+        modContainer.registerConfig(ModConfig.Type.CLIENT, ClientConfig.CONFIG_SPEC);
     }
 
     private void onSetup(FMLCommonSetupEvent ev) {

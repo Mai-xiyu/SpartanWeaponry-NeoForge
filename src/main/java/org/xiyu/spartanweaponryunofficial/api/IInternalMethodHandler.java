@@ -3,7 +3,8 @@ package org.xiyu.spartanweaponryunofficial.api;
 import net.minecraft.world.item.Item;
 
 /**
- * Basic Internal method handler interface. Do NOT create your own version of this. It is required for the API to work!
+ * Basic internal method handler interface. Addons should call {@link SpartanWeaponryAPI} instead of
+ * depending on this implementation boundary directly.
  *
  * @author ObliviousSpartan
  */
@@ -185,7 +186,7 @@ public interface IInternalMethodHandler {
      * Creates a Glaive item while adding additional Weapon Properties derived from the weapon's material. Does *NOT* register the item. The addon author will have to do that.
      *
      * @param material The weapon material
-     * @return The newly created Mace item
+     * @return The newly created Glaive item
      */
     Item addGlaive(WeaponMaterial material);
 
@@ -193,7 +194,7 @@ public interface IInternalMethodHandler {
      * Creates a Quarterstaff item while adding additional Weapon Properties derived from the weapon's material. Does *NOT* register the item. The addon author will have to do that.
      *
      * @param material The weapon material
-     * @return The newly created Mace item
+     * @return The newly created Quarterstaff item
      */
     Item addQuarterstaff(WeaponMaterial material);
 
@@ -201,7 +202,7 @@ public interface IInternalMethodHandler {
      * Creates a Scythe item while adding additional Weapon Properties derived from the weapon's material. Does *NOT* register the item. The addon author will have to do that.
      *
      * @param material The weapon material
-     * @return The newly created Mace item
+     * @return The newly created Scythe item
      */
     Item addScythe(WeaponMaterial material);
 }
