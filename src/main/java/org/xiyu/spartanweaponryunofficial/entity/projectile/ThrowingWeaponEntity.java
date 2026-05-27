@@ -43,6 +43,7 @@ import org.xiyu.spartanweaponryunofficial.capability.IOilHandler;
 import org.xiyu.spartanweaponryunofficial.init.*;
 import org.xiyu.spartanweaponryunofficial.item.ThrowingWeaponItem;
 import org.xiyu.spartanweaponryunofficial.util.ItemStackDataHelper;
+import org.xiyu.spartanweaponryunofficial.util.WeaponOilConfig;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -219,7 +220,7 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
                     }
                 }
             }
-            if (weapon.is(ModItemTags.OILABLE_WEAPONS)) {
+            if (WeaponOilConfig.isEnabled() && weapon.is(ModItemTags.OILABLE_WEAPONS)) {
                 IOilHandler oilHandler = weapon.getCapability(ModCapabilities.OIL_CAPABILITY);
                 if (oilHandler != null && oilHandler.isOiled()) {
                     float dmgUnmodified = damage;

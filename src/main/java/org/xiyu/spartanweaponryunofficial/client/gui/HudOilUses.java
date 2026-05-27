@@ -16,6 +16,7 @@ import org.xiyu.spartanweaponryunofficial.client.gui.AlignmentHelper.Alignment;
 import org.xiyu.spartanweaponryunofficial.init.ModCapabilities;
 import org.xiyu.spartanweaponryunofficial.util.ClientConfig;
 import org.xiyu.spartanweaponryunofficial.util.OilHelper;
+import org.xiyu.spartanweaponryunofficial.util.WeaponOilConfig;
 
 import java.util.Optional;
 
@@ -24,6 +25,8 @@ public class HudOilUses {
 
     public static void render(GuiGraphics guiGraphics, DeltaTracker deltaTracker) {
         RenderSystem.assertOnRenderThread();
+        if (!WeaponOilConfig.isEnabled())
+            return;
 
         Minecraft mc = Minecraft.getInstance();
         Font font = mc.font;

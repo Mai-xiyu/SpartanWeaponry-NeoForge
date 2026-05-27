@@ -32,6 +32,7 @@ import org.xiyu.spartanweaponryunofficial.network.NetworkHandler;
 import org.xiyu.spartanweaponryunofficial.network.QuiverAccessPacket;
 import org.xiyu.spartanweaponryunofficial.util.ItemStackDataHelper;
 import org.xiyu.spartanweaponryunofficial.util.OilHelper;
+import org.xiyu.spartanweaponryunofficial.util.WeaponOilConfig;
 
 import java.util.Optional;
 
@@ -67,7 +68,7 @@ public class ClientEventHandler {
     public static void onRenderTooltip(RenderTooltipEvent.GatherComponents ev) {
         ItemStack stack = ev.getItemStack();
 
-        if (stack.is(ModItemTags.OILABLE_WEAPONS)) {
+        if (WeaponOilConfig.isEnabled() && stack.is(ModItemTags.OILABLE_WEAPONS)) {
             IOilHandler oilHandler = stack.getCapability(ModCapabilities.OIL_CAPABILITY);
             if (oilHandler != null) {
                 if (oilHandler.isOiled() && oilHandler.getEffect().isPresent()) {

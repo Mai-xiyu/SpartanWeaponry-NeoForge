@@ -6,7 +6,7 @@ import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent;
 import org.xiyu.spartanweaponryunofficial.api.OilEffects;
 import org.xiyu.spartanweaponryunofficial.item.crafting.OilBrewingRecipe;
 import org.xiyu.spartanweaponryunofficial.item.crafting.PotionToOilBrewingRecipe;
-import org.xiyu.spartanweaponryunofficial.util.Config;
+import org.xiyu.spartanweaponryunofficial.util.WeaponOilConfig;
 
 public class ModOilRecipes {
     public static OilBrewingRecipe oilRecipes = null;
@@ -22,7 +22,7 @@ public class ModOilRecipes {
 
     public static void loadOilMixes() {
         OilBrewingRecipe.clearMixes();
-        if (Config.INSTANCE.disableOilRecipes.get())
+        if (!WeaponOilConfig.areRecipesEnabled())
             return;
 
         OilBrewingRecipe.addBaseOilMix(Ingredient.of(Items.GLISTERING_MELON_SLICE), OilEffects.UNDEAD.get());

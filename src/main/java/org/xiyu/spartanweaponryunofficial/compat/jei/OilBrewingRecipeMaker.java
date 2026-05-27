@@ -14,8 +14,8 @@ import org.xiyu.spartanweaponryunofficial.init.ModItems;
 import org.xiyu.spartanweaponryunofficial.init.ModOilRecipes;
 import org.xiyu.spartanweaponryunofficial.item.crafting.OilBrewingRecipe;
 import org.xiyu.spartanweaponryunofficial.item.crafting.OilBrewingRecipe.OilMix;
-import org.xiyu.spartanweaponryunofficial.util.Config;
 import org.xiyu.spartanweaponryunofficial.util.OilHelper;
+import org.xiyu.spartanweaponryunofficial.util.WeaponOilConfig;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +24,7 @@ public class OilBrewingRecipeMaker {
     public static List<IJeiBrewingRecipe> getRecipes(IVanillaRecipeFactory vanillaRecipeFactoryIn) {
         List<IJeiBrewingRecipe> recipes = new ArrayList<>();
 
-        if (!Config.INSTANCE.disableOilRecipes.get() && ModOilRecipes.oilRecipes != null) {
+        if (WeaponOilConfig.areRecipesEnabled() && ModOilRecipes.oilRecipes != null) {
             List<OilMix> mixes = OilBrewingRecipe.getValidMixes();
 
             for (OilMix mix : mixes) {
@@ -35,7 +35,7 @@ public class OilBrewingRecipeMaker {
             }
         }
 
-        if (!Config.INSTANCE.disableOilRecipes.get() && ModOilRecipes.potionToOilRecipes != null) {
+        if (WeaponOilConfig.areRecipesEnabled() && ModOilRecipes.potionToOilRecipes != null) {
             for (Potion potion : BuiltInRegistries.POTION) {
                 if (OilHelper.isValidPotion(potion)) {
                     var potionHolder = BuiltInRegistries.POTION.wrapAsHolder(potion);

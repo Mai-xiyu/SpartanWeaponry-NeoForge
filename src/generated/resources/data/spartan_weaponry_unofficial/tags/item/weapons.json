@@ -1,0 +1,30 @@
+{
+  "values": [
+    "#spartan_weaponry_unofficial:weapons/daggers",
+    "#spartan_weaponry_unofficial:weapons/parrying_daggers",
+    "#spartan_weaponry_unofficial:weapons/longswords",
+    "#spartan_weaponry_unofficial:weapons/katanas",
+    "#spartan_weaponry_unofficial:weapons/sabers",
+    "#spartan_weaponry_unofficial:weapons/rapiers",
+    "#spartan_weaponry_unofficial:weapons/greatswords",
+    "#spartan_weaponry_unofficial:weapons/clubs",
+    "#spartan_weaponry_unofficial:weapons/cestus",
+    "#spartan_weaponry_unofficial:weapons/battle_hammers",
+    "#spartan_weaponry_unofficial:weapons/warhammers",
+    "#spartan_weaponry_unofficial:weapons/spears",
+    "#spartan_weaponry_unofficial:weapons/halberds",
+    "#spartan_weaponry_unofficial:weapons/pikes",
+    "#spartan_weaponry_unofficial:weapons/lances",
+    "#spartan_weaponry_unofficial:weapons/longbows",
+    "#spartan_weaponry_unofficial:weapons/heavy_crossbows",
+    "#spartan_weaponry_unofficial:weapons/throwing_knives",
+    "#spartan_weaponry_unofficial:weapons/tomahawks",
+    "#spartan_weaponry_unofficial:weapons/javelins",
+    "#spartan_weaponry_unofficial:weapons/boomerangs",
+    "#spartan_weaponry_unofficial:weapons/battleaxes",
+    "#spartan_weaponry_unofficial:weapons/flanged_maces",
+    "#spartan_weaponry_unofficial:weapons/glaives",
+    "#spartan_weaponry_unofficial:weapons/quarterstaves",
+    "#spartan_weaponry_unofficial:weapons/scythes"
+  ]
+}

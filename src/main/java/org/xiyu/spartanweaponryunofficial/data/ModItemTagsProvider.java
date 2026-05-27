@@ -14,13 +14,66 @@ import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.NotNull;
 import org.xiyu.spartanweaponryunofficial.ModSpartanWeaponry;
+import org.xiyu.spartanweaponryunofficial.api.SpartanWeaponryAPI.WeaponItemType;
 import org.xiyu.spartanweaponryunofficial.api.tags.ModBlockTags;
 import org.xiyu.spartanweaponryunofficial.api.tags.ModItemTags;
 import org.xiyu.spartanweaponryunofficial.init.ModItems;
 
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public class ModItemTagsProvider extends ItemTagsProvider {
+    private static final List<TypeTagPair> WEAPON_TYPE_TAGS = List.of(
+            new TypeTagPair(ModItemTags.DAGGERS, ModItemTags.weaponType(WeaponItemType.DAGGER)),
+            new TypeTagPair(ModItemTags.PARRYING_DAGGERS, ModItemTags.weaponType(WeaponItemType.PARRYING_DAGGER)),
+            new TypeTagPair(ModItemTags.LONGSWORDS, ModItemTags.weaponType(WeaponItemType.LONGSWORD)),
+            new TypeTagPair(ModItemTags.KATANAS, ModItemTags.weaponType(WeaponItemType.KATANA)),
+            new TypeTagPair(ModItemTags.SABERS, ModItemTags.weaponType(WeaponItemType.SABER)),
+            new TypeTagPair(ModItemTags.RAPIERS, ModItemTags.weaponType(WeaponItemType.RAPIER)),
+            new TypeTagPair(ModItemTags.GREATSWORDS, ModItemTags.weaponType(WeaponItemType.GREATSWORD)),
+            new TypeTagPair(ModItemTags.CLUBS, ModItemTags.weaponType("clubs")),
+            new TypeTagPair(ModItemTags.CESTUSAE, ModItemTags.weaponType("cestus")),
+            new TypeTagPair(ModItemTags.BATTLE_HAMMERS, ModItemTags.weaponType(WeaponItemType.BATTLE_HAMMER)),
+            new TypeTagPair(ModItemTags.WARHAMMERS, ModItemTags.weaponType(WeaponItemType.WARHAMMER)),
+            new TypeTagPair(ModItemTags.SPEARS, ModItemTags.weaponType(WeaponItemType.SPEAR)),
+            new TypeTagPair(ModItemTags.HALBERDS, ModItemTags.weaponType(WeaponItemType.HALBERD)),
+            new TypeTagPair(ModItemTags.PIKES, ModItemTags.weaponType(WeaponItemType.PIKE)),
+            new TypeTagPair(ModItemTags.LANCES, ModItemTags.weaponType(WeaponItemType.LANCE)),
+            new TypeTagPair(ModItemTags.LONGBOWS, ModItemTags.weaponType(WeaponItemType.LONGBOW)),
+            new TypeTagPair(ModItemTags.HEAVY_CROSSBOWS, ModItemTags.weaponType(WeaponItemType.HEAVY_CROSSBOW)),
+            new TypeTagPair(ModItemTags.THROWING_KNIVES, ModItemTags.weaponType(WeaponItemType.THROWING_KNIFE)),
+            new TypeTagPair(ModItemTags.TOMAHAWKS, ModItemTags.weaponType(WeaponItemType.TOMAHAWK)),
+            new TypeTagPair(ModItemTags.JAVELINS, ModItemTags.weaponType(WeaponItemType.JAVELIN)),
+            new TypeTagPair(ModItemTags.BOOMERANGS, ModItemTags.weaponType(WeaponItemType.BOOMERANG)),
+            new TypeTagPair(ModItemTags.BATTLEAXES, ModItemTags.weaponType(WeaponItemType.BATTLEAXE)),
+            new TypeTagPair(ModItemTags.FLANGED_MACES, ModItemTags.weaponType(WeaponItemType.FLANGED_MACE)),
+            new TypeTagPair(ModItemTags.GLAIVES, ModItemTags.weaponType(WeaponItemType.GLAIVE)),
+            new TypeTagPair(ModItemTags.QUARTERSTAVES, ModItemTags.weaponType(WeaponItemType.QUARTERSTAFF)),
+            new TypeTagPair(ModItemTags.SCYTHES, ModItemTags.weaponType(WeaponItemType.SCYTHE))
+    );
+
+    private static final List<MaterialTagPair> MATERIAL_TAGS = List.of(
+            new MaterialTagPair("wood", ModItemTags.WOODEN_WEAPONS),
+            new MaterialTagPair("stone", ModItemTags.STONE_WEAPONS),
+            new MaterialTagPair("leather", ModItemTags.LEATHER_WEAPONS),
+            new MaterialTagPair("copper", ModItemTags.COPPER_WEAPONS),
+            new MaterialTagPair("iron", ModItemTags.IRON_WEAPONS),
+            new MaterialTagPair("gold", ModItemTags.GOLDEN_WEAPONS),
+            new MaterialTagPair("diamond", ModItemTags.DIAMOND_WEAPONS),
+            new MaterialTagPair("netherite", ModItemTags.NETHERITE_WEAPONS),
+            new MaterialTagPair("tin", ModItemTags.TIN_WEAPONS),
+            new MaterialTagPair("bronze", ModItemTags.BRONZE_WEAPONS),
+            new MaterialTagPair("steel", ModItemTags.STEEL_WEAPONS),
+            new MaterialTagPair("silver", ModItemTags.SILVER_WEAPONS),
+            new MaterialTagPair("electrum", ModItemTags.ELECTRUM_WEAPONS),
+            new MaterialTagPair("lead", ModItemTags.LEAD_WEAPONS),
+            new MaterialTagPair("nickel", ModItemTags.NICKEL_WEAPONS),
+            new MaterialTagPair("invar", ModItemTags.INVAR_WEAPONS),
+            new MaterialTagPair("constantan", ModItemTags.CONSTANTAN_WEAPONS),
+            new MaterialTagPair("platinum", ModItemTags.PLATINUM_WEAPONS),
+            new MaterialTagPair("aluminum", ModItemTags.ALUMINUM_WEAPONS)
+    );
+
     public ModItemTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registry, CompletableFuture<TagsProvider.TagLookup<Block>> blockTagLookup, ExistingFileHelper existingFileHelper) {
         super(output, registry, blockTagLookup, ModSpartanWeaponry.ID, existingFileHelper);
     }
@@ -152,6 +205,8 @@ public class ModItemTagsProvider extends ItemTagsProvider {
                 ModItems.RAPIERS.aluminum.get(), ModItems.GREATSWORDS.aluminum.get(), ModItems.BATTLE_HAMMERS.aluminum.get(), ModItems.WARHAMMERS.aluminum.get(), ModItems.SPEARS.aluminum.get(), ModItems.HALBERDS.aluminum.get(), ModItems.PIKES.aluminum.get(),
                 ModItems.LANCES.aluminum.get(), ModItems.LONGBOWS.aluminum.get(), ModItems.HEAVY_CROSSBOWS.aluminum.get(), ModItems.THROWING_KNIVES.aluminum.get(), ModItems.TOMAHAWKS.aluminum.get(), ModItems.JAVELINS.aluminum.get(),
                 ModItems.BOOMERANGS.aluminum.get(), ModItems.BATTLEAXES.aluminum.get(), ModItems.FLANGED_MACES.aluminum.get(), ModItems.GLAIVES.aluminum.get(), ModItems.QUARTERSTAVES.aluminum.get(), ModItems.SCYTHES.aluminum.get());
+
+        this.addGroupedWeaponTags();
 
         this.tag(ModItemTags.ARROWS).add(ModItems.WOODEN_ARROW.get(), ModItems.TIPPED_WOODEN_ARROW.get(), ModItems.COPPER_ARROW.get(), ModItems.TIPPED_COPPER_ARROW.get(), ModItems.IRON_ARROW.get(), ModItems.TIPPED_IRON_ARROW.get(), ModItems.DIAMOND_ARROW.get(), ModItems.TIPPED_DIAMOND_ARROW.get(),
                 ModItems.NETHERITE_ARROW.get(), ModItems.TIPPED_NETHERITE_ARROW.get(), ModItems.EXPLOSIVE_ARROW.get());
@@ -311,5 +366,23 @@ public class ModItemTagsProvider extends ItemTagsProvider {
     @Override
     public @NotNull String getName() {
         return ModSpartanWeaponry.NAME + " Item Tags";
+    }
+
+    private void addGroupedWeaponTags() {
+        for (TypeTagPair pair : WEAPON_TYPE_TAGS) {
+            this.tag(pair.groupedTag()).addTag(pair.legacyTag());
+            this.tag(ModItemTags.WEAPONS).addTag(pair.groupedTag());
+            this.tag(ModItemTags.namespace(ModSpartanWeaponry.ID)).addTag(pair.groupedTag());
+        }
+
+        for (MaterialTagPair pair : MATERIAL_TAGS) {
+            this.tag(ModItemTags.material(pair.materialName())).addTag(pair.legacyTag());
+        }
+    }
+
+    private record TypeTagPair(TagKey<Item> legacyTag, TagKey<Item> groupedTag) {
+    }
+
+    private record MaterialTagPair(String materialName, TagKey<Item> legacyTag) {
     }
 }
