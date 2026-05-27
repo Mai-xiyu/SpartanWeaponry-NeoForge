@@ -24,6 +24,7 @@ import org.xiyu.spartanweaponryunofficial.capability.IOilHandler;
 import org.xiyu.spartanweaponryunofficial.init.ModCapabilities;
 import org.xiyu.spartanweaponryunofficial.init.ModSounds;
 import org.xiyu.spartanweaponryunofficial.util.OilHelper;
+import org.xiyu.spartanweaponryunofficial.util.WeaponOilConfig;
 
 import java.util.List;
 
@@ -61,6 +62,9 @@ public class WeaponOilItem extends BasicItem {
     @Override
     public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level levelIn, Player playerIn, @NotNull InteractionHand handIn) {
         ItemStack stack = playerIn.getItemInHand(handIn);
+        if (!WeaponOilConfig.isEnabled())
+            return super.use(levelIn, playerIn, handIn);
+
         OilEffect oil = OilHelper.getOilFromStack(stack);
         if (oil != OilEffects.NONE.get()) {
             InteractionHand oppositeHand = handIn == InteractionHand.MAIN_HAND ? InteractionHand.OFF_HAND : InteractionHand.MAIN_HAND;

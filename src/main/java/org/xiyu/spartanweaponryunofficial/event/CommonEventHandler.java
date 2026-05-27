@@ -125,7 +125,7 @@ public class CommonEventHandler {
                 dmgDealt = 1.0f;
 
             // Apply any valid oil effects
-            if (attackerStack.is(ModItemTags.OILABLE_WEAPONS)) {
+            if (WeaponOilConfig.isEnabled() && attackerStack.is(ModItemTags.OILABLE_WEAPONS)) {
                 IOilHandler oilHandler = attackerStack.getCapability(ModCapabilities.OIL_CAPABILITY);
                 if (oilHandler != null && oilHandler.isOiled()) {
                     float dmgUnmodified = dmgDealt;
@@ -699,6 +699,9 @@ public class CommonEventHandler {
      */
     @SubscribeEvent
     public static void onBrewPotion(PlayerBrewedPotionEvent ev) {
+        if (!WeaponOilConfig.isEnabled())
+            return;
+
         ItemStack stack = ev.getStack();
         OilEffects.NONE.get();
         OilEffect oil;

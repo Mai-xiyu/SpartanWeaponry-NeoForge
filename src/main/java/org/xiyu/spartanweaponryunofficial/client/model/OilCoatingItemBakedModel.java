@@ -16,6 +16,7 @@ import org.jetbrains.annotations.NotNull;
 import org.xiyu.spartanweaponryunofficial.capability.IOilHandler;
 import org.xiyu.spartanweaponryunofficial.init.ModCapabilities;
 import org.xiyu.spartanweaponryunofficial.util.Log;
+import org.xiyu.spartanweaponryunofficial.util.WeaponOilConfig;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +36,9 @@ public class OilCoatingItemBakedModel extends CompositeModel.Baked {
     @Override
     public @NotNull List<BakedModel> getRenderPasses(ItemStack itemStack, boolean fabulous) {
         IOilHandler handler = itemStack.getCapability(ModCapabilities.OIL_CAPABILITY);
-        return handler != null && handler.isOiled() ? this.coatedLayerModels : super.getRenderPasses(itemStack, fabulous);
+        return WeaponOilConfig.isEnabled() && handler != null && handler.isOiled() && !this.coatedLayerModels.isEmpty()
+                ? this.coatedLayerModels
+                : super.getRenderPasses(itemStack, fabulous);
     }
 
     public static Builder makeBuilder(IGeometryBakingContext contextIn, TextureAtlasSprite particleIn, ItemOverrides overridesIn, ItemTransforms transformsIn) {
@@ -113,18 +116,23 @@ public class OilCoatingItemBakedModel extends CompositeModel.Baked {
 
             ImmutableMap.Builder<String, BakedModel> childrenBuilder = ImmutableMap.builder();
             ImmutableList.Builder<BakedModel> itemPassesBuilder = ImmutableList.builder();
-            ImmutableList.Builder<BakedModel> coatedModelBuilder = ImmutableList.builder();
             int i = 0;
             for (BakedModel model : this.children) {
                 childrenBuilder.put("model_" + (i++), model);
                 itemPassesBuilder.add(model);
             }
+
+            ImmutableList<BakedModel> itemPasses = itemPassesBuilder.build();
+            ImmutableList<BakedModel> coatedLayerModels = ImmutableList.of();
             if (!this.coatedModel.isEmpty()) {
-                coatedModelBuilder.addAll(this.children);
+                ImmutableList.Builder<BakedModel> coatedModelBuilder = ImmutableList.builder();
+                coatedModelBuilder.addAll(itemPasses);
                 coatedModelBuilder.addAll(this.coatedModel);
+                coatedLayerModels = coatedModelBuilder.build();
             }
+
             return new OilCoatingItemBakedModel(this.isGui3d, this.isSideLit, this.isAmbientOcclusion, this.particle, this.transforms, this.overrides,
-                    childrenBuilder.build(), itemPassesBuilder.build(), coatedModelBuilder.build());
+                    childrenBuilder.build(), itemPasses, coatedLayerModels);
         }
     }
 }

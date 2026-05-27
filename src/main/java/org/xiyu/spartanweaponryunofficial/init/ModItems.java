@@ -9,6 +9,8 @@ import net.minecraft.world.item.Rarity;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import org.xiyu.spartanweaponryunofficial.ModSpartanWeaponry;
+import org.xiyu.spartanweaponryunofficial.api.SpartanWeaponryAPI;
+import org.xiyu.spartanweaponryunofficial.api.SpartanWeaponryAPI.WeaponItemType;
 import org.xiyu.spartanweaponryunofficial.api.WeaponMaterial;
 import org.xiyu.spartanweaponryunofficial.item.*;
 import org.xiyu.spartanweaponryunofficial.util.Defaults;
@@ -19,33 +21,37 @@ import org.xiyu.spartanweaponryunofficial.util.WeaponFactory.WeaponFunction;
 public class ModItems {
     public static final DeferredRegister<Item> REGISTRY = DeferredRegister.create(Registries.ITEM, ModSpartanWeaponry.ID);
 
+    private static <T extends Item> T createClassified(WeaponFunction<T> factory, WeaponMaterial material, Item.Properties property, WeaponItemType weaponType) {
+        return SpartanWeaponryAPI.classifyWeapon(factory.create(material, property), weaponType, material);
+    }
+
     public static class WeaponItemsMelee {
         public final DeferredHolder<Item, SwordBaseItem> wood, stone, copper, iron, gold, diamond, netherite;
         public final DeferredHolder<Item, SwordBaseItem> tin, bronze, steel, silver, lead, nickel, invar, constantan, platinum, electrum, aluminum;
 
-        public WeaponItemsMelee(DeferredRegister<Item> register, String weaponName, WeaponFunction<SwordBaseItem> factory) {
+        public WeaponItemsMelee(DeferredRegister<Item> register, String weaponName, WeaponItemType weaponType, WeaponFunction<SwordBaseItem> factory) {
             Item.Properties propVanilla = new Item.Properties();
             Item.Properties propModded = new Item.Properties();
 
-            this.wood = register.register(weaponName + "_wooden", () -> factory.create(WeaponMaterial.WOOD, propVanilla));
-            this.stone = register.register("stone_" + weaponName, () -> factory.create(WeaponMaterial.STONE, propVanilla));
-            this.copper = register.register("copper_" + weaponName, () -> factory.create(WeaponMaterial.COPPER, propVanilla));
-            this.iron = register.register("iron_" + weaponName, () -> factory.create(WeaponMaterial.IRON, propVanilla));
-            this.gold = register.register("golden_" + weaponName, () -> factory.create(WeaponMaterial.GOLD, propVanilla));
-            this.diamond = register.register("diamond_" + weaponName, () -> factory.create(WeaponMaterial.DIAMOND, propVanilla));
-            this.netherite = register.register("netherite_" + weaponName, () -> factory.create(WeaponMaterial.NETHERITE, new Item.Properties().fireResistant()));
+            this.wood = register.register(weaponName + "_wooden", () -> createClassified(factory, WeaponMaterial.WOOD, propVanilla, weaponType));
+            this.stone = register.register("stone_" + weaponName, () -> createClassified(factory, WeaponMaterial.STONE, propVanilla, weaponType));
+            this.copper = register.register("copper_" + weaponName, () -> createClassified(factory, WeaponMaterial.COPPER, propVanilla, weaponType));
+            this.iron = register.register("iron_" + weaponName, () -> createClassified(factory, WeaponMaterial.IRON, propVanilla, weaponType));
+            this.gold = register.register("golden_" + weaponName, () -> createClassified(factory, WeaponMaterial.GOLD, propVanilla, weaponType));
+            this.diamond = register.register("diamond_" + weaponName, () -> createClassified(factory, WeaponMaterial.DIAMOND, propVanilla, weaponType));
+            this.netherite = register.register("netherite_" + weaponName, () -> createClassified(factory, WeaponMaterial.NETHERITE, new Item.Properties().fireResistant(), weaponType));
 
-            this.tin = register.register("tin_" + weaponName, () -> factory.create(WeaponMaterial.TIN, propModded));
-            this.bronze = register.register("bronze_" + weaponName, () -> factory.create(WeaponMaterial.BRONZE, propModded));
-            this.steel = register.register("steel_" + weaponName, () -> factory.create(WeaponMaterial.STEEL, propModded));
-            this.silver = register.register("silver_" + weaponName, () -> factory.create(WeaponMaterial.SILVER, propModded));
-            this.electrum = register.register("electrum_" + weaponName, () -> factory.create(WeaponMaterial.ELECTRUM, propModded));
-            this.lead = register.register("lead_" + weaponName, () -> factory.create(WeaponMaterial.LEAD, propModded));
-            this.nickel = register.register("nickel_" + weaponName, () -> factory.create(WeaponMaterial.NICKEL, propModded));
-            this.invar = register.register("invar_" + weaponName, () -> factory.create(WeaponMaterial.INVAR, propModded));
-            this.constantan = register.register("constantan_" + weaponName, () -> factory.create(WeaponMaterial.CONSTANTAN, propModded));
-            this.platinum = register.register("platinum_" + weaponName, () -> factory.create(WeaponMaterial.PLATINUM, propModded));
-            this.aluminum = register.register("aluminum_" + weaponName, () -> factory.create(WeaponMaterial.ALUMINUM, propModded));
+            this.tin = register.register("tin_" + weaponName, () -> createClassified(factory, WeaponMaterial.TIN, propModded, weaponType));
+            this.bronze = register.register("bronze_" + weaponName, () -> createClassified(factory, WeaponMaterial.BRONZE, propModded, weaponType));
+            this.steel = register.register("steel_" + weaponName, () -> createClassified(factory, WeaponMaterial.STEEL, propModded, weaponType));
+            this.silver = register.register("silver_" + weaponName, () -> createClassified(factory, WeaponMaterial.SILVER, propModded, weaponType));
+            this.electrum = register.register("electrum_" + weaponName, () -> createClassified(factory, WeaponMaterial.ELECTRUM, propModded, weaponType));
+            this.lead = register.register("lead_" + weaponName, () -> createClassified(factory, WeaponMaterial.LEAD, propModded, weaponType));
+            this.nickel = register.register("nickel_" + weaponName, () -> createClassified(factory, WeaponMaterial.NICKEL, propModded, weaponType));
+            this.invar = register.register("invar_" + weaponName, () -> createClassified(factory, WeaponMaterial.INVAR, propModded, weaponType));
+            this.constantan = register.register("constantan_" + weaponName, () -> createClassified(factory, WeaponMaterial.CONSTANTAN, propModded, weaponType));
+            this.platinum = register.register("platinum_" + weaponName, () -> createClassified(factory, WeaponMaterial.PLATINUM, propModded, weaponType));
+            this.aluminum = register.register("aluminum_" + weaponName, () -> createClassified(factory, WeaponMaterial.ALUMINUM, propModded, weaponType));
         }
 		
 /*		public void updateSettingsFromConfig(float baseDamage, float damageMultiplier, double speed)
@@ -74,7 +80,7 @@ public class ModItems {
         public final DeferredHolder<Item, Item> wood, leather, copper, iron, gold, diamond, netherite;
         public final DeferredHolder<Item, Item> tin, bronze, steel, silver, electrum, lead, nickel, invar, constantan, platinum, aluminum;
 
-        public WeaponItemsRanged(DeferredRegister<Item> register, String weaponName, WeaponFunction<? extends Item> factory) {
+        public WeaponItemsRanged(DeferredRegister<Item> register, String weaponName, WeaponItemType weaponType, WeaponFunction<? extends Item> factory) {
             Item.Properties propVanilla = new Item.Properties();
             Item.Properties propModded = new Item.Properties();
             
@@ -82,25 +88,25 @@ public class ModItems {
             boolean isStrengthenedWeapon = weaponName.equals("longbow") || weaponName.equals("heavy_crossbow");
             String strengthenedSuffix = isStrengthenedWeapon ? "_strengthened" : "";
 
-            this.wood = register.register(weaponName + "_wooden" + strengthenedSuffix, () -> factory.create(WeaponMaterial.WOOD, propVanilla));
-            this.leather = register.register(weaponName + "_leather" + strengthenedSuffix, () -> factory.create(WeaponMaterial.LEATHER, propVanilla));
-            this.copper = register.register(weaponName + "_copper" + strengthenedSuffix, () -> factory.create(WeaponMaterial.COPPER, propVanilla));
-            this.iron = register.register(weaponName + "_iron" + strengthenedSuffix, () -> factory.create(WeaponMaterial.IRON, propVanilla));
-            this.gold = register.register(weaponName + "_golden" + strengthenedSuffix, () -> factory.create(WeaponMaterial.GOLD, propVanilla));
-            this.diamond = register.register(weaponName + "_diamond" + strengthenedSuffix, () -> factory.create(WeaponMaterial.DIAMOND, propVanilla));
-            this.netherite = register.register(weaponName + "_netherite" + strengthenedSuffix, () -> factory.create(WeaponMaterial.NETHERITE, new Item.Properties().fireResistant()));
+            this.wood = register.register(weaponName + "_wooden" + strengthenedSuffix, () -> SpartanWeaponryAPI.classifyWeapon(factory.create(WeaponMaterial.WOOD, propVanilla), weaponType, WeaponMaterial.WOOD));
+            this.leather = register.register(weaponName + "_leather" + strengthenedSuffix, () -> SpartanWeaponryAPI.classifyWeapon(factory.create(WeaponMaterial.LEATHER, propVanilla), weaponType, WeaponMaterial.LEATHER));
+            this.copper = register.register(weaponName + "_copper" + strengthenedSuffix, () -> SpartanWeaponryAPI.classifyWeapon(factory.create(WeaponMaterial.COPPER, propVanilla), weaponType, WeaponMaterial.COPPER));
+            this.iron = register.register(weaponName + "_iron" + strengthenedSuffix, () -> SpartanWeaponryAPI.classifyWeapon(factory.create(WeaponMaterial.IRON, propVanilla), weaponType, WeaponMaterial.IRON));
+            this.gold = register.register(weaponName + "_golden" + strengthenedSuffix, () -> SpartanWeaponryAPI.classifyWeapon(factory.create(WeaponMaterial.GOLD, propVanilla), weaponType, WeaponMaterial.GOLD));
+            this.diamond = register.register(weaponName + "_diamond" + strengthenedSuffix, () -> SpartanWeaponryAPI.classifyWeapon(factory.create(WeaponMaterial.DIAMOND, propVanilla), weaponType, WeaponMaterial.DIAMOND));
+            this.netherite = register.register(weaponName + "_netherite" + strengthenedSuffix, () -> SpartanWeaponryAPI.classifyWeapon(factory.create(WeaponMaterial.NETHERITE, new Item.Properties().fireResistant()), weaponType, WeaponMaterial.NETHERITE));
 
-            this.tin = register.register(weaponName + "_tin" + strengthenedSuffix, () -> factory.create(WeaponMaterial.TIN, propModded));
-            this.bronze = register.register(weaponName + "_bronze" + strengthenedSuffix, () -> factory.create(WeaponMaterial.BRONZE, propModded));
-            this.steel = register.register(weaponName + "_steel" + strengthenedSuffix, () -> factory.create(WeaponMaterial.STEEL, propModded));
-            this.silver = register.register(weaponName + "_silver" + strengthenedSuffix, () -> factory.create(WeaponMaterial.SILVER, propModded));
-            this.electrum = register.register(weaponName + "_electrum" + strengthenedSuffix, () -> factory.create(WeaponMaterial.ELECTRUM, propModded));
-            this.lead = register.register(weaponName + "_lead" + strengthenedSuffix, () -> factory.create(WeaponMaterial.LEAD, propModded));
-            this.nickel = register.register(weaponName + "_nickel" + strengthenedSuffix, () -> factory.create(WeaponMaterial.NICKEL, propModded));
-            this.invar = register.register(weaponName + "_invar" + strengthenedSuffix, () -> factory.create(WeaponMaterial.INVAR, propModded));
-            this.constantan = register.register(weaponName + "_constantan" + strengthenedSuffix, () -> factory.create(WeaponMaterial.CONSTANTAN, propModded));
-            this.platinum = register.register(weaponName + "_platinum" + strengthenedSuffix, () -> factory.create(WeaponMaterial.PLATINUM, propModded));
-            this.aluminum = register.register(weaponName + "_aluminum" + strengthenedSuffix, () -> factory.create(WeaponMaterial.ALUMINUM, propModded));
+            this.tin = register.register(weaponName + "_tin" + strengthenedSuffix, () -> SpartanWeaponryAPI.classifyWeapon(factory.create(WeaponMaterial.TIN, propModded), weaponType, WeaponMaterial.TIN));
+            this.bronze = register.register(weaponName + "_bronze" + strengthenedSuffix, () -> SpartanWeaponryAPI.classifyWeapon(factory.create(WeaponMaterial.BRONZE, propModded), weaponType, WeaponMaterial.BRONZE));
+            this.steel = register.register(weaponName + "_steel" + strengthenedSuffix, () -> SpartanWeaponryAPI.classifyWeapon(factory.create(WeaponMaterial.STEEL, propModded), weaponType, WeaponMaterial.STEEL));
+            this.silver = register.register(weaponName + "_silver" + strengthenedSuffix, () -> SpartanWeaponryAPI.classifyWeapon(factory.create(WeaponMaterial.SILVER, propModded), weaponType, WeaponMaterial.SILVER));
+            this.electrum = register.register(weaponName + "_electrum" + strengthenedSuffix, () -> SpartanWeaponryAPI.classifyWeapon(factory.create(WeaponMaterial.ELECTRUM, propModded), weaponType, WeaponMaterial.ELECTRUM));
+            this.lead = register.register(weaponName + "_lead" + strengthenedSuffix, () -> SpartanWeaponryAPI.classifyWeapon(factory.create(WeaponMaterial.LEAD, propModded), weaponType, WeaponMaterial.LEAD));
+            this.nickel = register.register(weaponName + "_nickel" + strengthenedSuffix, () -> SpartanWeaponryAPI.classifyWeapon(factory.create(WeaponMaterial.NICKEL, propModded), weaponType, WeaponMaterial.NICKEL));
+            this.invar = register.register(weaponName + "_invar" + strengthenedSuffix, () -> SpartanWeaponryAPI.classifyWeapon(factory.create(WeaponMaterial.INVAR, propModded), weaponType, WeaponMaterial.INVAR));
+            this.constantan = register.register(weaponName + "_constantan" + strengthenedSuffix, () -> SpartanWeaponryAPI.classifyWeapon(factory.create(WeaponMaterial.CONSTANTAN, propModded), weaponType, WeaponMaterial.CONSTANTAN));
+            this.platinum = register.register(weaponName + "_platinum" + strengthenedSuffix, () -> SpartanWeaponryAPI.classifyWeapon(factory.create(WeaponMaterial.PLATINUM, propModded), weaponType, WeaponMaterial.PLATINUM));
+            this.aluminum = register.register(weaponName + "_aluminum" + strengthenedSuffix, () -> SpartanWeaponryAPI.classifyWeapon(factory.create(WeaponMaterial.ALUMINUM, propModded), weaponType, WeaponMaterial.ALUMINUM));
         }
 
         public ImmutableList<ItemStack> getVanillaItemStacks() {
@@ -124,29 +130,29 @@ public class ModItems {
         public DeferredHolder<Item, ThrowingWeaponItem> wood, stone, copper, iron, gold, diamond, netherite;
         public DeferredHolder<Item, ThrowingWeaponItem> tin, bronze, steel, silver, electrum, lead, nickel, invar, constantan, platinum, aluminum;
 
-        public WeaponItemsThrowing(DeferredRegister<Item> register, String weaponName, WeaponFunction<ThrowingWeaponItem> factory) {
+        public WeaponItemsThrowing(DeferredRegister<Item> register, String weaponName, WeaponItemType weaponType, WeaponFunction<ThrowingWeaponItem> factory) {
             Item.Properties propVanilla = new Item.Properties();
             Item.Properties propModded = new Item.Properties();
 
-            this.wood = register.register(weaponName + "_wooden", () -> factory.create(WeaponMaterial.WOOD, propVanilla));
-            this.stone = register.register(weaponName + "_stone", () -> factory.create(WeaponMaterial.STONE, propVanilla));
-            this.copper = register.register(weaponName + "_copper", () -> factory.create(WeaponMaterial.COPPER, propVanilla));
-            this.iron = register.register(weaponName + "_iron", () -> factory.create(WeaponMaterial.IRON, propVanilla));
-            this.gold = register.register(weaponName + "_golden", () -> factory.create(WeaponMaterial.GOLD, propVanilla));
-            this.diamond = register.register(weaponName + "_diamond", () -> factory.create(WeaponMaterial.DIAMOND, propVanilla));
-            this.netherite = register.register(weaponName + "_netherite", () -> factory.create(WeaponMaterial.NETHERITE, new Item.Properties().fireResistant()));
+            this.wood = register.register(weaponName + "_wooden", () -> createClassified(factory, WeaponMaterial.WOOD, propVanilla, weaponType));
+            this.stone = register.register(weaponName + "_stone", () -> createClassified(factory, WeaponMaterial.STONE, propVanilla, weaponType));
+            this.copper = register.register(weaponName + "_copper", () -> createClassified(factory, WeaponMaterial.COPPER, propVanilla, weaponType));
+            this.iron = register.register(weaponName + "_iron", () -> createClassified(factory, WeaponMaterial.IRON, propVanilla, weaponType));
+            this.gold = register.register(weaponName + "_golden", () -> createClassified(factory, WeaponMaterial.GOLD, propVanilla, weaponType));
+            this.diamond = register.register(weaponName + "_diamond", () -> createClassified(factory, WeaponMaterial.DIAMOND, propVanilla, weaponType));
+            this.netherite = register.register(weaponName + "_netherite", () -> createClassified(factory, WeaponMaterial.NETHERITE, new Item.Properties().fireResistant(), weaponType));
 
-            this.tin = register.register(weaponName + "_tin", () -> factory.create(WeaponMaterial.TIN, propModded));
-            this.bronze = register.register(weaponName + "_bronze", () -> factory.create(WeaponMaterial.BRONZE, propModded));
-            this.steel = register.register(weaponName + "_steel", () -> factory.create(WeaponMaterial.STEEL, propModded));
-            this.silver = register.register(weaponName + "_silver", () -> factory.create(WeaponMaterial.SILVER, propModded));
-            this.electrum = register.register(weaponName + "_electrum", () -> factory.create(WeaponMaterial.ELECTRUM, propModded));
-            this.lead = register.register(weaponName + "_lead", () -> factory.create(WeaponMaterial.LEAD, propModded));
-            this.nickel = register.register(weaponName + "_nickel", () -> factory.create(WeaponMaterial.NICKEL, propModded));
-            this.invar = register.register(weaponName + "_invar", () -> factory.create(WeaponMaterial.INVAR, propModded));
-            this.constantan = register.register(weaponName + "_constantan", () -> factory.create(WeaponMaterial.CONSTANTAN, propModded));
-            this.platinum = register.register(weaponName + "_platinum", () -> factory.create(WeaponMaterial.PLATINUM, propModded));
-            this.aluminum = register.register(weaponName + "_aluminum", () -> factory.create(WeaponMaterial.ALUMINUM, propModded));
+            this.tin = register.register(weaponName + "_tin", () -> createClassified(factory, WeaponMaterial.TIN, propModded, weaponType));
+            this.bronze = register.register(weaponName + "_bronze", () -> createClassified(factory, WeaponMaterial.BRONZE, propModded, weaponType));
+            this.steel = register.register(weaponName + "_steel", () -> createClassified(factory, WeaponMaterial.STEEL, propModded, weaponType));
+            this.silver = register.register(weaponName + "_silver", () -> createClassified(factory, WeaponMaterial.SILVER, propModded, weaponType));
+            this.electrum = register.register(weaponName + "_electrum", () -> createClassified(factory, WeaponMaterial.ELECTRUM, propModded, weaponType));
+            this.lead = register.register(weaponName + "_lead", () -> createClassified(factory, WeaponMaterial.LEAD, propModded, weaponType));
+            this.nickel = register.register(weaponName + "_nickel", () -> createClassified(factory, WeaponMaterial.NICKEL, propModded, weaponType));
+            this.invar = register.register(weaponName + "_invar", () -> createClassified(factory, WeaponMaterial.INVAR, propModded, weaponType));
+            this.constantan = register.register(weaponName + "_constantan", () -> createClassified(factory, WeaponMaterial.CONSTANTAN, propModded, weaponType));
+            this.platinum = register.register(weaponName + "_platinum", () -> createClassified(factory, WeaponMaterial.PLATINUM, propModded, weaponType));
+            this.aluminum = register.register(weaponName + "_aluminum", () -> createClassified(factory, WeaponMaterial.ALUMINUM, propModded, weaponType));
         }
 		
 /*		public void updateSettingsFromConfig(float baseDamage, float damageMultiplier, double speed, int chargeTicks)
@@ -180,13 +186,13 @@ public class ModItems {
     public static final DeferredHolder<Item, Item> GREASE_BALL = REGISTRY.register("grease_ball", () -> new BasicItem(new Item.Properties()));
 
     // Weapons
-    public static final WeaponItemsMelee DAGGERS = new WeaponItemsMelee(REGISTRY, "dagger", WeaponFactory.DAGGER);
-    public static final WeaponItemsMelee PARRYING_DAGGERS = new WeaponItemsMelee(REGISTRY, "parrying_dagger", WeaponFactory.PARRYING_DAGGER);
-    public static final WeaponItemsMelee LONGSWORDS = new WeaponItemsMelee(REGISTRY, "longsword", WeaponFactory.LONGSWORD);
-    public static final WeaponItemsMelee KATANAS = new WeaponItemsMelee(REGISTRY, "katana", WeaponFactory.KATANA);
-    public static final WeaponItemsMelee SABERS = new WeaponItemsMelee(REGISTRY, "saber", WeaponFactory.SABER);
-    public static final WeaponItemsMelee RAPIERS = new WeaponItemsMelee(REGISTRY, "rapier", WeaponFactory.RAPIER);
-    public static final WeaponItemsMelee GREATSWORDS = new WeaponItemsMelee(REGISTRY, "greatsword", WeaponFactory.GREATSWORD);
+    public static final WeaponItemsMelee DAGGERS = new WeaponItemsMelee(REGISTRY, "dagger", WeaponItemType.DAGGER, WeaponFactory.DAGGER);
+    public static final WeaponItemsMelee PARRYING_DAGGERS = new WeaponItemsMelee(REGISTRY, "parrying_dagger", WeaponItemType.PARRYING_DAGGER, WeaponFactory.PARRYING_DAGGER);
+    public static final WeaponItemsMelee LONGSWORDS = new WeaponItemsMelee(REGISTRY, "longsword", WeaponItemType.LONGSWORD, WeaponFactory.LONGSWORD);
+    public static final WeaponItemsMelee KATANAS = new WeaponItemsMelee(REGISTRY, "katana", WeaponItemType.KATANA, WeaponFactory.KATANA);
+    public static final WeaponItemsMelee SABERS = new WeaponItemsMelee(REGISTRY, "saber", WeaponItemType.SABER, WeaponFactory.SABER);
+    public static final WeaponItemsMelee RAPIERS = new WeaponItemsMelee(REGISTRY, "rapier", WeaponItemType.RAPIER, WeaponFactory.RAPIER);
+    public static final WeaponItemsMelee GREATSWORDS = new WeaponItemsMelee(REGISTRY, "greatsword", WeaponItemType.GREATSWORD, WeaponFactory.GREATSWORD);
 
     public static final DeferredHolder<Item, SwordBaseItem> WOODEN_CLUB = REGISTRY.register("wooden_club", () -> new SwordBaseItem(new Item.Properties(), WeaponMaterial.WOOD, WeaponArchetype.CLUB, Defaults.DamageBaseClub, Defaults.DamageMultiplierClub, Defaults.SpeedClub));
     public static final DeferredHolder<Item, SwordBaseItem> STUDDED_CLUB = REGISTRY.register("studded_club", () -> new SwordBaseItem(new Item.Properties(), WeaponMaterial.IRON, WeaponArchetype.CLUB, Defaults.DamageBaseClub, Defaults.DamageMultiplierClub, Defaults.SpeedClub));
@@ -194,26 +200,26 @@ public class ModItems {
     public static final DeferredHolder<Item, SwordBaseItem> CESTUS = REGISTRY.register("cestus", () -> new SwordBaseItem(new Item.Properties(), WeaponMaterial.LEATHER, WeaponArchetype.CESTUS, Defaults.DamageBaseCestus, Defaults.DamageMultiplierCestus, Defaults.SpeedCestus));
     public static final DeferredHolder<Item, SwordBaseItem> STUDDED_CESTUS = REGISTRY.register("studded_cestus", () -> new SwordBaseItem(new Item.Properties(), WeaponMaterial.IRON, WeaponArchetype.CESTUS, Defaults.DamageBaseCestus, Defaults.DamageMultiplierCestus, Defaults.SpeedCestus));
 
-    public static final WeaponItemsMelee BATTLE_HAMMERS = new WeaponItemsMelee(REGISTRY, "battle_hammer", WeaponFactory.BATTLE_HAMMER);
-    public static final WeaponItemsMelee WARHAMMERS = new WeaponItemsMelee(REGISTRY, "warhammer", WeaponFactory.WARHAMMER);
-    public static final WeaponItemsMelee SPEARS = new WeaponItemsMelee(REGISTRY, "spear", WeaponFactory.SPEAR);
-    public static final WeaponItemsMelee HALBERDS = new WeaponItemsMelee(REGISTRY, "halberd", WeaponFactory.HALBERD);
-    public static final WeaponItemsMelee PIKES = new WeaponItemsMelee(REGISTRY, "pike", WeaponFactory.PIKE);
-    public static final WeaponItemsMelee LANCES = new WeaponItemsMelee(REGISTRY, "lance", WeaponFactory.LANCE);
+    public static final WeaponItemsMelee BATTLE_HAMMERS = new WeaponItemsMelee(REGISTRY, "battle_hammer", WeaponItemType.BATTLE_HAMMER, WeaponFactory.BATTLE_HAMMER);
+    public static final WeaponItemsMelee WARHAMMERS = new WeaponItemsMelee(REGISTRY, "warhammer", WeaponItemType.WARHAMMER, WeaponFactory.WARHAMMER);
+    public static final WeaponItemsMelee SPEARS = new WeaponItemsMelee(REGISTRY, "spear", WeaponItemType.SPEAR, WeaponFactory.SPEAR);
+    public static final WeaponItemsMelee HALBERDS = new WeaponItemsMelee(REGISTRY, "halberd", WeaponItemType.HALBERD, WeaponFactory.HALBERD);
+    public static final WeaponItemsMelee PIKES = new WeaponItemsMelee(REGISTRY, "pike", WeaponItemType.PIKE, WeaponFactory.PIKE);
+    public static final WeaponItemsMelee LANCES = new WeaponItemsMelee(REGISTRY, "lance", WeaponItemType.LANCE, WeaponFactory.LANCE);
 
-    public static final WeaponItemsRanged LONGBOWS = new WeaponItemsRanged(REGISTRY, "longbow", WeaponFactory.LONGBOW);
-    public static final WeaponItemsRanged HEAVY_CROSSBOWS = new WeaponItemsRanged(REGISTRY, "heavy_crossbow", WeaponFactory.HEAVY_CROSSBOW);
+    public static final WeaponItemsRanged LONGBOWS = new WeaponItemsRanged(REGISTRY, "longbow", WeaponItemType.LONGBOW, WeaponFactory.LONGBOW);
+    public static final WeaponItemsRanged HEAVY_CROSSBOWS = new WeaponItemsRanged(REGISTRY, "heavy_crossbow", WeaponItemType.HEAVY_CROSSBOW, WeaponFactory.HEAVY_CROSSBOW);
 
-    public static final WeaponItemsThrowing THROWING_KNIVES = new WeaponItemsThrowing(REGISTRY, "throwing_knife", WeaponFactory.THROWING_KNIFE);
-    public static final WeaponItemsThrowing TOMAHAWKS = new WeaponItemsThrowing(REGISTRY, "tomahawk", WeaponFactory.TOMAHAWK);
-    public static final WeaponItemsThrowing JAVELINS = new WeaponItemsThrowing(REGISTRY, "javelin", WeaponFactory.JAVELIN);
-    public static final WeaponItemsThrowing BOOMERANGS = new WeaponItemsThrowing(REGISTRY, "boomerang", WeaponFactory.BOOMERANG);
+    public static final WeaponItemsThrowing THROWING_KNIVES = new WeaponItemsThrowing(REGISTRY, "throwing_knife", WeaponItemType.THROWING_KNIFE, WeaponFactory.THROWING_KNIFE);
+    public static final WeaponItemsThrowing TOMAHAWKS = new WeaponItemsThrowing(REGISTRY, "tomahawk", WeaponItemType.TOMAHAWK, WeaponFactory.TOMAHAWK);
+    public static final WeaponItemsThrowing JAVELINS = new WeaponItemsThrowing(REGISTRY, "javelin", WeaponItemType.JAVELIN, WeaponFactory.JAVELIN);
+    public static final WeaponItemsThrowing BOOMERANGS = new WeaponItemsThrowing(REGISTRY, "boomerang", WeaponItemType.BOOMERANG, WeaponFactory.BOOMERANG);
 
-    public static final WeaponItemsMelee BATTLEAXES = new WeaponItemsMelee(REGISTRY, "battleaxe", WeaponFactory.BATTLEAXE);
-    public static final WeaponItemsMelee FLANGED_MACES = new WeaponItemsMelee(REGISTRY, "flanged_mace", WeaponFactory.FLANGED_MACE);
-    public static final WeaponItemsMelee GLAIVES = new WeaponItemsMelee(REGISTRY, "glaive", WeaponFactory.GLAIVE);
-    public static final WeaponItemsMelee QUARTERSTAVES = new WeaponItemsMelee(REGISTRY, "quarterstaff", WeaponFactory.QUARTERSTAFF);
-    public static final WeaponItemsMelee SCYTHES = new WeaponItemsMelee(REGISTRY, "scythe", WeaponFactory.SCYTHE);
+    public static final WeaponItemsMelee BATTLEAXES = new WeaponItemsMelee(REGISTRY, "battleaxe", WeaponItemType.BATTLEAXE, WeaponFactory.BATTLEAXE);
+    public static final WeaponItemsMelee FLANGED_MACES = new WeaponItemsMelee(REGISTRY, "flanged_mace", WeaponItemType.FLANGED_MACE, WeaponFactory.FLANGED_MACE);
+    public static final WeaponItemsMelee GLAIVES = new WeaponItemsMelee(REGISTRY, "glaive", WeaponItemType.GLAIVE, WeaponFactory.GLAIVE);
+    public static final WeaponItemsMelee QUARTERSTAVES = new WeaponItemsMelee(REGISTRY, "quarterstaff", WeaponItemType.QUARTERSTAFF, WeaponFactory.QUARTERSTAFF);
+    public static final WeaponItemsMelee SCYTHES = new WeaponItemsMelee(REGISTRY, "scythe", WeaponItemType.SCYTHE, WeaponFactory.SCYTHE);
 
     // Arrows
     public static final DeferredHolder<Item, ArrowBaseItem> WOODEN_ARROW = REGISTRY.register("wooden_arrow", () -> new ArrowBaseItem(Defaults.BaseDamageArrowWood, Defaults.RangeMultiplierArrowWood));

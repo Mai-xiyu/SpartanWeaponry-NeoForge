@@ -7,7 +7,7 @@ import net.minecraft.client.renderer.block.model.ItemModelGenerator;
 import net.minecraft.client.renderer.texture.SpriteContents;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.Material;
-import net.neoforged.neoforge.client.model.ItemLayerModel;
+import net.neoforged.neoforge.client.ClientHooks;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -22,9 +22,8 @@ import java.util.Map;
 import java.util.function.Function;
 
 /**
- * The entire purpose for this Mixin is to fix a bug in how Forge loads its custom loaded models which causes any non-standard named textures to be filtered out.<br>
- * It's likely a bug or oversight because it also removes any textures named "layer5" and beyond, which Forge's {@link ItemLayerModel} removes said limitations.<br>
- * This is only intended to fix the coating layer working with Weapon Oils so nothing else will work with this.
+ * Keeps the non-standard "coating" texture available for the weapon oil custom model loader while preserving
+ * vanilla's generated item layer handling for "layer0" through "layer4".
  *
  * @author ObliviousSpartan
  */
@@ -39,13 +38,11 @@ public class ItemModelGeneratorMixin {
 
             for (int i = 0; i < ItemModelGenerator.LAYERS.size(); i++) {
                 String value = ItemModelGenerator.LAYERS.get(i);
-                if (baseModel.hasTexture(value))
+                if (!baseModel.hasTexture(value))
                     break;
                 Material material = baseModel.getMaterial(value);
-                SpriteContents sprite = spriteGetter.apply(material).contents();
-                if (!value.equals("coating")) {
-                    blockElements.addAll(this.processFrames(i, value, sprite));
-                }
+                TextureAtlasSprite sprite = spriteGetter.apply(material);
+                blockElements.addAll(ClientHooks.fixItemModelSeams(this.processFrames(i, value, sprite.contents()), sprite));
             }
 
             Map<String, Either<Material, String>> textureMap = new HashMap<>(baseModel.textureMap);

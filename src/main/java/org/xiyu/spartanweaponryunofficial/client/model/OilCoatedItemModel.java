@@ -39,6 +39,8 @@ import java.util.function.Function;
  * @author ObliviousSpartan
  */
 public class OilCoatedItemModel implements IUnbakedGeometry<OilCoatedItemModel> {
+    public static final int COATING_TINT_INDEX = 1;
+
     protected ImmutableList<Material> textures;
     protected Material coatingTexture;
     protected final Int2ObjectMap<ExtraFaceData> faceData;
@@ -94,7 +96,7 @@ public class OilCoatedItemModel implements IUnbakedGeometry<OilCoatedItemModel> 
 
         // Bake the coating quads
         if (this.coatingTexture != null) {
-            final int coatingLayer = 100;
+            final int coatingLayer = COATING_TINT_INDEX;
             TextureAtlasSprite sprite = spriteGetter.apply(this.coatingTexture);
             List<BlockElement> unbakedElements = UnbakedGeometryHelper.createUnbakedItemElements(coatingLayer, sprite, this.faceData.get(coatingLayer));
             List<BakedQuad> bakedQuads = UnbakedGeometryHelper.bakeElements(unbakedElements, mat -> sprite, modelState);

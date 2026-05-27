@@ -1,17 +1,27 @@
 package org.xiyu.spartanweaponryunofficial.api;
 
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import org.xiyu.spartanweaponryunofficial.api.tags.ModItemTags;
 import org.xiyu.spartanweaponryunofficial.util.Log;
 import org.xiyu.spartanweaponryunofficial.util.WeaponType;
 
+import java.util.Collections;
+import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
+import java.util.WeakHashMap;
+import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 
 public class SpartanWeaponryAPI {
-    public static final int API_VERSION = 13;
+    public static final int API_VERSION = 14;
     public static final String MOD_ID = "spartan_weaponry_unofficial";
 
     private static IInternalMethodHandler internalHandler = null;
+    private static final Map<Item, WeaponClassification> weaponClassifications = Collections.synchronizedMap(new WeakHashMap<>());
 
     /**
      * Addon-facing weapon descriptors for the built-in Spartan Weaponry weapon factories.
@@ -20,37 +30,39 @@ public class SpartanWeaponryAPI {
      * methods. They do not register items and they do not replace the existing methods.
      */
     public enum WeaponItemType {
-        DAGGER("dagger", WeaponType.MELEE, IInternalMethodHandler::addDagger),
-        PARRYING_DAGGER("parrying_dagger", WeaponType.MELEE, IInternalMethodHandler::addParryingDagger),
-        LONGSWORD("longsword", WeaponType.MELEE, IInternalMethodHandler::addLongsword),
-        KATANA("katana", WeaponType.MELEE, IInternalMethodHandler::addKatana),
-        SABER("saber", WeaponType.MELEE, IInternalMethodHandler::addSaber),
-        RAPIER("rapier", WeaponType.MELEE, IInternalMethodHandler::addRapier),
-        GREATSWORD("greatsword", WeaponType.MELEE, IInternalMethodHandler::addGreatsword),
-        BATTLE_HAMMER("battle_hammer", WeaponType.MELEE, IInternalMethodHandler::addBattleHammer),
-        WARHAMMER("warhammer", WeaponType.MELEE, IInternalMethodHandler::addWarhammer),
-        SPEAR("spear", WeaponType.MELEE, IInternalMethodHandler::addSpear),
-        HALBERD("halberd", WeaponType.MELEE, IInternalMethodHandler::addHalberd),
-        PIKE("pike", WeaponType.MELEE, IInternalMethodHandler::addPike),
-        LANCE("lance", WeaponType.MELEE, IInternalMethodHandler::addLance),
-        LONGBOW("longbow", WeaponType.RANGED, IInternalMethodHandler::addLongbow),
-        HEAVY_CROSSBOW("heavy_crossbow", WeaponType.RANGED, IInternalMethodHandler::addHeavyCrossbow),
-        THROWING_KNIFE("throwing_knife", WeaponType.THROWING, IInternalMethodHandler::addThrowingKnife),
-        TOMAHAWK("tomahawk", WeaponType.THROWING, IInternalMethodHandler::addTomahawk),
-        JAVELIN("javelin", WeaponType.THROWING, IInternalMethodHandler::addJavelin),
-        BOOMERANG("boomerang", WeaponType.THROWING, IInternalMethodHandler::addBoomerang),
-        BATTLEAXE("battleaxe", WeaponType.MELEE, IInternalMethodHandler::addBattleaxe),
-        FLANGED_MACE("flanged_mace", WeaponType.MELEE, IInternalMethodHandler::addFlangedMace),
-        GLAIVE("glaive", WeaponType.MELEE, IInternalMethodHandler::addGlaive),
-        QUARTERSTAFF("quarterstaff", WeaponType.MELEE, IInternalMethodHandler::addQuarterstaff),
-        SCYTHE("scythe", WeaponType.MELEE, IInternalMethodHandler::addScythe);
+        DAGGER("dagger", "daggers", WeaponType.MELEE, IInternalMethodHandler::addDagger),
+        PARRYING_DAGGER("parrying_dagger", "parrying_daggers", WeaponType.MELEE, IInternalMethodHandler::addParryingDagger),
+        LONGSWORD("longsword", "longswords", WeaponType.MELEE, IInternalMethodHandler::addLongsword),
+        KATANA("katana", "katanas", WeaponType.MELEE, IInternalMethodHandler::addKatana),
+        SABER("saber", "sabers", WeaponType.MELEE, IInternalMethodHandler::addSaber),
+        RAPIER("rapier", "rapiers", WeaponType.MELEE, IInternalMethodHandler::addRapier),
+        GREATSWORD("greatsword", "greatswords", WeaponType.MELEE, IInternalMethodHandler::addGreatsword),
+        BATTLE_HAMMER("battle_hammer", "battle_hammers", WeaponType.MELEE, IInternalMethodHandler::addBattleHammer),
+        WARHAMMER("warhammer", "warhammers", WeaponType.MELEE, IInternalMethodHandler::addWarhammer),
+        SPEAR("spear", "spears", WeaponType.MELEE, IInternalMethodHandler::addSpear),
+        HALBERD("halberd", "halberds", WeaponType.MELEE, IInternalMethodHandler::addHalberd),
+        PIKE("pike", "pikes", WeaponType.MELEE, IInternalMethodHandler::addPike),
+        LANCE("lance", "lances", WeaponType.MELEE, IInternalMethodHandler::addLance),
+        LONGBOW("longbow", "longbows", WeaponType.RANGED, IInternalMethodHandler::addLongbow),
+        HEAVY_CROSSBOW("heavy_crossbow", "heavy_crossbows", WeaponType.RANGED, IInternalMethodHandler::addHeavyCrossbow),
+        THROWING_KNIFE("throwing_knife", "throwing_knives", WeaponType.THROWING, IInternalMethodHandler::addThrowingKnife),
+        TOMAHAWK("tomahawk", "tomahawks", WeaponType.THROWING, IInternalMethodHandler::addTomahawk),
+        JAVELIN("javelin", "javelins", WeaponType.THROWING, IInternalMethodHandler::addJavelin),
+        BOOMERANG("boomerang", "boomerangs", WeaponType.THROWING, IInternalMethodHandler::addBoomerang),
+        BATTLEAXE("battleaxe", "battleaxes", WeaponType.MELEE, IInternalMethodHandler::addBattleaxe),
+        FLANGED_MACE("flanged_mace", "flanged_maces", WeaponType.MELEE, IInternalMethodHandler::addFlangedMace),
+        GLAIVE("glaive", "glaives", WeaponType.MELEE, IInternalMethodHandler::addGlaive),
+        QUARTERSTAFF("quarterstaff", "quarterstaves", WeaponType.MELEE, IInternalMethodHandler::addQuarterstaff),
+        SCYTHE("scythe", "scythes", WeaponType.MELEE, IInternalMethodHandler::addScythe);
 
         private final String serializedName;
+        private final String pluralName;
         private final WeaponType weaponType;
         private final BiFunction<IInternalMethodHandler, WeaponMaterial, Item> factory;
 
-        WeaponItemType(String serializedName, WeaponType weaponType, BiFunction<IInternalMethodHandler, WeaponMaterial, Item> factory) {
+        WeaponItemType(String serializedName, String pluralName, WeaponType weaponType, BiFunction<IInternalMethodHandler, WeaponMaterial, Item> factory) {
             this.serializedName = serializedName;
+            this.pluralName = pluralName;
             this.weaponType = weaponType;
             this.factory = factory;
         }
@@ -61,6 +73,21 @@ public class SpartanWeaponryAPI {
          */
         public String getSerializedName() {
             return this.serializedName;
+        }
+
+        /**
+         * Returns the plural id segment used for grouped weapon item tags, for example
+         * {@code longswords}, {@code heavy_crossbows}, or {@code throwing_knives}.
+         */
+        public String getPluralName() {
+            return this.pluralName;
+        }
+
+        /**
+         * Returns the item tag path used for this weapon type under the Spartan Weaponry namespace.
+         */
+        public String getTagPath() {
+            return "weapons/" + this.pluralName;
         }
 
         /**
@@ -101,7 +128,104 @@ public class SpartanWeaponryAPI {
      * @return The newly created weapon
      */
     public static Item createWeapon(WeaponItemType weaponType, WeaponMaterial material) {
-        return Objects.requireNonNull(weaponType, "weaponType").create(requireInternalHandler(), material);
+        WeaponItemType type = Objects.requireNonNull(weaponType, "weaponType");
+        WeaponMaterial weaponMaterial = Objects.requireNonNull(material, "material");
+        return classifyWeapon(type.create(requireInternalHandler(), weaponMaterial), type, weaponMaterial);
+    }
+
+    /**
+     * Records weapon classification metadata on an item and returns the same item.
+     * <p>
+     * This is called automatically by {@link #createWeapon(WeaponItemType, WeaponMaterial)}
+     * and the legacy {@code createXxx(WeaponMaterial)} methods. Addons that create compatible
+     * items without these factories can call this method to opt into classification queries and
+     * data-generation tag helpers.
+     *
+     * @param item       The item to classify
+     * @param weaponType The weapon type represented by the item
+     * @param material   The material represented by the item
+     * @return The same item instance, for convenient use in registration lambdas
+     */
+    public static <T extends Item> T classifyWeapon(T item, WeaponItemType weaponType, WeaponMaterial material) {
+        T weapon = Objects.requireNonNull(item, "item");
+        weaponClassifications.put(weapon, new WeaponClassification(weaponType, material));
+        return weapon;
+    }
+
+    /**
+     * Returns classification metadata for an item if it was created or classified through this API.
+     */
+    public static Optional<WeaponClassification> getWeaponClassification(Item item) {
+        return Optional.ofNullable(weaponClassifications.get(Objects.requireNonNull(item, "item")));
+    }
+
+    /**
+     * Returns classification metadata for a registered item id if it was created or classified through this API.
+     */
+    public static Optional<WeaponClassification> getWeaponClassification(ResourceLocation itemId) {
+        Item item = BuiltInRegistries.ITEM.get(Objects.requireNonNull(itemId, "itemId"));
+        return item != null && itemId.equals(BuiltInRegistries.ITEM.getKey(item)) ? getWeaponClassification(item) : Optional.empty();
+    }
+
+    /**
+     * Returns a snapshot of the item classifications known to the API.
+     */
+    public static Map<Item, WeaponClassification> getKnownWeaponClassifications() {
+        synchronized (weaponClassifications) {
+            return Map.copyOf(weaponClassifications);
+        }
+    }
+
+    /**
+     * Emits standard item tag assignments for every classified weapon.
+     * <p>
+     * This is intended for data providers. A typical provider can call
+     * {@code SpartanWeaponryAPI.forEachKnownWeaponTag((tag, item) -> this.tag(tag).add(item));}.
+     */
+    public static void forEachKnownWeaponTag(BiConsumer<TagKey<Item>, Item> consumer) {
+        getKnownWeaponClassifications().forEach((item, classification) -> emitWeaponTags(item, classification, consumer));
+    }
+
+    /**
+     * Emits standard item tag assignments only for classified weapons whose registered id uses the given namespace.
+     */
+    public static void forEachKnownWeaponTag(String namespace, BiConsumer<TagKey<Item>, Item> consumer) {
+        Objects.requireNonNull(namespace, "namespace");
+        getKnownWeaponClassifications().forEach((item, classification) -> {
+            ResourceLocation itemId = BuiltInRegistries.ITEM.getKey(item);
+            if (namespace.equals(itemId.getNamespace())) {
+                emitWeaponTags(item, classification, consumer);
+            }
+        });
+    }
+
+    public static TagKey<Item> getWeaponTag(WeaponItemType weaponType) {
+        return ModItemTags.weaponType(weaponType);
+    }
+
+    public static TagKey<Item> getMaterialTag(WeaponMaterial material) {
+        return ModItemTags.material(Objects.requireNonNull(material, "material"));
+    }
+
+    public static TagKey<Item> getMaterialTag(String materialName) {
+        return ModItemTags.material(materialName);
+    }
+
+    public static TagKey<Item> getNamespaceTag(String namespace) {
+        return ModItemTags.namespace(namespace);
+    }
+
+    public static TagKey<Item> getNamespaceTag(Item item) {
+        ResourceLocation itemId = BuiltInRegistries.ITEM.getKey(Objects.requireNonNull(item, "item"));
+        return getNamespaceTag(itemId.getNamespace());
+    }
+
+    private static void emitWeaponTags(Item item, WeaponClassification classification, BiConsumer<TagKey<Item>, Item> consumer) {
+        Objects.requireNonNull(consumer, "consumer");
+        consumer.accept(ModItemTags.WEAPONS, item);
+        consumer.accept(classification.weaponTag(), item);
+        consumer.accept(classification.materialTag(), item);
+        consumer.accept(getNamespaceTag(item), item);
     }
 
     //---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----

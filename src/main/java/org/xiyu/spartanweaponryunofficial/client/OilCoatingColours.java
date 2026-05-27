@@ -7,16 +7,24 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.fml.loading.FMLEnvironment;
 import org.xiyu.spartanweaponryunofficial.api.tags.ModItemTags;
 import org.xiyu.spartanweaponryunofficial.capability.IOilHandler;
+import org.xiyu.spartanweaponryunofficial.client.model.OilCoatedItemModel;
 import org.xiyu.spartanweaponryunofficial.init.ModCapabilities;
+import org.xiyu.spartanweaponryunofficial.util.WeaponOilConfig;
 
 public class OilCoatingColours {
+    private static final int COATING_TINT_ALPHA = 0x88000000;
+    private static final int RGB_MASK = 0x00FFFFFF;
+    private static final int TRANSPARENT_WHITE = 0x00FFFFFF;
+
     public static final ItemColor OIL_COATED_WEAPON = (stack, idx) ->
     {
-        if (idx != 100) return 0xFFFFFFFF;
+        if (idx != OilCoatedItemModel.COATING_TINT_INDEX) return 0xFFFFFFFF;
+        if (!WeaponOilConfig.isEnabled()) return TRANSPARENT_WHITE;
+
         IOilHandler oilHandler = stack.getCapability(ModCapabilities.OIL_CAPABILITY);
-        if (oilHandler != null && oilHandler.getEffect().isPresent())
-            return oilHandler.isOiled() ? oilHandler.getEffect().get().getColor(stack) : 0x00000000;
-        return 0;
+        if (oilHandler == null || !oilHandler.isOiled() || oilHandler.getEffect().isEmpty()) return TRANSPARENT_WHITE;
+
+        return COATING_TINT_ALPHA | (oilHandler.getEffect().get().getColor(stack) & RGB_MASK);
     };
 
     @SuppressWarnings("deprecation")

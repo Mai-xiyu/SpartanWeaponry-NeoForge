@@ -3,6 +3,7 @@ package org.xiyu.spartanweaponryunofficial.init;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.capabilities.ItemCapability;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import org.xiyu.spartanweaponryunofficial.ModSpartanWeaponry;
@@ -17,11 +18,7 @@ public class ModCapabilities {
     public static final ItemCapability<IQuiverItemHandler, Void> QUIVER_ITEM_CAPABILITY = ItemCapability.createVoid(ResourceLocation.fromNamespaceAndPath(ModSpartanWeaponry.ID, "quiver_item"), IQuiverItemHandler.class);
 
     public static void registerCapabilities(RegisterCapabilitiesEvent ev) {
-        List<Item> oilableItems = BuiltInRegistries.ITEM.stream()
-                .filter(item -> BuiltInRegistries.ITEM.getHolder(BuiltInRegistries.ITEM.getKey(item)).map(x -> x.is(ModItemTags.OILABLE_WEAPONS)).orElse(false))
-                .toList();
-        if (!oilableItems.isEmpty())
-            ev.registerItem(OIL_CAPABILITY, (stack, context) -> new OilHandler(stack), oilableItems.toArray(Item[]::new));
+        ev.registerItem(OIL_CAPABILITY, (stack, context) -> createOilHandler(stack), BuiltInRegistries.ITEM.stream().toArray(Item[]::new));
 
         List<Item> quiverItems = BuiltInRegistries.ITEM.stream().filter(item -> item instanceof QuiverBaseItem).toList();
         if (!quiverItems.isEmpty()) {
@@ -29,5 +26,9 @@ public class ModCapabilities {
 
             if (CuriosHelper.LOADED) CuriosHelper.Common.registerCapabilities(ev, quiverItems);
         }
+    }
+
+    private static IOilHandler createOilHandler(ItemStack stack) {
+        return stack.is(ModItemTags.OILABLE_WEAPONS) ? new OilHandler(stack) : null;
     }
 }

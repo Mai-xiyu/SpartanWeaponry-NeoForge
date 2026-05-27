@@ -9,20 +9,20 @@ import net.minecraft.world.item.alchemy.PotionContents;
 import net.neoforged.neoforge.common.brewing.IBrewingRecipe;
 import org.jetbrains.annotations.NotNull;
 import org.xiyu.spartanweaponryunofficial.init.ModItems;
-import org.xiyu.spartanweaponryunofficial.util.Config;
 import org.xiyu.spartanweaponryunofficial.util.OilHelper;
+import org.xiyu.spartanweaponryunofficial.util.WeaponOilConfig;
 
 public class PotionToOilBrewingRecipe implements IBrewingRecipe {
     @Override
     public boolean isInput(ItemStack input) {
         Potion inputPotion = input.getOrDefault(DataComponents.POTION_CONTENTS, PotionContents.EMPTY)
                 .potion().map(Holder::value).orElse(null);
-        return inputPotion != null && !Config.INSTANCE.disableOilRecipes.get() && input.is(Items.POTION) && OilHelper.isValidPotion(inputPotion);
+        return inputPotion != null && WeaponOilConfig.areRecipesEnabled() && input.is(Items.POTION) && OilHelper.isValidPotion(inputPotion);
     }
 
     @Override
     public boolean isIngredient(@NotNull ItemStack ingredient) {
-        return !Config.INSTANCE.disableOilRecipes.get() && ingredient.is(ModItems.GREASE_BALL.get());
+        return WeaponOilConfig.areRecipesEnabled() && ingredient.is(ModItems.GREASE_BALL.get());
     }
 
     @Override

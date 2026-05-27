@@ -5,6 +5,9 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import org.xiyu.spartanweaponryunofficial.api.SpartanWeaponryAPI;
+import org.xiyu.spartanweaponryunofficial.api.WeaponMaterial;
+
+import java.util.Objects;
 
 /**
  * This class contains all the different item tags used by Spartan Weaponry.
@@ -13,9 +16,52 @@ import org.xiyu.spartanweaponryunofficial.api.SpartanWeaponryAPI;
  * @author ObliviousSpartan
  */
 public class ModItemTags {
+    private static TagKey<Item> spartan(String path) {
+        return ItemTags.create(ResourceLocation.fromNamespaceAndPath(SpartanWeaponryAPI.MOD_ID, path));
+    }
+
+    /**
+     * Returns the canonical grouped weapon tag for an API weapon type.
+     */
+    public static TagKey<Item> weaponType(SpartanWeaponryAPI.WeaponItemType weaponType) {
+        return spartan(Objects.requireNonNull(weaponType, "weaponType").getTagPath());
+    }
+
+    /**
+     * Returns a grouped weapon tag under {@code weapons/}. The path should be plural,
+     * for example {@code longswords}, {@code spears}, or {@code throwing_knives}.
+     */
+    public static TagKey<Item> weaponType(String pluralPath) {
+        return spartan("weapons/" + Objects.requireNonNull(pluralPath, "pluralPath"));
+    }
+
+    /**
+     * Returns the canonical grouped material tag for weapons made from the material.
+     */
+    public static TagKey<Item> material(WeaponMaterial material) {
+        return material(Objects.requireNonNull(material, "material").getMaterialName());
+    }
+
+    /**
+     * Returns a grouped weapon material tag under {@code materials/}.
+     */
+    public static TagKey<Item> material(String materialName) {
+        return spartan("materials/" + Objects.requireNonNull(materialName, "materialName"));
+    }
+
+    /**
+     * Returns the grouped weapon source tag for a registry namespace.
+     */
+    public static TagKey<Item> namespace(String namespace) {
+        return spartan("mods/" + Objects.requireNonNull(namespace, "namespace"));
+    }
+
     // Handles and Poles
     public static final TagKey<Item> HANDLES = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":handles"));
     public static final TagKey<Item> POLES = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":poles"));
+
+    // Grouped tags for datapack and modpack integration. Legacy flat tags below remain supported.
+    public static final TagKey<Item> WEAPONS = spartan("weapons");
 
     // Tags for all weapons of a specified type
     public static final TagKey<Item> DAGGERS = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":dagger"));
