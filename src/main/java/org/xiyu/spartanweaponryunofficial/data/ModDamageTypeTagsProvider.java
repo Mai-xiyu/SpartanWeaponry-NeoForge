@@ -5,6 +5,7 @@ import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.DamageTypeTagsProvider;
 import net.minecraft.tags.DamageTypeTags;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -21,7 +22,32 @@ public class ModDamageTypeTagsProvider extends DamageTypeTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.@NotNull Provider registry) {
-        this.tag(DamageTypeTags.IS_PROJECTILE).add(ModDamageTypes.KEY_THROWN_WEAPON_PLAYER, ModDamageTypes.KEY_THROWN_WEAPON_MOB, ModDamageTypes.KEY_ARMOR_PIERCING_BOLT);
-        this.tag(ModDamageTypeTags.IS_ARMOR_PIERCING).add(ModDamageTypes.KEY_ARMOR_PIERCING_MELEE, ModDamageTypes.KEY_ARMOR_PIERCING_BOLT);
+        this.tag(DamageTypeTags.IS_PROJECTILE).add(
+                ModDamageTypes.KEY_THROWN_WEAPON_PLAYER,
+                ModDamageTypes.KEY_THROWN_WEAPON_MOB,
+                ModDamageTypes.KEY_ARMOR_PIERCING_BOLT
+        );
+        this.tag(DamageTypeTags.ALWAYS_KILLS_ARMOR_STANDS).add(
+                ModDamageTypes.KEY_THROWN_WEAPON_PLAYER,
+                ModDamageTypes.KEY_THROWN_WEAPON_MOB,
+                ModDamageTypes.KEY_ARMOR_PIERCING_BOLT
+        );
+        this.tag(DamageTypeTags.IS_PLAYER_ATTACK).add(ModDamageTypes.KEY_ARMOR_PIERCING_MELEE);
+        this.tag(DamageTypeTags.PANIC_CAUSES).add(
+                ModDamageTypes.KEY_THROWN_WEAPON_PLAYER,
+                ModDamageTypes.KEY_THROWN_WEAPON_MOB,
+                ModDamageTypes.KEY_ARMOR_PIERCING_MELEE,
+                ModDamageTypes.KEY_ARMOR_PIERCING_BOLT
+        );
+        this.tag(Tags.DamageTypes.IS_PHYSICAL).add(
+                ModDamageTypes.KEY_THROWN_WEAPON_PLAYER,
+                ModDamageTypes.KEY_THROWN_WEAPON_MOB,
+                ModDamageTypes.KEY_ARMOR_PIERCING_MELEE,
+                ModDamageTypes.KEY_ARMOR_PIERCING_BOLT
+        );
+        this.tag(ModDamageTypeTags.IS_ARMOR_PIERCING).add(
+                ModDamageTypes.KEY_ARMOR_PIERCING_MELEE,
+                ModDamageTypes.KEY_ARMOR_PIERCING_BOLT
+        );
     }
 }
