@@ -21,6 +21,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.Item;
@@ -561,6 +562,9 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
                     canBePickedUp = true;
                     break;
                 }
+                if (!canBePickedUp) {
+                    canBePickedUp = this.tryMergeWithDroppedOriginal(player, pickUpStack);
+                }
             }
 
             if (canBePickedUp) {
@@ -569,6 +573,50 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
             }
 
             return canBePickedUp;
+        }
+        return false;
+    }
+
+    private boolean tryMergeWithDroppedOriginal(Player player, ItemStack pickupStack) {
+        Level level = this.level();
+        for (ItemEntity itemEntity :
+                level.getEntitiesOfClass(
+                        ItemEntity.class,
+                        player.getBoundingBox().inflate(4.0D),
+                        itemEntity -> !itemEntity.isRemoved())) {
+            ItemStack originalStack = itemEntity.getItem();
+            if (!canMergeWithThrownWeapon(originalStack, pickupStack)) continue;
+
+            CompoundTag originalTag = ItemStackDataHelper.getTag(originalStack);
+            if (!originalTag.getBoolean(ThrowingWeaponItem.NBT_ORIGINAL)) continue;
+
+            int maxAmmo =
+                    ((ThrowingWeaponItem) originalStack.getItem()).getMaxAmmo(originalStack, level);
+            int currentAmmo =
+                    maxAmmo
+                            - ItemStackDataHelper.getTag(originalStack)
+                                    .getInt(ThrowingWeaponItem.NBT_AMMO_USED);
+            int itemDamage = originalStack.getDamageValue() + pickupStack.getDamageValue();
+
+            if (currentAmmo < maxAmmo) {
+                if (itemDamage > originalStack.getMaxDamage()) {
+                    itemDamage -= originalStack.getMaxDamage() + 1;
+                } else {
+                    ItemStackDataHelper.updateTag(
+                            originalStack,
+                            tag ->
+                                    tag.putInt(
+                                            ThrowingWeaponItem.NBT_AMMO_USED,
+                                            Math.max(
+                                                    0,
+                                                    tag.getInt(ThrowingWeaponItem.NBT_AMMO_USED)
+                                                            - 1)));
+                }
+                originalStack.setDamageValue(
+                        Mth.clamp(itemDamage, 0, originalStack.getMaxDamage()));
+            }
+            itemEntity.setItem(originalStack);
+            return true;
         }
         return false;
     }

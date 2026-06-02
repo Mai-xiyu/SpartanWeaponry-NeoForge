@@ -145,7 +145,7 @@ public class ThrowingWeaponItem extends Item
             @NotNull Entity entity,
             int itemSlot,
             boolean isSelected) {
-        this.initNBT(stack, true);
+        this.normalizeStackState(stack, level, true);
 
         if (entity instanceof LivingEntity living) {
 
@@ -220,9 +220,11 @@ public class ThrowingWeaponItem extends Item
             Item.@NotNull TooltipContext tooltipContext,
             @NotNull List<Component> tooltip,
             @NotNull TooltipFlag flagIn) {
+        Level level = tooltipContext.level();
+        this.normalizeStackState(stack, level, false);
         boolean isShiftPressed = Screen.hasShiftDown();
 
-        if (this.doCraftCheck && tooltipContext.level() != null) {
+        if (this.doCraftCheck && level != null) {
             this.canBeCrafted =
                     WeaponTooltipBuilder.checkBuiltInMaterialCraftability(
                             this.material, this.canBeCrafted);
@@ -249,7 +251,7 @@ public class ThrowingWeaponItem extends Item
                                     tooltip.add(
                                             Component.literal("UUID: " + ChatFormatting.GRAY + uuid)
                                                     .withStyle(ChatFormatting.DARK_PURPLE)));
-        int mxAmmo = this.getMaxAmmo(stack, tooltipContext.level());
+        int mxAmmo = this.getMaxAmmo(stack, level);
         tooltip.add(
                 Component.translatable(
                                 String.format("tooltip.%s.throwable.ammo", ModSpartanWeaponry.ID),
@@ -270,9 +272,7 @@ public class ThrowingWeaponItem extends Item
                                                 String.format(
                                                         "tooltip.%s.throwable.charge_time.value",
                                                         ModSpartanWeaponry.ID),
-                                                this.getMaxChargeTicks(
-                                                                stack, tooltipContext.level())
-                                                        / 20.0f)
+                                                this.getMaxChargeTicks(stack, level) / 20.0f)
                                         .withStyle(ChatFormatting.GRAY))
                         .withStyle(ChatFormatting.DARK_AQUA));
 
@@ -315,6 +315,7 @@ public class ThrowingWeaponItem extends Item
     public @NotNull InteractionResultHolder<ItemStack> use(
             @NotNull Level levelIn, Player player, @NotNull InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
+        this.normalizeStackState(stack, levelIn, true);
         // Check if we have ammo left
         if (ThrowingWeaponStackState.hasAmmoRemaining(stack, this.getMaxAmmo(stack, levelIn))) {
             player.startUsingItem(hand);
@@ -579,6 +580,10 @@ public class ThrowingWeaponItem extends Item
 
     protected void initNBT(ItemStack stack, boolean initUUID) {
         ThrowingWeaponStackState.init(stack, initUUID);
+    }
+
+    public void normalizeStackState(ItemStack stack, Level level, boolean ensureUuid) {
+        ThrowingWeaponStackState.normalize(stack, this.getMaxAmmo(stack, level), ensureUuid);
     }
 
     public int getMaxAmmo(ItemStack stack, RegistryAccess access) {
