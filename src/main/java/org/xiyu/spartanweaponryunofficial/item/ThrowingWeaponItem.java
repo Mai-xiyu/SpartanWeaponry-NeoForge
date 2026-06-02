@@ -4,7 +4,6 @@ import com.google.common.collect.ImmutableList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 import java.util.function.Consumer;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
@@ -43,7 +42,6 @@ import org.xiyu.spartanweaponryunofficial.entity.projectile.ThrowingWeaponEntity
 import org.xiyu.spartanweaponryunofficial.init.ModEnchantments;
 import org.xiyu.spartanweaponryunofficial.init.ModEntities;
 import org.xiyu.spartanweaponryunofficial.init.ModSounds;
-import org.xiyu.spartanweaponryunofficial.util.ItemStackDataHelper;
 import org.xiyu.spartanweaponryunofficial.util.WeaponArchetype;
 
 public class ThrowingWeaponItem extends Item
@@ -190,16 +188,14 @@ public class ThrowingWeaponItem extends Item
     public void damageThrowingWeapon(ItemStack stack, int damage, LivingEntity entity) {
         // stack.damageItem(damage, entity);
         if (stack.isDamageableItem()
-                && ItemStackDataHelper.getTag(stack).getInt(NBT_AMMO_USED)
-                        < this.getMaxAmmo(stack, entity.level())
+                && ThrowingWeaponStackState.hasAmmoRemaining(
+                        stack, this.getMaxAmmo(stack, entity.level()))
                 && (!(entity instanceof Player) || !((Player) entity).getAbilities().instabuild)) {
             int currentDamage = stack.getDamageValue();
             int maxDamage = stack.getMaxDamage();
             int newDamage = currentDamage + damage;
             if (newDamage >= maxDamage) {
-                int ammo = ItemStackDataHelper.getTag(stack).getInt(NBT_AMMO_USED);
-                int updatedAmmo = ammo + 1;
-                ItemStackDataHelper.updateTag(stack, tag -> tag.putInt(NBT_AMMO_USED, updatedAmmo));
+                ThrowingWeaponStackState.incrementAmmoUsed(stack);
 
                 if (entity instanceof Player) {
                     ((Player) entity).awardStat(Stats.ITEM_BROKEN.get(stack.getItem()));
@@ -239,18 +235,20 @@ public class ThrowingWeaponItem extends Item
         this.archetype.addTagErrorTooltip(stack, tooltip);
         this.material.addTagErrorTooltip(stack, tooltip);
 
-        var stackTag = ItemStackDataHelper.getTag(stack);
-        if (stackTag.contains(NBT_ORIGINAL) && !stackTag.getBoolean(NBT_ORIGINAL))
+        if (ThrowingWeaponStackState.isNotOriginal(stack))
             tooltip.add(
                     Component.translatable(
                                     String.format(
                                             "tooltip.%s.throwable.not_original",
                                             ModSpartanWeaponry.ID))
                             .withStyle(ChatFormatting.DARK_RED));
-        if (stackTag.hasUUID(NBT_UUID) && flagIn.isAdvanced())
-            tooltip.add(
-                    Component.literal("UUID: " + ChatFormatting.GRAY + stackTag.getUUID(NBT_UUID))
-                            .withStyle(ChatFormatting.DARK_PURPLE));
+        if (flagIn.isAdvanced())
+            ThrowingWeaponStackState.getUuid(stack)
+                    .ifPresent(
+                            uuid ->
+                                    tooltip.add(
+                                            Component.literal("UUID: " + ChatFormatting.GRAY + uuid)
+                                                    .withStyle(ChatFormatting.DARK_PURPLE)));
         int mxAmmo = this.getMaxAmmo(stack, tooltipContext.level());
         tooltip.add(
                 Component.translatable(
@@ -259,7 +257,8 @@ public class ThrowingWeaponItem extends Item
                                                 String.format(
                                                         "tooltip.%s.throwable.ammo.value",
                                                         ModSpartanWeaponry.ID),
-                                                mxAmmo - stackTag.getInt(NBT_AMMO_USED),
+                                                ThrowingWeaponStackState.getAmmoRemaining(
+                                                        stack, mxAmmo),
                                                 mxAmmo)
                                         .withStyle(ChatFormatting.GRAY))
                         .withStyle(ChatFormatting.DARK_AQUA));
@@ -305,8 +304,8 @@ public class ThrowingWeaponItem extends Item
                                                         null)));
 
         // Deal double durability damage when used as a melee weapon
-        if (ItemStackDataHelper.getTag(stack).getInt(NBT_AMMO_USED)
-                < this.getMaxAmmo(stack, attacker.level()))
+        if (ThrowingWeaponStackState.hasAmmoRemaining(
+                stack, this.getMaxAmmo(stack, attacker.level())))
             this.damageThrowingWeapon(stack, 2, attacker);
 
         return true;
@@ -317,8 +316,7 @@ public class ThrowingWeaponItem extends Item
             @NotNull Level levelIn, Player player, @NotNull InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
         // Check if we have ammo left
-        if (ItemStackDataHelper.getTag(stack).getInt(NBT_AMMO_USED)
-                < this.getMaxAmmo(stack, levelIn)) {
+        if (ThrowingWeaponStackState.hasAmmoRemaining(stack, this.getMaxAmmo(stack, levelIn))) {
             player.startUsingItem(hand);
             return InteractionResultHolder.consume(stack);
         }
@@ -338,8 +336,8 @@ public class ThrowingWeaponItem extends Item
 
             if (!levelIn.isClientSide
                     && charge > 2
-                    && ItemStackDataHelper.getTag(stack).getInt(NBT_AMMO_USED)
-                            < this.getMaxAmmo(stack, levelIn)) {
+                    && ThrowingWeaponStackState.hasAmmoRemaining(
+                            stack, this.getMaxAmmo(stack, levelIn))) {
                 ThrowingWeaponEntity thrown =
                         this.createThrowingWeaponEntity(levelIn, player, stack, charge);
                 float chargePerc = (charge / (float) maxCharge);
@@ -416,8 +414,7 @@ public class ThrowingWeaponItem extends Item
                     thrown.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
                 else if (thrown.isValidThrowingWeapon()) {
                     // Use ammo system - increment ammo used counter
-                    ItemStackDataHelper.updateTag(
-                            stack, tag -> tag.putInt(NBT_AMMO_USED, tag.getInt(NBT_AMMO_USED) + 1));
+                    ThrowingWeaponStackState.incrementAmmoUsed(stack);
                 }
 
                 stack.setDamageValue(0);
@@ -580,21 +577,7 @@ public class ThrowingWeaponItem extends Item
     }
 
     protected void initNBT(ItemStack stack, boolean initUUID) {
-        ItemStackDataHelper.updateTag(
-                stack,
-                tag -> {
-                    if (!tag.contains(NBT_AMMO_USED)) {
-                        // And, because I don't think it would be a good idea to transfer the ammo
-                        // value from the old version to the new one
-                        // Just fill 'er up
-                        tag.putInt(NBT_AMMO_USED, 0);
-                    }
-                    // Initialise UUID tag if necessary, and flag as original stack
-                    if (initUUID && !tag.hasUUID(NBT_UUID)) {
-                        tag.putUUID(NBT_UUID, UUID.randomUUID());
-                        tag.putBoolean(NBT_ORIGINAL, true);
-                    }
-                });
+        ThrowingWeaponStackState.init(stack, initUUID);
     }
 
     public int getMaxAmmo(ItemStack stack, RegistryAccess access) {

@@ -244,26 +244,21 @@ public class SwordBaseItem extends SwordItem
 
     @Override
     public @NotNull InteractionResult useOn(@NotNull UseOnContext contextIn) {
-        Optional<WeaponTrait> actionTrait = this.archetype.getActionTrait();
-        if (actionTrait.isPresent()) {
-            WeaponTrait trait = actionTrait.get();
-            if (trait.getActionCallback().isPresent())
-                return trait.getActionCallback().get().useOn(contextIn);
-        }
-        return super.useOn(contextIn);
+        return WeaponActionDispatcher.useOn(
+                this.archetype.getActionTrait(), contextIn, () -> super.useOn(contextIn));
     }
 
     @Override
     public @NotNull InteractionResultHolder<ItemStack> use(
             @NotNull Level levelIn, Player player, @NotNull InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
-        Optional<WeaponTrait> actionTrait = this.archetype.getActionTrait();
-        if (actionTrait.isPresent()) {
-            WeaponTrait trait = actionTrait.get();
-            if (trait.getActionCallback().isPresent())
-                return trait.getActionCallback().get().use(stack, levelIn, player, hand);
-        }
-        return super.use(levelIn, player, hand);
+        return WeaponActionDispatcher.use(
+                this.archetype.getActionTrait(),
+                stack,
+                levelIn,
+                player,
+                hand,
+                () -> super.use(levelIn, player, hand));
     }
 
     @Override
@@ -272,17 +267,13 @@ public class SwordBaseItem extends SwordItem
             @NotNull Level level,
             @NotNull LivingEntity entityLiving,
             int timeLeft) {
-        Optional<WeaponTrait> actionTrait = this.archetype.getActionTrait();
-        actionTrait
-                .flatMap(WeaponTrait::getActionCallback)
-                .ifPresent(
-                        (callback) ->
-                                callback.releaseUsing(
-                                        stack,
-                                        level,
-                                        entityLiving,
-                                        timeLeft,
-                                        this.getDirectAttackDamage()));
+        WeaponActionDispatcher.releaseUsing(
+                this.archetype.getActionTrait(),
+                stack,
+                level,
+                entityLiving,
+                timeLeft,
+                this.getDirectAttackDamage());
         super.releaseUsing(stack, level, entityLiving, timeLeft);
     }
 
@@ -292,37 +283,28 @@ public class SwordBaseItem extends SwordItem
             @NotNull LivingEntity player,
             @NotNull ItemStack stack,
             int count) {
-        Optional<WeaponTrait> actionTrait = this.archetype.getActionTrait();
-        actionTrait
-                .flatMap(WeaponTrait::getActionCallback)
-                .ifPresent(
-                        (callback) ->
-                                callback.onUsingTick(
-                                        stack, player, count, this.getDirectAttackDamage()));
+        WeaponActionDispatcher.onUseTick(
+                this.archetype.getActionTrait(),
+                stack,
+                player,
+                count,
+                this.getDirectAttackDamage());
         super.onUseTick(levelIn, player, stack, count);
     }
 
     @Override
     public int getUseDuration(@NotNull ItemStack stack, @NotNull LivingEntity entity) {
-        Optional<WeaponTrait> actionTrait = this.archetype.getActionTrait();
-        if (actionTrait.isPresent()) {
-            WeaponTrait trait = actionTrait.get();
-            if (trait.getActionCallback().isPresent())
-                return trait.getActionCallback().get().getUseDuration(stack, entity);
-        }
-
-        return super.getUseDuration(stack, entity);
+        return WeaponActionDispatcher.getUseDuration(
+                this.archetype.getActionTrait(),
+                stack,
+                entity,
+                () -> super.getUseDuration(stack, entity));
     }
 
     @Override
     public @NotNull UseAnim getUseAnimation(@NotNull ItemStack stack) {
-        Optional<WeaponTrait> actionTrait = this.archetype.getActionTrait();
-        if (actionTrait.isPresent()) {
-            WeaponTrait trait = actionTrait.get();
-            if (trait.getActionCallback().isPresent())
-                return trait.getActionCallback().get().getUseAnimation(stack);
-        }
-        return super.getUseAnimation(stack);
+        return WeaponActionDispatcher.getUseAnimation(
+                this.archetype.getActionTrait(), stack, () -> super.getUseAnimation(stack));
     }
 
     @Override
@@ -331,15 +313,13 @@ public class SwordBaseItem extends SwordItem
             @NotNull LevelReader level,
             @NotNull BlockPos pos,
             @NotNull Player player) {
-        Optional<WeaponTrait> actionTrait = this.archetype.getActionTrait();
-        if (actionTrait.isPresent()) {
-            WeaponTrait trait = actionTrait.get();
-            if (trait.getActionCallback().isPresent())
-                return trait.getActionCallback()
-                        .get()
-                        .doesSneakBypassUse(stack, level, pos, player);
-        }
-        return super.doesSneakBypassUse(stack, level, pos, player);
+        return WeaponActionDispatcher.doesSneakBypassUse(
+                this.archetype.getActionTrait(),
+                stack,
+                level,
+                pos,
+                player,
+                () -> super.doesSneakBypassUse(stack, level, pos, player));
     }
 
     @Override
