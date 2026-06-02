@@ -35,7 +35,7 @@ This is a community port and is not the original Spartan Weaponry project.
 
 <p>
   <a href="https://www.curseforge.com/minecraft/mc-mods/spartan-weaponry-unofficial"><img src="https://img.shields.io/badge/CurseForge-Download-f16436?style=for-the-badge&logo=curseforge" alt="CurseForge"></a>
-  <a href="https://modrinth.com/mod/spartan-wpn-uno"><img src="https://img.shields.io/badge/Modrinth-Download-1bd96a?style=for-the-badge&logo=modrinth" alt="Modrinth"></a>
+  <a href="https://modrinth.com/mod/spartan-weaponry-unofficial"><img src="https://img.shields.io/badge/Modrinth-Download-1bd96a?style=for-the-badge&logo=modrinth" alt="Modrinth"></a>
   <a href="https://mai-xiyu.github.io/ProJect_Docs/en/spartan_weaponry_unofficial/intro/"><img src="https://img.shields.io/badge/Docs-Open-2ea44f?style=for-the-badge" alt="Documentation"></a>
 </p>
 
