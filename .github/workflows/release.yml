@@ -32,6 +32,28 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build --no-daemon -x test
 
+      - name: Validate publishing secrets
+        shell: bash
+        env:
+          MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
+          CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
+        run: |
+          set -euo pipefail
+
+          missing=0
+
+          if [[ -z "${MODRINTH_TOKEN}" ]]; then
+            echo "::error::Missing repository secret MODRINTH_TOKEN. Modrinth publication cannot run."
+            missing=1
+          fi
+
+          if [[ -z "${CURSEFORGE_TOKEN}" ]]; then
+            echo "::error::Missing repository secret CURSEFORGE_TOKEN. CurseForge publication cannot run."
+            missing=1
+          fi
+
+          exit "${missing}"
+
       - name: Generate release changelog
         shell: bash
         run: |
@@ -66,16 +88,7 @@ jobs:
             fi
           } > RELEASE_CHANGELOG.md
 
-      - name: Create Release
-        uses: softprops/action-gh-release@v1
-        with:
-          body_path: RELEASE_CHANGELOG.md
-          files: |
-            build/libs/!(*-sources|*-plain).jar
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Publish to Modrinth & CurseForge
+      - name: Publish release
         uses: Kir-Antipov/mc-publish@v3.3
         with:
           modrinth-id: w8V2GMiK
@@ -84,7 +97,14 @@ jobs:
           curseforge-id: 1450963
           curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
 
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-draft: false
+          github-prerelease: false
+
           files: build/libs/!(*-sources|*-plain).jar
+          name: ${{ github.ref_name }}
+          version: ${{ github.ref_name }}
+          version-type: release
           changelog-file: RELEASE_CHANGELOG.md
           
           loaders: neoforge
