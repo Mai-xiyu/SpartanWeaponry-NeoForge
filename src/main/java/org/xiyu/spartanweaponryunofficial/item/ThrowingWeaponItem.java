@@ -413,6 +413,7 @@ public class ThrowingWeaponItem extends Item
                 if (player.getAbilities().instabuild)
                     thrown.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
                 else if (thrown.isValidThrowingWeapon()) {
+                    thrown.pickup = AbstractArrow.Pickup.ALLOWED;
                     // Use ammo system - increment ammo used counter
                     ThrowingWeaponStackState.incrementAmmoUsed(stack);
                 }
