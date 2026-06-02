@@ -30,14 +30,10 @@ public class HudCrosshairThrowingWeapon {
         int screenWidth = mc.getWindow().getGuiScaledWidth();
         int screenHeight = mc.getWindow().getGuiScaledHeight();
 
+        // Assert that the equipped stack is a Throwing Weapon; otherwise abort the rendering.
         if ((!ClientConfig.INSTANCE.disableNewCrosshairsThrowingWeapon.get()
                         || ClientConfig.INSTANCE.forceCompatibilityCrosshairs.get())
-                && equippedStack.getItem()
-                        instanceof
-                        ThrowingWeaponItem
-                        throwingWeapon) // Assert that the equipped stack is a Throwing Weapon;
-        // otherwise abort the rendering
-        {
+                && equippedStack.getItem() instanceof ThrowingWeaponItem throwingWeapon) {
             int offset = ClientConfig.INSTANCE.forceCompatibilityCrosshairs.get() ? 20 : 10;
             if (player.isUsingItem()) {
                 int maxChargeTicks =
