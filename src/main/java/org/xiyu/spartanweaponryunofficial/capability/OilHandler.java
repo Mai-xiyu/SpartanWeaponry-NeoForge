@@ -20,7 +20,6 @@ import org.xiyu.spartanweaponryunofficial.util.OilHelper;
 
 import java.util.Optional;
 
-@SuppressWarnings("ALL")
 public class OilHandler implements IOilHandler {
     public static final String NBT_OIL = "Oil";
     public static final String NBT_OIL_EFFECT = "Effect";

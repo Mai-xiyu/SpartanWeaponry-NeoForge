@@ -10,6 +10,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.xiyu.spartanweaponryunofficial.api.tags.ModItemTags;
 import org.xiyu.spartanweaponryunofficial.util.Config;
 
+/**
+ * Applies configured Spartan melee weapon replacement after vanilla zombie equipment is populated.
+ */
 @Mixin(Zombie.class)
 public class ZombieMixin extends MobMixin {
     @Inject(at = @At("TAIL"), method = "populateDefaultEquipmentSlots(Lnet/minecraft/util/RandomSource;Lnet/minecraft/world/DifficultyInstance;)V")

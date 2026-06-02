@@ -21,6 +21,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.xiyu.spartanweaponryunofficial.api.tags.ModItemTags;
 import org.xiyu.spartanweaponryunofficial.util.Config;
 
+/**
+ * Adds longbow compatibility to skeleton ranged AI and spawn equipment selection.
+ * TODO: Revisit if NeoForge exposes a lower-risk ranged-weapon compatibility hook for skeleton goals.
+ */
 @Mixin(AbstractSkeleton.class)
 public class AbstractSkeletonMixin extends MobMixin {
     @Shadow

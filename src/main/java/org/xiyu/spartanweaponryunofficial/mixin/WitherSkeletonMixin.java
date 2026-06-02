@@ -12,6 +12,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.xiyu.spartanweaponryunofficial.api.tags.ModItemTags;
 import org.xiyu.spartanweaponryunofficial.util.Config;
 
+/**
+ * Applies configured Spartan melee weapon replacement to wither skeletons that kept their vanilla stone sword.
+ */
 @Mixin(WitherSkeleton.class)
 public class WitherSkeletonMixin extends MobMixin {
     @Inject(at = @At("TAIL"), method = "populateDefaultEquipmentSlots(Lnet/minecraft/util/RandomSource;Lnet/minecraft/world/DifficultyInstance;)V")

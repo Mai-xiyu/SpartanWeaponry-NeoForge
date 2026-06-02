@@ -15,6 +15,10 @@ import org.xiyu.spartanweaponryunofficial.api.WeaponTraits;
 import org.xiyu.spartanweaponryunofficial.api.trait.WeaponTrait;
 import org.xiyu.spartanweaponryunofficial.init.ModDamageTypes;
 
+/**
+ * Hooks player attack damage-source and sweep calculations for weapon trait behavior.
+ * TODO: High compatibility risk; keep this isolated unless NeoForge or vanilla exposes stable attack hooks for both paths.
+ */
 @Mixin(Player.class)
 public class PlayerMixin {
     // Note: In 1.21+, sweep damage ratio is now calculated via enchantment effects.

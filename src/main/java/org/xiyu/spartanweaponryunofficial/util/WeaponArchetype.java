@@ -31,7 +31,7 @@ import java.util.function.Supplier;
  *
  * @author ObliviousSpartan
  */
-@SuppressWarnings("ALL")
+@SuppressWarnings("deprecation")
 public class WeaponArchetype implements IReloadable {
     public static final WeaponArchetype DAGGER = new WeaponArchetype("Dagger", true, ModWeaponTraitTags.DAGGER, WeaponType.MELEE,
             () -> Config.INSTANCE.daggers.speed.get(), () -> Config.INSTANCE.daggers.baseDamage.get().floatValue(), () -> Config.INSTANCE.daggers.damageMultipler.get().floatValue(), ItemAbilities.SWORD_DIG);

@@ -1,10 +1,8 @@
 package org.xiyu.spartanweaponryunofficial.item;
 
-import com.google.common.collect.ImmutableMultimap;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.RegistryAccess;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
@@ -12,10 +10,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.Attribute;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.*;
@@ -30,11 +25,9 @@ import org.xiyu.spartanweaponryunofficial.ModSpartanWeaponry;
 import org.xiyu.spartanweaponryunofficial.api.IReloadable;
 import org.xiyu.spartanweaponryunofficial.api.ReloadableHandler;
 import org.xiyu.spartanweaponryunofficial.api.WeaponMaterial;
-import org.xiyu.spartanweaponryunofficial.api.trait.IGenericTraitCallback;
 import org.xiyu.spartanweaponryunofficial.api.trait.IRangedTraitCallback;
 import org.xiyu.spartanweaponryunofficial.api.trait.WeaponTrait;
 import org.xiyu.spartanweaponryunofficial.client.ClientHelper;
-import org.xiyu.spartanweaponryunofficial.util.ClientConfig;
 import org.xiyu.spartanweaponryunofficial.util.Defaults;
 import org.xiyu.spartanweaponryunofficial.util.WeaponType;
 
@@ -75,20 +68,13 @@ public class LongbowItem extends BowItem implements IReloadable {
     @Override
     public void reload() {
         this.drawTime = 1.25f;
-        this.rangedTraits = this.material.getBonusTraits(this.type);
+        this.rangedTraits = WeaponTraitResolver.resolveMaterialTraits(this.material, this.type);
 
-        ImmutableMultimap.Builder<Attribute, AttributeModifier> mapBuilder = ImmutableMultimap.builder();
         for (WeaponTrait trait : this.rangedTraits) {
             Optional<IRangedTraitCallback> opt = trait.getRangedCallback();
             opt.ifPresent(iRangedTraitCallback -> this.drawTime = iRangedTraitCallback.modifyLongbowDrawTime(this.material, this.drawTime));
-            Optional<IGenericTraitCallback> generic = trait.getGenericCallback();
-            generic.ifPresent((callback) -> callback.onModifyAttributes(mapBuilder));
         }
-        var builtModifiers = mapBuilder.build();
-        ItemAttributeModifiers.Builder attributeBuilder = ItemAttributeModifiers.builder();
-        builtModifiers.forEach((attribute, modifier) ->
-                attributeBuilder.add(BuiltInRegistries.ATTRIBUTE.wrapAsHolder(attribute), modifier, EquipmentSlotGroup.MAINHAND));
-        this.modifiers = attributeBuilder.build();
+        this.modifiers = WeaponAttributeBuilder.buildGenericTraitItemAttributes(this.rangedTraits);
     }
 
     @Override
@@ -191,14 +177,7 @@ public class LongbowItem extends BowItem implements IReloadable {
 
     @Override
     public <T extends LivingEntity> int damageItem(@NotNull ItemStack stack, int amount, T entity, @NotNull Consumer<Item> onBroken) {
-        int damage = amount;
-        for (WeaponTrait trait : this.rangedTraits) {
-            if (trait.getGenericCallback().isPresent())
-                damage = trait.getGenericCallback().get().onDamageItem(stack, entity, damage);
-            if (damage <= 0)
-                break;
-        }
-        return Math.max(0, damage);
+        return WeaponTraitResolver.applyDamageCallbacks(this.rangedTraits, stack, entity, amount);
     }
 
     @Override
@@ -213,25 +192,18 @@ public class LongbowItem extends BowItem implements IReloadable {
         boolean isShiftPressed = Screen.hasShiftDown();
 
         if (this.doCraftCheck && tooltipContext.level() != null) {
-            if (!ClientConfig.INSTANCE.forceDisableUncraftableTooltips.get() && this.material.getModId().equals(ModSpartanWeaponry.ID)) {
-                var tag = BuiltInRegistries.ITEM.getTag(this.material.getRepairTag());
-                if (tag.isEmpty() || tag.get().size() == 0)
-                    this.canBeCrafted = false;
-            }
+            this.canBeCrafted = WeaponTooltipBuilder.checkBuiltInMaterialCraftability(this.material, this.canBeCrafted);
             this.doCraftCheck = false;
         }
 
         if (!this.canBeCrafted)
-            tooltip.add(Component.translatable(String.format("tooltip.%s.uncraftable_missing_material", ModSpartanWeaponry.ID), this.material.getRepairTagName()).withStyle(ChatFormatting.RED));
+            WeaponTooltipBuilder.addUncraftableMaterialTooltip(this.material, tooltip);
 
         this.material.addTagErrorTooltip(stack, tooltip);
 
         if (this.material.hasAnyBonusTraits(this.type)) {
             if (this.rangedTraits != null && !this.rangedTraits.isEmpty()) {
-                if (isShiftPressed)
-                    tooltip.add(Component.translatable(String.format("tooltip.%s.traits", ModSpartanWeaponry.ID), Component.translatable("tooltip." + ModSpartanWeaponry.ID + ".showing_details").withStyle(ChatFormatting.DARK_GRAY)).withStyle(ChatFormatting.GOLD));
-                else
-                    tooltip.add(Component.translatable(String.format("tooltip.%s.traits", ModSpartanWeaponry.ID), Component.translatable("tooltip." + ModSpartanWeaponry.ID + ".show_details", ChatFormatting.DARK_AQUA + "SHIFT").withStyle(ChatFormatting.DARK_GRAY)).withStyle(ChatFormatting.GOLD));
+                WeaponTooltipBuilder.addTraitHeader(tooltip, isShiftPressed, ChatFormatting.DARK_AQUA);
                 tooltip.add(Component.translatable(String.format("tooltip.%s.trait.material_bonus", ModSpartanWeaponry.ID)).withStyle(ChatFormatting.AQUA));
 
                 this.rangedTraits.forEach((trait) -> trait.addTooltip(stack, tooltip, isShiftPressed));

@@ -36,7 +36,6 @@ import org.xiyu.spartanweaponryunofficial.api.IReloadable;
 import org.xiyu.spartanweaponryunofficial.api.ReloadableHandler;
 import org.xiyu.spartanweaponryunofficial.api.WeaponMaterial;
 import org.xiyu.spartanweaponryunofficial.api.tags.ModItemTags;
-import org.xiyu.spartanweaponryunofficial.api.trait.IGenericTraitCallback;
 import org.xiyu.spartanweaponryunofficial.api.trait.IRangedTraitCallback;
 import org.xiyu.spartanweaponryunofficial.api.trait.WeaponTrait;
 import org.xiyu.spartanweaponryunofficial.client.ClientHelper;
@@ -45,7 +44,6 @@ import org.xiyu.spartanweaponryunofficial.client.gui.ICrosshairOverlay;
 import org.xiyu.spartanweaponryunofficial.entity.projectile.BoltEntity;
 import org.xiyu.spartanweaponryunofficial.init.ModEnchantments;
 import org.xiyu.spartanweaponryunofficial.init.ModItems;
-import org.xiyu.spartanweaponryunofficial.util.ClientConfig;
 import org.xiyu.spartanweaponryunofficial.util.Defaults;
 import org.xiyu.spartanweaponryunofficial.util.ItemStackDataHelper;
 import org.xiyu.spartanweaponryunofficial.util.WeaponType;
@@ -100,8 +98,7 @@ public class HeavyCrossbowItem extends CrossbowItem implements IReloadable, IHud
     public void reload() {
         this.loadTicks = Defaults.CrossbowTicksToLoad;
         this.aimTicks = Defaults.CrossbowInaccuracyTicks;
-        this.rangedTraits = this.material.getBonusTraits(this.type);
-        ImmutableMultimap.Builder<Attribute, AttributeModifier> mapBuilder = ImmutableMultimap.builder();
+        this.rangedTraits = WeaponTraitResolver.resolveMaterialTraits(this.material, this.type);
         for (WeaponTrait trait : this.rangedTraits) {
             Optional<IRangedTraitCallback> opt = trait.getRangedCallback();
             if (opt.isPresent()) {
@@ -109,10 +106,8 @@ public class HeavyCrossbowItem extends CrossbowItem implements IReloadable, IHud
                 this.loadTicks = callback.modifyHeavyCrossbowLoadTime(this.material, this.loadTicks);
                 this.aimTicks = callback.modifyHeavyCrossbowAimTime(this.material, this.aimTicks);
             }
-            Optional<IGenericTraitCallback> generic = trait.getGenericCallback();
-            generic.ifPresent((callback) -> callback.onModifyAttributes(mapBuilder));
         }
-        this.modifiers = mapBuilder.build();
+        this.modifiers = WeaponAttributeBuilder.buildGenericTraitAttributeMap(this.rangedTraits);
     }
 
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlot equipmentSlot, ItemStack stack) {
@@ -329,14 +324,7 @@ public class HeavyCrossbowItem extends CrossbowItem implements IReloadable, IHud
 
     @Override
     public <T extends LivingEntity> int damageItem(@NotNull ItemStack stack, int amount, T entity, @NotNull Consumer<Item> onBroken) {
-        int damage = amount;
-        for (WeaponTrait trait : this.rangedTraits) {
-            if (trait.getGenericCallback().isPresent())
-                damage = trait.getGenericCallback().get().onDamageItem(stack, entity, damage);
-            if (damage <= 0)
-                break;
-        }
-        return Math.max(0, damage);
+        return WeaponTraitResolver.applyDamageCallbacks(this.rangedTraits, stack, entity, amount);
     }
 
     @Override
@@ -352,16 +340,12 @@ public class HeavyCrossbowItem extends CrossbowItem implements IReloadable, IHud
 
         Level levelIn = tooltipContext.level();
         if (this.doCraftCheck && levelIn != null) {
-            if (!ClientConfig.INSTANCE.forceDisableUncraftableTooltips.get() && this.material.getModId().equals(ModSpartanWeaponry.ID)) {
-                var tag = BuiltInRegistries.ITEM.getTag(this.material.getRepairTag());
-                if (tag.isEmpty() || tag.get().size() == 0)
-                    this.canBeCrafted = false;
-            }
+            this.canBeCrafted = WeaponTooltipBuilder.checkBuiltInMaterialCraftability(this.material, this.canBeCrafted);
             this.doCraftCheck = false;
         }
 
         if (!this.canBeCrafted)
-            tooltip.add(Component.translatable(String.format("tooltip.%s.uncraftable_missing_material", ModSpartanWeaponry.ID), this.material.getRepairTagName()).withStyle(ChatFormatting.RED));
+            WeaponTooltipBuilder.addUncraftableMaterialTooltip(this.material, tooltip);
 
         this.material.addTagErrorTooltip(stack, tooltip);
 
@@ -375,10 +359,7 @@ public class HeavyCrossbowItem extends CrossbowItem implements IReloadable, IHud
         }
 
         if (this.material.hasAnyBonusTraits(this.type)) {
-            if (isShiftPressed)
-                tooltip.add(Component.translatable(String.format("tooltip.%s.traits", ModSpartanWeaponry.ID), Component.translatable("tooltip." + ModSpartanWeaponry.ID + ".showing_details").withStyle(ChatFormatting.DARK_GRAY)).withStyle(ChatFormatting.GOLD));
-            else
-                tooltip.add(Component.translatable(String.format("tooltip.%s.traits", ModSpartanWeaponry.ID), Component.translatable("tooltip." + ModSpartanWeaponry.ID + ".show_details", ChatFormatting.DARK_AQUA + "SHIFT").withStyle(ChatFormatting.DARK_GRAY)).withStyle(ChatFormatting.GOLD));
+            WeaponTooltipBuilder.addTraitHeader(tooltip, isShiftPressed, ChatFormatting.DARK_AQUA);
             tooltip.add(Component.translatable(String.format("tooltip.%s.trait.material_bonus", ModSpartanWeaponry.ID)).withStyle(ChatFormatting.AQUA));
 
             this.rangedTraits.forEach((trait) -> trait.addTooltip(stack, tooltip, isShiftPressed));

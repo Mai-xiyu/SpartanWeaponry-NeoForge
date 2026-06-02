@@ -21,6 +21,10 @@ import org.xiyu.spartanweaponryunofficial.util.QuiverHelper;
 
 import java.util.List;
 
+/**
+ * Redirects eligible arrow pickup into quiver storage before vanilla inventory pickup runs.
+ * TODO: Re-check if a future NeoForge pickup event exposes enough arrow pickup state to replace this injection.
+ */
 @Mixin(AbstractArrow.class)
 public abstract class AbstractArrowMixin extends ProjectileMixin {
     /**

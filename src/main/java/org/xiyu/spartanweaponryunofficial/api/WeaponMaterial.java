@@ -32,6 +32,13 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
 
+/**
+ * Addon-facing weapon material definition used by Spartan Weaponry weapon factories.
+ * <p>
+ * Existing constructors are kept for source and binary compatibility. New addon code can prefer
+ * {@link #builder(String, String)} when named setters make durability, speed, damage, enchantability,
+ * repair tag, and trait tag assignments easier to audit.
+ */
 public class WeaponMaterial implements Tier, IReloadable {
     public static final int DEFAULT_PRIMARY_COLOUR = 0x7F7F7F;
     public static final int DEFAULT_SECONDARY_COLOUR = 0xFFFFFF;

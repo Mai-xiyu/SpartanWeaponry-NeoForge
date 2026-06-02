@@ -19,6 +19,9 @@ import org.xiyu.spartanweaponryunofficial.util.ItemRandomizer;
 
 import java.util.List;
 
+/**
+ * Shared mob equipment helper for spawn-time weapon replacement mixins.
+ */
 @Mixin(Mob.class)
 public class MobMixin extends LivingEntityMixin {
     @Shadow

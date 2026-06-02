@@ -14,6 +14,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up JDK 21
         uses: actions/setup-java@v4
@@ -30,10 +32,44 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build --no-daemon -x test
 
+      - name: Generate release changelog
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          current_tag="${GITHUB_REF_NAME}"
+          current_commit="$(git rev-list -n 1 "${current_tag}")"
+          previous_tag="$(git tag --points-at "${current_commit}" --sort=-creatordate | grep -v -F -x "${current_tag}" | head -n 1 || true)"
+
+          if [[ -z "${previous_tag}" ]]; then
+            previous_tag="$(git describe --tags --abbrev=0 "${current_commit}^" 2>/dev/null || true)"
+          fi
+
+          {
+            echo "## Changes"
+            echo
+
+            if [[ -n "${previous_tag}" ]]; then
+              echo "Commits from ${previous_tag} to ${current_tag}:"
+              echo
+              commits="$(git log --pretty=format:'- %s (%h)' "${previous_tag}..${current_tag}" || true)"
+            else
+              echo "Commits included in ${current_tag}:"
+              echo
+              commits="$(git log --pretty=format:'- %s (%h)' "${current_tag}" || true)"
+            fi
+
+            if [[ -n "${commits}" ]]; then
+              echo "${commits}"
+            else
+              echo "- No commits found for this tag range."
+            fi
+          } > RELEASE_CHANGELOG.md
+
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
-          body_path: CHANGELOG.md
+          body_path: RELEASE_CHANGELOG.md
           files: |
             build/libs/!(*-sources|*-plain).jar
         env:
@@ -49,7 +85,7 @@ jobs:
           curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
 
           files: build/libs/!(*-sources|*-plain).jar
-          changelog-file: CHANGELOG.md
+          changelog-file: RELEASE_CHANGELOG.md
           
           loaders: neoforge
           game-versions: 1.21.1

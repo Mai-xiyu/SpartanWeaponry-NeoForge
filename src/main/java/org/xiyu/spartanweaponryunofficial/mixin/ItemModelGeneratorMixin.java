@@ -24,6 +24,8 @@ import java.util.function.Function;
 /**
  * Keeps the non-standard "coating" texture available for the weapon oil custom model loader while preserving
  * vanilla's generated item layer handling for "layer0" through "layer4".
+ * TODO: Client-only compatibility risk; keep this scoped to oil-coated custom geometry unless NeoForge exposes
+ * a texture-preserving model generation extension point.
  *
  * @author ObliviousSpartan
  */
