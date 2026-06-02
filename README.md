@@ -1,36 +1,136 @@
-# Spartan Weaponry (1.21.1 NeoForge 非官方移植版)
+# Spartan Weaponry Unofficial
 
-> **⚠️ 这是一个非官方的社区移植版本**
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Mai-xiyu/ProJect_Docs/refs/heads/master/public/img/sp_logo.png" alt="Spartan Weaponry Unofficial" width="720">
+</p>
 
-Weapons Galore! A whole new arsenal of weaponry made for Minecraft.<br>
-Inspired by Balkon's WeaponMod, it adds new versions of weapons from that mod, as well expanding the arsenal with a bunch of original weapons, including a variety of swords, polearms, blunt and ranged weapons.
+<p align="center">
+  <a href="https://github.com/Mai-xiyu/SpartanWeaponry-NeoForge/actions/workflows/build.yml"><img src="https://img.shields.io/github/actions/workflow/status/Mai-xiyu/SpartanWeaponry-NeoForge/build.yml?branch=1.21.1&style=for-the-badge&label=build" alt="Build status"></a>
+  <img src="https://img.shields.io/badge/Minecraft-1.21.1-62b47a?style=for-the-badge" alt="Minecraft 1.21.1">
+  <img src="https://img.shields.io/badge/Loader-NeoForge-f16436?style=for-the-badge" alt="NeoForge">
+  <img src="https://img.shields.io/badge/Java-21-007396?style=for-the-badge" alt="Java 21">
+  <img src="https://img.shields.io/badge/API-v14-6f42c1?style=for-the-badge" alt="API version 14">
+  <a href="LICENSE"><img src="https://img.shields.io/github/license/Mai-xiyu/SpartanWeaponry-NeoForge?style=for-the-badge" alt="License"></a>
+</p>
 
----
+An unofficial NeoForge 1.21.1 port of **Spartan Weaponry**. The mod keeps the
+original "Weapons Galore" idea: a broad set of melee, ranged, and throwing
+weapons inspired by historical and fantasy weaponry.
 
-## Fork 说明
+This repository focuses on the NeoForge 1.21.1 codebase, addon API compatibility,
+datapack friendliness, and maintainable behavior-preserving updates.
 
-这是 **Spartan Weaponry** 的非官方 **Minecraft 1.21.1 NeoForge** 移植版本。
+## Status
 
-由于原作者 (ObliviousSp) 已停止更新超过半年，本项目基于原版代码进行了 1.21.1 NeoForge 适配。
+- Minecraft: `1.21.1`
+- Loader: `NeoForge 21.1.x`
+- Java: `21`
+- Mod ID: `spartan_weaponry_unofficial`
+- API version: `14`
+- License: Apache License 2.0
 
-- **原项目**: [CurseForge](https://www.curseforge.com/minecraft/mc-mods/spartan-weaponry) | [Modrinth](https://modrinth.com/mod/spartan-weaponry)
-- **原作者**: ObliviousSp
-- **移植者**: Mai_xiyu & Claude AI
-- **许可证**: Apache-2.0
+This is a community port and is not the original Spartan Weaponry project.
 
-## API DOCS
-- [Docs](https://mai-xiyu.github.io/ProJect_Docs/)
+## Download
 
-### 主要改动
-- 从 Forge 1.20.1 迁移至 NeoForge 1.21.1
-- 适配 Minecraft 1.21 的 API 变更
-- 修复各种兼容性问题
+<p>
+  <a href="https://www.curseforge.com/minecraft/mc-mods/spartan-weaponry-unofficial"><img src="https://img.shields.io/badge/CurseForge-Download-f16436?style=for-the-badge&logo=curseforge" alt="CurseForge"></a>
+  <a href="https://modrinth.com/mod/spartan-wpn-uno"><img src="https://img.shields.io/badge/Modrinth-Download-1bd96a?style=for-the-badge&logo=modrinth" alt="Modrinth"></a>
+  <a href="https://mai-xiyu.github.io/ProJect_Docs/en/spartan_weaponry_unofficial/intro/"><img src="https://img.shields.io/badge/Docs-Open-2ea44f?style=for-the-badge" alt="Documentation"></a>
+</p>
 
----
+Install the jar into your `.minecraft/mods` directory with a matching NeoForge
+1.21.1 installation.
 
-## 原版信息
+## Highlights
 
-Now open source under the Apache License 2.0!<br>
-Find the original mod pages below:<br>
-CurseForge -> https://www.curseforge.com/minecraft/mc-mods/spartan-weaponry<br>
-Modrinth -> https://modrinth.com/mod/spartan-weaponry
+- Large weapon set: daggers, longswords, spears, halberds, pikes, lances,
+  battle hammers, warhammers, longbows, heavy crossbows, throwing knives,
+  tomahawks, javelins, boomerangs, and more.
+- Addon-facing API with legacy `createXxx(WeaponMaterial)` methods plus the
+  generic `createWeapon(WeaponItemType, WeaponMaterial)` entry point.
+- Weapon classification metadata for API-created weapons.
+- Standard grouped item tags by weapon type, material, and source namespace.
+- Weapon Oil support is present but disabled by default through
+  `enable_weapon_oil=false`.
+- Data generation helpers for addon item models, recipes, and tags.
+
+## Documentation
+
+Public docs:
+
+- [English documentation](https://mai-xiyu.github.io/ProJect_Docs/en/spartan_weaponry_unofficial/intro/)
+- [Chinese documentation](https://mai-xiyu.github.io/ProJect_Docs/zh-cn/spartan_weaponry_unofficial/intro/)
+
+Repository docs:
+
+- [Addon Author Notes](docs/addon-authors.md)
+- [Tags](docs/tags.md)
+- [Data Generation](docs/datagen.md)
+- [Manual Test Checklist](docs/manual-test-checklist.md)
+- [Mixin Risk Notes](docs/mixin-risk.md)
+
+## Building
+
+Use JDK 21.
+
+```powershell
+.\gradlew.bat build --console=plain --no-daemon
+.\gradlew.bat runData --console=plain --no-daemon
+```
+
+On Unix-like systems:
+
+```bash
+./gradlew build --console=plain --no-daemon
+./gradlew runData --console=plain --no-daemon
+```
+
+Generated resources live under `src/generated/resources`. Review generated diffs
+before committing them.
+
+## Addon Notes
+
+Addon authors should depend on `spartan_weaponry_unofficial` and call:
+
+```java
+SpartanWeaponryAPI.assertAPIVersion("your_mod_id", 14);
+```
+
+Use:
+
+- legacy `createLongsword(material)` style for simple one-off registrations;
+- `createWeapon(WeaponItemType, material)` when selecting weapon types
+  dynamically;
+- `classifyWeapon(...)` only for compatible custom items not created by the
+  Spartan Weaponry factories.
+
+API-created weapons are classified automatically. Physical datapack tag JSON for
+addon weapons should still be generated by the addon or supplied by a datapack or
+KubeJS script.
+
+## Compatibility Rules
+
+Behavior-preserving maintenance should not change:
+
+- registry names;
+- translation keys;
+- tag paths;
+- recipe ids or semantics;
+- loot table paths;
+- resource paths;
+- existing public API methods.
+
+Use [Manual Test Checklist](docs/manual-test-checklist.md) before release or after
+low-level weapon behavior changes.
+
+## Credits
+
+- Original Spartan Weaponry author: **ObliviousSpartan**
+- Original weapon ideas and art credits remain with the original project credits.
+- NeoForge 1.21.1 port maintained by **Mai_xiyu** and contributors.
+
+Original project pages:
+
+- [Spartan Weaponry on CurseForge](https://www.curseforge.com/minecraft/mc-mods/spartan-weaponry)
+- [Spartan Weaponry on Modrinth](https://modrinth.com/mod/spartan-weaponry)
