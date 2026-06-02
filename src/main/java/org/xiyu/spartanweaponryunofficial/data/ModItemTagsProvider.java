@@ -15,11 +15,13 @@ import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.NotNull;
 import org.xiyu.spartanweaponryunofficial.ModSpartanWeaponry;
 import org.xiyu.spartanweaponryunofficial.api.SpartanWeaponryAPI.WeaponItemType;
+import org.xiyu.spartanweaponryunofficial.api.WeaponMaterial;
 import org.xiyu.spartanweaponryunofficial.api.tags.ModBlockTags;
 import org.xiyu.spartanweaponryunofficial.api.tags.ModItemTags;
 import org.xiyu.spartanweaponryunofficial.init.ModItems;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class ModItemTagsProvider extends ItemTagsProvider {
@@ -52,26 +54,81 @@ public class ModItemTagsProvider extends ItemTagsProvider {
             new TypeTagPair(ModItemTags.SCYTHES, ModItemTags.weaponType(WeaponItemType.SCYTHE))
     );
 
+    private static final List<WeaponGroupTagPair> WEAPON_GROUP_TAGS = List.of(
+            new WeaponGroupTagPair(ModItemTags.DAGGERS, ModItems.DAGGERS),
+            new WeaponGroupTagPair(ModItemTags.PARRYING_DAGGERS, ModItems.PARRYING_DAGGERS),
+            new WeaponGroupTagPair(ModItemTags.LONGSWORDS, ModItems.LONGSWORDS),
+            new WeaponGroupTagPair(ModItemTags.KATANAS, ModItems.KATANAS),
+            new WeaponGroupTagPair(ModItemTags.SABERS, ModItems.SABERS),
+            new WeaponGroupTagPair(ModItemTags.RAPIERS, ModItems.RAPIERS),
+            new WeaponGroupTagPair(ModItemTags.GREATSWORDS, ModItems.GREATSWORDS),
+            new WeaponGroupTagPair(ModItemTags.BATTLE_HAMMERS, ModItems.BATTLE_HAMMERS),
+            new WeaponGroupTagPair(ModItemTags.WARHAMMERS, ModItems.WARHAMMERS),
+            new WeaponGroupTagPair(ModItemTags.SPEARS, ModItems.SPEARS),
+            new WeaponGroupTagPair(ModItemTags.HALBERDS, ModItems.HALBERDS),
+            new WeaponGroupTagPair(ModItemTags.PIKES, ModItems.PIKES),
+            new WeaponGroupTagPair(ModItemTags.LANCES, ModItems.LANCES),
+            new WeaponGroupTagPair(ModItemTags.LONGBOWS, ModItems.LONGBOWS),
+            new WeaponGroupTagPair(ModItemTags.HEAVY_CROSSBOWS, ModItems.HEAVY_CROSSBOWS),
+            new WeaponGroupTagPair(ModItemTags.THROWING_KNIVES, ModItems.THROWING_KNIVES),
+            new WeaponGroupTagPair(ModItemTags.TOMAHAWKS, ModItems.TOMAHAWKS),
+            new WeaponGroupTagPair(ModItemTags.JAVELINS, ModItems.JAVELINS),
+            new WeaponGroupTagPair(ModItemTags.BOOMERANGS, ModItems.BOOMERANGS),
+            new WeaponGroupTagPair(ModItemTags.BATTLEAXES, ModItems.BATTLEAXES),
+            new WeaponGroupTagPair(ModItemTags.FLANGED_MACES, ModItems.FLANGED_MACES),
+            new WeaponGroupTagPair(ModItemTags.GLAIVES, ModItems.GLAIVES),
+            new WeaponGroupTagPair(ModItemTags.QUARTERSTAVES, ModItems.QUARTERSTAVES),
+            new WeaponGroupTagPair(ModItemTags.SCYTHES, ModItems.SCYTHES)
+    );
+
     private static final List<MaterialTagPair> MATERIAL_TAGS = List.of(
-            new MaterialTagPair("wood", ModItemTags.WOODEN_WEAPONS),
-            new MaterialTagPair("stone", ModItemTags.STONE_WEAPONS),
-            new MaterialTagPair("leather", ModItemTags.LEATHER_WEAPONS),
-            new MaterialTagPair("copper", ModItemTags.COPPER_WEAPONS),
-            new MaterialTagPair("iron", ModItemTags.IRON_WEAPONS),
-            new MaterialTagPair("gold", ModItemTags.GOLDEN_WEAPONS),
-            new MaterialTagPair("diamond", ModItemTags.DIAMOND_WEAPONS),
-            new MaterialTagPair("netherite", ModItemTags.NETHERITE_WEAPONS),
-            new MaterialTagPair("tin", ModItemTags.TIN_WEAPONS),
-            new MaterialTagPair("bronze", ModItemTags.BRONZE_WEAPONS),
-            new MaterialTagPair("steel", ModItemTags.STEEL_WEAPONS),
-            new MaterialTagPair("silver", ModItemTags.SILVER_WEAPONS),
-            new MaterialTagPair("electrum", ModItemTags.ELECTRUM_WEAPONS),
-            new MaterialTagPair("lead", ModItemTags.LEAD_WEAPONS),
-            new MaterialTagPair("nickel", ModItemTags.NICKEL_WEAPONS),
-            new MaterialTagPair("invar", ModItemTags.INVAR_WEAPONS),
-            new MaterialTagPair("constantan", ModItemTags.CONSTANTAN_WEAPONS),
-            new MaterialTagPair("platinum", ModItemTags.PLATINUM_WEAPONS),
-            new MaterialTagPair("aluminum", ModItemTags.ALUMINUM_WEAPONS)
+            new MaterialTagPair(WeaponMaterial.WOOD, ModItemTags.WOODEN_WEAPONS),
+            new MaterialTagPair(WeaponMaterial.STONE, ModItemTags.STONE_WEAPONS),
+            new MaterialTagPair(WeaponMaterial.LEATHER, ModItemTags.LEATHER_WEAPONS),
+            new MaterialTagPair(WeaponMaterial.COPPER, ModItemTags.COPPER_WEAPONS),
+            new MaterialTagPair(WeaponMaterial.IRON, ModItemTags.IRON_WEAPONS),
+            new MaterialTagPair(WeaponMaterial.GOLD, ModItemTags.GOLDEN_WEAPONS),
+            new MaterialTagPair(WeaponMaterial.DIAMOND, ModItemTags.DIAMOND_WEAPONS),
+            new MaterialTagPair(WeaponMaterial.NETHERITE, ModItemTags.NETHERITE_WEAPONS),
+            new MaterialTagPair(WeaponMaterial.TIN, ModItemTags.TIN_WEAPONS),
+            new MaterialTagPair(WeaponMaterial.BRONZE, ModItemTags.BRONZE_WEAPONS),
+            new MaterialTagPair(WeaponMaterial.STEEL, ModItemTags.STEEL_WEAPONS),
+            new MaterialTagPair(WeaponMaterial.SILVER, ModItemTags.SILVER_WEAPONS),
+            new MaterialTagPair(WeaponMaterial.ELECTRUM, ModItemTags.ELECTRUM_WEAPONS),
+            new MaterialTagPair(WeaponMaterial.LEAD, ModItemTags.LEAD_WEAPONS),
+            new MaterialTagPair(WeaponMaterial.NICKEL, ModItemTags.NICKEL_WEAPONS),
+            new MaterialTagPair(WeaponMaterial.INVAR, ModItemTags.INVAR_WEAPONS),
+            new MaterialTagPair(WeaponMaterial.CONSTANTAN, ModItemTags.CONSTANTAN_WEAPONS),
+            new MaterialTagPair(WeaponMaterial.PLATINUM, ModItemTags.PLATINUM_WEAPONS),
+            new MaterialTagPair(WeaponMaterial.ALUMINUM, ModItemTags.ALUMINUM_WEAPONS)
+    );
+
+    private static final List<TagKey<Item>> PRIMARY_MELEE_WEAPON_TAGS = List.of(
+            ModItemTags.DAGGERS, ModItemTags.PARRYING_DAGGERS, ModItemTags.LONGSWORDS, ModItemTags.KATANAS,
+            ModItemTags.SABERS, ModItemTags.RAPIERS, ModItemTags.GREATSWORDS, ModItemTags.CLUBS, ModItemTags.CESTUSAE,
+            ModItemTags.BATTLE_HAMMERS, ModItemTags.WARHAMMERS, ModItemTags.SPEARS, ModItemTags.HALBERDS,
+            ModItemTags.PIKES, ModItemTags.LANCES
+    );
+
+    private static final List<TagKey<Item>> SECONDARY_MELEE_WEAPON_TAGS = List.of(
+            ModItemTags.BATTLEAXES, ModItemTags.FLANGED_MACES, ModItemTags.GLAIVES,
+            ModItemTags.QUARTERSTAVES, ModItemTags.SCYTHES
+    );
+
+    private static final List<TagKey<Item>> MELEE_WEAPON_TAGS = List.of(
+            ModItemTags.DAGGERS, ModItemTags.PARRYING_DAGGERS, ModItemTags.LONGSWORDS, ModItemTags.KATANAS,
+            ModItemTags.SABERS, ModItemTags.RAPIERS, ModItemTags.GREATSWORDS, ModItemTags.CLUBS, ModItemTags.CESTUSAE,
+            ModItemTags.BATTLE_HAMMERS, ModItemTags.WARHAMMERS, ModItemTags.SPEARS, ModItemTags.HALBERDS,
+            ModItemTags.PIKES, ModItemTags.LANCES, ModItemTags.BATTLEAXES, ModItemTags.FLANGED_MACES,
+            ModItemTags.GLAIVES, ModItemTags.QUARTERSTAVES, ModItemTags.SCYTHES
+    );
+
+    private static final List<TagKey<Item>> RANGED_WEAPON_TAGS = List.of(
+            ModItemTags.LONGBOWS, ModItemTags.HEAVY_CROSSBOWS
+    );
+
+    private static final List<TagKey<Item>> THROWING_WEAPON_TAGS = List.of(
+            ModItemTags.THROWING_KNIVES, ModItemTags.TOMAHAWKS, ModItemTags.JAVELINS, ModItemTags.BOOMERANGS
     );
 
     public ModItemTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registry, CompletableFuture<TagsProvider.TagLookup<Block>> blockTagLookup, ExistingFileHelper existingFileHelper) {
@@ -104,107 +161,11 @@ public class ModItemTagsProvider extends ItemTagsProvider {
         this.tag(ModItemTags.HANDLES).add(ModItems.SIMPLE_HANDLE.get(), ModItems.HANDLE.get());
         this.tag(ModItemTags.POLES).add(ModItems.SIMPLE_POLE.get(), ModItems.POLE.get());
 
-        this.tag(ModItemTags.DAGGERS).add(ModItems.DAGGERS.getAsList().toArray(new Item[0]));
-        this.tag(ModItemTags.PARRYING_DAGGERS).add(ModItems.PARRYING_DAGGERS.getAsList().toArray(new Item[0]));
-        this.tag(ModItemTags.LONGSWORDS).add(ModItems.LONGSWORDS.getAsList().toArray(new Item[0]));
-        this.tag(ModItemTags.KATANAS).add(ModItems.KATANAS.getAsList().toArray(new Item[0]));
-        this.tag(ModItemTags.SABERS).add(ModItems.SABERS.getAsList().toArray(new Item[0]));
-        this.tag(ModItemTags.RAPIERS).add(ModItems.RAPIERS.getAsList().toArray(new Item[0]));
-        this.tag(ModItemTags.GREATSWORDS).add(ModItems.GREATSWORDS.getAsList().toArray(new Item[0]));
+        WEAPON_GROUP_TAGS.forEach(pair -> this.addItems(pair.legacyTag(), pair.items()));
         this.tag(ModItemTags.CLUBS).add(ModItems.WOODEN_CLUB.get(), ModItems.STUDDED_CLUB.get());
         this.tag(ModItemTags.CESTUSAE).add(ModItems.CESTUS.get(), ModItems.STUDDED_CESTUS.get());
-        this.tag(ModItemTags.BATTLE_HAMMERS).add(ModItems.BATTLE_HAMMERS.getAsList().toArray(new Item[0]));
-        this.tag(ModItemTags.WARHAMMERS).add(ModItems.WARHAMMERS.getAsList().toArray(new Item[0]));
-        this.tag(ModItemTags.SPEARS).add(ModItems.SPEARS.getAsList().toArray(new Item[0]));
-        this.tag(ModItemTags.HALBERDS).add(ModItems.HALBERDS.getAsList().toArray(new Item[0]));
-        this.tag(ModItemTags.PIKES).add(ModItems.PIKES.getAsList().toArray(new Item[0]));
-        this.tag(ModItemTags.LANCES).add(ModItems.LANCES.getAsList().toArray(new Item[0]));
-        this.tag(ModItemTags.LONGBOWS).add(ModItems.LONGBOWS.getAsList().toArray(new Item[0]));
-        this.tag(ModItemTags.HEAVY_CROSSBOWS).add(ModItems.HEAVY_CROSSBOWS.getAsList().toArray(new Item[0]));
-        this.tag(ModItemTags.THROWING_KNIVES).add(ModItems.THROWING_KNIVES.getAsList().toArray(new Item[0]));
-        this.tag(ModItemTags.TOMAHAWKS).add(ModItems.TOMAHAWKS.getAsList().toArray(new Item[0]));
-        this.tag(ModItemTags.JAVELINS).add(ModItems.JAVELINS.getAsList().toArray(new Item[0]));
-        this.tag(ModItemTags.BOOMERANGS).add(ModItems.BOOMERANGS.getAsList().toArray(new Item[0]));
-        this.tag(ModItemTags.BATTLEAXES).add(ModItems.BATTLEAXES.getAsList().toArray(new Item[0]));
-        this.tag(ModItemTags.FLANGED_MACES).add(ModItems.FLANGED_MACES.getAsList().toArray(new Item[0]));
-        this.tag(ModItemTags.GLAIVES).add(ModItems.GLAIVES.getAsList().toArray(new Item[0]));
-        this.tag(ModItemTags.QUARTERSTAVES).add(ModItems.QUARTERSTAVES.getAsList().toArray(new Item[0]));
-        this.tag(ModItemTags.SCYTHES).add(ModItems.SCYTHES.getAsList().toArray(new Item[0]));
 
-        this.tag(ModItemTags.WOODEN_WEAPONS).add(ModItems.DAGGERS.wood.get(), ModItems.PARRYING_DAGGERS.wood.get(), ModItems.LONGSWORDS.wood.get(), ModItems.KATANAS.wood.get(), ModItems.SABERS.wood.get(),
-                ModItems.RAPIERS.wood.get(), ModItems.GREATSWORDS.wood.get(), ModItems.BATTLE_HAMMERS.wood.get(), ModItems.WARHAMMERS.wood.get(), ModItems.SPEARS.wood.get(), ModItems.HALBERDS.wood.get(), ModItems.PIKES.wood.get(),
-                ModItems.LANCES.wood.get(), ModItems.LONGBOWS.wood.get(), ModItems.HEAVY_CROSSBOWS.wood.get(), ModItems.THROWING_KNIVES.wood.get(), ModItems.TOMAHAWKS.wood.get(), ModItems.JAVELINS.wood.get(),
-                ModItems.BOOMERANGS.wood.get(), ModItems.BATTLEAXES.wood.get(), ModItems.FLANGED_MACES.wood.get(), ModItems.GLAIVES.wood.get(), ModItems.QUARTERSTAVES.wood.get(), ModItems.SCYTHES.wood.get());
-        this.tag(ModItemTags.STONE_WEAPONS).add(ModItems.DAGGERS.stone.get(), ModItems.PARRYING_DAGGERS.stone.get(), ModItems.LONGSWORDS.stone.get(), ModItems.KATANAS.stone.get(), ModItems.SABERS.stone.get(),
-                ModItems.RAPIERS.stone.get(), ModItems.GREATSWORDS.stone.get(), ModItems.BATTLE_HAMMERS.stone.get(), ModItems.WARHAMMERS.stone.get(), ModItems.SPEARS.stone.get(), ModItems.HALBERDS.stone.get(), ModItems.PIKES.stone.get(),
-                ModItems.LANCES.stone.get(), ModItems.THROWING_KNIVES.stone.get(), ModItems.TOMAHAWKS.stone.get(), ModItems.JAVELINS.stone.get(),
-                ModItems.BOOMERANGS.stone.get(), ModItems.BATTLEAXES.stone.get(), ModItems.FLANGED_MACES.stone.get(), ModItems.GLAIVES.stone.get(), ModItems.QUARTERSTAVES.stone.get(), ModItems.SCYTHES.stone.get());
-        this.tag(ModItemTags.LEATHER_WEAPONS).add(ModItems.LONGBOWS.leather.get(), ModItems.HEAVY_CROSSBOWS.leather.get());
-        this.tag(ModItemTags.COPPER_WEAPONS).add(ModItems.DAGGERS.copper.get(), ModItems.PARRYING_DAGGERS.copper.get(), ModItems.LONGSWORDS.copper.get(), ModItems.KATANAS.copper.get(), ModItems.SABERS.copper.get(),
-                ModItems.RAPIERS.copper.get(), ModItems.GREATSWORDS.copper.get(), ModItems.BATTLE_HAMMERS.copper.get(), ModItems.WARHAMMERS.copper.get(), ModItems.SPEARS.copper.get(), ModItems.HALBERDS.copper.get(), ModItems.PIKES.copper.get(),
-                ModItems.LANCES.copper.get(), ModItems.LONGBOWS.copper.get(), ModItems.HEAVY_CROSSBOWS.copper.get(), ModItems.THROWING_KNIVES.copper.get(), ModItems.TOMAHAWKS.copper.get(), ModItems.JAVELINS.copper.get(),
-                ModItems.BOOMERANGS.copper.get(), ModItems.BATTLEAXES.copper.get(), ModItems.FLANGED_MACES.copper.get(), ModItems.GLAIVES.copper.get(), ModItems.QUARTERSTAVES.copper.get(), ModItems.SCYTHES.copper.get());
-        this.tag(ModItemTags.IRON_WEAPONS).add(ModItems.DAGGERS.iron.get(), ModItems.PARRYING_DAGGERS.iron.get(), ModItems.LONGSWORDS.iron.get(), ModItems.KATANAS.iron.get(), ModItems.SABERS.iron.get(),
-                ModItems.RAPIERS.iron.get(), ModItems.GREATSWORDS.iron.get(), ModItems.BATTLE_HAMMERS.iron.get(), ModItems.WARHAMMERS.iron.get(), ModItems.SPEARS.iron.get(), ModItems.HALBERDS.iron.get(), ModItems.PIKES.iron.get(),
-                ModItems.LANCES.iron.get(), ModItems.LONGBOWS.iron.get(), ModItems.HEAVY_CROSSBOWS.iron.get(), ModItems.THROWING_KNIVES.iron.get(), ModItems.TOMAHAWKS.iron.get(), ModItems.JAVELINS.iron.get(),
-                ModItems.BOOMERANGS.iron.get(), ModItems.BATTLEAXES.iron.get(), ModItems.FLANGED_MACES.iron.get(), ModItems.GLAIVES.iron.get(), ModItems.QUARTERSTAVES.iron.get(), ModItems.SCYTHES.iron.get());
-        this.tag(ModItemTags.GOLDEN_WEAPONS).add(ModItems.DAGGERS.gold.get(), ModItems.PARRYING_DAGGERS.gold.get(), ModItems.LONGSWORDS.gold.get(), ModItems.KATANAS.gold.get(), ModItems.SABERS.gold.get(),
-                ModItems.RAPIERS.gold.get(), ModItems.GREATSWORDS.gold.get(), ModItems.BATTLE_HAMMERS.gold.get(), ModItems.WARHAMMERS.gold.get(), ModItems.SPEARS.gold.get(), ModItems.HALBERDS.gold.get(), ModItems.PIKES.gold.get(),
-                ModItems.LANCES.gold.get(), ModItems.LONGBOWS.gold.get(), ModItems.HEAVY_CROSSBOWS.gold.get(), ModItems.THROWING_KNIVES.gold.get(), ModItems.TOMAHAWKS.gold.get(), ModItems.JAVELINS.gold.get(),
-                ModItems.BOOMERANGS.gold.get(), ModItems.BATTLEAXES.gold.get(), ModItems.FLANGED_MACES.gold.get(), ModItems.GLAIVES.gold.get(), ModItems.QUARTERSTAVES.gold.get(), ModItems.SCYTHES.gold.get());
-        this.tag(ModItemTags.DIAMOND_WEAPONS).add(ModItems.DAGGERS.diamond.get(), ModItems.PARRYING_DAGGERS.diamond.get(), ModItems.LONGSWORDS.diamond.get(), ModItems.KATANAS.diamond.get(), ModItems.SABERS.diamond.get(),
-                ModItems.RAPIERS.diamond.get(), ModItems.GREATSWORDS.diamond.get(), ModItems.BATTLE_HAMMERS.diamond.get(), ModItems.WARHAMMERS.diamond.get(), ModItems.SPEARS.diamond.get(), ModItems.HALBERDS.diamond.get(), ModItems.PIKES.diamond.get(),
-                ModItems.LANCES.diamond.get(), ModItems.LONGBOWS.diamond.get(), ModItems.HEAVY_CROSSBOWS.diamond.get(), ModItems.THROWING_KNIVES.diamond.get(), ModItems.TOMAHAWKS.diamond.get(), ModItems.JAVELINS.diamond.get(),
-                ModItems.BOOMERANGS.diamond.get(), ModItems.BATTLEAXES.diamond.get(), ModItems.FLANGED_MACES.diamond.get(), ModItems.GLAIVES.diamond.get(), ModItems.QUARTERSTAVES.diamond.get(), ModItems.SCYTHES.diamond.get());
-        this.tag(ModItemTags.NETHERITE_WEAPONS).add(ModItems.DAGGERS.netherite.get(), ModItems.PARRYING_DAGGERS.netherite.get(), ModItems.LONGSWORDS.netherite.get(), ModItems.KATANAS.netherite.get(), ModItems.SABERS.netherite.get(),
-                ModItems.RAPIERS.netherite.get(), ModItems.GREATSWORDS.netherite.get(), ModItems.BATTLE_HAMMERS.netherite.get(), ModItems.WARHAMMERS.netherite.get(), ModItems.SPEARS.netherite.get(), ModItems.HALBERDS.netherite.get(), ModItems.PIKES.netherite.get(),
-                ModItems.LANCES.netherite.get(), ModItems.LONGBOWS.netherite.get(), ModItems.HEAVY_CROSSBOWS.netherite.get(), ModItems.THROWING_KNIVES.netherite.get(), ModItems.TOMAHAWKS.netherite.get(), ModItems.JAVELINS.netherite.get(),
-                ModItems.BOOMERANGS.netherite.get(), ModItems.BATTLEAXES.netherite.get(), ModItems.FLANGED_MACES.netherite.get(), ModItems.GLAIVES.netherite.get(), ModItems.QUARTERSTAVES.netherite.get(), ModItems.SCYTHES.netherite.get());
-
-        this.tag(ModItemTags.TIN_WEAPONS).add(ModItems.DAGGERS.tin.get(), ModItems.PARRYING_DAGGERS.tin.get(), ModItems.LONGSWORDS.tin.get(), ModItems.KATANAS.tin.get(), ModItems.SABERS.tin.get(),
-                ModItems.RAPIERS.tin.get(), ModItems.GREATSWORDS.tin.get(), ModItems.BATTLE_HAMMERS.tin.get(), ModItems.WARHAMMERS.tin.get(), ModItems.SPEARS.tin.get(), ModItems.HALBERDS.tin.get(), ModItems.PIKES.tin.get(),
-                ModItems.LANCES.tin.get(), ModItems.LONGBOWS.tin.get(), ModItems.HEAVY_CROSSBOWS.tin.get(), ModItems.THROWING_KNIVES.tin.get(), ModItems.TOMAHAWKS.tin.get(), ModItems.JAVELINS.tin.get(),
-                ModItems.BOOMERANGS.tin.get(), ModItems.BATTLEAXES.tin.get(), ModItems.FLANGED_MACES.tin.get(), ModItems.GLAIVES.tin.get(), ModItems.QUARTERSTAVES.tin.get(), ModItems.SCYTHES.tin.get());
-        this.tag(ModItemTags.BRONZE_WEAPONS).add(ModItems.DAGGERS.bronze.get(), ModItems.PARRYING_DAGGERS.bronze.get(), ModItems.LONGSWORDS.bronze.get(), ModItems.KATANAS.bronze.get(), ModItems.SABERS.bronze.get(),
-                ModItems.RAPIERS.bronze.get(), ModItems.GREATSWORDS.bronze.get(), ModItems.BATTLE_HAMMERS.bronze.get(), ModItems.WARHAMMERS.bronze.get(), ModItems.SPEARS.bronze.get(), ModItems.HALBERDS.bronze.get(), ModItems.PIKES.bronze.get(),
-                ModItems.LANCES.bronze.get(), ModItems.LONGBOWS.bronze.get(), ModItems.HEAVY_CROSSBOWS.bronze.get(), ModItems.THROWING_KNIVES.bronze.get(), ModItems.TOMAHAWKS.bronze.get(), ModItems.JAVELINS.bronze.get(),
-                ModItems.BOOMERANGS.bronze.get(), ModItems.BATTLEAXES.bronze.get(), ModItems.FLANGED_MACES.bronze.get(), ModItems.GLAIVES.bronze.get(), ModItems.QUARTERSTAVES.bronze.get(), ModItems.SCYTHES.bronze.get());
-        this.tag(ModItemTags.STEEL_WEAPONS).add(ModItems.DAGGERS.steel.get(), ModItems.PARRYING_DAGGERS.steel.get(), ModItems.LONGSWORDS.steel.get(), ModItems.KATANAS.steel.get(), ModItems.SABERS.steel.get(),
-                ModItems.RAPIERS.steel.get(), ModItems.GREATSWORDS.steel.get(), ModItems.BATTLE_HAMMERS.steel.get(), ModItems.WARHAMMERS.steel.get(), ModItems.SPEARS.steel.get(), ModItems.HALBERDS.steel.get(), ModItems.PIKES.steel.get(),
-                ModItems.LANCES.steel.get(), ModItems.LONGBOWS.steel.get(), ModItems.HEAVY_CROSSBOWS.steel.get(), ModItems.THROWING_KNIVES.steel.get(), ModItems.TOMAHAWKS.steel.get(), ModItems.JAVELINS.steel.get(),
-                ModItems.BOOMERANGS.steel.get(), ModItems.BATTLEAXES.steel.get(), ModItems.FLANGED_MACES.steel.get(), ModItems.GLAIVES.steel.get(), ModItems.QUARTERSTAVES.steel.get(), ModItems.SCYTHES.steel.get());
-        this.tag(ModItemTags.SILVER_WEAPONS).add(ModItems.DAGGERS.silver.get(), ModItems.PARRYING_DAGGERS.silver.get(), ModItems.LONGSWORDS.silver.get(), ModItems.KATANAS.silver.get(), ModItems.SABERS.silver.get(),
-                ModItems.RAPIERS.silver.get(), ModItems.GREATSWORDS.silver.get(), ModItems.BATTLE_HAMMERS.silver.get(), ModItems.WARHAMMERS.silver.get(), ModItems.SPEARS.silver.get(), ModItems.HALBERDS.silver.get(), ModItems.PIKES.silver.get(),
-                ModItems.LANCES.silver.get(), ModItems.LONGBOWS.silver.get(), ModItems.HEAVY_CROSSBOWS.silver.get(), ModItems.THROWING_KNIVES.silver.get(), ModItems.TOMAHAWKS.silver.get(), ModItems.JAVELINS.silver.get(),
-                ModItems.BOOMERANGS.silver.get(), ModItems.BATTLEAXES.silver.get(), ModItems.FLANGED_MACES.silver.get(), ModItems.GLAIVES.silver.get(), ModItems.QUARTERSTAVES.silver.get(), ModItems.SCYTHES.silver.get());
-        this.tag(ModItemTags.ELECTRUM_WEAPONS).add(ModItems.DAGGERS.electrum.get(), ModItems.PARRYING_DAGGERS.electrum.get(), ModItems.LONGSWORDS.electrum.get(), ModItems.KATANAS.electrum.get(), ModItems.SABERS.electrum.get(),
-                ModItems.RAPIERS.electrum.get(), ModItems.GREATSWORDS.electrum.get(), ModItems.BATTLE_HAMMERS.electrum.get(), ModItems.WARHAMMERS.electrum.get(), ModItems.SPEARS.electrum.get(), ModItems.HALBERDS.electrum.get(), ModItems.PIKES.electrum.get(),
-                ModItems.LANCES.electrum.get(), ModItems.LONGBOWS.electrum.get(), ModItems.HEAVY_CROSSBOWS.electrum.get(), ModItems.THROWING_KNIVES.electrum.get(), ModItems.TOMAHAWKS.electrum.get(), ModItems.JAVELINS.electrum.get(),
-                ModItems.BOOMERANGS.electrum.get(), ModItems.BATTLEAXES.electrum.get(), ModItems.FLANGED_MACES.electrum.get(), ModItems.GLAIVES.electrum.get(), ModItems.QUARTERSTAVES.electrum.get(), ModItems.SCYTHES.electrum.get());
-        this.tag(ModItemTags.LEAD_WEAPONS).add(ModItems.DAGGERS.lead.get(), ModItems.PARRYING_DAGGERS.lead.get(), ModItems.LONGSWORDS.lead.get(), ModItems.KATANAS.lead.get(), ModItems.SABERS.lead.get(),
-                ModItems.RAPIERS.lead.get(), ModItems.GREATSWORDS.lead.get(), ModItems.BATTLE_HAMMERS.lead.get(), ModItems.WARHAMMERS.lead.get(), ModItems.SPEARS.lead.get(), ModItems.HALBERDS.lead.get(), ModItems.PIKES.lead.get(),
-                ModItems.LANCES.lead.get(), ModItems.LONGBOWS.lead.get(), ModItems.HEAVY_CROSSBOWS.lead.get(), ModItems.THROWING_KNIVES.lead.get(), ModItems.TOMAHAWKS.lead.get(), ModItems.JAVELINS.lead.get(),
-                ModItems.BOOMERANGS.lead.get(), ModItems.BATTLEAXES.lead.get(), ModItems.FLANGED_MACES.lead.get(), ModItems.GLAIVES.lead.get(), ModItems.QUARTERSTAVES.lead.get(), ModItems.SCYTHES.lead.get());
-        this.tag(ModItemTags.NICKEL_WEAPONS).add(ModItems.DAGGERS.nickel.get(), ModItems.PARRYING_DAGGERS.nickel.get(), ModItems.LONGSWORDS.nickel.get(), ModItems.KATANAS.nickel.get(), ModItems.SABERS.nickel.get(),
-                ModItems.RAPIERS.nickel.get(), ModItems.GREATSWORDS.nickel.get(), ModItems.BATTLE_HAMMERS.nickel.get(), ModItems.WARHAMMERS.nickel.get(), ModItems.SPEARS.nickel.get(), ModItems.HALBERDS.nickel.get(), ModItems.PIKES.nickel.get(),
-                ModItems.LANCES.nickel.get(), ModItems.LONGBOWS.nickel.get(), ModItems.HEAVY_CROSSBOWS.nickel.get(), ModItems.THROWING_KNIVES.nickel.get(), ModItems.TOMAHAWKS.nickel.get(), ModItems.JAVELINS.nickel.get(),
-                ModItems.BOOMERANGS.nickel.get(), ModItems.BATTLEAXES.nickel.get(), ModItems.FLANGED_MACES.nickel.get(), ModItems.GLAIVES.nickel.get(), ModItems.QUARTERSTAVES.nickel.get(), ModItems.SCYTHES.nickel.get());
-        this.tag(ModItemTags.INVAR_WEAPONS).add(ModItems.DAGGERS.invar.get(), ModItems.PARRYING_DAGGERS.invar.get(), ModItems.LONGSWORDS.invar.get(), ModItems.KATANAS.invar.get(), ModItems.SABERS.invar.get(),
-                ModItems.RAPIERS.invar.get(), ModItems.GREATSWORDS.invar.get(), ModItems.BATTLE_HAMMERS.invar.get(), ModItems.WARHAMMERS.invar.get(), ModItems.SPEARS.invar.get(), ModItems.HALBERDS.invar.get(), ModItems.PIKES.invar.get(),
-                ModItems.LANCES.invar.get(), ModItems.LONGBOWS.invar.get(), ModItems.HEAVY_CROSSBOWS.invar.get(), ModItems.THROWING_KNIVES.invar.get(), ModItems.TOMAHAWKS.invar.get(), ModItems.JAVELINS.invar.get(),
-                ModItems.BOOMERANGS.invar.get(), ModItems.BATTLEAXES.invar.get(), ModItems.FLANGED_MACES.invar.get(), ModItems.GLAIVES.invar.get(), ModItems.QUARTERSTAVES.invar.get(), ModItems.SCYTHES.invar.get());
-        this.tag(ModItemTags.CONSTANTAN_WEAPONS).add(ModItems.DAGGERS.constantan.get(), ModItems.PARRYING_DAGGERS.constantan.get(), ModItems.LONGSWORDS.constantan.get(), ModItems.KATANAS.constantan.get(), ModItems.SABERS.constantan.get(),
-                ModItems.RAPIERS.constantan.get(), ModItems.GREATSWORDS.constantan.get(), ModItems.BATTLE_HAMMERS.constantan.get(), ModItems.WARHAMMERS.constantan.get(), ModItems.SPEARS.constantan.get(), ModItems.HALBERDS.constantan.get(), ModItems.PIKES.constantan.get(),
-                ModItems.LANCES.constantan.get(), ModItems.LONGBOWS.constantan.get(), ModItems.HEAVY_CROSSBOWS.constantan.get(), ModItems.THROWING_KNIVES.constantan.get(), ModItems.TOMAHAWKS.constantan.get(), ModItems.JAVELINS.constantan.get(),
-                ModItems.BOOMERANGS.constantan.get(), ModItems.BATTLEAXES.constantan.get(), ModItems.FLANGED_MACES.constantan.get(), ModItems.GLAIVES.constantan.get(), ModItems.QUARTERSTAVES.constantan.get(), ModItems.SCYTHES.constantan.get());
-        this.tag(ModItemTags.PLATINUM_WEAPONS).add(ModItems.DAGGERS.platinum.get(), ModItems.PARRYING_DAGGERS.platinum.get(), ModItems.LONGSWORDS.platinum.get(), ModItems.KATANAS.platinum.get(), ModItems.SABERS.platinum.get(),
-                ModItems.RAPIERS.platinum.get(), ModItems.GREATSWORDS.platinum.get(), ModItems.BATTLE_HAMMERS.platinum.get(), ModItems.WARHAMMERS.platinum.get(), ModItems.SPEARS.platinum.get(), ModItems.HALBERDS.platinum.get(), ModItems.PIKES.platinum.get(),
-                ModItems.LANCES.platinum.get(), ModItems.LONGBOWS.platinum.get(), ModItems.HEAVY_CROSSBOWS.platinum.get(), ModItems.THROWING_KNIVES.platinum.get(), ModItems.TOMAHAWKS.platinum.get(), ModItems.JAVELINS.platinum.get(),
-                ModItems.BOOMERANGS.platinum.get(), ModItems.BATTLEAXES.platinum.get(), ModItems.FLANGED_MACES.platinum.get(), ModItems.GLAIVES.platinum.get(), ModItems.QUARTERSTAVES.platinum.get(), ModItems.SCYTHES.platinum.get());
-        this.tag(ModItemTags.ALUMINUM_WEAPONS).add(ModItems.DAGGERS.aluminum.get(), ModItems.PARRYING_DAGGERS.aluminum.get(), ModItems.LONGSWORDS.aluminum.get(), ModItems.KATANAS.aluminum.get(), ModItems.SABERS.aluminum.get(),
-                ModItems.RAPIERS.aluminum.get(), ModItems.GREATSWORDS.aluminum.get(), ModItems.BATTLE_HAMMERS.aluminum.get(), ModItems.WARHAMMERS.aluminum.get(), ModItems.SPEARS.aluminum.get(), ModItems.HALBERDS.aluminum.get(), ModItems.PIKES.aluminum.get(),
-                ModItems.LANCES.aluminum.get(), ModItems.LONGBOWS.aluminum.get(), ModItems.HEAVY_CROSSBOWS.aluminum.get(), ModItems.THROWING_KNIVES.aluminum.get(), ModItems.TOMAHAWKS.aluminum.get(), ModItems.JAVELINS.aluminum.get(),
-                ModItems.BOOMERANGS.aluminum.get(), ModItems.BATTLEAXES.aluminum.get(), ModItems.FLANGED_MACES.aluminum.get(), ModItems.GLAIVES.aluminum.get(), ModItems.QUARTERSTAVES.aluminum.get(), ModItems.SCYTHES.aluminum.get());
+        this.addLegacyMaterialTags();
 
         this.addGroupedWeaponTags();
 
@@ -279,51 +240,35 @@ public class ModItemTagsProvider extends ItemTagsProvider {
 
         // Minecraft 1.21+ enchantment compatibility tags
         // Melee weapons - can receive sword enchantments (Sharpness, Smite, Bane of Arthropods, etc.)
-        this.tag(ENCHANTABLE_SWORD).addTags(ModItemTags.DAGGERS, ModItemTags.PARRYING_DAGGERS, ModItemTags.LONGSWORDS, ModItemTags.KATANAS,
-                ModItemTags.SABERS, ModItemTags.RAPIERS, ModItemTags.GREATSWORDS, ModItemTags.CLUBS, ModItemTags.CESTUSAE,
-                ModItemTags.BATTLE_HAMMERS, ModItemTags.WARHAMMERS, ModItemTags.SPEARS, ModItemTags.HALBERDS, ModItemTags.PIKES,
-                ModItemTags.LANCES, ModItemTags.BATTLEAXES, ModItemTags.FLANGED_MACES, ModItemTags.GLAIVES, ModItemTags.QUARTERSTAVES,
-                ModItemTags.SCYTHES);
+        this.addTagReferences(ENCHANTABLE_SWORD, MELEE_WEAPON_TAGS);
 
         // Throwing weapons - also receive sword enchantments for melee use
-        this.tag(ENCHANTABLE_SWORD).addTags(ModItemTags.THROWING_KNIVES, ModItemTags.TOMAHAWKS, ModItemTags.JAVELINS, ModItemTags.BOOMERANGS);
+        this.addTagReferences(ENCHANTABLE_SWORD, THROWING_WEAPON_TAGS);
 
         // Sharp weapon enchantments (Sharpness, Smite, Bane of Arthropods)
-        this.tag(ENCHANTABLE_SHARP_WEAPON).addTags(ModItemTags.DAGGERS, ModItemTags.PARRYING_DAGGERS, ModItemTags.LONGSWORDS, ModItemTags.KATANAS,
-                ModItemTags.SABERS, ModItemTags.RAPIERS, ModItemTags.GREATSWORDS, ModItemTags.CLUBS, ModItemTags.CESTUSAE,
-                ModItemTags.BATTLE_HAMMERS, ModItemTags.WARHAMMERS, ModItemTags.SPEARS, ModItemTags.HALBERDS, ModItemTags.PIKES,
-                ModItemTags.LANCES, ModItemTags.BATTLEAXES, ModItemTags.FLANGED_MACES, ModItemTags.GLAIVES, ModItemTags.QUARTERSTAVES,
-                ModItemTags.SCYTHES, ModItemTags.THROWING_KNIVES, ModItemTags.TOMAHAWKS, ModItemTags.JAVELINS, ModItemTags.BOOMERANGS);
+        this.addTagReferences(ENCHANTABLE_SHARP_WEAPON, MELEE_WEAPON_TAGS);
+        this.addTagReferences(ENCHANTABLE_SHARP_WEAPON, THROWING_WEAPON_TAGS);
 
         // Fire Aspect has its own vanilla tag in 1.21+
-        this.tag(ENCHANTABLE_FIRE_ASPECT).addTags(ModItemTags.DAGGERS, ModItemTags.PARRYING_DAGGERS, ModItemTags.LONGSWORDS, ModItemTags.KATANAS,
-                ModItemTags.SABERS, ModItemTags.RAPIERS, ModItemTags.GREATSWORDS, ModItemTags.CLUBS, ModItemTags.CESTUSAE,
-                ModItemTags.BATTLE_HAMMERS, ModItemTags.WARHAMMERS, ModItemTags.SPEARS, ModItemTags.HALBERDS, ModItemTags.PIKES,
-                ModItemTags.LANCES, ModItemTags.BATTLEAXES, ModItemTags.FLANGED_MACES, ModItemTags.GLAIVES, ModItemTags.QUARTERSTAVES,
-                ModItemTags.SCYTHES, ModItemTags.THROWING_KNIVES, ModItemTags.TOMAHAWKS, ModItemTags.JAVELINS, ModItemTags.BOOMERANGS);
+        this.addTagReferences(ENCHANTABLE_FIRE_ASPECT, MELEE_WEAPON_TAGS);
+        this.addTagReferences(ENCHANTABLE_FIRE_ASPECT, THROWING_WEAPON_TAGS);
 
         // Weapon enchantments (Knockback, Looting)
-        this.tag(ENCHANTABLE_WEAPON).addTags(ModItemTags.DAGGERS, ModItemTags.PARRYING_DAGGERS, ModItemTags.LONGSWORDS, ModItemTags.KATANAS,
-                ModItemTags.SABERS, ModItemTags.RAPIERS, ModItemTags.GREATSWORDS, ModItemTags.CLUBS, ModItemTags.CESTUSAE,
-                ModItemTags.BATTLE_HAMMERS, ModItemTags.WARHAMMERS, ModItemTags.SPEARS, ModItemTags.HALBERDS, ModItemTags.PIKES,
-                ModItemTags.LANCES, ModItemTags.BATTLEAXES, ModItemTags.FLANGED_MACES, ModItemTags.GLAIVES, ModItemTags.QUARTERSTAVES,
-                ModItemTags.SCYTHES, ModItemTags.THROWING_KNIVES, ModItemTags.TOMAHAWKS, ModItemTags.JAVELINS, ModItemTags.BOOMERANGS);
+        this.addTagReferences(ENCHANTABLE_WEAPON, MELEE_WEAPON_TAGS);
+        this.addTagReferences(ENCHANTABLE_WEAPON, THROWING_WEAPON_TAGS);
 
         // Durability enchantments (Unbreaking, Mending)
-        this.tag(ENCHANTABLE_DURABILITY).addTags(ModItemTags.DAGGERS, ModItemTags.PARRYING_DAGGERS, ModItemTags.LONGSWORDS, ModItemTags.KATANAS,
-                ModItemTags.SABERS, ModItemTags.RAPIERS, ModItemTags.GREATSWORDS, ModItemTags.CLUBS, ModItemTags.CESTUSAE,
-                ModItemTags.BATTLE_HAMMERS, ModItemTags.WARHAMMERS, ModItemTags.SPEARS, ModItemTags.HALBERDS, ModItemTags.PIKES,
-                ModItemTags.LANCES, ModItemTags.LONGBOWS, ModItemTags.HEAVY_CROSSBOWS, ModItemTags.THROWING_KNIVES, ModItemTags.TOMAHAWKS,
-                ModItemTags.JAVELINS, ModItemTags.BOOMERANGS, ModItemTags.BATTLEAXES, ModItemTags.FLANGED_MACES, ModItemTags.GLAIVES,
-                ModItemTags.QUARTERSTAVES, ModItemTags.SCYTHES);
+        this.addTagReferences(ENCHANTABLE_DURABILITY, PRIMARY_MELEE_WEAPON_TAGS);
+        this.addTagReferences(ENCHANTABLE_DURABILITY, RANGED_WEAPON_TAGS);
+        this.addTagReferences(ENCHANTABLE_DURABILITY, THROWING_WEAPON_TAGS);
+        this.addTagReferences(ENCHANTABLE_DURABILITY, SECONDARY_MELEE_WEAPON_TAGS);
 
         // Curse of Vanishing
-        this.tag(ENCHANTABLE_VANISHING).addTags(ModItemTags.DAGGERS, ModItemTags.PARRYING_DAGGERS, ModItemTags.LONGSWORDS, ModItemTags.KATANAS,
-                ModItemTags.SABERS, ModItemTags.RAPIERS, ModItemTags.GREATSWORDS, ModItemTags.CLUBS, ModItemTags.CESTUSAE,
-                ModItemTags.BATTLE_HAMMERS, ModItemTags.WARHAMMERS, ModItemTags.SPEARS, ModItemTags.HALBERDS, ModItemTags.PIKES,
-                ModItemTags.LANCES, ModItemTags.LONGBOWS, ModItemTags.HEAVY_CROSSBOWS, ModItemTags.THROWING_KNIVES, ModItemTags.TOMAHAWKS,
-                ModItemTags.JAVELINS, ModItemTags.BOOMERANGS, ModItemTags.BATTLEAXES, ModItemTags.FLANGED_MACES, ModItemTags.GLAIVES,
-                ModItemTags.QUARTERSTAVES, ModItemTags.SCYTHES, ModItemTags.QUIVERS);
+        this.addTagReferences(ENCHANTABLE_VANISHING, PRIMARY_MELEE_WEAPON_TAGS);
+        this.addTagReferences(ENCHANTABLE_VANISHING, RANGED_WEAPON_TAGS);
+        this.addTagReferences(ENCHANTABLE_VANISHING, THROWING_WEAPON_TAGS);
+        this.addTagReferences(ENCHANTABLE_VANISHING, SECONDARY_MELEE_WEAPON_TAGS);
+        this.tag(ENCHANTABLE_VANISHING).addTag(ModItemTags.QUIVERS);
 
         // Bow enchantments (Power, Punch, Flame, Infinity)
         this.tag(ENCHANTABLE_BOW).addTag(ModItemTags.LONGBOWS);
@@ -342,15 +287,13 @@ public class ModItemTagsProvider extends ItemTagsProvider {
         // Tags in Forge's domain
         final TagKey<Item> HEADS_TAG = ItemTags.create(ResourceLocation.parse("c:heads"));
         this.tag(HEADS_TAG).addTag(ModItemTags.HEADS);
-        this.tag(Tags.Items.TOOLS).addTags(ModItemTags.DAGGERS, ModItemTags.PARRYING_DAGGERS, ModItemTags.LONGSWORDS, ModItemTags.KATANAS, ModItemTags.SABERS, ModItemTags.RAPIERS, ModItemTags.GREATSWORDS,
-                ModItemTags.CLUBS, ModItemTags.CESTUSAE, ModItemTags.BATTLE_HAMMERS, ModItemTags.WARHAMMERS, ModItemTags.SPEARS, ModItemTags.HALBERDS, ModItemTags.PIKES, ModItemTags.LANCES,
-                ModItemTags.LONGBOWS, ModItemTags.HEAVY_CROSSBOWS, ModItemTags.THROWING_KNIVES, ModItemTags.TOMAHAWKS, ModItemTags.JAVELINS, ModItemTags.BOOMERANGS, ModItemTags.BATTLEAXES,
-                ModItemTags.FLANGED_MACES, ModItemTags.GLAIVES, ModItemTags.QUARTERSTAVES, ModItemTags.SCYTHES);
-        this.tag(Tags.Items.MELEE_WEAPON_TOOLS).addTags(ModItemTags.DAGGERS, ModItemTags.PARRYING_DAGGERS, ModItemTags.LONGSWORDS, ModItemTags.KATANAS, ModItemTags.SABERS, ModItemTags.RAPIERS, ModItemTags.GREATSWORDS,
-                ModItemTags.CLUBS, ModItemTags.CESTUSAE, ModItemTags.BATTLE_HAMMERS, ModItemTags.WARHAMMERS, ModItemTags.SPEARS, ModItemTags.HALBERDS, ModItemTags.PIKES, ModItemTags.LANCES,
-                ModItemTags.BATTLEAXES, ModItemTags.FLANGED_MACES, ModItemTags.GLAIVES, ModItemTags.QUARTERSTAVES, ModItemTags.SCYTHES);
-        this.tag(Tags.Items.RANGED_WEAPON_TOOLS).addTags(ModItemTags.LONGBOWS, ModItemTags.HEAVY_CROSSBOWS, ModItemTags.THROWING_KNIVES, ModItemTags.TOMAHAWKS,
-                ModItemTags.JAVELINS, ModItemTags.BOOMERANGS);
+        this.addTagReferences(Tags.Items.TOOLS, PRIMARY_MELEE_WEAPON_TAGS);
+        this.addTagReferences(Tags.Items.TOOLS, RANGED_WEAPON_TAGS);
+        this.addTagReferences(Tags.Items.TOOLS, THROWING_WEAPON_TAGS);
+        this.addTagReferences(Tags.Items.TOOLS, SECONDARY_MELEE_WEAPON_TAGS);
+        this.addTagReferences(Tags.Items.MELEE_WEAPON_TOOLS, MELEE_WEAPON_TAGS);
+        this.addTagReferences(Tags.Items.RANGED_WEAPON_TOOLS, RANGED_WEAPON_TAGS);
+        this.addTagReferences(Tags.Items.RANGED_WEAPON_TOOLS, THROWING_WEAPON_TAGS);
         this.tag(Tags.Items.TOOLS_BOW).addTag(ModItemTags.LONGBOWS);
         this.tag(Tags.Items.TOOLS_CROSSBOW).addTag(ModItemTags.HEAVY_CROSSBOWS);
         this.tag(Tags.Items.TOOLS_SPEAR).addTags(ModItemTags.SPEARS, ModItemTags.JAVELINS);
@@ -376,13 +319,43 @@ public class ModItemTagsProvider extends ItemTagsProvider {
         }
 
         for (MaterialTagPair pair : MATERIAL_TAGS) {
-            this.tag(ModItemTags.material(pair.materialName())).addTag(pair.legacyTag());
+            this.tag(ModItemTags.material(pair.material().getMaterialName())).addTag(pair.legacyTag());
         }
+    }
+
+    private void addLegacyMaterialTags() {
+        for (MaterialTagPair pair : MATERIAL_TAGS) {
+            this.addItems(pair.legacyTag(), this.itemsForMaterial(pair.material()));
+        }
+    }
+
+    private void addItems(TagKey<Item> targetTag, Item[] items) {
+        for (Item item : items) {
+            this.tag(targetTag).add(item);
+        }
+    }
+
+    private Item[] itemsForMaterial(WeaponMaterial material) {
+        return WEAPON_GROUP_TAGS.stream()
+                .map(WeaponGroupTagPair::group)
+                .map(group -> group.getItemForMaterial(material))
+                .flatMap(Optional::stream)
+                .toArray(Item[]::new);
+    }
+
+    private void addTagReferences(TagKey<Item> targetTag, List<TagKey<Item>> tags) {
+        tags.forEach(tag -> this.tag(targetTag).addTag(tag));
     }
 
     private record TypeTagPair(TagKey<Item> legacyTag, TagKey<Item> groupedTag) {
     }
 
-    private record MaterialTagPair(String materialName, TagKey<Item> legacyTag) {
+    private record WeaponGroupTagPair(TagKey<Item> legacyTag, ModItems.WeaponItemGroup<? extends Item> group) {
+        private Item[] items() {
+            return this.group.getAsList().toArray(new Item[0]);
+        }
+    }
+
+    private record MaterialTagPair(WeaponMaterial material, TagKey<Item> legacyTag) {
     }
 }

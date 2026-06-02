@@ -11,7 +11,10 @@ import java.util.Objects;
 
 /**
  * This class contains all the different item tags used by Spartan Weaponry.
- * Addon authors should add their weapons to these tags as necessary to allow Quivers to work with addon weapons and Advancements to trigger
+ * <p>
+ * Legacy flat tags are kept for compatibility. New addon and datapack integrations can use the
+ * grouped helpers for {@code weapons/<type>}, {@code materials/<material>}, and
+ * {@code mods/<namespace>} tags while still adding items to any legacy tags required by older content.
  *
  * @author ObliviousSpartan
  */

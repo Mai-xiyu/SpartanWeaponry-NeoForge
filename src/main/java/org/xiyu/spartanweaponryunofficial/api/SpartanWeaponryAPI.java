@@ -16,6 +16,17 @@ import java.util.WeakHashMap;
 import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 
+/**
+ * Main addon-facing entry point for Spartan Weaponry Unofficial.
+ * <p>
+ * Addons should create compatible weapons through {@link #createWeapon(WeaponItemType, WeaponMaterial)}
+ * or the legacy {@code createXxx(WeaponMaterial)} wrappers, then register the returned item in their
+ * own registry. Classification and tag helper methods are metadata helpers; they do not register
+ * game content or write data files by themselves.
+ * <p>
+ * The internal handler bridge is initialized by Spartan Weaponry during mod construction and is not
+ * part of the addon extension surface.
+ */
 public class SpartanWeaponryAPI {
     public static final int API_VERSION = 14;
     public static final String MOD_ID = "spartan_weaponry_unofficial";
@@ -169,6 +180,10 @@ public class SpartanWeaponryAPI {
 
     /**
      * Returns a snapshot of the item classifications known to the API.
+     * <p>
+     * The map only contains items created through this API or manually passed to
+     * {@link #classifyWeapon(Item, WeaponItemType, WeaponMaterial)}. Datapacks can still add items to
+     * the same tags without appearing in this runtime metadata snapshot.
      */
     public static Map<Item, WeaponClassification> getKnownWeaponClassifications() {
         synchronized (weaponClassifications) {
@@ -181,6 +196,7 @@ public class SpartanWeaponryAPI {
      * <p>
      * This is intended for data providers. A typical provider can call
      * {@code SpartanWeaponryAPI.forEachKnownWeaponTag((tag, item) -> this.tag(tag).add(item));}.
+     * Runtime tag membership is still controlled by generated datapack JSON, not this method.
      */
     public static void forEachKnownWeaponTag(BiConsumer<TagKey<Item>, Item> consumer) {
         getKnownWeaponClassifications().forEach((item, classification) -> emitWeaponTags(item, classification, consumer));

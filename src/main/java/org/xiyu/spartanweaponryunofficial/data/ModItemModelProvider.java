@@ -17,8 +17,35 @@ import org.xiyu.spartanweaponryunofficial.init.ModItems;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.BiConsumer;
 
 public class ModItemModelProvider extends ItemModelProvider {
+    private static final List<WeaponModelGroup> WEAPON_MODEL_GROUPS = List.of(
+            new WeaponModelGroup(ModItems.DAGGERS, ModelGenerator::createDaggerModels),
+            new WeaponModelGroup(ModItems.PARRYING_DAGGERS, ModelGenerator::createParryingDaggerModels),
+            new WeaponModelGroup(ModItems.LONGSWORDS, ModelGenerator::createLongswordModel),
+            new WeaponModelGroup(ModItems.KATANAS, ModelGenerator::createKatanaModel),
+            new WeaponModelGroup(ModItems.SABERS, ModelGenerator::createSaberModel),
+            new WeaponModelGroup(ModItems.RAPIERS, ModelGenerator::createRapierModel),
+            new WeaponModelGroup(ModItems.GREATSWORDS, ModelGenerator::createGreatswordModel),
+            new WeaponModelGroup(ModItems.BATTLE_HAMMERS, ModelGenerator::createBattleHammerModel),
+            new WeaponModelGroup(ModItems.WARHAMMERS, ModelGenerator::createWarhammerModel),
+            new WeaponModelGroup(ModItems.SPEARS, ModelGenerator::createSpearModel),
+            new WeaponModelGroup(ModItems.HALBERDS, ModelGenerator::createHalberdModel),
+            new WeaponModelGroup(ModItems.PIKES, ModelGenerator::createPikeModel),
+            new WeaponModelGroup(ModItems.LANCES, ModelGenerator::createLanceModel),
+            new WeaponModelGroup(ModItems.LONGBOWS, ModelGenerator::createLongbowModels),
+            new WeaponModelGroup(ModItems.HEAVY_CROSSBOWS, ModelGenerator::createHeavyCrossbowModels),
+            new WeaponModelGroup(ModItems.THROWING_KNIVES, ModelGenerator::createThrowingKnifeModels),
+            new WeaponModelGroup(ModItems.TOMAHAWKS, ModelGenerator::createTomahawkModels),
+            new WeaponModelGroup(ModItems.JAVELINS, ModelGenerator::createJavelinModels),
+            new WeaponModelGroup(ModItems.BOOMERANGS, ModelGenerator::createBoomerangModels),
+            new WeaponModelGroup(ModItems.BATTLEAXES, ModelGenerator::createBattleaxeModel),
+            new WeaponModelGroup(ModItems.FLANGED_MACES, ModelGenerator::createFlangedMaceModel),
+            new WeaponModelGroup(ModItems.GLAIVES, ModelGenerator::createGlaiveModel),
+            new WeaponModelGroup(ModItems.QUARTERSTAVES, ModelGenerator::createQuarterstaffModel),
+            new WeaponModelGroup(ModItems.SCYTHES, ModelGenerator::createScytheModel)
+    );
 
     public ModItemModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
         super(output, ModSpartanWeaponry.ID, existingFileHelper);
@@ -40,58 +67,11 @@ public class ModItemModelProvider extends ItemModelProvider {
 /*		ImmutableList.of(Items.WOODEN_SWORD, Items.STONE_SWORD, Items.IRON_SWORD, Items.GOLDEN_SWORD, Items.DIAMOND_SWORD, Items.NETHERITE_SWORD).
 			forEach((sword) -> generator.createVanillaSwordModels(sword));*/
 
-        for (Item dagger : ModItems.DAGGERS.getAsList())
-            generator.createDaggerModels(dagger);
-        for (Item parryingDagger : ModItems.PARRYING_DAGGERS.getAsList())
-            generator.createParryingDaggerModels(parryingDagger);
-        for (Item longsword : ModItems.LONGSWORDS.getAsList())
-            generator.createLongswordModel(longsword);
-        for (Item katana : ModItems.KATANAS.getAsList())
-            generator.createKatanaModel(katana);
-        for (Item saber : ModItems.SABERS.getAsList())
-            generator.createSaberModel(saber);
-        for (Item rapiers : ModItems.RAPIERS.getAsList())
-            generator.createRapierModel(rapiers);
-        for (Item greatsword : ModItems.GREATSWORDS.getAsList())
-            generator.createGreatswordModel(greatsword);
+        WEAPON_MODEL_GROUPS.forEach(group -> group.createModels(generator));
         generator.createClubModel(ModItems.WOODEN_CLUB.get());
         generator.createClubModel(ModItems.STUDDED_CLUB.get());
         generator.createCestusModel(ModItems.CESTUS.get());
         generator.createCestusModel(ModItems.STUDDED_CESTUS.get());
-        for (Item battleHammer : ModItems.BATTLE_HAMMERS.getAsList())
-            generator.createBattleHammerModel(battleHammer);
-        for (Item warhammer : ModItems.WARHAMMERS.getAsList())
-            generator.createWarhammerModel(warhammer);
-        for (Item spear : ModItems.SPEARS.getAsList())
-            generator.createSpearModel(spear);
-        for (Item halberd : ModItems.HALBERDS.getAsList())
-            generator.createHalberdModel(halberd);
-        for (Item pike : ModItems.PIKES.getAsList())
-            generator.createPikeModel(pike);
-        for (Item lance : ModItems.LANCES.getAsList())
-            generator.createLanceModel(lance);
-        for (Item longbow : ModItems.LONGBOWS.getAsList())
-            generator.createLongbowModels(longbow);
-        for (Item heavyCrossbow : ModItems.HEAVY_CROSSBOWS.getAsList())
-            generator.createHeavyCrossbowModels(heavyCrossbow);
-        for (Item throwingKnife : ModItems.THROWING_KNIVES.getAsList())
-            generator.createThrowingKnifeModels(throwingKnife);
-        for (Item tomahawk : ModItems.TOMAHAWKS.getAsList())
-            generator.createTomahawkModels(tomahawk);
-        for (Item javelin : ModItems.JAVELINS.getAsList())
-            generator.createJavelinModels(javelin);
-        for (Item boomerang : ModItems.BOOMERANGS.getAsList())
-            generator.createBoomerangModels(boomerang);
-        for (Item battleaxe : ModItems.BATTLEAXES.getAsList())
-            generator.createBattleaxeModel(battleaxe);
-        for (Item flangedMace : ModItems.FLANGED_MACES.getAsList())
-            generator.createFlangedMaceModel(flangedMace);
-        for (Item glaive : ModItems.GLAIVES.getAsList())
-            generator.createGlaiveModel(glaive);
-        for (Item quarterstaff : ModItems.QUARTERSTAVES.getAsList())
-            generator.createQuarterstaffModel(quarterstaff);
-        for (Item scythe : ModItems.SCYTHES.getAsList())
-            generator.createScytheModel(scythe);
 
         generator.createSimpleModel(ModItems.WOODEN_ARROW.get());
         this.createTippedArrowModel(ModItems.TIPPED_WOODEN_ARROW.get());
@@ -165,5 +145,13 @@ public class ModItemModelProvider extends ItemModelProvider {
     @Override
     public @NotNull String getName() {
         return ModSpartanWeaponry.NAME + " Item Models";
+    }
+
+    private record WeaponModelGroup(ModItems.WeaponItemGroup<? extends Item> items, BiConsumer<ModelGenerator, Item> modelFactory) {
+        private void createModels(ModelGenerator generator) {
+            for (Item item : this.items.getAsList()) {
+                this.modelFactory.accept(generator, item);
+            }
+        }
     }
 }

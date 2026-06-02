@@ -11,7 +11,8 @@ import java.util.Objects;
  * <p>
  * Classifications are attached automatically to items created through
  * {@link SpartanWeaponryAPI#createWeapon(SpartanWeaponryAPI.WeaponItemType, WeaponMaterial)}
- * and the legacy {@code createXxx(WeaponMaterial)} factories.
+ * and the legacy {@code createXxx(WeaponMaterial)} factories. This metadata is intended for runtime
+ * lookup and data-generation helpers; it is not a substitute for real item tag JSON in datapacks.
  */
 public record WeaponClassification(SpartanWeaponryAPI.WeaponItemType weaponItemType, WeaponMaterial material) {
     public WeaponClassification {

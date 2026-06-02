@@ -17,6 +17,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.xiyu.spartanweaponryunofficial.api.tags.ModDamageTypeTags;
 import org.xiyu.spartanweaponryunofficial.util.Config;
 
+/**
+ * Overrides armor absorption only for Spartan armor-piercing damage sources.
+ * TODO: High compatibility risk; replace only if NeoForge exposes an equivalent armor calculation hook.
+ */
 @Mixin(LivingEntity.class)
 public class LivingEntityMixin extends EntityMixin {
     @Inject(at = @At("HEAD"), method = "getDamageAfterArmorAbsorb(Lnet/minecraft/world/damagesource/DamageSource;F)F", cancellable = true)

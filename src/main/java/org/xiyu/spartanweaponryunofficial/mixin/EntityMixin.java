@@ -7,6 +7,9 @@ import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
+/**
+ * Shared shadow base for entity mixins that need position, level, id, discard, and RNG access.
+ */
 @Mixin(Entity.class)
 public class EntityMixin {
     @Shadow

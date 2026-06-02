@@ -1,23 +1,17 @@
 package org.xiyu.spartanweaponryunofficial.item;
 
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMultimap;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderSet;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.Attribute;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
@@ -31,13 +25,10 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.common.ItemAbility;
 import org.jetbrains.annotations.NotNull;
-import org.xiyu.spartanweaponryunofficial.ModSpartanWeaponry;
 import org.xiyu.spartanweaponryunofficial.api.*;
-import org.xiyu.spartanweaponryunofficial.api.trait.IGenericTraitCallback;
 import org.xiyu.spartanweaponryunofficial.api.trait.VersatileWeaponTrait;
 import org.xiyu.spartanweaponryunofficial.api.trait.WeaponTrait;
 import org.xiyu.spartanweaponryunofficial.client.ClientHelper;
-import org.xiyu.spartanweaponryunofficial.util.ClientConfig;
 import org.xiyu.spartanweaponryunofficial.util.WeaponArchetype;
 
 import java.util.Collection;
@@ -84,27 +75,9 @@ public class SwordBaseItem extends SwordItem implements IWeaponTraitContainer<Sw
     public void reload() {
         this.setAttackDamageAndSpeed(this.archetype.getBaseDamage(), this.archetype.getDamageMultiplier(), this.archetype.getAttackSpeed());
 
-        ImmutableList.Builder<WeaponTrait> builder = ImmutableList.builder();
-
 //		Log.info("'" + ForgeRegistries.ITEMS.getKey(this).toString() +  "' -> Material: " + (material != null ? material : "NULL!"));
-        builder.addAll(this.archetype.getTraits());
-        builder.addAll(this.material.getBonusTraits(this.archetype.getType()));
-        this.traits = builder.build();
-
-        // Initialize the weapon's attribute modifier map
-        ImmutableMultimap.Builder<Attribute, AttributeModifier> mapBuilder = ImmutableMultimap.builder();
-        mapBuilder.put(Attributes.ATTACK_DAMAGE.value(), new AttributeModifier(Item.BASE_ATTACK_DAMAGE_ID, this.getDirectAttackDamage(), AttributeModifier.Operation.ADD_VALUE));
-        mapBuilder.put(Attributes.ATTACK_SPEED.value(), new AttributeModifier(Item.BASE_ATTACK_SPEED_ID, this.attackSpeed - 4.0D, AttributeModifier.Operation.ADD_VALUE));
-
-        // Add attributes from Weapon Traits
-//		if(traits != null)
-        this.traits.forEach((trait) -> this.getGenericCallback(trait).ifPresent((callback) -> callback.onModifyAttributes(mapBuilder)));
-
-        var builtModifiers = mapBuilder.build();
-        ItemAttributeModifiers.Builder attributeBuilder = ItemAttributeModifiers.builder();
-        builtModifiers.forEach((attribute, modifier) ->
-                attributeBuilder.add(BuiltInRegistries.ATTRIBUTE.wrapAsHolder(attribute), modifier, EquipmentSlotGroup.MAINHAND));
-        this.modifiers = attributeBuilder.build();
+        this.traits = WeaponTraitResolver.resolveTraits(this.archetype, this.material);
+        this.modifiers = WeaponAttributeBuilder.buildMainHandAttributes(this.getDirectAttackDamage(), this.attackSpeed, this.traits);
     }
 	
 /*	@Override
@@ -137,7 +110,7 @@ public class SwordBaseItem extends SwordItem implements IWeaponTraitContainer<Sw
         if (entity instanceof LivingEntity living) {
 
             if (this.traits != null)
-                this.traits.forEach((trait) -> this.getGenericCallback(trait).ifPresent((callback) -> callback.onItemUpdate(this.material, stack, level, living, itemSlot, isSelected)));
+                this.traits.forEach((trait) -> WeaponTraitResolver.getGenericCallback(trait).ifPresent((callback) -> callback.onItemUpdate(this.material, stack, level, living, itemSlot, isSelected)));
         }
     }
 
@@ -182,26 +155,18 @@ public class SwordBaseItem extends SwordItem implements IWeaponTraitContainer<Sw
         boolean isShiftPressed = Screen.hasShiftDown();
 
         if (this.doCraftCheck && tooltipContext.level() != null) {
-            if (!ClientConfig.INSTANCE.forceDisableUncraftableTooltips.get() && this.material.getModId().equals(ModSpartanWeaponry.ID)) {
-                var tag = BuiltInRegistries.ITEM.getTag(this.material.getRepairTag());
-                if (tag.isEmpty() || tag.get().size() == 0)
-                    this.canBeCrafted = false;
-            }
+            this.canBeCrafted = WeaponTooltipBuilder.checkBuiltInMaterialCraftability(this.material, this.canBeCrafted);
             this.doCraftCheck = false;
         }
 
         if (!this.canBeCrafted)
-            tooltip.add(Component.translatable(String.format("tooltip.%s.uncraftable_missing_material", ModSpartanWeaponry.ID), this.material.getRepairTagName()).withStyle(ChatFormatting.RED));
+            WeaponTooltipBuilder.addUncraftableMaterialTooltip(this.material, tooltip);
 
         this.archetype.addTagErrorTooltip(stack, tooltip);
         this.material.addTagErrorTooltip(stack, tooltip);
 
         if (this.traits != null && !this.traits.isEmpty()) {
-            if (isShiftPressed)
-                tooltip.add(Component.translatable(String.format("tooltip.%s.traits", ModSpartanWeaponry.ID), Component.translatable("tooltip." + ModSpartanWeaponry.ID + ".showing_details").withStyle(ChatFormatting.DARK_GRAY)).withStyle(ChatFormatting.GOLD));
-            else
-                tooltip.add(Component.translatable(String.format("tooltip.%s.traits", ModSpartanWeaponry.ID), Component.translatable("tooltip." + ModSpartanWeaponry.ID + ".show_details", ChatFormatting.AQUA + "SHIFT").withStyle(ChatFormatting.DARK_GRAY)).withStyle(ChatFormatting.GOLD));
-
+            WeaponTooltipBuilder.addTraitHeader(tooltip, isShiftPressed, ChatFormatting.AQUA);
             this.archetype.addTraitsToTooltip(stack, tooltip, isShiftPressed);
 //			tooltip.add(Component.empty());
         }
@@ -297,7 +262,7 @@ public class SwordBaseItem extends SwordItem implements IWeaponTraitContainer<Sw
 
     @Override
     public void onCraftedBy(@NotNull ItemStack stack, @NotNull Level levelIn, @NotNull Player playerIn) {
-        this.traits.forEach((trait) -> this.getGenericCallback(trait).ifPresent((callback) -> callback.onCreateItem(this.material, stack)));
+        this.traits.forEach((trait) -> WeaponTraitResolver.getGenericCallback(trait).ifPresent((callback) -> callback.onCreateItem(this.material, stack)));
         super.onCraftedBy(stack, levelIn, playerIn);
     }
 
@@ -318,7 +283,7 @@ public class SwordBaseItem extends SwordItem implements IWeaponTraitContainer<Sw
 
     @Override
     public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
-        Optional<Boolean> traitCompatibility = this.getTraitEnchantmentCompatibility(enchantment.value());
+        Optional<Boolean> traitCompatibility = WeaponTraitResolver.getEnchantmentCompatibility(this.traits, enchantment.value());
         if (traitCompatibility.isPresent())
             return traitCompatibility.get();
         if (enchantment.is(Enchantments.SWEEPING_EDGE))
@@ -328,7 +293,7 @@ public class SwordBaseItem extends SwordItem implements IWeaponTraitContainer<Sw
 
     @Override
     public boolean isPrimaryItemFor(ItemStack stack, Holder<Enchantment> enchantment) {
-        Optional<Boolean> traitCompatibility = this.getTraitEnchantmentCompatibility(enchantment.value());
+        Optional<Boolean> traitCompatibility = WeaponTraitResolver.getEnchantmentCompatibility(this.traits, enchantment.value());
         if (traitCompatibility.isPresent())
             return traitCompatibility.get();
         if (enchantment.is(Enchantments.SWEEPING_EDGE))
@@ -337,26 +302,9 @@ public class SwordBaseItem extends SwordItem implements IWeaponTraitContainer<Sw
         return this.supportsEnchantment(stack, enchantment) && (primaryItems.isEmpty() || stack.is(primaryItems.get()));
     }
 
-    private Optional<Boolean> getTraitEnchantmentCompatibility(Enchantment enchantment) {
-        for (WeaponTrait trait : this.traits) {
-            if (trait.isEnchantmentIncompatible(enchantment))
-                return Optional.of(false);
-            else if (trait.isEnchantmentCompatible(enchantment))
-                return Optional.of(true);
-        }
-        return Optional.empty();
-    }
-
     @Override
     public <T extends LivingEntity> int damageItem(@NotNull ItemStack stack, int amount, T entity, @NotNull Consumer<Item> onBroken) {
-        int damage = amount;
-        for (WeaponTrait trait : this.traits) {
-            if (trait.getGenericCallback().isPresent())
-                damage = trait.getGenericCallback().get().onDamageItem(stack, entity, damage);
-            if (damage <= 0)
-                break;
-        }
-        return Math.max(0, damage);
+        return WeaponTraitResolver.applyDamageCallbacks(this.traits, stack, entity, amount);
     }
 
     // IWeaponTraitContainer
@@ -402,10 +350,6 @@ public class SwordBaseItem extends SwordItem implements IWeaponTraitContainer<Sw
     @Override
     public WeaponMaterial getMaterial() {
         return this.material;
-    }
-
-    private Optional<IGenericTraitCallback> getGenericCallback(WeaponTrait trait) {
-        return trait.getMeleeCallback().isPresent() ? Optional.of(trait.getMeleeCallback().get()) : trait.getGenericCallback().isPresent() ? trait.getGenericCallback() : Optional.empty();
     }
 
     public void setAttackDamageAndSpeed(float baseDamage, float damageMultiplier, double speed) {

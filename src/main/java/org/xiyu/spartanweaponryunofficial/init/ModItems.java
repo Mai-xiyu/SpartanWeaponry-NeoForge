@@ -8,6 +8,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import org.jetbrains.annotations.ApiStatus;
 import org.xiyu.spartanweaponryunofficial.ModSpartanWeaponry;
 import org.xiyu.spartanweaponryunofficial.api.SpartanWeaponryAPI;
 import org.xiyu.spartanweaponryunofficial.api.SpartanWeaponryAPI.WeaponItemType;
@@ -18,6 +19,8 @@ import org.xiyu.spartanweaponryunofficial.util.WeaponArchetype;
 import org.xiyu.spartanweaponryunofficial.util.WeaponFactory;
 import org.xiyu.spartanweaponryunofficial.util.WeaponFactory.WeaponFunction;
 
+import java.util.Optional;
+
 public class ModItems {
     public static final DeferredRegister<Item> REGISTRY = DeferredRegister.create(Registries.ITEM, ModSpartanWeaponry.ID);
 
@@ -25,11 +28,26 @@ public class ModItems {
         return SpartanWeaponryAPI.classifyWeapon(factory.create(material, property), weaponType, material);
     }
 
-    public static class WeaponItemsMelee {
+    @ApiStatus.Internal
+    public interface WeaponItemGroup<T extends Item> {
+        WeaponItemType getWeaponType();
+
+        ImmutableList<ItemStack> getVanillaItemStacks();
+
+        ImmutableList<ItemStack> getModdedItemStacks();
+
+        ImmutableList<T> getAsList();
+
+        Optional<Item> getItemForMaterial(WeaponMaterial material);
+    }
+
+    public static class WeaponItemsMelee implements WeaponItemGroup<SwordBaseItem> {
+        private final WeaponItemType weaponType;
         public final DeferredHolder<Item, SwordBaseItem> wood, stone, copper, iron, gold, diamond, netherite;
         public final DeferredHolder<Item, SwordBaseItem> tin, bronze, steel, silver, lead, nickel, invar, constantan, platinum, electrum, aluminum;
 
         public WeaponItemsMelee(DeferredRegister<Item> register, String weaponName, WeaponItemType weaponType, WeaponFunction<SwordBaseItem> factory) {
+            this.weaponType = weaponType;
             Item.Properties propVanilla = new Item.Properties();
             Item.Properties propModded = new Item.Properties();
 
@@ -59,28 +77,63 @@ public class ModItems {
 			getAsList().forEach((weapon) -> weapon.setAttackDamageAndSpeed(baseDamage, damageMultiplier, speed));
 		}*/
 
+        @Override
+        public WeaponItemType getWeaponType() {
+            return this.weaponType;
+        }
+
+        @Override
         public ImmutableList<ItemStack> getVanillaItemStacks() {
             return ImmutableList.of(new ItemStack(this.wood.get()), new ItemStack(this.stone.get()), new ItemStack(this.copper.get()), new ItemStack(this.iron.get()),
                     new ItemStack(this.gold.get()), new ItemStack(this.diamond.get()), new ItemStack(this.netherite.get()));
         }
 
+        @Override
         public ImmutableList<ItemStack> getModdedItemStacks() {
             return ImmutableList.of(new ItemStack(this.tin.get()), new ItemStack(this.bronze.get()), new ItemStack(this.steel.get()), new ItemStack(this.silver.get()),
                     new ItemStack(this.electrum.get()), new ItemStack(this.lead.get()), new ItemStack(this.nickel.get()), new ItemStack(this.invar.get()),
                     new ItemStack(this.constantan.get()), new ItemStack(this.platinum.get()), new ItemStack(this.aluminum.get()));
         }
 
+        @Override
         public ImmutableList<SwordBaseItem> getAsList() {
             return ImmutableList.of(this.wood.get(), this.stone.get(), this.copper.get(), this.iron.get(), this.gold.get(), this.diamond.get(), this.netherite.get(),
                     this.tin.get(), this.bronze.get(), this.steel.get(), this.silver.get(), this.electrum.get(), this.lead.get(), this.nickel.get(), this.invar.get(), this.constantan.get(), this.platinum.get(), this.aluminum.get());
         }
+
+        @Override
+        public Optional<Item> getItemForMaterial(WeaponMaterial material) {
+            return switch (material.getMaterialName()) {
+                case "wood" -> Optional.of(this.wood.get());
+                case "stone" -> Optional.of(this.stone.get());
+                case "copper" -> Optional.of(this.copper.get());
+                case "iron" -> Optional.of(this.iron.get());
+                case "gold" -> Optional.of(this.gold.get());
+                case "diamond" -> Optional.of(this.diamond.get());
+                case "netherite" -> Optional.of(this.netherite.get());
+                case "tin" -> Optional.of(this.tin.get());
+                case "bronze" -> Optional.of(this.bronze.get());
+                case "steel" -> Optional.of(this.steel.get());
+                case "silver" -> Optional.of(this.silver.get());
+                case "electrum" -> Optional.of(this.electrum.get());
+                case "lead" -> Optional.of(this.lead.get());
+                case "nickel" -> Optional.of(this.nickel.get());
+                case "invar" -> Optional.of(this.invar.get());
+                case "constantan" -> Optional.of(this.constantan.get());
+                case "platinum" -> Optional.of(this.platinum.get());
+                case "aluminum" -> Optional.of(this.aluminum.get());
+                default -> Optional.empty();
+            };
+        }
     }
 
-    public static class WeaponItemsRanged {
+    public static class WeaponItemsRanged implements WeaponItemGroup<Item> {
+        private final WeaponItemType weaponType;
         public final DeferredHolder<Item, Item> wood, leather, copper, iron, gold, diamond, netherite;
         public final DeferredHolder<Item, Item> tin, bronze, steel, silver, electrum, lead, nickel, invar, constantan, platinum, aluminum;
 
         public WeaponItemsRanged(DeferredRegister<Item> register, String weaponName, WeaponItemType weaponType, WeaponFunction<? extends Item> factory) {
+            this.weaponType = weaponType;
             Item.Properties propVanilla = new Item.Properties();
             Item.Properties propModded = new Item.Properties();
             
@@ -109,28 +162,63 @@ public class ModItems {
             this.aluminum = register.register(weaponName + "_aluminum" + strengthenedSuffix, () -> SpartanWeaponryAPI.classifyWeapon(factory.create(WeaponMaterial.ALUMINUM, propModded), weaponType, WeaponMaterial.ALUMINUM));
         }
 
+        @Override
+        public WeaponItemType getWeaponType() {
+            return this.weaponType;
+        }
+
+        @Override
         public ImmutableList<ItemStack> getVanillaItemStacks() {
             return ImmutableList.of(new ItemStack(this.wood.get()), new ItemStack(this.leather.get()), new ItemStack(this.copper.get()), new ItemStack(this.iron.get()),
                     new ItemStack(this.gold.get()), new ItemStack(this.diamond.get()), new ItemStack(this.netherite.get()));
         }
 
+        @Override
         public ImmutableList<ItemStack> getModdedItemStacks() {
             return ImmutableList.of(new ItemStack(this.tin.get()), new ItemStack(this.bronze.get()), new ItemStack(this.steel.get()), new ItemStack(this.silver.get()),
                     new ItemStack(this.electrum.get()), new ItemStack(this.lead.get()), new ItemStack(this.nickel.get()), new ItemStack(this.invar.get()),
                     new ItemStack(this.constantan.get()), new ItemStack(this.platinum.get()), new ItemStack(this.aluminum.get()));
         }
 
+        @Override
         public ImmutableList<Item> getAsList() {
             return ImmutableList.of(this.wood.get(), this.leather.get(), this.copper.get(), this.iron.get(), this.gold.get(), this.diamond.get(), this.netherite.get(),
                     this.tin.get(), this.bronze.get(), this.steel.get(), this.silver.get(), this.electrum.get(), this.lead.get(), this.nickel.get(), this.invar.get(), this.constantan.get(), this.platinum.get(), this.aluminum.get());
         }
+
+        @Override
+        public Optional<Item> getItemForMaterial(WeaponMaterial material) {
+            return switch (material.getMaterialName()) {
+                case "wood" -> Optional.of(this.wood.get());
+                case "leather" -> Optional.of(this.leather.get());
+                case "copper" -> Optional.of(this.copper.get());
+                case "iron" -> Optional.of(this.iron.get());
+                case "gold" -> Optional.of(this.gold.get());
+                case "diamond" -> Optional.of(this.diamond.get());
+                case "netherite" -> Optional.of(this.netherite.get());
+                case "tin" -> Optional.of(this.tin.get());
+                case "bronze" -> Optional.of(this.bronze.get());
+                case "steel" -> Optional.of(this.steel.get());
+                case "silver" -> Optional.of(this.silver.get());
+                case "electrum" -> Optional.of(this.electrum.get());
+                case "lead" -> Optional.of(this.lead.get());
+                case "nickel" -> Optional.of(this.nickel.get());
+                case "invar" -> Optional.of(this.invar.get());
+                case "constantan" -> Optional.of(this.constantan.get());
+                case "platinum" -> Optional.of(this.platinum.get());
+                case "aluminum" -> Optional.of(this.aluminum.get());
+                default -> Optional.empty();
+            };
+        }
     }
 
-    public static class WeaponItemsThrowing {
+    public static class WeaponItemsThrowing implements WeaponItemGroup<ThrowingWeaponItem> {
+        private final WeaponItemType weaponType;
         public DeferredHolder<Item, ThrowingWeaponItem> wood, stone, copper, iron, gold, diamond, netherite;
         public DeferredHolder<Item, ThrowingWeaponItem> tin, bronze, steel, silver, electrum, lead, nickel, invar, constantan, platinum, aluminum;
 
         public WeaponItemsThrowing(DeferredRegister<Item> register, String weaponName, WeaponItemType weaponType, WeaponFunction<ThrowingWeaponItem> factory) {
+            this.weaponType = weaponType;
             Item.Properties propVanilla = new Item.Properties();
             Item.Properties propModded = new Item.Properties();
 
@@ -160,20 +248,53 @@ public class ModItems {
 			getAsList().forEach((weapon) -> weapon.updateFromConfig(baseDamage, damageMultiplier, speed, chargeTicks));
 		}*/
 
+        @Override
+        public WeaponItemType getWeaponType() {
+            return this.weaponType;
+        }
+
+        @Override
         public ImmutableList<ItemStack> getVanillaItemStacks() {
             return ImmutableList.of(this.wood.get().makeTabStack(), this.stone.get().makeTabStack(), this.copper.get().makeTabStack(), this.iron.get().makeTabStack(),
                     this.gold.get().makeTabStack(), this.diamond.get().makeTabStack(), this.netherite.get().makeTabStack());
         }
 
+        @Override
         public ImmutableList<ItemStack> getModdedItemStacks() {
             return ImmutableList.of(this.tin.get().makeTabStack(), this.bronze.get().makeTabStack(), this.steel.get().makeTabStack(), this.silver.get().makeTabStack(),
                     this.electrum.get().makeTabStack(), this.lead.get().makeTabStack(), this.nickel.get().makeTabStack(), this.invar.get().makeTabStack(),
                     this.constantan.get().makeTabStack(), this.platinum.get().makeTabStack(), this.aluminum.get().makeTabStack());
         }
 
+        @Override
         public ImmutableList<ThrowingWeaponItem> getAsList() {
             return ImmutableList.of(this.wood.get(), this.stone.get(), this.copper.get(), this.iron.get(), this.gold.get(), this.diamond.get(), this.netherite.get(),
                     this.tin.get(), this.bronze.get(), this.steel.get(), this.silver.get(), this.electrum.get(), this.lead.get(), this.nickel.get(), this.invar.get(), this.constantan.get(), this.platinum.get(), this.aluminum.get());
+        }
+
+        @Override
+        public Optional<Item> getItemForMaterial(WeaponMaterial material) {
+            return switch (material.getMaterialName()) {
+                case "wood" -> Optional.of(this.wood.get());
+                case "stone" -> Optional.of(this.stone.get());
+                case "copper" -> Optional.of(this.copper.get());
+                case "iron" -> Optional.of(this.iron.get());
+                case "gold" -> Optional.of(this.gold.get());
+                case "diamond" -> Optional.of(this.diamond.get());
+                case "netherite" -> Optional.of(this.netherite.get());
+                case "tin" -> Optional.of(this.tin.get());
+                case "bronze" -> Optional.of(this.bronze.get());
+                case "steel" -> Optional.of(this.steel.get());
+                case "silver" -> Optional.of(this.silver.get());
+                case "electrum" -> Optional.of(this.electrum.get());
+                case "lead" -> Optional.of(this.lead.get());
+                case "nickel" -> Optional.of(this.nickel.get());
+                case "invar" -> Optional.of(this.invar.get());
+                case "constantan" -> Optional.of(this.constantan.get());
+                case "platinum" -> Optional.of(this.platinum.get());
+                case "aluminum" -> Optional.of(this.aluminum.get());
+                default -> Optional.empty();
+            };
         }
     }
 
@@ -220,6 +341,31 @@ public class ModItems {
     public static final WeaponItemsMelee GLAIVES = new WeaponItemsMelee(REGISTRY, "glaive", WeaponItemType.GLAIVE, WeaponFactory.GLAIVE);
     public static final WeaponItemsMelee QUARTERSTAVES = new WeaponItemsMelee(REGISTRY, "quarterstaff", WeaponItemType.QUARTERSTAFF, WeaponFactory.QUARTERSTAFF);
     public static final WeaponItemsMelee SCYTHES = new WeaponItemsMelee(REGISTRY, "scythe", WeaponItemType.SCYTHE, WeaponFactory.SCYTHE);
+
+    @ApiStatus.Internal
+    public static ImmutableList<WeaponItemsMelee> getMeleeWeaponGroups() {
+        return ImmutableList.of(DAGGERS, PARRYING_DAGGERS, LONGSWORDS, KATANAS, SABERS, RAPIERS, GREATSWORDS,
+                BATTLE_HAMMERS, WARHAMMERS, SPEARS, HALBERDS, PIKES, LANCES, BATTLEAXES, FLANGED_MACES, GLAIVES, QUARTERSTAVES, SCYTHES);
+    }
+
+    @ApiStatus.Internal
+    public static ImmutableList<WeaponItemsRanged> getRangedWeaponGroups() {
+        return ImmutableList.of(LONGBOWS, HEAVY_CROSSBOWS);
+    }
+
+    @ApiStatus.Internal
+    public static ImmutableList<WeaponItemsThrowing> getThrowingWeaponGroups() {
+        return ImmutableList.of(THROWING_KNIVES, TOMAHAWKS, JAVELINS, BOOMERANGS);
+    }
+
+    @ApiStatus.Internal
+    public static ImmutableList<WeaponItemGroup<? extends Item>> getWeaponGroups() {
+        return ImmutableList.<WeaponItemGroup<? extends Item>>builder()
+                .addAll(getMeleeWeaponGroups())
+                .addAll(getRangedWeaponGroups())
+                .addAll(getThrowingWeaponGroups())
+                .build();
+    }
 
     // Arrows
     public static final DeferredHolder<Item, ArrowBaseItem> WOODEN_ARROW = REGISTRY.register("wooden_arrow", () -> new ArrowBaseItem(Defaults.BaseDamageArrowWood, Defaults.RangeMultiplierArrowWood));

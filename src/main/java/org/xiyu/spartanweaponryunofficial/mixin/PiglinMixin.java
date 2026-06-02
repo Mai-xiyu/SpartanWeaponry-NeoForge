@@ -12,6 +12,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.xiyu.spartanweaponryunofficial.api.tags.ModItemTags;
 import org.xiyu.spartanweaponryunofficial.util.Config;
 
+/**
+ * Applies configured Spartan melee weapon replacement to adult piglins that kept their vanilla golden sword.
+ */
 @Mixin(Piglin.class)
 public class PiglinMixin extends MobMixin {
     @Inject(at = @At("TAIL"), method = "populateDefaultEquipmentSlots(Lnet/minecraft/util/RandomSource;Lnet/minecraft/world/DifficultyInstance;)V")

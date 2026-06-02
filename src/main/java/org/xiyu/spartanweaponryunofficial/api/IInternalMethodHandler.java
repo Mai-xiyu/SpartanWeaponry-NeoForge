@@ -3,8 +3,10 @@ package org.xiyu.spartanweaponryunofficial.api;
 import net.minecraft.world.item.Item;
 
 /**
- * Basic internal method handler interface. Addons should call {@link SpartanWeaponryAPI} instead of
- * depending on this implementation boundary directly.
+ * Internal bridge used by {@link SpartanWeaponryAPI} to delegate weapon construction to the loaded mod.
+ * <p>
+ * This interface remains public for binary compatibility with the existing API surface, but addon mods
+ * should not implement it, cache it, or call it directly. Use {@link SpartanWeaponryAPI} instead.
  *
  * @author ObliviousSpartan
  */
