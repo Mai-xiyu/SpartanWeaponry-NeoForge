@@ -56,7 +56,7 @@ public class ModWeaponTraitTags {
     public static final TagKey<WeaponTrait> LEAD = create("materials/lead");
     public static final TagKey<WeaponTrait> NICKEL = create("materials/nickel");
     public static final TagKey<WeaponTrait> INVAR = create("materials/invar");
-    public static final TagKey<WeaponTrait> CONSTANTAN = create("materials/invar");
+    public static final TagKey<WeaponTrait> CONSTANTAN = create("materials/constantan");
     public static final TagKey<WeaponTrait> PLATINUM = create("materials/platinum");
     public static final TagKey<WeaponTrait> ALUMINUM = create("materials/aluminum");
 
