@@ -433,8 +433,7 @@ public class ModItemTagsProvider extends ItemTagsProvider {
         this.tag(ModItemTags.PLATINUM_INGOT);
         this.tag(ModItemTags.FORGE_ALUMINUM_INGOT);
         this.tag(ModItemTags.FORGE_ALUMINIUM_INGOT);
-        this.tag(ModItemTags.ALUMINUM_INGOT)
-                .addTags(ModItemTags.FORGE_ALUMINUM_INGOT, ModItemTags.FORGE_ALUMINIUM_INGOT);
+        this.tag(ModItemTags.ALUMINUM_INGOT).addTag(ModItemTags.FORGE_ALUMINIUM_INGOT);
 
         // TODO: Implement nugget tags for smelting/blasting recipes later
         /*        tag(ModItemTags.TIN_NUGGET);

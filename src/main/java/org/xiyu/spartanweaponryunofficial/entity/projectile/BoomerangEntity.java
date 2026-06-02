@@ -6,6 +6,9 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Vec3i;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
@@ -26,6 +29,11 @@ import org.xiyu.spartanweaponryunofficial.init.ModEntities;
 import org.xiyu.spartanweaponryunofficial.init.ModSounds;
 
 public class BoomerangEntity extends ThrowingWeaponEntity {
+    private static final EntityDataAccessor<Boolean> DATA_BOOMERANG_RETURNING =
+            SynchedEntityData.defineId(BoomerangEntity.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Float> DATA_MAX_DISTANCE =
+            SynchedEntityData.defineId(BoomerangEntity.class, EntityDataSerializers.FLOAT);
+
     protected final String NBT_RETURN_POSITION = "ReturnPosition";
     protected final String NBT_X = "X";
     protected final String NBT_Y = "Y";
@@ -40,7 +48,6 @@ public class BoomerangEntity extends ThrowingWeaponEntity {
     protected final int TICKS_PER_SOUND = 5;
 
     protected Vec3 returnPos = null;
-    protected boolean isReturning = false;
     protected double maxDistance = DISTANCE_TO_RETURN;
     protected int ticksUntilSound = 0;
 
@@ -72,6 +79,23 @@ public class BoomerangEntity extends ThrowingWeaponEntity {
         this.setNoGravity(true);
     }
 
+    @Override
+    protected void defineSynchedData(SynchedEntityData.@NotNull Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(DATA_BOOMERANG_RETURNING, false);
+        builder.define(DATA_MAX_DISTANCE, (float) DISTANCE_TO_RETURN);
+    }
+
+    @Override
+    public void onSyncedDataUpdated(EntityDataAccessor<?> key) {
+        super.onSyncedDataUpdated(key);
+        if (DATA_BOOMERANG_RETURNING.equals(key)) {
+            this.isReturning = this.getEntityData().get(DATA_BOOMERANG_RETURNING);
+        } else if (DATA_MAX_DISTANCE.equals(key)) {
+            this.maxDistance = this.getEntityData().get(DATA_MAX_DISTANCE);
+        }
+    }
+
     protected void setReturnPosition(Entity shooter) {
         if (shooter != null)
             this.returnPos =
@@ -83,6 +107,22 @@ public class BoomerangEntity extends ThrowingWeaponEntity {
 
     public void setDistanceToReturn(double distance) {
         this.maxDistance = distance;
+        this.getEntityData().set(DATA_MAX_DISTANCE, (float) distance);
+    }
+
+    private boolean isBoomerangReturning() {
+        return this.getEntityData().get(DATA_BOOMERANG_RETURNING);
+    }
+
+    private void setBoomerangReturning(boolean returning) {
+        this.isReturning = returning;
+        this.getEntityData().set(DATA_BOOMERANG_RETURNING, returning);
+    }
+
+    private void clearBoomerangReturnState() {
+        this.setBoomerangReturning(false);
+        this.returnPos = null;
+        this.playedReturnSound = false;
     }
 
     @Override
@@ -94,8 +134,7 @@ public class BoomerangEntity extends ThrowingWeaponEntity {
         if (owner != null && owner.isSpectator()) {
             // Owner is spectating - stop all returning behavior and let it drop
             if (this.isNoGravity()) this.setNoGravity(false);
-            this.isReturning = false;
-            this.returnPos = null;
+            this.clearBoomerangReturnState();
             // Still need to call super.tick() for basic physics, but we've cleared the return state
         }
 
@@ -103,6 +142,10 @@ public class BoomerangEntity extends ThrowingWeaponEntity {
 
         // Do nothing more if the Boomerang is in the ground
         if (this.inGround) {
+            this.clearBoomerangReturnState();
+            this.setDeltaMovement(Vec3.ZERO);
+            this.setNoPhysics(false);
+            this.setNoGravity(false);
             this.xRotO = this.getXRot();
             this.yRotO = this.getYRot();
             return;
@@ -124,13 +167,17 @@ public class BoomerangEntity extends ThrowingWeaponEntity {
         if (this.isNoGravity()) {
             // Start dropping when the boomerang is close to the player and when it's returning
             // Or if it's return position is invalid
-            if ((distance < 1.0d && this.isReturning)
+            if ((distance < 1.0d && this.isBoomerangReturning())
                     || (this.isInWater() && this.waterInertia <= 0.0f)
-                    || this.returnPos == null) this.setNoGravity(false);
-            if (distance > this.maxDistance && !this.isReturning) this.isReturning = true;
+                    || this.returnPos == null) {
+                this.setNoGravity(false);
+                this.clearBoomerangReturnState();
+            }
+            if (distance > this.maxDistance && !this.isBoomerangReturning())
+                this.setBoomerangReturning(true);
 
             // Override motion for Boomerang when returning to the thrower
-            if (this.isReturning && this.returnPos != null) {
+            if (this.isBoomerangReturning() && this.returnPos != null) {
                 Vec3 distanceVec = this.position().subtract(this.returnPos);
                 double length = distanceVec.length();
 
@@ -206,7 +253,7 @@ public class BoomerangEntity extends ThrowingWeaponEntity {
     @Override
     protected void doPostHurtEffects(@NotNull LivingEntity living) {
         // If this hits any entity, return back to the thrower.
-        this.isReturning = true;
+        this.setBoomerangReturning(true);
     }
 
     @Override
@@ -289,7 +336,7 @@ public class BoomerangEntity extends ThrowingWeaponEntity {
             this.maxDistance = compound.getDouble(this.NBT_DISTANCE_TO_RETURN);
         } else this.returnPos = null;
 
-        this.isReturning = compound.getBoolean(this.NBT_RETURNING);
+        this.setBoomerangReturning(compound.getBoolean(this.NBT_RETURNING));
     }
 
     @Override
@@ -305,7 +352,7 @@ public class BoomerangEntity extends ThrowingWeaponEntity {
             compound.putDouble(this.NBT_DISTANCE_TO_RETURN, this.maxDistance);
         } else compound.remove(this.NBT_RETURN_POSITION);
 
-        compound.putBoolean(this.NBT_RETURNING, this.isReturning);
+        compound.putBoolean(this.NBT_RETURNING, this.isBoomerangReturning());
     }
 
     @Override

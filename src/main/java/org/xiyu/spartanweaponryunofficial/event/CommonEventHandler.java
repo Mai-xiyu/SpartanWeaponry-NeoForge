@@ -49,7 +49,6 @@ import net.neoforged.neoforge.event.AnvilUpdateEvent;
 import net.neoforged.neoforge.event.LootTableLoadEvent;
 import net.neoforged.neoforge.event.brewing.PlayerBrewedPotionEvent;
 import net.neoforged.neoforge.event.entity.EntityTeleportEvent;
-import net.neoforged.neoforge.event.entity.item.ItemTossEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDropsEvent;
 import net.neoforged.neoforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
@@ -554,7 +553,14 @@ public class CommonEventHandler {
                     ItemStackDataHelper.hasTag(pickedUpStack)
                             && ItemStackDataHelper.getTag(pickedUpStack)
                                     .getBoolean(ThrowingWeaponItem.NBT_RECOVERED);
-            if (tryMergeThrowingWeaponPickup(player, pickedUpStack, throwingWeapon, level)) {
+            if (tryMergeThrowingWeaponPickup(player, pickedUpStack, throwingWeapon, level)
+                    || recoveredThrowingWeapon
+                            && tryMergeThrowingWeaponPickupWithDroppedOriginal(
+                                    player,
+                                    ev.getItemEntity(),
+                                    pickedUpStack,
+                                    throwingWeapon,
+                                    level)) {
                 player.take(ev.getItemEntity(), 1);
                 level.playSound(
                         null,
@@ -622,6 +628,65 @@ public class CommonEventHandler {
         return false;
     }
 
+    private static boolean tryMergeThrowingWeaponPickupWithDroppedOriginal(
+            Player player,
+            ItemEntity pickedUpEntity,
+            ItemStack pickedUpStack,
+            ThrowingWeaponItem throwingWeapon,
+            Level level) {
+        if (!ItemStackDataHelper.hasTag(pickedUpStack)
+                || !ItemStackDataHelper.getTag(pickedUpStack).hasUUID(ThrowingWeaponItem.NBT_UUID))
+            return false;
+
+        CompoundTag pickedUpTag = ItemStackDataHelper.getTag(pickedUpStack);
+        for (ItemEntity itemEntity :
+                level.getEntitiesOfClass(
+                        ItemEntity.class,
+                        player.getBoundingBox().inflate(4.0D),
+                        itemEntity -> itemEntity != pickedUpEntity && !itemEntity.isRemoved())) {
+            ItemStack originalStack = itemEntity.getItem();
+            if (!canMergeThrowingWeaponStacks(originalStack, pickedUpStack, pickedUpTag)) continue;
+
+            CompoundTag originalTag = ItemStackDataHelper.getTag(originalStack);
+            if (!originalTag.getBoolean(ThrowingWeaponItem.NBT_ORIGINAL)) continue;
+
+            throwingWeapon.normalizeStackState(originalStack, level, true);
+            int maxAmmo = throwingWeapon.getMaxAmmo(originalStack, level);
+            int currentAmmo =
+                    maxAmmo
+                            - ItemStackDataHelper.getTag(originalStack)
+                                    .getInt(ThrowingWeaponItem.NBT_AMMO_USED);
+            if (currentAmmo >= maxAmmo) return true;
+
+            int itemDamage = originalStack.getDamageValue() + pickedUpStack.getDamageValue();
+            if (itemDamage > originalStack.getMaxDamage()) {
+                level.playSound(
+                        null,
+                        player.getX(),
+                        player.getY(),
+                        player.getZ(),
+                        SoundEvents.ITEM_BREAK,
+                        player.getSoundSource(),
+                        0.8f,
+                        0.8f + player.getRandom().nextFloat() * 0.4f);
+                itemDamage -= originalStack.getMaxDamage() + 1;
+            } else {
+                int ammoToRestore =
+                        Math.max(1, maxAmmo - pickedUpTag.getInt(ThrowingWeaponItem.NBT_AMMO_USED));
+                int restoredAmmo = Mth.clamp(currentAmmo + ammoToRestore, 0, maxAmmo);
+                ItemStackDataHelper.updateTag(
+                        originalStack,
+                        tag ->
+                                tag.putInt(
+                                        ThrowingWeaponItem.NBT_AMMO_USED, maxAmmo - restoredAmmo));
+            }
+            originalStack.setDamageValue(Mth.clamp(itemDamage, 0, originalStack.getMaxDamage()));
+            itemEntity.setItem(originalStack);
+            return true;
+        }
+        return false;
+    }
+
     private static boolean canMergeThrowingWeaponStacks(
             ItemStack slotStack, ItemStack pickedUpStack, CompoundTag pickedUpTag) {
         if (slotStack.isEmpty()
@@ -632,29 +697,6 @@ public class CommonEventHandler {
         return slotTag.hasUUID(ThrowingWeaponItem.NBT_UUID)
                 && slotTag.getUUID(ThrowingWeaponItem.NBT_UUID)
                         .equals(pickedUpTag.getUUID(ThrowingWeaponItem.NBT_UUID));
-    }
-
-    /**
-     * Prevent dropping throwing weapons when all ammo is used (i.e. the weapon is in-flight).
-     * Without this, Q-dropping the placeholder item would cause the returning projectile to lose
-     * its inventory target for ammo restoration.
-     */
-    @SubscribeEvent
-    public static void onItemToss(ItemTossEvent ev) {
-        ItemStack stack = ev.getEntity().getItem();
-        if (stack.getItem() instanceof ThrowingWeaponItem throwingWeapon
-                && ItemStackDataHelper.hasTag(stack)) {
-            int ammoUsed =
-                    ItemStackDataHelper.getTag(stack).getInt(ThrowingWeaponItem.NBT_AMMO_USED);
-            int maxAmmo = throwingWeapon.getMaxAmmo(stack, ev.getPlayer().level());
-            if (ammoUsed >= maxAmmo) {
-                // Cancel the toss - but ItemTossEvent cancellation does NOT restore the item to
-                // inventory,
-                // so we must add it back manually
-                ev.setCanceled(true);
-                ev.getPlayer().getInventory().add(stack);
-            }
-        }
     }
 
     /** Inject loot tables with weapons from this mod */
@@ -819,6 +861,13 @@ public class CommonEventHandler {
                 && ItemStackDataHelper.hasTag(left)
                 && ItemStackDataHelper.getTag(left).getBoolean(ThrowingWeaponItem.NBT_ORIGINAL)
                 && ItemStack.isSameItem(left, right)) {
+            Level level = ev.getPlayer().level();
+            int maxAmmo = throwingWeapon.getMaxAmmo(left, level);
+            throwingWeapon.normalizeStackState(left, level, true);
+            if (ItemStackDataHelper.hasTag(right)) {
+                throwingWeapon.normalizeStackState(right, level, false);
+            }
+
             int leftAmmo =
                     ItemStackDataHelper.getTag(left).getInt(ThrowingWeaponItem.NBT_AMMO_USED);
             int rightAmmo =
@@ -828,14 +877,8 @@ public class CommonEventHandler {
             return;
 
             // Combine ammo and durability
-            int maxAmmo =
-                    ((ThrowingWeaponItem) left.getItem()).getMaxAmmo(left, ev.getPlayer().level());
             int durability = left.getDamageValue() + right.getDamageValue();
-            int combinedAmmo =
-                    Mth.clamp(
-                            (maxAmmo - leftAmmo) + (maxAmmo - rightAmmo),
-                            0,
-                            throwingWeapon.getMaxAmmo(left, ev.getPlayer().level()));
+            int combinedAmmo = Mth.clamp((maxAmmo - leftAmmo) + (maxAmmo - rightAmmo), 0, maxAmmo);
             // Reduce ammo count if combined durability value exceeds maximum durability value
             if (durability > left.getMaxDamage()) {
                 combinedAmmo = Math.max(combinedAmmo - 1, 0);
