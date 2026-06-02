@@ -9,7 +9,6 @@ import org.xiyu.spartanweaponryunofficial.api.SpartanWeaponryAPI;
 public class ModDamageTypeTags {
     public static final TagKey<DamageType> IS_ARMOR_PIERCING = create("is_armor_piercing");
 
-
     public static TagKey<DamageType> create(ResourceLocation loc) {
         return TagKey.create(Registries.DAMAGE_TYPE, loc);
     }

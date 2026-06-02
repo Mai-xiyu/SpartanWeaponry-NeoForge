@@ -3,18 +3,14 @@ package org.xiyu.spartanweaponryunofficial.client.gui;
 import net.minecraft.client.Minecraft;
 
 public class AlignmentHelper {
-    /**
-     * Sub-alignment for use for vertical alignments
-     */
+    /** Sub-alignment for use for vertical alignments */
     public enum VerticalAlignment {
         TOP,
         CENTER,
         BOTTOM
     }
 
-    /**
-     * Sub-alignment for use for horizontal alignments
-     */
+    /** Sub-alignment for use for horizontal alignments */
     public enum HorizontalAlignment {
         LEFT,
         CENTER,
@@ -22,7 +18,8 @@ public class AlignmentHelper {
     }
 
     /**
-     * Exact alignment settings that comprise of the two different sub-alignments (horizontal and vertical)
+     * Exact alignment settings that comprise of the two different sub-alignments (horizontal and
+     * vertical)
      */
     public enum Alignment {
         TOP_LEFT(VerticalAlignment.TOP, HorizontalAlignment.LEFT),

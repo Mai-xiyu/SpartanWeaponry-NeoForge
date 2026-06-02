@@ -16,20 +16,18 @@ public class QuiverItemStackHandler extends ItemStackHandler implements IQuiverI
         super(size);
         this.quiverStack = stack;
         CompoundTag tag = ItemStackDataHelper.getTag(stack).getCompound(QuiverBaseItem.NBT_AMMO);
-        if (!tag.isEmpty())
-            this.deserializeNBT(getRegistryAccess(), tag);
+        if (!tag.isEmpty()) this.deserializeNBT(getRegistryAccess(), tag);
     }
 
     /**
-     * Resizes the stack list to the specified size. NOTE: If reducing the size of the stack list, any items over the specified size will be LOST
-     *
+     * Resizes the stack list to the specified size. NOTE: If reducing the size of the stack list,
+     * any items over the specified size will be LOST
      */
     public void resize(int size) {
         NonNullList<ItemStack> newStacks = NonNullList.withSize(size, ItemStack.EMPTY);
 
         for (int i = 0; i < newStacks.size(); i++) {
-            if (i < this.stacks.size())
-                newStacks.set(i, this.stacks.get(i));
+            if (i < this.stacks.size()) newStacks.set(i, this.stacks.get(i));
         }
         this.stacks = newStacks;
         this.syncToStack();
@@ -41,7 +39,9 @@ public class QuiverItemStackHandler extends ItemStackHandler implements IQuiverI
     }
 
     private void syncToStack() {
-        ItemStackDataHelper.updateTag(this.quiverStack, tag -> tag.put(QuiverBaseItem.NBT_AMMO, this.serializeNBT(getRegistryAccess())));
+        ItemStackDataHelper.updateTag(
+                this.quiverStack,
+                tag -> tag.put(QuiverBaseItem.NBT_AMMO, this.serializeNBT(getRegistryAccess())));
     }
 
     private static RegistryAccess getRegistryAccess() {
@@ -51,8 +51,7 @@ public class QuiverItemStackHandler extends ItemStackHandler implements IQuiverI
     @Override
     public boolean isEmpty() {
         for (ItemStack stack : this.stacks) {
-            if (stack.isEmpty())
-                return false;
+            if (stack.isEmpty()) return false;
         }
         return true;
     }

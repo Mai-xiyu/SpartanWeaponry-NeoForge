@@ -6,14 +6,14 @@ import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.suggestion.Suggestions;
 import com.mojang.brigadier.suggestion.SuggestionsBuilder;
-import net.minecraft.core.registries.BuiltInRegistries;
-
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import net.minecraft.core.registries.BuiltInRegistries;
 
 public class PotionArgument implements ArgumentType<PotionInput> {
-    private static final Collection<String> EXAMPLES = List.of("spartan_weaponry_unofficial:undead");
+    private static final Collection<String> EXAMPLES =
+            List.of("spartan_weaponry_unofficial:undead");
 
     public static PotionArgument potion() {
         return new PotionArgument();
@@ -30,7 +30,8 @@ public class PotionArgument implements ArgumentType<PotionInput> {
     }
 
     @Override
-    public <S> CompletableFuture<Suggestions> listSuggestions(CommandContext<S> context, SuggestionsBuilder builder) {
+    public <S> CompletableFuture<Suggestions> listSuggestions(
+            CommandContext<S> context, SuggestionsBuilder builder) {
         StringReader reader = new StringReader(builder.getInput());
         reader.setCursor(builder.getStart());
         PotionParser parser = new PotionParser(reader);

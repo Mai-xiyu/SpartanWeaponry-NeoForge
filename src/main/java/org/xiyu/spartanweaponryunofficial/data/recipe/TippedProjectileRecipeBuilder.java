@@ -21,7 +21,12 @@ public class TippedProjectileRecipeBuilder {
 
     public TippedProjectileRecipeBuilder input(ItemLike inputIn) {
         if (this.input != null)
-            throw new IllegalStateException("Recipe Input already defined as '" + BuiltInRegistries.ITEM.getKey(this.input) + "', but is attempted being overwritten to '" + BuiltInRegistries.ITEM.getKey(inputIn.asItem()) + "'");
+            throw new IllegalStateException(
+                    "Recipe Input already defined as '"
+                            + BuiltInRegistries.ITEM.getKey(this.input)
+                            + "', but is attempted being overwritten to '"
+                            + BuiltInRegistries.ITEM.getKey(inputIn.asItem())
+                            + "'");
         this.input = inputIn.asItem();
         return this;
     }

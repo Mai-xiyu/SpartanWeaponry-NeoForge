@@ -1,5 +1,6 @@
 package org.xiyu.spartanweaponryunofficial.compat.jei;
 
+import java.util.Arrays;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.RecipeTypes;
@@ -18,11 +19,10 @@ import org.xiyu.spartanweaponryunofficial.init.ModItems;
 import org.xiyu.spartanweaponryunofficial.util.Config;
 import org.xiyu.spartanweaponryunofficial.util.Log;
 
-import java.util.Arrays;
-
 @JeiPlugin
 public class SpartanWeaponryPlugin implements IModPlugin {
-    private final ResourceLocation PLUGIN_UID = ResourceLocation.tryBuild("spartan_weaponry_unofficial", "jei_plugin");
+    private final ResourceLocation PLUGIN_UID =
+            ResourceLocation.tryBuild("spartan_weaponry_unofficial", "jei_plugin");
 
     public @NotNull ResourceLocation getPluginUid() {
         return this.PLUGIN_UID;
@@ -31,53 +31,87 @@ public class SpartanWeaponryPlugin implements IModPlugin {
     public void registerItemSubtypes(@NotNull ISubtypeRegistration subtypeRegistry) {
         if (ModList.get().isLoaded("emi")) return;
         Log.info("JEI Plugin is Registering subtypes");
-		
-/*		subtypeRegistry.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK, ModItems.TIPPED_WOODEN_ARROW.get(), TippedProjectileSubtypeInterpreter.INSTANCE);
-		subtypeRegistry.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK, ModItems.TIPPED_COPPER_ARROW.get(), TippedProjectileSubtypeInterpreter.INSTANCE);
-		subtypeRegistry.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK, ModItems.TIPPED_IRON_ARROW.get(), TippedProjectileSubtypeInterpreter.INSTANCE);
-		subtypeRegistry.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK, ModItems.TIPPED_DIAMOND_ARROW.get(), TippedProjectileSubtypeInterpreter.INSTANCE);
-		subtypeRegistry.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK, ModItems.TIPPED_NETHERITE_ARROW.get(), TippedProjectileSubtypeInterpreter.INSTANCE);
-		subtypeRegistry.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK, ModItems.TIPPED_BOLT.get(), TippedProjectileSubtypeInterpreter.INSTANCE);
-		subtypeRegistry.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK, ModItems.TIPPED_COPPER_BOLT.get(), TippedProjectileSubtypeInterpreter.INSTANCE);
-		subtypeRegistry.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK, ModItems.TIPPED_DIAMOND_BOLT.get(), TippedProjectileSubtypeInterpreter.INSTANCE);
-		subtypeRegistry.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK, ModItems.TIPPED_NETHERITE_BOLT.get(), TippedProjectileSubtypeInterpreter.INSTANCE);*/
-        subtypeRegistry.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK, ModItems.WEAPON_OIL.get(), WeaponOilSubtypeInterpreter.INSTANCE);
+
+        /*        subtypeRegistry.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK, ModItems.TIPPED_WOODEN_ARROW.get(), TippedProjectileSubtypeInterpreter.INSTANCE);
+        subtypeRegistry.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK, ModItems.TIPPED_COPPER_ARROW.get(), TippedProjectileSubtypeInterpreter.INSTANCE);
+        subtypeRegistry.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK, ModItems.TIPPED_IRON_ARROW.get(), TippedProjectileSubtypeInterpreter.INSTANCE);
+        subtypeRegistry.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK, ModItems.TIPPED_DIAMOND_ARROW.get(), TippedProjectileSubtypeInterpreter.INSTANCE);
+        subtypeRegistry.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK, ModItems.TIPPED_NETHERITE_ARROW.get(), TippedProjectileSubtypeInterpreter.INSTANCE);
+        subtypeRegistry.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK, ModItems.TIPPED_BOLT.get(), TippedProjectileSubtypeInterpreter.INSTANCE);
+        subtypeRegistry.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK, ModItems.TIPPED_COPPER_BOLT.get(), TippedProjectileSubtypeInterpreter.INSTANCE);
+        subtypeRegistry.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK, ModItems.TIPPED_DIAMOND_BOLT.get(), TippedProjectileSubtypeInterpreter.INSTANCE);
+        subtypeRegistry.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK, ModItems.TIPPED_NETHERITE_BOLT.get(), TippedProjectileSubtypeInterpreter.INSTANCE);*/
+        subtypeRegistry.registerSubtypeInterpreter(
+                VanillaTypes.ITEM_STACK,
+                ModItems.WEAPON_OIL.get(),
+                WeaponOilSubtypeInterpreter.INSTANCE);
     }
 
     public void registerRecipes(IRecipeRegistration reg) {
         // Does EMI already cover this?
-//		if(ModList.get().isLoaded("emi")) return;
+        //        if(ModList.get().isLoaded("emi")) return;
 
-        reg.addRecipes(RecipeTypes.CRAFTING, TippedProjectileRecipeMaker.getRecipes(ModItems.BOLT.get(), ModItems.TIPPED_BOLT.get()));
+        reg.addRecipes(
+                RecipeTypes.CRAFTING,
+                TippedProjectileRecipeMaker.getRecipes(
+                        ModItems.BOLT.get(), ModItems.TIPPED_BOLT.get()));
 
         if (!Config.INSTANCE.disableNewArrowRecipes.get()) {
-            reg.addRecipes(RecipeTypes.CRAFTING, TippedProjectileRecipeMaker.getRecipes(ModItems.WOODEN_ARROW.get(), ModItems.TIPPED_WOODEN_ARROW.get()));
-            reg.addRecipes(RecipeTypes.CRAFTING, TippedProjectileRecipeMaker.getRecipes(ModItems.IRON_ARROW.get(), ModItems.TIPPED_IRON_ARROW.get()));
+            reg.addRecipes(
+                    RecipeTypes.CRAFTING,
+                    TippedProjectileRecipeMaker.getRecipes(
+                            ModItems.WOODEN_ARROW.get(), ModItems.TIPPED_WOODEN_ARROW.get()));
+            reg.addRecipes(
+                    RecipeTypes.CRAFTING,
+                    TippedProjectileRecipeMaker.getRecipes(
+                            ModItems.IRON_ARROW.get(), ModItems.TIPPED_IRON_ARROW.get()));
         }
         if (!Config.INSTANCE.disableCopperAmmoRecipes.get()) {
-            reg.addRecipes(RecipeTypes.CRAFTING, TippedProjectileRecipeMaker.getRecipes(ModItems.COPPER_BOLT.get(), ModItems.TIPPED_COPPER_BOLT.get()));
+            reg.addRecipes(
+                    RecipeTypes.CRAFTING,
+                    TippedProjectileRecipeMaker.getRecipes(
+                            ModItems.COPPER_BOLT.get(), ModItems.TIPPED_COPPER_BOLT.get()));
             if (!Config.INSTANCE.disableNewArrowRecipes.get())
-                reg.addRecipes(RecipeTypes.CRAFTING, TippedProjectileRecipeMaker.getRecipes(ModItems.COPPER_ARROW.get(), ModItems.TIPPED_COPPER_ARROW.get()));
+                reg.addRecipes(
+                        RecipeTypes.CRAFTING,
+                        TippedProjectileRecipeMaker.getRecipes(
+                                ModItems.COPPER_ARROW.get(), ModItems.TIPPED_COPPER_ARROW.get()));
         }
         if (!Config.INSTANCE.disableDiamondAmmoRecipes.get()) {
-            reg.addRecipes(RecipeTypes.CRAFTING, TippedProjectileRecipeMaker.getRecipes(ModItems.DIAMOND_BOLT.get(), ModItems.TIPPED_DIAMOND_BOLT.get()));
+            reg.addRecipes(
+                    RecipeTypes.CRAFTING,
+                    TippedProjectileRecipeMaker.getRecipes(
+                            ModItems.DIAMOND_BOLT.get(), ModItems.TIPPED_DIAMOND_BOLT.get()));
             if (!Config.INSTANCE.disableNewArrowRecipes.get())
-                reg.addRecipes(RecipeTypes.CRAFTING, TippedProjectileRecipeMaker.getRecipes(ModItems.DIAMOND_ARROW.get(), ModItems.TIPPED_DIAMOND_ARROW.get()));
+                reg.addRecipes(
+                        RecipeTypes.CRAFTING,
+                        TippedProjectileRecipeMaker.getRecipes(
+                                ModItems.DIAMOND_ARROW.get(), ModItems.TIPPED_DIAMOND_ARROW.get()));
         }
         if (!Config.INSTANCE.disableNetheriteAmmoRecipes.get()) {
-            reg.addRecipes(RecipeTypes.CRAFTING, TippedProjectileRecipeMaker.getRecipes(ModItems.NETHERITE_BOLT.get(), ModItems.TIPPED_NETHERITE_BOLT.get()));
+            reg.addRecipes(
+                    RecipeTypes.CRAFTING,
+                    TippedProjectileRecipeMaker.getRecipes(
+                            ModItems.NETHERITE_BOLT.get(), ModItems.TIPPED_NETHERITE_BOLT.get()));
             if (!Config.INSTANCE.disableNewArrowRecipes.get())
-                reg.addRecipes(RecipeTypes.CRAFTING, TippedProjectileRecipeMaker.getRecipes(ModItems.NETHERITE_ARROW.get(), ModItems.TIPPED_NETHERITE_ARROW.get()));
+                reg.addRecipes(
+                        RecipeTypes.CRAFTING,
+                        TippedProjectileRecipeMaker.getRecipes(
+                                ModItems.NETHERITE_ARROW.get(),
+                                ModItems.TIPPED_NETHERITE_ARROW.get()));
         }
 
-//		if(!ModList.get().isLoaded("emi"))
-        reg.addRecipes(RecipeTypes.BREWING, OilBrewingRecipeMaker.getRecipes(reg.getVanillaRecipeFactory()));
+        //        if(!ModList.get().isLoaded("emi"))
+        reg.addRecipes(
+                RecipeTypes.BREWING,
+                OilBrewingRecipeMaker.getRecipes(reg.getVanillaRecipeFactory()));
     }
 
     @Override
     public void onRuntimeAvailable(@NotNull IJeiRuntime jeiRuntime) {
-        if (Config.INSTANCE.forceShowDisabledItems.get())    // Skip disabling items if this config option is enabled
-            return;
+        if (Config.INSTANCE.forceShowDisabledItems
+                .get()) // Skip disabling items if this config option is enabled
+        return;
         if (Config.INSTANCE.daggers.disableRecipes.get())
             this.removeItemTagFromJEI(jeiRuntime, ModItemTags.DAGGERS);
         if (Config.INSTANCE.parryingDaggers.disableRecipes.get())
@@ -170,6 +204,9 @@ public class SpartanWeaponryPlugin implements IModPlugin {
     }
 
     private void removeItemTagFromJEI(IJeiRuntime jeiRuntime, TagKey<Item> tag) {
-        jeiRuntime.getIngredientManager().removeIngredientsAtRuntime(VanillaTypes.ITEM_STACK, Arrays.asList(Ingredient.of(tag).getItems()));
+        jeiRuntime
+                .getIngredientManager()
+                .removeIngredientsAtRuntime(
+                        VanillaTypes.ITEM_STACK, Arrays.asList(Ingredient.of(tag).getItems()));
     }
 }

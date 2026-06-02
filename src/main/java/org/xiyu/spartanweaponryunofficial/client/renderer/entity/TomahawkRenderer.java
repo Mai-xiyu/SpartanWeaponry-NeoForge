@@ -17,8 +17,12 @@ public class TomahawkRenderer<T extends TomahawkEntity> extends ThrowingWeaponRe
     protected void doRenderTransformations(T entity, float partialTicks, PoseStack matrixStack) {
         int ticksInAir = entity.getTicksInAir();
         matrixStack.scale(2.0f, 2.0f, 2.0f);
-        matrixStack.mulPose(Axis.YP.rotationDegrees(Mth.lerp(partialTicks, entity.yRotO, entity.getYRot()) - 90.0f));
-        matrixStack.mulPose(Axis.ZP.rotationDegrees(Mth.lerp(partialTicks, entity.xRotO, entity.getXRot()) - 90.0f));
+        matrixStack.mulPose(
+                Axis.YP.rotationDegrees(
+                        Mth.lerp(partialTicks, entity.yRotO, entity.getYRot()) - 90.0f));
+        matrixStack.mulPose(
+                Axis.ZP.rotationDegrees(
+                        Mth.lerp(partialTicks, entity.xRotO, entity.getXRot()) - 90.0f));
         matrixStack.mulPose(Axis.ZP.rotationDegrees(90.0f));
         matrixStack.translate(-0.05d, 0.05d, 0.0d);
 

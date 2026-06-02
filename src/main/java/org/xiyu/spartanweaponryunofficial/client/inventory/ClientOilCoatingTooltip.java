@@ -29,15 +29,39 @@ public class ClientOilCoatingTooltip implements ClientTooltipComponent {
         return 20 + 2 + fontIn.width(this.oilStack.getHoverName());
     }
 
-
     @Override
     public void renderImage(@NotNull Font fontIn, int posXIn, int posYIn, GuiGraphics guiGraphics) {
         guiGraphics.renderItem(this.oilStack, posXIn, posYIn + 1);
     }
 
     @Override
-    public void renderText(Font fontIn, int posXIn, int posYIn, @NotNull Matrix4f matrixIn, @NotNull BufferSource bufferSourceIn) {
-        fontIn.drawInBatch(this.oilStack.getHoverName(), posXIn + 20, posYIn, 0xFFFFFFFF, true, matrixIn, bufferSourceIn, Font.DisplayMode.NORMAL, 0, 0xF000F0);
-        fontIn.drawInBatch(this.text, posXIn + 20, posYIn + 10, ChatFormatting.GOLD.getColor(), true, matrixIn, bufferSourceIn, Font.DisplayMode.NORMAL, 0, 0xF000F0);
+    public void renderText(
+            Font fontIn,
+            int posXIn,
+            int posYIn,
+            @NotNull Matrix4f matrixIn,
+            @NotNull BufferSource bufferSourceIn) {
+        fontIn.drawInBatch(
+                this.oilStack.getHoverName(),
+                posXIn + 20,
+                posYIn,
+                0xFFFFFFFF,
+                true,
+                matrixIn,
+                bufferSourceIn,
+                Font.DisplayMode.NORMAL,
+                0,
+                0xF000F0);
+        fontIn.drawInBatch(
+                this.text,
+                posXIn + 20,
+                posYIn + 10,
+                ChatFormatting.GOLD.getColor(),
+                true,
+                matrixIn,
+                bufferSourceIn,
+                Font.DisplayMode.NORMAL,
+                0,
+                0xF000F0);
     }
 }

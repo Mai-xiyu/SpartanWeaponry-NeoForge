@@ -14,10 +14,9 @@ import net.neoforged.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * ModelQuiver - ObliviousSpartan
- * Created using Tabula 8.0.0; Also edited manually by ObliviousSpartan
- * To allow arrows to be rendered if there is sufficient arrows in the quiver
- * Also edited to work in Minecraft 1.17.1
+ * ModelQuiver - ObliviousSpartan Created using Tabula 8.0.0; Also edited manually by
+ * ObliviousSpartan To allow arrows to be rendered if there is sufficient arrows in the quiver Also
+ * edited to work in Minecraft 1.17.1
  */
 @OnlyIn(Dist.CLIENT)
 public class SmallArrowQuiverModel extends QuiverModelBase {
@@ -64,38 +63,123 @@ public class SmallArrowQuiverModel extends QuiverModelBase {
     public static LayerDefinition createLayer() {
         MeshDefinition mesh = new MeshDefinition();
         PartDefinition part = mesh.getRoot();
-        part.addOrReplaceChild(PART_QUIVER, CubeListBuilder.create().texOffs(0, 0).addBox(-2.0f, -4.0f, 3.0f, 4.0f, 8.0f, 4.0f), PartPose.offsetAndRotation(0.0f, 4.5f, 0.0f, 0.0f, 0.0f, -0.5235987755982988f));
-        part.addOrReplaceChild(PART_STRAP_FRONT, CubeListBuilder.create().texOffs(0, 16).addBox(-6.0f, -1.0f, -3.5f, 12.0f, 1.0f, 1.0f), PartPose.offsetAndRotation(0.0f, 4.5f, 0.0f, 0.0f, 0.0f, -0.8726646259971648f));
-        part.addOrReplaceChild(PART_STRAP_TOP, CubeListBuilder.create().texOffs(0, 18).addBox(-3.5f, -1.0f, 6.0f, 7.0f, 1.0f, 1.0f), PartPose.offsetAndRotation(0.0f, 4.5f, 0.0f, 0.0f, 1.5707963267948966f, -0.8726646259971648f));
-        part.addOrReplaceChild(PART_STRAP_BACK, CubeListBuilder.create().texOffs(0, 14).addBox(-6.0f, -1.0f, 2.5f, 12.0f, 1.0f, 1.0f), PartPose.offsetAndRotation(0.0f, 4.5f, 0.0f, 0.0f, 0.0f, -0.8726646259971648f));
-        part.addOrReplaceChild(PART_STRAP_BOTTOM, CubeListBuilder.create().texOffs(0, 20).addBox(-3.5f, -1.0f, -7.0f, 7.0f, 1.0f, 1.0f), PartPose.offsetAndRotation(0.0f, 4.5f, 0.0f, 0.0f, 1.5707963267948966f, -0.8726646259971648f));
+        part.addOrReplaceChild(
+                PART_QUIVER,
+                CubeListBuilder.create().texOffs(0, 0).addBox(-2.0f, -4.0f, 3.0f, 4.0f, 8.0f, 4.0f),
+                PartPose.offsetAndRotation(0.0f, 4.5f, 0.0f, 0.0f, 0.0f, -0.5235987755982988f));
+        part.addOrReplaceChild(
+                PART_STRAP_FRONT,
+                CubeListBuilder.create()
+                        .texOffs(0, 16)
+                        .addBox(-6.0f, -1.0f, -3.5f, 12.0f, 1.0f, 1.0f),
+                PartPose.offsetAndRotation(0.0f, 4.5f, 0.0f, 0.0f, 0.0f, -0.8726646259971648f));
+        part.addOrReplaceChild(
+                PART_STRAP_TOP,
+                CubeListBuilder.create()
+                        .texOffs(0, 18)
+                        .addBox(-3.5f, -1.0f, 6.0f, 7.0f, 1.0f, 1.0f),
+                PartPose.offsetAndRotation(
+                        0.0f, 4.5f, 0.0f, 0.0f, 1.5707963267948966f, -0.8726646259971648f));
+        part.addOrReplaceChild(
+                PART_STRAP_BACK,
+                CubeListBuilder.create()
+                        .texOffs(0, 14)
+                        .addBox(-6.0f, -1.0f, 2.5f, 12.0f, 1.0f, 1.0f),
+                PartPose.offsetAndRotation(0.0f, 4.5f, 0.0f, 0.0f, 0.0f, -0.8726646259971648f));
+        part.addOrReplaceChild(
+                PART_STRAP_BOTTOM,
+                CubeListBuilder.create()
+                        .texOffs(0, 20)
+                        .addBox(-3.5f, -1.0f, -7.0f, 7.0f, 1.0f, 1.0f),
+                PartPose.offsetAndRotation(
+                        0.0f, 4.5f, 0.0f, 0.0f, 1.5707963267948966f, -0.8726646259971648f));
 
-        part.addOrReplaceChild(PART_ARROW_1_PART_1, CubeListBuilder.create().texOffs(26, 0).addBox(-6.1f, -10.0f, 3.3f, 3.0f, 6.0f, 0.0f), PartPose.offsetAndRotation(0.0f, 4.5f, 0.0f, 0.0f, 0.7853981633974483f, -0.5235987755982988f));
-        part.addOrReplaceChild(PART_ARROW_1_PART_2, CubeListBuilder.create().texOffs(26, 0).addBox(1.8f, -10.0f, 4.6f, 3.0f, 6.0f, 0.0f), PartPose.offsetAndRotation(0.0f, 4.5f, 0.0f, 0.0f, -0.7853981633974483f, -0.5235987755982988f));
-        part.addOrReplaceChild(PART_ARROW_2_PART_1, CubeListBuilder.create().texOffs(26, 0).addBox(-4.7f, -10.0f, 4.7f, 3.0f, 6.0f, 0.0f), PartPose.offsetAndRotation(0.0f, 4.5f, 0.0f, 0.0f, 0.7853981633974483f, -0.5235987755982988f));
-        part.addOrReplaceChild(PART_ARROW_2_PART_2, CubeListBuilder.create().texOffs(26, 0).addBox(3.2f, -10.0f, 3.2f, 3.0f, 6.0f, 0.0f), PartPose.offsetAndRotation(0.0f, 4.5f, 0.0f, 0.0f, -0.7853981633974483f, -0.5235987755982988f));
-        part.addOrReplaceChild(PART_ARROW_3_PART_1, CubeListBuilder.create().texOffs(26, 0).addBox(-4.5f, -10.0f, 3.0f, 3.0f, 6.0f, 0.0f), PartPose.offsetAndRotation(0.0f, 4.5f, 0.0f, 0.0f, 0.7853981633974483f, -0.5235987755982988f));
-        part.addOrReplaceChild(PART_ARROW_3_PART_2, CubeListBuilder.create().texOffs(26, 0).addBox(1.5f, -10.0f, 3.0f, 3.0f, 6.0f, 0.0f), PartPose.offsetAndRotation(0.0f, 4.5f, 0.0f, 0.0f, -0.7853981633974483f, -0.5235987755982988f));
+        part.addOrReplaceChild(
+                PART_ARROW_1_PART_1,
+                CubeListBuilder.create()
+                        .texOffs(26, 0)
+                        .addBox(-6.1f, -10.0f, 3.3f, 3.0f, 6.0f, 0.0f),
+                PartPose.offsetAndRotation(
+                        0.0f, 4.5f, 0.0f, 0.0f, 0.7853981633974483f, -0.5235987755982988f));
+        part.addOrReplaceChild(
+                PART_ARROW_1_PART_2,
+                CubeListBuilder.create()
+                        .texOffs(26, 0)
+                        .addBox(1.8f, -10.0f, 4.6f, 3.0f, 6.0f, 0.0f),
+                PartPose.offsetAndRotation(
+                        0.0f, 4.5f, 0.0f, 0.0f, -0.7853981633974483f, -0.5235987755982988f));
+        part.addOrReplaceChild(
+                PART_ARROW_2_PART_1,
+                CubeListBuilder.create()
+                        .texOffs(26, 0)
+                        .addBox(-4.7f, -10.0f, 4.7f, 3.0f, 6.0f, 0.0f),
+                PartPose.offsetAndRotation(
+                        0.0f, 4.5f, 0.0f, 0.0f, 0.7853981633974483f, -0.5235987755982988f));
+        part.addOrReplaceChild(
+                PART_ARROW_2_PART_2,
+                CubeListBuilder.create()
+                        .texOffs(26, 0)
+                        .addBox(3.2f, -10.0f, 3.2f, 3.0f, 6.0f, 0.0f),
+                PartPose.offsetAndRotation(
+                        0.0f, 4.5f, 0.0f, 0.0f, -0.7853981633974483f, -0.5235987755982988f));
+        part.addOrReplaceChild(
+                PART_ARROW_3_PART_1,
+                CubeListBuilder.create()
+                        .texOffs(26, 0)
+                        .addBox(-4.5f, -10.0f, 3.0f, 3.0f, 6.0f, 0.0f),
+                PartPose.offsetAndRotation(
+                        0.0f, 4.5f, 0.0f, 0.0f, 0.7853981633974483f, -0.5235987755982988f));
+        part.addOrReplaceChild(
+                PART_ARROW_3_PART_2,
+                CubeListBuilder.create()
+                        .texOffs(26, 0)
+                        .addBox(1.5f, -10.0f, 3.0f, 3.0f, 6.0f, 0.0f),
+                PartPose.offsetAndRotation(
+                        0.0f, 4.5f, 0.0f, 0.0f, -0.7853981633974483f, -0.5235987755982988f));
         return LayerDefinition.create(mesh, 32, 32);
     }
 
     @Override
-    public void renderToBuffer(@NotNull PoseStack mStack, @NotNull VertexConsumer buffer, int packedLight, int packedOverlay,
-                               int color) {
-        ImmutableList.of(this.quiver, this.strapFront, this.strapTop, this.strapBack, this.strapBottom).forEach((part) -> part.render(mStack, buffer, packedLight, packedOverlay, color));
+    public void renderToBuffer(
+            @NotNull PoseStack mStack,
+            @NotNull VertexConsumer buffer,
+            int packedLight,
+            int packedOverlay,
+            int color) {
+        ImmutableList.of(
+                        this.quiver,
+                        this.strapFront,
+                        this.strapTop,
+                        this.strapBack,
+                        this.strapBottom)
+                .forEach((part) -> part.render(mStack, buffer, packedLight, packedOverlay, color));
     }
 
     @Override
-    protected void renderArrows(int arrows, PoseStack mStack, VertexConsumer buffer, int packedLight,
-                                int packedOverlay, int color) {
+    protected void renderArrows(
+            int arrows,
+            PoseStack mStack,
+            VertexConsumer buffer,
+            int packedLight,
+            int packedOverlay,
+            int color) {
         if (arrows >= 1) {
-            ImmutableList.of(this.arrow1Part1, this.arrow1Part2).forEach((part) -> part.render(mStack, buffer, packedLight, packedOverlay, color));
+            ImmutableList.of(this.arrow1Part1, this.arrow1Part2)
+                    .forEach(
+                            (part) ->
+                                    part.render(mStack, buffer, packedLight, packedOverlay, color));
         }
         if (arrows >= 2) {
-            ImmutableList.of(this.arrow2Part1, this.arrow2Part2).forEach((part) -> part.render(mStack, buffer, packedLight, packedOverlay, color));
+            ImmutableList.of(this.arrow2Part1, this.arrow2Part2)
+                    .forEach(
+                            (part) ->
+                                    part.render(mStack, buffer, packedLight, packedOverlay, color));
         }
         if (arrows >= 3) {
-            ImmutableList.of(this.arrow3Part1, this.arrow3Part2).forEach((part) -> part.render(mStack, buffer, packedLight, packedOverlay, color));
+            ImmutableList.of(this.arrow3Part1, this.arrow3Part2)
+                    .forEach(
+                            (part) ->
+                                    part.render(mStack, buffer, packedLight, packedOverlay, color));
         }
     }
 }

@@ -1,10 +1,9 @@
 package org.xiyu.spartanweaponryunofficial.api;
 
-import net.minecraft.world.item.Item;
-import org.xiyu.spartanweaponryunofficial.api.trait.WeaponTrait;
-
 import java.util.Collection;
 import java.util.List;
+import net.minecraft.world.item.Item;
+import org.xiyu.spartanweaponryunofficial.api.trait.WeaponTrait;
 
 /**
  * Interface for any item that contains Weapon Traits. Allows access to weapon traits when needed
@@ -13,10 +12,7 @@ import java.util.List;
  * @author ObliviousSpartan
  */
 public interface IWeaponTraitContainer<T extends Item> {
-    /**
-     * Returns the item representation of this Trait Container interface
-     *
-     */
+    /** Returns the item representation of this Trait Container interface */
     T getAsItem();
 
     /**
@@ -36,7 +32,8 @@ public interface IWeaponTraitContainer<T extends Item> {
     boolean hasWeaponTraitWithType(String type);
 
     /**
-     * Retrieves the first Weapon Trait with the specified property type. Any other matches will be ignored
+     * Retrieves the first Weapon Trait with the specified property type. Any other matches will be
+     * ignored
      *
      * @param type The Weapon Trait type to check for
      * @return The first Weapon Trait that matches; null otherwise
@@ -52,15 +49,14 @@ public interface IWeaponTraitContainer<T extends Item> {
     List<WeaponTrait> getAllWeaponTraitsWithType(String type);
 
     /**
-     * Returns a copy of all the Weapon Traits in the current weapon
-     * NOTE: This returns all the Weapon Traits granted by a Material Bonus as well
-     *
+     * Returns a copy of all the Weapon Traits in the current weapon NOTE: This returns all the
+     * Weapon Traits granted by a Material Bonus as well
      */
     Collection<WeaponTrait> getAllWeaponTraits();
 
     /**
-     * Returns the material the weapon is made of. Allows Weapon Traits to access the material directly
-     *
+     * Returns the material the weapon is made of. Allows Weapon Traits to access the material
+     * directly
      */
     WeaponMaterial getMaterial();
 }

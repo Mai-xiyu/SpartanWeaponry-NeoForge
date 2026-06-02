@@ -22,22 +22,19 @@ import org.xiyu.spartanweaponryunofficial.api.tags.ModItemTags;
 import org.xiyu.spartanweaponryunofficial.util.Config;
 
 /**
- * Adds longbow compatibility to skeleton ranged AI and spawn equipment selection.
- * TODO: Revisit if NeoForge exposes a lower-risk ranged-weapon compatibility hook for skeleton goals.
+ * Adds longbow compatibility to skeleton ranged AI and spawn equipment selection. TODO: Revisit if
+ * NeoForge exposes a lower-risk ranged-weapon compatibility hook for skeleton goals.
  */
 @Mixin(AbstractSkeleton.class)
 public class AbstractSkeletonMixin extends MobMixin {
-    @Shadow
-    @Final
-    private RangedBowAttackGoal<AbstractSkeleton> bowGoal;
+    @Shadow @Final private RangedBowAttackGoal<AbstractSkeleton> bowGoal;
 
-    @Shadow
-    @Final
-    private MeleeAttackGoal meleeGoal;
+    @Shadow @Final private MeleeAttackGoal meleeGoal;
 
     @Shadow
     public void setItemSlot(EquipmentSlot slotIn, ItemStack item) {
-        throw new IllegalStateException("Mixin failed to shadow the \"AbstractSkeleton.setItemSlot(...)\" method!");
+        throw new IllegalStateException(
+                "Mixin failed to shadow the \"AbstractSkeleton.setItemSlot(...)\" method!");
     }
 
     @Inject(at = @At("HEAD"), method = "reassessWeaponGoal()V", cancellable = true)
@@ -50,8 +47,7 @@ public class AbstractSkeletonMixin extends MobMixin {
                 this.goalSelector.removeGoal(this.meleeGoal);
 
                 int attackInterval = 20;
-                if (level.getDifficulty() != Difficulty.HARD)
-                    attackInterval = 40;
+                if (level.getDifficulty() != Difficulty.HARD) attackInterval = 40;
 
                 this.bowGoal.setMinAttackInterval(attackInterval);
                 this.goalSelector.addGoal(4, this.bowGoal);
@@ -61,36 +57,46 @@ public class AbstractSkeletonMixin extends MobMixin {
     }
 
     @SuppressWarnings("deprecation")
-    @Inject(at = @At("HEAD"), method = "canFireProjectileWeapon(Lnet/minecraft/world/item/ProjectileWeaponItem;)Z", cancellable = true)
-    public void canFireProjectileWeapon(ProjectileWeaponItem weaponItem, CallbackInfoReturnable<Boolean> callback) {
+    @Inject(
+            at = @At("HEAD"),
+            method = "canFireProjectileWeapon(Lnet/minecraft/world/item/ProjectileWeaponItem;)Z",
+            cancellable = true)
+    public void canFireProjectileWeapon(
+            ProjectileWeaponItem weaponItem, CallbackInfoReturnable<Boolean> callback) {
         if (weaponItem.builtInRegistryHolder().is(ModItemTags.LONGBOWS))
             callback.setReturnValue(true);
     }
 
-    @Inject(at = @At("TAIL"), method = "populateDefaultEquipmentSlots(Lnet/minecraft/util/RandomSource;Lnet/minecraft/world/DifficultyInstance;)V")
-    protected void populateDefaultEquipmentSlots(RandomSource randomIn, DifficultyInstance difficultyIn, CallbackInfo callback) {
-		/*if(!Config.INSTANCE.disableSpawningSkeletonWithLongbow.get())
-		{
-			Level level = level();
-			float rand = random.nextFloat();
-			float chance = difficultyIn.isHard() ? 
-					Config.INSTANCE.skeletonWithLongbowSpawnChanceHard.get().floatValue() : 
-					Config.INSTANCE.skeletonWithLongbowSpawnChanceNormal.get().floatValue();
-			
-			if(rand > 1 - chance)
-			{
-				ITag<Item> tag = ForgeRegistries.ITEMS.tags().getTag(ModItemTags.SKELETON_SPAWN_LONGBOWS);
-				if(!tag.isEmpty())
-				{
-					ItemStack weapon = ItemStack.EMPTY;
-					List<Item> possibleWeapons = tag.stream().toList();
-					weapon = ItemRandomizer.generate(level, possibleWeapons);
-					setItemSlot(EquipmentSlot.MAINHAND, weapon);
-				}
-			}
-		}*/
+    @Inject(
+            at = @At("TAIL"),
+            method =
+                    "populateDefaultEquipmentSlots(Lnet/minecraft/util/RandomSource;Lnet/minecraft/world/DifficultyInstance;)V")
+    protected void populateDefaultEquipmentSlots(
+            RandomSource randomIn, DifficultyInstance difficultyIn, CallbackInfo callback) {
+        /*if(!Config.INSTANCE.disableSpawningSkeletonWithLongbow.get())
+        {
+            Level level = level();
+            float rand = random.nextFloat();
+            float chance = difficultyIn.isHard() ?
+                    Config.INSTANCE.skeletonWithLongbowSpawnChanceHard.get().floatValue() :
+                    Config.INSTANCE.skeletonWithLongbowSpawnChanceNormal.get().floatValue();
 
-        this.spartanWeaponry$attemptReplacingMainHandItemRandom(ModItemTags.SKELETON_SPAWN_LONGBOWS, difficultyIn,
+            if(rand > 1 - chance)
+            {
+                ITag<Item> tag = ForgeRegistries.ITEMS.tags().getTag(ModItemTags.SKELETON_SPAWN_LONGBOWS);
+                if(!tag.isEmpty())
+                {
+                    ItemStack weapon = ItemStack.EMPTY;
+                    List<Item> possibleWeapons = tag.stream().toList();
+                    weapon = ItemRandomizer.generate(level, possibleWeapons);
+                    setItemSlot(EquipmentSlot.MAINHAND, weapon);
+                }
+            }
+        }*/
+
+        this.spartanWeaponry$attemptReplacingMainHandItemRandom(
+                ModItemTags.SKELETON_SPAWN_LONGBOWS,
+                difficultyIn,
                 Config.INSTANCE.disableSpawningSkeletonWithLongbow.get(),
                 Config.INSTANCE.skeletonWithLongbowSpawnChanceNormal.get().floatValue(),
                 Config.INSTANCE.skeletonWithLongbowSpawnChanceHard.get().floatValue());

@@ -18,7 +18,7 @@ import org.xiyu.spartanweaponryunofficial.util.Config;
 
 public class DynamiteEntity extends ThrowableItemProjectile {
     protected int timer;
-    //	protected boolean stickToSurface = false;
+    //    protected boolean stickToSurface = false;
     protected int fuseTicks;
 
     public DynamiteEntity(EntityType<? extends DynamiteEntity> type, Level level) {
@@ -57,7 +57,14 @@ public class DynamiteEntity extends ThrowableItemProjectile {
             double nextZ = this.getZ() + delta.z;
 
             for (int i = 0; i < 4; i++) {
-                level.addParticle(ParticleTypes.BUBBLE, nextX - delta.x * 0.25d, nextY - delta.y * 0.25d, nextZ - delta.z * 0.25d, delta.x, delta.y, delta.z);
+                level.addParticle(
+                        ParticleTypes.BUBBLE,
+                        nextX - delta.x * 0.25d,
+                        nextY - delta.y * 0.25d,
+                        nextZ - delta.z * 0.25d,
+                        delta.x,
+                        delta.y,
+                        delta.z);
             }
             drag = 0.8d;
         }
@@ -69,29 +76,42 @@ public class DynamiteEntity extends ThrowableItemProjectile {
             this.setDeltaMovement(this.getDeltaMovement().multiply(0.7d, -0.5d, 0.7d));
 
         // TODO: Allow Dynamite to stick to surfaces and mobs for Sticky Dynamite
-//        if(stickToSurface)
-//        	setDeltaMovement(0.0d, 0.0d, 0.0d);
+        //        if(stickToSurface)
+        //            setDeltaMovement(0.0d, 0.0d, 0.0d);
 
         this.timer++;
-        if (this.timer >= this.fuseTicks)
-            this.explode();
+        if (this.timer >= this.fuseTicks) this.explode();
         else
-            level.addParticle(ParticleTypes.SMOKE, this.getX(), this.getY() + 0.25D, this.getZ(), 0.0d, 0.1d, 0.0d);
+            level.addParticle(
+                    ParticleTypes.SMOKE,
+                    this.getX(),
+                    this.getY() + 0.25D,
+                    this.getZ(),
+                    0.0d,
+                    0.1d,
+                    0.0d);
     }
 
     @Override
-    protected void onHit(@NotNull HitResult result) {
-    }
+    protected void onHit(@NotNull HitResult result) {}
 
     protected void explode() {
         Level level = this.level();
         if (!level.isClientSide) {
             boolean mobGriefing = level.getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING);
-            level.explode(this, this.getX(), this.getY(), this.getZ(), Config.INSTANCE.explosionStrengthDynamite.get().floatValue(), mobGriefing && !Config.INSTANCE.disableTerrainDamage.get() ? ExplosionInteraction.TNT : ExplosionInteraction.NONE); /*ConfigHandler.enableTerrainDamage &&*/// mobGriefing);
+            level.explode(
+                    this,
+                    this.getX(),
+                    this.getY(),
+                    this.getZ(),
+                    Config.INSTANCE.explosionStrengthDynamite.get().floatValue(),
+                    mobGriefing && !Config.INSTANCE.disableTerrainDamage.get()
+                            ? ExplosionInteraction.TNT
+                            : ExplosionInteraction
+                                    .NONE); /*ConfigHandler.enableTerrainDamage &&*/ // mobGriefing);
             this.discard();
         }
     }
-
 
     @Override
     protected @NotNull Item getDefaultItem() {

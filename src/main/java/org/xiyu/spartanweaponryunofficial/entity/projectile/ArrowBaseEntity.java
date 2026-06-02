@@ -36,8 +36,10 @@ public class ArrowBaseEntity extends AbstractArrow implements IEntityWithComplex
     protected final String NBT_POTION = "Potion";
     protected final String NBT_POTION_COLOUR = "PotionColour";
 
-    protected static final EntityDataAccessor<Integer> COLOUR = SynchedEntityData.defineId(ArrowBaseEntity.class, EntityDataSerializers.INT);
-    protected static final EntityDataAccessor<ItemStack> ARROW = SynchedEntityData.defineId(ArrowBaseEntity.class, EntityDataSerializers.ITEM_STACK);
+    protected static final EntityDataAccessor<Integer> COLOUR =
+            SynchedEntityData.defineId(ArrowBaseEntity.class, EntityDataSerializers.INT);
+    protected static final EntityDataAccessor<ItemStack> ARROW =
+            SynchedEntityData.defineId(ArrowBaseEntity.class, EntityDataSerializers.ITEM_STACK);
     protected Potion potion = null;
 
     protected float baseDamage = 1.0f;
@@ -63,8 +65,15 @@ public class ArrowBaseEntity extends AbstractArrow implements IEntityWithComplex
     }
 
     @Override
-    public void shootFromRotation(@NotNull Entity shooter, float pitch, float yaw, float p_184547_4_, float velocity, float inaccuracy) {
-        super.shootFromRotation(shooter, pitch, yaw, p_184547_4_, velocity * this.rangeMultiplier, inaccuracy);
+    public void shootFromRotation(
+            @NotNull Entity shooter,
+            float pitch,
+            float yaw,
+            float p_184547_4_,
+            float velocity,
+            float inaccuracy) {
+        super.shootFromRotation(
+                shooter, pitch, yaw, p_184547_4_, velocity * this.rangeMultiplier, inaccuracy);
     }
 
     @Override
@@ -80,10 +89,8 @@ public class ArrowBaseEntity extends AbstractArrow implements IEntityWithComplex
         Level level = this.level();
         if (level.isClientSide /*&& potion != null && potion != Potions.EMPTY*/) {
             if (this.inGround) {
-                if (this.inGroundTime % 5 == 0)
-                    this.spawnPotionParticles(1);
-            } else
-                this.spawnPotionParticles(2);
+                if (this.inGroundTime % 5 == 0) this.spawnPotionParticles(1);
+            } else this.spawnPotionParticles(2);
         } else if (this.inGround && this.inGroundTime != 0 && this.inGroundTime >= 600) {
             level.broadcastEntityEvent(this, (byte) 0);
             this.potion = null;
@@ -93,21 +100,28 @@ public class ArrowBaseEntity extends AbstractArrow implements IEntityWithComplex
 
     @Override
     protected void doPostHurtEffects(@NotNull LivingEntity living) {
-        if (this.potion == null)
-            return;
+        if (this.potion == null) return;
         Entity entity = this.getEffectSource();
         Level level = this.level();
 
         for (MobEffectInstance effect : this.potion.getEffects()) {
-            living.addEffect(new MobEffectInstance(effect.getEffect(), Math.max(effect.getDuration() / 8, 1), effect.getAmplifier(), effect.isAmbient(), effect.isVisible()), entity);
+            living.addEffect(
+                    new MobEffectInstance(
+                            effect.getEffect(),
+                            Math.max(effect.getDuration() / 8, 1),
+                            effect.getAmplifier(),
+                            effect.isAmbient(),
+                            effect.isVisible()),
+                    entity);
         }
 
         Item arrowItem = this.getPickupItem().getItem();
 
         // Spawn lightning under the right weather conditions (during a thunderstorm)
-        if (level.isThundering() && arrowItem == ModItems.COPPER_ARROW.get() || arrowItem == ModItems.TIPPED_COPPER_ARROW.get()) {
+        if (level.isThundering() && arrowItem == ModItems.COPPER_ARROW.get()
+                || arrowItem == ModItems.TIPPED_COPPER_ARROW.get()) {
             // Roll a chance to spawn lightning under the right circumstances
-            if (this.random.nextInt(4) < 1)    // ~25%
+            if (this.random.nextInt(4) < 1) // ~25%
             {
                 LightningBolt lightning = EntityType.LIGHTNING_BOLT.create(level);
                 assert lightning != null;
@@ -129,7 +143,18 @@ public class ArrowBaseEntity extends AbstractArrow implements IEntityWithComplex
                 double cB = (double) (i & 255) / 255.0D;
 
                 for (int j = 0; j < 20; ++j) {
-                    level.addParticle(ColorParticleOption.create(ParticleTypes.ENTITY_EFFECT, (float) cR, (float) cG, (float) cB), this.getRandomX(0.5d), this.getRandomY(), this.getRandomZ(0.5d), 0.0D, 0.0D, 0.0D);
+                    level.addParticle(
+                            ColorParticleOption.create(
+                                    ParticleTypes.ENTITY_EFFECT,
+                                    (float) cR,
+                                    (float) cG,
+                                    (float) cB),
+                            this.getRandomX(0.5d),
+                            this.getRandomY(),
+                            this.getRandomZ(0.5d),
+                            0.0D,
+                            0.0D,
+                            0.0D);
                 }
             }
         } else {
@@ -140,7 +165,7 @@ public class ArrowBaseEntity extends AbstractArrow implements IEntityWithComplex
     @Override
     protected @NotNull ItemStack getPickupItem() {
         return this.getEntityData().get(ARROW);
-//		return arrowStack;
+        //        return arrowStack;
     }
 
     @Override
@@ -161,7 +186,8 @@ public class ArrowBaseEntity extends AbstractArrow implements IEntityWithComplex
 
     @Override
     public void addAdditionalSaveData(@NotNull CompoundTag compound) {
-        // Guard: AbstractArrow.addAdditionalSaveData calls getPickupItem().save() which crashes on empty ItemStack.
+        // Guard: AbstractArrow.addAdditionalSaveData calls getPickupItem().save() which crashes on
+        // empty ItemStack.
         // Temporarily set a fallback if our ARROW data is empty, then restore after super call.
         ItemStack arrowData = this.getEntityData().get(ARROW);
         boolean wasEmpty = arrowData.isEmpty();
@@ -179,7 +205,8 @@ public class ArrowBaseEntity extends AbstractArrow implements IEntityWithComplex
         }
 
         if (this.potion != null) {
-            compound.putString(this.NBT_POTION, BuiltInRegistries.POTION.getKey(this.potion).toString());
+            compound.putString(
+                    this.NBT_POTION, BuiltInRegistries.POTION.getKey(this.potion).toString());
         }
 
         compound.putInt(this.NBT_POTION_COLOUR, this.getEntityData().get(COLOUR));
@@ -200,9 +227,16 @@ public class ArrowBaseEntity extends AbstractArrow implements IEntityWithComplex
         this.setArrowStack(ItemStack.parseOptional(this.level().registryAccess(), nbt));
 
         if (compound.contains(this.NBT_POTION, 8))
-            this.potion = BuiltInRegistries.POTION.get(ResourceLocation.parse(compound.getString(this.NBT_POTION)));
+            this.potion =
+                    BuiltInRegistries.POTION.get(
+                            ResourceLocation.parse(compound.getString(this.NBT_POTION)));
 
-        this.getEntityData().set(COLOUR, compound.contains(this.NBT_POTION_COLOUR) ? compound.getInt(this.NBT_POTION_COLOUR) : -1);
+        this.getEntityData()
+                .set(
+                        COLOUR,
+                        compound.contains(this.NBT_POTION_COLOUR)
+                                ? compound.getInt(this.NBT_POTION_COLOUR)
+                                : -1);
     }
 
     public boolean isValid() {
@@ -210,18 +244,21 @@ public class ArrowBaseEntity extends AbstractArrow implements IEntityWithComplex
     }
 
     public ResourceLocation getTexture() {
-        String arrowRegName = BuiltInRegistries.ITEM.getKey(this.getPickupItem().getItem()).getPath();
+        String arrowRegName =
+                BuiltInRegistries.ITEM.getKey(this.getPickupItem().getItem()).getPath();
 
         String prefix = "tipped_";
         int idx = arrowRegName.indexOf(prefix);
         if (idx != -1) {
             arrowRegName = arrowRegName.substring(idx + prefix.length());
         }
-        return ResourceLocation.tryBuild(ModSpartanWeaponry.ID, "textures/entity/projectiles/" + arrowRegName + ".png");
+        return ResourceLocation.tryBuild(
+                ModSpartanWeaponry.ID, "textures/entity/projectiles/" + arrowRegName + ".png");
     }
 
     public void setPotionEffect(ItemStack stack) {
-        PotionContents contents = stack.getOrDefault(DataComponents.POTION_CONTENTS, PotionContents.EMPTY);
+        PotionContents contents =
+                stack.getOrDefault(DataComponents.POTION_CONTENTS, PotionContents.EMPTY);
         this.potion = contents.potion().map(Holder::value).orElse(null);
         this.getEntityData().set(COLOUR, contents.getColor());
     }
@@ -235,7 +272,15 @@ public class ArrowBaseEntity extends AbstractArrow implements IEntityWithComplex
             double cB = (double) (colour & 255) / 255.0D;
 
             for (int i = 0; i < particleCount; i++) {
-                level.addParticle(ColorParticleOption.create(ParticleTypes.ENTITY_EFFECT, (float) cR, (float) cG, (float) cB), this.getRandomX(0.5d), this.getRandomY(), this.getRandomZ(0.5d), 0.0D, 0.0D, 0.0D);
+                level.addParticle(
+                        ColorParticleOption.create(
+                                ParticleTypes.ENTITY_EFFECT, (float) cR, (float) cG, (float) cB),
+                        this.getRandomX(0.5d),
+                        this.getRandomY(),
+                        this.getRandomZ(0.5d),
+                        0.0D,
+                        0.0D,
+                        0.0D);
             }
         }
     }

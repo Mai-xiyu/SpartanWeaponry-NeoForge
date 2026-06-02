@@ -1,6 +1,8 @@
 package org.xiyu.spartanweaponryunofficial.item.crafting;
 
 import com.google.common.collect.ImmutableList;
+import java.util.ArrayList;
+import java.util.List;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.neoforged.neoforge.common.brewing.IBrewingRecipe;
@@ -10,9 +12,6 @@ import org.xiyu.spartanweaponryunofficial.api.oil.OilEffect;
 import org.xiyu.spartanweaponryunofficial.init.ModItems;
 import org.xiyu.spartanweaponryunofficial.util.OilHelper;
 import org.xiyu.spartanweaponryunofficial.util.WeaponOilConfig;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class OilBrewingRecipe implements IBrewingRecipe {
     private static final List<OilMix> VALID_MIXES = new ArrayList<>();
@@ -24,12 +23,10 @@ public class OilBrewingRecipe implements IBrewingRecipe {
 
     @Override
     public boolean isIngredient(@NotNull ItemStack ingredient) {
-        if (!WeaponOilConfig.areRecipesEnabled())
-            return false;
+        if (!WeaponOilConfig.areRecipesEnabled()) return false;
 
         for (OilMix mix : VALID_MIXES) {
-            if (mix.brewingIngredient.test(ingredient))
-                return true;
+            if (mix.brewingIngredient.test(ingredient)) return true;
         }
         return false;
     }
@@ -48,7 +45,7 @@ public class OilBrewingRecipe implements IBrewingRecipe {
     }
 
     public static int getBrewingSteps(OilEffect effect) {
-        OilEffect currentEffect = effect;    // The effect to check
+        OilEffect currentEffect = effect; // The effect to check
         int steps = 0;
         do {
             int currentSteps = steps;
@@ -59,9 +56,9 @@ public class OilBrewingRecipe implements IBrewingRecipe {
                     break;
                 }
             }
-            // A little contingency plan in case that an oil recipe isn't derived from the base oil recipe or has no recipe. This will display as 'Steps: ???' in JEI
-            if (currentSteps == steps)
-                return Integer.MAX_VALUE;
+            // A little contingency plan in case that an oil recipe isn't derived from the base oil
+            // recipe or has no recipe. This will display as 'Steps: ???' in JEI
+            if (currentSteps == steps) return Integer.MAX_VALUE;
         } while (currentEffect != OilEffects.NONE.get());
         return steps;
     }
@@ -74,7 +71,8 @@ public class OilBrewingRecipe implements IBrewingRecipe {
         VALID_MIXES.add(new OilMix(OilEffects.NONE.get(), ingredientIn, oilEffectOut));
     }
 
-    public static void addOilMix(OilEffect oilEffectIn, Ingredient ingredientIn, OilEffect oilEffectOut) {
+    public static void addOilMix(
+            OilEffect oilEffectIn, Ingredient ingredientIn, OilEffect oilEffectOut) {
         VALID_MIXES.add(new OilMix(oilEffectIn, ingredientIn, oilEffectOut));
     }
 

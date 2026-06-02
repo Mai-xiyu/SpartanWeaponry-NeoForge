@@ -14,18 +14,30 @@ import org.xiyu.spartanweaponryunofficial.util.WeaponArchetype;
 
 public class JavelinItem extends ThrowingWeaponItem {
     public JavelinItem(Item.Properties prop, WeaponMaterial material, WeaponArchetype archetypeIn) {
-        super(prop, material, archetypeIn, Defaults.DamageBaseJavelin, Defaults.DamageMultiplierJavelin, Defaults.MeleeSpeedJavelin, 4, Defaults.ChargeTicksJavelin);
+        super(
+                prop,
+                material,
+                archetypeIn,
+                Defaults.DamageBaseJavelin,
+                Defaults.DamageMultiplierJavelin,
+                Defaults.MeleeSpeedJavelin,
+                4,
+                Defaults.ChargeTicksJavelin);
         this.throwVelocity = 2.4f;
     }
 
-    public JavelinItem(Item.Properties prop, WeaponMaterial material, WeaponArchetype archetypeIn, String customDisplayName) {
+    public JavelinItem(
+            Item.Properties prop,
+            WeaponMaterial material,
+            WeaponArchetype archetypeIn,
+            String customDisplayName) {
         this(prop, material, archetypeIn);
-        if (material.useCustomDisplayName())
-            this.customDisplayName = customDisplayName;
+        if (material.useCustomDisplayName()) this.customDisplayName = customDisplayName;
     }
 
     @Override
-    public ThrowingWeaponEntity createThrowingWeaponEntity(Level level, Player player, ItemStack stack, int charge) {
+    public ThrowingWeaponEntity createThrowingWeaponEntity(
+            Level level, Player player, ItemStack stack, int charge) {
         return new JavelinEntity(level, player, stack);
     }
 

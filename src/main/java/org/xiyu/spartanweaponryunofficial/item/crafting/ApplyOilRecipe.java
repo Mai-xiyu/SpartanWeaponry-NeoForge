@@ -26,11 +26,9 @@ public class ApplyOilRecipe extends CustomRecipe {
 
     @Override
     public boolean matches(CraftingInput containerIn, @NotNull Level levelIn) {
-        if (!WeaponOilConfig.isEnabled())
-            return false;
+        if (!WeaponOilConfig.isEnabled()) return false;
 
-        boolean foundOil = false,
-                foundWeapon = false;
+        boolean foundOil = false, foundWeapon = false;
 
         for (int i = 0; i < containerIn.width(); i++) {
             for (int j = 0; j < containerIn.height(); j++) {
@@ -38,32 +36,28 @@ public class ApplyOilRecipe extends CustomRecipe {
                 // Oil found
                 if (stack.is(ModItems.WEAPON_OIL.get())) {
                     // Aleady have an oil; not a valid recipe
-                    if (foundOil)
-                        return false;
+                    if (foundOil) return false;
                     foundOil = true;
                 }
                 // Oilable weapon found
                 else if (stack.is(ModItemTags.OILABLE_WEAPONS)) {
                     // Aleady have an oilable weapon; not a valid recipe
-                    if (foundWeapon)
-                        return false;
+                    if (foundWeapon) return false;
                     foundWeapon = true;
                 }
                 // Other item found; not a valid recipe
-                else if (!stack.isEmpty())
-                    return false;
+                else if (!stack.isEmpty()) return false;
             }
         }
         return foundOil && foundWeapon;
     }
 
     @Override
-    public @NotNull ItemStack assemble(CraftingInput containerIn, HolderLookup.@NotNull Provider registryAccessIn) {
-        if (!WeaponOilConfig.isEnabled())
-            return ItemStack.EMPTY;
+    public @NotNull ItemStack assemble(
+            CraftingInput containerIn, HolderLookup.@NotNull Provider registryAccessIn) {
+        if (!WeaponOilConfig.isEnabled()) return ItemStack.EMPTY;
 
-        ItemStack oilStack = ItemStack.EMPTY,
-                weaponStack = ItemStack.EMPTY;
+        ItemStack oilStack = ItemStack.EMPTY, weaponStack = ItemStack.EMPTY;
 
         for (int i = 0; i < containerIn.width(); i++) {
             for (int j = 0; j < containerIn.height(); j++) {
@@ -71,20 +65,17 @@ public class ApplyOilRecipe extends CustomRecipe {
                 // Oil found
                 if (stack.is(ModItems.WEAPON_OIL.get())) {
                     // Aleady have an oil; not a valid recipe
-                    if (!oilStack.isEmpty())
-                        return ItemStack.EMPTY;
+                    if (!oilStack.isEmpty()) return ItemStack.EMPTY;
                     oilStack = stack;
                 }
                 // Oilable weapon found
                 else if (stack.is(ModItemTags.OILABLE_WEAPONS)) {
                     // Aleady have an oilable weapon; not a valid recipe
-                    if (!weaponStack.isEmpty())
-                        return ItemStack.EMPTY;
+                    if (!weaponStack.isEmpty()) return ItemStack.EMPTY;
                     weaponStack = stack;
                 }
                 // Other item found; not a valid recipe
-                else if (!stack.isEmpty())
-                    return ItemStack.EMPTY;
+                else if (!stack.isEmpty()) return ItemStack.EMPTY;
             }
         }
         if (!oilStack.isEmpty() && !weaponStack.isEmpty()) {
@@ -94,10 +85,8 @@ public class ApplyOilRecipe extends CustomRecipe {
             if (effect != OilEffects.NONE.get() && handler != null) {
                 if (effect == OilEffects.POTION.get()) {
                     Potion potion = OilHelper.getPotionFromStack(oilStack);
-                    if (potion != null)
-                        handler.setPotion(potion, oilStack);
-                } else
-                    handler.setEffect(effect, oilStack);
+                    if (potion != null) handler.setPotion(potion, oilStack);
+                } else handler.setEffect(effect, oilStack);
                 return resultStack.copy();
             }
         }

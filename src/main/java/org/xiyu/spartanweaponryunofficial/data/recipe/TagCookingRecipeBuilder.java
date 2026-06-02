@@ -2,6 +2,9 @@ package org.xiyu.spartanweaponryunofficial.data.recipe;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import javax.annotation.Nullable;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.AdvancementRequirements;
 import net.minecraft.advancements.AdvancementRewards;
@@ -24,10 +27,6 @@ import org.xiyu.spartanweaponryunofficial.item.crafting.ITagCookingRecipe;
 import org.xiyu.spartanweaponryunofficial.item.crafting.TagBlastingRecipe;
 import org.xiyu.spartanweaponryunofficial.item.crafting.TagSmeltingRecipe;
 
-import javax.annotation.Nullable;
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 /**
  * Mostly a copy of {@linkplain SimpleCookingRecipeBuilder} changed to accomodate tag results
  *
@@ -44,10 +43,17 @@ public class TagCookingRecipeBuilder implements RecipeBuilder {
     private final RecipeSerializer<? extends ITagCookingRecipe> serializer;
     private final RecipeFactory<? extends ITagCookingRecipe> recipeFactory;
     private final Map<String, Criterion<?>> criteria = new LinkedHashMap<>();
-    @Nullable
-    private String group;
+    @Nullable private String group;
 
-    private TagCookingRecipeBuilder(RecipeCategory recipeCategoryIn, CookingBookCategory cookingBookCategoryIn, ImmutableMap<String, Item> ingredientMapIn, TagKey<Item> resultTagIn, float experienceIn, int cookingTimeIn, RecipeSerializer<? extends ITagCookingRecipe> serializerIn, RecipeFactory<? extends ITagCookingRecipe> recipeFactoryIn) {
+    private TagCookingRecipeBuilder(
+            RecipeCategory recipeCategoryIn,
+            CookingBookCategory cookingBookCategoryIn,
+            ImmutableMap<String, Item> ingredientMapIn,
+            TagKey<Item> resultTagIn,
+            float experienceIn,
+            int cookingTimeIn,
+            RecipeSerializer<? extends ITagCookingRecipe> serializerIn,
+            RecipeFactory<? extends ITagCookingRecipe> recipeFactoryIn) {
         this.recipeCategory = recipeCategoryIn;
         this.cookingBookCategory = cookingBookCategoryIn;
         this.ingredientMap = ingredientMapIn;
@@ -59,16 +65,43 @@ public class TagCookingRecipeBuilder implements RecipeBuilder {
         this.disabledTypesBuilder = new ImmutableList.Builder<>();
     }
 
-    public static TagCookingRecipeBuilder smelting(ImmutableMap<String, Item> ingredientMapIn, RecipeCategory recipeCategoryIn, TagKey<Item> resultTagIn, float experienceIn, int cookingTimeIn) {
-        return new TagCookingRecipeBuilder(recipeCategoryIn, CookingBookCategory.MISC, ingredientMapIn, resultTagIn, experienceIn, cookingTimeIn, ModRecipeSerializers.TAGGED_SMELTING.get(), TagSmeltingRecipe::new);
+    public static TagCookingRecipeBuilder smelting(
+            ImmutableMap<String, Item> ingredientMapIn,
+            RecipeCategory recipeCategoryIn,
+            TagKey<Item> resultTagIn,
+            float experienceIn,
+            int cookingTimeIn) {
+        return new TagCookingRecipeBuilder(
+                recipeCategoryIn,
+                CookingBookCategory.MISC,
+                ingredientMapIn,
+                resultTagIn,
+                experienceIn,
+                cookingTimeIn,
+                ModRecipeSerializers.TAGGED_SMELTING.get(),
+                TagSmeltingRecipe::new);
     }
 
-    public static TagCookingRecipeBuilder blasting(ImmutableMap<String, Item> ingredientMapIn, RecipeCategory recipeCategoryIn, TagKey<Item> resultTagIn, float experienceIn, int cookingTimeIn) {
-        return new TagCookingRecipeBuilder(recipeCategoryIn, CookingBookCategory.MISC, ingredientMapIn, resultTagIn, experienceIn, cookingTimeIn, ModRecipeSerializers.TAGGED_BLASTING.get(), TagBlastingRecipe::new);
+    public static TagCookingRecipeBuilder blasting(
+            ImmutableMap<String, Item> ingredientMapIn,
+            RecipeCategory recipeCategoryIn,
+            TagKey<Item> resultTagIn,
+            float experienceIn,
+            int cookingTimeIn) {
+        return new TagCookingRecipeBuilder(
+                recipeCategoryIn,
+                CookingBookCategory.MISC,
+                ingredientMapIn,
+                resultTagIn,
+                experienceIn,
+                cookingTimeIn,
+                ModRecipeSerializers.TAGGED_BLASTING.get(),
+                TagBlastingRecipe::new);
     }
 
     @Override
-    public @NotNull TagCookingRecipeBuilder unlockedBy(@NotNull String nameIn, @NotNull Criterion<?> criterionIn) {
+    public @NotNull TagCookingRecipeBuilder unlockedBy(
+            @NotNull String nameIn, @NotNull Criterion<?> criterionIn) {
         this.criteria.put(nameIn, criterionIn);
         return this;
     }
@@ -91,27 +124,43 @@ public class TagCookingRecipeBuilder implements RecipeBuilder {
 
     @Override
     public void save(RecipeOutput output, ResourceLocation idIn) {
-        Ingredient inputIngredient = Ingredient.of(this.ingredientMap.values().toArray(Item[]::new));
-        ITagCookingRecipe recipe = this.recipeFactory.create(this.group == null ? "" : this.group, this.cookingBookCategory, inputIngredient, this.resultTag, this.experience, this.cookingTime);
-        ResourceLocation advancementId = idIn.withPrefix("recipes/" + this.recipeCategory.getFolderName() + "/");
+        Ingredient inputIngredient =
+                Ingredient.of(this.ingredientMap.values().toArray(Item[]::new));
+        ITagCookingRecipe recipe =
+                this.recipeFactory.create(
+                        this.group == null ? "" : this.group,
+                        this.cookingBookCategory,
+                        inputIngredient,
+                        this.resultTag,
+                        this.experience,
+                        this.cookingTime);
+        ResourceLocation advancementId =
+                idIn.withPrefix("recipes/" + this.recipeCategory.getFolderName() + "/");
         var advancement = output.advancement();
         this.criteria.forEach(advancement::addCriterion);
-        advancement.parent(ROOT_RECIPE_ADVANCEMENT)
+        advancement
+                .parent(ROOT_RECIPE_ADVANCEMENT)
                 .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(idIn))
                 .rewards(AdvancementRewards.Builder.recipe(idIn))
                 .requirements(AdvancementRequirements.Strategy.OR);
         AdvancementHolder advancementHolder = advancement.build(advancementId);
         output.accept(idIn, recipe, advancementHolder);
     }
-	
-/*	private void validate(ResourceLocation idIn)
-	{
-		if(advancementBuilder.getCriteria().isEmpty())
-			throw new IllegalStateException("Cannot obtain recipe " + idIn);
-	}*/
+
+    /*    private void validate(ResourceLocation idIn)
+    {
+        if(advancementBuilder.getCriteria().isEmpty())
+            throw new IllegalStateException("Cannot obtain recipe " + idIn);
+    }*/
 
     @FunctionalInterface
     public interface RecipeFactory<T extends ITagCookingRecipe> {
-        T create(String groupIn, CookingBookCategory categoryIn, Ingredient inputIngredientIn, TagKey<Item> resultTagIn, float experienceIn, int cookTimeIn);
+        T create(
+                String groupIn,
+                CookingBookCategory categoryIn,
+                Ingredient inputIngredientIn,
+                TagKey<Item> resultTagIn,
+                float experienceIn,
+                int cookTimeIn);
     }
 }

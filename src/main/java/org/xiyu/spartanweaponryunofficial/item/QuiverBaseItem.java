@@ -1,5 +1,7 @@
 package org.xiyu.spartanweaponryunofficial.item;
 
+import java.util.List;
+import java.util.Optional;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
@@ -27,9 +29,6 @@ import org.xiyu.spartanweaponryunofficial.inventory.tooltip.QuiverTooltip;
 import org.xiyu.spartanweaponryunofficial.util.Defaults;
 import org.xiyu.spartanweaponryunofficial.util.ItemStackDataHelper;
 
-import java.util.List;
-import java.util.Optional;
-
 public abstract class QuiverBaseItem extends Item {
     public enum SlotType {
         UNDEFINED,
@@ -51,8 +50,7 @@ public abstract class QuiverBaseItem extends Item {
     public QuiverBaseItem(int inventorySize) {
         super(new Item.Properties().stacksTo(1));
 
-        if (FMLEnvironment.dist.isClient())
-            ClientHelper.registerQuiverPropertyOverrides(this);
+        if (FMLEnvironment.dist.isClient()) ClientHelper.registerQuiverPropertyOverrides(this);
 
         this.ammoSlots = inventorySize;
     }
@@ -61,19 +59,19 @@ public abstract class QuiverBaseItem extends Item {
         int ammo = 0;
         ListTag list;
 
-        list = ItemStackDataHelper.getTag(stack).getCompound(NBT_AMMO).getList("Items", Tag.TAG_COMPOUND);
+        list =
+                ItemStackDataHelper.getTag(stack)
+                        .getCompound(NBT_AMMO)
+                        .getList("Items", Tag.TAG_COMPOUND);
 
         for (int i = 0; i < list.size(); i++) {
             ItemStack item = ItemStack.parseOptional(getRegistryAccess(), list.getCompound(i));
-            if (!item.isEmpty())
-                ammo++;
+            if (!item.isEmpty()) ammo++;
         }
 
         // Have 6 separate states for the Heavy Arrow Quiver, instead of 4
-        if (this.ammoSlots >= Defaults.SlotsQuiverLarge)
-            ammo = Mth.clamp(ammo, 0, 5);
-        else
-            ammo = Mth.clamp(ammo, 0, 3);
+        if (this.ammoSlots >= Defaults.SlotsQuiverLarge) ammo = Mth.clamp(ammo, 0, 5);
+        else ammo = Mth.clamp(ammo, 0, 3);
 
         return ammo;
     }
@@ -83,30 +81,42 @@ public abstract class QuiverBaseItem extends Item {
     }
 
     @Override
-    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level levelIn, Player playerIn, @NotNull InteractionHand handIn) {
+    public @NotNull InteractionResultHolder<ItemStack> use(
+            @NotNull Level levelIn, Player playerIn, @NotNull InteractionHand handIn) {
         ItemStack heldItem = playerIn.getItemInHand(handIn);
 
         IQuiverItemHandler handler = heldItem.getCapability(ModCapabilities.QUIVER_ITEM_CAPABILITY);
-        if (handler == null)
-            return InteractionResultHolder.fail(heldItem);
+        if (handler == null) return InteractionResultHolder.fail(heldItem);
         // Check current size of Quiver and correct it if needed
         int size = ItemStackDataHelper.getOrCreateTagElement(heldItem, NBT_AMMO).getInt("Size");
-        if (size != this.ammoSlots)
-            handler.resize(this.ammoSlots);
+        if (size != this.ammoSlots) handler.resize(this.ammoSlots);
 
         if (!levelIn.isClientSide) {
             if (!playerIn.isCrouching()) {
-                SlotType slotType = handIn == InteractionHand.OFF_HAND ? SlotType.OFF_HAND : SlotType.MAIN_HAND;
+                SlotType slotType =
+                        handIn == InteractionHand.OFF_HAND ? SlotType.OFF_HAND : SlotType.MAIN_HAND;
                 this.openGui(heldItem, playerIn, slotType, -1);
                 return InteractionResultHolder.consume(heldItem);
             } else {
                 // Toggle ammo collection
-                boolean ammoCollect = !ItemStackDataHelper.getTag(heldItem).getBoolean(NBT_AMMO_COLLECT);
-                ItemStackDataHelper.updateTag(heldItem, tag -> tag.putBoolean(NBT_AMMO_COLLECT, ammoCollect));
+                boolean ammoCollect =
+                        !ItemStackDataHelper.getTag(heldItem).getBoolean(NBT_AMMO_COLLECT);
+                ItemStackDataHelper.updateTag(
+                        heldItem, tag -> tag.putBoolean(NBT_AMMO_COLLECT, ammoCollect));
 
                 String collectStatus = ammoCollect ? "enabled" : "disabled";
-                ChatFormatting collectColour = ammoCollect ? ChatFormatting.GREEN : ChatFormatting.RED;
-                playerIn.displayClientMessage(Component.translatable("message." + ModSpartanWeaponry.ID + ".ammo_collect_toggle", Component.translatable("tooltip." + ModSpartanWeaponry.ID + "." + collectStatus).withStyle(collectColour)), true);
+                ChatFormatting collectColour =
+                        ammoCollect ? ChatFormatting.GREEN : ChatFormatting.RED;
+                playerIn.displayClientMessage(
+                        Component.translatable(
+                                "message." + ModSpartanWeaponry.ID + ".ammo_collect_toggle",
+                                Component.translatable(
+                                                "tooltip."
+                                                        + ModSpartanWeaponry.ID
+                                                        + "."
+                                                        + collectStatus)
+                                        .withStyle(collectColour)),
+                        true);
                 return InteractionResultHolder.fail(heldItem);
             }
         }
@@ -114,7 +124,11 @@ public abstract class QuiverBaseItem extends Item {
     }
 
     @Override
-    public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext tooltipContext, @NotNull List<Component> tooltip, @NotNull TooltipFlag flagIn) {
+    public void appendHoverText(
+            @NotNull ItemStack stack,
+            Item.@NotNull TooltipContext tooltipContext,
+            @NotNull List<Component> tooltip,
+            @NotNull TooltipFlag flagIn) {
         if (ItemStackDataHelper.getTag(stack).contains("ClientInventory"))
             ItemStackDataHelper.updateTag(stack, tag -> tag.remove("ClientInventory"));
 
@@ -123,14 +137,29 @@ public abstract class QuiverBaseItem extends Item {
         boolean ammoCollect = ItemStackDataHelper.getTag(stack).getBoolean(NBT_AMMO_COLLECT);
         String collectStatus = ammoCollect ? "enabled" : "disabled";
         ChatFormatting statusColour = ammoCollect ? ChatFormatting.GREEN : ChatFormatting.RED;
-        tooltip.add(Component.translatable("tooltip." + ModSpartanWeaponry.ID + ".quiver_collect_status").append(Component.translatable("tooltip." + ModSpartanWeaponry.ID + "." + collectStatus).withStyle(statusColour)).withStyle(ChatFormatting.DARK_AQUA));
+        tooltip.add(
+                Component.translatable(
+                                "tooltip." + ModSpartanWeaponry.ID + ".quiver_collect_status")
+                        .append(
+                                Component.translatable(
+                                                "tooltip."
+                                                        + ModSpartanWeaponry.ID
+                                                        + "."
+                                                        + collectStatus)
+                                        .withStyle(statusColour))
+                        .withStyle(ChatFormatting.DARK_AQUA));
 
         if (this.ammoSlots != Defaults.SlotsQuiverHuge)
-            tooltip.add(Component.translatable("tooltip." + ModSpartanWeaponry.ID + ".quiver_upgrade").withStyle(ChatFormatting.YELLOW));
+            tooltip.add(
+                    Component.translatable("tooltip." + ModSpartanWeaponry.ID + ".quiver_upgrade")
+                            .withStyle(ChatFormatting.YELLOW));
     }
 
     public Optional<TooltipComponent> makeTooltipImage(ItemStack stackIn, boolean isBoltQuiver) {
-        ListTag list = ItemStackDataHelper.getTag(stackIn).getCompound(NBT_AMMO).getList("Items", Tag.TAG_COMPOUND);
+        ListTag list =
+                ItemStackDataHelper.getTag(stackIn)
+                        .getCompound(NBT_AMMO)
+                        .getList("Items", Tag.TAG_COMPOUND);
         int prioritySlot = ItemStackDataHelper.getTag(stackIn).getInt(NBT_PROIRITY_SLOT);
 
         NonNullList<ItemStack> items = NonNullList.withSize(this.ammoSlots, ItemStack.EMPTY);
@@ -153,5 +182,4 @@ public abstract class QuiverBaseItem extends Item {
     public abstract void openGui(ItemStack stack, Player player, SlotType slotType, int slot);
 
     public abstract boolean isAmmoValid(ItemStack pickedUpStack, ItemStack quiver);
-
 }

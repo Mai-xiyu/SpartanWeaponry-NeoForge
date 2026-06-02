@@ -1,5 +1,8 @@
 package org.xiyu.spartanweaponryunofficial.entity.projectile;
 
+import java.util.Collection;
+import java.util.Optional;
+import java.util.UUID;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
@@ -13,7 +16,6 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -45,14 +47,13 @@ import org.xiyu.spartanweaponryunofficial.item.ThrowingWeaponItem;
 import org.xiyu.spartanweaponryunofficial.util.ItemStackDataHelper;
 import org.xiyu.spartanweaponryunofficial.util.WeaponOilConfig;
 
-import java.util.Collection;
-import java.util.Optional;
-import java.util.UUID;
-
 public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithComplexSpawn {
     public static final String NBT_WEAPON = "Weapon";
-    protected static final EntityDataAccessor<ItemStack> DATA_WEAPON = SynchedEntityData.defineId(ThrowingWeaponEntity.class, EntityDataSerializers.ITEM_STACK);
-    protected static final EntityDataAccessor<Byte> DATA_RETURN = SynchedEntityData.defineId(ThrowingWeaponEntity.class, EntityDataSerializers.BYTE);
+    protected static final EntityDataAccessor<ItemStack> DATA_WEAPON =
+            SynchedEntityData.defineId(
+                    ThrowingWeaponEntity.class, EntityDataSerializers.ITEM_STACK);
+    protected static final EntityDataAccessor<Byte> DATA_RETURN =
+            SynchedEntityData.defineId(ThrowingWeaponEntity.class, EntityDataSerializers.BYTE);
     protected int ticksInAir = 0;
     protected float waterInertia = 0.0f;
     protected boolean isReturning = false;
@@ -63,14 +64,23 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
         super(type, level);
     }
 
-    public ThrowingWeaponEntity(EntityType<? extends ThrowingWeaponEntity> type, Level level, double x, double y, double z, ItemStack weapon) {
+    public ThrowingWeaponEntity(
+            EntityType<? extends ThrowingWeaponEntity> type,
+            Level level,
+            double x,
+            double y,
+            double z,
+            ItemStack weapon) {
         super(type, x, y, z, level, weapon, weapon);
     }
 
-    public ThrowingWeaponEntity(EntityType<? extends ThrowingWeaponEntity> type, LivingEntity shooter, Level level, ItemStack weapon) {
+    public ThrowingWeaponEntity(
+            EntityType<? extends ThrowingWeaponEntity> type,
+            LivingEntity shooter,
+            Level level,
+            ItemStack weapon) {
         super(type, shooter, level, weapon, weapon);
     }
-
 
     @Override
     protected void defineSynchedData(SynchedEntityData.@NotNull Builder builder) {
@@ -98,16 +108,25 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
         Level level = this.level();
         RegistryAccess registryAccess = level.registryAccess();
         if (this.waterInertia == 0.0f)
-            this.waterInertia = ModEnchantments.getLevel(level.registryAccess(), ModEnchantments.HYDRODYNAMIC, this.getWeaponItem()) == 1 ? 0.98f : -1.0f;
+            this.waterInertia =
+                    ModEnchantments.getLevel(
+                                            level.registryAccess(),
+                                            ModEnchantments.HYDRODYNAMIC,
+                                            this.getWeaponItem())
+                                    == 1
+                            ? 0.98f
+                            : -1.0f;
 
         Entity thrower = this.getOwner();
         int returnLevel = this.getEntityData().get(DATA_RETURN);
 
         // Only process return logic if the weapon has Loyalty enchantment
         if (returnLevel > 0 && thrower != null) {
-            // Check if we should start returning (after being in ground for a short time, or already returning)
+            // Check if we should start returning (after being in ground for a short time, or
+            // already returning)
             if (this.inGroundTime > 4 || this.isReturning) {
-                if (thrower.isAlive() && (!(thrower instanceof ServerPlayer) || !thrower.isSpectator())) {
+                if (thrower.isAlive()
+                        && (!(thrower instanceof ServerPlayer) || !thrower.isSpectator())) {
                     // Return to thrower - ensure we're in the returning state
                     if (!this.isReturning) {
                         this.setNoPhysics(true);
@@ -118,20 +137,24 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
 
                     // Keep forcing these states while returning to prevent position conflicts
                     if (this.isReturning) {
-                        if (this.inGround)
-                            this.inGround = false;
-                        if (!this.isNoPhysics())
-                            this.setNoPhysics(true);
+                        if (this.inGround) this.inGround = false;
+                        if (!this.isNoPhysics()) this.setNoPhysics(true);
                     }
 
                     Vec3 distance = thrower.getEyePosition().subtract(this.position());
-                    this.setPosRaw(this.getX(), this.getY() + distance.y * 0.015 * (double) returnLevel, this.getZ());
+                    this.setPosRaw(
+                            this.getX(),
+                            this.getY() + distance.y * 0.015 * (double) returnLevel,
+                            this.getZ());
                     if (level.isClientSide) {
                         this.yOld = this.getY();
                     }
 
                     double velocity = 0.10d * (double) returnLevel;
-                    this.setDeltaMovement(this.getDeltaMovement().scale(0.95d).add(distance.normalize().scale(velocity)));
+                    this.setDeltaMovement(
+                            this.getDeltaMovement()
+                                    .scale(0.95d)
+                                    .add(distance.normalize().scale(velocity)));
 
                     if (!this.playedReturnSound) {
                         this.playSound(ModSounds.THROWING_WEAPON_LOYALTY_RETURN.get(), 10.0F, 1.0F);
@@ -152,13 +175,10 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
         super.tick();
 
         // Post-tick: ensure returning state is maintained (fix for position snap-back issues)
-        if (this.isReturning && this.inGround)
-            this.inGround = false;
+        if (this.isReturning && this.inGround) this.inGround = false;
 
-        if (!this.inGround)
-            ++this.ticksInAir;
-        else if (this.ticksInAir != 0)
-            this.ticksInAir = 0;
+        if (!this.inGround) ++this.ticksInAir;
+        else if (this.ticksInAir != 0) this.ticksInAir = 0;
     }
 
     protected void tickDespawn() {
@@ -170,7 +190,8 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
     }
 
     public int getPortalWaitTime() {
-        // Set this time higher to prevent this entity from being duplicated when hitting a portal...
+        // Set this time higher to prevent this entity from being duplicated when hitting a
+        // portal...
         return 100;
     }
 
@@ -180,7 +201,7 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
         Entity entity = hitResult.getEntity();
         Level level = this.level();
         RegistryAccess registryAccess = level.registryAccess();
-        Entity shooter = this.getOwner();    //func_234616_v_();
+        Entity shooter = this.getOwner(); // func_234616_v_();
 
         ItemStack weapon = this.getWeaponItem();
         float damage = Mth.ceil(this.getBaseDamage());
@@ -191,23 +212,28 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
         }
 
         // Try and catch the throwing weapon if possible.
-        if (shooter != null && (this.canBeCaughtInMidair(shooter, entity) || this.isReturning) && entity instanceof Player player) {
-            if (this.attemptCatch(player))
-                return;
+        if (shooter != null
+                && (this.canBeCaughtInMidair(shooter, entity) || this.isReturning)
+                && entity instanceof Player player) {
+            if (this.attemptCatch(player)) return;
         }
         if (shooter == null)
-//				src = new IndirectEntityDamageSource("mob", this, this).setProjectile();
+            //                src = new IndirectEntityDamageSource("mob", this,
+            // this).setProjectile();
             src = ModDamageTypes.thrownWeaponMob(this, this);
         else if (shooter instanceof Player)
-//				src = new IndirectEntityDamageSource("player", this, shooter).setProjectile();
+            //                src = new IndirectEntityDamageSource("player", this,
+            // shooter).setProjectile();
             src = ModDamageTypes.thrownWeaponPlayer(this, shooter);
         else
-//				src = new IndirectEntityDamageSource("mob", this, shooter).setProjectile();
+            //                src = new IndirectEntityDamageSource("mob", this,
+            // shooter).setProjectile();
             src = ModDamageTypes.thrownWeaponMob(this, shooter);
 
         if (entity instanceof LivingEntity && shooter instanceof LivingEntity) {
             if (weapon.getItem() instanceof IWeaponTraitContainer && !entity.is(shooter)) {
-                IWeaponTraitContainer<Item> container = (IWeaponTraitContainer<Item>) weapon.getItem();
+                IWeaponTraitContainer<Item> container =
+                        (IWeaponTraitContainer<Item>) weapon.getItem();
                 WeaponMaterial material = container.getMaterial();
                 Collection<WeaponTrait> traits = container.getAllWeaponTraits();
 
@@ -215,8 +241,19 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
                     Optional<IMeleeTraitCallback> opt = trait.getMeleeCallback();
                     if (opt.isPresent()) {
                         IMeleeTraitCallback callback = opt.get();
-                        damage = callback.modifyDamageDealt(material, damage, src, (LivingEntity) shooter, (LivingEntity) entity);
-                        callback.onHitEntity(container.getMaterial(), weapon, (LivingEntity) entity, (LivingEntity) shooter, this);
+                        damage =
+                                callback.modifyDamageDealt(
+                                        material,
+                                        damage,
+                                        src,
+                                        (LivingEntity) shooter,
+                                        (LivingEntity) entity);
+                        callback.onHitEntity(
+                                container.getMaterial(),
+                                weapon,
+                                (LivingEntity) entity,
+                                (LivingEntity) shooter,
+                                this);
                     }
                 }
             }
@@ -224,9 +261,25 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
                 IOilHandler oilHandler = weapon.getCapability(ModCapabilities.OIL_CAPABILITY);
                 if (oilHandler != null && oilHandler.isOiled()) {
                     float dmgUnmodified = damage;
-                    damage = oilHandler.useEffect(damage, level, (LivingEntity) entity, (LivingEntity) shooter, weapon);
+                    damage =
+                            oilHandler.useEffect(
+                                    damage,
+                                    level,
+                                    (LivingEntity) entity,
+                                    (LivingEntity) shooter,
+                                    weapon);
                     if (damage != dmgUnmodified && !level.isClientSide())
-                        ((ServerLevel) level).sendParticles(ModParticles.OIL_DAMAGE_BOOSTED.get(), entity.getX(), entity.getY() + (entity.getBbHeight() / 2.0f), entity.getZ(), 8, 0.2d, 0.2d, 0.2d, 0.5d);
+                        ((ServerLevel) level)
+                                .sendParticles(
+                                        ModParticles.OIL_DAMAGE_BOOSTED.get(),
+                                        entity.getX(),
+                                        entity.getY() + (entity.getBbHeight() / 2.0f),
+                                        entity.getZ(),
+                                        8,
+                                        0.2d,
+                                        0.2d,
+                                        0.2d,
+                                        0.5d);
                 }
             }
         }
@@ -238,14 +291,22 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
 
         if (entity.hurt(src, damage)) {
             if (level instanceof ServerLevel serverLevel && shooter instanceof LivingEntity)
-                weapon.hurtAndBreak(1, serverLevel, (LivingEntity) shooter, item -> {
-                });
+                weapon.hurtAndBreak(1, serverLevel, (LivingEntity) shooter, item -> {});
 
             if (entity instanceof LivingEntity entitylivingbase) {
 
-                int knockback = EnchantmentHelper.getItemEnchantmentLevel(registryAccess.registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantments.KNOCKBACK), weapon);
+                int knockback =
+                        EnchantmentHelper.getItemEnchantmentLevel(
+                                registryAccess
+                                        .registryOrThrow(Registries.ENCHANTMENT)
+                                        .getHolderOrThrow(Enchantments.KNOCKBACK),
+                                weapon);
                 if (knockback > 0) {
-                    Vec3 knockVec = this.getDeltaMovement().multiply(1.0D, 0.0D, 1.0D).normalize().scale((double) knockback * 0.6D);
+                    Vec3 knockVec =
+                            this.getDeltaMovement()
+                                    .multiply(1.0D, 0.0D, 1.0D)
+                                    .normalize()
+                                    .scale((double) knockback * 0.6D);
 
                     if (knockVec.lengthSqr() > 0.0F)
                         entitylivingbase.push(knockVec.x, 0.1d, knockVec.z);
@@ -253,12 +314,18 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
 
                 this.doPostHurtEffects(entitylivingbase);
 
-                if (entitylivingbase != shooter && entitylivingbase instanceof Player && shooter instanceof ServerPlayer) {
-                    ((ServerPlayer) shooter).connection.send(new ClientboundGameEventPacket(ClientboundGameEventPacket.ARROW_HIT_PLAYER, 0.0F));
+                if (entitylivingbase != shooter
+                        && entitylivingbase instanceof Player
+                        && shooter instanceof ServerPlayer) {
+                    ((ServerPlayer) shooter)
+                            .connection.send(
+                                    new ClientboundGameEventPacket(
+                                            ClientboundGameEventPacket.ARROW_HIT_PLAYER, 0.0F));
                 }
             }
 
-            this.playSound(this.getMobHitSound(), 1.0F, 1.2F / (this.random.nextFloat() * 0.2F + 0.9F));
+            this.playSound(
+                    this.getMobHitSound(), 1.0F, 1.2F / (this.random.nextFloat() * 0.2F + 0.9F));
 
             if (!isEnderman) {
                 this.setDeltaMovement(this.getDeltaMovement().scale(-0.1d));
@@ -288,14 +355,24 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
         if (hitResult.getType() == Type.BLOCK) {
             if (!level.isClientSide) {
                 BlockState state = level.getBlockState(hitResult.getBlockPos());
-                ((ServerLevel) level).sendParticles(new BlockParticleOption(ParticleTypes.BLOCK, state).setPos(hitResult.getBlockPos()), this.getX(), this.getY(), this.getZ(), 5, 0.1d, 0.1d, 0.1d, 0.05d);
+                ((ServerLevel) level)
+                        .sendParticles(
+                                new BlockParticleOption(ParticleTypes.BLOCK, state)
+                                        .setPos(hitResult.getBlockPos()),
+                                this.getX(),
+                                this.getY(),
+                                this.getZ(),
+                                5,
+                                0.1d,
+                                0.1d,
+                                0.1d,
+                                0.05d);
             }
 
             // Weapon retains enchantments - duplication is prevented by the AmmoUsed merge system
         }
         super.onHitBlock(hitResult);
     }
-
 
     protected void dropAsItem() {
         this.spawnAtLocation(this.createRecoveredPickupStack(), 0.1F);
@@ -305,21 +382,22 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
         ItemStack stack = this.getWeaponItem().copy();
         if (stack.getItem() instanceof ThrowingWeaponItem throwingWeapon) {
             int maxAmmo = throwingWeapon.getMaxAmmo(stack, this.level());
-            ItemStackDataHelper.updateTag(stack, tag -> {
-                if (!tag.hasUUID(ThrowingWeaponItem.NBT_UUID))
-                    tag.putUUID(ThrowingWeaponItem.NBT_UUID, UUID.randomUUID());
-                tag.putBoolean(ThrowingWeaponItem.NBT_ORIGINAL, false);
-                tag.putBoolean(ThrowingWeaponItem.NBT_RECOVERED, true);
-                tag.putInt(ThrowingWeaponItem.NBT_AMMO_USED, Math.max(0, maxAmmo - 1));
-            });
+            ItemStackDataHelper.updateTag(
+                    stack,
+                    tag -> {
+                        if (!tag.hasUUID(ThrowingWeaponItem.NBT_UUID))
+                            tag.putUUID(ThrowingWeaponItem.NBT_UUID, UUID.randomUUID());
+                        tag.putBoolean(ThrowingWeaponItem.NBT_ORIGINAL, false);
+                        tag.putBoolean(ThrowingWeaponItem.NBT_RECOVERED, true);
+                        tag.putInt(ThrowingWeaponItem.NBT_AMMO_USED, Math.max(0, maxAmmo - 1));
+                    });
         }
         return stack;
     }
 
     @Override
     public void playerTouch(@NotNull Player entityIn) {
-        if (this.inGround || this.isReturning)
-            this.attemptCatch(entityIn);
+        if (this.inGround || this.isReturning) this.attemptCatch(entityIn);
     }
 
     @Override
@@ -340,7 +418,9 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
         super.readAdditionalSaveData(compound);
         if (compound.contains(NBT_WEAPON)) {
             CompoundTag weaponTag = compound.getCompound(NBT_WEAPON);
-            ItemStack weapon = ItemStack.parse(this.level().registryAccess(), weaponTag).orElse(ItemStack.EMPTY);
+            ItemStack weapon =
+                    ItemStack.parse(this.level().registryAccess(), weaponTag)
+                            .orElse(ItemStack.EMPTY);
             if (!weapon.isEmpty()) {
                 this.getEntityData().set(DATA_WEAPON, weapon);
             }
@@ -367,7 +447,8 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
 
     @Override
     public void addAdditionalSaveData(@NotNull CompoundTag compound) {
-        // Guard: AbstractArrow.addAdditionalSaveData calls getPickupItem().save() which crashes on empty ItemStack.
+        // Guard: AbstractArrow.addAdditionalSaveData calls getPickupItem().save() which crashes on
+        // empty ItemStack.
         ItemStack weaponData = this.getEntityData().get(DATA_WEAPON);
         boolean wasEmpty = weaponData.isEmpty();
         if (wasEmpty) {
@@ -398,16 +479,24 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
 
     public void setWeapon(ItemStack weaponStack) {
         ItemStack stack = weaponStack.copy();
-        ItemStackDataHelper.updateTag(stack, tag -> {
-            if (!tag.contains(ThrowingWeaponItem.NBT_AMMO_USED))
-                tag.putInt(ThrowingWeaponItem.NBT_AMMO_USED, 0);
-            if (!tag.hasUUID(ThrowingWeaponItem.NBT_UUID))
-                tag.putUUID(ThrowingWeaponItem.NBT_UUID, UUID.randomUUID());
-            tag.putBoolean(ThrowingWeaponItem.NBT_ORIGINAL, true);
-            tag.remove(ThrowingWeaponItem.NBT_RECOVERED);
-        });
+        ItemStackDataHelper.updateTag(
+                stack,
+                tag -> {
+                    if (!tag.contains(ThrowingWeaponItem.NBT_AMMO_USED))
+                        tag.putInt(ThrowingWeaponItem.NBT_AMMO_USED, 0);
+                    if (!tag.hasUUID(ThrowingWeaponItem.NBT_UUID))
+                        tag.putUUID(ThrowingWeaponItem.NBT_UUID, UUID.randomUUID());
+                    tag.putBoolean(ThrowingWeaponItem.NBT_ORIGINAL, true);
+                    tag.remove(ThrowingWeaponItem.NBT_RECOVERED);
+                });
         this.getEntityData().set(DATA_WEAPON, stack);
-        int loyalty = EnchantmentHelper.getItemEnchantmentLevel(this.level().registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantments.LOYALTY), stack);
+        int loyalty =
+                EnchantmentHelper.getItemEnchantmentLevel(
+                        this.level()
+                                .registryAccess()
+                                .registryOrThrow(Registries.ENCHANTMENT)
+                                .getHolderOrThrow(Enchantments.LOYALTY),
+                        stack);
         this.getEntityData().set(DATA_RETURN, (byte) loyalty);
     }
 
@@ -422,25 +511,42 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
     protected boolean attemptCatch(Player player) {
         Level level = this.level();
         if (!level.isClientSide && this.shakeTime <= 0) {
-            boolean canBePickedUp = this.pickup == AbstractArrow.Pickup.ALLOWED || this.pickup == AbstractArrow.Pickup.CREATIVE_ONLY && player.getAbilities().instabuild;
+            boolean canBePickedUp =
+                    this.pickup == AbstractArrow.Pickup.ALLOWED
+                            || this.pickup == AbstractArrow.Pickup.CREATIVE_ONLY
+                                    && player.getAbilities().instabuild;
 
             if (this.pickup == AbstractArrow.Pickup.ALLOWED) {
                 ItemStack pickUpStack = this.createRecoveredPickupStack();
                 canBePickedUp = false;
                 for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
                     ItemStack invStack = player.getInventory().getItem(i);
-                    if (!canMergeWithThrownWeapon(invStack, pickUpStack))
-                        continue;
+                    if (!canMergeWithThrownWeapon(invStack, pickUpStack)) continue;
 
-                    int maxAmmo = ((ThrowingWeaponItem) invStack.getItem()).getMaxAmmo(invStack, player.level());
-                    int currentAmmo = maxAmmo - ItemStackDataHelper.getTag(invStack).getInt(ThrowingWeaponItem.NBT_AMMO_USED);
+                    int maxAmmo =
+                            ((ThrowingWeaponItem) invStack.getItem())
+                                    .getMaxAmmo(invStack, player.level());
+                    int currentAmmo =
+                            maxAmmo
+                                    - ItemStackDataHelper.getTag(invStack)
+                                            .getInt(ThrowingWeaponItem.NBT_AMMO_USED);
                     int itemDamage = invStack.getDamageValue() + pickUpStack.getDamageValue();
 
                     if (currentAmmo < maxAmmo) {
                         if (itemDamage > invStack.getMaxDamage()) {
                             itemDamage -= invStack.getMaxDamage() + 1;
                         } else {
-                            ItemStackDataHelper.updateTag(invStack, tag -> tag.putInt(ThrowingWeaponItem.NBT_AMMO_USED, Math.max(0, tag.getInt(ThrowingWeaponItem.NBT_AMMO_USED) - 1)));
+                            ItemStackDataHelper.updateTag(
+                                    invStack,
+                                    tag ->
+                                            tag.putInt(
+                                                    ThrowingWeaponItem.NBT_AMMO_USED,
+                                                    Math.max(
+                                                            0,
+                                                            tag.getInt(
+                                                                            ThrowingWeaponItem
+                                                                                    .NBT_AMMO_USED)
+                                                                    - 1)));
                         }
                         invStack.setDamageValue(Mth.clamp(itemDamage, 0, invStack.getMaxDamage()));
                     }
@@ -459,13 +565,19 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
         return false;
     }
 
-    private static boolean canMergeWithThrownWeapon(ItemStack inventoryStack, ItemStack pickupStack) {
-        if (inventoryStack.isEmpty() || !ItemStack.isSameItem(inventoryStack, pickupStack) || !ItemStackDataHelper.hasTag(inventoryStack) || !ItemStackDataHelper.hasTag(pickupStack))
-            return false;
+    private static boolean canMergeWithThrownWeapon(
+            ItemStack inventoryStack, ItemStack pickupStack) {
+        if (inventoryStack.isEmpty()
+                || !ItemStack.isSameItem(inventoryStack, pickupStack)
+                || !ItemStackDataHelper.hasTag(inventoryStack)
+                || !ItemStackDataHelper.hasTag(pickupStack)) return false;
 
         CompoundTag inventoryTag = ItemStackDataHelper.getTag(inventoryStack);
         CompoundTag pickupTag = ItemStackDataHelper.getTag(pickupStack);
-        return inventoryTag.hasUUID(ThrowingWeaponItem.NBT_UUID) && pickupTag.hasUUID(ThrowingWeaponItem.NBT_UUID) &&
-                inventoryTag.getUUID(ThrowingWeaponItem.NBT_UUID).equals(pickupTag.getUUID(ThrowingWeaponItem.NBT_UUID));
+        return inventoryTag.hasUUID(ThrowingWeaponItem.NBT_UUID)
+                && pickupTag.hasUUID(ThrowingWeaponItem.NBT_UUID)
+                && inventoryTag
+                        .getUUID(ThrowingWeaponItem.NBT_UUID)
+                        .equals(pickupTag.getUUID(ThrowingWeaponItem.NBT_UUID));
     }
 }

@@ -2,6 +2,8 @@ package org.xiyu.spartanweaponryunofficial.api.data.recipe;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import java.util.*;
+import java.util.Map.Entry;
 import net.minecraft.advancements.Criterion;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.recipes.RecipeCategory;
@@ -15,11 +17,9 @@ import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.conditions.ICondition;
 import net.neoforged.neoforge.common.extensions.IRecipeOutputExtension;
 
-import java.util.*;
-import java.util.Map.Entry;
-
 /**
- * Copy of vanilla's {@linkplain ShapedRecipeBuilder} with additions to allow NeoForge's condition system to be serialized too.
+ * Copy of vanilla's {@linkplain ShapedRecipeBuilder} with additions to allow NeoForge's condition
+ * system to be serialized too.
  */
 public class ConditionalShapedRecipeBuilder {
     private final Item result;
@@ -31,7 +31,8 @@ public class ConditionalShapedRecipeBuilder {
     private String group;
     private final List<ICondition> conditions = new ArrayList<>();
 
-    private ConditionalShapedRecipeBuilder(RecipeCategory categoryIn, ItemLike resultIn, int countIn) {
+    private ConditionalShapedRecipeBuilder(
+            RecipeCategory categoryIn, ItemLike resultIn, int countIn) {
         this.category = categoryIn;
         this.result = resultIn.asItem();
         this.count = countIn;
@@ -45,11 +46,13 @@ public class ConditionalShapedRecipeBuilder {
         return shaped(RecipeCategory.COMBAT, itemIn, countIn);
     }
 
-    public static ConditionalShapedRecipeBuilder shaped(RecipeCategory categoryIn, ItemLike itemIn) {
+    public static ConditionalShapedRecipeBuilder shaped(
+            RecipeCategory categoryIn, ItemLike itemIn) {
         return shaped(categoryIn, itemIn, 1);
     }
 
-    public static ConditionalShapedRecipeBuilder shaped(RecipeCategory categoryIn, ItemLike itemIn, int countIn) {
+    public static ConditionalShapedRecipeBuilder shaped(
+            RecipeCategory categoryIn, ItemLike itemIn, int countIn) {
         return new ConditionalShapedRecipeBuilder(categoryIn, itemIn, countIn);
     }
 
@@ -63,19 +66,19 @@ public class ConditionalShapedRecipeBuilder {
 
     public ConditionalShapedRecipeBuilder define(Character character, Ingredient ingredientIn) {
         if (this.keys.containsKey(character))
-            throw new IllegalArgumentException("Key character '" + character + "' is already defined!");
+            throw new IllegalArgumentException(
+                    "Key character '" + character + "' is already defined!");
         else if (character == ' ')
-            throw new IllegalArgumentException("Key character ' ' (whitespace) cannot be defined as it is reserved!");
-        else
-            this.keys.put(character, ingredientIn);
+            throw new IllegalArgumentException(
+                    "Key character ' ' (whitespace) cannot be defined as it is reserved!");
+        else this.keys.put(character, ingredientIn);
         return this;
     }
 
     public ConditionalShapedRecipeBuilder pattern(String patternIn) {
         if (!this.pattern.isEmpty() && patternIn.length() != this.pattern.getFirst().length())
             throw new IllegalArgumentException("Pattern must be the same width on every line!");
-        else
-            this.pattern.add(patternIn);
+        else this.pattern.add(patternIn);
         return this;
     }
 
@@ -102,9 +105,11 @@ public class ConditionalShapedRecipeBuilder {
         ResourceLocation resultLoc = BuiltInRegistries.ITEM.getKey(this.result);
         ResourceLocation saveLoc = ResourceLocation.parse(save);
         if (saveLoc.equals(resultLoc))
-            throw new IllegalStateException("Shaped recipe " + save + " save argument is redundant as it's the same as the item id!");
-        else
-            this.save(output, saveLoc);
+            throw new IllegalStateException(
+                    "Shaped recipe "
+                            + save
+                            + " save argument is redundant as it's the same as the item id!");
+        else this.save(output, saveLoc);
     }
 
     public void save(RecipeOutput output, ResourceLocation id) {
@@ -113,13 +118,12 @@ public class ConditionalShapedRecipeBuilder {
         if (!this.conditions.isEmpty() && output instanceof IRecipeOutputExtension ext)
             conditionedOutput = ext.withConditions(this.conditions.toArray(ICondition[]::new));
 
-        ShapedRecipeBuilder builder = ShapedRecipeBuilder.shaped(this.category, this.result, this.count);
+        ShapedRecipeBuilder builder =
+                ShapedRecipeBuilder.shaped(this.category, this.result, this.count);
         for (Entry<Character, Ingredient> entry : this.keys.entrySet())
             builder.define(entry.getKey(), entry.getValue());
-        for (String line : this.pattern)
-            builder.pattern(line);
-        if (this.group != null)
-            builder.group(this.group);
+        for (String line : this.pattern) builder.pattern(line);
+        if (this.group != null) builder.group(this.group);
         this.criteria.forEach(builder::unlockedBy);
         builder.save(conditionedOutput, id);
     }
@@ -134,19 +138,40 @@ public class ConditionalShapedRecipeBuilder {
             for (int iS = 0; iS < this.pattern.size(); iS++) {
                 String s = this.pattern.get(iS);
                 if (s.length() != this.pattern.getFirst().length())
-                    throw new IllegalStateException("Pattern rows in recipe " + id + " must be the same length! Expected row size " + this.pattern.getFirst().length() + "; got " + s.length() + " on row " + iS);
+                    throw new IllegalStateException(
+                            "Pattern rows in recipe "
+                                    + id
+                                    + " must be the same length! Expected row size "
+                                    + this.pattern.getFirst().length()
+                                    + "; got "
+                                    + s.length()
+                                    + " on row "
+                                    + iS);
                 for (int i = 0; i < s.length(); i++) {
                     char c = s.charAt(i);
                     if (!this.keys.containsKey(c) && c != ' ')
-                        throw new IllegalStateException("Pattern in recipe " + id + " uses an undefined key '" + c + "'" + " in location " + iS + ", " + i);
+                        throw new IllegalStateException(
+                                "Pattern in recipe "
+                                        + id
+                                        + " uses an undefined key '"
+                                        + c
+                                        + "'"
+                                        + " in location "
+                                        + iS
+                                        + ", "
+                                        + i);
                     characters.remove(c);
                 }
             }
 
             if (!characters.isEmpty())
-                throw new IllegalStateException("Defined ingredients are not used in recipe " + id + "!");
+                throw new IllegalStateException(
+                        "Defined ingredients are not used in recipe " + id + "!");
             else if (this.pattern.size() == 1 && this.pattern.getFirst().length() == 1)
-                throw new IllegalStateException("Single item only defined in shaped recipe " + id + "! Use a shapeless recipe instead!");
+                throw new IllegalStateException(
+                        "Single item only defined in shaped recipe "
+                                + id
+                                + "! Use a shapeless recipe instead!");
             else if (this.criteria.isEmpty())
                 throw new IllegalStateException("Impossible to obtain recipe " + id + "!");
         }

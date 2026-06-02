@@ -4,7 +4,8 @@ import net.minecraft.world.entity.projectile.AbstractArrow;
 import org.xiyu.spartanweaponryunofficial.api.WeaponMaterial;
 
 /**
- * Callback class for Ranged Weapon Traits; Implement this in your weapon trait class to implement custom behavior for your weapon
+ * Callback class for Ranged Weapon Traits; Implement this in your weapon trait class to implement
+ * custom behavior for your weapon
  *
  * @author ObliviousSpartan
  */
@@ -19,7 +20,8 @@ public interface IRangedTraitCallback {
     }
 
     /**
-     * Modifies the load time for the Heavy Crossbow. Return the baseLoad value to do nothing with it.
+     * Modifies the load time for the Heavy Crossbow. Return the baseLoad value to do nothing with
+     * it.
      *
      * @param baseLoad The load ticks (so far)
      */
@@ -30,16 +32,12 @@ public interface IRangedTraitCallback {
     /**
      * Modifies the aim time for the Heavy Crossbow. Return the baseAim value to do nothing with it.
      *
-     * @param baseAim  The aim ticks (so far)
+     * @param baseAim The aim ticks (so far)
      */
     default int modifyHeavyCrossbowAimTime(WeaponMaterial material, int baseAim) {
         return baseAim;
     }
 
-    /**
-     * Adjusts the projectile entity before it is spawned in the world
-     *
-     */
-    default void onProjectileSpawn(WeaponMaterial material, AbstractArrow projectile) {
-    }
+    /** Adjusts the projectile entity before it is spawned in the world */
+    default void onProjectileSpawn(WeaponMaterial material, AbstractArrow projectile) {}
 }

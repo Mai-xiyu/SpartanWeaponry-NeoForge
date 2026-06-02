@@ -15,5 +15,4 @@ public class ArrowBaseRenderer<T extends ArrowBaseEntity> extends ArrowRenderer<
     public @NotNull ResourceLocation getTextureLocation(T entity) {
         return entity.getTexture();
     }
-
 }

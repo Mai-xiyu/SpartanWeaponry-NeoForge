@@ -1,5 +1,6 @@
 package org.xiyu.spartanweaponryunofficial.api.trait;
 
+import java.util.Optional;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
@@ -18,8 +19,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import org.xiyu.spartanweaponryunofficial.init.ModSounds;
-
-import java.util.Optional;
 
 public class HammerSlamWeaponTrait extends WeaponTrait implements IActionTraitCallback {
 
@@ -40,20 +39,46 @@ public class HammerSlamWeaponTrait extends WeaponTrait implements IActionTraitCa
         Vec3 hitPos = contextIn.getClickLocation();
         ItemStack weapon = contextIn.getItemInHand();
 
-        if (!level.isClientSide && !player.getCooldowns().isOnCooldown(weapon.getItem()) && player.getAttackStrengthScale(0.0f) == 1.0f) {
-            for (LivingEntity entity : level.getEntitiesOfClass(LivingEntity.class, AABB.ofSize(hitPos, 3.0f, 3.0f, 3.0f))) {
-                if (entity != player && !player.isAlliedTo(entity) && (!(entity instanceof ArmorStand) || ((ArmorStand) entity).isMarker())) {
+        if (!level.isClientSide
+                && !player.getCooldowns().isOnCooldown(weapon.getItem())
+                && player.getAttackStrengthScale(0.0f) == 1.0f) {
+            for (LivingEntity entity :
+                    level.getEntitiesOfClass(
+                            LivingEntity.class, AABB.ofSize(hitPos, 3.0f, 3.0f, 3.0f))) {
+                if (entity != player
+                        && !player.isAlliedTo(entity)
+                        && (!(entity instanceof ArmorStand) || ((ArmorStand) entity).isMarker())) {
                     float yRot = entity.getYRot();
                     final float halfPi = (float) Math.PI / 180.0f;
                     entity.knockback(1.0f, Mth.sin(yRot * halfPi), -Mth.cos(yRot * halfPi));
-                    entity.hurt(player.damageSources().playerAttack(player), (float) (player.getAttributeValue(Attributes.ATTACK_DAMAGE) / 2.0d));
-                    EquipmentSlot slot = contextIn.getHand() == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND;
-                    weapon.hurtAndBreak(1, (ServerLevel) level, player, (item) -> player.onEquippedItemBroken(item, slot));
+                    entity.hurt(
+                            player.damageSources().playerAttack(player),
+                            (float) (player.getAttributeValue(Attributes.ATTACK_DAMAGE) / 2.0d));
+                    EquipmentSlot slot =
+                            contextIn.getHand() == InteractionHand.MAIN_HAND
+                                    ? EquipmentSlot.MAINHAND
+                                    : EquipmentSlot.OFFHAND;
+                    weapon.hurtAndBreak(
+                            1,
+                            (ServerLevel) level,
+                            player,
+                            (item) -> player.onEquippedItemBroken(item, slot));
                 }
             }
             player.swing(contextIn.getHand(), true);
-            player.playNotifySound(ModSounds.HAMMER_SLAMS_INTO_GROUND.get(), SoundSource.PLAYERS, 1.0f, 0.6f);
-            ((ServerLevel) level).sendParticles(ParticleTypes.EXPLOSION, hitPos.x, hitPos.y, hitPos.z, 8, 0.0d, 0.1d, 0.0d, 0.5d);
+            player.playNotifySound(
+                    ModSounds.HAMMER_SLAMS_INTO_GROUND.get(), SoundSource.PLAYERS, 1.0f, 0.6f);
+            ((ServerLevel) level)
+                    .sendParticles(
+                            ParticleTypes.EXPLOSION,
+                            hitPos.x,
+                            hitPos.y,
+                            hitPos.z,
+                            8,
+                            0.0d,
+                            0.1d,
+                            0.0d,
+                            0.5d);
             player.resetAttackStrengthTicker();
             player.getCooldowns().addCooldown(weapon.getItem(), 60);
         }
@@ -62,8 +87,8 @@ public class HammerSlamWeaponTrait extends WeaponTrait implements IActionTraitCa
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(ItemStack usingStackIn, Level levelIn, Player playerIn,
-                                                  InteractionHand handIn) {
+    public InteractionResultHolder<ItemStack> use(
+            ItemStack usingStackIn, Level levelIn, Player playerIn, InteractionHand handIn) {
         return InteractionResultHolder.pass(usingStackIn);
     }
 }

@@ -2,6 +2,7 @@ plugins {
     id 'java-library'
     id 'maven-publish'
     id 'idea'
+    id 'com.diffplug.spotless' version '8.5.1'
     id 'net.neoforged.moddev' version '2.0.78'
 }
 
@@ -45,6 +46,15 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(21)
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
+}
+
+spotless {
+    java {
+        target 'src/main/java/**/*.java'
+        removeUnusedImports()
+        googleJavaFormat('1.17.0').aosp()
+        formatAnnotations()
+    }
 }
 
 neoForge {
@@ -179,6 +189,10 @@ neoForge.ideSyncTask generateModMetadata
 // Ensure createMinecraftArtifacts depends on generateModMetadata
 tasks.named('createMinecraftArtifacts') {
     dependsOn generateModMetadata
+}
+
+tasks.named('build') {
+    dependsOn tasks.named('spotlessCheck')
 }
 
 // Example configuration to allow publishing using the maven-publish plugin

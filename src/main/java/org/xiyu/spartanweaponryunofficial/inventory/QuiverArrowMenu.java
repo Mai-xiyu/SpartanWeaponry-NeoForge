@@ -12,13 +12,21 @@ import org.xiyu.spartanweaponryunofficial.init.ModMenus;
 import org.xiyu.spartanweaponryunofficial.item.QuiverBaseItem;
 
 public class QuiverArrowMenu extends QuiverBaseMenu {
-    public static final ResourceLocation EMPTY_ARROW_SLOT = ResourceLocation.tryBuild(ModSpartanWeaponry.ID, "slots/empty_arrow_slot");
+    public static final ResourceLocation EMPTY_ARROW_SLOT =
+            ResourceLocation.tryBuild(ModSpartanWeaponry.ID, "slots/empty_arrow_slot");
 
     public QuiverArrowMenu(int id, Inventory inventory, ItemStack quiverStack) {
-        super(ModMenus.QUIVER_ARROW.get(), id, inventory, quiverStack, BowItem.ARROW_ONLY, EMPTY_ARROW_SLOT);
+        super(
+                ModMenus.QUIVER_ARROW.get(),
+                id,
+                inventory,
+                quiverStack,
+                BowItem.ARROW_ONLY,
+                EMPTY_ARROW_SLOT);
     }
 
-    public static QuiverArrowMenu createFromNetwork(int id, Inventory inventory, RegistryFriendlyByteBuf buf) {
+    public static QuiverArrowMenu createFromNetwork(
+            int id, Inventory inventory, RegistryFriendlyByteBuf buf) {
         QuiverBaseItem.SlotType slotType = buf.readEnum(QuiverBaseItem.SlotType.class);
         int slot = buf.readInt();
 
@@ -30,5 +38,4 @@ public class QuiverArrowMenu extends QuiverBaseMenu {
     public boolean stillValid(@NotNull Player playerIn) {
         return true;
     }
-
 }

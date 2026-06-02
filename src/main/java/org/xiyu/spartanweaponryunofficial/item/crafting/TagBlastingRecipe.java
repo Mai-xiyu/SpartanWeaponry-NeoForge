@@ -12,9 +12,13 @@ public class TagBlastingRecipe extends BlastingRecipe implements ITagCookingReci
     protected final Ingredient result;
     protected final TagKey<Item> resultTag;
 
-    public TagBlastingRecipe(String groupIn,
-                             CookingBookCategory categoryIn, Ingredient inputIngredientIn, TagKey<Item> resultTagIn, float experienceIn,
-                             int cookTimeIn) {
+    public TagBlastingRecipe(
+            String groupIn,
+            CookingBookCategory categoryIn,
+            Ingredient inputIngredientIn,
+            TagKey<Item> resultTagIn,
+            float experienceIn,
+            int cookTimeIn) {
         super(groupIn, categoryIn, inputIngredientIn, ItemStack.EMPTY, experienceIn, cookTimeIn);
         this.resultTag = resultTagIn;
         this.result = Ingredient.of(resultTagIn);
@@ -26,7 +30,8 @@ public class TagBlastingRecipe extends BlastingRecipe implements ITagCookingReci
     }
 
     @Override
-    public @NotNull ItemStack assemble(@NotNull SingleRecipeInput input, HolderLookup.@NotNull Provider provider) {
+    public @NotNull ItemStack assemble(
+            @NotNull SingleRecipeInput input, HolderLookup.@NotNull Provider provider) {
         return this.getResultItem(provider).copy();
     }
 

@@ -32,21 +32,20 @@ public class CurioHandler implements ICurio {
 
     @Override
     public void readSyncData(SlotContext slotContext, CompoundTag compound) {
-        if (compound == null)
-            return;
-        IQuiverItemHandler handler = this.quiverStack.getCapability(ModCapabilities.QUIVER_ITEM_CAPABILITY);
+        if (compound == null) return;
+        IQuiverItemHandler handler =
+                this.quiverStack.getCapability(ModCapabilities.QUIVER_ITEM_CAPABILITY);
         if (handler instanceof QuiverItemStackHandler quiverHandler) {
             CompoundTag ammo = compound.getCompound(QuiverBaseItem.NBT_AMMO);
-            if (!ammo.isEmpty())
-                quiverHandler.deserializeNBT(getRegistryAccess(), ammo);
+            if (!ammo.isEmpty()) quiverHandler.deserializeNBT(getRegistryAccess(), ammo);
         }
     }
 
     private CompoundTag writeSyncDataInternal() {
         CompoundTag tag = new CompoundTag();
-        CompoundTag ammo = ItemStackDataHelper.getTag(this.quiverStack).getCompound(QuiverBaseItem.NBT_AMMO);
-        if (!ammo.isEmpty())
-            tag.put(QuiverBaseItem.NBT_AMMO, ammo);
+        CompoundTag ammo =
+                ItemStackDataHelper.getTag(this.quiverStack).getCompound(QuiverBaseItem.NBT_AMMO);
+        if (!ammo.isEmpty()) tag.put(QuiverBaseItem.NBT_AMMO, ammo);
         return tag;
     }
 

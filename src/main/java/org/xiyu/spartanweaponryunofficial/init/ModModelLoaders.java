@@ -12,7 +12,9 @@ import org.xiyu.spartanweaponryunofficial.client.model.OilCoatedItemModel;
 public class ModModelLoaders {
     @SubscribeEvent
     public static void register(ModelEvent.RegisterGeometryLoaders ev) {
-        ev.register(ResourceLocation.tryBuild(ModSpartanWeaponry.ID, "oil_coated_item"), OilCoatedItemModel.Loader.INSTANCE);
+        ev.register(
+                ResourceLocation.tryBuild(ModSpartanWeaponry.ID, "oil_coated_item"),
+                OilCoatedItemModel.Loader.INSTANCE);
     }
 }
 
@@ -25,11 +27,11 @@ import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-public class ModModelLoaders 
+public class ModModelLoaders
 {
-	public static void register()
-	{
-		IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-		modEventBus.<ModelRegistryEvent>addListener(ev -> ModelLoaderRegistry.registerLoader(ResourceLocation.tryBuild(ModSpartanWeaponry.ID, "oil_coated_item"), OilCoatedItemModel.Loader.INSTANCE));
-	}
+    public static void register()
+    {
+        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        modEventBus.<ModelRegistryEvent>addListener(ev -> ModelLoaderRegistry.registerLoader(ResourceLocation.tryBuild(ModSpartanWeaponry.ID, "oil_coated_item"), OilCoatedItemModel.Loader.INSTANCE));
+    }
 }*/

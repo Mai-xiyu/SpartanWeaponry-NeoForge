@@ -1,5 +1,6 @@
 package org.xiyu.spartanweaponryunofficial.api.trait;
 
+import java.util.List;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -10,8 +11,6 @@ import net.minecraft.world.item.ItemStack;
 import org.xiyu.spartanweaponryunofficial.api.SpartanWeaponryAPI;
 import org.xiyu.spartanweaponryunofficial.api.WeaponMaterial;
 
-import java.util.List;
-
 public class NauseaWeaponTrait extends MeleeCallbackWeaponTrait {
 
     public NauseaWeaponTrait(String type, String modId) {
@@ -20,14 +19,28 @@ public class NauseaWeaponTrait extends MeleeCallbackWeaponTrait {
 
     @Override
     protected void addTooltipDescription(ItemStack stack, List<Component> tooltip) {
-        tooltip.add(tooltipIndent().append(Component.translatable(String.format("tooltip.%s.trait.%s.desc", SpartanWeaponryAPI.MOD_ID, this.type), this.magnitude).withStyle(WeaponTrait.DESCRIPTION_FORMAT)));
+        tooltip.add(
+                tooltipIndent()
+                        .append(
+                                Component.translatable(
+                                                String.format(
+                                                        "tooltip.%s.trait.%s.desc",
+                                                        SpartanWeaponryAPI.MOD_ID, this.type),
+                                                this.magnitude)
+                                        .withStyle(WeaponTrait.DESCRIPTION_FORMAT)));
     }
 
     @Override
-    public void onHitEntity(WeaponMaterial material, ItemStack stack, LivingEntity target, LivingEntity attacker, Entity projectile) {
+    public void onHitEntity(
+            WeaponMaterial material,
+            ItemStack stack,
+            LivingEntity target,
+            LivingEntity attacker,
+            Entity projectile) {
         if (target.getItemBySlot(EquipmentSlot.HEAD).isEmpty()) {
-            target.addEffect(new MobEffectInstance(MobEffects.CONFUSION, (int) (this.getMagnitude() * 20.0f), 1));
+            target.addEffect(
+                    new MobEffectInstance(
+                            MobEffects.CONFUSION, (int) (this.getMagnitude() * 20.0f), 1));
         }
     }
-
 }

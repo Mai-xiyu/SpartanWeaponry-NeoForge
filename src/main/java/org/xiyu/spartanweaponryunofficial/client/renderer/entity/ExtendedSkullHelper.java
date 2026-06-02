@@ -22,7 +22,20 @@ public class ExtendedSkullHelper {
     public static LayerDefinition createHeadWithHatLayer() {
         MeshDefinition meshDef = SkullModel.createHeadModel();
         PartDefinition partDef = meshDef.getRoot();
-        partDef.getChild(PART_HEAD).addOrReplaceChild(PART_HAT, CubeListBuilder.create().texOffs(0, 16).addBox(-4.0f, -8.0f, -4.0f, 8.0f, 8.0f, 8.0f, new CubeDeformation(0.25f)), PartPose.ZERO);
+        partDef.getChild(PART_HEAD)
+                .addOrReplaceChild(
+                        PART_HAT,
+                        CubeListBuilder.create()
+                                .texOffs(0, 16)
+                                .addBox(
+                                        -4.0f,
+                                        -8.0f,
+                                        -4.0f,
+                                        8.0f,
+                                        8.0f,
+                                        8.0f,
+                                        new CubeDeformation(0.25f)),
+                        PartPose.ZERO);
         return LayerDefinition.create(meshDef, 32, 32);
     }
 
@@ -30,7 +43,12 @@ public class ExtendedSkullHelper {
         MeshDefinition meshDef = new MeshDefinition();
         PartDefinition partDef = meshDef.getRoot();
 
-        partDef.addOrReplaceChild(PART_HEAD, CubeListBuilder.create().texOffs(texU, texV).addBox(-4.0f, -8.0f, -4.0f, 8.0f, 8.0f, 8.0f), PartPose.ZERO);
+        partDef.addOrReplaceChild(
+                PART_HEAD,
+                CubeListBuilder.create()
+                        .texOffs(texU, texV)
+                        .addBox(-4.0f, -8.0f, -4.0f, 8.0f, 8.0f, 8.0f),
+                PartPose.ZERO);
         return meshDef;
     }
 }

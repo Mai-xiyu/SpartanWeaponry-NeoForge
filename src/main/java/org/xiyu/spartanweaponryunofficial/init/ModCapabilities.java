@@ -1,5 +1,6 @@
 package org.xiyu.spartanweaponryunofficial.init;
 
+import java.util.List;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -11,18 +12,33 @@ import org.xiyu.spartanweaponryunofficial.api.tags.ModItemTags;
 import org.xiyu.spartanweaponryunofficial.capability.*;
 import org.xiyu.spartanweaponryunofficial.item.QuiverBaseItem;
 
-import java.util.List;
-
 public class ModCapabilities {
-    public static final ItemCapability<IOilHandler, Void> OIL_CAPABILITY = ItemCapability.createVoid(ResourceLocation.fromNamespaceAndPath(ModSpartanWeaponry.ID, "oil"), IOilHandler.class);
-    public static final ItemCapability<IQuiverItemHandler, Void> QUIVER_ITEM_CAPABILITY = ItemCapability.createVoid(ResourceLocation.fromNamespaceAndPath(ModSpartanWeaponry.ID, "quiver_item"), IQuiverItemHandler.class);
+    public static final ItemCapability<IOilHandler, Void> OIL_CAPABILITY =
+            ItemCapability.createVoid(
+                    ResourceLocation.fromNamespaceAndPath(ModSpartanWeaponry.ID, "oil"),
+                    IOilHandler.class);
+    public static final ItemCapability<IQuiverItemHandler, Void> QUIVER_ITEM_CAPABILITY =
+            ItemCapability.createVoid(
+                    ResourceLocation.fromNamespaceAndPath(ModSpartanWeaponry.ID, "quiver_item"),
+                    IQuiverItemHandler.class);
 
     public static void registerCapabilities(RegisterCapabilitiesEvent ev) {
-        ev.registerItem(OIL_CAPABILITY, (stack, context) -> createOilHandler(stack), BuiltInRegistries.ITEM.stream().toArray(Item[]::new));
+        ev.registerItem(
+                OIL_CAPABILITY,
+                (stack, context) -> createOilHandler(stack),
+                BuiltInRegistries.ITEM.stream().toArray(Item[]::new));
 
-        List<Item> quiverItems = BuiltInRegistries.ITEM.stream().filter(item -> item instanceof QuiverBaseItem).toList();
+        List<Item> quiverItems =
+                BuiltInRegistries.ITEM.stream()
+                        .filter(item -> item instanceof QuiverBaseItem)
+                        .toList();
         if (!quiverItems.isEmpty()) {
-            ev.registerItem(QUIVER_ITEM_CAPABILITY, (stack, context) -> new QuiverItemStackHandler(stack, ((QuiverBaseItem) stack.getItem()).getAmmoSlots()), quiverItems.toArray(Item[]::new));
+            ev.registerItem(
+                    QUIVER_ITEM_CAPABILITY,
+                    (stack, context) ->
+                            new QuiverItemStackHandler(
+                                    stack, ((QuiverBaseItem) stack.getItem()).getAmmoSlots()),
+                    quiverItems.toArray(Item[]::new));
 
             if (CuriosHelper.LOADED) CuriosHelper.Common.registerCapabilities(ev, quiverItems);
         }

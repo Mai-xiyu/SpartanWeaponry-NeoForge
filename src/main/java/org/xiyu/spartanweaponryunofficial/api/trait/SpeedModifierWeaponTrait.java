@@ -1,6 +1,7 @@
 package org.xiyu.spartanweaponryunofficial.api.trait;
 
 import com.google.common.collect.ImmutableMultimap;
+import java.util.Optional;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -10,10 +11,10 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import org.xiyu.spartanweaponryunofficial.api.SpartanWeaponryAPI;
 import org.xiyu.spartanweaponryunofficial.api.WeaponMaterial;
 
-import java.util.Optional;
-
-public class SpeedModifierWeaponTrait extends WeaponTrait implements IMeleeTraitCallback, IRangedTraitCallback, IThrowingTraitCallback {
-    public static final ResourceLocation SPEED_MODIFIER = ResourceLocation.fromNamespaceAndPath(SpartanWeaponryAPI.MOD_ID, "speed_modifier");
+public class SpeedModifierWeaponTrait extends WeaponTrait
+        implements IMeleeTraitCallback, IRangedTraitCallback, IThrowingTraitCallback {
+    public static final ResourceLocation SPEED_MODIFIER =
+            ResourceLocation.fromNamespaceAndPath(SpartanWeaponryAPI.MOD_ID, "speed_modifier");
 
     public SpeedModifierWeaponTrait(String type, TraitQuality quality) {
         super(type, SpartanWeaponryAPI.MOD_ID, quality);
@@ -25,8 +26,12 @@ public class SpeedModifierWeaponTrait extends WeaponTrait implements IMeleeTrait
     }
 
     @Override
-    public void onModifyAttributesMelee(ImmutableMultimap.Builder<Attribute, AttributeModifier> builder) {
-        builder.put(Attributes.ATTACK_SPEED.value(), new AttributeModifier(SPEED_MODIFIER, this.getMagnitude(), Operation.ADD_MULTIPLIED_BASE));
+    public void onModifyAttributesMelee(
+            ImmutableMultimap.Builder<Attribute, AttributeModifier> builder) {
+        builder.put(
+                Attributes.ATTACK_SPEED.value(),
+                new AttributeModifier(
+                        SPEED_MODIFIER, this.getMagnitude(), Operation.ADD_MULTIPLIED_BASE));
     }
 
     @Override

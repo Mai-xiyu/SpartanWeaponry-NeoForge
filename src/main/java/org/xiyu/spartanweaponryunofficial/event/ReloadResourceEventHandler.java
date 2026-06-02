@@ -1,5 +1,6 @@
 package org.xiyu.spartanweaponryunofficial.event;
 
+import java.util.List;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -15,8 +16,6 @@ import org.xiyu.spartanweaponryunofficial.init.ModOilRecipes;
 import org.xiyu.spartanweaponryunofficial.util.Log;
 import org.xiyu.spartanweaponryunofficial.util.WeaponArchetype;
 
-import java.util.List;
-
 @EventBusSubscriber(modid = ModSpartanWeaponry.ID, bus = EventBusSubscriber.Bus.GAME)
 public class ReloadResourceEventHandler {
     @SubscribeEvent(priority = EventPriority.HIGH)
@@ -24,12 +23,19 @@ public class ReloadResourceEventHandler {
         List<WeaponMaterial> materialReloadList = ReloadableHandler.getMaterialReloadList();
         List<IReloadable> itemReloadList = ReloadableHandler.getItemReloadList();
 
-        Log.debug("Initaliasing reloadables for " + materialReloadList.size() + " materials, " + WeaponArchetype.ALL_ARCHETYPES.size() + " archetypes and " + itemReloadList.size() + " items");
+        Log.debug(
+                "Initaliasing reloadables for "
+                        + materialReloadList.size()
+                        + " materials, "
+                        + WeaponArchetype.ALL_ARCHETYPES.size()
+                        + " archetypes and "
+                        + itemReloadList.size()
+                        + " items");
         long start = System.nanoTime();
-        // Enforce an order of materials being reloaded first to ensure that items can fetch the appropriate traits from their materials
+        // Enforce an order of materials being reloaded first to ensure that items can fetch the
+        // appropriate traits from their materials
         // to prevent NullPointerExceptions!
-        if (FMLEnvironment.dist == Dist.CLIENT)
-            OilCoatingColours.reload();
+        if (FMLEnvironment.dist == Dist.CLIENT) OilCoatingColours.reload();
         materialReloadList.forEach(WeaponMaterial::reload);
         WeaponArchetype.ALL_ARCHETYPES.forEach(WeaponArchetype::reload);
         itemReloadList.forEach(IReloadable::reload);

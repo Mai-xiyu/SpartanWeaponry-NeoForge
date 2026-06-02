@@ -15,9 +15,15 @@ import org.xiyu.spartanweaponryunofficial.util.WeaponOilConfig;
 public class PotionToOilBrewingRecipe implements IBrewingRecipe {
     @Override
     public boolean isInput(ItemStack input) {
-        Potion inputPotion = input.getOrDefault(DataComponents.POTION_CONTENTS, PotionContents.EMPTY)
-                .potion().map(Holder::value).orElse(null);
-        return inputPotion != null && WeaponOilConfig.areRecipesEnabled() && input.is(Items.POTION) && OilHelper.isValidPotion(inputPotion);
+        Potion inputPotion =
+                input.getOrDefault(DataComponents.POTION_CONTENTS, PotionContents.EMPTY)
+                        .potion()
+                        .map(Holder::value)
+                        .orElse(null);
+        return inputPotion != null
+                && WeaponOilConfig.areRecipesEnabled()
+                && input.is(Items.POTION)
+                && OilHelper.isValidPotion(inputPotion);
     }
 
     @Override
@@ -28,10 +34,12 @@ public class PotionToOilBrewingRecipe implements IBrewingRecipe {
     @Override
     public @NotNull ItemStack getOutput(@NotNull ItemStack input, @NotNull ItemStack ingredient) {
         if (this.isInput(input) && this.isIngredient(ingredient)) {
-            Potion inputPotion = input.getOrDefault(DataComponents.POTION_CONTENTS, PotionContents.EMPTY)
-                    .potion().map(Holder::value).orElse(null);
-            if (inputPotion != null)
-                return OilHelper.makePotionOilStack(inputPotion);
+            Potion inputPotion =
+                    input.getOrDefault(DataComponents.POTION_CONTENTS, PotionContents.EMPTY)
+                            .potion()
+                            .map(Holder::value)
+                            .orElse(null);
+            if (inputPotion != null) return OilHelper.makePotionOilStack(inputPotion);
         }
 
         return ItemStack.EMPTY;

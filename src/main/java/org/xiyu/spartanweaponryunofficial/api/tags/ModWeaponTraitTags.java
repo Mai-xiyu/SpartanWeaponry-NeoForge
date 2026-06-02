@@ -7,9 +7,9 @@ import org.xiyu.spartanweaponryunofficial.api.WeaponTraits;
 import org.xiyu.spartanweaponryunofficial.api.trait.WeaponTrait;
 
 /**
- * This class contains all the different Weapon Trait tags used by Spartan Weaponry.
- * These are used to construct the Weapon Trait values of each weapon type when loading the world
- * so certain traits can be disabled or changed via datapacks if desired<br>
+ * This class contains all the different Weapon Trait tags used by Spartan Weaponry. These are used
+ * to construct the Weapon Trait values of each weapon type when loading the world so certain traits
+ * can be disabled or changed via datapacks if desired<br>
  *
  * @author ObliviousSpartan
  */

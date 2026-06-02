@@ -1,6 +1,7 @@
 package org.xiyu.spartanweaponryunofficial.compat.jei;
 
 import com.google.common.collect.ImmutableList;
+import java.util.List;
 import mezz.jei.api.recipe.vanilla.IJeiBrewingRecipe;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -14,8 +15,6 @@ import org.xiyu.spartanweaponryunofficial.api.oil.OilEffect;
 import org.xiyu.spartanweaponryunofficial.item.crafting.OilBrewingRecipe;
 import org.xiyu.spartanweaponryunofficial.util.OilHelper;
 
-import java.util.List;
-
 public class JeiOilBrewingRecipe implements IJeiBrewingRecipe {
     private final List<ItemStack> baseOils;
     private final List<ItemStack> ingredients;
@@ -23,13 +22,22 @@ public class JeiOilBrewingRecipe implements IJeiBrewingRecipe {
     private final ResourceLocation uid;
     private int brewingSteps = Integer.MAX_VALUE;
 
-    public JeiOilBrewingRecipe(List<ItemStack> baseOilsIn, List<ItemStack> ingredientsIn, ItemStack outputIn) {
+    public JeiOilBrewingRecipe(
+            List<ItemStack> baseOilsIn, List<ItemStack> ingredientsIn, ItemStack outputIn) {
         this.baseOils = ImmutableList.copyOf(baseOilsIn);
         this.ingredients = ImmutableList.copyOf(ingredientsIn);
         this.output = outputIn;
         ResourceLocation outputLocation = BuiltInRegistries.ITEM.getKey(outputIn.getItem());
-        Registry<OilEffect> registry = (Registry<OilEffect>) BuiltInRegistries.REGISTRY.get(OilEffects.REGISTRY_KEY.location());
-        this.uid = ResourceLocation.tryBuild(outputLocation.getNamespace(), outputLocation.getPath() + "." + registry.getKey(OilHelper.getOilFromStack(outputIn)).getPath() + "_from_brewing");
+        Registry<OilEffect> registry =
+                (Registry<OilEffect>)
+                        BuiltInRegistries.REGISTRY.get(OilEffects.REGISTRY_KEY.location());
+        this.uid =
+                ResourceLocation.tryBuild(
+                        outputLocation.getNamespace(),
+                        outputLocation.getPath()
+                                + "."
+                                + registry.getKey(OilHelper.getOilFromStack(outputIn)).getPath()
+                                + "_from_brewing");
     }
 
     @Override
@@ -62,5 +70,4 @@ public class JeiOilBrewingRecipe implements IJeiBrewingRecipe {
     public @Nullable ResourceLocation getUid() {
         return this.uid;
     }
-
 }

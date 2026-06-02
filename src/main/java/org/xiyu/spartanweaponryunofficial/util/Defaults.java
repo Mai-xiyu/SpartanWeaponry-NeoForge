@@ -83,10 +83,11 @@ public class Defaults {
     public static final float MultiplierLongbow = 1.25f;
 
     // Crossbow
-    public static final float CrossbowInaccuracyMax = 10.0f;        // Formerly 20
-    public static final int CrossbowInaccuracyTicks = 10;            // Used to take 20 ticks for minimalise inaccuracy
+    public static final float CrossbowInaccuracyMax = 10.0f; // Formerly 20
+    public static final int CrossbowInaccuracyTicks =
+            10; // Used to take 20 ticks for minimalise inaccuracy
     public static final int CrossbowTicksToLoad = 25;
-    //public static final int CrossbowTicksCooldown = 8;
+    // public static final int CrossbowTicksCooldown = 8;
     public static final float BaseDamageBolt = 4.0f;
     public static final float RangeMultiplierBolt = 1.0f;
     public static final float ArmorPiercingFactorBolt = 0.25f;
@@ -104,7 +105,8 @@ public class Defaults {
     public static final float MeleeSpeedThrowingKnife = 2.5f;
     public static final float DamageBaseThrowingKnife = 1.5f;
     public static final float DamageMultiplierThrowingKnife = 1.0f;
-    public static final int ChargeTicksThrowingKnife = 15;  // Increased from 5 for more noticeable charge effect
+    public static final int ChargeTicksThrowingKnife =
+            15; // Increased from 5 for more noticeable charge effect
 
     // Tomahawk
     public static final float MeleeSpeedTomahawk = 0.9f;
@@ -150,8 +152,10 @@ public class Defaults {
     public static final float DamageMultiplierScythe = 1.0f;
 
     // Arrows & Quivers
-    public static final List<String> QuiverArrowBlacklist = Arrays.asList("botania:crystal_bow", "iceandfire:dragonbone_bow");
-    //	public static final String[] QuiverArrowBlacklist = {"botania:crystal_bow", "iceandfire:dragonbone_bow"};
+    public static final List<String> QuiverArrowBlacklist =
+            Arrays.asList("botania:crystal_bow", "iceandfire:dragonbone_bow");
+    //    public static final String[] QuiverArrowBlacklist = {"botania:crystal_bow",
+    // "iceandfire:dragonbone_bow"};
     public static final float BaseDamageArrowWood = 0.2f;
     public static final float RangeMultiplierArrowWood = 1.5f;
     public static final float BaseDamageArrowCopper = 2.5f;

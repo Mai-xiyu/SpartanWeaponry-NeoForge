@@ -1,5 +1,7 @@
 package org.xiyu.spartanweaponryunofficial.entity.projectile;
 
+import java.util.List;
+import java.util.function.Predicate;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Vec3i;
 import net.minecraft.core.particles.ParticleTypes;
@@ -23,9 +25,6 @@ import org.xiyu.spartanweaponryunofficial.init.ModEnchantments;
 import org.xiyu.spartanweaponryunofficial.init.ModEntities;
 import org.xiyu.spartanweaponryunofficial.init.ModSounds;
 
-import java.util.List;
-import java.util.function.Predicate;
-
 public class BoomerangEntity extends ThrowingWeaponEntity {
     protected final String NBT_RETURN_POSITION = "ReturnPosition";
     protected final String NBT_X = "X";
@@ -48,7 +47,11 @@ public class BoomerangEntity extends ThrowingWeaponEntity {
     protected boolean affectedByWaterDrag = true;
 
     protected int caughtItems = 0;
-    protected static final Predicate<Entity> ITEMS_AND_XP = EntitySelector.NO_SPECTATORS.and((entity) -> entity.getType() == EntityType.EXPERIENCE_ORB || entity instanceof ItemEntity);
+    protected static final Predicate<Entity> ITEMS_AND_XP =
+            EntitySelector.NO_SPECTATORS.and(
+                    (entity) ->
+                            entity.getType() == EntityType.EXPERIENCE_ORB
+                                    || entity instanceof ItemEntity);
 
     public BoomerangEntity(EntityType<? extends ThrowingWeaponEntity> type, Level level) {
         super(type, level);
@@ -71,7 +74,11 @@ public class BoomerangEntity extends ThrowingWeaponEntity {
 
     protected void setReturnPosition(Entity shooter) {
         if (shooter != null)
-            this.returnPos = new Vec3(shooter.getX(), shooter.getY() + (shooter.getEyeHeight() * 0.9d) - 0.1d, shooter.getZ());
+            this.returnPos =
+                    new Vec3(
+                            shooter.getX(),
+                            shooter.getY() + (shooter.getEyeHeight() * 0.9d) - 0.1d,
+                            shooter.getZ());
     }
 
     public void setDistanceToReturn(double distance) {
@@ -86,8 +93,7 @@ public class BoomerangEntity extends ThrowingWeaponEntity {
         // Check for spectator BEFORE calling super.tick() to prevent parent class from interfering
         if (owner != null && owner.isSpectator()) {
             // Owner is spectating - stop all returning behavior and let it drop
-            if (this.isNoGravity())
-                this.setNoGravity(false);
+            if (this.isNoGravity()) this.setNoGravity(false);
             this.isReturning = false;
             this.returnPos = null;
             // Still need to call super.tick() for basic physics, but we've cleared the return state
@@ -112,17 +118,16 @@ public class BoomerangEntity extends ThrowingWeaponEntity {
 
         // Get the distance between this entity and the shooter
         double distance = -1.0d;
-        if (this.returnPos != null)
-            distance = this.returnPos.distanceTo(this.position());
+        if (this.returnPos != null) distance = this.returnPos.distanceTo(this.position());
 
         // Check that the Boomerang is still in flight (either going out or coming back)
         if (this.isNoGravity()) {
             // Start dropping when the boomerang is close to the player and when it's returning
             // Or if it's return position is invalid
-            if ((distance < 1.0d && this.isReturning) || (this.isInWater() && this.waterInertia <= 0.0f) || this.returnPos == null)
-                this.setNoGravity(false);
-            if (distance > this.maxDistance && !this.isReturning)
-                this.isReturning = true;
+            if ((distance < 1.0d && this.isReturning)
+                    || (this.isInWater() && this.waterInertia <= 0.0f)
+                    || this.returnPos == null) this.setNoGravity(false);
+            if (distance > this.maxDistance && !this.isReturning) this.isReturning = true;
 
             // Override motion for Boomerang when returning to the thrower
             if (this.isReturning && this.returnPos != null) {
@@ -131,23 +136,29 @@ public class BoomerangEntity extends ThrowingWeaponEntity {
 
                 // Fly towards the player when close enough.
                 if (length < 5.0d)
-                    this.setDeltaMovement(-distanceVec.x / length,
+                    this.setDeltaMovement(
+                            -distanceVec.x / length,
                             -distanceVec.y / length,
                             -distanceVec.z / length);
-//				if(length < 1.0d && getOwner() instanceof Player)
-//						attemptCatch((Player)getOwner());
-                    // Otherwise, just fly in reverse as normal
+                //                if(length < 1.0d && getOwner() instanceof Player)
+                //                        attemptCatch((Player)getOwner());
+                // Otherwise, just fly in reverse as normal
                 else {
-                    Vec3 motion = this.getDeltaMovement().add(-this.ACCELERATION * (distanceVec.x / length),
-                            -this.ACCELERATION * (distanceVec.y / length),
-                            -this.ACCELERATION * (distanceVec.z / length));
+                    Vec3 motion =
+                            this.getDeltaMovement()
+                                    .add(
+                                            -this.ACCELERATION * (distanceVec.x / length),
+                                            -this.ACCELERATION * (distanceVec.y / length),
+                                            -this.ACCELERATION * (distanceVec.z / length));
                     this.setDeltaMovement(motion);
                 }
             }
 
             // Attempt to catch the first item the boomerang finds
             ItemStack weaponItem = this.getWeaponItem();
-            int collectorangLevel = ModEnchantments.getLevel(level.registryAccess(), ModEnchantments.COLLECTORANG, weaponItem);
+            int collectorangLevel =
+                    ModEnchantments.getLevel(
+                            level.registryAccess(), ModEnchantments.COLLECTORANG, weaponItem);
             if (this.caughtItems < collectorangLevel) {
                 AABB aabb = this.getBoundingBox().inflate(1.0d, 1.0d, 1.0d);
                 List<Entity> catchableEntities = level.getEntities(this, aabb, ITEMS_AND_XP);
@@ -156,8 +167,7 @@ public class BoomerangEntity extends ThrowingWeaponEntity {
                         entity.startRiding(this, true);
                         this.caughtItems++;
 
-                        if (this.caughtItems >= collectorangLevel)
-                            break;
+                        if (this.caughtItems >= collectorangLevel) break;
                     }
                 }
             }
@@ -166,7 +176,15 @@ public class BoomerangEntity extends ThrowingWeaponEntity {
             if (this.ticksUntilSound <= 0 && !this.isNoPhysics()) {
                 this.ticksUntilSound = this.TICKS_PER_SOUND;
                 if (!level.isClientSide)
-                    level.playSound(null, this.getX(), this.getY(), this.getZ(), this.getFlySound(), SoundSource.NEUTRAL, 2.0f, 0.5f);
+                    level.playSound(
+                            null,
+                            this.getX(),
+                            this.getY(),
+                            this.getZ(),
+                            this.getFlySound(),
+                            SoundSource.NEUTRAL,
+                            2.0f,
+                            0.5f);
             }
 
             --this.ticksUntilSound;
@@ -180,7 +198,8 @@ public class BoomerangEntity extends ThrowingWeaponEntity {
             }
         }
         if (level.isClientSide && !this.inGround) {
-            level.addParticle(ParticleTypes.CRIT, this.getX(), this.getY(), this.getZ(), 0.0D, 0.0D, 0.0D);
+            level.addParticle(
+                    ParticleTypes.CRIT, this.getX(), this.getY(), this.getZ(), 0.0D, 0.0D, 0.0D);
         }
     }
 
@@ -193,7 +212,8 @@ public class BoomerangEntity extends ThrowingWeaponEntity {
     @Override
     protected void onHitBlock(BlockHitResult hitResult) {
         // Bounce off the block surface and return when hitting a block, but only when not returning
-        // Note: This will mean that the Boomerang will no longer activate buttons or pressure plates... (unless they are not moving in flight in front of it)
+        // Note: This will mean that the Boomerang will no longer activate buttons or pressure
+        // plates... (unless they are not moving in flight in front of it)
         if (this.isNoGravity()) {
             Level level = this.level();
             // Once the Boomerang hits any surface, it should return to the player.
@@ -203,28 +223,32 @@ public class BoomerangEntity extends ThrowingWeaponEntity {
 
             // Attempt to make the boomerang bounce off a block face
             // To do this, calculate a reflection vector from the block that was hit.
-            // Firstly, the face that was hit for this is needed, and from that, it's normalized direction vector,
+            // Firstly, the face that was hit for this is needed, and from that, it's normalized
+            // direction vector,
             // as well as the current motion vector
             Vec3i faceNormali = hitResult.getDirection().getNormal();
-            Vec3 faceNormalVec = new Vec3(faceNormali.getX(), faceNormali.getY(), faceNormali.getZ());
+            Vec3 faceNormalVec =
+                    new Vec3(faceNormali.getX(), faceNormali.getY(), faceNormali.getZ());
             Vec3 motionVec = this.getDeltaMovement();
-            // This should be normalized already, but just to ensure that it is, normalize it anyway.
+            // This should be normalized already, but just to ensure that it is, normalize it
+            // anyway.
             faceNormalVec.normalize();
 
             // Formula -> reflect = normal x (2 x motion . normal) - motion
-            // This results in a reflection vector that is going into the surface, so negation is required. That is done below.
-            Vec3 reflectVec = faceNormalVec.scale(2 * motionVec.dot(faceNormalVec)).subtract(motionVec);
+            // This results in a reflection vector that is going into the surface, so negation is
+            // required. That is done below.
+            Vec3 reflectVec =
+                    faceNormalVec.scale(2 * motionVec.dot(faceNormalVec)).subtract(motionVec);
 
             // Apply this reflection motion, but not without negating and dampening the vector first
             this.setDeltaMovement(reflectVec.scale(-0.75d));
 
-            this.playSound(this.getBounceSound(), 1.0f, 2.2f / this.random.nextFloat() * 0.2f + 0.9f);
+            this.playSound(
+                    this.getBounceSound(), 1.0f, 2.2f / this.random.nextFloat() * 0.2f + 0.9f);
 
             // Do Block collision logic with projectiles (e.g. Set the projectile on fire, etc.)
-            if (!blockState.isAir())
-                blockState.onProjectileHit(level, blockState, hitResult, this);
-        } else
-            super.onHitBlock(hitResult);
+            if (!blockState.isAir()) blockState.onProjectileHit(level, blockState, hitResult, this);
+        } else super.onHitBlock(hitResult);
     }
 
     // Used for showing items picked up by the boomerang
@@ -260,12 +284,10 @@ public class BoomerangEntity extends ThrowingWeaponEntity {
                 z = returnPosNBT.getDouble(this.NBT_Z);
 
                 this.returnPos = new Vec3(x, y, z);
-            } else
-                this.returnPos = null;
+            } else this.returnPos = null;
 
             this.maxDistance = compound.getDouble(this.NBT_DISTANCE_TO_RETURN);
-        } else
-            this.returnPos = null;
+        } else this.returnPos = null;
 
         this.isReturning = compound.getBoolean(this.NBT_RETURNING);
     }
@@ -281,8 +303,7 @@ public class BoomerangEntity extends ThrowingWeaponEntity {
             returnPosNBT.putDouble(this.NBT_Z, this.returnPos.z);
             compound.put(this.NBT_RETURN_POSITION, returnPosNBT);
             compound.putDouble(this.NBT_DISTANCE_TO_RETURN, this.maxDistance);
-        } else
-            compound.remove(this.NBT_RETURN_POSITION);
+        } else compound.remove(this.NBT_RETURN_POSITION);
 
         compound.putBoolean(this.NBT_RETURNING, this.isReturning);
     }
@@ -294,26 +315,26 @@ public class BoomerangEntity extends ThrowingWeaponEntity {
     }
 
     // TODO: Spawn break particles when throwing weapon is broken
-/*	@Override
-	public void handleEntityEvent(byte id) 
-	{
-		// Spawn Breaking particles when appropriate
-		if(id == 4)
-		{
-			float maxMotion = 0.5f;
-			
-			for(int i = 0; i < 16; i++)
-			{
-				BlockParticleData particle = new BlockParticleData(ParticleTypes.BLOCK, );
-				float motionX = (rand.nextFloat() - 0.5f) * maxMotion;
-				float motionY = rand.nextFloat() * 0.5f * maxMotion;
-				float motionZ = (rand.nextFloat() - 0.5f) * maxMotion;
-				//world.addParticle(particle, posX, posY, posZ, 0.0f, 0.0f, 0.0f);
-				world.addParticle(particle, posX, posY, posZ, motionX, motionY, motionZ);
-			}
-		}
-		super.handleEntityEvent(id);
-	}*/
+    /*    @Override
+    public void handleEntityEvent(byte id)
+    {
+        // Spawn Breaking particles when appropriate
+        if(id == 4)
+        {
+            float maxMotion = 0.5f;
+
+            for(int i = 0; i < 16; i++)
+            {
+                BlockParticleData particle = new BlockParticleData(ParticleTypes.BLOCK, );
+                float motionX = (rand.nextFloat() - 0.5f) * maxMotion;
+                float motionY = rand.nextFloat() * 0.5f * maxMotion;
+                float motionZ = (rand.nextFloat() - 0.5f) * maxMotion;
+                //world.addParticle(particle, posX, posY, posZ, 0.0f, 0.0f, 0.0f);
+                world.addParticle(particle, posX, posY, posZ, motionX, motionY, motionZ);
+            }
+        }
+        super.handleEntityEvent(id);
+    }*/
 
     @Override
     protected @NotNull SoundEvent getDefaultHitGroundSoundEvent() {

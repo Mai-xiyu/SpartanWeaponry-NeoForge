@@ -1,5 +1,6 @@
 package org.xiyu.spartanweaponryunofficial.api.oil;
 
+import java.util.List;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
@@ -11,10 +12,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import org.xiyu.spartanweaponryunofficial.ModSpartanWeaponry;
 
-import java.util.List;
-
 /**
- * An {@link OilEffect} that also inflicts a Mob Effect when hitting a mob with the weapon this is applied to<br>
+ * An {@link OilEffect} that also inflicts a Mob Effect when hitting a mob with the weapon this is
+ * applied to<br>
  *
  * @author ObliviousSpartan
  */
@@ -23,31 +23,83 @@ public class MobOilEffect extends OilEffect {
     private final int effectDuration;
     private final int effectLevel;
 
-    public MobOilEffect(String nameIn, OilEffectType typeIn, int colorIn, int maxUsesIn, float damageModifierIn, IUsePredicate usePredicateIn, Holder<MobEffect> mobEffectIn, int effectDurationIn, int effectLevelIn) {
+    public MobOilEffect(
+            String nameIn,
+            OilEffectType typeIn,
+            int colorIn,
+            int maxUsesIn,
+            float damageModifierIn,
+            IUsePredicate usePredicateIn,
+            Holder<MobEffect> mobEffectIn,
+            int effectDurationIn,
+            int effectLevelIn) {
         super(nameIn, typeIn, colorIn, maxUsesIn, damageModifierIn, usePredicateIn);
         this.mobEffect = mobEffectIn;
         this.effectDuration = effectDurationIn;
         this.effectLevel = effectLevelIn;
     }
 
-    public MobOilEffect(String nameIn, OilEffectType typeIn, int colorIn, int maxUsesIn, Holder<MobEffect> mobEffectIn, int effectDurationIn, int effectLevelIn) {
-        this(nameIn, typeIn, colorIn, maxUsesIn, 0.0f, OilEffect.USE_NOTHING, mobEffectIn, effectDurationIn, effectLevelIn);
+    public MobOilEffect(
+            String nameIn,
+            OilEffectType typeIn,
+            int colorIn,
+            int maxUsesIn,
+            Holder<MobEffect> mobEffectIn,
+            int effectDurationIn,
+            int effectLevelIn) {
+        this(
+                nameIn,
+                typeIn,
+                colorIn,
+                maxUsesIn,
+                0.0f,
+                OilEffect.USE_NOTHING,
+                mobEffectIn,
+                effectDurationIn,
+                effectLevelIn);
     }
 
     @Override
-    public float onUse(float baseDamageIn, Level levelIn, LivingEntity targetIn, LivingEntity userIn, ItemStack oilStackIn) {
-        targetIn.addEffect(new MobEffectInstance(this.mobEffect, this.effectDuration, this.effectLevel), userIn);
+    public float onUse(
+            float baseDamageIn,
+            Level levelIn,
+            LivingEntity targetIn,
+            LivingEntity userIn,
+            ItemStack oilStackIn) {
+        targetIn.addEffect(
+                new MobEffectInstance(this.mobEffect, this.effectDuration, this.effectLevel),
+                userIn);
         return super.onUse(baseDamageIn, levelIn, targetIn, userIn, oilStackIn);
     }
 
     @Override
     public void getTooltip(ItemStack stackIn, List<Component> tooltipListIn) {
-        MutableComponent mobEffectComponent = this.mobEffect.value().getDisplayName().copy().withStyle(ChatFormatting.YELLOW);
+        MutableComponent mobEffectComponent =
+                this.mobEffect.value().getDisplayName().copy().withStyle(ChatFormatting.YELLOW);
         if (this.effectLevel > 0)
-            mobEffectComponent.append(" ").append(Component.translatable("enchantment.level." + (this.effectLevel + 1)));
+            mobEffectComponent
+                    .append(" ")
+                    .append(Component.translatable("enchantment.level." + (this.effectLevel + 1)));
         if (this.damageModifier == 0.0f)
-            tooltipListIn.add(Component.translatable("tooltip." + ModSpartanWeaponry.ID + ".weapon_oil.applied." + this.name, mobEffectComponent, (float) this.effectDuration / 20.0f).withStyle(ChatFormatting.BLUE));
+            tooltipListIn.add(
+                    Component.translatable(
+                                    "tooltip."
+                                            + ModSpartanWeaponry.ID
+                                            + ".weapon_oil.applied."
+                                            + this.name,
+                                    mobEffectComponent,
+                                    (float) this.effectDuration / 20.0f)
+                            .withStyle(ChatFormatting.BLUE));
         else
-            tooltipListIn.add(Component.translatable("tooltip." + ModSpartanWeaponry.ID + ".weapon_oil.applied." + this.name, (this.getDamageModifier() * 100.0f), mobEffectComponent, (float) this.effectDuration / 20.0f).withStyle(ChatFormatting.BLUE));
+            tooltipListIn.add(
+                    Component.translatable(
+                                    "tooltip."
+                                            + ModSpartanWeaponry.ID
+                                            + ".weapon_oil.applied."
+                                            + this.name,
+                                    (this.getDamageModifier() * 100.0f),
+                                    mobEffectComponent,
+                                    (float) this.effectDuration / 20.0f)
+                            .withStyle(ChatFormatting.BLUE));
     }
 }

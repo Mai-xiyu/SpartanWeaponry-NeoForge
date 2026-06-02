@@ -6,9 +6,9 @@ import org.xiyu.spartanweaponryunofficial.api.WeaponMaterial;
 import org.xiyu.spartanweaponryunofficial.util.WeaponFactory.WeaponFunction;
 
 public class InternalAPIMethodHandler implements IInternalMethodHandler {
-    //---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
+    // ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
     // Weapon Creation functions
-    //---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
+    // ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
 
     @Override
     public Item addDagger(WeaponMaterial material) {

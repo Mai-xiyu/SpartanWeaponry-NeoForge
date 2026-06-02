@@ -3,29 +3,32 @@ package org.xiyu.spartanweaponryunofficial.api;
 import net.minecraft.world.item.Item;
 
 /**
- * Internal bridge used by {@link SpartanWeaponryAPI} to delegate weapon construction to the loaded mod.
- * <p>
- * This interface remains public for binary compatibility with the existing API surface, but addon mods
- * should not implement it, cache it, or call it directly. Use {@link SpartanWeaponryAPI} instead.
+ * Internal bridge used by {@link SpartanWeaponryAPI} to delegate weapon construction to the loaded
+ * mod.
+ *
+ * <p>This interface remains public for binary compatibility with the existing API surface, but
+ * addon mods should not implement it, cache it, or call it directly. Use {@link SpartanWeaponryAPI}
+ * instead.
  *
  * @author ObliviousSpartan
  */
 public interface IInternalMethodHandler {
-    //---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
+    // ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
     // Weapon Creation functions
-    //---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
+    // ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
 
     /**
-     * Creates a Dagger item while adding additional Weapon Properties derived from the weapon's material. Does *NOT* register the item. The addon author will have to do that.
+     * Creates a Dagger item while adding additional Weapon Properties derived from the weapon's
+     * material. Does *NOT* register the item. The addon author will have to do that.
      *
      * @param material The weapon material
      * @return The newly created Dagger item
      */
     Item addDagger(WeaponMaterial material);
 
-
     /**
-     * Creates a Parrying Dagger item while adding additional Weapon Properties derived from the weapon's material. Does *NOT* register the item. The addon author will have to do that.
+     * Creates a Parrying Dagger item while adding additional Weapon Properties derived from the
+     * weapon's material. Does *NOT* register the item. The addon author will have to do that.
      *
      * @param material The weapon material
      * @return The newly created Dagger item
@@ -33,7 +36,8 @@ public interface IInternalMethodHandler {
     Item addParryingDagger(WeaponMaterial material);
 
     /**
-     * Creates a Longsword item while adding additional Weapon Properties derived from the weapon's material. Does *NOT* register the item. The addon author will have to do that.
+     * Creates a Longsword item while adding additional Weapon Properties derived from the weapon's
+     * material. Does *NOT* register the item. The addon author will have to do that.
      *
      * @param material The weapon material
      * @return The newly created Longsword item
@@ -41,7 +45,8 @@ public interface IInternalMethodHandler {
     Item addLongsword(WeaponMaterial material);
 
     /**
-     * Creates a Katana item while adding additional Weapon Properties derived from the weapon's material. Does *NOT* register the item. The addon author will have to do that.
+     * Creates a Katana item while adding additional Weapon Properties derived from the weapon's
+     * material. Does *NOT* register the item. The addon author will have to do that.
      *
      * @param material The weapon material
      * @return The newly created Katana item
@@ -49,7 +54,8 @@ public interface IInternalMethodHandler {
     Item addKatana(WeaponMaterial material);
 
     /**
-     * Creates a Saber item while adding additional Weapon Properties derived from the weapon's material. Does *NOT* register the item. The addon author will have to do that.
+     * Creates a Saber item while adding additional Weapon Properties derived from the weapon's
+     * material. Does *NOT* register the item. The addon author will have to do that.
      *
      * @param material The weapon material
      * @return The newly created Saber item
@@ -57,7 +63,8 @@ public interface IInternalMethodHandler {
     Item addSaber(WeaponMaterial material);
 
     /**
-     * Creates a Rapier item while adding additional Weapon Properties derived from the weapon's material. Does *NOT* register the item. The addon author will have to do that.
+     * Creates a Rapier item while adding additional Weapon Properties derived from the weapon's
+     * material. Does *NOT* register the item. The addon author will have to do that.
      *
      * @param material The weapon material
      * @return The newly created Rapier item
@@ -65,7 +72,8 @@ public interface IInternalMethodHandler {
     Item addRapier(WeaponMaterial material);
 
     /**
-     * Creates a Greatsword item while adding additional Weapon Properties derived from the weapon's material. Does *NOT* register the item. The addon author will have to do that.
+     * Creates a Greatsword item while adding additional Weapon Properties derived from the weapon's
+     * material. Does *NOT* register the item. The addon author will have to do that.
      *
      * @param material The weapon material
      * @return The newly created Greatsword item
@@ -73,7 +81,8 @@ public interface IInternalMethodHandler {
     Item addGreatsword(WeaponMaterial material);
 
     /**
-     * Creates a Battle Hammer item while adding additional Weapon Properties derived from the weapon's material. Does *NOT* register the item. The addon author will have to do that.
+     * Creates a Battle Hammer item while adding additional Weapon Properties derived from the
+     * weapon's material. Does *NOT* register the item. The addon author will have to do that.
      *
      * @param material The weapon material
      * @return The newly created Battle Hammer item
@@ -81,7 +90,8 @@ public interface IInternalMethodHandler {
     Item addBattleHammer(WeaponMaterial material);
 
     /**
-     * Creates a Warhammer item while adding additional Weapon Properties derived from the weapon's material. Does *NOT* register the item. The addon author will have to do that.
+     * Creates a Warhammer item while adding additional Weapon Properties derived from the weapon's
+     * material. Does *NOT* register the item. The addon author will have to do that.
      *
      * @param material The weapon material
      * @return The newly created Warhammer item
@@ -89,7 +99,8 @@ public interface IInternalMethodHandler {
     Item addWarhammer(WeaponMaterial material);
 
     /**
-     * Creates a Spear item while adding additional Weapon Properties derived from the weapon's material. Does *NOT* register the item. The addon author will have to do that.
+     * Creates a Spear item while adding additional Weapon Properties derived from the weapon's
+     * material. Does *NOT* register the item. The addon author will have to do that.
      *
      * @param material The weapon material
      * @return The newly created Spear item
@@ -97,7 +108,8 @@ public interface IInternalMethodHandler {
     Item addSpear(WeaponMaterial material);
 
     /**
-     * Creates a Halberd item while adding additional Weapon Properties derived from the weapon's material. Does *NOT* register the item. The addon author will have to do that.
+     * Creates a Halberd item while adding additional Weapon Properties derived from the weapon's
+     * material. Does *NOT* register the item. The addon author will have to do that.
      *
      * @param material The weapon material
      * @return The newly created Halberd item
@@ -105,7 +117,8 @@ public interface IInternalMethodHandler {
     Item addHalberd(WeaponMaterial material);
 
     /**
-     * Creates a Pike item while adding additional Weapon Properties derived from the weapon's material. Does *NOT* register the item. The addon author will have to do that.
+     * Creates a Pike item while adding additional Weapon Properties derived from the weapon's
+     * material. Does *NOT* register the item. The addon author will have to do that.
      *
      * @param material The weapon material
      * @return The newly created Pike item
@@ -113,7 +126,8 @@ public interface IInternalMethodHandler {
     Item addPike(WeaponMaterial material);
 
     /**
-     * Creates a Lance item while adding additional Weapon Properties derived from the weapon's material. Does *NOT* register the item. The addon author will have to do that.
+     * Creates a Lance item while adding additional Weapon Properties derived from the weapon's
+     * material. Does *NOT* register the item. The addon author will have to do that.
      *
      * @param material The weapon material
      * @return The newly created Lance item
@@ -121,7 +135,8 @@ public interface IInternalMethodHandler {
     Item addLance(WeaponMaterial material);
 
     /**
-     * Creates a Longbow item while adding additional Weapon Properties derived from the weapon's material. Does *NOT* register the item. The addon author will have to do that.
+     * Creates a Longbow item while adding additional Weapon Properties derived from the weapon's
+     * material. Does *NOT* register the item. The addon author will have to do that.
      *
      * @param material The weapon material
      * @return The newly created Longbow item
@@ -129,7 +144,8 @@ public interface IInternalMethodHandler {
     Item addLongbow(WeaponMaterial material);
 
     /**
-     * Creates a Heavy Crossbow item while adding additional Weapon Properties derived from the weapon's material. Does *NOT* register the item. The addon author will have to do that.
+     * Creates a Heavy Crossbow item while adding additional Weapon Properties derived from the
+     * weapon's material. Does *NOT* register the item. The addon author will have to do that.
      *
      * @param material The weapon material
      * @return The newly created Heavy Crossbow item
@@ -137,7 +153,8 @@ public interface IInternalMethodHandler {
     Item addHeavyCrossbow(WeaponMaterial material);
 
     /**
-     * Creates a Throwing Knife item while adding additional Weapon Properties derived from the weapon's material. Does *NOT* register the item. The addon author will have to do that.
+     * Creates a Throwing Knife item while adding additional Weapon Properties derived from the
+     * weapon's material. Does *NOT* register the item. The addon author will have to do that.
      *
      * @param material The weapon material
      * @return The newly created Throwing Knife item
@@ -145,7 +162,8 @@ public interface IInternalMethodHandler {
     Item addThrowingKnife(WeaponMaterial material);
 
     /**
-     * Creates a Throwing Axe item while adding additional Weapon Properties derived from the weapon's material. Does *NOT* register the item. The addon author will have to do that.
+     * Creates a Throwing Axe item while adding additional Weapon Properties derived from the
+     * weapon's material. Does *NOT* register the item. The addon author will have to do that.
      *
      * @param material The weapon material
      * @return The newly created Tomahawk item
@@ -153,7 +171,8 @@ public interface IInternalMethodHandler {
     Item addTomahawk(WeaponMaterial material);
 
     /**
-     * Creates a Javelin item while adding additional Weapon Properties derived from the weapon's material. Does *NOT* register the item. The addon author will have to do that.
+     * Creates a Javelin item while adding additional Weapon Properties derived from the weapon's
+     * material. Does *NOT* register the item. The addon author will have to do that.
      *
      * @param material The weapon material
      * @return The newly created Javelin item
@@ -161,7 +180,8 @@ public interface IInternalMethodHandler {
     Item addJavelin(WeaponMaterial material);
 
     /**
-     * Creates a Boomerang item while adding additional Weapon Properties derived from the weapon's material. Does *NOT* register the item. The addon author will have to do that.
+     * Creates a Boomerang item while adding additional Weapon Properties derived from the weapon's
+     * material. Does *NOT* register the item. The addon author will have to do that.
      *
      * @param material The weapon material
      * @return The newly created Boomerang item
@@ -169,7 +189,8 @@ public interface IInternalMethodHandler {
     Item addBoomerang(WeaponMaterial material);
 
     /**
-     * Creates a Battleaxe item while adding additional Weapon Properties derived from the weapon's material. Does *NOT* register the item. The addon author will have to do that.
+     * Creates a Battleaxe item while adding additional Weapon Properties derived from the weapon's
+     * material. Does *NOT* register the item. The addon author will have to do that.
      *
      * @param material The weapon material
      * @return The newly created Battleaxe item
@@ -177,7 +198,8 @@ public interface IInternalMethodHandler {
     Item addBattleaxe(WeaponMaterial material);
 
     /**
-     * Creates a Mace item while adding additional Weapon Properties derived from the weapon's material. Does *NOT* register the item. The addon author will have to do that.
+     * Creates a Mace item while adding additional Weapon Properties derived from the weapon's
+     * material. Does *NOT* register the item. The addon author will have to do that.
      *
      * @param material The weapon material
      * @return The newly created Mace item
@@ -185,7 +207,8 @@ public interface IInternalMethodHandler {
     Item addFlangedMace(WeaponMaterial material);
 
     /**
-     * Creates a Glaive item while adding additional Weapon Properties derived from the weapon's material. Does *NOT* register the item. The addon author will have to do that.
+     * Creates a Glaive item while adding additional Weapon Properties derived from the weapon's
+     * material. Does *NOT* register the item. The addon author will have to do that.
      *
      * @param material The weapon material
      * @return The newly created Glaive item
@@ -193,7 +216,8 @@ public interface IInternalMethodHandler {
     Item addGlaive(WeaponMaterial material);
 
     /**
-     * Creates a Quarterstaff item while adding additional Weapon Properties derived from the weapon's material. Does *NOT* register the item. The addon author will have to do that.
+     * Creates a Quarterstaff item while adding additional Weapon Properties derived from the
+     * weapon's material. Does *NOT* register the item. The addon author will have to do that.
      *
      * @param material The weapon material
      * @return The newly created Quarterstaff item
@@ -201,7 +225,8 @@ public interface IInternalMethodHandler {
     Item addQuarterstaff(WeaponMaterial material);
 
     /**
-     * Creates a Scythe item while adding additional Weapon Properties derived from the weapon's material. Does *NOT* register the item. The addon author will have to do that.
+     * Creates a Scythe item while adding additional Weapon Properties derived from the weapon's
+     * material. Does *NOT* register the item. The addon author will have to do that.
      *
      * @param material The weapon material
      * @return The newly created Scythe item

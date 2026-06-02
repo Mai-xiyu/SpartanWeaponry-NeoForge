@@ -19,12 +19,22 @@ public abstract class ArrowEntitySW extends AbstractArrow {
         this.initEntity();
     }
 
-    public ArrowEntitySW(EntityType<? extends ArrowEntitySW> type, Level level, double x, double y, double z, ItemStack weapon) {
+    public ArrowEntitySW(
+            EntityType<? extends ArrowEntitySW> type,
+            Level level,
+            double x,
+            double y,
+            double z,
+            ItemStack weapon) {
         super(type, x, y, z, level, Items.ARROW.getDefaultInstance(), weapon);
         this.initEntity();
     }
 
-    public ArrowEntitySW(EntityType<? extends ArrowEntitySW> type, Level level, LivingEntity shooter, ItemStack weapon) {
+    public ArrowEntitySW(
+            EntityType<? extends ArrowEntitySW> type,
+            Level level,
+            LivingEntity shooter,
+            ItemStack weapon) {
         super(type, shooter, level, Items.ARROW.getDefaultInstance(), weapon);
         this.initEntity();
     }
@@ -34,11 +44,18 @@ public abstract class ArrowEntitySW extends AbstractArrow {
         this.setBaseDamage(this.baseDamage);
     }
 
-    abstract protected void initStats();
+    protected abstract void initStats();
 
     @Override
-    public void shootFromRotation(@NotNull Entity shooter, float pitch, float yaw, float p_184547_4_, float velocity, float inaccuracy) {
-        super.shootFromRotation(shooter, pitch, yaw, p_184547_4_, velocity * this.rangeMultiplier, inaccuracy);
+    public void shootFromRotation(
+            @NotNull Entity shooter,
+            float pitch,
+            float yaw,
+            float p_184547_4_,
+            float velocity,
+            float inaccuracy) {
+        super.shootFromRotation(
+                shooter, pitch, yaw, p_184547_4_, velocity * this.rangeMultiplier, inaccuracy);
     }
 
     @Override
@@ -50,5 +67,4 @@ public abstract class ArrowEntitySW extends AbstractArrow {
     protected @NotNull ItemStack getDefaultPickupItem() {
         return this.getPickupItem();
     }
-
 }

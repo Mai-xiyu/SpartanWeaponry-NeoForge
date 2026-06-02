@@ -1,5 +1,6 @@
 package org.xiyu.spartanweaponryunofficial.api.tags;
 
+import java.util.Objects;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
@@ -7,181 +8,280 @@ import net.minecraft.world.item.Item;
 import org.xiyu.spartanweaponryunofficial.api.SpartanWeaponryAPI;
 import org.xiyu.spartanweaponryunofficial.api.WeaponMaterial;
 
-import java.util.Objects;
-
 /**
  * This class contains all the different item tags used by Spartan Weaponry.
- * <p>
- * Legacy flat tags are kept for compatibility. New addon and datapack integrations can use the
- * grouped helpers for {@code weapons/<type>}, {@code materials/<material>}, and
- * {@code mods/<namespace>} tags while still adding items to any legacy tags required by older content.
+ *
+ * <p>Legacy flat tags are kept for compatibility. New addon and datapack integrations can use the
+ * grouped helpers for {@code weapons/<type>}, {@code materials/<material>}, and {@code
+ * mods/<namespace>} tags while still adding items to any legacy tags required by older content.
  *
  * @author ObliviousSpartan
  */
 public class ModItemTags {
     private static TagKey<Item> spartan(String path) {
-        return ItemTags.create(ResourceLocation.fromNamespaceAndPath(SpartanWeaponryAPI.MOD_ID, path));
+        return ItemTags.create(
+                ResourceLocation.fromNamespaceAndPath(SpartanWeaponryAPI.MOD_ID, path));
     }
 
-    /**
-     * Returns the canonical grouped weapon tag for an API weapon type.
-     */
+    /** Returns the canonical grouped weapon tag for an API weapon type. */
     public static TagKey<Item> weaponType(SpartanWeaponryAPI.WeaponItemType weaponType) {
         return spartan(Objects.requireNonNull(weaponType, "weaponType").getTagPath());
     }
 
     /**
-     * Returns a grouped weapon tag under {@code weapons/}. The path should be plural,
-     * for example {@code longswords}, {@code spears}, or {@code throwing_knives}.
+     * Returns a grouped weapon tag under {@code weapons/}. The path should be plural, for example
+     * {@code longswords}, {@code spears}, or {@code throwing_knives}.
      */
     public static TagKey<Item> weaponType(String pluralPath) {
         return spartan("weapons/" + Objects.requireNonNull(pluralPath, "pluralPath"));
     }
 
-    /**
-     * Returns the canonical grouped material tag for weapons made from the material.
-     */
+    /** Returns the canonical grouped material tag for weapons made from the material. */
     public static TagKey<Item> material(WeaponMaterial material) {
         return material(Objects.requireNonNull(material, "material").getMaterialName());
     }
 
-    /**
-     * Returns a grouped weapon material tag under {@code materials/}.
-     */
+    /** Returns a grouped weapon material tag under {@code materials/}. */
     public static TagKey<Item> material(String materialName) {
         return spartan("materials/" + Objects.requireNonNull(materialName, "materialName"));
     }
 
-    /**
-     * Returns the grouped weapon source tag for a registry namespace.
-     */
+    /** Returns the grouped weapon source tag for a registry namespace. */
     public static TagKey<Item> namespace(String namespace) {
         return spartan("mods/" + Objects.requireNonNull(namespace, "namespace"));
     }
 
     // Handles and Poles
-    public static final TagKey<Item> HANDLES = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":handles"));
-    public static final TagKey<Item> POLES = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":poles"));
+    public static final TagKey<Item> HANDLES =
+            ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":handles"));
+    public static final TagKey<Item> POLES =
+            ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":poles"));
 
     // Grouped tags for datapack and modpack integration. Legacy flat tags below remain supported.
     public static final TagKey<Item> WEAPONS = spartan("weapons");
 
     // Tags for all weapons of a specified type
-    public static final TagKey<Item> DAGGERS = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":dagger"));
-    public static final TagKey<Item> PARRYING_DAGGERS = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":parrying_dagger"));
-    public static final TagKey<Item> LONGSWORDS = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":longsword"));
-    public static final TagKey<Item> KATANAS = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":katana"));
-    public static final TagKey<Item> SABERS = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":saber"));
-    public static final TagKey<Item> RAPIERS = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":rapier"));
-    public static final TagKey<Item> GREATSWORDS = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":greatsword"));
-    public static final TagKey<Item> CLUBS = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":club"));
-    public static final TagKey<Item> CESTUSAE = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":cestus"));
-    public static final TagKey<Item> BATTLE_HAMMERS = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":battle_hammer"));
-    public static final TagKey<Item> WARHAMMERS = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":warhammer"));
-    public static final TagKey<Item> SPEARS = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":spear"));
-    public static final TagKey<Item> HALBERDS = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":halberd"));
-    public static final TagKey<Item> PIKES = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":pike"));
-    public static final TagKey<Item> LANCES = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":lance"));
-    public static final TagKey<Item> LONGBOWS = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":longbow"));
-    public static final TagKey<Item> HEAVY_CROSSBOWS = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":heavy_crossbow"));
-    public static final TagKey<Item> THROWING_KNIVES = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":throwing_knife"));
-    public static final TagKey<Item> TOMAHAWKS = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":tomahawk"));
-    public static final TagKey<Item> JAVELINS = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":javelin"));
-    public static final TagKey<Item> BOOMERANGS = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":boomerang"));
-    public static final TagKey<Item> BATTLEAXES = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":battleaxe"));
-    public static final TagKey<Item> FLANGED_MACES = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":flanged_mace"));
-    public static final TagKey<Item> GLAIVES = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":glaive"));
-    public static final TagKey<Item> QUARTERSTAVES = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":quarterstaff"));
-    public static final TagKey<Item> SCYTHES = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":scythe"));
+    public static final TagKey<Item> DAGGERS =
+            ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":dagger"));
+    public static final TagKey<Item> PARRYING_DAGGERS =
+            ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":parrying_dagger"));
+    public static final TagKey<Item> LONGSWORDS =
+            ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":longsword"));
+    public static final TagKey<Item> KATANAS =
+            ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":katana"));
+    public static final TagKey<Item> SABERS =
+            ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":saber"));
+    public static final TagKey<Item> RAPIERS =
+            ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":rapier"));
+    public static final TagKey<Item> GREATSWORDS =
+            ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":greatsword"));
+    public static final TagKey<Item> CLUBS =
+            ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":club"));
+    public static final TagKey<Item> CESTUSAE =
+            ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":cestus"));
+    public static final TagKey<Item> BATTLE_HAMMERS =
+            ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":battle_hammer"));
+    public static final TagKey<Item> WARHAMMERS =
+            ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":warhammer"));
+    public static final TagKey<Item> SPEARS =
+            ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":spear"));
+    public static final TagKey<Item> HALBERDS =
+            ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":halberd"));
+    public static final TagKey<Item> PIKES =
+            ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":pike"));
+    public static final TagKey<Item> LANCES =
+            ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":lance"));
+    public static final TagKey<Item> LONGBOWS =
+            ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":longbow"));
+    public static final TagKey<Item> HEAVY_CROSSBOWS =
+            ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":heavy_crossbow"));
+    public static final TagKey<Item> THROWING_KNIVES =
+            ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":throwing_knife"));
+    public static final TagKey<Item> TOMAHAWKS =
+            ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":tomahawk"));
+    public static final TagKey<Item> JAVELINS =
+            ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":javelin"));
+    public static final TagKey<Item> BOOMERANGS =
+            ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":boomerang"));
+    public static final TagKey<Item> BATTLEAXES =
+            ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":battleaxe"));
+    public static final TagKey<Item> FLANGED_MACES =
+            ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":flanged_mace"));
+    public static final TagKey<Item> GLAIVES =
+            ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":glaive"));
+    public static final TagKey<Item> QUARTERSTAVES =
+            ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":quarterstaff"));
+    public static final TagKey<Item> SCYTHES =
+            ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":scythe"));
 
     // Tags for all weapons made from a specific material
-    public static final TagKey<Item> WOODEN_WEAPONS = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":wooden_weapons"));
-    public static final TagKey<Item> STONE_WEAPONS = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":stone_weapons"));
-    public static final TagKey<Item> LEATHER_WEAPONS = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":leather_weapons"));
-    public static final TagKey<Item> IRON_WEAPONS = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":iron_weapons"));
-    public static final TagKey<Item> GOLDEN_WEAPONS = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":golden_weapons"));
-    public static final TagKey<Item> DIAMOND_WEAPONS = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":diamond_weapons"));
-    public static final TagKey<Item> NETHERITE_WEAPONS = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":netherite_weapons"));
+    public static final TagKey<Item> WOODEN_WEAPONS =
+            ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":wooden_weapons"));
+    public static final TagKey<Item> STONE_WEAPONS =
+            ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":stone_weapons"));
+    public static final TagKey<Item> LEATHER_WEAPONS =
+            ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":leather_weapons"));
+    public static final TagKey<Item> IRON_WEAPONS =
+            ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":iron_weapons"));
+    public static final TagKey<Item> GOLDEN_WEAPONS =
+            ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":golden_weapons"));
+    public static final TagKey<Item> DIAMOND_WEAPONS =
+            ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":diamond_weapons"));
+    public static final TagKey<Item> NETHERITE_WEAPONS =
+            ItemTags.create(
+                    ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":netherite_weapons"));
 
-    public static final TagKey<Item> COPPER_WEAPONS = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":copper_weapons"));
-    public static final TagKey<Item> TIN_WEAPONS = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":tin_weapons"));
-    public static final TagKey<Item> BRONZE_WEAPONS = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":bronze_weapons"));
-    public static final TagKey<Item> STEEL_WEAPONS = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":steel_weapons"));
-    public static final TagKey<Item> SILVER_WEAPONS = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":silver_weapons"));
-    public static final TagKey<Item> ELECTRUM_WEAPONS = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":electrum_weapons"));
-    public static final TagKey<Item> LEAD_WEAPONS = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":lead_weapons"));
-    public static final TagKey<Item> NICKEL_WEAPONS = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":nickel_weapons"));
-    public static final TagKey<Item> INVAR_WEAPONS = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":invar_weapons"));
-    public static final TagKey<Item> CONSTANTAN_WEAPONS = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":contantan_weapons"));
-    public static final TagKey<Item> PLATINUM_WEAPONS = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":platinum_weapons"));
-    public static final TagKey<Item> ALUMINUM_WEAPONS = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":aluminum_weapons"));
+    public static final TagKey<Item> COPPER_WEAPONS =
+            ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":copper_weapons"));
+    public static final TagKey<Item> TIN_WEAPONS =
+            ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":tin_weapons"));
+    public static final TagKey<Item> BRONZE_WEAPONS =
+            ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":bronze_weapons"));
+    public static final TagKey<Item> STEEL_WEAPONS =
+            ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":steel_weapons"));
+    public static final TagKey<Item> SILVER_WEAPONS =
+            ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":silver_weapons"));
+    public static final TagKey<Item> ELECTRUM_WEAPONS =
+            ItemTags.create(
+                    ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":electrum_weapons"));
+    public static final TagKey<Item> LEAD_WEAPONS =
+            ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":lead_weapons"));
+    public static final TagKey<Item> NICKEL_WEAPONS =
+            ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":nickel_weapons"));
+    public static final TagKey<Item> INVAR_WEAPONS =
+            ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":invar_weapons"));
+    public static final TagKey<Item> CONSTANTAN_WEAPONS =
+            ItemTags.create(
+                    ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":contantan_weapons"));
+    public static final TagKey<Item> PLATINUM_WEAPONS =
+            ItemTags.create(
+                    ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":platinum_weapons"));
+    public static final TagKey<Item> ALUMINUM_WEAPONS =
+            ItemTags.create(
+                    ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":aluminum_weapons"));
 
     // Arrows and Bolts
-    public static final TagKey<Item> ARROWS = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":arrows"));
-    public static final TagKey<Item> COPPER_PROJECTILES = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":copper_projectiles"));
-    public static final TagKey<Item> DIAMOND_PROJECTILES = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":diamond_projectiles"));
-    public static final TagKey<Item> NETHERITE_PROJECTILES = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":netherite_projectiles"));
-    public static final TagKey<Item> BOLTS = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":bolts"));
+    public static final TagKey<Item> ARROWS =
+            ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":arrows"));
+    public static final TagKey<Item> COPPER_PROJECTILES =
+            ItemTags.create(
+                    ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":copper_projectiles"));
+    public static final TagKey<Item> DIAMOND_PROJECTILES =
+            ItemTags.create(
+                    ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":diamond_projectiles"));
+    public static final TagKey<Item> NETHERITE_PROJECTILES =
+            ItemTags.create(
+                    ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":netherite_projectiles"));
+    public static final TagKey<Item> BOLTS =
+            ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":bolts"));
 
     // Quivers
-    public static final TagKey<Item> ARROW_QUIVERS = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":arrow_quivers"));
-    public static final TagKey<Item> BOLT_QUIVERS = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":bolt_quivers"));
-    public static final TagKey<Item> QUIVERS = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":quivers"));
-    public static final TagKey<Item> SMALL_QUIVERS = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":small_quivers"));
-    public static final TagKey<Item> UPGRADED_QUIVERS = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":upgraded_quivers"));
-    public static final TagKey<Item> UPGRADED_QUIVERS_MAX = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":upgraded_quivers_max"));
+    public static final TagKey<Item> ARROW_QUIVERS =
+            ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":arrow_quivers"));
+    public static final TagKey<Item> BOLT_QUIVERS =
+            ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":bolt_quivers"));
+    public static final TagKey<Item> QUIVERS =
+            ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":quivers"));
+    public static final TagKey<Item> SMALL_QUIVERS =
+            ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":small_quivers"));
+    public static final TagKey<Item> UPGRADED_QUIVERS =
+            ItemTags.create(
+                    ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":upgraded_quivers"));
+    public static final TagKey<Item> UPGRADED_QUIVERS_MAX =
+            ItemTags.create(
+                    ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":upgraded_quivers_max"));
 
-    public static final TagKey<Item> EXPLOSIVES = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":explosives"));
+    public static final TagKey<Item> EXPLOSIVES =
+            ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":explosives"));
 
-    public static final TagKey<Item> HEADS = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":heads"));
+    public static final TagKey<Item> HEADS =
+            ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":heads"));
 
-    public static final TagKey<Item> THROWING_WEAPONS = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":throwing_weapons"));
-    public static final TagKey<Item> HAS_CUSTOM_CROSSHAIR = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":has_custom_crosshair"));
+    public static final TagKey<Item> THROWING_WEAPONS =
+            ItemTags.create(
+                    ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":throwing_weapons"));
+    public static final TagKey<Item> HAS_CUSTOM_CROSSHAIR =
+            ItemTags.create(
+                    ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":has_custom_crosshair"));
 
     // Materials for repairing weapons
-    public static final TagKey<Item> COBBLESTONE = ItemTags.create(ResourceLocation.parse("c:cobblestones"));
-    public static final TagKey<Item> LEATHER = ItemTags.create(ResourceLocation.parse("c:leathers"));
-    public static final TagKey<Item> COPPER_INGOT = ItemTags.create(ResourceLocation.parse("c:ingots/copper"));
-    public static final TagKey<Item> IRON_INGOT = ItemTags.create(ResourceLocation.parse("c:ingots/iron"));
-    public static final TagKey<Item> GOLD_INGOT = ItemTags.create(ResourceLocation.parse("c:ingots/gold"));
-    public static final TagKey<Item> DIAMOND = ItemTags.create(ResourceLocation.parse("c:gems/diamond"));
-    public static final TagKey<Item> NETHERITE_INGOT = ItemTags.create(ResourceLocation.parse("c:ingots/netherite"));
-    public static final TagKey<Item> TIN_INGOT = ItemTags.create(ResourceLocation.parse("c:ingots/tin"));
-    public static final TagKey<Item> BRONZE_INGOT = ItemTags.create(ResourceLocation.parse("c:ingots/bronze"));
-    public static final TagKey<Item> STEEL_INGOT = ItemTags.create(ResourceLocation.parse("c:ingots/steel"));
-    public static final TagKey<Item> SILVER_INGOT = ItemTags.create(ResourceLocation.parse("c:ingots/silver"));
-    public static final TagKey<Item> ELECTRUM_INGOT = ItemTags.create(ResourceLocation.parse("c:ingots/electrum"));
-    public static final TagKey<Item> LEAD_INGOT = ItemTags.create(ResourceLocation.parse("c:ingots/lead"));
-    public static final TagKey<Item> NICKEL_INGOT = ItemTags.create(ResourceLocation.parse("c:ingots/nickel"));
-    public static final TagKey<Item> INVAR_INGOT = ItemTags.create(ResourceLocation.parse("c:ingots/invar"));
-    public static final TagKey<Item> CONSTANTAN_INGOT = ItemTags.create(ResourceLocation.parse("c:ingots/constantan"));
-    public static final TagKey<Item> PLATINUM_INGOT = ItemTags.create(ResourceLocation.parse("c:ingots/platinum"));
-    public static final TagKey<Item> ALUMINUM_INGOT = ItemTags.create(ResourceLocation.parse("c:ingots/aluminum"));
-    public static final TagKey<Item> FORGE_ALUMINUM_INGOT = ItemTags.create(ResourceLocation.parse("c:ingots/aluminum"));
-    public static final TagKey<Item> FORGE_ALUMINIUM_INGOT = ItemTags.create(ResourceLocation.parse("c:ingots/aluminium"));
-	
-/*	public static final TagKey<Item> COPPER_NUGGET = ItemTags.create(ResourceLocation.parse("forge:nuggets/copper"));
-	public static final TagKey<Item> IRON_NUGGET = ItemTags.create(ResourceLocation.parse("forge:nuggets/iron"));
-	public static final TagKey<Item> GOLD_NUGGET = ItemTags.create(ResourceLocation.parse("forge:nuggets/gold"));
-	public static final TagKey<Item> TIN_NUGGET = ItemTags.create(ResourceLocation.parse("forge:nuggets/tin"));
-	public static final TagKey<Item> BRONZE_NUGGET = ItemTags.create(ResourceLocation.parse("forge:nuggets/bronze"));
-	public static final TagKey<Item> STEEL_NUGGET = ItemTags.create(ResourceLocation.parse("forge:nuggets/steel"));
-	public static final TagKey<Item> SILVER_NUGGET = ItemTags.create(ResourceLocation.parse("forge:nuggets/silver"));
-	public static final TagKey<Item> ELECTRUM_NUGGET = ItemTags.create(ResourceLocation.parse("forge:nuggets/gold"));
-	public static final TagKey<Item> LEAD_NUGGET = ItemTags.create(ResourceLocation.parse("forge:nuggets/lead"));
-	public static final TagKey<Item> NICKEL_NUGGET = ItemTags.create(ResourceLocation.parse("forge:nuggets/nickel"));
-	public static final TagKey<Item> INVAR_NUGGET = ItemTags.create(ResourceLocation.parse("forge:nuggets/invar"));
-	public static final TagKey<Item> CONSTANTAN_NUGGET = ItemTags.create(ResourceLocation.parse("forge:nuggets/constantan"));
-	public static final TagKey<Item> PLATINUM_NUGGET = ItemTags.create(ResourceLocation.parse("forge:nuggets/platinum"));
-	public static final TagKey<Item> ALUMINUM_NUGGET = ItemTags.create(ResourceLocation.parse("forge:nuggets/aluminum"));*/
+    public static final TagKey<Item> COBBLESTONE =
+            ItemTags.create(ResourceLocation.parse("c:cobblestones"));
+    public static final TagKey<Item> LEATHER =
+            ItemTags.create(ResourceLocation.parse("c:leathers"));
+    public static final TagKey<Item> COPPER_INGOT =
+            ItemTags.create(ResourceLocation.parse("c:ingots/copper"));
+    public static final TagKey<Item> IRON_INGOT =
+            ItemTags.create(ResourceLocation.parse("c:ingots/iron"));
+    public static final TagKey<Item> GOLD_INGOT =
+            ItemTags.create(ResourceLocation.parse("c:ingots/gold"));
+    public static final TagKey<Item> DIAMOND =
+            ItemTags.create(ResourceLocation.parse("c:gems/diamond"));
+    public static final TagKey<Item> NETHERITE_INGOT =
+            ItemTags.create(ResourceLocation.parse("c:ingots/netherite"));
+    public static final TagKey<Item> TIN_INGOT =
+            ItemTags.create(ResourceLocation.parse("c:ingots/tin"));
+    public static final TagKey<Item> BRONZE_INGOT =
+            ItemTags.create(ResourceLocation.parse("c:ingots/bronze"));
+    public static final TagKey<Item> STEEL_INGOT =
+            ItemTags.create(ResourceLocation.parse("c:ingots/steel"));
+    public static final TagKey<Item> SILVER_INGOT =
+            ItemTags.create(ResourceLocation.parse("c:ingots/silver"));
+    public static final TagKey<Item> ELECTRUM_INGOT =
+            ItemTags.create(ResourceLocation.parse("c:ingots/electrum"));
+    public static final TagKey<Item> LEAD_INGOT =
+            ItemTags.create(ResourceLocation.parse("c:ingots/lead"));
+    public static final TagKey<Item> NICKEL_INGOT =
+            ItemTags.create(ResourceLocation.parse("c:ingots/nickel"));
+    public static final TagKey<Item> INVAR_INGOT =
+            ItemTags.create(ResourceLocation.parse("c:ingots/invar"));
+    public static final TagKey<Item> CONSTANTAN_INGOT =
+            ItemTags.create(ResourceLocation.parse("c:ingots/constantan"));
+    public static final TagKey<Item> PLATINUM_INGOT =
+            ItemTags.create(ResourceLocation.parse("c:ingots/platinum"));
+    public static final TagKey<Item> ALUMINUM_INGOT =
+            ItemTags.create(ResourceLocation.parse("c:ingots/aluminum"));
+    public static final TagKey<Item> FORGE_ALUMINUM_INGOT =
+            ItemTags.create(ResourceLocation.parse("c:ingots/aluminum"));
+    public static final TagKey<Item> FORGE_ALUMINIUM_INGOT =
+            ItemTags.create(ResourceLocation.parse("c:ingots/aluminium"));
+
+    /*    public static final TagKey<Item> COPPER_NUGGET = ItemTags.create(ResourceLocation.parse("forge:nuggets/copper"));
+    public static final TagKey<Item> IRON_NUGGET = ItemTags.create(ResourceLocation.parse("forge:nuggets/iron"));
+    public static final TagKey<Item> GOLD_NUGGET = ItemTags.create(ResourceLocation.parse("forge:nuggets/gold"));
+    public static final TagKey<Item> TIN_NUGGET = ItemTags.create(ResourceLocation.parse("forge:nuggets/tin"));
+    public static final TagKey<Item> BRONZE_NUGGET = ItemTags.create(ResourceLocation.parse("forge:nuggets/bronze"));
+    public static final TagKey<Item> STEEL_NUGGET = ItemTags.create(ResourceLocation.parse("forge:nuggets/steel"));
+    public static final TagKey<Item> SILVER_NUGGET = ItemTags.create(ResourceLocation.parse("forge:nuggets/silver"));
+    public static final TagKey<Item> ELECTRUM_NUGGET = ItemTags.create(ResourceLocation.parse("forge:nuggets/gold"));
+    public static final TagKey<Item> LEAD_NUGGET = ItemTags.create(ResourceLocation.parse("forge:nuggets/lead"));
+    public static final TagKey<Item> NICKEL_NUGGET = ItemTags.create(ResourceLocation.parse("forge:nuggets/nickel"));
+    public static final TagKey<Item> INVAR_NUGGET = ItemTags.create(ResourceLocation.parse("forge:nuggets/invar"));
+    public static final TagKey<Item> CONSTANTAN_NUGGET = ItemTags.create(ResourceLocation.parse("forge:nuggets/constantan"));
+    public static final TagKey<Item> PLATINUM_NUGGET = ItemTags.create(ResourceLocation.parse("forge:nuggets/platinum"));
+    public static final TagKey<Item> ALUMINUM_NUGGET = ItemTags.create(ResourceLocation.parse("forge:nuggets/aluminum"));*/
 
     public static final TagKey<Item> GRASS = ItemTags.create(ResourceLocation.parse("c:grass"));
-    public static final TagKey<Item> RAW_MEAT = ItemTags.create(ResourceLocation.parse("c:foods/raw_meats"));
-    public static final TagKey<Item> OILABLE_WEAPONS = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":oilable_weapons"));
+    public static final TagKey<Item> RAW_MEAT =
+            ItemTags.create(ResourceLocation.parse("c:foods/raw_meats"));
+    public static final TagKey<Item> OILABLE_WEAPONS =
+            ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":oilable_weapons"));
 
-    public static final TagKey<Item> ZOMBIE_SPAWN_WEAPONS = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":zombie_spawn_weapons"));
-    public static final TagKey<Item> SKELETON_SPAWN_LONGBOWS = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":skeleton_spawn_longbows"));
-    public static final TagKey<Item> PIGLIN_SPAWN_WEAPONS = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":piglin_spawn_weapons"));
-    public static final TagKey<Item> PIGLIN_BRUTE_SPAWN_WEAPONS = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":piglin_brute_spawn_weapons"));
-    public static final TagKey<Item> WITHER_SKELETON_SPAWN_WEAPONS = ItemTags.create(ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":wither_skeleton_spawn_weapons"));
+    public static final TagKey<Item> ZOMBIE_SPAWN_WEAPONS =
+            ItemTags.create(
+                    ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":zombie_spawn_weapons"));
+    public static final TagKey<Item> SKELETON_SPAWN_LONGBOWS =
+            ItemTags.create(
+                    ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":skeleton_spawn_longbows"));
+    public static final TagKey<Item> PIGLIN_SPAWN_WEAPONS =
+            ItemTags.create(
+                    ResourceLocation.parse(SpartanWeaponryAPI.MOD_ID + ":piglin_spawn_weapons"));
+    public static final TagKey<Item> PIGLIN_BRUTE_SPAWN_WEAPONS =
+            ItemTags.create(
+                    ResourceLocation.parse(
+                            SpartanWeaponryAPI.MOD_ID + ":piglin_brute_spawn_weapons"));
+    public static final TagKey<Item> WITHER_SKELETON_SPAWN_WEAPONS =
+            ItemTags.create(
+                    ResourceLocation.parse(
+                            SpartanWeaponryAPI.MOD_ID + ":wither_skeleton_spawn_weapons"));
 }

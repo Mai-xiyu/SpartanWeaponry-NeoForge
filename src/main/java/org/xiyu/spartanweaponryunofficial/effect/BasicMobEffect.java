@@ -7,5 +7,4 @@ public class BasicMobEffect extends MobEffect {
     public BasicMobEffect(MobEffectCategory effectCategoryIn, int colourIn) {
         super(effectCategoryIn, colourIn);
     }
-
 }

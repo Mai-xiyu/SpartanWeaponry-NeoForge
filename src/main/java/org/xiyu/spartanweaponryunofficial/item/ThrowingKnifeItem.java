@@ -14,18 +14,31 @@ import org.xiyu.spartanweaponryunofficial.util.WeaponArchetype;
 
 public class ThrowingKnifeItem extends ThrowingWeaponItem {
 
-    public ThrowingKnifeItem(Item.Properties prop, WeaponMaterial material, WeaponArchetype archetypeIn) {
-        super(prop, material, archetypeIn, Defaults.DamageBaseThrowingKnife, Defaults.DamageMultiplierThrowingKnife, Defaults.MeleeSpeedThrowingKnife, 16, Defaults.ChargeTicksThrowingKnife);
+    public ThrowingKnifeItem(
+            Item.Properties prop, WeaponMaterial material, WeaponArchetype archetypeIn) {
+        super(
+                prop,
+                material,
+                archetypeIn,
+                Defaults.DamageBaseThrowingKnife,
+                Defaults.DamageMultiplierThrowingKnife,
+                Defaults.MeleeSpeedThrowingKnife,
+                16,
+                Defaults.ChargeTicksThrowingKnife);
     }
 
-    public ThrowingKnifeItem(Item.Properties prop, WeaponMaterial material, WeaponArchetype archetypeIn, String customDisplayName) {
+    public ThrowingKnifeItem(
+            Item.Properties prop,
+            WeaponMaterial material,
+            WeaponArchetype archetypeIn,
+            String customDisplayName) {
         this(prop, material, archetypeIn);
-        if (material.useCustomDisplayName())
-            this.customDisplayName = customDisplayName;
+        if (material.useCustomDisplayName()) this.customDisplayName = customDisplayName;
     }
 
     @Override
-    public ThrowingWeaponEntity createThrowingWeaponEntity(Level level, Player player, ItemStack stack, int charge) {
+    public ThrowingWeaponEntity createThrowingWeaponEntity(
+            Level level, Player player, ItemStack stack, int charge) {
         return new ThrowingKnifeEntity(level, player, stack);
     }
 

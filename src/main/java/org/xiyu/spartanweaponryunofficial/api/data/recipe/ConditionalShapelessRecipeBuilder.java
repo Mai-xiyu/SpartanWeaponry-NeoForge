@@ -1,6 +1,10 @@
 package org.xiyu.spartanweaponryunofficial.api.data.recipe;
 
 import com.google.common.collect.Lists;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.AdvancementRequirements;
 import net.minecraft.advancements.AdvancementRewards;
@@ -22,14 +26,7 @@ import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.conditions.ICondition;
 import net.neoforged.neoforge.common.extensions.IRecipeOutputExtension;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-
-/**
- * Shapeless recipe builder with optional NeoForge conditions.
- */
+/** Shapeless recipe builder with optional NeoForge conditions. */
 public class ConditionalShapelessRecipeBuilder {
     private final ItemStack result;
     private final int count;
@@ -39,7 +36,8 @@ public class ConditionalShapelessRecipeBuilder {
     private String group;
     private final List<ICondition> conditions = new ArrayList<>();
 
-    private ConditionalShapelessRecipeBuilder(RecipeCategory categoryIn, ItemStack resultIn, int countIn) {
+    private ConditionalShapelessRecipeBuilder(
+            RecipeCategory categoryIn, ItemStack resultIn, int countIn) {
         this.category = categoryIn;
         this.result = resultIn;
         this.count = countIn;
@@ -61,7 +59,8 @@ public class ConditionalShapelessRecipeBuilder {
         return shapeless(RecipeCategory.COMBAT, new ItemStack(itemIn.asItem()), countIn);
     }
 
-    public static ConditionalShapelessRecipeBuilder shapeless(RecipeCategory categoryIn, ItemStack stackIn, int countIn) {
+    public static ConditionalShapelessRecipeBuilder shapeless(
+            RecipeCategory categoryIn, ItemStack stackIn, int countIn) {
         return new ConditionalShapelessRecipeBuilder(categoryIn, stackIn, countIn);
     }
 
@@ -87,8 +86,7 @@ public class ConditionalShapelessRecipeBuilder {
     }
 
     public ConditionalShapelessRecipeBuilder requires(Ingredient ingredientIn, int countIn) {
-        for (int i = 0; i < countIn; i++)
-            this.ingredients.add(ingredientIn);
+        for (int i = 0; i < countIn; i++) this.ingredients.add(ingredientIn);
         return this;
     }
 
@@ -115,9 +113,11 @@ public class ConditionalShapelessRecipeBuilder {
         ResourceLocation resultLoc = BuiltInRegistries.ITEM.getKey(this.result.getItem());
         ResourceLocation saveLoc = ResourceLocation.parse(save);
         if (saveLoc.equals(resultLoc))
-            throw new IllegalStateException("Shapeless recipe " + save + " save argument is redundant as it's the same as the item id!");
-        else
-            this.save(output, saveLoc);
+            throw new IllegalStateException(
+                    "Shapeless recipe "
+                            + save
+                            + " save argument is redundant as it's the same as the item id!");
+        else this.save(output, saveLoc);
     }
 
     public void save(RecipeOutput output, ResourceLocation id) {
@@ -130,12 +130,19 @@ public class ConditionalShapelessRecipeBuilder {
         ItemStack outputStack = this.result.copy();
         outputStack.setCount(this.count);
         NonNullList<Ingredient> ingredientList = NonNullList.copyOf(this.ingredients);
-        ShapelessRecipe recipe = new ShapelessRecipe(this.group == null ? "" : this.group, bookCategory, outputStack, ingredientList);
+        ShapelessRecipe recipe =
+                new ShapelessRecipe(
+                        this.group == null ? "" : this.group,
+                        bookCategory,
+                        outputStack,
+                        ingredientList);
 
-        ResourceLocation advancementId = id.withPrefix("recipes/" + this.category.getFolderName() + "/");
+        ResourceLocation advancementId =
+                id.withPrefix("recipes/" + this.category.getFolderName() + "/");
         var advancement = output.advancement();
         this.criteria.forEach(advancement::addCriterion);
-        advancement.parent(RecipeBuilder.ROOT_RECIPE_ADVANCEMENT)
+        advancement
+                .parent(RecipeBuilder.ROOT_RECIPE_ADVANCEMENT)
                 .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(id))
                 .rewards(AdvancementRewards.Builder.recipe(id))
                 .requirements(AdvancementRequirements.Strategy.OR);
