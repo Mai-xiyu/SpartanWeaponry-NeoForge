@@ -97,6 +97,7 @@ public class ThrowableMeleeWeaponTrait extends WeaponTrait implements IActionTra
                 if (player.getAbilities().instabuild)
                     thrown.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
                 else if (thrown.isValidThrowingWeapon()) {
+                    thrown.pickup = AbstractArrow.Pickup.ALLOWED;
                     stackIn.shrink(1);
                     if (stackIn.getCount() <= 0) player.getInventory().removeItem(stackIn);
                 }

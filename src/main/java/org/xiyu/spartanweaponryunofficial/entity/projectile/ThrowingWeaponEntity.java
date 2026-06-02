@@ -518,6 +518,14 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
 
             if (this.pickup == AbstractArrow.Pickup.ALLOWED) {
                 ItemStack pickUpStack = this.createRecoveredPickupStack();
+                if (!(pickUpStack.getItem() instanceof ThrowingWeaponItem)) {
+                    canBePickedUp = player.getInventory().add(pickUpStack);
+                    if (canBePickedUp) {
+                        player.take(this, 1);
+                        this.discard();
+                    }
+                    return canBePickedUp;
+                }
                 canBePickedUp = false;
                 for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
                     ItemStack invStack = player.getInventory().getItem(i);
