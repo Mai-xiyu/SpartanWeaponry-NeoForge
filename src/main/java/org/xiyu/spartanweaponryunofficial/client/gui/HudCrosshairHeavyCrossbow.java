@@ -26,14 +26,10 @@ public class HudCrosshairHeavyCrossbow {
         int screenWidth = mc.getWindow().getGuiScaledWidth();
         int screenHeight = mc.getWindow().getGuiScaledHeight();
 
+        // Assert that the equipped stack is a Heavy Crossbow; otherwise abort the rendering.
         if ((!ClientConfig.INSTANCE.disableNewCrosshairsCrossbow.get()
                         || ClientConfig.INSTANCE.forceCompatibilityCrosshairs.get())
-                && equippedStack.getItem()
-                        instanceof
-                        HeavyCrossbowItem
-                        crossbowItem) // Assert that the equipped stack is a Heavy Crossbow;
-        // otherwise abort the rendering
-        {
+                && equippedStack.getItem() instanceof HeavyCrossbowItem crossbowItem) {
             //            gui.setBlitOffset(-90);
 
             // Fixed the crosshair size to account for the actual aim area, while retaining scaling.
