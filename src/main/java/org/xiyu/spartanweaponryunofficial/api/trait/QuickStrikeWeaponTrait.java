@@ -11,8 +11,12 @@ public class QuickStrikeWeaponTrait extends MeleeCallbackWeaponTrait {
     }
 
     @Override
-    public void onHitEntity(WeaponMaterial material, ItemStack stack, LivingEntity target, LivingEntity attacker,
-                            Entity projectile) {
+    public void onHitEntity(
+            WeaponMaterial material,
+            ItemStack stack,
+            LivingEntity target,
+            LivingEntity attacker,
+            Entity projectile) {
         target.invulnerableTime = (int) this.getMagnitude();
     }
 }

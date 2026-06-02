@@ -8,6 +8,10 @@ import org.xiyu.spartanweaponryunofficial.ModSpartanWeaponry;
 
 public class OilCoatingItemModelBuilder<T extends ModelBuilder<T>> extends CustomLoaderBuilder<T> {
     protected OilCoatingItemModelBuilder(T parent, ExistingFileHelper existingFileHelper) {
-        super(ResourceLocation.fromNamespaceAndPath(ModSpartanWeaponry.ID, "oil_coated_item"), parent, existingFileHelper, false);
+        super(
+                ResourceLocation.fromNamespaceAndPath(ModSpartanWeaponry.ID, "oil_coated_item"),
+                parent,
+                existingFileHelper,
+                false);
     }
 }

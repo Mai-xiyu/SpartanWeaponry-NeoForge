@@ -25,8 +25,7 @@ public class ArrowExplosiveEntity extends ArrowEntitySW {
     }
 
     @Override
-    protected void initStats() {
-    }
+    protected void initStats() {}
 
     @Override
     protected void doPostHurtEffects(@NotNull LivingEntity living) {
@@ -41,7 +40,8 @@ public class ArrowExplosiveEntity extends ArrowEntitySW {
 
         Level level = this.level();
         if (level.isClientSide && !this.inGround) {
-            level.addParticle(ParticleTypes.SMOKE, this.getX(), this.getY(), this.getZ(), 0.0D, 0.0D, 0.0D);
+            level.addParticle(
+                    ParticleTypes.SMOKE, this.getX(), this.getY(), this.getZ(), 0.0D, 0.0D, 0.0D);
         }
 
         if (this.inGround) {
@@ -53,7 +53,15 @@ public class ArrowExplosiveEntity extends ArrowEntitySW {
         Level level = this.level();
         if (!level.isClientSide) {
             boolean mobGriefing = level.getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING);
-            level.explode(this, this.xOld, this.yOld, this.zOld, Config.INSTANCE.arrowExplosiveExplosionStrength.get().floatValue(), !Config.INSTANCE.disableTerrainDamage.get() && mobGriefing ? ExplosionInteraction.TNT : ExplosionInteraction.NONE);
+            level.explode(
+                    this,
+                    this.xOld,
+                    this.yOld,
+                    this.zOld,
+                    Config.INSTANCE.arrowExplosiveExplosionStrength.get().floatValue(),
+                    !Config.INSTANCE.disableTerrainDamage.get() && mobGriefing
+                            ? ExplosionInteraction.TNT
+                            : ExplosionInteraction.NONE);
             this.discard();
         }
     }

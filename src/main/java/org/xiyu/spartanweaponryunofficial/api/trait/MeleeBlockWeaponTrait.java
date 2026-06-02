@@ -1,5 +1,6 @@
 package org.xiyu.spartanweaponryunofficial.api.trait;
 
+import java.util.Optional;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.damagesource.DamageSource;
@@ -13,8 +14,6 @@ import net.neoforged.neoforge.common.ItemAbility;
 import net.neoforged.neoforge.event.entity.living.LivingShieldBlockEvent;
 import org.xiyu.spartanweaponryunofficial.api.ModToolActions;
 
-import java.util.Optional;
-
 public class MeleeBlockWeaponTrait extends WeaponTrait implements IActionTraitCallback {
     public MeleeBlockWeaponTrait(String typeIn, String modIdIn, TraitQuality qualityIn) {
         super(typeIn, modIdIn, qualityIn);
@@ -27,10 +26,9 @@ public class MeleeBlockWeaponTrait extends WeaponTrait implements IActionTraitCa
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(ItemStack usingStackIn, Level levelIn, Player playerIn,
-                                                  InteractionHand handIn) {
-        if (playerIn.isCrouching())
-            return InteractionResultHolder.fail(usingStackIn);
+    public InteractionResultHolder<ItemStack> use(
+            ItemStack usingStackIn, Level levelIn, Player playerIn, InteractionHand handIn) {
+        if (playerIn.isCrouching()) return InteractionResultHolder.fail(usingStackIn);
         playerIn.startUsingItem(handIn);
         return InteractionResultHolder.consume(usingStackIn);
     }
@@ -47,15 +45,20 @@ public class MeleeBlockWeaponTrait extends WeaponTrait implements IActionTraitCa
 
     public static void onBlockEvent(LivingShieldBlockEvent ev) {
         LivingEntity living = ev.getEntity();
-//		if(living.getUseItem().getItem() instanceof IWeaponTraitContainer<?> container && container.hasWeaponTrait(WeaponTraits.BLOCK_MELEE.get()))
+        //        if(living.getUseItem().getItem() instanceof IWeaponTraitContainer<?> container &&
+        // container.hasWeaponTrait(WeaponTraits.BLOCK_MELEE.get()))
         ItemStack stack = living.getUseItem();
         if (stack.getItem().canPerformAction(stack, ModToolActions.MELEE_BLOCK)) {
             DamageSource source = ev.getDamageSource();
 
-            // Block Melee attacks only! Explosion, Fire, Magic, Projectile and unblockable damage won't be blocked!
-            // NOTE: Changes in Minecraft version 1.20.x means that it can only block specific damage sources, rather than block melee damage sources only! Maybe provide a tag for damage sources?
-            if (!source.is(DamageTypes.PLAYER_ATTACK) && !source.is(DamageTypes.MOB_ATTACK) && !source.is(DamageTypes.MOB_ATTACK_NO_AGGRO))
-                ev.setCanceled(true);
+            // Block Melee attacks only! Explosion, Fire, Magic, Projectile and unblockable damage
+            // won't be blocked!
+            // NOTE: Changes in Minecraft version 1.20.x means that it can only block specific
+            // damage sources, rather than block melee damage sources only! Maybe provide a tag for
+            // damage sources?
+            if (!source.is(DamageTypes.PLAYER_ATTACK)
+                    && !source.is(DamageTypes.MOB_ATTACK)
+                    && !source.is(DamageTypes.MOB_ATTACK_NO_AGGRO)) ev.setCanceled(true);
         }
     }
 }

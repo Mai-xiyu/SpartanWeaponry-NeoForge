@@ -1,5 +1,6 @@
 package org.xiyu.spartanweaponryunofficial.capability;
 
+import java.util.Optional;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
@@ -7,8 +8,6 @@ import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.common.util.INBTSerializable;
 import org.xiyu.spartanweaponryunofficial.api.oil.OilEffect;
-
-import java.util.Optional;
 
 public interface IOilHandler extends INBTSerializable<CompoundTag> {
     /**
@@ -28,43 +27,41 @@ public interface IOilHandler extends INBTSerializable<CompoundTag> {
     /**
      * Applies the effect of the oil to the weapon. Also sets the uses to the maximum for the oil
      *
-     * @param effectIn   The effect to apply
+     * @param effectIn The effect to apply
      */
     void setEffect(OilEffect effectIn, ItemStack oilStackIn);
 
     /**
-     * Applies the effect of the potion as an oil to the weapon. Also sets the uses to the maximum for the oil
+     * Applies the effect of the potion as an oil to the weapon. Also sets the uses to the maximum
+     * for the oil
      *
-     * @param potionIn   The potion effect to apply
+     * @param potionIn The potion effect to apply
      */
     void setPotion(Potion potionIn, ItemStack oilStackIn);
 
-    /**
-     * Removes any effect from the weapon. Also sets the uses to zero
-     */
+    /** Removes any effect from the weapon. Also sets the uses to zero */
     void clearEffect();
 
     /**
      * Applies the effect to the entity the player attacked. Also reduces uses by one
      *
      * @param baseDamageIn The prior damage of the weapon
-     * @param levelIn      The game world/level
-     * @param targetIn     The target entity
-     * @param userIn       The entity that is attacking with the oiled weapon
+     * @param levelIn The game world/level
+     * @param targetIn The target entity
+     * @param userIn The entity that is attacking with the oiled weapon
      * @param userWeaponIn The weapon's item stack
      * @return The resulting damage with the bonus/penalty applied from the oil
      */
-    float useEffect(float baseDamageIn, Level levelIn, LivingEntity targetIn, LivingEntity userIn, ItemStack userWeaponIn);
+    float useEffect(
+            float baseDamageIn,
+            Level levelIn,
+            LivingEntity targetIn,
+            LivingEntity userIn,
+            ItemStack userWeaponIn);
 
-    /**
-     * Queries whether or not the weapon is oiled with a valid effect
-     *
-     */
+    /** Queries whether or not the weapon is oiled with a valid effect */
     boolean isOiled();
 
-    /**
-     * Retrieves the amount of uses left for the oil on this weapon
-     *
-     */
+    /** Retrieves the amount of uses left for the oil on this weapon */
     int getUsesLeft();
 }

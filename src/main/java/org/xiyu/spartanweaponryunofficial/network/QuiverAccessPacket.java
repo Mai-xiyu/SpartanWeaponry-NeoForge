@@ -1,5 +1,6 @@
 package org.xiyu.spartanweaponryunofficial.network;
 
+import java.util.Optional;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
@@ -17,11 +18,12 @@ import org.xiyu.spartanweaponryunofficial.util.QuiverHelper;
 import org.xiyu.spartanweaponryunofficial.util.QuiverHelper.IQuiverInfo;
 import top.theillusivec4.curios.api.SlotResult;
 
-import java.util.Optional;
-
 public record QuiverAccessPacket() implements CustomPacketPayload {
-    public static final Type<QuiverAccessPacket> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath(ModSpartanWeaponry.ID, "quiver_access"));
-    public static final StreamCodec<RegistryFriendlyByteBuf, QuiverAccessPacket> STREAM_CODEC = StreamCodec.unit(new QuiverAccessPacket());
+    public static final Type<QuiverAccessPacket> TYPE =
+            new Type<>(
+                    ResourceLocation.fromNamespaceAndPath(ModSpartanWeaponry.ID, "quiver_access"));
+    public static final StreamCodec<RegistryFriendlyByteBuf, QuiverAccessPacket> STREAM_CODEC =
+            StreamCodec.unit(new QuiverAccessPacket());
 
     @Override
     public @NotNull Type<QuiverAccessPacket> type() {
@@ -29,78 +31,84 @@ public record QuiverAccessPacket() implements CustomPacketPayload {
     }
 
     public static void handle(final QuiverAccessPacket packet, IPayloadContext context) {
-        if (packet == null)
-            return;
+        if (packet == null) return;
 
-        context.enqueueWork(() ->
-        {
-            ServerPlayer player = (ServerPlayer) context.player();
+        context.enqueueWork(
+                () -> {
+                    ServerPlayer player = (ServerPlayer) context.player();
 
-            ItemStack quiver = ItemStack.EMPTY;
-            QuiverBaseItem quiverItem = null;
-            QuiverBaseItem.SlotType slotType = QuiverBaseItem.SlotType.UNDEFINED;
-            int slot = -1;
+                    ItemStack quiver = ItemStack.EMPTY;
+                    QuiverBaseItem quiverItem = null;
+                    QuiverBaseItem.SlotType slotType = QuiverBaseItem.SlotType.UNDEFINED;
+                    int slot = -1;
 
-            // TODO: Merge Quiver searching functionality to helper methods
-            // Look in the weapon slot to find the appropriate quiver type to look for first.
-            for (IQuiverInfo info : QuiverHelper.info) {
-                if (info.isWeapon(player.getMainHandItem())) {
-                    // Find a quiver, if possible.
+                    // TODO: Merge Quiver searching functionality to helper methods
+                    // Look in the weapon slot to find the appropriate quiver type to look for
+                    // first.
+                    for (IQuiverInfo info : QuiverHelper.info) {
+                        if (info.isWeapon(player.getMainHandItem())) {
+                            // Find a quiver, if possible.
+                            // Via the Curios slots
+                            if (quiver.isEmpty() && CuriosHelper.LOADED) {
+                                Optional<SlotResult> opt = QuiverHelper.getQuiverCurio(player);
+                                if (opt.isPresent() && info.isQuiver(opt.get().stack())) {
+                                    quiver = opt.get().stack();
+                                    quiverItem = (QuiverBaseItem) quiver.getItem();
+                                    slotType = QuiverBaseItem.SlotType.CURIO;
+                                    break;
+                                }
+                            }
+                            // ... or via the hotbar
+                            for (int i = 0; i < 9; i++) {
+                                ItemStack stack = player.getInventory().getItem(i);
+                                if (!stack.isEmpty() && info.isQuiver(stack)) {
+                                    quiver = stack;
+                                    quiverItem = (QuiverBaseItem) quiver.getItem();
+                                    slotType = QuiverBaseItem.SlotType.HOTBAR;
+                                    slot = i;
+                                    break;
+                                }
+                            }
+                            break;
+                        }
+                    }
+
+                    // Otherwise, Find a quiver, if possible.
                     // Via the Curios slots
                     if (quiver.isEmpty() && CuriosHelper.LOADED) {
                         Optional<SlotResult> opt = QuiverHelper.getQuiverCurio(player);
-                        if (opt.isPresent() && info.isQuiver(opt.get().stack())) {
+                        if (opt.isPresent()) {
                             quiver = opt.get().stack();
                             quiverItem = (QuiverBaseItem) quiver.getItem();
                             slotType = QuiverBaseItem.SlotType.CURIO;
-                            break;
                         }
                     }
-                    // ... or via the hotbar
-                    for (int i = 0; i < 9; i++) {
-                        ItemStack stack = player.getInventory().getItem(i);
-                        if (!stack.isEmpty() && info.isQuiver(stack)) {
-                            quiver = stack;
-                            quiverItem = (QuiverBaseItem) quiver.getItem();
-                            slotType = QuiverBaseItem.SlotType.HOTBAR;
-                            slot = i;
-                            break;
+                    if (quiver.isEmpty() || quiverItem == null) {
+                        // ... or via the hotbar
+                        for (int i = 0; i < 9; i++) {
+                            ItemStack stack = player.getInventory().getItem(i);
+                            if (!stack.isEmpty() && (stack.getItem() instanceof QuiverBaseItem)) {
+                                quiver = stack;
+                                quiverItem = (QuiverBaseItem) quiver.getItem();
+                                slotType = QuiverBaseItem.SlotType.HOTBAR;
+                                slot = i;
+                                break;
+                            }
                         }
                     }
-                    break;
-                }
-            }
 
-            // Otherwise, Find a quiver, if possible.
-            // Via the Curios slots
-            if (quiver.isEmpty() && CuriosHelper.LOADED) {
-                Optional<SlotResult> opt = QuiverHelper.getQuiverCurio(player);
-                if (opt.isPresent()) {
-                    quiver = opt.get().stack();
-                    quiverItem = (QuiverBaseItem) quiver.getItem();
-                    slotType = QuiverBaseItem.SlotType.CURIO;
-                }
-            }
-            if (quiver.isEmpty() || quiverItem == null) {
-                // ... or via the hotbar
-                for (int i = 0; i < 9; i++) {
-                    ItemStack stack = player.getInventory().getItem(i);
-                    if (!stack.isEmpty() && (stack.getItem() instanceof QuiverBaseItem)) {
-                        quiver = stack;
-                        quiverItem = (QuiverBaseItem) quiver.getItem();
-                        slotType = QuiverBaseItem.SlotType.HOTBAR;
-                        slot = i;
-                        break;
+                    if (quiver.isEmpty() || quiverItem == null) {
+                        player.displayClientMessage(
+                                Component.translatable(
+                                                "message."
+                                                        + ModSpartanWeaponry.ID
+                                                        + ".quiver_not_found")
+                                        .withStyle(ChatFormatting.RED, ChatFormatting.BOLD),
+                                true);
+                        return;
                     }
-                }
-            }
 
-            if (quiver.isEmpty() || quiverItem == null) {
-                player.displayClientMessage(Component.translatable("message." + ModSpartanWeaponry.ID + ".quiver_not_found").withStyle(ChatFormatting.RED, ChatFormatting.BOLD), true);
-                return;
-            }
-
-            quiverItem.openGui(quiver, player, slotType, slot);
-        });
+                    quiverItem.openGui(quiver, player, slotType, slot);
+                });
     }
 }

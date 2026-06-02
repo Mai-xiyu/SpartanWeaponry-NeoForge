@@ -27,8 +27,13 @@ public class IllagerHeadModel extends SkullModelBase {
         MeshDefinition meshDef = new MeshDefinition();
         PartDefinition rootDef = meshDef.getRoot();
 
-        rootDef.addOrReplaceChild(PART_HEAD, CubeListBuilder.create().texOffs(0, 0).addBox(-4.0f, -10.0f, -4.0f, 8.0f, 10.0f, 8.0f)
-                .addBox(PART_NOSE, -1.0f, -3.0f, -6.0f, 2, 4, 2, 24, 0), PartPose.ZERO);
+        rootDef.addOrReplaceChild(
+                PART_HEAD,
+                CubeListBuilder.create()
+                        .texOffs(0, 0)
+                        .addBox(-4.0f, -10.0f, -4.0f, 8.0f, 10.0f, 8.0f)
+                        .addBox(PART_NOSE, -1.0f, -3.0f, -6.0f, 2, 4, 2, 24, 0),
+                PartPose.ZERO);
 
         return LayerDefinition.create(meshDef, 64, 64);
     }
@@ -40,7 +45,12 @@ public class IllagerHeadModel extends SkullModelBase {
     }
 
     @Override
-    public void renderToBuffer(@NotNull PoseStack poseStack, @NotNull VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
+    public void renderToBuffer(
+            @NotNull PoseStack poseStack,
+            @NotNull VertexConsumer vertexConsumer,
+            int packedLight,
+            int packedOverlay,
+            int color) {
         this.root.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
     }
 }

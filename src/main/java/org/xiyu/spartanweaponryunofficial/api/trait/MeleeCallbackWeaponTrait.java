@@ -3,7 +3,8 @@ package org.xiyu.spartanweaponryunofficial.api.trait;
 import java.util.Optional;
 
 /**
- * Default Weapon Property class with melee callback methods. Extend this if you want a melee weapon trait with custom behaviour.
+ * Default Weapon Property class with melee callback methods. Extend this if you want a melee weapon
+ * trait with custom behaviour.
  *
  * @author ObliviousSpartan
  */
@@ -22,5 +23,4 @@ public class MeleeCallbackWeaponTrait extends WeaponTrait implements IMeleeTrait
     public Optional<IMeleeTraitCallback> getMeleeCallback() {
         return Optional.of(this);
     }
-
 }

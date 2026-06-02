@@ -22,11 +22,19 @@ public class BoltSpectralEntity extends BoltEntity {
         super(type, level);
     }
 
-    public BoltSpectralEntity(EntityType<? extends BoltEntity> type, double x, double y, double z, Level level, ItemStack pickupItemStack, ItemStack weaponStack) {
+    public BoltSpectralEntity(
+            EntityType<? extends BoltEntity> type,
+            double x,
+            double y,
+            double z,
+            Level level,
+            ItemStack pickupItemStack,
+            ItemStack weaponStack) {
         super(type, x, y, z, level, pickupItemStack, weaponStack);
     }
 
-    public BoltSpectralEntity(LivingEntity shooter, Level level, ItemStack boltStack, ItemStack weaponStack) {
+    public BoltSpectralEntity(
+            LivingEntity shooter, Level level, ItemStack boltStack, ItemStack weaponStack) {
         super(ModEntities.BOLT_SPECTRAL.get(), shooter, level, boltStack, weaponStack);
     }
 
@@ -35,7 +43,14 @@ public class BoltSpectralEntity extends BoltEntity {
         Level level = this.level();
         super.tick();
         if (level.isClientSide && !this.inGround)
-            level.addParticle(ParticleTypes.INSTANT_EFFECT, this.getX(), this.getY(), this.getZ(), 0.0d, 0.0d, 0.0d);
+            level.addParticle(
+                    ParticleTypes.INSTANT_EFFECT,
+                    this.getX(),
+                    this.getY(),
+                    this.getZ(),
+                    0.0d,
+                    0.0d,
+                    0.0d);
     }
 
     @Override
@@ -52,7 +67,8 @@ public class BoltSpectralEntity extends BoltEntity {
 
     @Override
     public ResourceLocation getTexture() {
-        return ResourceLocation.tryBuild(ModSpartanWeaponry.ID, "textures/entity/projectiles/spectral_bolt.png");
+        return ResourceLocation.tryBuild(
+                ModSpartanWeaponry.ID, "textures/entity/projectiles/spectral_bolt.png");
     }
 
     @Override

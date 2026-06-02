@@ -1,5 +1,7 @@
 package org.xiyu.spartanweaponryunofficial.item;
 
+import java.util.List;
+import java.util.Optional;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -17,14 +19,19 @@ import org.xiyu.spartanweaponryunofficial.ModSpartanWeaponry;
 import org.xiyu.spartanweaponryunofficial.api.tags.ModItemTags;
 import org.xiyu.spartanweaponryunofficial.inventory.QuiverBoltMenu;
 
-import java.util.List;
-import java.util.Optional;
-
 public class QuiverBoltItem extends QuiverBaseItem {
-    public static final ResourceLocation TEXTURE_SMALL = ResourceLocation.fromNamespaceAndPath(ModSpartanWeaponry.ID, "textures/model/quiver_bolt_small.png");
-    public static final ResourceLocation TEXTURE_MEDIUM = ResourceLocation.fromNamespaceAndPath(ModSpartanWeaponry.ID, "textures/model/quiver_bolt_medium.png");
-    public static final ResourceLocation TEXTURE_LARGE = ResourceLocation.fromNamespaceAndPath(ModSpartanWeaponry.ID, "textures/model/quiver_bolt_large.png");
-    public static final ResourceLocation TEXTURE_HUGE = ResourceLocation.fromNamespaceAndPath(ModSpartanWeaponry.ID, "textures/model/quiver_bolt_huge.png");
+    public static final ResourceLocation TEXTURE_SMALL =
+            ResourceLocation.fromNamespaceAndPath(
+                    ModSpartanWeaponry.ID, "textures/model/quiver_bolt_small.png");
+    public static final ResourceLocation TEXTURE_MEDIUM =
+            ResourceLocation.fromNamespaceAndPath(
+                    ModSpartanWeaponry.ID, "textures/model/quiver_bolt_medium.png");
+    public static final ResourceLocation TEXTURE_LARGE =
+            ResourceLocation.fromNamespaceAndPath(
+                    ModSpartanWeaponry.ID, "textures/model/quiver_bolt_large.png");
+    public static final ResourceLocation TEXTURE_HUGE =
+            ResourceLocation.fromNamespaceAndPath(
+                    ModSpartanWeaponry.ID, "textures/model/quiver_bolt_huge.png");
 
     public QuiverBoltItem(int inventorySize) {
         super(inventorySize);
@@ -32,20 +39,34 @@ public class QuiverBoltItem extends QuiverBaseItem {
 
     @Override
     public void openGui(ItemStack stack, Player player, SlotType slotType, int slot) {
-        if (!(player instanceof ServerPlayer serverPlayer))
-            return;
+        if (!(player instanceof ServerPlayer serverPlayer)) return;
 
-        serverPlayer.openMenu(new ContainerProvider(Component.translatable("gui." + ModSpartanWeaponry.ID + ".quiver_bolt.title"), stack), buf ->
-        {
-            buf.writeEnum(slotType);
-            buf.writeInt(slot);
-        });
+        serverPlayer.openMenu(
+                new ContainerProvider(
+                        Component.translatable(
+                                "gui." + ModSpartanWeaponry.ID + ".quiver_bolt.title"),
+                        stack),
+                buf -> {
+                    buf.writeEnum(slotType);
+                    buf.writeInt(slot);
+                });
     }
 
     @Override
-    public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext tooltipContext, @NotNull List<Component> tooltip, @NotNull TooltipFlag flagIn) {
-        tooltip.add(Component.translatable("tooltip." + ModSpartanWeaponry.ID + ".modifiers.ammo.type",
-                Component.translatable("tooltip." + ModSpartanWeaponry.ID + ".modifiers.ammo.bolt").withStyle(ChatFormatting.GRAY)).withStyle(ChatFormatting.DARK_AQUA));
+    public void appendHoverText(
+            @NotNull ItemStack stack,
+            Item.@NotNull TooltipContext tooltipContext,
+            @NotNull List<Component> tooltip,
+            @NotNull TooltipFlag flagIn) {
+        tooltip.add(
+                Component.translatable(
+                                "tooltip." + ModSpartanWeaponry.ID + ".modifiers.ammo.type",
+                                Component.translatable(
+                                                "tooltip."
+                                                        + ModSpartanWeaponry.ID
+                                                        + ".modifiers.ammo.bolt")
+                                        .withStyle(ChatFormatting.GRAY))
+                        .withStyle(ChatFormatting.DARK_AQUA));
         super.appendHoverText(stack, tooltipContext, tooltip, flagIn);
     }
 
@@ -59,8 +80,8 @@ public class QuiverBoltItem extends QuiverBaseItem {
         }
 
         @Override
-        public AbstractContainerMenu createMenu(int id, @NotNull Inventory inventory,
-                                                @NotNull Player player) {
+        public AbstractContainerMenu createMenu(
+                int id, @NotNull Inventory inventory, @NotNull Player player) {
             return new QuiverBoltMenu(id, inventory, this.quiverStack);
         }
 
@@ -79,5 +100,4 @@ public class QuiverBoltItem extends QuiverBaseItem {
     public @NotNull Optional<TooltipComponent> getTooltipImage(@NotNull ItemStack stackIn) {
         return this.makeTooltipImage(stackIn, true);
     }
-
 }

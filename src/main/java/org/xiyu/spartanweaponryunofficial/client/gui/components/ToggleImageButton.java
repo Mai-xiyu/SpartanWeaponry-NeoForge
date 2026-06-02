@@ -15,9 +15,21 @@ public class ToggleImageButton extends Button {
     protected final int textureWidth, textureHeight;
     private boolean toggleState;
 
-    public ToggleImageButton(boolean isToggled, int xPos, int yPos, int width, int height, int texU, int texV,
-                             int texToggleDiffU, int texHoverDiffV, ResourceLocation textureLoc, int texWidth, int texHeight, OnPress onPress,
-                             Component component) {
+    public ToggleImageButton(
+            boolean isToggled,
+            int xPos,
+            int yPos,
+            int width,
+            int height,
+            int texU,
+            int texV,
+            int texToggleDiffU,
+            int texHoverDiffV,
+            ResourceLocation textureLoc,
+            int texWidth,
+            int texHeight,
+            OnPress onPress,
+            Component component) {
         super(xPos, yPos, width, height, component, onPress, DEFAULT_NARRATION);
         this.texStartU = texU;
         this.texStartV = texV;
@@ -36,21 +48,29 @@ public class ToggleImageButton extends Button {
     }
 
     @Override
-    public void renderWidget(@NotNull GuiGraphics guiGraphics, int renderX, int renderY, float p_94285_) {
+    public void renderWidget(
+            @NotNull GuiGraphics guiGraphics, int renderX, int renderY, float p_94285_) {
         super.renderWidget(guiGraphics, renderX, renderY, p_94285_);
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderTexture(0, this.textureLocation);
         float u = this.texStartU;
         float v = this.texStartV;
 
-        if (this.toggleState)
-            u += this.toggleDiffU;
-        if (this.isHovered())
-            v += this.hoverDiffV;
+        if (this.toggleState) u += this.toggleDiffU;
+        if (this.isHovered()) v += this.hoverDiffV;
 
         RenderSystem.enableDepthTest();
-        guiGraphics.blit(this.textureLocation, this.getX(), this.getY(), u, v, this.width, this.height, this.textureWidth, this.textureHeight);
-//		if(isHovered)
-//			renderToolTip(guiGraphics, renderX, renderY);
+        guiGraphics.blit(
+                this.textureLocation,
+                this.getX(),
+                this.getY(),
+                u,
+                v,
+                this.width,
+                this.height,
+                this.textureWidth,
+                this.textureHeight);
+        //        if(isHovered)
+        //            renderToolTip(guiGraphics, renderX, renderY);
     }
 }

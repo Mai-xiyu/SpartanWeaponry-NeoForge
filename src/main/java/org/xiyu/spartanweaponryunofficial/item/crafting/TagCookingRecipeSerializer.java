@@ -15,7 +15,8 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import org.jetbrains.annotations.NotNull;
 
-public class TagCookingRecipeSerializer<T extends ITagCookingRecipe> implements RecipeSerializer<T> {
+public class TagCookingRecipeSerializer<T extends ITagCookingRecipe>
+        implements RecipeSerializer<T> {
     private final RecipeFactory<T> factory;
     private final int defaultCookingTime;
     private final MapCodec<T> codec;
@@ -24,14 +25,37 @@ public class TagCookingRecipeSerializer<T extends ITagCookingRecipe> implements 
     public TagCookingRecipeSerializer(RecipeFactory<T> factoryIn, int defaultCookingTimeIn) {
         this.factory = factoryIn;
         this.defaultCookingTime = defaultCookingTimeIn;
-        this.codec = RecordCodecBuilder.mapCodec(instance -> instance.group(
-                Codec.STRING.optionalFieldOf("group", "").forGetter(Recipe::getGroup),
-                CookingBookCategory.CODEC.optionalFieldOf("category", CookingBookCategory.MISC).forGetter(ITagCookingRecipe::getCategory),
-                Ingredient.CODEC.fieldOf("ingredient").forGetter(ITagCookingRecipe::getInputIngredient),
-                TagKey.codec(Registries.ITEM).fieldOf("result_tag").forGetter(ITagCookingRecipe::getResultTag),
-                Codec.FLOAT.optionalFieldOf("experience", 0.0f).forGetter(ITagCookingRecipe::getExperienceDrop),
-                Codec.INT.optionalFieldOf("cookingtime", this.defaultCookingTime).forGetter(ITagCookingRecipe::getCookTime)
-        ).apply(instance, this.factory::create));
+        this.codec =
+                RecordCodecBuilder.mapCodec(
+                        instance ->
+                                instance.group(
+                                                Codec.STRING
+                                                        .optionalFieldOf("group", "")
+                                                        .forGetter(Recipe::getGroup),
+                                                CookingBookCategory.CODEC
+                                                        .optionalFieldOf(
+                                                                "category",
+                                                                CookingBookCategory.MISC)
+                                                        .forGetter(ITagCookingRecipe::getCategory),
+                                                Ingredient.CODEC
+                                                        .fieldOf("ingredient")
+                                                        .forGetter(
+                                                                ITagCookingRecipe
+                                                                        ::getInputIngredient),
+                                                TagKey.codec(Registries.ITEM)
+                                                        .fieldOf("result_tag")
+                                                        .forGetter(ITagCookingRecipe::getResultTag),
+                                                Codec.FLOAT
+                                                        .optionalFieldOf("experience", 0.0f)
+                                                        .forGetter(
+                                                                ITagCookingRecipe
+                                                                        ::getExperienceDrop),
+                                                Codec.INT
+                                                        .optionalFieldOf(
+                                                                "cookingtime",
+                                                                this.defaultCookingTime)
+                                                        .forGetter(ITagCookingRecipe::getCookTime))
+                                        .apply(instance, this.factory::create));
         this.streamCodec = ByteBufCodecs.fromCodecWithRegistries(this.codec.codec());
     }
 
@@ -47,6 +71,12 @@ public class TagCookingRecipeSerializer<T extends ITagCookingRecipe> implements 
 
     @FunctionalInterface
     public interface RecipeFactory<T extends ITagCookingRecipe> {
-        T create(String groupIn, CookingBookCategory categoryIn, Ingredient inputIngredientIn, TagKey<Item> resultTagIn, float experienceIn, int cookTimeIn);
+        T create(
+                String groupIn,
+                CookingBookCategory categoryIn,
+                Ingredient inputIngredientIn,
+                TagKey<Item> resultTagIn,
+                float experienceIn,
+                int cookTimeIn);
     }
 }

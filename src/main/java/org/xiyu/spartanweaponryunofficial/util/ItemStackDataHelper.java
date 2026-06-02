@@ -1,17 +1,15 @@
 package org.xiyu.spartanweaponryunofficial.util;
 
+import java.util.function.Consumer;
+import javax.annotation.Nullable;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.CustomData;
 
-import javax.annotation.Nullable;
-import java.util.function.Consumer;
-
 public final class ItemStackDataHelper {
-    private ItemStackDataHelper() {
-    }
+    private ItemStackDataHelper() {}
 
     public static boolean hasTag(ItemStack stack) {
         return stack.has(DataComponents.CUSTOM_DATA);
@@ -25,22 +23,23 @@ public final class ItemStackDataHelper {
         CustomData.update(DataComponents.CUSTOM_DATA, stack, updater);
     }
 
-    @Nullable
-    public static CompoundTag getTagElement(ItemStack stack, String key) {
+    @Nullable public static CompoundTag getTagElement(ItemStack stack, String key) {
         CompoundTag tag = getTag(stack);
         return tag.contains(key, Tag.TAG_COMPOUND) ? tag.getCompound(key) : null;
     }
 
     public static CompoundTag getOrCreateTagElement(ItemStack stack, String key) {
         final CompoundTag[] result = new CompoundTag[1];
-        updateTag(stack, tag -> {
-            CompoundTag element = tag.getCompound(key);
-            if (element.isEmpty()) {
-                element = new CompoundTag();
-                tag.put(key, element);
-            }
-            result[0] = element;
-        });
+        updateTag(
+                stack,
+                tag -> {
+                    CompoundTag element = tag.getCompound(key);
+                    if (element.isEmpty()) {
+                        element = new CompoundTag();
+                        tag.put(key, element);
+                    }
+                    result[0] = element;
+                });
         return result[0] == null ? new CompoundTag() : result[0];
     }
 }

@@ -24,8 +24,26 @@ public class EndermanHeadModel extends SkullModelBase {
         MeshDefinition meshDef = new MeshDefinition();
         PartDefinition partDef = meshDef.getRoot();
 
-        partDef.addOrReplaceChild(PART_HEAD, CubeListBuilder.create().texOffs(0, 0).addBox(-4.0f, -8.0f, -4.0f, 8.0f, 8.0f, 8.0f), PartPose.ZERO);
-        partDef.getChild(PART_HEAD).addOrReplaceChild(PART_JAW, CubeListBuilder.create().texOffs(0, 16).addBox(-4.0f, -8.0f, -4.0f, 8.0f, 8.0f, 8.0f, new CubeDeformation(-0.5f)), PartPose.ZERO);
+        partDef.addOrReplaceChild(
+                PART_HEAD,
+                CubeListBuilder.create()
+                        .texOffs(0, 0)
+                        .addBox(-4.0f, -8.0f, -4.0f, 8.0f, 8.0f, 8.0f),
+                PartPose.ZERO);
+        partDef.getChild(PART_HEAD)
+                .addOrReplaceChild(
+                        PART_JAW,
+                        CubeListBuilder.create()
+                                .texOffs(0, 16)
+                                .addBox(
+                                        -4.0f,
+                                        -8.0f,
+                                        -4.0f,
+                                        8.0f,
+                                        8.0f,
+                                        8.0f,
+                                        new CubeDeformation(-0.5f)),
+                        PartPose.ZERO);
 
         return LayerDefinition.create(meshDef, 32, 32);
     }
@@ -37,7 +55,12 @@ public class EndermanHeadModel extends SkullModelBase {
     }
 
     @Override
-    public void renderToBuffer(@NotNull PoseStack poseStack, @NotNull VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
+    public void renderToBuffer(
+            @NotNull PoseStack poseStack,
+            @NotNull VertexConsumer vertexConsumer,
+            int packedLight,
+            int packedOverlay,
+            int color) {
         this.root.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
     }
 }

@@ -1,11 +1,10 @@
 package org.xiyu.spartanweaponryunofficial.util;
 
+import java.util.List;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-
-import java.util.List;
 
 public class ItemRandomizer {
     public static ItemStack generate(Level level, List<Item> items) {

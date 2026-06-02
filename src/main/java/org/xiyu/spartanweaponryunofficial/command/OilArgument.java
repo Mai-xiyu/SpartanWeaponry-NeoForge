@@ -6,18 +6,18 @@ import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.suggestion.Suggestions;
 import com.mojang.brigadier.suggestion.SuggestionsBuilder;
+import java.util.Collection;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
 import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.BuiltInRegistries;
 import org.xiyu.spartanweaponryunofficial.api.OilEffects;
 import org.xiyu.spartanweaponryunofficial.api.oil.OilEffect;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.concurrent.CompletableFuture;
-
 public class OilArgument implements ArgumentType<OilInput> {
-    private static final Collection<String> EXAMPLES = List.of("spartan_weaponry_unofficial:undead");
+    private static final Collection<String> EXAMPLES =
+            List.of("spartan_weaponry_unofficial:undead");
 
     public static OilArgument oil() {
         return new OilArgument();
@@ -34,7 +34,8 @@ public class OilArgument implements ArgumentType<OilInput> {
     }
 
     @Override
-    public <S> CompletableFuture<Suggestions> listSuggestions(CommandContext<S> context, SuggestionsBuilder builder) {
+    public <S> CompletableFuture<Suggestions> listSuggestions(
+            CommandContext<S> context, SuggestionsBuilder builder) {
         StringReader reader = new StringReader(builder.getInput());
         reader.setCursor(builder.getStart());
         OilParser parser = new OilParser(reader);
@@ -44,8 +45,10 @@ public class OilArgument implements ArgumentType<OilInput> {
         } catch (CommandSyntaxException ignored) {
         }
 
-        RegistryAccess registryAccess = RegistryAccess.fromRegistryOfRegistries(BuiltInRegistries.REGISTRY);
-        Registry<OilEffect> registry = registryAccess.registry(OilEffects.REGISTRY_KEY).orElse(null);
+        RegistryAccess registryAccess =
+                RegistryAccess.fromRegistryOfRegistries(BuiltInRegistries.REGISTRY);
+        Registry<OilEffect> registry =
+                registryAccess.registry(OilEffects.REGISTRY_KEY).orElse(null);
         return parser.fillSuggestions(builder, registry);
     }
 

@@ -9,6 +9,10 @@ import org.xiyu.spartanweaponryunofficial.ModSpartanWeaponry;
 import org.xiyu.spartanweaponryunofficial.effect.BasicMobEffect;
 
 public class ModMobEffects {
-    public static final DeferredRegister<MobEffect> REGISTRY = DeferredRegister.create(Registries.MOB_EFFECT, ModSpartanWeaponry.ID);
-    public static final DeferredHolder<MobEffect, MobEffect> ENDER_DISRPUTION = REGISTRY.register("ender_disruption", () -> new BasicMobEffect(MobEffectCategory.HARMFUL, 0x408080));
+    public static final DeferredRegister<MobEffect> REGISTRY =
+            DeferredRegister.create(Registries.MOB_EFFECT, ModSpartanWeaponry.ID);
+    public static final DeferredHolder<MobEffect, MobEffect> ENDER_DISRPUTION =
+            REGISTRY.register(
+                    "ender_disruption",
+                    () -> new BasicMobEffect(MobEffectCategory.HARMFUL, 0x408080));
 }

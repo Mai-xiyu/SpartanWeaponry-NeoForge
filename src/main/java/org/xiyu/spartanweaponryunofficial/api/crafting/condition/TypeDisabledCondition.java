@@ -3,13 +3,12 @@ package org.xiyu.spartanweaponryunofficial.api.crafting.condition;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import java.util.ArrayList;
+import java.util.List;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.common.conditions.ICondition;
 import org.jetbrains.annotations.NotNull;
 import org.xiyu.spartanweaponryunofficial.api.SpartanWeaponryAPI;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class TypeDisabledCondition implements ICondition {
     public static final List<String> disabledRecipeTypes = new ArrayList<>();
@@ -63,12 +62,17 @@ public class TypeDisabledCondition implements ICondition {
     public static final String PLATINUM = "platinum";
     public static final String ALUMINUM = "aluminum";
 
-    public static final ResourceLocation NAME = ResourceLocation.fromNamespaceAndPath(SpartanWeaponryAPI.MOD_ID, "type_disabled");
-    public static final MapCodec<TypeDisabledCondition> CODEC = RecordCodecBuilder.mapCodec(
-            instance -> instance.group(
-                    Codec.STRING.listOf().fieldOf("disabled").forGetter(condition -> condition.types)
-            ).apply(instance, TypeDisabledCondition::new)
-    );
+    public static final ResourceLocation NAME =
+            ResourceLocation.fromNamespaceAndPath(SpartanWeaponryAPI.MOD_ID, "type_disabled");
+    public static final MapCodec<TypeDisabledCondition> CODEC =
+            RecordCodecBuilder.mapCodec(
+                    instance ->
+                            instance.group(
+                                            Codec.STRING
+                                                    .listOf()
+                                                    .fieldOf("disabled")
+                                                    .forGetter(condition -> condition.types))
+                                    .apply(instance, TypeDisabledCondition::new));
     private final List<String> types;
 
     public TypeDisabledCondition(List<String> types) {
@@ -83,10 +87,8 @@ public class TypeDisabledCondition implements ICondition {
     @Override
     public boolean test(@NotNull IContext context) {
         for (String type : this.types) {
-            if (disabledRecipeTypes.contains(type))
-                return false;
+            if (disabledRecipeTypes.contains(type)) return false;
         }
         return true;
     }
-
 }

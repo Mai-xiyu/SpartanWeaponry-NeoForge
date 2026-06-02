@@ -13,14 +13,22 @@ import org.xiyu.spartanweaponryunofficial.api.tags.ModItemTags;
 import org.xiyu.spartanweaponryunofficial.util.Config;
 
 /**
- * Applies configured Spartan melee weapon replacement to wither skeletons that kept their vanilla stone sword.
+ * Applies configured Spartan melee weapon replacement to wither skeletons that kept their vanilla
+ * stone sword.
  */
 @Mixin(WitherSkeleton.class)
 public class WitherSkeletonMixin extends MobMixin {
-    @Inject(at = @At("TAIL"), method = "populateDefaultEquipmentSlots(Lnet/minecraft/util/RandomSource;Lnet/minecraft/world/DifficultyInstance;)V")
-    protected void populateDefaultEquipmentSlots(RandomSource randomIn, DifficultyInstance difficultyIn, CallbackInfo callback) {
-        this.spartanWeaponry$attemptReplacingMainHandItemRandom(ModItemTags.WITHER_SKELETON_SPAWN_WEAPONS, difficultyIn,
-                !this.getItemBySlot(EquipmentSlot.MAINHAND).is(Items.STONE_SWORD) || Config.INSTANCE.disableSpawningWitherSkeletonWithWeapon.get(),
+    @Inject(
+            at = @At("TAIL"),
+            method =
+                    "populateDefaultEquipmentSlots(Lnet/minecraft/util/RandomSource;Lnet/minecraft/world/DifficultyInstance;)V")
+    protected void populateDefaultEquipmentSlots(
+            RandomSource randomIn, DifficultyInstance difficultyIn, CallbackInfo callback) {
+        this.spartanWeaponry$attemptReplacingMainHandItemRandom(
+                ModItemTags.WITHER_SKELETON_SPAWN_WEAPONS,
+                difficultyIn,
+                !this.getItemBySlot(EquipmentSlot.MAINHAND).is(Items.STONE_SWORD)
+                        || Config.INSTANCE.disableSpawningWitherSkeletonWithWeapon.get(),
                 Config.INSTANCE.witherSkeletonWithMeleeSpawnChanceNormal.get().floatValue(),
                 Config.INSTANCE.witherSkeletonWithMeleeSpawnChanceHard.get().floatValue());
     }

@@ -6,8 +6,8 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
 
 /**
- * This class contains all the different entity type tags used by Spartan Weaponry.
- * Addon authors can add their entities to these tags to allow them to be affected by specific weapon Oils
+ * This class contains all the different entity type tags used by Spartan Weaponry. Addon authors
+ * can add their entities to these tags to allow them to be affected by specific weapon Oils
  *
  * @author ObliviousSpartan
  */

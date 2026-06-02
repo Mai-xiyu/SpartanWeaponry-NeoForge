@@ -1,5 +1,6 @@
 package org.xiyu.spartanweaponryunofficial.item;
 
+import java.util.List;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
@@ -17,27 +18,43 @@ import org.xiyu.spartanweaponryunofficial.ModSpartanWeaponry;
 import org.xiyu.spartanweaponryunofficial.entity.projectile.DynamiteEntity;
 import org.xiyu.spartanweaponryunofficial.util.Config;
 
-import java.util.List;
-
 public class DynamiteItem extends Item {
     public DynamiteItem(Properties properties) {
         super(properties);
     }
 
     @Override
-    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level levelIn, Player playerIn, @NotNull InteractionHand handIn) {
+    public @NotNull InteractionResultHolder<ItemStack> use(
+            @NotNull Level levelIn, Player playerIn, @NotNull InteractionHand handIn) {
         ItemStack itemstack = playerIn.getItemInHand(handIn);
 
         if (!playerIn.getAbilities().instabuild) {
             itemstack.shrink(1);
         }
 
-        levelIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), SoundEvents.SNOWBALL_THROW, SoundSource.NEUTRAL, 0.5F, 0.4F / (levelIn.random.nextFloat() * 0.4F + 0.8F));
-        levelIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), SoundEvents.TNT_PRIMED, SoundSource.NEUTRAL, 1.0F, 1.0F);
+        levelIn.playSound(
+                null,
+                playerIn.getX(),
+                playerIn.getY(),
+                playerIn.getZ(),
+                SoundEvents.SNOWBALL_THROW,
+                SoundSource.NEUTRAL,
+                0.5F,
+                0.4F / (levelIn.random.nextFloat() * 0.4F + 0.8F));
+        levelIn.playSound(
+                null,
+                playerIn.getX(),
+                playerIn.getY(),
+                playerIn.getZ(),
+                SoundEvents.TNT_PRIMED,
+                SoundSource.NEUTRAL,
+                1.0F,
+                1.0F);
 
         if (!levelIn.isClientSide) {
             DynamiteEntity entityDyanmite = new DynamiteEntity(playerIn, levelIn);
-            entityDyanmite.shootFromRotation(playerIn, playerIn.xRotO, playerIn.yRotO, 0.0F, 0.75F, 1.0F);
+            entityDyanmite.shootFromRotation(
+                    playerIn, playerIn.xRotO, playerIn.yRotO, 0.0F, 0.75F, 1.0F);
             levelIn.addFreshEntity(entityDyanmite);
         }
 
@@ -46,12 +63,28 @@ public class DynamiteItem extends Item {
     }
 
     @Override
-    public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext tooltipContext, List<Component> tooltip, @NotNull TooltipFlag flagIn) {
-        tooltip.add(Component.translatable("tooltip." + ModSpartanWeaponry.ID + ".dynamite.desc", (float) Config.INSTANCE.fuseTicksDynamite.get() / 20.0f).withStyle(ChatFormatting.GRAY));
+    public void appendHoverText(
+            @NotNull ItemStack stack,
+            Item.@NotNull TooltipContext tooltipContext,
+            List<Component> tooltip,
+            @NotNull TooltipFlag flagIn) {
+        tooltip.add(
+                Component.translatable(
+                                "tooltip." + ModSpartanWeaponry.ID + ".dynamite.desc",
+                                (float) Config.INSTANCE.fuseTicksDynamite.get() / 20.0f)
+                        .withStyle(ChatFormatting.GRAY));
         if (Config.INSTANCE.disableTerrainDamage.get())
-            tooltip.add(Component.translatable("tooltip." + ModSpartanWeaponry.ID + ".dynamite.no_terrain_damage").withStyle(ChatFormatting.GRAY));
+            tooltip.add(
+                    Component.translatable(
+                                    "tooltip."
+                                            + ModSpartanWeaponry.ID
+                                            + ".dynamite.no_terrain_damage")
+                            .withStyle(ChatFormatting.GRAY));
         else
-            tooltip.add(Component.translatable("tooltip." + ModSpartanWeaponry.ID + ".dynamite.terrain_damage").withStyle(ChatFormatting.GRAY));
+            tooltip.add(
+                    Component.translatable(
+                                    "tooltip." + ModSpartanWeaponry.ID + ".dynamite.terrain_damage")
+                            .withStyle(ChatFormatting.GRAY));
         super.appendHoverText(stack, tooltipContext, tooltip, flagIn);
     }
 }

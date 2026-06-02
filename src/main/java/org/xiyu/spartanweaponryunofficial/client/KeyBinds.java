@@ -10,9 +10,18 @@ import net.neoforged.neoforge.client.settings.KeyConflictContext;
 import org.lwjgl.glfw.GLFW;
 import org.xiyu.spartanweaponryunofficial.ModSpartanWeaponry;
 
-@EventBusSubscriber(modid = ModSpartanWeaponry.ID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(
+        modid = ModSpartanWeaponry.ID,
+        value = Dist.CLIENT,
+        bus = EventBusSubscriber.Bus.MOD)
 public class KeyBinds {
-    public static KeyMapping KEY_ACCESS_QUIVER = new KeyMapping("key." + ModSpartanWeaponry.ID + ".access_quiver", KeyConflictContext.IN_GAME, Type.KEYSYM, GLFW.GLFW_KEY_I, "key." + ModSpartanWeaponry.ID + ".category.title");
+    public static KeyMapping KEY_ACCESS_QUIVER =
+            new KeyMapping(
+                    "key." + ModSpartanWeaponry.ID + ".access_quiver",
+                    KeyConflictContext.IN_GAME,
+                    Type.KEYSYM,
+                    GLFW.GLFW_KEY_I,
+                    "key." + ModSpartanWeaponry.ID + ".category.title");
 
     @SubscribeEvent
     public static void registerKeyBinds(RegisterKeyMappingsEvent ev) {

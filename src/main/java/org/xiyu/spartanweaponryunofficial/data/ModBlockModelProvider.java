@@ -21,8 +21,10 @@ public class ModBlockModelProvider extends BlockStateProvider {
         this.generateSkullModels(ModBlocks.BLAZE_HEAD.get(), ModBlocks.BLAZE_WALL_HEAD.get());
         this.generateSkullModels(ModBlocks.ENDERMAN_HEAD.get(), ModBlocks.ENDERMAN_WALL_HEAD.get());
         this.generateSkullModels(ModBlocks.SPIDER_HEAD.get(), ModBlocks.SPIDER_WALL_HEAD.get());
-        this.generateSkullModels(ModBlocks.CAVE_SPIDER_HEAD.get(), ModBlocks.CAVE_SPIDER_WALL_HEAD.get());
-        this.generateSkullModels(ModBlocks.ZOMBIFIED_PIGLIN_HEAD.get(), ModBlocks.ZOMBIFIED_PIGLIN_WALL_HEAD.get());
+        this.generateSkullModels(
+                ModBlocks.CAVE_SPIDER_HEAD.get(), ModBlocks.CAVE_SPIDER_WALL_HEAD.get());
+        this.generateSkullModels(
+                ModBlocks.ZOMBIFIED_PIGLIN_HEAD.get(), ModBlocks.ZOMBIFIED_PIGLIN_WALL_HEAD.get());
         this.generateSkullModels(ModBlocks.HUSK_HEAD.get(), ModBlocks.HUSK_WALL_HEAD.get());
         this.generateSkullModels(ModBlocks.STRAY_SKULL.get(), ModBlocks.STRAY_WALL_SKULL.get());
         this.generateSkullModels(ModBlocks.DROWNED_HEAD.get(), ModBlocks.DROWNED_WALL_HEAD.get());
@@ -31,8 +33,27 @@ public class ModBlockModelProvider extends BlockStateProvider {
     }
 
     protected void generateSkullModels(Block head, Block wallHead) {
-        this.getVariantBuilder(head).partialState().setModels(ConfiguredModel.builder().modelFile(new ExistingModelFile(this.mcLoc("block/skull"), this.models().existingFileHelper)).build());
-        this.getVariantBuilder(wallHead).partialState().setModels(ConfiguredModel.builder().modelFile(new ExistingModelFile(this.mcLoc("block/skull"), this.models().existingFileHelper)).build());
-        this.itemModels().withExistingParent(BuiltInRegistries.BLOCK.getKey(head).getPath(), this.mcLoc("item/template_skull"));
+        this.getVariantBuilder(head)
+                .partialState()
+                .setModels(
+                        ConfiguredModel.builder()
+                                .modelFile(
+                                        new ExistingModelFile(
+                                                this.mcLoc("block/skull"),
+                                                this.models().existingFileHelper))
+                                .build());
+        this.getVariantBuilder(wallHead)
+                .partialState()
+                .setModels(
+                        ConfiguredModel.builder()
+                                .modelFile(
+                                        new ExistingModelFile(
+                                                this.mcLoc("block/skull"),
+                                                this.models().existingFileHelper))
+                                .build());
+        this.itemModels()
+                .withExistingParent(
+                        BuiltInRegistries.BLOCK.getKey(head).getPath(),
+                        this.mcLoc("item/template_skull"));
     }
 }

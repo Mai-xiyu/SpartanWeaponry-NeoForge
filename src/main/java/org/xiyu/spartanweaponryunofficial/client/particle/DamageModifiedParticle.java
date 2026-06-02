@@ -7,8 +7,14 @@ import net.minecraft.util.Mth;
 import org.jetbrains.annotations.NotNull;
 
 public class DamageModifiedParticle extends TextureSheetParticle {
-    DamageModifiedParticle(ClientLevel levelIn, double xPos, double yPos, double zPos,
-                           double xDel, double yDel, double zDel) {
+    DamageModifiedParticle(
+            ClientLevel levelIn,
+            double xPos,
+            double yPos,
+            double zPos,
+            double xDel,
+            double yDel,
+            double zDel) {
         super(levelIn, xPos, yPos, zPos, xDel, yDel, zDel);
         this.friction = 0.7f;
         this.gravity = 0.5f;
@@ -48,9 +54,17 @@ public class DamageModifiedParticle extends TextureSheetParticle {
         }
 
         @Override
-        public Particle createParticle(@NotNull SimpleParticleType typeIn, @NotNull ClientLevel levelIn, double xPos,
-                                       double yPos, double zPos, double xDel, double yDel, double zDel) {
-            DamageModifiedParticle particle = new DamageModifiedParticle(levelIn, xPos, yPos, zPos, xDel, yDel, zDel);
+        public Particle createParticle(
+                @NotNull SimpleParticleType typeIn,
+                @NotNull ClientLevel levelIn,
+                double xPos,
+                double yPos,
+                double zPos,
+                double xDel,
+                double yDel,
+                double zDel) {
+            DamageModifiedParticle particle =
+                    new DamageModifiedParticle(levelIn, xPos, yPos, zPos, xDel, yDel, zDel);
             particle.rCol = 0.5f;
             particle.gCol = 1.0f;
             particle.bCol = 0.2f;
@@ -67,9 +81,17 @@ public class DamageModifiedParticle extends TextureSheetParticle {
         }
 
         @Override
-        public Particle createParticle(@NotNull SimpleParticleType typeIn, @NotNull ClientLevel levelIn, double xPos,
-                                       double yPos, double zPos, double xDel, double yDel, double zDel) {
-            DamageModifiedParticle particle = new DamageModifiedParticle(levelIn, xPos, yPos, zPos, xDel, yDel, zDel);
+        public Particle createParticle(
+                @NotNull SimpleParticleType typeIn,
+                @NotNull ClientLevel levelIn,
+                double xPos,
+                double yPos,
+                double zPos,
+                double xDel,
+                double yDel,
+                double zDel) {
+            DamageModifiedParticle particle =
+                    new DamageModifiedParticle(levelIn, xPos, yPos, zPos, xDel, yDel, zDel);
             particle.rCol = 0.5f;
             particle.gCol = 0.2f;
             particle.bCol = 0.5f;
@@ -86,9 +108,17 @@ public class DamageModifiedParticle extends TextureSheetParticle {
         }
 
         @Override
-        public Particle createParticle(@NotNull SimpleParticleType typeIn, @NotNull ClientLevel levelIn, double xPos,
-                                       double yPos, double zPos, double xDel, double yDel, double zDel) {
-            DamageModifiedParticle particle = new DamageModifiedParticle(levelIn, xPos, yPos, zPos, xDel, yDel, zDel);
+        public Particle createParticle(
+                @NotNull SimpleParticleType typeIn,
+                @NotNull ClientLevel levelIn,
+                double xPos,
+                double yPos,
+                double zPos,
+                double xDel,
+                double yDel,
+                double zDel) {
+            DamageModifiedParticle particle =
+                    new DamageModifiedParticle(levelIn, xPos, yPos, zPos, xDel, yDel, zDel);
             particle.rCol = 1.0f;
             particle.gCol = 0.75f;
             particle.bCol = 0.25f;

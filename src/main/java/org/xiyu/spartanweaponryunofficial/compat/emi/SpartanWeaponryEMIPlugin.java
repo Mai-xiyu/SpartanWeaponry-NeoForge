@@ -28,56 +28,56 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
 @EmiEntrypoint
-public class SpartanWeaponryEMIPlugin implements EmiPlugin 
+public class SpartanWeaponryEMIPlugin implements EmiPlugin
 {
 
-	@Override
-	public void register(EmiRegistry registry) 
-	{
-		OilBrewingEMIRecipeMaker.registerRecipes(registry);
-		
-		Comparison potionComparison = Comparison.compareData(emiStack -> PotionUtils.getPotion(emiStack.getNbt()));
+    @Override
+    public void register(EmiRegistry registry)
+    {
+        OilBrewingEMIRecipeMaker.registerRecipes(registry);
 
-		Comparison oilComparison = Comparison.compareData(emiStack -> {
-			ItemStack stack = emiStack.getItemStack();
-			OilEffect effect = OilHelper.getOilFromStack(stack);
-			Either<OilEffect, Potion> result = effect == OilEffects.POTION.get() ? Either.right(OilHelper.getPotionFromStack(stack)) : Either.left(effect);
-			return result;
-		});
+        Comparison potionComparison = Comparison.compareData(emiStack -> PotionUtils.getPotion(emiStack.getNbt()));
 
-		registry.setDefaultComparison(EmiStack.of(ModItems.TIPPED_WOODEN_ARROW.get()), potionComparison);
-		registry.setDefaultComparison(EmiStack.of(ModItems.TIPPED_COPPER_ARROW.get()), potionComparison);
-		registry.setDefaultComparison(EmiStack.of(ModItems.TIPPED_IRON_ARROW.get()), potionComparison);
-		registry.setDefaultComparison(EmiStack.of(ModItems.TIPPED_DIAMOND_ARROW.get()), potionComparison);
-		registry.setDefaultComparison(EmiStack.of(ModItems.TIPPED_NETHERITE_ARROW.get()), potionComparison);
-		registry.setDefaultComparison(EmiStack.of(ModItems.TIPPED_BOLT.get()), potionComparison);
-		registry.setDefaultComparison(EmiStack.of(ModItems.TIPPED_COPPER_BOLT.get()), potionComparison);
-		registry.setDefaultComparison(EmiStack.of(ModItems.TIPPED_DIAMOND_BOLT.get()), potionComparison);
-		registry.setDefaultComparison(EmiStack.of(ModItems.TIPPED_NETHERITE_BOLT.get()), potionComparison);
-		registry.setDefaultComparison(EmiStack.of(ModItems.WEAPON_OIL.get()), oilComparison);
-		
-		makeTippedProjectileRecipes(registry, ModItems.TIPPED_WOODEN_ARROW.get(), ModItems.WOODEN_ARROW.get());
-	}
-	
-	public void makeTippedProjectileRecipes(EmiRegistry registry, Item tippedArrowItem, Item arrowItem)
-	{
-		for (Potion potionType : NeoForgeRegistries.POTIONS.getValues()) 
-		{
-			if (potionType != Potions.EMPTY && potionType != Potions.WATER && potionType != Potions.MUNDANE && potionType != Potions.THICK && 
-						potionType != Potions.AWKWARD) 
-			{
-				EmiIngredient arrowIngredient = EmiIngredient.of(Ingredient.of(arrowItem));
-				EmiIngredient potionIngredient = EmiIngredient.of(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.LINGERING_POTION), potionType)));
-				ItemStack outputStack = PotionUtils.setPotion(new ItemStack(tippedArrowItem, 8), potionType);
-				ResourceLocation recipeResLoc = ResourceLocation.tryBuild("spartan_weaponry_unofficial", "/crafting/tipped_projectile." + NeoForgeRegistries.ITEMS.getKey(outputStack.getItem()).getPath() + potionType.getName(".effect."));
-				List<EmiIngredient> ingredients = ImmutableList.of(
-						arrowIngredient, arrowIngredient, arrowIngredient, 
-						arrowIngredient, potionIngredient, arrowIngredient,
-						arrowIngredient, arrowIngredient, arrowIngredient);
-				EmiRecipe recipe = new EmiCraftingRecipe(ingredients, EmiStack.of(outputStack), recipeResLoc);
-				registry.addRecipe(recipe);
-			}
-		}
-	}
+        Comparison oilComparison = Comparison.compareData(emiStack -> {
+            ItemStack stack = emiStack.getItemStack();
+            OilEffect effect = OilHelper.getOilFromStack(stack);
+            Either<OilEffect, Potion> result = effect == OilEffects.POTION.get() ? Either.right(OilHelper.getPotionFromStack(stack)) : Either.left(effect);
+            return result;
+        });
+
+        registry.setDefaultComparison(EmiStack.of(ModItems.TIPPED_WOODEN_ARROW.get()), potionComparison);
+        registry.setDefaultComparison(EmiStack.of(ModItems.TIPPED_COPPER_ARROW.get()), potionComparison);
+        registry.setDefaultComparison(EmiStack.of(ModItems.TIPPED_IRON_ARROW.get()), potionComparison);
+        registry.setDefaultComparison(EmiStack.of(ModItems.TIPPED_DIAMOND_ARROW.get()), potionComparison);
+        registry.setDefaultComparison(EmiStack.of(ModItems.TIPPED_NETHERITE_ARROW.get()), potionComparison);
+        registry.setDefaultComparison(EmiStack.of(ModItems.TIPPED_BOLT.get()), potionComparison);
+        registry.setDefaultComparison(EmiStack.of(ModItems.TIPPED_COPPER_BOLT.get()), potionComparison);
+        registry.setDefaultComparison(EmiStack.of(ModItems.TIPPED_DIAMOND_BOLT.get()), potionComparison);
+        registry.setDefaultComparison(EmiStack.of(ModItems.TIPPED_NETHERITE_BOLT.get()), potionComparison);
+        registry.setDefaultComparison(EmiStack.of(ModItems.WEAPON_OIL.get()), oilComparison);
+
+        makeTippedProjectileRecipes(registry, ModItems.TIPPED_WOODEN_ARROW.get(), ModItems.WOODEN_ARROW.get());
+    }
+
+    public void makeTippedProjectileRecipes(EmiRegistry registry, Item tippedArrowItem, Item arrowItem)
+    {
+        for (Potion potionType : NeoForgeRegistries.POTIONS.getValues())
+        {
+            if (potionType != Potions.EMPTY && potionType != Potions.WATER && potionType != Potions.MUNDANE && potionType != Potions.THICK &&
+                        potionType != Potions.AWKWARD)
+            {
+                EmiIngredient arrowIngredient = EmiIngredient.of(Ingredient.of(arrowItem));
+                EmiIngredient potionIngredient = EmiIngredient.of(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.LINGERING_POTION), potionType)));
+                ItemStack outputStack = PotionUtils.setPotion(new ItemStack(tippedArrowItem, 8), potionType);
+                ResourceLocation recipeResLoc = ResourceLocation.tryBuild("spartan_weaponry_unofficial", "/crafting/tipped_projectile." + NeoForgeRegistries.ITEMS.getKey(outputStack.getItem()).getPath() + potionType.getName(".effect."));
+                List<EmiIngredient> ingredients = ImmutableList.of(
+                        arrowIngredient, arrowIngredient, arrowIngredient,
+                        arrowIngredient, potionIngredient, arrowIngredient,
+                        arrowIngredient, arrowIngredient, arrowIngredient);
+                EmiRecipe recipe = new EmiCraftingRecipe(ingredients, EmiStack.of(outputStack), recipeResLoc);
+                registry.addRecipe(recipe);
+            }
+        }
+    }
 
 }*/

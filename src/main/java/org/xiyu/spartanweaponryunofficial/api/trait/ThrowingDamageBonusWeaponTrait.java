@@ -4,7 +4,8 @@ import java.util.Optional;
 
 public class ThrowingDamageBonusWeaponTrait extends DamageBonusWeaponTrait {
 
-    public ThrowingDamageBonusWeaponTrait(String typeIn, String modIdIn, DamageCalculationFunc func) {
+    public ThrowingDamageBonusWeaponTrait(
+            String typeIn, String modIdIn, DamageCalculationFunc func) {
         super(typeIn, modIdIn, func);
     }
 
@@ -12,5 +13,4 @@ public class ThrowingDamageBonusWeaponTrait extends DamageBonusWeaponTrait {
     public Optional<IMeleeTraitCallback> getMeleeCallback() {
         return Optional.empty();
     }
-
 }

@@ -1,8 +1,7 @@
 package org.xiyu.spartanweaponryunofficial.util;
 
-import org.xiyu.spartanweaponryunofficial.api.trait.WeaponTrait;
-
 import java.util.function.Predicate;
+import org.xiyu.spartanweaponryunofficial.api.trait.WeaponTrait;
 
 public enum WeaponType {
     MELEE(WeaponTrait::isMeleeTrait),

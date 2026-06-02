@@ -1,6 +1,11 @@
 package org.xiyu.spartanweaponryunofficial.api;
 
 import com.google.common.collect.ImmutableList;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.function.Function;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
@@ -26,43 +31,212 @@ import org.xiyu.spartanweaponryunofficial.api.trait.WeaponTrait;
 import org.xiyu.spartanweaponryunofficial.util.Log;
 import org.xiyu.spartanweaponryunofficial.util.WeaponType;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.function.Function;
-
 /**
  * Addon-facing weapon material definition used by Spartan Weaponry weapon factories.
- * <p>
- * Existing constructors are kept for source and binary compatibility. New addon code can prefer
- * {@link #builder(String, String)} when named setters make durability, speed, damage, enchantability,
- * repair tag, and trait tag assignments easier to audit.
+ *
+ * <p>Existing constructors are kept for source and binary compatibility. New addon code can prefer
+ * {@link #builder(String, String)} when named setters make durability, speed, damage,
+ * enchantability, repair tag, and trait tag assignments easier to audit.
  */
 public class WeaponMaterial implements Tier, IReloadable {
     public static final int DEFAULT_PRIMARY_COLOUR = 0x7F7F7F;
     public static final int DEFAULT_SECONDARY_COLOUR = 0xFFFFFF;
 
-    public static final WeaponMaterial WOOD = new WeaponMaterial("wood", SpartanWeaponryAPI.MOD_ID, Tiers.WOOD, ItemTags.PLANKS, ModWeaponTraitTags.WOOD);
-    public static final WeaponMaterial STONE = new WeaponMaterial("stone", SpartanWeaponryAPI.MOD_ID, Tiers.STONE, ModItemTags.COBBLESTONE, ModWeaponTraitTags.STONE);
-    public static final WeaponMaterial LEATHER = new WeaponMaterial("leather", SpartanWeaponryAPI.MOD_ID, 128, 2.0f, 0.0f, 5, ModItemTags.LEATHER, ModWeaponTraitTags.LEATHER);
-    public static final WeaponMaterial COPPER = new WeaponMaterial("copper", SpartanWeaponryAPI.MOD_ID, APIConstants.DefaultMaterialDurabilityCopper, 5.0f, APIConstants.DefaultMaterialDamageCopper, 8, ModItemTags.COPPER_INGOT, ModWeaponTraitTags.COPPER);
-    public static final WeaponMaterial IRON = new WeaponMaterial("iron", SpartanWeaponryAPI.MOD_ID, Tiers.IRON, ModItemTags.IRON_INGOT, ModWeaponTraitTags.IRON);
-    public static final WeaponMaterial GOLD = new WeaponMaterial("gold", SpartanWeaponryAPI.MOD_ID, Tiers.GOLD, ModItemTags.GOLD_INGOT, ModWeaponTraitTags.GOLD);
-    public static final WeaponMaterial DIAMOND = new WeaponMaterial("diamond", SpartanWeaponryAPI.MOD_ID, Tiers.DIAMOND, ModItemTags.DIAMOND, ModWeaponTraitTags.DIAMOND);
-    public static final WeaponMaterial NETHERITE = new WeaponMaterial("netherite", SpartanWeaponryAPI.MOD_ID, Tiers.NETHERITE, ModItemTags.NETHERITE_INGOT, ModWeaponTraitTags.NETHERITE);
+    public static final WeaponMaterial WOOD =
+            new WeaponMaterial(
+                    "wood",
+                    SpartanWeaponryAPI.MOD_ID,
+                    Tiers.WOOD,
+                    ItemTags.PLANKS,
+                    ModWeaponTraitTags.WOOD);
+    public static final WeaponMaterial STONE =
+            new WeaponMaterial(
+                    "stone",
+                    SpartanWeaponryAPI.MOD_ID,
+                    Tiers.STONE,
+                    ModItemTags.COBBLESTONE,
+                    ModWeaponTraitTags.STONE);
+    public static final WeaponMaterial LEATHER =
+            new WeaponMaterial(
+                    "leather",
+                    SpartanWeaponryAPI.MOD_ID,
+                    128,
+                    2.0f,
+                    0.0f,
+                    5,
+                    ModItemTags.LEATHER,
+                    ModWeaponTraitTags.LEATHER);
+    public static final WeaponMaterial COPPER =
+            new WeaponMaterial(
+                    "copper",
+                    SpartanWeaponryAPI.MOD_ID,
+                    APIConstants.DefaultMaterialDurabilityCopper,
+                    5.0f,
+                    APIConstants.DefaultMaterialDamageCopper,
+                    8,
+                    ModItemTags.COPPER_INGOT,
+                    ModWeaponTraitTags.COPPER);
+    public static final WeaponMaterial IRON =
+            new WeaponMaterial(
+                    "iron",
+                    SpartanWeaponryAPI.MOD_ID,
+                    Tiers.IRON,
+                    ModItemTags.IRON_INGOT,
+                    ModWeaponTraitTags.IRON);
+    public static final WeaponMaterial GOLD =
+            new WeaponMaterial(
+                    "gold",
+                    SpartanWeaponryAPI.MOD_ID,
+                    Tiers.GOLD,
+                    ModItemTags.GOLD_INGOT,
+                    ModWeaponTraitTags.GOLD);
+    public static final WeaponMaterial DIAMOND =
+            new WeaponMaterial(
+                    "diamond",
+                    SpartanWeaponryAPI.MOD_ID,
+                    Tiers.DIAMOND,
+                    ModItemTags.DIAMOND,
+                    ModWeaponTraitTags.DIAMOND);
+    public static final WeaponMaterial NETHERITE =
+            new WeaponMaterial(
+                    "netherite",
+                    SpartanWeaponryAPI.MOD_ID,
+                    Tiers.NETHERITE,
+                    ModItemTags.NETHERITE_INGOT,
+                    ModWeaponTraitTags.NETHERITE);
 
-    public static final WeaponMaterial TIN = new WeaponMaterial("tin", SpartanWeaponryAPI.MOD_ID, 0xBEBED8, 0xD2D2FF, APIConstants.DefaultMaterialDurabilityTin, 5.25f, APIConstants.DefaultMaterialDamageTin, 6, ModItemTags.TIN_INGOT, ModWeaponTraitTags.TIN);
-    public static final WeaponMaterial BRONZE = new WeaponMaterial("bronze", SpartanWeaponryAPI.MOD_ID, 0xB36D0A, 0xCC9636, APIConstants.DefaultMaterialDurabilityBronze, 5.75f, APIConstants.DefaultMaterialDamageBronze, 12, ModItemTags.BRONZE_INGOT, ModWeaponTraitTags.BRONZE);
-    public static final WeaponMaterial STEEL = new WeaponMaterial("steel", SpartanWeaponryAPI.MOD_ID, 0x858585, 0xBEBEBE, APIConstants.DefaultMaterialDurabilitySteel, 6.5f, APIConstants.DefaultMaterialDamageSteel, 14, ModItemTags.STEEL_INGOT, ModWeaponTraitTags.STEEL);
-    public static final WeaponMaterial SILVER = new WeaponMaterial("silver", SpartanWeaponryAPI.MOD_ID, 0xCDCDF0, 0xFFFFFF, APIConstants.DefaultMaterialDurabilitySilver, 5.0f, APIConstants.DefaultMaterialDamageSilver, 16, ModItemTags.SILVER_INGOT, ModWeaponTraitTags.SILVER);
-    public static final WeaponMaterial ELECTRUM = new WeaponMaterial("electrum", SpartanWeaponryAPI.MOD_ID, 0xD5BB4F, 0xFFFF95, APIConstants.DefaultMaterialDurabilityElectrum, 3.5f, APIConstants.DefaultMaterialDamageElectrum, 8, ModItemTags.ELECTRUM_INGOT, ModWeaponTraitTags.ELECTRUM);
-    public static final WeaponMaterial LEAD = new WeaponMaterial("lead", SpartanWeaponryAPI.MOD_ID, 0x57617D, 0x8B9ED2, APIConstants.DefaultMaterialDurabilityLead, 4.5f, APIConstants.DefaultMaterialDamageLead, 5, ModItemTags.LEAD_INGOT, ModWeaponTraitTags.LEAD);
-    public static final WeaponMaterial NICKEL = new WeaponMaterial("nickel", SpartanWeaponryAPI.MOD_ID, 0xDBCF95, 0xF7F7CB, APIConstants.DefaultMaterialDurabilityNickel, 4.5f, APIConstants.DefaultMaterialDamageNickel, 6, ModItemTags.NICKEL_INGOT, ModWeaponTraitTags.NICKEL);
-    public static final WeaponMaterial INVAR = new WeaponMaterial("invar", SpartanWeaponryAPI.MOD_ID, 0xAEB6AB, 0xDEE3E0, APIConstants.DefaultMaterialDurabilityInvar, 6.0f, APIConstants.DefaultMaterialDamageInvar, 12, ModItemTags.INVAR_INGOT, ModWeaponTraitTags.INVAR);
-    public static final WeaponMaterial CONSTANTAN = new WeaponMaterial("constantan", SpartanWeaponryAPI.MOD_ID, 0xB47C54, 0xF7D6AC, APIConstants.DefaultMaterialDurabilityConstantan, 5.5f, APIConstants.DefaultMaterialDamageConstantan, 7, ModItemTags.CONSTANTAN_INGOT, ModWeaponTraitTags.CONSTANTAN);
-    public static final WeaponMaterial PLATINUM = new WeaponMaterial("platinum", SpartanWeaponryAPI.MOD_ID, 0x69DAF0, 0xAAE7FF, APIConstants.DefaultMaterialDurabilityPlatinum, 4.0f, APIConstants.DefaultMaterialDamagePlatinum, 18, ModItemTags.PLATINUM_INGOT, ModWeaponTraitTags.PLATINUM);
-    public static final WeaponMaterial ALUMINUM = new WeaponMaterial("aluminum", SpartanWeaponryAPI.MOD_ID, 0xAEBBBF, 0xF9FFFF, APIConstants.DefaultMaterialDurabilityAluminum, 5.0f, APIConstants.DefaultMaterialDamageAluminum, 7, ModItemTags.ALUMINUM_INGOT, ModWeaponTraitTags.ALUMINUM);
+    public static final WeaponMaterial TIN =
+            new WeaponMaterial(
+                    "tin",
+                    SpartanWeaponryAPI.MOD_ID,
+                    0xBEBED8,
+                    0xD2D2FF,
+                    APIConstants.DefaultMaterialDurabilityTin,
+                    5.25f,
+                    APIConstants.DefaultMaterialDamageTin,
+                    6,
+                    ModItemTags.TIN_INGOT,
+                    ModWeaponTraitTags.TIN);
+    public static final WeaponMaterial BRONZE =
+            new WeaponMaterial(
+                    "bronze",
+                    SpartanWeaponryAPI.MOD_ID,
+                    0xB36D0A,
+                    0xCC9636,
+                    APIConstants.DefaultMaterialDurabilityBronze,
+                    5.75f,
+                    APIConstants.DefaultMaterialDamageBronze,
+                    12,
+                    ModItemTags.BRONZE_INGOT,
+                    ModWeaponTraitTags.BRONZE);
+    public static final WeaponMaterial STEEL =
+            new WeaponMaterial(
+                    "steel",
+                    SpartanWeaponryAPI.MOD_ID,
+                    0x858585,
+                    0xBEBEBE,
+                    APIConstants.DefaultMaterialDurabilitySteel,
+                    6.5f,
+                    APIConstants.DefaultMaterialDamageSteel,
+                    14,
+                    ModItemTags.STEEL_INGOT,
+                    ModWeaponTraitTags.STEEL);
+    public static final WeaponMaterial SILVER =
+            new WeaponMaterial(
+                    "silver",
+                    SpartanWeaponryAPI.MOD_ID,
+                    0xCDCDF0,
+                    0xFFFFFF,
+                    APIConstants.DefaultMaterialDurabilitySilver,
+                    5.0f,
+                    APIConstants.DefaultMaterialDamageSilver,
+                    16,
+                    ModItemTags.SILVER_INGOT,
+                    ModWeaponTraitTags.SILVER);
+    public static final WeaponMaterial ELECTRUM =
+            new WeaponMaterial(
+                    "electrum",
+                    SpartanWeaponryAPI.MOD_ID,
+                    0xD5BB4F,
+                    0xFFFF95,
+                    APIConstants.DefaultMaterialDurabilityElectrum,
+                    3.5f,
+                    APIConstants.DefaultMaterialDamageElectrum,
+                    8,
+                    ModItemTags.ELECTRUM_INGOT,
+                    ModWeaponTraitTags.ELECTRUM);
+    public static final WeaponMaterial LEAD =
+            new WeaponMaterial(
+                    "lead",
+                    SpartanWeaponryAPI.MOD_ID,
+                    0x57617D,
+                    0x8B9ED2,
+                    APIConstants.DefaultMaterialDurabilityLead,
+                    4.5f,
+                    APIConstants.DefaultMaterialDamageLead,
+                    5,
+                    ModItemTags.LEAD_INGOT,
+                    ModWeaponTraitTags.LEAD);
+    public static final WeaponMaterial NICKEL =
+            new WeaponMaterial(
+                    "nickel",
+                    SpartanWeaponryAPI.MOD_ID,
+                    0xDBCF95,
+                    0xF7F7CB,
+                    APIConstants.DefaultMaterialDurabilityNickel,
+                    4.5f,
+                    APIConstants.DefaultMaterialDamageNickel,
+                    6,
+                    ModItemTags.NICKEL_INGOT,
+                    ModWeaponTraitTags.NICKEL);
+    public static final WeaponMaterial INVAR =
+            new WeaponMaterial(
+                    "invar",
+                    SpartanWeaponryAPI.MOD_ID,
+                    0xAEB6AB,
+                    0xDEE3E0,
+                    APIConstants.DefaultMaterialDurabilityInvar,
+                    6.0f,
+                    APIConstants.DefaultMaterialDamageInvar,
+                    12,
+                    ModItemTags.INVAR_INGOT,
+                    ModWeaponTraitTags.INVAR);
+    public static final WeaponMaterial CONSTANTAN =
+            new WeaponMaterial(
+                    "constantan",
+                    SpartanWeaponryAPI.MOD_ID,
+                    0xB47C54,
+                    0xF7D6AC,
+                    APIConstants.DefaultMaterialDurabilityConstantan,
+                    5.5f,
+                    APIConstants.DefaultMaterialDamageConstantan,
+                    7,
+                    ModItemTags.CONSTANTAN_INGOT,
+                    ModWeaponTraitTags.CONSTANTAN);
+    public static final WeaponMaterial PLATINUM =
+            new WeaponMaterial(
+                    "platinum",
+                    SpartanWeaponryAPI.MOD_ID,
+                    0x69DAF0,
+                    0xAAE7FF,
+                    APIConstants.DefaultMaterialDurabilityPlatinum,
+                    4.0f,
+                    APIConstants.DefaultMaterialDamagePlatinum,
+                    18,
+                    ModItemTags.PLATINUM_INGOT,
+                    ModWeaponTraitTags.PLATINUM);
+    public static final WeaponMaterial ALUMINUM =
+            new WeaponMaterial(
+                    "aluminum",
+                    SpartanWeaponryAPI.MOD_ID,
+                    0xAEBBBF,
+                    0xF9FFFF,
+                    APIConstants.DefaultMaterialDurabilityAluminum,
+                    5.0f,
+                    APIConstants.DefaultMaterialDamageAluminum,
+                    7,
+                    ModItemTags.ALUMINUM_INGOT,
+                    ModWeaponTraitTags.ALUMINUM);
 
     private int durability;
     private final float speed;
@@ -78,23 +252,35 @@ public class WeaponMaterial implements Tier, IReloadable {
     private boolean useCustomDisplayName = false;
     private Function<String, String> translationFunc = null;
 
-    protected List<WeaponTrait> traits = ImmutableList.of();                // *ALL* traits		 TODO: Does this still need to be cached?
-    protected List<WeaponTrait> meleeTraits = ImmutableList.of();            // Melee-only traits
-    protected List<WeaponTrait> rangedTraits = ImmutableList.of();            // Ranged-only traits
-    protected List<WeaponTrait> throwingTraits = ImmutableList.of();        // Throwing-only traits
+    protected List<WeaponTrait> traits =
+            ImmutableList.of(); // *ALL* traits         TODO: Does this still need to be cached?
+    protected List<WeaponTrait> meleeTraits = ImmutableList.of(); // Melee-only traits
+    protected List<WeaponTrait> rangedTraits = ImmutableList.of(); // Ranged-only traits
+    protected List<WeaponTrait> throwingTraits = ImmutableList.of(); // Throwing-only traits
     protected final TagKey<WeaponTrait> traitsTag;
     protected boolean isValidTag;
-    protected Optional<List<Pair<WeaponTrait, WeaponTrait.InvalidReason>>> invalidTraits = Optional.empty();
+    protected Optional<List<Pair<WeaponTrait, WeaponTrait.InvalidReason>>> invalidTraits =
+            Optional.empty();
 
     /**
-     * Creates a builder for addon materials. Existing constructors remain supported; the builder is a
-     * named alternative for call sites where positional numeric arguments are hard to audit.
+     * Creates a builder for addon materials. Existing constructors remain supported; the builder is
+     * a named alternative for call sites where positional numeric arguments are hard to audit.
      */
     public static Builder builder(String name, String modId) {
         return new Builder(name, modId);
     }
 
-    public WeaponMaterial(String nameIn, String modIdIn, int colourPrimaryIn, int colourSecondaryIn, int durabilityIn, float speedIn, float baseDamageIn, int enchantabilityIn, TagKey<Item> repairTagIn, TagKey<WeaponTrait> traitsTagIn) {
+    public WeaponMaterial(
+            String nameIn,
+            String modIdIn,
+            int colourPrimaryIn,
+            int colourSecondaryIn,
+            int durabilityIn,
+            float speedIn,
+            float baseDamageIn,
+            int enchantabilityIn,
+            TagKey<Item> repairTagIn,
+            TagKey<WeaponTrait> traitsTagIn) {
         this.name = nameIn;
         this.modId = modIdIn;
         this.colourPrimary = colourPrimaryIn;
@@ -111,21 +297,58 @@ public class WeaponMaterial implements Tier, IReloadable {
         ReloadableHandler.addToMaterialReloadList(this);
     }
 
-    public WeaponMaterial(String unlocName, String modIdIn, int maxUses, float efficiency, float baseDamage, int enchantability, TagKey<Item> tag, TagKey<WeaponTrait> traitsTagIn) {
-        this(unlocName, modIdIn, DEFAULT_PRIMARY_COLOUR, DEFAULT_SECONDARY_COLOUR, maxUses, efficiency, baseDamage, enchantability, tag, traitsTagIn);
+    public WeaponMaterial(
+            String unlocName,
+            String modIdIn,
+            int maxUses,
+            float efficiency,
+            float baseDamage,
+            int enchantability,
+            TagKey<Item> tag,
+            TagKey<WeaponTrait> traitsTagIn) {
+        this(
+                unlocName,
+                modIdIn,
+                DEFAULT_PRIMARY_COLOUR,
+                DEFAULT_SECONDARY_COLOUR,
+                maxUses,
+                efficiency,
+                baseDamage,
+                enchantability,
+                tag,
+                traitsTagIn);
     }
 
-    public WeaponMaterial(String nameIn, String modIdIn, Tier itemTierIn, TagKey<Item> tagIn, TagKey<WeaponTrait> traitsTagIn) {
-        this(nameIn, modIdIn, DEFAULT_PRIMARY_COLOUR, DEFAULT_SECONDARY_COLOUR, itemTierIn.getUses(), itemTierIn.getSpeed(),
-                itemTierIn.getAttackDamageBonus(), itemTierIn.getEnchantmentValue(), tagIn, traitsTagIn);
+    public WeaponMaterial(
+            String nameIn,
+            String modIdIn,
+            Tier itemTierIn,
+            TagKey<Item> tagIn,
+            TagKey<WeaponTrait> traitsTagIn) {
+        this(
+                nameIn,
+                modIdIn,
+                DEFAULT_PRIMARY_COLOUR,
+                DEFAULT_SECONDARY_COLOUR,
+                itemTierIn.getUses(),
+                itemTierIn.getSpeed(),
+                itemTierIn.getAttackDamageBonus(),
+                itemTierIn.getEnchantmentValue(),
+                tagIn,
+                traitsTagIn);
     }
 
     @Override
     public void reload() {
-        RegistryAccess registryAccess = RegistryAccess.fromRegistryOfRegistries(BuiltInRegistries.REGISTRY);
-        Registry<WeaponTrait> registry = registryAccess.registry(WeaponTraits.REGISTRY_KEY).orElse(null);
+        RegistryAccess registryAccess =
+                RegistryAccess.fromRegistryOfRegistries(BuiltInRegistries.REGISTRY);
+        Registry<WeaponTrait> registry =
+                registryAccess.registry(WeaponTraits.REGISTRY_KEY).orElse(null);
         if (registry == null) {
-            Log.error("Weapon Trait registry couldn't be found for weapon material \"" + this.name + "\"!");
+            Log.error(
+                    "Weapon Trait registry couldn't be found for weapon material \""
+                            + this.name
+                            + "\"!");
             return;
         }
         // Verify the tag and Initialize Weapon Traits
@@ -133,7 +356,12 @@ public class WeaponMaterial implements Tier, IReloadable {
 
         this.isValidTag = registry.getTag(this.traitsTag).isPresent();
         if (!this.isValidTag) {
-            Log.error("Weapon Trait tag \"" + this.traitsTag.location() + "\" couldn't be found for weapon material \"" + this.name + "\"!");
+            Log.error(
+                    "Weapon Trait tag \""
+                            + this.traitsTag.location()
+                            + "\" couldn't be found for weapon material \""
+                            + this.name
+                            + "\"!");
             return;
         }
 
@@ -145,7 +373,8 @@ public class WeaponMaterial implements Tier, IReloadable {
             WeaponTrait trait = holder.value();
             boolean isActionTrait = trait.isActionTrait();
             if (isActionTrait) {
-                invalidTraitList.add(Pair.of(trait, WeaponTrait.InvalidReason.MATERIAL_ACTION_TRAIT));
+                invalidTraitList.add(
+                        Pair.of(trait, WeaponTrait.InvalidReason.MATERIAL_ACTION_TRAIT));
                 invalidTraitValues.add(String.valueOf(registry.getKey(trait)));
             } else {
                 builder.add(trait);
@@ -153,14 +382,20 @@ public class WeaponMaterial implements Tier, IReloadable {
         }
 
         if (!invalidTraitValues.isEmpty()) {
-            Log.warn("Found non-material Weapon Traits for weapon material \"" + this.name + "\" which have not been added: " + String.join(", ", invalidTraitValues));
+            Log.warn(
+                    "Found non-material Weapon Traits for weapon material \""
+                            + this.name
+                            + "\" which have not been added: "
+                            + String.join(", ", invalidTraitValues));
             this.invalidTraits = Optional.of(invalidTraitList);
         }
         this.traits = builder.build();
 
         this.meleeTraits = this.traits.stream().filter(WeaponType.MELEE.getTraitFilter()).toList();
-        this.rangedTraits = this.traits.stream().filter(WeaponType.RANGED.getTraitFilter()).toList();
-        this.throwingTraits = this.traits.stream().filter(WeaponType.THROWING.getTraitFilter()).toList();
+        this.rangedTraits =
+                this.traits.stream().filter(WeaponType.RANGED.getTraitFilter()).toList();
+        this.throwingTraits =
+                this.traits.stream().filter(WeaponType.THROWING.getTraitFilter()).toList();
     }
 
     public WeaponMaterial setUseCustomDisplayName() {
@@ -179,7 +414,8 @@ public class WeaponMaterial implements Tier, IReloadable {
 
     public Component translateName() {
         if (this.translationFunc == null)
-            return Component.translatable("material." + this.getModId() + "." + this.getMaterialName());
+            return Component.translatable(
+                    "material." + this.getModId() + "." + this.getMaterialName());
         return Component.literal(this.translationFunc.apply(this.name));
     }
 
@@ -222,9 +458,8 @@ public class WeaponMaterial implements Tier, IReloadable {
         this.baseDamage = baseDamage;
     }
 
-
     public int getLevel() {
-//		return this.harvestLevel;
+        //        return this.harvestLevel;
         return 0;
     }
 
@@ -285,27 +520,76 @@ public class WeaponMaterial implements Tier, IReloadable {
 
     public void addTagErrorTooltip(ItemStack stack, List<Component> tooltip) {
         if (!this.isValidTag)
-            tooltip.add(Component.translatable(String.format("tooltip.%s.trait.invalid.material_tag", SpartanWeaponryAPI.MOD_ID), Component.translatable(String.format("tooltip.%s.material.%s", SpartanWeaponryAPI.MOD_ID, this.name)), this.traitsTag.location().toString()).withStyle(ChatFormatting.DARK_RED));
+            tooltip.add(
+                    Component.translatable(
+                                    String.format(
+                                            "tooltip.%s.trait.invalid.material_tag",
+                                            SpartanWeaponryAPI.MOD_ID),
+                                    Component.translatable(
+                                            String.format(
+                                                    "tooltip.%s.material.%s",
+                                                    SpartanWeaponryAPI.MOD_ID, this.name)),
+                                    this.traitsTag.location().toString())
+                            .withStyle(ChatFormatting.DARK_RED));
     }
 
-    public void addTraitsToTooltip(ItemStack stack, WeaponType type, List<Component> tooltip, boolean isShiftPressed) {
+    public void addTraitsToTooltip(
+            ItemStack stack, WeaponType type, List<Component> tooltip, boolean isShiftPressed) {
         if (this.hasAnyBonusTraits(type)) {
             tooltip.add(Component.empty());
-            tooltip.add(Component.translatable(String.format("tooltip.%s.trait.material_bonus", ModSpartanWeaponry.ID)).withStyle(ChatFormatting.AQUA));
-            this.traits.forEach((trait) -> trait.addTooltip(stack, tooltip, isShiftPressed, WeaponTrait.InvalidReason.NONE));
+            tooltip.add(
+                    Component.translatable(
+                                    String.format(
+                                            "tooltip.%s.trait.material_bonus",
+                                            ModSpartanWeaponry.ID))
+                            .withStyle(ChatFormatting.AQUA));
+            this.traits.forEach(
+                    (trait) ->
+                            trait.addTooltip(
+                                    stack,
+                                    tooltip,
+                                    isShiftPressed,
+                                    WeaponTrait.InvalidReason.NONE));
         }
         if (this.invalidTraits.isPresent()) {
             tooltip.add(Component.empty());
-            this.invalidTraits.get().forEach((traitPair) -> traitPair.getLeft().addTooltip(stack, tooltip, isShiftPressed, traitPair.getRight()));
+            this.invalidTraits
+                    .get()
+                    .forEach(
+                            (traitPair) ->
+                                    traitPair
+                                            .getLeft()
+                                            .addTooltip(
+                                                    stack,
+                                                    tooltip,
+                                                    isShiftPressed,
+                                                    traitPair.getRight()));
         }
     }
 
     @Deprecated(since = "3.1.1", forRemoval = true)
-    public void addTraitsToTooltip(ItemStack stack, List<Component> tooltip, boolean isShiftPressed) {
+    public void addTraitsToTooltip(
+            ItemStack stack, List<Component> tooltip, boolean isShiftPressed) {
         if (this.hasAnyBonusTraits()) {
-            this.traits.forEach((trait) -> trait.addTooltip(stack, tooltip, isShiftPressed, WeaponTrait.InvalidReason.NONE));
+            this.traits.forEach(
+                    (trait) ->
+                            trait.addTooltip(
+                                    stack,
+                                    tooltip,
+                                    isShiftPressed,
+                                    WeaponTrait.InvalidReason.NONE));
         }
-        this.invalidTraits.ifPresent(pairs -> pairs.forEach((traitPair) -> traitPair.getLeft().addTooltip(stack, tooltip, isShiftPressed, traitPair.getRight())));
+        this.invalidTraits.ifPresent(
+                pairs ->
+                        pairs.forEach(
+                                (traitPair) ->
+                                        traitPair
+                                                .getLeft()
+                                                .addTooltip(
+                                                        stack,
+                                                        tooltip,
+                                                        isShiftPressed,
+                                                        traitPair.getRight())));
     }
 
     /**
@@ -406,13 +690,13 @@ public class WeaponMaterial implements Tier, IReloadable {
                     require("baseDamage", this.baseDamage),
                     require("enchantability", this.enchantability),
                     require("repairTag", this.repairTag),
-                    require("traitsTag", this.traitsTag)
-            );
+                    require("traitsTag", this.traitsTag));
         }
 
         private static <T> T require(String fieldName, T value) {
             if (value == null) {
-                throw new IllegalStateException("WeaponMaterial builder is missing required field: " + fieldName);
+                throw new IllegalStateException(
+                        "WeaponMaterial builder is missing required field: " + fieldName);
             }
             return value;
         }

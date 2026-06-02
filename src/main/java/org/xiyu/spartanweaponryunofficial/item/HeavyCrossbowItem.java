@@ -1,7 +1,12 @@
 package org.xiyu.spartanweaponryunofficial.item;
 
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
+import java.util.List;
+import java.util.Optional;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.RegistryAccess;
@@ -48,12 +53,8 @@ import org.xiyu.spartanweaponryunofficial.util.Defaults;
 import org.xiyu.spartanweaponryunofficial.util.ItemStackDataHelper;
 import org.xiyu.spartanweaponryunofficial.util.WeaponType;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.function.Consumer;
-import java.util.function.Predicate;
-
-public class HeavyCrossbowItem extends CrossbowItem implements IReloadable, IHudLoadState, IHudCrosshair {
+public class HeavyCrossbowItem extends CrossbowItem
+        implements IReloadable, IHudLoadState, IHudCrosshair {
     protected WeaponMaterial material;
     protected String modId = null;
     protected int loadTicks;
@@ -65,7 +66,7 @@ public class HeavyCrossbowItem extends CrossbowItem implements IReloadable, IHud
     protected boolean canBeCrafted = true;
 
     protected final WeaponType type = WeaponType.RANGED;
-    protected List<WeaponTrait> rangedTraits;
+    protected List<WeaponTrait> rangedTraits = ImmutableList.of();
     protected Multimap<Attribute, AttributeModifier> modifiers;
 
     public static final String NBT_CHARGED = "Charged";
@@ -85,10 +86,10 @@ public class HeavyCrossbowItem extends CrossbowItem implements IReloadable, IHud
         ReloadableHandler.addToItemReloadList(this);
     }
 
-    public HeavyCrossbowItem(Item.Properties prop, WeaponMaterial material, String customDisplayName) {
+    public HeavyCrossbowItem(
+            Item.Properties prop, WeaponMaterial material, String customDisplayName) {
         this(prop, material);
-        if (material.useCustomDisplayName())
-            this.customDisplayName = customDisplayName;
+        if (material.useCustomDisplayName()) this.customDisplayName = customDisplayName;
     }
 
     // ---- ---- ---- ---- ---- ---- ---- ----
@@ -103,15 +104,19 @@ public class HeavyCrossbowItem extends CrossbowItem implements IReloadable, IHud
             Optional<IRangedTraitCallback> opt = trait.getRangedCallback();
             if (opt.isPresent()) {
                 IRangedTraitCallback callback = opt.get();
-                this.loadTicks = callback.modifyHeavyCrossbowLoadTime(this.material, this.loadTicks);
+                this.loadTicks =
+                        callback.modifyHeavyCrossbowLoadTime(this.material, this.loadTicks);
                 this.aimTicks = callback.modifyHeavyCrossbowAimTime(this.material, this.aimTicks);
             }
         }
         this.modifiers = WeaponAttributeBuilder.buildGenericTraitAttributeMap(this.rangedTraits);
     }
 
-    public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlot equipmentSlot, ItemStack stack) {
-        return this.modifiers != null && equipmentSlot == EquipmentSlot.MAINHAND ? this.modifiers : ImmutableMultimap.of();
+    public Multimap<Attribute, AttributeModifier> getAttributeModifiers(
+            EquipmentSlot equipmentSlot, ItemStack stack) {
+        return this.modifiers != null && equipmentSlot == EquipmentSlot.MAINHAND
+                ? this.modifiers
+                : ImmutableMultimap.of();
     }
 
     @Override
@@ -135,19 +140,42 @@ public class HeavyCrossbowItem extends CrossbowItem implements IReloadable, IHud
     }
 
     @Override
-    public void releaseUsing(@NotNull ItemStack stack, @NotNull Level levelIn, @NotNull LivingEntity entityLiving, int timeLeft) {
+    public void releaseUsing(
+            @NotNull ItemStack stack,
+            @NotNull Level levelIn,
+            @NotNull LivingEntity entityLiving,
+            int timeLeft) {
         if (entityLiving instanceof Player player) {
             RegistryAccess registryAccess = levelIn.registryAccess();
-            boolean isCreativeOrInfinite = player.getAbilities().instabuild || EnchantmentHelper.getItemEnchantmentLevel(registryAccess.registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantments.INFINITY), stack) > 0;
+            boolean isCreativeOrInfinite =
+                    player.getAbilities().instabuild
+                            || EnchantmentHelper.getItemEnchantmentLevel(
+                                            registryAccess
+                                                    .registryOrThrow(Registries.ENCHANTMENT)
+                                                    .getHolderOrThrow(Enchantments.INFINITY),
+                                            stack)
+                                    > 0;
 
             if (this.getLoadProgress(stack, entityLiving) == 1.0f) {
                 // Load the Crossbow
                 ItemStackDataHelper.updateTag(stack, tag -> tag.putBoolean(NBT_CHARGED, true));
                 ItemStack bolt;
-                int count = EnchantmentHelper.getItemEnchantmentLevel(registryAccess.registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantments.MULTISHOT), stack) > 0 ? 3 : 1;
+                int count =
+                        EnchantmentHelper.getItemEnchantmentLevel(
+                                                registryAccess
+                                                        .registryOrThrow(Registries.ENCHANTMENT)
+                                                        .getHolderOrThrow(Enchantments.MULTISHOT),
+                                                stack)
+                                        > 0
+                                ? 3
+                                : 1;
 
                 bolt = entityLiving.getProjectile(stack);
-                if (bolt.isEmpty() || !BOLT.test(bolt))            // Fix: When in Creative Mode, the player will return an Arrow item as ammo, which is invalid; replace it with a Bolt
+                if (bolt.isEmpty()
+                        || !BOLT.test(
+                                bolt)) // Fix: When in Creative Mode, the player will return an
+                    // Arrow item as ammo, which is invalid; replace it with a
+                    // Bolt
                     bolt = new ItemStack(ModItems.BOLT.get(), count);
 
                 // Create a copy of the bolt, then save it to NBT.
@@ -159,10 +187,17 @@ public class HeavyCrossbowItem extends CrossbowItem implements IReloadable, IHud
 
                 if (!player.getAbilities().instabuild) {
                     bolt.shrink(1);
-                    if (bolt.isEmpty())
-                        player.getInventory().removeItem(bolt);
+                    if (bolt.isEmpty()) player.getInventory().removeItem(bolt);
                 }
-                levelIn.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.CROSSBOW_LOADING_END, SoundSource.PLAYERS, 1.0F, 1.0F / (levelIn.random.nextFloat() * 0.5F + 1.0F) + 0.2F);
+                levelIn.playSound(
+                        null,
+                        player.getX(),
+                        player.getY(),
+                        player.getZ(),
+                        SoundEvents.CROSSBOW_LOADING_END,
+                        SoundSource.PLAYERS,
+                        1.0F,
+                        1.0F / (levelIn.random.nextFloat() * 0.5F + 1.0F) + 0.2F);
             } else {
                 // Fire the Crossbow
                 // First check if the crossbow is actually loaded
@@ -187,38 +222,84 @@ public class HeavyCrossbowItem extends CrossbowItem implements IReloadable, IHud
 
                 if (i < 0) return;
 
-                // If we have ammo, proceed with firing (crossbow is already charged so we should fire)
+                // If we have ammo, proceed with firing (crossbow is already charged so we should
+                // fire)
                 if (!itemstack.isEmpty()) {
                     if (!levelIn.isClientSide) {
-                        BoltItem itemBolt = ((BoltItem) (itemstack.getItem() instanceof BoltItem ? itemstack.getItem() : ModItems.BOLT.get()));
+                        BoltItem itemBolt =
+                                ((BoltItem)
+                                        (itemstack.getItem() instanceof BoltItem
+                                                ? itemstack.getItem()
+                                                : ModItems.BOLT.get()));
 
-                        boolean flag1 = player.getAbilities().instabuild || (itemstack.getItem() instanceof BoltItem && ((BoltItem) itemstack.getItem()).isInfinite(itemstack, stack, player));
+                        boolean flag1 =
+                                player.getAbilities().instabuild
+                                        || (itemstack.getItem() instanceof BoltItem
+                                                && ((BoltItem) itemstack.getItem())
+                                                        .isInfinite(itemstack, stack, player));
 
                         // Account for lack of accuracy.
                         int stackAimTicks = this.getAimTicks(stack, levelIn);
                         int inaccuracy = Mth.clamp(stackAimTicks - i, 0, stackAimTicks);
                         float inaccuracyModifier = 0.0f;
 
-                        if (inaccuracy != 0)        // Apply inaccuracy if there is any.
-                            inaccuracyModifier = 12.0f * ((float) inaccuracy / stackAimTicks);
+                        if (inaccuracy != 0) // Apply inaccuracy if there is any.
+                        inaccuracyModifier = 12.0f * ((float) inaccuracy / stackAimTicks);
 
                         // Fire projectiles.
-                        this.spawnProjectile(stack, itemBolt, itemstack, levelIn, player, flag1, inaccuracyModifier, 0.0f);
+                        this.spawnProjectile(
+                                stack,
+                                itemBolt,
+                                itemstack,
+                                levelIn,
+                                player,
+                                flag1,
+                                inaccuracyModifier,
+                                0.0f);
                         if (itemstack.getCount() > 1) {
-                            this.spawnProjectile(stack, itemBolt, itemstack, levelIn, player, flag1, inaccuracyModifier, -10.0f);
-                            this.spawnProjectile(stack, itemBolt, itemstack, levelIn, player, flag1, inaccuracyModifier, 10.0f);
+                            this.spawnProjectile(
+                                    stack,
+                                    itemBolt,
+                                    itemstack,
+                                    levelIn,
+                                    player,
+                                    flag1,
+                                    inaccuracyModifier,
+                                    -10.0f);
+                            this.spawnProjectile(
+                                    stack,
+                                    itemBolt,
+                                    itemstack,
+                                    levelIn,
+                                    player,
+                                    flag1,
+                                    inaccuracyModifier,
+                                    10.0f);
                         }
                         int damage = itemstack.getCount() > 1 ? 3 : 1;
-                        EquipmentSlot breakSlot = player.getUsedItemHand() == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND;
+                        EquipmentSlot breakSlot =
+                                player.getUsedItemHand() == InteractionHand.MAIN_HAND
+                                        ? EquipmentSlot.MAINHAND
+                                        : EquipmentSlot.OFFHAND;
                         stack.hurtAndBreak(damage, player, breakSlot);
 
-                        ItemStackDataHelper.updateTag(stack, stackTag -> {
-                            stackTag.putBoolean(NBT_CHARGED, false);
-                            stackTag.put(NBT_PROJECTILE, new CompoundTag());
-                        });
+                        ItemStackDataHelper.updateTag(
+                                stack,
+                                stackTag -> {
+                                    stackTag.putBoolean(NBT_CHARGED, false);
+                                    stackTag.put(NBT_PROJECTILE, new CompoundTag());
+                                });
                     }
 
-                    levelIn.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.CROSSBOW_SHOOT, SoundSource.NEUTRAL, 1.0F, 1.0F / (levelIn.random.nextFloat() * 0.4F + 1.2F) + 1.5f * 0.5F);
+                    levelIn.playSound(
+                            null,
+                            player.getX(),
+                            player.getY(),
+                            player.getZ(),
+                            SoundEvents.CROSSBOW_SHOOT,
+                            SoundSource.NEUTRAL,
+                            1.0F,
+                            1.0F / (levelIn.random.nextFloat() * 0.4F + 1.2F) + 1.5f * 0.5F);
 
                     player.awardStat(Stats.ITEM_USED.get(this));
                 }
@@ -226,45 +307,84 @@ public class HeavyCrossbowItem extends CrossbowItem implements IReloadable, IHud
         }
     }
 
-    /**
-     * Gets the velocity of the bolt entity from the crossbow's charge
-     */
+    /** Gets the velocity of the bolt entity from the crossbow's charge */
     public static float getBoltVelocity(BoltEntity bolt) {
-        return 4.5f * bolt.getRangeMultiplier();    // 1.5f * 3.0f * rangeMultiplier
+        return 4.5f * bolt.getRangeMultiplier(); // 1.5f * 3.0f * rangeMultiplier
     }
 
-    protected void spawnProjectile(ItemStack crossbow, BoltItem boltItem, ItemStack boltStack, Level levelIn, Player player, boolean creativeOrInfinite, float inaccuracyModifier, float projectileAngle) {
+    protected void spawnProjectile(
+            ItemStack crossbow,
+            BoltItem boltItem,
+            ItemStack boltStack,
+            Level levelIn,
+            Player player,
+            boolean creativeOrInfinite,
+            float inaccuracyModifier,
+            float projectileAngle) {
         BoltEntity bolt = boltItem.createBolt(levelIn, boltStack, player, crossbow);
 
-        if (bolt == null) return;  // Safety check in case bolt creation fails
+        if (bolt == null) return; // Safety check in case bolt creation fails
 
         RegistryAccess registryAccess = levelIn.registryAccess();
         bolt.setCritArrow(true);
         bolt.setSoundEvent(SoundEvents.CROSSBOW_HIT);
-        int pierceLvl = EnchantmentHelper.getItemEnchantmentLevel(registryAccess.registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantments.PIERCING), crossbow);
+        int pierceLvl =
+                EnchantmentHelper.getItemEnchantmentLevel(
+                        registryAccess
+                                .registryOrThrow(Registries.ENCHANTMENT)
+                                .getHolderOrThrow(Enchantments.PIERCING),
+                        crossbow);
 
         Vec3 upVector = player.getUpVector(1.0f);
-        Quaternionf quat = new Quaternionf().setAngleAxis((projectileAngle * (Mth.PI / 180.0f)), upVector.x, upVector.y, upVector.z);
+        Quaternionf quat =
+                new Quaternionf()
+                        .setAngleAxis(
+                                (projectileAngle * (Mth.PI / 180.0f)),
+                                upVector.x,
+                                upVector.y,
+                                upVector.z);
         Vector3f velocityVec = player.getViewVector(1.0f).toVector3f().rotate(quat);
-        bolt.shoot(velocityVec.x, velocityVec.y, velocityVec.z, getBoltVelocity(bolt), inaccuracyModifier);
-//        entityBolt.shootFromRotation(player, player.xRotO, player.yRotO, 0.0F, getBoltVelocity() * 3.0F, inaccuracyModifier);
+        bolt.shoot(
+                velocityVec.x,
+                velocityVec.y,
+                velocityVec.z,
+                getBoltVelocity(bolt),
+                inaccuracyModifier);
+        //        entityBolt.shootFromRotation(player, player.xRotO, player.yRotO, 0.0F,
+        // getBoltVelocity() * 3.0F, inaccuracyModifier);
 
         for (WeaponTrait trait : this.rangedTraits)
-            trait.getRangedCallback().ifPresent((callback) -> callback.onProjectileSpawn(this.material, bolt));
+            trait.getRangedCallback()
+                    .ifPresent((callback) -> callback.onProjectileSpawn(this.material, bolt));
 
-        int j = EnchantmentHelper.getItemEnchantmentLevel(registryAccess.registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantments.POWER), crossbow);
+        int j =
+                EnchantmentHelper.getItemEnchantmentLevel(
+                        registryAccess
+                                .registryOrThrow(Registries.ENCHANTMENT)
+                                .getHolderOrThrow(Enchantments.POWER),
+                        crossbow);
 
         if (j > 0) {
             bolt.setBaseDamage(bolt.getBaseDamage() + j * 0.5D + 0.5D);
         }
 
-        int k = EnchantmentHelper.getItemEnchantmentLevel(registryAccess.registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantments.PUNCH), crossbow);
+        int k =
+                EnchantmentHelper.getItemEnchantmentLevel(
+                        registryAccess
+                                .registryOrThrow(Registries.ENCHANTMENT)
+                                .getHolderOrThrow(Enchantments.PUNCH),
+                        crossbow);
 
         if (k > 0) {
             // Knockback handled by bolt entity on hit
         }
 
-        if (EnchantmentHelper.getItemEnchantmentLevel(registryAccess.registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantments.FLAME), crossbow) > 0) {
+        if (EnchantmentHelper.getItemEnchantmentLevel(
+                        registryAccess
+                                .registryOrThrow(Registries.ENCHANTMENT)
+                                .getHolderOrThrow(Enchantments.FLAME),
+                        crossbow)
+                > 0) {
             bolt.igniteForSeconds(5.0F);
         }
 
@@ -277,19 +397,27 @@ public class HeavyCrossbowItem extends CrossbowItem implements IReloadable, IHud
 
     @Override
     public @NotNull UseAnim getUseAnimation(@NotNull ItemStack stack) {
-        if (!ItemStackDataHelper.getTag(stack).getBoolean(NBT_CHARGED))
-            return UseAnim.CROSSBOW;
+        if (!ItemStackDataHelper.getTag(stack).getBoolean(NBT_CHARGED)) return UseAnim.CROSSBOW;
         return UseAnim.BOW;
     }
 
     @Override
-    public @NotNull InteractionResultHolder<ItemStack> use(Level levelIn, Player playerIn, @NotNull InteractionHand handIn) {
+    public @NotNull InteractionResultHolder<ItemStack> use(
+            Level levelIn, Player playerIn, @NotNull InteractionHand handIn) {
         ItemStack stack = playerIn.getItemInHand(handIn);
         ItemStack ammoStack = playerIn.getProjectile(stack);
         boolean hasAmmo = !ammoStack.isEmpty();
 
         RegistryAccess registryAccess = levelIn.registryAccess();
-        if (!playerIn.getAbilities().instabuild && !hasAmmo && !ItemStackDataHelper.getTag(stack).getBoolean(NBT_CHARGED) && EnchantmentHelper.getItemEnchantmentLevel(registryAccess.registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantments.INFINITY), stack) == 0) {
+        if (!playerIn.getAbilities().instabuild
+                && !hasAmmo
+                && !ItemStackDataHelper.getTag(stack).getBoolean(NBT_CHARGED)
+                && EnchantmentHelper.getItemEnchantmentLevel(
+                                registryAccess
+                                        .registryOrThrow(Registries.ENCHANTMENT)
+                                        .getHolderOrThrow(Enchantments.INFINITY),
+                                stack)
+                        == 0) {
             return InteractionResultHolder.fail(stack);
         }
         playerIn.startUsingItem(handIn);
@@ -297,18 +425,30 @@ public class HeavyCrossbowItem extends CrossbowItem implements IReloadable, IHud
     }
 
     @Override
-    public void onUseTick(Level levelIn, @NotNull LivingEntity livingEntityIn, @NotNull ItemStack stack, int count) {
+    public void onUseTick(
+            Level levelIn,
+            @NotNull LivingEntity livingEntityIn,
+            @NotNull ItemStack stack,
+            int count) {
         // Play loading sounds as necessary
-        if (!levelIn.isClientSide && !ItemStackDataHelper.getTag(stack).getBoolean(NBT_CHARGED) && livingEntityIn instanceof Player) {
+        if (!levelIn.isClientSide
+                && !ItemStackDataHelper.getTag(stack).getBoolean(NBT_CHARGED)
+                && livingEntityIn instanceof Player) {
             float loadTicks = this.getLoadProgress(stack, livingEntityIn);
             SoundEvent loadingSound = null;
-            if (loadTicks == 0.0f)
-                loadingSound = SoundEvents.CROSSBOW_LOADING_START.value();
+            if (loadTicks == 0.0f) loadingSound = SoundEvents.CROSSBOW_LOADING_START.value();
             else if (loadTicks == 0.5f || loadTicks == 0.9f)
                 loadingSound = SoundEvents.CROSSBOW_LOADING_MIDDLE.value();
             if (loadingSound != null)
-                levelIn.playSound(null, livingEntityIn.getX(), livingEntityIn.getY(), livingEntityIn.getZ(), loadingSound, SoundSource.PLAYERS, 0.5f, 1.0f);
-
+                levelIn.playSound(
+                        null,
+                        livingEntityIn.getX(),
+                        livingEntityIn.getY(),
+                        livingEntityIn.getZ(),
+                        loadingSound,
+                        SoundSource.PLAYERS,
+                        0.5f,
+                        1.0f);
         }
     }
 
@@ -323,24 +463,30 @@ public class HeavyCrossbowItem extends CrossbowItem implements IReloadable, IHud
     }
 
     @Override
-    public <T extends LivingEntity> int damageItem(@NotNull ItemStack stack, int amount, T entity, @NotNull Consumer<Item> onBroken) {
+    public <T extends LivingEntity> int damageItem(
+            @NotNull ItemStack stack, int amount, T entity, @NotNull Consumer<Item> onBroken) {
         return WeaponTraitResolver.applyDamageCallbacks(this.rangedTraits, stack, entity, amount);
     }
 
     @Override
     public @NotNull Component getName(@NotNull ItemStack stack) {
-        if (this.customDisplayName == null)
-            return super.getName(stack);
+        if (this.customDisplayName == null) return super.getName(stack);
         return Component.translatable(this.customDisplayName, this.material.translateName());
     }
 
     @Override
-    public void appendHoverText(@NotNull ItemStack stack, TooltipContext tooltipContext, @NotNull List<Component> tooltip, @NotNull TooltipFlag flagIn) {
+    public void appendHoverText(
+            @NotNull ItemStack stack,
+            TooltipContext tooltipContext,
+            @NotNull List<Component> tooltip,
+            @NotNull TooltipFlag flagIn) {
         boolean isShiftPressed = Screen.hasShiftDown();
 
         Level levelIn = tooltipContext.level();
         if (this.doCraftCheck && levelIn != null) {
-            this.canBeCrafted = WeaponTooltipBuilder.checkBuiltInMaterialCraftability(this.material, this.canBeCrafted);
+            this.canBeCrafted =
+                    WeaponTooltipBuilder.checkBuiltInMaterialCraftability(
+                            this.material, this.canBeCrafted);
             this.doCraftCheck = false;
         }
 
@@ -350,44 +496,138 @@ public class HeavyCrossbowItem extends CrossbowItem implements IReloadable, IHud
         this.material.addTagErrorTooltip(stack, tooltip);
 
         if (ItemStackDataHelper.getTag(stack).contains(NBT_CHARGED)) {
-            RegistryAccess registryAccess = levelIn != null ? levelIn.registryAccess() : RegistryAccess.fromRegistryOfRegistries(BuiltInRegistries.REGISTRY);
-            ItemStack bolt = ItemStack.parseOptional(registryAccess, ItemStackDataHelper.getTag(stack).getCompound(NBT_PROJECTILE));
+            RegistryAccess registryAccess =
+                    levelIn != null
+                            ? levelIn.registryAccess()
+                            : RegistryAccess.fromRegistryOfRegistries(BuiltInRegistries.REGISTRY);
+            ItemStack bolt =
+                    ItemStack.parseOptional(
+                            registryAccess,
+                            ItemStackDataHelper.getTag(stack).getCompound(NBT_PROJECTILE));
             if (!bolt.isEmpty()) {
-                tooltip.add(Component.translatable(String.format("tooltip.%s.heavy_crossbow.loaded_bolt", ModSpartanWeaponry.ID), String.format("[%s x%d]", ChatFormatting.AQUA + bolt.getHoverName().getString() + ChatFormatting.WHITE, bolt.getCount())));
+                tooltip.add(
+                        Component.translatable(
+                                String.format(
+                                        "tooltip.%s.heavy_crossbow.loaded_bolt",
+                                        ModSpartanWeaponry.ID),
+                                String.format(
+                                        "[%s x%d]",
+                                        ChatFormatting.AQUA
+                                                + bolt.getHoverName().getString()
+                                                + ChatFormatting.WHITE,
+                                        bolt.getCount())));
                 tooltip.add(Component.empty());
             }
         }
 
         if (this.material.hasAnyBonusTraits(this.type)) {
             WeaponTooltipBuilder.addTraitHeader(tooltip, isShiftPressed, ChatFormatting.DARK_AQUA);
-            tooltip.add(Component.translatable(String.format("tooltip.%s.trait.material_bonus", ModSpartanWeaponry.ID)).withStyle(ChatFormatting.AQUA));
+            tooltip.add(
+                    Component.translatable(
+                                    String.format(
+                                            "tooltip.%s.trait.material_bonus",
+                                            ModSpartanWeaponry.ID))
+                            .withStyle(ChatFormatting.AQUA));
 
             this.rangedTraits.forEach((trait) -> trait.addTooltip(stack, tooltip, isShiftPressed));
             tooltip.add(Component.empty());
         }
 
         if (isShiftPressed) {
-            tooltip.add(Component.translatable(String.format("tooltip.%s.description", ModSpartanWeaponry.ID), Component.translatable("tooltip." + ModSpartanWeaponry.ID + ".showing_details").withStyle(ChatFormatting.DARK_GRAY)).withStyle(ChatFormatting.GOLD));
-            tooltip.add(Component.translatable(String.format("tooltip.%s.heavy_crossbow.desc", ModSpartanWeaponry.ID)).withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
-            tooltip.add(Component.translatable(String.format("tooltip.%s.heavy_crossbow.desc_2", ModSpartanWeaponry.ID)).withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
-            tooltip.add(Component.translatable(String.format("tooltip.%s.heavy_crossbow.desc_3", ModSpartanWeaponry.ID)).withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
+            tooltip.add(
+                    Component.translatable(
+                                    String.format("tooltip.%s.description", ModSpartanWeaponry.ID),
+                                    Component.translatable(
+                                                    "tooltip."
+                                                            + ModSpartanWeaponry.ID
+                                                            + ".showing_details")
+                                            .withStyle(ChatFormatting.DARK_GRAY))
+                            .withStyle(ChatFormatting.GOLD));
+            tooltip.add(
+                    Component.translatable(
+                                    String.format(
+                                            "tooltip.%s.heavy_crossbow.desc",
+                                            ModSpartanWeaponry.ID))
+                            .withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
+            tooltip.add(
+                    Component.translatable(
+                                    String.format(
+                                            "tooltip.%s.heavy_crossbow.desc_2",
+                                            ModSpartanWeaponry.ID))
+                            .withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
+            tooltip.add(
+                    Component.translatable(
+                                    String.format(
+                                            "tooltip.%s.heavy_crossbow.desc_3",
+                                            ModSpartanWeaponry.ID))
+                            .withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
         } else
-            tooltip.add(Component.translatable(String.format("tooltip.%s.description", ModSpartanWeaponry.ID), Component.translatable("tooltip." + ModSpartanWeaponry.ID + ".show_details", ChatFormatting.AQUA + "SHIFT").withStyle(ChatFormatting.DARK_GRAY)).withStyle(ChatFormatting.GOLD));
+            tooltip.add(
+                    Component.translatable(
+                                    String.format("tooltip.%s.description", ModSpartanWeaponry.ID),
+                                    Component.translatable(
+                                                    "tooltip."
+                                                            + ModSpartanWeaponry.ID
+                                                            + ".show_details",
+                                                    ChatFormatting.AQUA + "SHIFT")
+                                            .withStyle(ChatFormatting.DARK_GRAY))
+                            .withStyle(ChatFormatting.GOLD));
 
         tooltip.add(Component.empty());
-        tooltip.add(Component.translatable(String.format("tooltip.%s.modifiers.ammo.type", ModSpartanWeaponry.ID), Component.translatable(String.format("tooltip.%s.modifiers.ammo.bolt", ModSpartanWeaponry.ID)).withStyle(ChatFormatting.GRAY)).withStyle(ChatFormatting.DARK_AQUA));
-        tooltip.add(Component.translatable(String.format("tooltip.%s.modifiers.heavy_crossbow.load_time", ModSpartanWeaponry.ID), Component.translatable(String.format("tooltip.%s.modifiers.heavy_crossbow.load_time.value", ModSpartanWeaponry.ID), (float) this.getFullLoadTicks(stack, levelIn) / 20.0f).withStyle(ChatFormatting.GRAY)).withStyle(ChatFormatting.DARK_AQUA));
-        tooltip.add(Component.translatable(String.format("tooltip.%s.modifiers.heavy_crossbow.aim_time", ModSpartanWeaponry.ID), Component.translatable(String.format("tooltip.%s.modifiers.heavy_crossbow.aim_time.value", ModSpartanWeaponry.ID), (float) this.getAimTicks(stack, levelIn) / 20.0f).withStyle(ChatFormatting.GRAY)).withStyle(ChatFormatting.DARK_AQUA));
+        tooltip.add(
+                Component.translatable(
+                                String.format(
+                                        "tooltip.%s.modifiers.ammo.type", ModSpartanWeaponry.ID),
+                                Component.translatable(
+                                                String.format(
+                                                        "tooltip.%s.modifiers.ammo.bolt",
+                                                        ModSpartanWeaponry.ID))
+                                        .withStyle(ChatFormatting.GRAY))
+                        .withStyle(ChatFormatting.DARK_AQUA));
+        tooltip.add(
+                Component.translatable(
+                                String.format(
+                                        "tooltip.%s.modifiers.heavy_crossbow.load_time",
+                                        ModSpartanWeaponry.ID),
+                                Component.translatable(
+                                                String.format(
+                                                        "tooltip.%s.modifiers.heavy_crossbow.load_time.value",
+                                                        ModSpartanWeaponry.ID),
+                                                (float) this.getFullLoadTicks(stack, levelIn)
+                                                        / 20.0f)
+                                        .withStyle(ChatFormatting.GRAY))
+                        .withStyle(ChatFormatting.DARK_AQUA));
+        tooltip.add(
+                Component.translatable(
+                                String.format(
+                                        "tooltip.%s.modifiers.heavy_crossbow.aim_time",
+                                        ModSpartanWeaponry.ID),
+                                Component.translatable(
+                                                String.format(
+                                                        "tooltip.%s.modifiers.heavy_crossbow.aim_time.value",
+                                                        ModSpartanWeaponry.ID),
+                                                (float) this.getAimTicks(stack, levelIn) / 20.0f)
+                                        .withStyle(ChatFormatting.GRAY))
+                        .withStyle(ChatFormatting.DARK_AQUA));
         tooltip.add(Component.empty());
     }
 
     @Override
-    public @NotNull Component getHighlightTip(@NotNull ItemStack item, @NotNull Component displayName) {
+    public @NotNull Component getHighlightTip(
+            @NotNull ItemStack item, @NotNull Component displayName) {
         if (ItemStackDataHelper.hasTag(item)) {
-            RegistryAccess registryAccess = RegistryAccess.fromRegistryOfRegistries(BuiltInRegistries.REGISTRY);
-            ItemStack bolt = ItemStack.parseOptional(registryAccess, ItemStackDataHelper.getTag(item).getCompound(NBT_PROJECTILE));
+            RegistryAccess registryAccess =
+                    RegistryAccess.fromRegistryOfRegistries(BuiltInRegistries.REGISTRY);
+            ItemStack bolt =
+                    ItemStack.parseOptional(
+                            registryAccess,
+                            ItemStackDataHelper.getTag(item).getCompound(NBT_PROJECTILE));
             if (!bolt.isEmpty()) {
-                return Component.translatable("tooltip." + ModSpartanWeaponry.ID + ".highlight_heavy_crossbow", displayName, bolt.getHoverName(), bolt.getCount());
+                return Component.translatable(
+                        "tooltip." + ModSpartanWeaponry.ID + ".highlight_heavy_crossbow",
+                        displayName,
+                        bolt.getHoverName(),
+                        bolt.getCount());
             }
         }
 
@@ -405,7 +645,13 @@ public class HeavyCrossbowItem extends CrossbowItem implements IReloadable, IHud
     @Override
     public float getLoadProgress(ItemStack stack, LivingEntity living) {
         Level level = living != null ? living.level() : null;
-        return !this.isLoaded(stack) ? Mth.clamp((float) this.getLoadingTicks(stack, living) / (float) this.getFullLoadTicks(stack, level), 0.0f, 1.0f) : 0.0f;
+        return !this.isLoaded(stack)
+                ? Mth.clamp(
+                        (float) this.getLoadingTicks(stack, living)
+                                / (float) this.getFullLoadTicks(stack, level),
+                        0.0f,
+                        1.0f)
+                : 0.0f;
     }
 
     // ---- ---- ---- ---- ---- ---- ---- ----
@@ -413,22 +659,25 @@ public class HeavyCrossbowItem extends CrossbowItem implements IReloadable, IHud
     // ---- ---- ---- ---- ---- ---- ---- ----
 
     public int getFullLoadTicks(ItemStack stack) {
-        // Return base load ticks when no registry access is available (e.g., in creative inventory rendering)
+        // Return base load ticks when no registry access is available (e.g., in creative inventory
+        // rendering)
         return this.loadTicks;
     }
 
     public int getFullLoadTicks(ItemStack stack, RegistryAccess registryAccess) {
-        if (registryAccess == null)
-            return this.loadTicks;
+        if (registryAccess == null) return this.loadTicks;
         var enchantmentRegistry = registryAccess.lookup(Registries.ENCHANTMENT);
-        if (enchantmentRegistry.isEmpty())
-            return this.loadTicks;
-        int i = EnchantmentHelper.getItemEnchantmentLevel(enchantmentRegistry.get().getOrThrow(Enchantments.QUICK_CHARGE), stack);
+        if (enchantmentRegistry.isEmpty()) return this.loadTicks;
+        int i =
+                EnchantmentHelper.getItemEnchantmentLevel(
+                        enchantmentRegistry.get().getOrThrow(Enchantments.QUICK_CHARGE), stack);
         return Mth.clamp(this.loadTicks - 5 * i, 0, this.loadTicks);
     }
 
     public int getFullLoadTicks(ItemStack stack, Level level) {
-        return level != null ? this.getFullLoadTicks(stack, level.registryAccess()) : this.loadTicks;
+        return level != null
+                ? this.getFullLoadTicks(stack, level.registryAccess())
+                : this.loadTicks;
     }
 
     public int getLoadingTicks(ItemStack stack, LivingEntity living) {
@@ -436,8 +685,7 @@ public class HeavyCrossbowItem extends CrossbowItem implements IReloadable, IHud
     }
 
     public int getAimTicks(ItemStack stack, RegistryAccess access) {
-        if (access == null)
-            return this.aimTicks;
+        if (access == null) return this.aimTicks;
         int i = ModEnchantments.getLevel(access, ModEnchantments.SHARPSHOOTER, stack);
         return Mth.clamp(this.aimTicks - 2 * i, 0, this.aimTicks);
     }
@@ -452,12 +700,12 @@ public class HeavyCrossbowItem extends CrossbowItem implements IReloadable, IHud
     }
 
     // TODO: Decide on whether or not to allow Bow enchantments on the Heavy Crossbow
-/*	@Override
-	public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) 
-	{
-		//return super.canApplyAtEnchantingTable(stack, enchantment);
-		return enchantment == Enchantments.POWER || enchantment == Enchantments.PUNCH || enchantment == Enchantments.FLAME || 
-				enchantment == Enchantments.INFINITY || super.canApplyAtEnchantingTable(stack, enchantment);
-	}
-*/
+    /*    @Override
+        public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment)
+        {
+            //return super.canApplyAtEnchantingTable(stack, enchantment);
+            return enchantment == Enchantments.POWER || enchantment == Enchantments.PUNCH || enchantment == Enchantments.FLAME ||
+                    enchantment == Enchantments.INFINITY || super.canApplyAtEnchantingTable(stack, enchantment);
+        }
+    */
 }

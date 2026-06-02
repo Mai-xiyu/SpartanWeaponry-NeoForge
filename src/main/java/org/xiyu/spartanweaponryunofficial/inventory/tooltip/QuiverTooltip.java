@@ -9,7 +9,8 @@ public class QuiverTooltip implements TooltipComponent {
     private final int prioritySlot;
     private final boolean isBoltQuiver;
 
-    public QuiverTooltip(NonNullList<ItemStack> itemsIn, int prioritySlotIn, boolean isBoltQuiverIn) {
+    public QuiverTooltip(
+            NonNullList<ItemStack> itemsIn, int prioritySlotIn, boolean isBoltQuiverIn) {
         this.items = itemsIn;
         this.prioritySlot = prioritySlotIn;
         this.isBoltQuiver = isBoltQuiverIn;

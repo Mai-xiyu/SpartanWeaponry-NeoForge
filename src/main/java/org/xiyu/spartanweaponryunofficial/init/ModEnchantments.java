@@ -23,22 +23,25 @@ public class ModEnchantments {
     public static final ResourceKey<Enchantment> COLLECTORANG = createKey("collectorang");
 
     private static ResourceKey<Enchantment> createKey(String path) {
-        return ResourceKey.create(Registries.ENCHANTMENT, ResourceLocation.tryBuild(ModSpartanWeaponry.ID, path));
+        return ResourceKey.create(
+                Registries.ENCHANTMENT, ResourceLocation.tryBuild(ModSpartanWeaponry.ID, path));
     }
 
-    public static java.util.Optional<Holder.Reference<Enchantment>> getHolder(RegistryAccess access, ResourceKey<Enchantment> key) {
-        if (access == null)
-            return java.util.Optional.empty();
+    public static java.util.Optional<Holder.Reference<Enchantment>> getHolder(
+            RegistryAccess access, ResourceKey<Enchantment> key) {
+        if (access == null) return java.util.Optional.empty();
         var registry = access.lookup(Registries.ENCHANTMENT);
         return registry.flatMap(enchantmentRegistryLookup -> enchantmentRegistryLookup.get(key));
     }
 
-    public static int getLevel(RegistryAccess access, ResourceKey<Enchantment> key, ItemStack stack) {
+    public static int getLevel(
+            RegistryAccess access, ResourceKey<Enchantment> key, ItemStack stack) {
         var holder = getHolder(access, key);
         return holder.map(h -> EnchantmentHelper.getItemEnchantmentLevel(h, stack)).orElse(0);
     }
 
-    public static int getLevel(RegistryAccess access, ResourceKey<Enchantment> key, LivingEntity living) {
+    public static int getLevel(
+            RegistryAccess access, ResourceKey<Enchantment> key, LivingEntity living) {
         var holder = getHolder(access, key);
         return holder.map(h -> EnchantmentHelper.getEnchantmentLevel(h, living)).orElse(0);
     }

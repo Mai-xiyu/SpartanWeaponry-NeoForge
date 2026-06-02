@@ -1,5 +1,6 @@
 package org.xiyu.spartanweaponryunofficial.data;
 
+import java.util.concurrent.CompletableFuture;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.Blocks;
@@ -10,10 +11,11 @@ import org.jetbrains.annotations.Nullable;
 import org.xiyu.spartanweaponryunofficial.ModSpartanWeaponry;
 import org.xiyu.spartanweaponryunofficial.api.tags.ModBlockTags;
 
-import java.util.concurrent.CompletableFuture;
-
 public class ModBlockTagsProvider extends BlockTagsProvider {
-    public ModBlockTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registry, @Nullable ExistingFileHelper existingFileHelper) {
+    public ModBlockTagsProvider(
+            PackOutput output,
+            CompletableFuture<HolderLookup.Provider> registry,
+            @Nullable ExistingFileHelper existingFileHelper) {
         super(output, registry, ModSpartanWeaponry.ID, existingFileHelper);
     }
 

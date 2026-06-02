@@ -66,11 +66,13 @@ public class ModSpartanWeaponry {
         ModLootModifiers.REGISTRY.register(modBus);
         ModLootModifiers.LOOT_CONDITION_REGISTRY.register(modBus);
         ModCriteriaTriggers.REGISTRY.register(modBus);
-        WeaponTraits.REGISTRY.makeRegistry(registryBuilder -> {
-        });
+        WeaponTraits.REGISTRY.makeRegistry(registryBuilder -> {});
         WeaponTraits.REGISTRY.register(modBus);
         ModMobEffects.REGISTRY.register(modBus);
-        OilEffects.REGISTRY.makeRegistry(registryBuilder -> registryBuilder.defaultKey(ResourceLocation.fromNamespaceAndPath(ID, "none")));
+        OilEffects.REGISTRY.makeRegistry(
+                registryBuilder ->
+                        registryBuilder.defaultKey(
+                                ResourceLocation.fromNamespaceAndPath(ID, "none")));
         OilEffects.REGISTRY.register(modBus);
     }
 
@@ -109,11 +111,11 @@ public class ModSpartanWeaponry {
 
     private void onClientSetup(FMLClientSetupEvent ev) {
         Log.info("Setting up Client for " + NAME + "!");
-        ev.enqueueWork(() ->
-        {
-            ClientHelper.registerCurioRenders();
-            ClientHelper.registerSkullTextures();
-            // registerScreens is now handled by @SubscribeEvent on RegisterMenuScreensEvent
-        });
+        ev.enqueueWork(
+                () -> {
+                    ClientHelper.registerCurioRenders();
+                    ClientHelper.registerSkullTextures();
+                    // registerScreens is now handled by @SubscribeEvent on RegisterMenuScreensEvent
+                });
     }
 }

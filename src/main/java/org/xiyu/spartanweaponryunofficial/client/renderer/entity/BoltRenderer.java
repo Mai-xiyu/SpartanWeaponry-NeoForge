@@ -23,11 +23,20 @@ public class BoltRenderer<T extends BoltEntity> extends ArrowRenderer<T> {
     }
 
     @Override
-    public void render(T entityIn, float entityYaw, float partialTicks, PoseStack matrixStackIn,
-                       @NotNull MultiBufferSource bufferIn, int packedLightIn) {
+    public void render(
+            T entityIn,
+            float entityYaw,
+            float partialTicks,
+            PoseStack matrixStackIn,
+            @NotNull MultiBufferSource bufferIn,
+            int packedLightIn) {
         matrixStackIn.pushPose();
-        matrixStackIn.mulPose(Axis.YP.rotationDegrees(Mth.lerp(partialTicks, entityIn.yRotO, entityIn.getYRot()) - 90.0F));
-        matrixStackIn.mulPose(Axis.ZP.rotationDegrees(Mth.lerp(partialTicks, entityIn.xRotO, entityIn.getXRot())));
+        matrixStackIn.mulPose(
+                Axis.YP.rotationDegrees(
+                        Mth.lerp(partialTicks, entityIn.yRotO, entityIn.getYRot()) - 90.0F));
+        matrixStackIn.mulPose(
+                Axis.ZP.rotationDegrees(
+                        Mth.lerp(partialTicks, entityIn.xRotO, entityIn.getXRot())));
 
         // Move the Bolt forward when rendering.
         matrixStackIn.translate(0.2f, 0.0f, 0.0f);
@@ -41,7 +50,8 @@ public class BoltRenderer<T extends BoltEntity> extends ArrowRenderer<T> {
         matrixStackIn.mulPose(Axis.XP.rotationDegrees(45.0F));
         matrixStackIn.scale(0.05625F, 0.05625F, 0.05625F);
         matrixStackIn.translate(-4.0D, 0.0D, 0.0D);
-        VertexConsumer consumer = bufferIn.getBuffer(RenderType.entityCutout(this.getTextureLocation(entityIn)));
+        VertexConsumer consumer =
+                bufferIn.getBuffer(RenderType.entityCutout(this.getTextureLocation(entityIn)));
         PoseStack.Pose pose = matrixStackIn.last();
         this.vertex(pose, consumer, -7, -2, -2, 0.0F, 0.15625F, -1, 0, 0, packedLightIn);
         this.vertex(pose, consumer, -7, -2, 2, 0.15625F, 0.15625F, -1, 0, 0, packedLightIn);

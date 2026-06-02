@@ -1,5 +1,9 @@
 package org.xiyu.spartanweaponryunofficial.api.trait;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+import java.util.concurrent.atomic.AtomicBoolean;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
@@ -19,11 +23,6 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.Vec3;
-
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class HarvesterWeaponTrait extends WeaponTrait implements IActionTraitCallback {
 
@@ -45,24 +44,31 @@ public class HarvesterWeaponTrait extends WeaponTrait implements IActionTraitCal
 
         if (!level.isClientSide) {
             AtomicBoolean applyCooldown = new AtomicBoolean(false);
-            BlockPos.betweenClosed(clickedPos.getX() - 1, clickedPos.getY(), clickedPos.getZ() - 1, clickedPos.getX() + 1, clickedPos.getY(), clickedPos.getZ() + 1).
-                    forEach((pos) -> {
-                        if (this.harvestCrops(level, player, contextIn.getItemInHand(), pos))
-                            applyCooldown.set(true);
-                    });
+            BlockPos.betweenClosed(
+                            clickedPos.getX() - 1,
+                            clickedPos.getY(),
+                            clickedPos.getZ() - 1,
+                            clickedPos.getX() + 1,
+                            clickedPos.getY(),
+                            clickedPos.getZ() + 1)
+                    .forEach(
+                            (pos) -> {
+                                if (this.harvestCrops(
+                                        level, player, contextIn.getItemInHand(), pos))
+                                    applyCooldown.set(true);
+                            });
             if (applyCooldown.get()) {
                 player.swing(contextIn.getHand(), true);
                 player.getCooldowns().addCooldown(contextIn.getItemInHand().getItem(), 10);
                 return InteractionResult.CONSUME;
             }
-
         }
         return InteractionResult.PASS;
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(ItemStack usingStackIn, Level levelIn, Player playerIn,
-                                                  InteractionHand handIn) {
+    public InteractionResultHolder<ItemStack> use(
+            ItemStack usingStackIn, Level levelIn, Player playerIn, InteractionHand handIn) {
         return InteractionResultHolder.pass(usingStackIn);
     }
 
@@ -72,15 +78,23 @@ public class HarvesterWeaponTrait extends WeaponTrait implements IActionTraitCal
         Block block = state.getBlock();
         if ((block instanceof CropBlock || state.is(Blocks.NETHER_WART))) {
             // Now reset the crop age to the first age
-            IntegerProperty ageProp = (IntegerProperty) state.getProperties().stream().filter((prop) -> prop.getName().equals("age")).findFirst().orElseThrow();
+            IntegerProperty ageProp =
+                    (IntegerProperty)
+                            state.getProperties().stream()
+                                    .filter((prop) -> prop.getName().equals("age"))
+                                    .findFirst()
+                                    .orElseThrow();
             int maxAge = Collections.max(ageProp.getPossibleValues());
 
             if (state.getValue(ageProp) >= maxAge) {
-                List<ItemStack> drops = state.getDrops(new LootParams.Builder((ServerLevel) levelIn).
-                        withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(posIn)).
-                        withParameter(LootContextParams.BLOCK_STATE, state).
-                        withParameter(LootContextParams.THIS_ENTITY, playerIn).
-                        withParameter(LootContextParams.TOOL, toolIn));
+                List<ItemStack> drops =
+                        state.getDrops(
+                                new LootParams.Builder((ServerLevel) levelIn)
+                                        .withParameter(
+                                                LootContextParams.ORIGIN, Vec3.atCenterOf(posIn))
+                                        .withParameter(LootContextParams.BLOCK_STATE, state)
+                                        .withParameter(LootContextParams.THIS_ENTITY, playerIn)
+                                        .withParameter(LootContextParams.TOOL, toolIn));
 
                 // Remove 1 seed from this drop list
                 ItemStack targetSeed = block.getCloneItemStack(levelIn, posIn, state);
@@ -96,11 +110,16 @@ public class HarvesterWeaponTrait extends WeaponTrait implements IActionTraitCal
 
                 levelIn.setBlockAndUpdate(posIn, state.setValue(ageProp, 0));
                 SoundType blockSound = block.getSoundType(state, levelIn, posIn, null);
-                levelIn.playSound(null, posIn, blockSound.getBreakSound(), SoundSource.BLOCKS, blockSound.getVolume(), blockSound.getPitch());
+                levelIn.playSound(
+                        null,
+                        posIn,
+                        blockSound.getBreakSound(),
+                        SoundSource.BLOCKS,
+                        blockSound.getVolume(),
+                        blockSound.getPitch());
                 return true;
             }
         }
         return false;
     }
-
 }

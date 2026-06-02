@@ -1,8 +1,7 @@
 package org.xiyu.spartanweaponryunofficial.command;
 
-import org.xiyu.spartanweaponryunofficial.api.oil.OilEffect;
-
 import java.util.function.Predicate;
+import org.xiyu.spartanweaponryunofficial.api.oil.OilEffect;
 
 public class OilInput implements Predicate<OilEffect> {
     private final OilEffect oilEffect;

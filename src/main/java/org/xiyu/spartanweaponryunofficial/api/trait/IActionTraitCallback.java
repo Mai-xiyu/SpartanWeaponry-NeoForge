@@ -14,15 +14,19 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 
 /**
- * Callback class for Action Weapon Traits; Implement this in your weapon trait class to implement custom action behavior for your weapon<br>
+ * Callback class for Action Weapon Traits; Implement this in your weapon trait class to implement
+ * custom action behavior for your weapon<br>
  *
  * @author ObliviousSpartan
- * @apiNote Only 1 Action Weapon Trait can be part of any weapon at a time and they cannot be added as a material bonus Trait
+ * @apiNote Only 1 Action Weapon Trait can be part of any weapon at a time and they cannot be added
+ *     as a material bonus Trait
  */
 public interface IActionTraitCallback {
     /**
-     * Called when the player uses the item on a block. Called before {@link IActionTraitCallback#use(ItemStack, Level, Player, InteractionHand)}<br>
-     * If the result is not {@link InteractionResult#PASS}, then the standard use action will not be used
+     * Called when the player uses the item on a block. Called before {@link
+     * IActionTraitCallback#use(ItemStack, Level, Player, InteractionHand)}<br>
+     * If the result is not {@link InteractionResult#PASS}, then the standard use action will not be
+     * used
      *
      * @param contextIn The context containing info on the player, stack, block position etc
      */
@@ -31,42 +35,49 @@ public interface IActionTraitCallback {
     }
 
     /**
-     * Defines the interaction of the item when using it without block context. This will determine whether or not using the item will be passed down to the block below it, or not<br>
+     * Defines the interaction of the item when using it without block context. This will determine
+     * whether or not using the item will be passed down to the block below it, or not<br>
      * Hooks into the {@link Item#use(Level, Player, InteractionHand)} method
      *
      * @param usingStackIn The item stack currently in use
-     * @param levelIn      The level the player is currently in
-     * @param playerIn     The player entity
-     * @param handIn       The hand in use
+     * @param levelIn The level the player is currently in
+     * @param playerIn The player entity
+     * @param handIn The hand in use
      * @return The interaction result
      */
-    InteractionResultHolder<ItemStack> use(ItemStack usingStackIn, Level levelIn, Player playerIn, InteractionHand handIn);
+    InteractionResultHolder<ItemStack> use(
+            ItemStack usingStackIn, Level levelIn, Player playerIn, InteractionHand handIn);
 
     /**
-     * Called when the player releases (lets go of) the use key when using a weapon with this trait<br>
+     * Called when the player releases (lets go of) the use key when using a weapon with this trait
+     * <br>
      * Hooks into the {@link Item#releaseUsing(ItemStack, Level, LivingEntity, int)} method
      *
-     * @param stackIn        The item stack currently in use
-     * @param levelIn        The level the using entity is currently in
+     * @param stackIn The item stack currently in use
+     * @param levelIn The level the using entity is currently in
      * @param entityLivingIn The entity that is using the item
-     * @param timeLeftIn     The remaining use duration left
+     * @param timeLeftIn The remaining use duration left
      */
-    default void releaseUsing(ItemStack stackIn, Level levelIn, LivingEntity entityLivingIn, int timeLeftIn, float attackDamage) {
-    }
+    default void releaseUsing(
+            ItemStack stackIn,
+            Level levelIn,
+            LivingEntity entityLivingIn,
+            int timeLeftIn,
+            float attackDamage) {}
 
     /**
      * Called when the player holds down the use key when using a weapon with this trait<br>
      * Hooks into the {@link Item#onUseTick(Level, LivingEntity, ItemStack, int)} method
      *
-     * @param stackIn      The item stack currently in use
+     * @param stackIn The item stack currently in use
      * @param userEntityIn The entity that is using the item
      */
-    default void onUsingTick(ItemStack stackIn, LivingEntity userEntityIn, int countIn, float attackDamage) {
-    }
-
+    default void onUsingTick(
+            ItemStack stackIn, LivingEntity userEntityIn, int countIn, float attackDamage) {}
 
     /**
-     * Defines the maximum duration that a weapon using this trait can be used for. Change this if you wish the release logic automatically triggered after a certain period<br>
+     * Defines the maximum duration that a weapon using this trait can be used for. Change this if
+     * you wish the release logic automatically triggered after a certain period<br>
      * Hooks into the {@link Item#getUseDuration(ItemStack, LivingEntity)} method
      *
      * @param stackIn The item stack the duration applies to
@@ -89,15 +100,17 @@ public interface IActionTraitCallback {
 
     /**
      * This will determine if sneaking by the using entity will bypass the use action<br>
-     * Hooks into the {@link Item#doesSneakBypassUse(ItemStack, LevelReader, BlockPos, Player)} method
+     * Hooks into the {@link Item#doesSneakBypassUse(ItemStack, LevelReader, BlockPos, Player)}
+     * method
      *
-     * @param stackIn  The item stack this method applies to
-     * @param levelIn  The level the using entity is currently in
-     * @param posIn    The position of the block being pointed at by the using entity
+     * @param stackIn The item stack this method applies to
+     * @param levelIn The level the using entity is currently in
+     * @param posIn The position of the block being pointed at by the using entity
      * @param playerIn The player using the item
      * @return True if the use action won't be activated when sneaking, false otherwise
      */
-    default boolean doesSneakBypassUse(ItemStack stackIn, LevelReader levelIn, BlockPos posIn, Player playerIn) {
+    default boolean doesSneakBypassUse(
+            ItemStack stackIn, LevelReader levelIn, BlockPos posIn, Player playerIn) {
         return false;
     }
 }

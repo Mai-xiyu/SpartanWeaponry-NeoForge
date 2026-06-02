@@ -20,9 +20,20 @@ import org.xiyu.spartanweaponryunofficial.api.WeaponTraits;
 import org.xiyu.spartanweaponryunofficial.util.ItemStackDataHelper;
 
 public class DecapitateLootModifier extends LootModifier {
-    public static final MapCodec<DecapitateLootModifier> DECAPITATE_CODEC = RecordCodecBuilder.mapCodec(instance -> codecStart(instance).and(
-            instance.group(BuiltInRegistries.ITEM.byNameCodec().fieldOf("skull").forGetter(modifier -> modifier.skull)).t1()
-    ).apply(instance, DecapitateLootModifier::new));
+    public static final MapCodec<DecapitateLootModifier> DECAPITATE_CODEC =
+            RecordCodecBuilder.mapCodec(
+                    instance ->
+                            codecStart(instance)
+                                    .and(
+                                            instance.group(
+                                                            BuiltInRegistries.ITEM
+                                                                    .byNameCodec()
+                                                                    .fieldOf("skull")
+                                                                    .forGetter(
+                                                                            modifier ->
+                                                                                    modifier.skull))
+                                                    .t1())
+                                    .apply(instance, DecapitateLootModifier::new));
 
     private final Item skull;
 
@@ -32,23 +43,30 @@ public class DecapitateLootModifier extends LootModifier {
     }
 
     @Override
-    protected @NotNull ObjectArrayList<ItemStack> doApply(@NotNull ObjectArrayList<ItemStack> generatedLoot, LootContext context) {
+    protected @NotNull ObjectArrayList<ItemStack> doApply(
+            @NotNull ObjectArrayList<ItemStack> generatedLoot, LootContext context) {
         Entity killer = context.getParamOrNull(LootContextParams.ATTACKING_ENTITY);
-        if (killer == null)
-            return generatedLoot;
+        if (killer == null) return generatedLoot;
         if (killer instanceof LivingEntity living) {
             ItemStack weapon = living.getMainHandItem();
-//			ItemStack weapon = context.get(LootContextParams.TOOL);
+            //            ItemStack weapon = context.get(LootContextParams.TOOL);
 
-            // TODO: See if there is a way that this weapon (above) can be retrieved in a dual-wielding friendly way.
-            if (context.getRandom().nextDouble() < WeaponTraits.DECAPITATE.get().getMagnitude() / 100.0f && weapon.getItem() instanceof IWeaponTraitContainer<?> container) {
+            // TODO: See if there is a way that this weapon (above) can be retrieved in a
+            // dual-wielding friendly way.
+            if (context.getRandom().nextDouble()
+                            < WeaponTraits.DECAPITATE.get().getMagnitude() / 100.0f
+                    && weapon.getItem() instanceof IWeaponTraitContainer<?> container) {
 
                 if (container.hasWeaponTraitWithType(WeaponTraits.TYPE_DECAPITATE)) {
                     ItemStack skullStack = new ItemStack(this.skull);
                     Entity thisEntity = context.getParam(LootContextParams.THIS_ENTITY);
                     if (thisEntity instanceof Player player) {
                         // Add the player NBT data to the skull ItemStack
-                        ItemStackDataHelper.updateTag(skullStack, tag -> tag.putString("SkullOwner", player.getGameProfile().getName()));
+                        ItemStackDataHelper.updateTag(
+                                skullStack,
+                                tag ->
+                                        tag.putString(
+                                                "SkullOwner", player.getGameProfile().getName()));
                     }
                     generatedLoot.add(skullStack);
                 }
@@ -57,26 +75,26 @@ public class DecapitateLootModifier extends LootModifier {
         return generatedLoot;
     }
 
-/*	public static class Serializer extends GlobalLootModifierSerializer<DecapitateLootModifier>
-	{
-		
-		@Override
-		public DecapitateLootModifier read(ResourceLocation location, JsonObject object,
-				LootItemCondition[] lootConditions) 
-		{
-			Item skullItem = ForgeRegistries.ITEMS.getValue(ResourceLocation.tryBuild(GsonHelper.getAsString(object, "skull")));
-			return new DecapitateLootModifier(lootConditions, skullItem);
-		}
+    /*    public static class Serializer extends GlobalLootModifierSerializer<DecapitateLootModifier>
+    {
 
-		@Override
-		public JsonObject write(DecapitateLootModifier instance)
-		{
-			JsonObject result = this.makeConditions(instance.conditions);
-			result.addProperty("skull", ForgeRegistries.ITEMS.getKey(instance.skull).toString());
-			return result;
-		}
-		
-	}*/
+        @Override
+        public DecapitateLootModifier read(ResourceLocation location, JsonObject object,
+                LootItemCondition[] lootConditions)
+        {
+            Item skullItem = ForgeRegistries.ITEMS.getValue(ResourceLocation.tryBuild(GsonHelper.getAsString(object, "skull")));
+            return new DecapitateLootModifier(lootConditions, skullItem);
+        }
+
+        @Override
+        public JsonObject write(DecapitateLootModifier instance)
+        {
+            JsonObject result = this.makeConditions(instance.conditions);
+            result.addProperty("skull", ForgeRegistries.ITEMS.getKey(instance.skull).toString());
+            return result;
+        }
+
+    }*/
 
     @Override
     public @NotNull MapCodec<? extends IGlobalLootModifier> codec() {

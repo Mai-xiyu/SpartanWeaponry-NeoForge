@@ -21,7 +21,8 @@ public class QuiverUpgradeRecipe extends SmithingTransformRecipe {
     private final Ingredient addition;
     private final ItemStack result;
 
-    public QuiverUpgradeRecipe(Ingredient templateIn, Ingredient baseIn, Ingredient additionIn, ItemStack resultIn) {
+    public QuiverUpgradeRecipe(
+            Ingredient templateIn, Ingredient baseIn, Ingredient additionIn, ItemStack resultIn) {
         super(templateIn, baseIn, additionIn, resultIn);
         this.template = templateIn;
         this.base = baseIn;
@@ -30,15 +31,21 @@ public class QuiverUpgradeRecipe extends SmithingTransformRecipe {
     }
 
     @Override
-    public @NotNull ItemStack assemble(@NotNull SmithingRecipeInput inv, HolderLookup.@NotNull Provider registryAccessIn) {
+    public @NotNull ItemStack assemble(
+            @NotNull SmithingRecipeInput inv, HolderLookup.@NotNull Provider registryAccessIn) {
         ItemStack origOutputStack = this.getResultItem(registryAccessIn);
         ItemStack outputStack = super.assemble(inv, registryAccessIn);
         // Resize the output tag
         // NOTE: More consistent, but inefficient
-        IQuiverItemHandler itemHandler = outputStack.getCapability(ModCapabilities.QUIVER_ITEM_CAPABILITY);
+        IQuiverItemHandler itemHandler =
+                outputStack.getCapability(ModCapabilities.QUIVER_ITEM_CAPABILITY);
         if (itemHandler != null)
-            itemHandler.resize(ItemStackDataHelper.getTag(origOutputStack).getCompound(QuiverBaseItem.NBT_AMMO).getInt("Size"));
-//		outputStack.getOrCreateTagElement(QuiverBaseItem.NBT_AMMO).putInt("Size", origOutputStack.getOrCreateTagElement(QuiverBaseItem.NBT_AMMO).getInt("Size"));
+            itemHandler.resize(
+                    ItemStackDataHelper.getTag(origOutputStack)
+                            .getCompound(QuiverBaseItem.NBT_AMMO)
+                            .getInt("Size"));
+        //        outputStack.getOrCreateTagElement(QuiverBaseItem.NBT_AMMO).putInt("Size",
+        // origOutputStack.getOrCreateTagElement(QuiverBaseItem.NBT_AMMO).getInt("Size"));
 
         return outputStack;
     }
@@ -70,16 +77,31 @@ public class QuiverUpgradeRecipe extends SmithingTransformRecipe {
     }
 
     public static class Serializer implements RecipeSerializer<QuiverUpgradeRecipe> {
-        public Serializer() {
-        }
+        public Serializer() {}
 
-        private static final MapCodec<QuiverUpgradeRecipe> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
-                Ingredient.CODEC.fieldOf("template").forGetter(QuiverUpgradeRecipe::getTemplate),
-                Ingredient.CODEC.fieldOf("base").forGetter(QuiverUpgradeRecipe::getBase),
-                Ingredient.CODEC.fieldOf("addition").forGetter(QuiverUpgradeRecipe::getAddition),
-                ItemStack.CODEC.fieldOf("result").forGetter(QuiverUpgradeRecipe::getResultStack)
-        ).apply(instance, QuiverUpgradeRecipe::new));
-        private static final StreamCodec<RegistryFriendlyByteBuf, QuiverUpgradeRecipe> STREAM_CODEC = ByteBufCodecs.fromCodecWithRegistries(CODEC.codec());
+        private static final MapCodec<QuiverUpgradeRecipe> CODEC =
+                RecordCodecBuilder.mapCodec(
+                        instance ->
+                                instance.group(
+                                                Ingredient.CODEC
+                                                        .fieldOf("template")
+                                                        .forGetter(
+                                                                QuiverUpgradeRecipe::getTemplate),
+                                                Ingredient.CODEC
+                                                        .fieldOf("base")
+                                                        .forGetter(QuiverUpgradeRecipe::getBase),
+                                                Ingredient.CODEC
+                                                        .fieldOf("addition")
+                                                        .forGetter(
+                                                                QuiverUpgradeRecipe::getAddition),
+                                                ItemStack.CODEC
+                                                        .fieldOf("result")
+                                                        .forGetter(
+                                                                QuiverUpgradeRecipe
+                                                                        ::getResultStack))
+                                        .apply(instance, QuiverUpgradeRecipe::new));
+        private static final StreamCodec<RegistryFriendlyByteBuf, QuiverUpgradeRecipe>
+                STREAM_CODEC = ByteBufCodecs.fromCodecWithRegistries(CODEC.codec());
 
         @Override
         public @NotNull MapCodec<QuiverUpgradeRecipe> codec() {

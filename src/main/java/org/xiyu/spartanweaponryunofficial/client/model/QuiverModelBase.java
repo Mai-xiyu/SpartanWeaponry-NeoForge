@@ -13,15 +13,21 @@ public abstract class QuiverModelBase extends Model {
 
     public QuiverModelBase(ModelPart rootModel) {
         super(RenderType::entityCutoutNoCull);
-//		super(RenderType::getEntitySolid);
+        //        super(RenderType::getEntitySolid);
         this.root = rootModel;
     }
 
-//    public abstract void rotate(HumanoidModel<LivingEntity> model);
+    //    public abstract void rotate(HumanoidModel<LivingEntity> model);
 
     public void setArrowsToRender(int arrowsToRender) {
         this.arrowsToRender = arrowsToRender;
     }
 
-    protected abstract void renderArrows(int arrows, PoseStack mStack, VertexConsumer buffer, int packedLight, int packedOverlay, int color);
+    protected abstract void renderArrows(
+            int arrows,
+            PoseStack mStack,
+            VertexConsumer buffer,
+            int packedLight,
+            int packedOverlay,
+            int color);
 }

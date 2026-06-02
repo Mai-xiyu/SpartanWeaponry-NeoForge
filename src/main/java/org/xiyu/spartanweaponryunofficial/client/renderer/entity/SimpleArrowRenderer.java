@@ -9,7 +9,8 @@ import org.xiyu.spartanweaponryunofficial.entity.projectile.ArrowEntitySW;
 public class SimpleArrowRenderer<T extends ArrowEntitySW> extends ArrowRenderer<T> {
     public final ResourceLocation texture;
 
-    public SimpleArrowRenderer(EntityRendererProvider.Context rendererProvider, ResourceLocation textureLocation) {
+    public SimpleArrowRenderer(
+            EntityRendererProvider.Context rendererProvider, ResourceLocation textureLocation) {
         super(rendererProvider);
         this.texture = textureLocation;
     }
@@ -18,5 +19,4 @@ public class SimpleArrowRenderer<T extends ArrowEntitySW> extends ArrowRenderer<
     public @NotNull ResourceLocation getTextureLocation(@NotNull T entity) {
         return this.texture;
     }
-
 }

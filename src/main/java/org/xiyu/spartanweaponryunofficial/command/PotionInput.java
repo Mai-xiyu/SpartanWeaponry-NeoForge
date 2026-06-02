@@ -1,8 +1,7 @@
 package org.xiyu.spartanweaponryunofficial.command;
 
-import net.minecraft.world.item.alchemy.Potion;
-
 import java.util.function.Predicate;
+import net.minecraft.world.item.alchemy.Potion;
 
 public class PotionInput implements Predicate<Potion> {
     private final Potion potion;

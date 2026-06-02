@@ -12,8 +12,7 @@ public class ConfigLootCondition implements LootItemCondition {
     public static final ConfigLootCondition INSTANCE = new ConfigLootCondition();
     public static final MapCodec<ConfigLootCondition> CODEC = MapCodec.unit(INSTANCE);
 
-    protected ConfigLootCondition() {
-    }
+    protected ConfigLootCondition() {}
 
     @Override
     public boolean test(LootContext t) {
@@ -29,5 +28,4 @@ public class ConfigLootCondition implements LootItemCondition {
     public static LootItemCondition.Builder builder() {
         return () -> INSTANCE;
     }
-
 }

@@ -16,18 +16,18 @@ import org.xiyu.spartanweaponryunofficial.util.OilHelper;
 public class WeaponOilSubtypeInterpreter implements IIngredientSubtypeInterpreter<ItemStack> {
     public static final WeaponOilSubtypeInterpreter INSTANCE = new WeaponOilSubtypeInterpreter();
 
-    private WeaponOilSubtypeInterpreter() {
-    }
+    private WeaponOilSubtypeInterpreter() {}
 
     @Override
     public @NotNull String apply(@NotNull ItemStack itemStack, @NotNull UidContext context) {
-        if (!ItemStackDataHelper.hasTag(itemStack))
-            return null;
+        if (!ItemStackDataHelper.hasTag(itemStack)) return null;
 
         OilEffect weaponOil = OilHelper.getOilFromStack(itemStack);
         Potion potion = OilHelper.getPotionFromStack(itemStack);
 
-        Registry<OilEffect> registry = (Registry<OilEffect>) BuiltInRegistries.REGISTRY.get(OilEffects.REGISTRY_KEY.location());
+        Registry<OilEffect> registry =
+                (Registry<OilEffect>)
+                        BuiltInRegistries.REGISTRY.get(OilEffects.REGISTRY_KEY.location());
         String result = registry.getKey(weaponOil).getPath();
         if (weaponOil == OilEffects.POTION.get()) {
             StringBuilder stringBuilder = new StringBuilder(result);
@@ -41,5 +41,4 @@ public class WeaponOilSubtypeInterpreter implements IIngredientSubtypeInterprete
         }
         return result;
     }
-
 }

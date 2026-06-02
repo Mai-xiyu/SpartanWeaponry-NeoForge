@@ -39,28 +39,25 @@ public class TippedProjectileBaseRecipe extends CustomRecipe {
                 for (int j = 0; j < container.height(); j++) {
                     ItemStack stack = container.getItem(j * container.width() + i);
 
-                    if (stack.isEmpty())
-                        return false;
+                    if (stack.isEmpty()) return false;
 
                     Item item = stack.getItem();
 
                     if (i == 1 && j == 1) {
-                        if (item != Items.LINGERING_POTION)
-                            return false;
-                    } else if (item != this.projectileIn)
-                        return false;
+                        if (item != Items.LINGERING_POTION) return false;
+                    } else if (item != this.projectileIn) return false;
                 }
             }
             return true;
-        } else
-            return false;
+        } else return false;
     }
 
     @Override
     public @NotNull ItemStack assemble(CraftingInput inv, HolderLookup.@NotNull Provider registry) {
         ItemStack potionStack = inv.getItem(1 + inv.width());
         if (potionStack.getItem() == Items.LINGERING_POTION) {
-            PotionContents contents = potionStack.getOrDefault(DataComponents.POTION_CONTENTS, PotionContents.EMPTY);
+            PotionContents contents =
+                    potionStack.getOrDefault(DataComponents.POTION_CONTENTS, PotionContents.EMPTY);
             Potion potion = contents.potion().map(Holder::value).orElse(null);
             if (potion != null && !potion.getEffects().isEmpty()) {
                 ItemStack arrowResult = new ItemStack(this.projectileOut, 8);
@@ -87,14 +84,23 @@ public class TippedProjectileBaseRecipe extends CustomRecipe {
     }
 
     public static class Serializer implements RecipeSerializer<TippedProjectileBaseRecipe> {
-        public Serializer() {
-        }
+        public Serializer() {}
 
-        private static final MapCodec<TippedProjectileBaseRecipe> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
-                BuiltInRegistries.ITEM.byNameCodec().fieldOf("projectile").forGetter(recipe -> recipe.projectileIn),
-                BuiltInRegistries.ITEM.byNameCodec().fieldOf("result").forGetter(recipe -> recipe.projectileOut)
-        ).apply(instance, TippedProjectileBaseRecipe::new));
-        private static final StreamCodec<RegistryFriendlyByteBuf, TippedProjectileBaseRecipe> STREAM_CODEC = ByteBufCodecs.fromCodecWithRegistries(CODEC.codec());
+        private static final MapCodec<TippedProjectileBaseRecipe> CODEC =
+                RecordCodecBuilder.mapCodec(
+                        instance ->
+                                instance.group(
+                                                BuiltInRegistries.ITEM
+                                                        .byNameCodec()
+                                                        .fieldOf("projectile")
+                                                        .forGetter(recipe -> recipe.projectileIn),
+                                                BuiltInRegistries.ITEM
+                                                        .byNameCodec()
+                                                        .fieldOf("result")
+                                                        .forGetter(recipe -> recipe.projectileOut))
+                                        .apply(instance, TippedProjectileBaseRecipe::new));
+        private static final StreamCodec<RegistryFriendlyByteBuf, TippedProjectileBaseRecipe>
+                STREAM_CODEC = ByteBufCodecs.fromCodecWithRegistries(CODEC.codec());
 
         @Override
         public @NotNull MapCodec<TippedProjectileBaseRecipe> codec() {
@@ -102,7 +108,8 @@ public class TippedProjectileBaseRecipe extends CustomRecipe {
         }
 
         @Override
-        public @NotNull StreamCodec<RegistryFriendlyByteBuf, TippedProjectileBaseRecipe> streamCodec() {
+        public @NotNull StreamCodec<RegistryFriendlyByteBuf, TippedProjectileBaseRecipe>
+                streamCodec() {
             return STREAM_CODEC;
         }
     }
