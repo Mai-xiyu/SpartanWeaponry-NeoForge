@@ -4,18 +4,27 @@ on:
   push:
     tags:
       - '*-*'
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: 'Existing release tag to publish, for example 1.21.1-1.2.0'
+        required: true
+        type: string
 
 jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    env:
+      RELEASE_TAG: ${{ github.event.inputs.tag_name || github.ref_name }}
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          ref: ${{ github.event.inputs.tag_name || github.ref }}
 
       - name: Set up JDK 21
         uses: actions/setup-java@v4
@@ -59,7 +68,7 @@ jobs:
         run: |
           set -euo pipefail
 
-          current_tag="${GITHUB_REF_NAME}"
+          current_tag="${RELEASE_TAG}"
           current_commit="$(git rev-list -n 1 "${current_tag}")"
           previous_tag="$(git tag --points-at "${current_commit}" --sort=-creatordate | grep -v -F -x "${current_tag}" | head -n 1 || true)"
 
@@ -98,12 +107,13 @@ jobs:
           curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
 
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-tag: ${{ env.RELEASE_TAG }}
           github-draft: false
           github-prerelease: false
 
           files: build/libs/!(*-sources|*-plain).jar
-          name: ${{ github.ref_name }}
-          version: ${{ github.ref_name }}
+          name: ${{ env.RELEASE_TAG }}
+          version: ${{ env.RELEASE_TAG }}
           version-type: release
           changelog-file: RELEASE_CHANGELOG.md
           
