@@ -21,13 +21,18 @@ Use the same jar version that your addon is tested against. The Java package for
 
 ## API version
 
-The current API version is `14`.
+The current API version is `15`.
 
 Call `SpartanWeaponryAPI.assertAPIVersion` from your mod constructor or early setup code:
 
 ```java
-SpartanWeaponryAPI.assertAPIVersion("your_mod_id", 14);
+SpartanWeaponryAPI.assertAPIVersion("your_mod_id", 15);
 ```
+
+API 15 adds `WeaponTraits.registry()` / `OilEffects.registry()` accessors,
+`WeaponMaterial.colorRGB(int, int, int)`, `WeaponMaterial` incorrect-blocks-for-drops control, and
+`WeaponTrait.getModId()` / `getQuality()`. Request `14` if you only need classification metadata
+and the `createWeapon` descriptor entry point.
 
 Request the lowest API version that contains the features your addon needs. Older addons can continue
 to request older versions.
