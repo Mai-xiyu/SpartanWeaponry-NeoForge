@@ -87,10 +87,14 @@ public class OilHandler implements IOilHandler {
             LivingEntity targetIn,
             LivingEntity userIn,
             ItemStack userWeaponIn) {
-        if (this.effect.isEmpty() || this.potion.isEmpty()) return 0; // TODO::Should be 0?
+        // No applicable oil state: leave the damage untouched. Returning 0 here would zero out
+        // all damage dealt by weapons coated with standard (non-potion) oils.
+        if (this.effect.isEmpty()) return baseDamageIn;
         OilEffect oilEffect = this.effect.get();
+        boolean isPotionOil = oilEffect == OilEffects.POTION.get();
+        if (isPotionOil && this.potion.isEmpty()) return baseDamageIn;
         ItemStack oilStack =
-                oilEffect == OilEffects.POTION.get()
+                isPotionOil
                         ? OilHelper.makePotionOilStack(this.potion.get())
                         : OilHelper.makeOilStack(oilEffect);
         float resultDamage = oilEffect.onUse(baseDamageIn, levelIn, targetIn, userIn, oilStack);
@@ -162,10 +166,8 @@ public class OilHandler implements IOilHandler {
         this.usesLeft = nbt.getInt(NBT_USES_LEFT);
     }
 
-    @SuppressWarnings("unchecked")
     private static Registry<OilEffect> getOilRegistry() {
-        return (Registry<OilEffect>)
-                BuiltInRegistries.REGISTRY.get(OilEffects.REGISTRY_KEY.location());
+        return OilEffects.registry();
     }
 
     private static HolderLookup.Provider getRegistryAccess() {

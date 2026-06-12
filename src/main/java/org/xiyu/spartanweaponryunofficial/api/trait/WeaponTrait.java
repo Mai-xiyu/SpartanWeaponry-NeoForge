@@ -112,6 +112,16 @@ public class WeaponTrait {
         return this.type;
     }
 
+    /** Returns the mod id that owns this trait's translation keys. */
+    public String getModId() {
+        return this.modId;
+    }
+
+    /** Returns the tooltip quality colour category of this trait. */
+    public TraitQuality getQuality() {
+        return this.quality;
+    }
+
     /** Gets the level for this Weapon Trait */
     public int getLevel() {
         return this.level;
@@ -333,7 +343,7 @@ public class WeaponTrait {
 
         if (isShiftPressed) {
             if (this.types == null) this.initTooltipTypes();
-            else tooltip.add(this.types);
+            tooltip.add(this.types);
             if (I18n.exists(String.format("tooltip.%s.trait.%s.desc", this.modId, this.type))) {
                 if (invalidReason == InvalidReason.NONE) this.addTooltipDescription(stack, tooltip);
                 else

@@ -34,12 +34,12 @@ public class BoomerangEntity extends ThrowingWeaponEntity {
     private static final EntityDataAccessor<Float> DATA_MAX_DISTANCE =
             SynchedEntityData.defineId(BoomerangEntity.class, EntityDataSerializers.FLOAT);
 
-    protected final String NBT_RETURN_POSITION = "ReturnPosition";
-    protected final String NBT_X = "X";
-    protected final String NBT_Y = "Y";
-    protected final String NBT_Z = "Z";
-    protected final String NBT_RETURNING = "Returning";
-    protected final String NBT_DISTANCE_TO_RETURN = "DistanceToReturn";
+    protected static final String NBT_RETURN_POSITION = "ReturnPosition";
+    protected static final String NBT_X = "X";
+    protected static final String NBT_Y = "Y";
+    protected static final String NBT_Z = "Z";
+    protected static final String NBT_RETURNING = "Returning";
+    protected static final String NBT_DISTANCE_TO_RETURN = "DistanceToReturn";
 
     public static final double DISTANCE_TO_RETURN = 5.0d;
     protected final double MAX_VELOCITY = 2.0d;
@@ -360,28 +360,6 @@ public class BoomerangEntity extends ThrowingWeaponEntity {
         // Only the shooter can catch the Boomerang
         return shooter.is(entityHit);
     }
-
-    // TODO: Spawn break particles when throwing weapon is broken
-    /*    @Override
-    public void handleEntityEvent(byte id)
-    {
-        // Spawn Breaking particles when appropriate
-        if(id == 4)
-        {
-            float maxMotion = 0.5f;
-
-            for(int i = 0; i < 16; i++)
-            {
-                BlockParticleData particle = new BlockParticleData(ParticleTypes.BLOCK, );
-                float motionX = (rand.nextFloat() - 0.5f) * maxMotion;
-                float motionY = rand.nextFloat() * 0.5f * maxMotion;
-                float motionZ = (rand.nextFloat() - 0.5f) * maxMotion;
-                //world.addParticle(particle, posX, posY, posZ, 0.0f, 0.0f, 0.0f);
-                world.addParticle(particle, posX, posY, posZ, motionX, motionY, motionZ);
-            }
-        }
-        super.handleEntityEvent(id);
-    }*/
 
     @Override
     protected @NotNull SoundEvent getDefaultHitGroundSoundEvent() {

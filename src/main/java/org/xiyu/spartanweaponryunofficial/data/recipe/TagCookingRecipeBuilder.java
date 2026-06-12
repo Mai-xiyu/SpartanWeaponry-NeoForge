@@ -136,22 +136,16 @@ public class TagCookingRecipeBuilder implements RecipeBuilder {
                         this.cookingTime);
         ResourceLocation advancementId =
                 idIn.withPrefix("recipes/" + this.recipeCategory.getFolderName() + "/");
+        // RecipeOutput.advancement() already parents the builder to the root recipe advancement
         var advancement = output.advancement();
         this.criteria.forEach(advancement::addCriterion);
         advancement
-                .parent(ROOT_RECIPE_ADVANCEMENT)
                 .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(idIn))
                 .rewards(AdvancementRewards.Builder.recipe(idIn))
                 .requirements(AdvancementRequirements.Strategy.OR);
         AdvancementHolder advancementHolder = advancement.build(advancementId);
         output.accept(idIn, recipe, advancementHolder);
     }
-
-    /*    private void validate(ResourceLocation idIn)
-    {
-        if(advancementBuilder.getCriteria().isEmpty())
-            throw new IllegalStateException("Cannot obtain recipe " + idIn);
-    }*/
 
     @FunctionalInterface
     public interface RecipeFactory<T extends ITagCookingRecipe> {

@@ -6,7 +6,6 @@ import java.util.UUID;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.protocol.game.ClientboundGameEventPacket;
@@ -27,7 +26,6 @@ import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
@@ -107,7 +105,6 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
     @Override
     public void tick() {
         Level level = this.level();
-        RegistryAccess registryAccess = level.registryAccess();
         if (this.waterInertia == 0.0f)
             this.waterInertia =
                     ModEnchantments.getLevel(
@@ -182,6 +179,7 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
         else if (this.ticksInAir != 0) this.ticksInAir = 0;
     }
 
+    @Override
     protected void tickDespawn() {
         ++this.despawnTicks;
         if (this.despawnTicks >= 1200) {
@@ -297,11 +295,7 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
             if (entity instanceof LivingEntity entitylivingbase) {
 
                 int knockback =
-                        EnchantmentHelper.getItemEnchantmentLevel(
-                                registryAccess
-                                        .registryOrThrow(Registries.ENCHANTMENT)
-                                        .getHolderOrThrow(Enchantments.KNOCKBACK),
-                                weapon);
+                        ModEnchantments.getLevel(registryAccess, Enchantments.KNOCKBACK, weapon);
                 if (knockback > 0) {
                     Vec3 knockVec =
                             this.getDeltaMovement()
@@ -492,12 +486,8 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
                 });
         this.getEntityData().set(DATA_WEAPON, stack);
         int loyalty =
-                EnchantmentHelper.getItemEnchantmentLevel(
-                        this.level()
-                                .registryAccess()
-                                .registryOrThrow(Registries.ENCHANTMENT)
-                                .getHolderOrThrow(Enchantments.LOYALTY),
-                        stack);
+                ModEnchantments.getLevel(
+                        this.level().registryAccess(), Enchantments.LOYALTY, stack);
         this.getEntityData().set(DATA_RETURN, (byte) loyalty);
     }
 
@@ -532,33 +522,7 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
                     ItemStack invStack = player.getInventory().getItem(i);
                     if (!canMergeWithThrownWeapon(invStack, pickUpStack)) continue;
 
-                    int maxAmmo =
-                            ((ThrowingWeaponItem) invStack.getItem())
-                                    .getMaxAmmo(invStack, player.level());
-                    int currentAmmo =
-                            maxAmmo
-                                    - ItemStackDataHelper.getTag(invStack)
-                                            .getInt(ThrowingWeaponItem.NBT_AMMO_USED);
-                    int itemDamage = invStack.getDamageValue() + pickUpStack.getDamageValue();
-
-                    if (currentAmmo < maxAmmo) {
-                        if (itemDamage > invStack.getMaxDamage()) {
-                            itemDamage -= invStack.getMaxDamage() + 1;
-                        } else {
-                            ItemStackDataHelper.updateTag(
-                                    invStack,
-                                    tag ->
-                                            tag.putInt(
-                                                    ThrowingWeaponItem.NBT_AMMO_USED,
-                                                    Math.max(
-                                                            0,
-                                                            tag.getInt(
-                                                                            ThrowingWeaponItem
-                                                                                    .NBT_AMMO_USED)
-                                                                    - 1)));
-                        }
-                        invStack.setDamageValue(Mth.clamp(itemDamage, 0, invStack.getMaxDamage()));
-                    }
+                    mergeCaughtWeaponInto(invStack, pickUpStack, player.level());
                     canBePickedUp = true;
                     break;
                 }
@@ -590,35 +554,40 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
             CompoundTag originalTag = ItemStackDataHelper.getTag(originalStack);
             if (!originalTag.getBoolean(ThrowingWeaponItem.NBT_ORIGINAL)) continue;
 
-            int maxAmmo =
-                    ((ThrowingWeaponItem) originalStack.getItem()).getMaxAmmo(originalStack, level);
-            int currentAmmo =
-                    maxAmmo
-                            - ItemStackDataHelper.getTag(originalStack)
-                                    .getInt(ThrowingWeaponItem.NBT_AMMO_USED);
-            int itemDamage = originalStack.getDamageValue() + pickupStack.getDamageValue();
-
-            if (currentAmmo < maxAmmo) {
-                if (itemDamage > originalStack.getMaxDamage()) {
-                    itemDamage -= originalStack.getMaxDamage() + 1;
-                } else {
-                    ItemStackDataHelper.updateTag(
-                            originalStack,
-                            tag ->
-                                    tag.putInt(
-                                            ThrowingWeaponItem.NBT_AMMO_USED,
-                                            Math.max(
-                                                    0,
-                                                    tag.getInt(ThrowingWeaponItem.NBT_AMMO_USED)
-                                                            - 1)));
-                }
-                originalStack.setDamageValue(
-                        Mth.clamp(itemDamage, 0, originalStack.getMaxDamage()));
-            }
+            mergeCaughtWeaponInto(originalStack, pickupStack, level);
             itemEntity.setItem(originalStack);
             return true;
         }
         return false;
+    }
+
+    /**
+     * Restores one ammo charge on the target stack when a thrown copy is caught, combining
+     * durability. Durability overflow consumes the restored charge instead.
+     */
+    private static void mergeCaughtWeaponInto(
+            ItemStack targetStack, ItemStack pickupStack, Level level) {
+        int maxAmmo = ((ThrowingWeaponItem) targetStack.getItem()).getMaxAmmo(targetStack, level);
+        int currentAmmo =
+                maxAmmo
+                        - ItemStackDataHelper.getTag(targetStack)
+                                .getInt(ThrowingWeaponItem.NBT_AMMO_USED);
+        if (currentAmmo >= maxAmmo) return;
+
+        int itemDamage = targetStack.getDamageValue() + pickupStack.getDamageValue();
+        if (itemDamage > targetStack.getMaxDamage()) {
+            itemDamage -= targetStack.getMaxDamage() + 1;
+        } else {
+            ItemStackDataHelper.updateTag(
+                    targetStack,
+                    tag ->
+                            tag.putInt(
+                                    ThrowingWeaponItem.NBT_AMMO_USED,
+                                    Math.max(
+                                            0,
+                                            tag.getInt(ThrowingWeaponItem.NBT_AMMO_USED) - 1)));
+        }
+        targetStack.setDamageValue(Mth.clamp(itemDamage, 0, targetStack.getMaxDamage()));
     }
 
     private static boolean canMergeWithThrownWeapon(

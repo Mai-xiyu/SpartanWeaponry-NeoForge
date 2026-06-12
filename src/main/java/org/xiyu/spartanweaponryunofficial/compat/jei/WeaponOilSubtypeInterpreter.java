@@ -1,44 +1,53 @@
 package org.xiyu.spartanweaponryunofficial.compat.jei;
 
-import mezz.jei.api.ingredients.subtypes.IIngredientSubtypeInterpreter;
+import mezz.jei.api.ingredients.subtypes.ISubtypeInterpreter;
 import mezz.jei.api.ingredients.subtypes.UidContext;
-import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.alchemy.Potion;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.xiyu.spartanweaponryunofficial.api.OilEffects;
 import org.xiyu.spartanweaponryunofficial.api.oil.OilEffect;
 import org.xiyu.spartanweaponryunofficial.util.ItemStackDataHelper;
 import org.xiyu.spartanweaponryunofficial.util.OilHelper;
 
-public class WeaponOilSubtypeInterpreter implements IIngredientSubtypeInterpreter<ItemStack> {
+public class WeaponOilSubtypeInterpreter implements ISubtypeInterpreter<ItemStack> {
     public static final WeaponOilSubtypeInterpreter INSTANCE = new WeaponOilSubtypeInterpreter();
 
     private WeaponOilSubtypeInterpreter() {}
 
     @Override
-    public @NotNull String apply(@NotNull ItemStack itemStack, @NotNull UidContext context) {
-        if (!ItemStackDataHelper.hasTag(itemStack)) return null;
+    public @Nullable Object getSubtypeData(@NotNull ItemStack itemStack, @NotNull UidContext context) {
+        String subtype = buildSubtypeString(itemStack);
+        return subtype.isEmpty() ? null : subtype;
+    }
+
+    @Override
+    public @NotNull String getLegacyStringSubtypeInfo(
+            @NotNull ItemStack itemStack, @NotNull UidContext context) {
+        return buildSubtypeString(itemStack);
+    }
+
+    private static String buildSubtypeString(ItemStack itemStack) {
+        if (!ItemStackDataHelper.hasTag(itemStack)) return "";
 
         OilEffect weaponOil = OilHelper.getOilFromStack(itemStack);
-        Potion potion = OilHelper.getPotionFromStack(itemStack);
+        ResourceLocation oilId = OilEffects.registry().getKey(weaponOil);
+        if (oilId == null) return "";
 
-        Registry<OilEffect> registry =
-                (Registry<OilEffect>)
-                        BuiltInRegistries.REGISTRY.get(OilEffects.REGISTRY_KEY.location());
-        String result = registry.getKey(weaponOil).getPath();
+        StringBuilder result = new StringBuilder(oilId.getPath());
         if (weaponOil == OilEffects.POTION.get()) {
-            StringBuilder stringBuilder = new StringBuilder(result);
+            Potion potion = OilHelper.getPotionFromStack(itemStack);
             if (potion != null) {
-                stringBuilder.append(":").append(BuiltInRegistries.POTION.getKey(potion).getPath());
+                result.append(":").append(BuiltInRegistries.POTION.getKey(potion).getPath());
                 for (MobEffectInstance mobEffect : potion.getEffects()) {
-                    stringBuilder.append(";").append(mobEffect);
+                    result.append(";").append(mobEffect);
                 }
             }
-            result = stringBuilder.toString();
         }
-        return result;
+        return result.toString();
     }
 }

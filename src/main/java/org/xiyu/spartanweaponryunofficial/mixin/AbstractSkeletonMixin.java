@@ -73,27 +73,6 @@ public class AbstractSkeletonMixin extends MobMixin {
                     "populateDefaultEquipmentSlots(Lnet/minecraft/util/RandomSource;Lnet/minecraft/world/DifficultyInstance;)V")
     protected void populateDefaultEquipmentSlots(
             RandomSource randomIn, DifficultyInstance difficultyIn, CallbackInfo callback) {
-        /*if(!Config.INSTANCE.disableSpawningSkeletonWithLongbow.get())
-        {
-            Level level = level();
-            float rand = random.nextFloat();
-            float chance = difficultyIn.isHard() ?
-                    Config.INSTANCE.skeletonWithLongbowSpawnChanceHard.get().floatValue() :
-                    Config.INSTANCE.skeletonWithLongbowSpawnChanceNormal.get().floatValue();
-
-            if(rand > 1 - chance)
-            {
-                ITag<Item> tag = ForgeRegistries.ITEMS.tags().getTag(ModItemTags.SKELETON_SPAWN_LONGBOWS);
-                if(!tag.isEmpty())
-                {
-                    ItemStack weapon = ItemStack.EMPTY;
-                    List<Item> possibleWeapons = tag.stream().toList();
-                    weapon = ItemRandomizer.generate(level, possibleWeapons);
-                    setItemSlot(EquipmentSlot.MAINHAND, weapon);
-                }
-            }
-        }*/
-
         this.spartanWeaponry$attemptReplacingMainHandItemRandom(
                 ModItemTags.SKELETON_SPAWN_LONGBOWS,
                 difficultyIn,

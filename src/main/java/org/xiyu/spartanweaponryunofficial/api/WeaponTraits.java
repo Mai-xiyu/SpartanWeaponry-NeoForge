@@ -10,12 +10,28 @@ import org.xiyu.spartanweaponryunofficial.ModSpartanWeaponry;
 import org.xiyu.spartanweaponryunofficial.api.trait.*;
 import org.xiyu.spartanweaponryunofficial.api.trait.WeaponTrait.TraitQuality;
 
+/**
+ * Built-in weapon traits and the {@code spartan_weaponry_unofficial:weapon_traits} registry.
+ *
+ * <p>Addons can register their own {@link WeaponTrait} instances by creating a {@link
+ * DeferredRegister} against {@link #REGISTRY_KEY} and registering it on their mod event bus.
+ * Traits are attached to weapons and materials through datapack tags under {@code
+ * tags/spartan_weaponry_unofficial/weapon_traits/}.
+ */
 public class WeaponTraits {
     public static final ResourceKey<Registry<WeaponTrait>> REGISTRY_KEY =
             ResourceKey.createRegistryKey(
                     ResourceLocation.fromNamespaceAndPath(ModSpartanWeaponry.ID, "weapon_traits"));
     public static final DeferredRegister<WeaponTrait> REGISTRY =
             DeferredRegister.create(REGISTRY_KEY, ModSpartanWeaponry.ID);
+
+    /**
+     * Returns the weapon trait registry. Only valid after registry creation during mod
+     * construction; calling earlier throws {@link NullPointerException}.
+     */
+    public static Registry<WeaponTrait> registry() {
+        return REGISTRY.getRegistry().get();
+    }
 
     // Weapon Trait Types
     public static final String TYPE_THROWABLE = "throwable",
@@ -246,9 +262,6 @@ public class WeaponTraits {
                                     SpartanWeaponryAPI.MOD_ID,
                                     BlockTags.MINEABLE_WITH_SHOVEL,
                                     "shovel"));
-    //    public static final RegistryObject<WeaponTrait> VERSATILE_HOE =
-    // REGISTRY.register("versatile_hoe", () -> new VersatileWeaponTrait(TYPE_VERSATILE,
-    // SpartanWeaponryAPI.MOD_ID, BlockTags.MINEABLE_WITH_HOE, "hoe").setMelee());
     public static final DeferredHolder<WeaponTrait, WeaponTrait> QUICK_STRIKE =
             REGISTRY.register(
                     "quick_strike",

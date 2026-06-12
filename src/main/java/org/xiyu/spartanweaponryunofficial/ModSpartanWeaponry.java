@@ -26,7 +26,7 @@ import org.xiyu.spartanweaponryunofficial.util.Log;
 public class ModSpartanWeaponry {
     // Mod information
     public static final String ID = "spartan_weaponry_unofficial";
-    public static final String NAME = "Spartan Weaponr unofficial";
+    public static final String NAME = "Spartan Weaponry Unofficial";
 
     public ModSpartanWeaponry(ModContainer modContainer, IEventBus modBus) {
         Log.info("Constructing Mod: " + NAME);

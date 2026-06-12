@@ -24,7 +24,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
-import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -405,11 +404,6 @@ public class ThrowingWeaponItem extends Item
                         > 0) {
                     thrown.igniteForSeconds(100.0F);
                 }
-                /*int k = EnchantmentHelper.getEnchantmentLevel(Enchantments.KNOCKBACK, stack);
-                if (k > 0)
-                {
-                    thrown.setKnockbackStrength(k);
-                }*/
 
                 if (player.getAbilities().instabuild)
                     thrown.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
@@ -477,13 +471,6 @@ public class ThrowingWeaponItem extends Item
     @Override
     public int getEnchantmentValue(@NotNull ItemStack stack) {
         return this.material.getEnchantmentValue();
-    }
-
-    // In Minecraft 1.21+, enchantment compatibility is primarily handled via item tags
-    // This method is kept for backwards compatibility but returns true by default
-    public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
-        // Allow all enchantments - let the tag system handle compatibility
-        return true;
     }
 
     @Override

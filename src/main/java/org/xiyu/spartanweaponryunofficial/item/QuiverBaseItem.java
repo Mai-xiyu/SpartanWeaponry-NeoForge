@@ -43,7 +43,7 @@ public abstract class QuiverBaseItem extends Item {
     public static final String NBT_OFFHAND_MOVED = "OffhandMoved";
     public static final String NBT_ITEM_ID = "Id";
     public static final String NBT_ITEM_SLOT = "Slot";
-    public static final String NBT_PROIRITY_SLOT = "PrioritySlot";
+    public static final String NBT_PRIORITY_SLOT = "PrioritySlot";
 
     protected int ammoSlots = Defaults.SlotsQuiverSmall;
 
@@ -160,7 +160,7 @@ public abstract class QuiverBaseItem extends Item {
                 ItemStackDataHelper.getTag(stackIn)
                         .getCompound(NBT_AMMO)
                         .getList("Items", Tag.TAG_COMPOUND);
-        int prioritySlot = ItemStackDataHelper.getTag(stackIn).getInt(NBT_PROIRITY_SLOT);
+        int prioritySlot = ItemStackDataHelper.getTag(stackIn).getInt(NBT_PRIORITY_SLOT);
 
         NonNullList<ItemStack> items = NonNullList.withSize(this.ammoSlots, ItemStack.EMPTY);
         for (int i = 0; i < list.size(); i++) {

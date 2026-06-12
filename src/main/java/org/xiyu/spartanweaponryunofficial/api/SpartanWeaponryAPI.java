@@ -580,6 +580,7 @@ public class SpartanWeaponryAPI {
      * This is already called during Spartan Weaponry's mod construction. Calling it a second time
      * will cause a crash.
      */
+    @org.jetbrains.annotations.ApiStatus.Internal
     public static void init(IInternalMethodHandler handler) {
         if (internalHandler != null) {
             throw new IllegalStateException(

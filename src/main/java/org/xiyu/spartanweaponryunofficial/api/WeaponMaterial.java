@@ -16,6 +16,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.LazyLoadedValue;
+import net.minecraft.util.Mth;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
@@ -244,6 +245,7 @@ public class WeaponMaterial implements Tier, IReloadable {
     private final int enchantability;
     private final LazyLoadedValue<Ingredient> repairMaterial;
     private final TagKey<Item> repairTag;
+    private TagKey<Block> incorrectBlocksForDrops = BlockTags.INCORRECT_FOR_WOODEN_TOOL;
 
     private final String name;
     private final String modId;
@@ -336,6 +338,7 @@ public class WeaponMaterial implements Tier, IReloadable {
                 itemTierIn.getEnchantmentValue(),
                 tagIn,
                 traitsTagIn);
+        this.incorrectBlocksForDrops = itemTierIn.getIncorrectBlocksForDrops();
     }
 
     @Override
@@ -458,14 +461,32 @@ public class WeaponMaterial implements Tier, IReloadable {
         this.baseDamage = baseDamage;
     }
 
+    /**
+     * @deprecated Harvest levels no longer exist in modern Minecraft; mining capability is driven
+     *     by {@link #getIncorrectBlocksForDrops()}. Always returns {@code 0}.
+     */
+    @Deprecated(since = "3.1.1", forRemoval = true)
     public int getLevel() {
-        //        return this.harvestLevel;
         return 0;
     }
 
     @Override
     public @NotNull TagKey<Block> getIncorrectBlocksForDrops() {
-        return BlockTags.INCORRECT_FOR_WOODEN_TOOL;
+        return this.incorrectBlocksForDrops;
+    }
+
+    /**
+     * Sets the block tag that this material cannot harvest drops from, mirroring {@link
+     * Tier#getIncorrectBlocksForDrops()}. Materials built from a vanilla {@link Tier} inherit the
+     * tier's tag automatically; materials built from raw numbers default to {@link
+     * BlockTags#INCORRECT_FOR_WOODEN_TOOL}.
+     *
+     * @return The updated material, for chaining
+     */
+    public WeaponMaterial setIncorrectBlocksForDrops(TagKey<Block> incorrectBlocksForDropsIn) {
+        this.incorrectBlocksForDrops =
+                Objects.requireNonNull(incorrectBlocksForDropsIn, "incorrectBlocksForDrops");
+        return this;
     }
 
     @Override
@@ -593,7 +614,8 @@ public class WeaponMaterial implements Tier, IReloadable {
     }
 
     /**
-     * Converts RGB color to the integer format expected for material colors
+     * Converts RGB color to the integer format expected for material colors. Each component is
+     * treated as an unsigned byte (0-255).
      *
      * @param r Red value
      * @param g Green value
@@ -601,7 +623,20 @@ public class WeaponMaterial implements Tier, IReloadable {
      * @return The combined integer color format
      */
     public static int colorRGB(byte r, byte g, byte b) {
-        return ((int) r << 16) + ((int) g << 8) + b;
+        return colorRGB(r & 0xFF, g & 0xFF, b & 0xFF);
+    }
+
+    /**
+     * Converts RGB color to the integer format expected for material colors. Each component is
+     * clamped to 0-255.
+     *
+     * @param r Red value (0-255)
+     * @param g Green value (0-255)
+     * @param b Blue value (0-255)
+     * @return The combined integer color format
+     */
+    public static int colorRGB(int r, int g, int b) {
+        return (Mth.clamp(r, 0, 255) << 16) | (Mth.clamp(g, 0, 255) << 8) | Mth.clamp(b, 0, 255);
     }
 
     public static final class Builder {
@@ -616,6 +651,7 @@ public class WeaponMaterial implements Tier, IReloadable {
         private Integer enchantability;
         private TagKey<Item> repairTag;
         private TagKey<WeaponTrait> traitsTag;
+        private TagKey<Block> incorrectBlocksForDrops;
 
         private Builder(String name, String modId) {
             this.name = Objects.requireNonNull(name, "name");
@@ -638,6 +674,7 @@ public class WeaponMaterial implements Tier, IReloadable {
             this.speed = tier.getSpeed();
             this.baseDamage = tier.getAttackDamageBonus();
             this.enchantability = tier.getEnchantmentValue();
+            this.incorrectBlocksForDrops = tier.getIncorrectBlocksForDrops();
             return this;
         }
 
@@ -679,18 +716,34 @@ public class WeaponMaterial implements Tier, IReloadable {
             return this;
         }
 
+        /**
+         * Overrides the block tag this material cannot harvest drops from. Defaults to the tag
+         * captured by {@link #tier(Tier)}, or {@link BlockTags#INCORRECT_FOR_WOODEN_TOOL} when only
+         * raw numbers were supplied.
+         */
+        public Builder incorrectBlocksForDrops(TagKey<Block> incorrectBlocksForDrops) {
+            this.incorrectBlocksForDrops =
+                    Objects.requireNonNull(incorrectBlocksForDrops, "incorrectBlocksForDrops");
+            return this;
+        }
+
         public WeaponMaterial build() {
-            return new WeaponMaterial(
-                    this.name,
-                    this.modId,
-                    this.colourPrimary,
-                    this.colourSecondary,
-                    require("durability", this.durability),
-                    require("speed", this.speed),
-                    require("baseDamage", this.baseDamage),
-                    require("enchantability", this.enchantability),
-                    require("repairTag", this.repairTag),
-                    require("traitsTag", this.traitsTag));
+            WeaponMaterial material =
+                    new WeaponMaterial(
+                            this.name,
+                            this.modId,
+                            this.colourPrimary,
+                            this.colourSecondary,
+                            require("durability", this.durability),
+                            require("speed", this.speed),
+                            require("baseDamage", this.baseDamage),
+                            require("enchantability", this.enchantability),
+                            require("repairTag", this.repairTag),
+                            require("traitsTag", this.traitsTag));
+            if (this.incorrectBlocksForDrops != null) {
+                material.setIncorrectBlocksForDrops(this.incorrectBlocksForDrops);
+            }
+            return material;
         }
 
         private static <T> T require(String fieldName, T value) {

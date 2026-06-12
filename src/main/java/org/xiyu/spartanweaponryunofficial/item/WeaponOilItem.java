@@ -137,10 +137,8 @@ public class WeaponOilItem extends BasicItem {
         return super.use(levelIn, playerIn, handIn);
     }
 
-    @SuppressWarnings("unchecked")
     private static Registry<OilEffect> getOilRegistry() {
-        return (Registry<OilEffect>)
-                BuiltInRegistries.REGISTRY.get(OilEffects.REGISTRY_KEY.location());
+        return OilEffects.registry();
     }
 
     @Override

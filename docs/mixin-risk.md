@@ -3,11 +3,15 @@
 This document records why the current mixins exist and which areas should not be refactored
 casually. It is intended for maintainers, not addon authors.
 
+History note: before 1.2.1 the mixin config declared a wrong package and was not referenced from
+`neoforge.mods.toml`, so no mixin had ever been applied at runtime. Since 1.2.1 all mixins listed
+here load and apply; behavior depending on them is live for the first time.
+
 ## High-risk mixins
 
 | Mixin | Purpose | Risk | Replacement direction |
 | --- | --- | --- | --- |
-| `PlayerMixin` | Replaces player attack damage source handling and adjusts sweep logic for weapon traits. | High: attack internals are common conflict points for combat mods. | Only replace if NeoForge exposes equivalent player attack and sweep hooks. |
+| `PlayerMixin` | Replaces player attack damage source for armor-piercing weapon traits. Sweep bonuses moved to the vanilla `SWEEPING_DAMAGE_RATIO` attribute (no sweep hook since 1.21). | High: attack internals are common conflict points for combat mods. | Only replace if NeoForge exposes an equivalent player attack hook. |
 | `LivingEntityMixin` | Applies Spartan armor-piercing damage absorption behavior. | High: armor calculation is shared by many combat and RPG mods. | Only replace with an equivalent armor calculation event or damage pipeline hook. |
 | `AbstractSkeletonMixin` | Adds longbow compatibility to skeleton ranged AI and spawn equipment. | High: changes AI weapon checks and default equipment flow. | Prefer a stable NeoForge ranged-weapon compatibility hook if one becomes available. |
 | `AbstractArrowMixin` | Redirects eligible arrow pickup into quiver storage before vanilla pickup completes. | High: pickup behavior can overlap with inventory, quiver, and projectile mods. | Replace only if a projectile pickup event exposes the same owner, pickup, and inventory state. |

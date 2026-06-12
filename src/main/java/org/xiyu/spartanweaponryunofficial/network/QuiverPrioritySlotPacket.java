@@ -41,12 +41,17 @@ public record QuiverPrioritySlotPacket(int prioritySlot) implements CustomPacket
                 () -> {
                     AbstractContainerMenu menu = context.player().containerMenu;
                     if (menu instanceof QuiverBaseMenu quiverMenu) {
+                        // Never trust the client: reject slot indices outside the quiver's
+                        // ammo slot range to avoid corrupting NBT or crashing on getSlot().
+                        if (packet.prioritySlot < 0
+                                || packet.prioritySlot >= quiverMenu.getQuiverSlotCount()) return;
+
                         ItemStack quiver = quiverMenu.getQuiverStack();
                         ItemStackDataHelper.updateTag(
                                 quiver,
                                 tag ->
                                         tag.putInt(
-                                                QuiverBaseItem.NBT_PROIRITY_SLOT,
+                                                QuiverBaseItem.NBT_PRIORITY_SLOT,
                                                 packet.prioritySlot));
 
                         // Do nothing if the priority slot is empty
@@ -66,6 +71,11 @@ public record QuiverPrioritySlotPacket(int prioritySlot) implements CustomPacket
                                 if (ammoHand != null) {
                                     ItemStack priorityStack = slot.getItem();
                                     ItemStack ammoStack = player.getItemInHand(ammoHand);
+
+                                    // Only swap if the held stack is allowed in the quiver slot,
+                                    // otherwise arbitrary items could bypass the slot filter.
+                                    if (!ammoStack.isEmpty() && !slot.mayPlace(ammoStack))
+                                        continue;
 
                                     // Swap out priority stack with ammo stack
                                     player.setItemInHand(ammoHand, priorityStack);

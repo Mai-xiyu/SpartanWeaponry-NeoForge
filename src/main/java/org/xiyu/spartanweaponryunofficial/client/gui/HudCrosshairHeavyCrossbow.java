@@ -44,7 +44,9 @@ public class HudCrosshairHeavyCrossbow {
                                         / crossbowItem.getAimTicks(equippedStack, player.level()),
                                 0.0f,
                                 1.0f);
-                offset *= (int) (1.0f - percentage);
+                // Scale before truncating; casting (1 - percentage) to int first would always
+                // collapse the crosshair to size 0 while aiming.
+                offset = (int) (offset * (1.0f - percentage));
             }
 
             Matrix4fStack modelViewStack = RenderSystem.getModelViewStack();

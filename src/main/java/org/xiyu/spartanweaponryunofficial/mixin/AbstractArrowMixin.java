@@ -3,7 +3,6 @@ package org.xiyu.spartanweaponryunofficial.mixin;
 import java.util.List;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.AbstractArrow.Pickup;
@@ -35,14 +34,7 @@ public abstract class AbstractArrowMixin extends ProjectileMixin {
     private void playerTouch(Player entityIn, CallbackInfo callback) {
         Level level = this.level();
         if (!level.isClientSide && (this.inGround || this.isNoPhysics()) && this.shakeTime <= 0) {
-            //            Log.debug("Player collision with arrow entity intercepted!");
-            //            boolean pickupItem = pickup == Pickup.ALLOWED || pickup ==
-            // Pickup.CREATIVE_ONLY &&
-            // entityIn.abilities.isCreativeMode || getNoClip() && getShooter().getUniqueID() ==
-            // entityIn.getUniqueID();
-
             if (this.pickup == Pickup.ALLOWED) {
-                // Log.debug("Arrow can be picked up! Finding a home for it!");
                 // Attempt to pickup and put into the quiver first; if that fails, then do nothing
                 List<ItemStack> quivers = QuiverHelper.findValidQuivers(entityIn);
                 ItemStack arrowStack = this.getPickupItem();
@@ -57,18 +49,15 @@ public abstract class AbstractArrowMixin extends ProjectileMixin {
                                 && mainHand.getCount() < mainHand.getMaxStackSize()) return;
 
                 if (!quivers.isEmpty()) {
-                    // Log.debug("Detected quiver to check!");
                     // Loop through all valid quivers to place the item into...
                     for (ItemStack quiver : quivers) {
                         if (!arrowStack.isEmpty()
                                 && !quiver.isEmpty()
                                 && ((QuiverBaseItem) quiver.getItem())
                                         .isAmmoValid(arrowStack, quiver)) {
-                            // Log.debug("Found a quiver to place the arrow into!");
                             // Make sure auto-collect is enabled.
                             if (ItemStackDataHelper.getTag(quiver)
                                     .getBoolean(QuiverBaseItem.NBT_AMMO_COLLECT)) {
-                                // Log.debug("Inserting arrows into a quiver!");
                                 // Attempt to place the arrows into the quiver.
                                 IQuiverItemHandler quiverHandler =
                                         quiver.getCapability(
@@ -80,12 +69,7 @@ public abstract class AbstractArrowMixin extends ProjectileMixin {
                             }
                         }
                         if (arrowStack.isEmpty()) {
-                            //                            Log.debug("Picked up arrow on the ground
-                            // and placed it in the
-                            // quiver!");
-                            Entity thisEntity = level.getEntity(this.getId());
-                            assert thisEntity != null;
-                            entityIn.take(thisEntity, 1);
+                            entityIn.take((AbstractArrow) (Object) this, 1);
                             this.discard();
                             level.playSound(
                                     null,
@@ -106,7 +90,6 @@ public abstract class AbstractArrowMixin extends ProjectileMixin {
                 }
             }
         }
-        //        callback.cancel();
     }
 
     @Shadow protected boolean inGround;

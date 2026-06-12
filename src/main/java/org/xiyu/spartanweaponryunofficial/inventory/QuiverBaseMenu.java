@@ -167,6 +167,11 @@ public abstract class QuiverBaseMenu extends AbstractContainerMenu {
         return this.quiverStack;
     }
 
+    /** Returns the number of ammo slots provided by the open quiver. */
+    public int getQuiverSlotCount() {
+        return this.handler.getSlots();
+    }
+
     protected static ItemStack findQuiverStack(
             Inventory inventory, QuiverBaseItem.SlotType slotType, int slot) {
         ItemStack quiverStack = ItemStack.EMPTY;

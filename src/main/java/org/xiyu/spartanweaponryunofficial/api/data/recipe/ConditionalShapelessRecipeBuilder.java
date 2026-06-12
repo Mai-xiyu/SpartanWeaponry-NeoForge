@@ -139,10 +139,10 @@ public class ConditionalShapelessRecipeBuilder {
 
         ResourceLocation advancementId =
                 id.withPrefix("recipes/" + this.category.getFolderName() + "/");
+        // RecipeOutput.advancement() already parents the builder to the root recipe advancement
         var advancement = output.advancement();
         this.criteria.forEach(advancement::addCriterion);
         advancement
-                .parent(RecipeBuilder.ROOT_RECIPE_ADVANCEMENT)
                 .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(id))
                 .rewards(AdvancementRewards.Builder.recipe(id))
                 .requirements(AdvancementRequirements.Strategy.OR);

@@ -24,18 +24,18 @@ public class OilHelper {
 
     public static OilEffect getOilFromStack(ItemStack stackIn) {
         CompoundTag tag = ItemStackDataHelper.getTag(stackIn).getCompound(OilHandler.NBT_OIL);
-        ResourceLocation oil = ResourceLocation.parse(tag.getString(OilHandler.NBT_OIL_EFFECT));
-        Registry<OilEffect> registry = getOilRegistry();
-        if (registry != null && registry.containsKey(oil)) return registry.get(oil);
+        ResourceLocation oil =
+                ResourceLocation.tryParse(tag.getString(OilHandler.NBT_OIL_EFFECT));
+        Registry<OilEffect> registry = OilEffects.registry();
+        if (oil != null && registry.containsKey(oil)) return registry.get(oil);
         return OilEffects.NONE.get();
     }
 
     public static ItemStack makeOilStack(OilEffect oilIn) {
         ItemStack stack = new ItemStack(ModItems.WEAPON_OIL.get());
         CompoundTag tag = new CompoundTag();
-        Registry<OilEffect> registry = getOilRegistry();
-        if (registry != null)
-            tag.putString(OilHandler.NBT_OIL_EFFECT, registry.getKey(oilIn).toString());
+        ResourceLocation oilId = OilEffects.registry().getKey(oilIn);
+        if (oilId != null) tag.putString(OilHandler.NBT_OIL_EFFECT, oilId.toString());
         ItemStackDataHelper.updateTag(stack, stackTag -> stackTag.put(OilHandler.NBT_OIL, tag));
         return stack;
     }
@@ -102,11 +102,5 @@ public class OilHelper {
         String potionId = tag.getString(OilHandler.NBT_POTION);
         if (potionId.isEmpty()) return null;
         return BuiltInRegistries.POTION.get(ResourceLocation.parse(potionId));
-    }
-
-    @SuppressWarnings("unchecked")
-    private static Registry<OilEffect> getOilRegistry() {
-        return (Registry<OilEffect>)
-                BuiltInRegistries.REGISTRY.get(OilEffects.REGISTRY_KEY.location());
     }
 }

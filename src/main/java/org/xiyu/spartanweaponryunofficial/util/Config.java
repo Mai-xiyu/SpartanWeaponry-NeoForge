@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 import net.minecraft.core.Registry;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -1108,127 +1107,33 @@ public class Config {
         updateMaterialValues(WeaponMaterial.PLATINUM, INSTANCE.platinum);
         updateMaterialValues(WeaponMaterial.ALUMINUM, INSTANCE.aluminum);
 
-        //
-        //
-        // ModItems.DAGGERS.updateSettingsFromConfig(INSTANCE.daggers.baseDamage.get().floatValue(),
-        // INSTANCE.daggers.damageMultipler.get().floatValue(),
-        // INSTANCE.daggers.speed.get().doubleValue());
+        // Weapon stats now flow through WeaponArchetype suppliers + IReloadable.reload(); only
+        // the recipe disable lists still need an explicit refresh here.
         INSTANCE.daggers.updateDisabledRecipeList();
-        //
-        //
-        // ModItems.PARRYING_DAGGERS.updateSettingsFromConfig(INSTANCE.parryingDaggers.baseDamage.get().floatValue(), INSTANCE.parryingDaggers.damageMultipler.get().floatValue(), INSTANCE.parryingDaggers.speed.get().doubleValue());
         INSTANCE.parryingDaggers.updateDisabledRecipeList();
-        //
-        //
-        // ModItems.LONGSWORDS.updateSettingsFromConfig(INSTANCE.longswords.baseDamage.get().floatValue(), INSTANCE.longswords.damageMultipler.get().floatValue(), INSTANCE.longswords.speed.get().doubleValue());
         INSTANCE.longswords.updateDisabledRecipeList();
-        //
-        //
-        // ModItems.KATANAS.updateSettingsFromConfig(INSTANCE.katanas.baseDamage.get().floatValue(),
-        // INSTANCE.katanas.damageMultipler.get().floatValue(),
-        // INSTANCE.katanas.speed.get().doubleValue());
         INSTANCE.katanas.updateDisabledRecipeList();
-        //
-        // ModItems.SABERS.updateSettingsFromConfig(INSTANCE.sabers.baseDamage.get().floatValue(),
-        // INSTANCE.sabers.damageMultipler.get().floatValue(),
-        // INSTANCE.sabers.speed.get().doubleValue());
         INSTANCE.sabers.updateDisabledRecipeList();
-        //
-        //
-        // ModItems.RAPIERS.updateSettingsFromConfig(INSTANCE.rapiers.baseDamage.get().floatValue(),
-        // INSTANCE.rapiers.damageMultipler.get().floatValue(),
-        // INSTANCE.rapiers.speed.get().doubleValue());
         INSTANCE.rapiers.updateDisabledRecipeList();
-        //
-        //
-        // ModItems.GREATSWORDS.updateSettingsFromConfig(INSTANCE.greatswords.baseDamage.get().floatValue(), INSTANCE.greatswords.damageMultipler.get().floatValue(), INSTANCE.greatswords.speed.get().doubleValue());
         INSTANCE.greatswords.updateDisabledRecipeList();
-
-        //        ImmutableList.of(ModItems.WOODEN_CLUB, ModItems.STUDDED_CLUB).forEach((club) ->
-        // club.get().setAttackDamageAndSpeed(INSTANCE.clubs.baseDamage.get().floatValue(),
-        // INSTANCE.clubs.damageMultipler.get().floatValue(),
-        // INSTANCE.clubs.speed.get().doubleValue()));
         INSTANCE.clubs.updateDisabledRecipeList();
-        //        ImmutableList.of(ModItems.CESTUS, ModItems.STUDDED_CESTUS).forEach((club) ->
-        // club.get().setAttackDamageAndSpeed(INSTANCE.cestus.baseDamage.get().floatValue(),
-        // INSTANCE.cestus.damageMultipler.get().floatValue(),
-        // INSTANCE.cestus.speed.get().doubleValue()));
         INSTANCE.cestus.updateDisabledRecipeList();
-
-        //
-        //
-        // ModItems.BATTLE_HAMMERS.updateSettingsFromConfig(INSTANCE.battleHammers.baseDamage.get().floatValue(), INSTANCE.battleHammers.damageMultipler.get().floatValue(), INSTANCE.battleHammers.speed.get().doubleValue());
         INSTANCE.battleHammers.updateDisabledRecipeList();
-        //
-        //
-        // ModItems.WARHAMMERS.updateSettingsFromConfig(INSTANCE.warhammers.baseDamage.get().floatValue(), INSTANCE.warhammers.damageMultipler.get().floatValue(), INSTANCE.warhammers.speed.get().doubleValue());
         INSTANCE.warhammers.updateDisabledRecipeList();
-        //
-        // ModItems.SPEARS.updateSettingsFromConfig(INSTANCE.spears.baseDamage.get().floatValue(),
-        // INSTANCE.spears.damageMultipler.get().floatValue(),
-        // INSTANCE.spears.speed.get().doubleValue());
         INSTANCE.spears.updateDisabledRecipeList();
-        //
-        //
-        // ModItems.HALBERDS.updateSettingsFromConfig(INSTANCE.halberds.baseDamage.get().floatValue(), INSTANCE.halberds.damageMultipler.get().floatValue(), INSTANCE.halberds.speed.get().doubleValue());
         INSTANCE.halberds.updateDisabledRecipeList();
-        //
-        // ModItems.PIKES.updateSettingsFromConfig(INSTANCE.pikes.baseDamage.get().floatValue(),
-        // INSTANCE.pikes.damageMultipler.get().floatValue(),
-        // INSTANCE.pikes.speed.get().doubleValue());
         INSTANCE.pikes.updateDisabledRecipeList();
-        //
-        // ModItems.LANCES.updateSettingsFromConfig(INSTANCE.lances.baseDamage.get().floatValue(),
-        // INSTANCE.lances.damageMultipler.get().floatValue(),
-        // INSTANCE.lances.speed.get().doubleValue());
         INSTANCE.lances.updateDisabledRecipeList();
-
-        // Updating configurable values for Longbows and Heavy Crossbows are not required
         INSTANCE.longbows.updateDisabledRecipeList();
         INSTANCE.heavyCrossbows.updateDisabledRecipeList();
-
-        //
-        //
-        // ModItems.THROWING_KNIVES.updateSettingsFromConfig(INSTANCE.throwingKnives.baseDamage.get().floatValue(), INSTANCE.throwingKnives.damageMultipler.get().floatValue(), INSTANCE.throwingKnives.speed.get().doubleValue(), INSTANCE.throwingKnives.chargeTicks.get());
         INSTANCE.throwingKnives.updateDisabledRecipeList();
-        //
-        //
-        // ModItems.TOMAHAWKS.updateSettingsFromConfig(INSTANCE.tomahawks.baseDamage.get().floatValue(), INSTANCE.tomahawks.damageMultipler.get().floatValue(), INSTANCE.tomahawks.speed.get().doubleValue(), INSTANCE.tomahawks.chargeTicks.get());
         INSTANCE.tomahawks.updateDisabledRecipeList();
-        //
-        //
-        // ModItems.JAVELINS.updateSettingsFromConfig(INSTANCE.javelins.baseDamage.get().floatValue(), INSTANCE.javelins.damageMultipler.get().floatValue(), INSTANCE.javelins.speed.get().doubleValue(), INSTANCE.javelins.chargeTicks.get());
         INSTANCE.javelins.updateDisabledRecipeList();
-
-        //
-        //
-        // ModItems.BOOMERANGS.updateSettingsFromConfig(INSTANCE.boomerangs.baseDamage.get().floatValue(), INSTANCE.boomerangs.damageMultipler.get().floatValue(), INSTANCE.boomerangs.speed.get().doubleValue(), INSTANCE.boomerangs.chargeTicks.get());
         INSTANCE.boomerangs.updateDisabledRecipeList();
-        //
-        //
-        // ModItems.BATTLEAXES.updateSettingsFromConfig(INSTANCE.battleaxes.baseDamage.get().floatValue(), INSTANCE.battleaxes.damageMultipler.get().floatValue(), INSTANCE.battleaxes.speed.get().doubleValue());
         INSTANCE.battleaxes.updateDisabledRecipeList();
-        //
-        //
-        // ModItems.FLANGED_MACES.updateSettingsFromConfig(INSTANCE.flangedMaces.baseDamage.get().floatValue(), INSTANCE.flangedMaces.damageMultipler.get().floatValue(), INSTANCE.flangedMaces.speed.get().doubleValue());
         INSTANCE.flangedMaces.updateDisabledRecipeList();
-
-        //
-        //
-        // ModItems.GLAIVES.updateSettingsFromConfig(INSTANCE.glaives.baseDamage.get().floatValue(),
-        // INSTANCE.glaives.damageMultipler.get().floatValue(),
-        // INSTANCE.glaives.speed.get().doubleValue());
         INSTANCE.glaives.updateDisabledRecipeList();
-        //
-        //
-        // ModItems.QUARTERSTAVES.updateSettingsFromConfig(INSTANCE.quarterstaves.baseDamage.get().floatValue(), INSTANCE.quarterstaves.damageMultipler.get().floatValue(), INSTANCE.quarterstaves.speed.get().doubleValue());
         INSTANCE.quarterstaves.updateDisabledRecipeList();
-
-        //
-        //
-        // ModItems.SCYTHES.updateSettingsFromConfig(INSTANCE.scythes.baseDamage.get().floatValue(),
-        // INSTANCE.scythes.damageMultipler.get().floatValue(),
-        // INSTANCE.scythes.speed.get().doubleValue());
         INSTANCE.scythes.updateDisabledRecipeList();
 
         updateDisabledRecipe(TypeDisabledCondition.ARROWS, INSTANCE.disableNewArrowRecipes.get());
@@ -1394,9 +1299,7 @@ public class Config {
                 .setMagnitude(INSTANCE.decapitateSkullDropPercentage.get().floatValue());
 
         // Update Oils
-        Registry<OilEffect> oilEffects =
-                (Registry<OilEffect>)
-                        BuiltInRegistries.REGISTRY.get(OilEffects.REGISTRY_KEY.location());
+        Registry<OilEffect> oilEffects = OilEffects.registry();
         for (OilEffect effect : oilEffects) {
             switch (effect.getType()) {
                 case STANDARD:

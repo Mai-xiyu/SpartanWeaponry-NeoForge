@@ -3,6 +3,7 @@ package org.xiyu.spartanweaponryunofficial.api;
 import java.util.Collection;
 import java.util.List;
 import net.minecraft.world.item.Item;
+import org.jetbrains.annotations.Nullable;
 import org.xiyu.spartanweaponryunofficial.api.trait.WeaponTrait;
 
 /**
@@ -36,15 +37,15 @@ public interface IWeaponTraitContainer<T extends Item> {
      * ignored
      *
      * @param type The Weapon Trait type to check for
-     * @return The first Weapon Trait that matches; null otherwise
+     * @return The first Weapon Trait that matches; {@code null} otherwise
      */
-    WeaponTrait getFirstWeaponTraitWithType(String type);
+    @Nullable WeaponTrait getFirstWeaponTraitWithType(String type);
 
     /**
      * Retrieves all Weapon Traits in this weapon with the specified property type
      *
      * @param type The Weapon Trait type to check for
-     * @return A list of Weapon Traits that matches; null otherwise
+     * @return A list of the Weapon Traits that match; an empty list otherwise
      */
     List<WeaponTrait> getAllWeaponTraitsWithType(String type);
 
