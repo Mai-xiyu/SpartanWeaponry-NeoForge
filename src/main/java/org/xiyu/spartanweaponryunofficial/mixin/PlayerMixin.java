@@ -14,8 +14,8 @@ import org.xiyu.spartanweaponryunofficial.init.ModDamageTypes;
 
 /**
  * Swaps the player attack damage source for an armor-piercing one when the held weapon has the
- * armor-piercing trait. Sweep damage bonuses are applied through the vanilla
- * SWEEPING_DAMAGE_RATIO attribute instead (see SweepWeaponTrait).
+ * armor-piercing trait. Sweep damage bonuses are applied through the vanilla SWEEPING_DAMAGE_RATIO
+ * attribute instead (see SweepWeaponTrait).
  */
 @Mixin(Player.class)
 public class PlayerMixin {

@@ -14,8 +14,8 @@ import org.xiyu.spartanweaponryunofficial.api.trait.WeaponTrait.TraitQuality;
  * Built-in weapon traits and the {@code spartan_weaponry_unofficial:weapon_traits} registry.
  *
  * <p>Addons can register their own {@link WeaponTrait} instances by creating a {@link
- * DeferredRegister} against {@link #REGISTRY_KEY} and registering it on their mod event bus.
- * Traits are attached to weapons and materials through datapack tags under {@code
+ * DeferredRegister} against {@link #REGISTRY_KEY} and registering it on their mod event bus. Traits
+ * are attached to weapons and materials through datapack tags under {@code
  * tags/spartan_weaponry_unofficial/weapon_traits/}.
  */
 public class WeaponTraits {

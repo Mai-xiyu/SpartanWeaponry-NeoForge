@@ -74,8 +74,7 @@ public record QuiverPrioritySlotPacket(int prioritySlot) implements CustomPacket
 
                                     // Only swap if the held stack is allowed in the quiver slot,
                                     // otherwise arbitrary items could bypass the slot filter.
-                                    if (!ammoStack.isEmpty() && !slot.mayPlace(ammoStack))
-                                        continue;
+                                    if (!ammoStack.isEmpty() && !slot.mayPlace(ammoStack)) continue;
 
                                     // Swap out priority stack with ammo stack
                                     player.setItemInHand(ammoHand, priorityStack);

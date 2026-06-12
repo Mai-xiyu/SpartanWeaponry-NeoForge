@@ -52,7 +52,7 @@ spotless {
     java {
         target 'src/main/java/**/*.java'
         removeUnusedImports()
-        googleJavaFormat('1.35.0').aosp()
+        googleJavaFormat('1.29.0').aosp()
         formatAnnotations()
     }
 }
