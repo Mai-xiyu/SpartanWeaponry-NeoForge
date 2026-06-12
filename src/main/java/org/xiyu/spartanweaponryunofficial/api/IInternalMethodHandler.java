@@ -12,6 +12,7 @@ import net.minecraft.world.item.Item;
  *
  * @author ObliviousSpartan
  */
+@org.jetbrains.annotations.ApiStatus.Internal
 public interface IInternalMethodHandler {
     // ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
     // Weapon Creation functions

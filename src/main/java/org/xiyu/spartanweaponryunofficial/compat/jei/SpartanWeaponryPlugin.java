@@ -32,19 +32,23 @@ public class SpartanWeaponryPlugin implements IModPlugin {
         if (ModList.get().isLoaded("emi")) return;
         Log.info("JEI Plugin is Registering subtypes");
 
-        /*        subtypeRegistry.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK, ModItems.TIPPED_WOODEN_ARROW.get(), TippedProjectileSubtypeInterpreter.INSTANCE);
-        subtypeRegistry.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK, ModItems.TIPPED_COPPER_ARROW.get(), TippedProjectileSubtypeInterpreter.INSTANCE);
-        subtypeRegistry.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK, ModItems.TIPPED_IRON_ARROW.get(), TippedProjectileSubtypeInterpreter.INSTANCE);
-        subtypeRegistry.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK, ModItems.TIPPED_DIAMOND_ARROW.get(), TippedProjectileSubtypeInterpreter.INSTANCE);
-        subtypeRegistry.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK, ModItems.TIPPED_NETHERITE_ARROW.get(), TippedProjectileSubtypeInterpreter.INSTANCE);
-        subtypeRegistry.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK, ModItems.TIPPED_BOLT.get(), TippedProjectileSubtypeInterpreter.INSTANCE);
-        subtypeRegistry.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK, ModItems.TIPPED_COPPER_BOLT.get(), TippedProjectileSubtypeInterpreter.INSTANCE);
-        subtypeRegistry.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK, ModItems.TIPPED_DIAMOND_BOLT.get(), TippedProjectileSubtypeInterpreter.INSTANCE);
-        subtypeRegistry.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK, ModItems.TIPPED_NETHERITE_BOLT.get(), TippedProjectileSubtypeInterpreter.INSTANCE);*/
+        for (Item tippedProjectile :
+                new Item[] {
+                    ModItems.TIPPED_WOODEN_ARROW.get(),
+                    ModItems.TIPPED_COPPER_ARROW.get(),
+                    ModItems.TIPPED_IRON_ARROW.get(),
+                    ModItems.TIPPED_DIAMOND_ARROW.get(),
+                    ModItems.TIPPED_NETHERITE_ARROW.get(),
+                    ModItems.TIPPED_BOLT.get(),
+                    ModItems.TIPPED_COPPER_BOLT.get(),
+                    ModItems.TIPPED_DIAMOND_BOLT.get(),
+                    ModItems.TIPPED_NETHERITE_BOLT.get()
+                }) {
+            subtypeRegistry.registerSubtypeInterpreter(
+                    tippedProjectile, TippedProjectileSubtypeInterpreter.INSTANCE);
+        }
         subtypeRegistry.registerSubtypeInterpreter(
-                VanillaTypes.ITEM_STACK,
-                ModItems.WEAPON_OIL.get(),
-                WeaponOilSubtypeInterpreter.INSTANCE);
+                ModItems.WEAPON_OIL.get(), WeaponOilSubtypeInterpreter.INSTANCE);
     }
 
     public void registerRecipes(IRecipeRegistration reg) {

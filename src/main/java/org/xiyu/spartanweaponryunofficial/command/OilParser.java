@@ -12,8 +12,6 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 import net.minecraft.commands.SharedSuggestionProvider;
 import net.minecraft.core.Registry;
-import net.minecraft.core.RegistryAccess;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import org.xiyu.spartanweaponryunofficial.ModSpartanWeaponry;
@@ -94,9 +92,7 @@ public class OilParser {
     }
 
     private static Registry<OilEffect> getOilRegistry() {
-        RegistryAccess registryAccess =
-                RegistryAccess.fromRegistryOfRegistries(BuiltInRegistries.REGISTRY);
-        return registryAccess.registry(OilEffects.REGISTRY_KEY).orElse(null);
+        return OilEffects.registry();
     }
 
     public CompletableFuture<Suggestions> fillSuggestions(

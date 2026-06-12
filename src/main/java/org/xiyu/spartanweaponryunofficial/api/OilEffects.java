@@ -14,6 +14,12 @@ import org.xiyu.spartanweaponryunofficial.api.oil.PotionOilEffect;
 import org.xiyu.spartanweaponryunofficial.init.ModMobEffects;
 import org.xiyu.spartanweaponryunofficial.util.Defaults;
 
+/**
+ * Built-in weapon oil effects and the {@code spartan_weaponry_unofficial:oil_effects} registry.
+ *
+ * <p>Addons can register their own {@link OilEffect} instances by creating a {@link
+ * DeferredRegister} against {@link #REGISTRY_KEY} and registering it on their mod event bus.
+ */
 public class OilEffects {
     public static final ResourceLocation REGISTRY_NAME =
             ResourceLocation.fromNamespaceAndPath(ModSpartanWeaponry.ID, "oil_effects");
@@ -21,6 +27,14 @@ public class OilEffects {
             ResourceKey.createRegistryKey(REGISTRY_NAME);
     public static final DeferredRegister<OilEffect> REGISTRY =
             DeferredRegister.create(REGISTRY_KEY, ModSpartanWeaponry.ID);
+
+    /**
+     * Returns the oil effect registry. Only valid after registry creation during mod construction;
+     * calling earlier throws {@link NullPointerException}.
+     */
+    public static Registry<OilEffect> registry() {
+        return REGISTRY.getRegistry().get();
+    }
 
     public static final DeferredHolder<OilEffect, OilEffect> NONE =
             REGISTRY.register(
@@ -176,7 +190,7 @@ public class OilEffects {
                                     Defaults.OIL_USES_NORMAL,
                                     Defaults.OIL_DAMAGE_MODIFIER_NORMAL,
                                     OilEffect.USE_ENDER,
-                                    ModMobEffects.ENDER_DISRPUTION,
+                                    ModMobEffects.ENDER_DISRUPTION,
                                     300,
                                     0));
     public static final DeferredHolder<OilEffect, OilEffect> ENDER_STRONG =
@@ -190,7 +204,7 @@ public class OilEffects {
                                     Defaults.OIL_USES_NORMAL,
                                     Defaults.OIL_DAMAGE_MODIFIER_STRONG,
                                     OilEffect.USE_ENDER,
-                                    ModMobEffects.ENDER_DISRPUTION,
+                                    ModMobEffects.ENDER_DISRUPTION,
                                     600,
                                     0));
     public static final DeferredHolder<OilEffect, OilEffect> WITHER =

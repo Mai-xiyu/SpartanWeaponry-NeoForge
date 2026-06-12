@@ -7,7 +7,6 @@ import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.particles.ColorParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.protocol.game.ClientboundGameEventPacket;
@@ -30,7 +29,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.alchemy.PotionContents;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
@@ -39,6 +37,7 @@ import net.neoforged.neoforge.entity.IEntityWithComplexSpawn;
 import org.jetbrains.annotations.NotNull;
 import org.xiyu.spartanweaponryunofficial.ModSpartanWeaponry;
 import org.xiyu.spartanweaponryunofficial.init.ModDamageTypes;
+import org.xiyu.spartanweaponryunofficial.init.ModEnchantments;
 import org.xiyu.spartanweaponryunofficial.init.ModEntities;
 import org.xiyu.spartanweaponryunofficial.init.ModItems;
 
@@ -161,11 +160,8 @@ public class BoltEntity extends AbstractArrow implements IEntityWithComplexSpawn
                     livingentity.setArrowCount(livingentity.getArrowCount() + 1);
 
                 int knockback =
-                        EnchantmentHelper.getItemEnchantmentLevel(
-                                registryAccess
-                                        .registryOrThrow(Registries.ENCHANTMENT)
-                                        .getHolderOrThrow(Enchantments.KNOCKBACK),
-                                this.getPickupItem());
+                        ModEnchantments.getLevel(
+                                registryAccess, Enchantments.KNOCKBACK, this.getPickupItem());
                 if (knockback > 0) {
                     Vec3 vector3d =
                             this.getDeltaMovement()
@@ -233,8 +229,9 @@ public class BoltEntity extends AbstractArrow implements IEntityWithComplexSpawn
         Item arrowItem = this.getPickupItem().getItem();
 
         // Spawn lightning under the right weather conditions (during a thunderstorm)
-        if (level.isThundering() && arrowItem == ModItems.COPPER_BOLT.get()
-                || arrowItem == ModItems.TIPPED_COPPER_BOLT.get()) {
+        if (level.isThundering()
+                && (arrowItem == ModItems.COPPER_BOLT.get()
+                        || arrowItem == ModItems.TIPPED_COPPER_BOLT.get())) {
             // Roll a chance to spawn lightning under the right circumstances
             if (this.random.nextInt(4) < 1) { // ~25%
                 LightningBolt lightning = EntityType.LIGHTNING_BOLT.create(level);

@@ -78,6 +78,25 @@ public static final WeaponMaterial MYTHRIL = WeaponMaterial.builder("mythril", "
 Material names are used by grouped material tags such as
 `spartan_weaponry_unofficial:materials/mythril`.
 
+Materials built from a vanilla `Tier` (constructor or `Builder.tier(...)`) inherit the tier's
+`getIncorrectBlocksForDrops` tag, which controls mining-level checks for versatile weapons.
+Materials built from raw numbers default to `BlockTags.INCORRECT_FOR_WOODEN_TOOL`; override it with
+`Builder.incorrectBlocksForDrops(...)` or `WeaponMaterial.setIncorrectBlocksForDrops(...)`.
+
+## Registry access
+
+Custom weapon traits and oil effects are registered against the mod's registries. Create your own
+`DeferredRegister` against the exposed keys:
+
+```java
+public static final DeferredRegister<WeaponTrait> TRAITS =
+        DeferredRegister.create(WeaponTraits.REGISTRY_KEY, "your_mod_id");
+public static final DeferredRegister<OilEffect> OILS =
+        DeferredRegister.create(OilEffects.REGISTRY_KEY, "your_mod_id");
+```
+
+For lookups after registry creation, use `WeaponTraits.registry()` and `OilEffects.registry()`.
+
 ## Classification
 
 Weapons created through `SpartanWeaponryAPI.createWeapon` or legacy `createXxx` methods are classified

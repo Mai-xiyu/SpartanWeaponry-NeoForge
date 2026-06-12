@@ -28,9 +28,7 @@ public class JeiOilBrewingRecipe implements IJeiBrewingRecipe {
         this.ingredients = ImmutableList.copyOf(ingredientsIn);
         this.output = outputIn;
         ResourceLocation outputLocation = BuiltInRegistries.ITEM.getKey(outputIn.getItem());
-        Registry<OilEffect> registry =
-                (Registry<OilEffect>)
-                        BuiltInRegistries.REGISTRY.get(OilEffects.REGISTRY_KEY.location());
+        Registry<OilEffect> registry = OilEffects.registry();
         this.uid =
                 ResourceLocation.tryBuild(
                         outputLocation.getNamespace(),

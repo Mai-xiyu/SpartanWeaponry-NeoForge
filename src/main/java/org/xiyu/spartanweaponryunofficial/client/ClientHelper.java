@@ -209,22 +209,6 @@ public class ClientHelper {
                 (stack, world, living, value) -> quiver.getAmmoCount(stack));
     }
 
-    /*    public static void registerMeleeWeaponBlockingPropertyOverrides(Item meleeWeapon)
-    {
-        ItemProperties.register(meleeWeapon, Const.MODEL, (stack, world, living, value) ->
-        {
-            return GearData.getModelIndex(stack);
-        });
-        ItemProperties.register(meleeWeapon, Const.BROKEN_PROPERTY, (stack, world, living, value) ->
-        {
-            return GearHelper.isBroken(stack) ? 0 : 1;
-        });
-        ItemProperties.register(meleeWeapon, ModelOverrides.BLOCKING, (stack, world, living, value) ->
-        {
-            return meleeWeapon.canPerformAction(stack, ModToolActions.MELEE_BLOCK) && living != null && living.isUsingItem() && living.getUseItem() == stack ? 1.0f : 0.0f;
-        });
-    }*/
-
     @SubscribeEvent
     public static void registerEntityRenders(EntityRenderersEvent.RegisterRenderers ev) {
         Log.info("Registering Entity Renderers!");

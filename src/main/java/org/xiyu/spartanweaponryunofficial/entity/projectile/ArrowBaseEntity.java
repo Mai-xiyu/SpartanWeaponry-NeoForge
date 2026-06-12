@@ -118,8 +118,9 @@ public class ArrowBaseEntity extends AbstractArrow implements IEntityWithComplex
         Item arrowItem = this.getPickupItem().getItem();
 
         // Spawn lightning under the right weather conditions (during a thunderstorm)
-        if (level.isThundering() && arrowItem == ModItems.COPPER_ARROW.get()
-                || arrowItem == ModItems.TIPPED_COPPER_ARROW.get()) {
+        if (level.isThundering()
+                && (arrowItem == ModItems.COPPER_ARROW.get()
+                        || arrowItem == ModItems.TIPPED_COPPER_ARROW.get())) {
             // Roll a chance to spawn lightning under the right circumstances
             if (this.random.nextInt(4) < 1) // ~25%
             {

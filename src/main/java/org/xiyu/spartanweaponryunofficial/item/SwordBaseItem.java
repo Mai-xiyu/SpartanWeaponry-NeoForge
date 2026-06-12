@@ -90,29 +90,11 @@ public class SwordBaseItem extends SwordItem
                 this.archetype.getDamageMultiplier(),
                 this.archetype.getAttackSpeed());
 
-        //        Log.info("'" + ForgeRegistries.ITEMS.getKey(this).toString() +  "' -> Material: "
-        // +
-        // (material != null ? material : "NULL!"));
         this.traits = WeaponTraitResolver.resolveTraits(this.archetype, this.material);
         this.modifiers =
                 WeaponAttributeBuilder.buildMainHandAttributes(
                         this.getDirectAttackDamage(), this.attackSpeed, this.traits);
     }
-
-    /*    @Override
-        public ICapabilityProvider initCapabilities(ItemStack stack, CompoundTag nbt)
-        {
-    //        return super.initCapabilities(stack, nbt);
-            SwordBaseItem item = this;
-            return new ICapabilityProvider()
-                {
-                    @Override
-                    public <T> LazyOptional<T> getCapability(Capability<T> cap, Direction side)
-                    {
-                        return ModCapabilities.WEAPON_TRAITS.orEmpty(cap, LazyOptional.of(() -> item));
-                    }
-                };
-        }*/
 
     @Override
     public @NotNull ItemAttributeModifiers getDefaultAttributeModifiers(@NotNull ItemStack stack) {

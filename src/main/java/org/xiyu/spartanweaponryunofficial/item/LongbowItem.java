@@ -39,7 +39,6 @@ public class LongbowItem extends BowItem implements IReloadable {
     protected WeaponMaterial material;
     protected float drawTime = 1.25f;
     protected float maxVelocity;
-    protected String modId = null;
     protected String customDisplayName = null;
     protected boolean doCraftCheck = true;
     protected boolean canBeCrafted = true;

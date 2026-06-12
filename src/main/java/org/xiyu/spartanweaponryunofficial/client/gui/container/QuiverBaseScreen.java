@@ -9,6 +9,7 @@ import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
@@ -60,14 +61,19 @@ public class QuiverBaseScreen<T extends QuiverBaseMenu> extends AbstractContaine
     public QuiverBaseScreen(T screenContainer, Inventory inv, Component title) {
         super(screenContainer, inv, title);
         this.quiver = screenContainer.getQuiverStack();
-        this.prioritySlot =
-                ItemStackDataHelper.getTag(this.quiver).getInt(QuiverBaseItem.NBT_PROIRITY_SLOT);
         this.isAmmoCollectEnabled =
                 ItemStackDataHelper.getTag(this.quiver).getBoolean(QuiverBaseItem.NBT_AMMO_COLLECT);
 
         IQuiverItemHandler handler =
                 this.quiver.getCapability(ModCapabilities.QUIVER_ITEM_CAPABILITY);
         this.ammoSlots = handler != null ? handler.getSlots() : Defaults.SlotsQuiverSmall;
+        // Clamp so stale NBT (e.g. from a different quiver size) can't index past the slot list
+        this.prioritySlot =
+                Mth.clamp(
+                        ItemStackDataHelper.getTag(this.quiver)
+                                .getInt(QuiverBaseItem.NBT_PRIORITY_SLOT),
+                        0,
+                        this.ammoSlots - 1);
 
         switch (this.ammoSlots) {
             case Defaults.SlotsQuiverHuge:
@@ -155,18 +161,21 @@ public class QuiverBaseScreen<T extends QuiverBaseMenu> extends AbstractContaine
         if (this.menu.getCarried().isEmpty()
                 && this.hoveredSlot != null
                 && this.hoveredSlot.hasItem()) {
-            List<Component> tooltipList =
-                    getTooltipFromItem(this.minecraft, this.hoveredSlot.getItem());
-
             // Show the priority button tooltip if the button is being hovered over
-            if (this.hoveredSlot.index < this.ammoSlots
-                    && mouseX > this.leftPos + this.hoveredSlot.x - 1
-                    && mouseX < this.leftPos + this.hoveredSlot.x + 6
-                    && mouseY > this.topPos + this.hoveredSlot.y - 1
-                    && mouseY < this.topPos + this.hoveredSlot.y + 6)
+            boolean hoveringPriorityButton =
+                    this.hoveredSlot.index < this.ammoSlots
+                            && mouseX > this.leftPos + this.hoveredSlot.x - 1
+                            && mouseX < this.leftPos + this.hoveredSlot.x + 6
+                            && mouseY > this.topPos + this.hoveredSlot.y - 1
+                            && mouseY < this.topPos + this.hoveredSlot.y + 6;
+            if (hoveringPriorityButton) {
+                List<Component> tooltipList =
+                        getTooltipFromItem(this.minecraft, this.hoveredSlot.getItem());
                 tooltipList.addFirst(this.PRIORITY_BUTTON_TOOLTIP);
-
-            this.renderTooltip(guiGraphics, mouseX, mouseY);
+                guiGraphics.renderComponentTooltip(this.font, tooltipList, mouseX, mouseY);
+            } else {
+                this.renderTooltip(guiGraphics, mouseX, mouseY);
+            }
         }
     }
 

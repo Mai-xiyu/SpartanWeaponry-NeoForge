@@ -1,8 +1,6 @@
 package org.xiyu.spartanweaponryunofficial.item;
 
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMultimap;
-import com.google.common.collect.Multimap;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -23,11 +21,10 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.Attribute;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
@@ -56,7 +53,6 @@ import org.xiyu.spartanweaponryunofficial.util.WeaponType;
 public class HeavyCrossbowItem extends CrossbowItem
         implements IReloadable, IHudLoadState, IHudCrosshair {
     protected WeaponMaterial material;
-    protected String modId = null;
     protected int loadTicks;
     protected int aimTicks;
 
@@ -67,7 +63,7 @@ public class HeavyCrossbowItem extends CrossbowItem
 
     protected final WeaponType type = WeaponType.RANGED;
     protected List<WeaponTrait> rangedTraits = ImmutableList.of();
-    protected Multimap<Attribute, AttributeModifier> modifiers;
+    protected ItemAttributeModifiers modifiers;
 
     public static final String NBT_CHARGED = "Charged";
     public static final String NBT_PROJECTILE = "Projectile";
@@ -109,14 +105,12 @@ public class HeavyCrossbowItem extends CrossbowItem
                 this.aimTicks = callback.modifyHeavyCrossbowAimTime(this.material, this.aimTicks);
             }
         }
-        this.modifiers = WeaponAttributeBuilder.buildGenericTraitAttributeMap(this.rangedTraits);
+        this.modifiers = WeaponAttributeBuilder.buildGenericTraitItemAttributes(this.rangedTraits);
     }
 
-    public Multimap<Attribute, AttributeModifier> getAttributeModifiers(
-            EquipmentSlot equipmentSlot, ItemStack stack) {
-        return this.modifiers != null && equipmentSlot == EquipmentSlot.MAINHAND
-                ? this.modifiers
-                : ImmutableMultimap.of();
+    @Override
+    public @NotNull ItemAttributeModifiers getDefaultAttributeModifiers(@NotNull ItemStack stack) {
+        return this.modifiers != null ? this.modifiers : super.getDefaultAttributeModifiers(stack);
     }
 
     @Override
@@ -147,26 +141,13 @@ public class HeavyCrossbowItem extends CrossbowItem
             int timeLeft) {
         if (entityLiving instanceof Player player) {
             RegistryAccess registryAccess = levelIn.registryAccess();
-            boolean isCreativeOrInfinite =
-                    player.getAbilities().instabuild
-                            || EnchantmentHelper.getItemEnchantmentLevel(
-                                            registryAccess
-                                                    .registryOrThrow(Registries.ENCHANTMENT)
-                                                    .getHolderOrThrow(Enchantments.INFINITY),
-                                            stack)
-                                    > 0;
 
             if (this.getLoadProgress(stack, entityLiving) == 1.0f) {
                 // Load the Crossbow
                 ItemStackDataHelper.updateTag(stack, tag -> tag.putBoolean(NBT_CHARGED, true));
                 ItemStack bolt;
                 int count =
-                        EnchantmentHelper.getItemEnchantmentLevel(
-                                                registryAccess
-                                                        .registryOrThrow(Registries.ENCHANTMENT)
-                                                        .getHolderOrThrow(Enchantments.MULTISHOT),
-                                                stack)
-                                        > 0
+                        ModEnchantments.getLevel(registryAccess, Enchantments.MULTISHOT, stack) > 0
                                 ? 3
                                 : 1;
 
@@ -328,12 +309,6 @@ public class HeavyCrossbowItem extends CrossbowItem
         RegistryAccess registryAccess = levelIn.registryAccess();
         bolt.setCritArrow(true);
         bolt.setSoundEvent(SoundEvents.CROSSBOW_HIT);
-        int pierceLvl =
-                EnchantmentHelper.getItemEnchantmentLevel(
-                        registryAccess
-                                .registryOrThrow(Registries.ENCHANTMENT)
-                                .getHolderOrThrow(Enchantments.PIERCING),
-                        crossbow);
 
         Vec3 upVector = player.getUpVector(1.0f);
         Quaternionf quat =
@@ -350,41 +325,20 @@ public class HeavyCrossbowItem extends CrossbowItem
                 velocityVec.z,
                 getBoltVelocity(bolt),
                 inaccuracyModifier);
-        //        entityBolt.shootFromRotation(player, player.xRotO, player.yRotO, 0.0F,
-        // getBoltVelocity() * 3.0F, inaccuracyModifier);
 
         for (WeaponTrait trait : this.rangedTraits)
             trait.getRangedCallback()
                     .ifPresent((callback) -> callback.onProjectileSpawn(this.material, bolt));
 
-        int j =
-                EnchantmentHelper.getItemEnchantmentLevel(
-                        registryAccess
-                                .registryOrThrow(Registries.ENCHANTMENT)
-                                .getHolderOrThrow(Enchantments.POWER),
-                        crossbow);
-
-        if (j > 0) {
-            bolt.setBaseDamage(bolt.getBaseDamage() + j * 0.5D + 0.5D);
+        int powerLevel = ModEnchantments.getLevel(registryAccess, Enchantments.POWER, crossbow);
+        if (powerLevel > 0) {
+            bolt.setBaseDamage(bolt.getBaseDamage() + powerLevel * 0.5D + 0.5D);
         }
 
-        int k =
-                EnchantmentHelper.getItemEnchantmentLevel(
-                        registryAccess
-                                .registryOrThrow(Registries.ENCHANTMENT)
-                                .getHolderOrThrow(Enchantments.PUNCH),
-                        crossbow);
+        // Piercing is applied automatically by the AbstractArrow constructor from the weapon
+        // stack; Punch knockback is handled by the bolt entity on hit.
 
-        if (k > 0) {
-            // Knockback handled by bolt entity on hit
-        }
-
-        if (EnchantmentHelper.getItemEnchantmentLevel(
-                        registryAccess
-                                .registryOrThrow(Registries.ENCHANTMENT)
-                                .getHolderOrThrow(Enchantments.FLAME),
-                        crossbow)
-                > 0) {
+        if (ModEnchantments.getLevel(registryAccess, Enchantments.FLAME, crossbow) > 0) {
             bolt.igniteForSeconds(5.0F);
         }
 
@@ -412,12 +366,7 @@ public class HeavyCrossbowItem extends CrossbowItem
         if (!playerIn.getAbilities().instabuild
                 && !hasAmmo
                 && !ItemStackDataHelper.getTag(stack).getBoolean(NBT_CHARGED)
-                && EnchantmentHelper.getItemEnchantmentLevel(
-                                registryAccess
-                                        .registryOrThrow(Registries.ENCHANTMENT)
-                                        .getHolderOrThrow(Enchantments.INFINITY),
-                                stack)
-                        == 0) {
+                && ModEnchantments.getLevel(registryAccess, Enchantments.INFINITY, stack) == 0) {
             return InteractionResultHolder.fail(stack);
         }
         playerIn.startUsingItem(handIn);
@@ -698,14 +647,4 @@ public class HeavyCrossbowItem extends CrossbowItem
     public ICrosshairOverlay getCrosshairHudElement() {
         return HudCrosshairHeavyCrossbow::render;
     }
-
-    // TODO: Decide on whether or not to allow Bow enchantments on the Heavy Crossbow
-    /*    @Override
-        public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment)
-        {
-            //return super.canApplyAtEnchantingTable(stack, enchantment);
-            return enchantment == Enchantments.POWER || enchantment == Enchantments.PUNCH || enchantment == Enchantments.FLAME ||
-                    enchantment == Enchantments.INFINITY || super.canApplyAtEnchantingTable(stack, enchantment);
-        }
-    */
 }

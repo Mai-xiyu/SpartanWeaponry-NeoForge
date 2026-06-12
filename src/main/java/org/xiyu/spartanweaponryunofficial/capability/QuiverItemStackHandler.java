@@ -51,7 +51,7 @@ public class QuiverItemStackHandler extends ItemStackHandler implements IQuiverI
     @Override
     public boolean isEmpty() {
         for (ItemStack stack : this.stacks) {
-            if (stack.isEmpty()) return false;
+            if (!stack.isEmpty()) return false;
         }
         return true;
     }
