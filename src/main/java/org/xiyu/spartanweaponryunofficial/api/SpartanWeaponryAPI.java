@@ -27,7 +27,7 @@ import org.xiyu.spartanweaponryunofficial.util.WeaponType;
  * not part of the addon extension surface.
  */
 public class SpartanWeaponryAPI {
-    public static final int API_VERSION = 14;
+    public static final int API_VERSION = 15;
     public static final String MOD_ID = "spartan_weaponry_unofficial";
 
     private static IInternalMethodHandler internalHandler = null;
