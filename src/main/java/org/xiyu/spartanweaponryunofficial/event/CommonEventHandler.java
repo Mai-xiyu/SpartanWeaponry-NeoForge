@@ -459,8 +459,8 @@ public class CommonEventHandler {
     }
 
     /**
-     * Reads the stored priority slot, clamped into the quiver's slot range so stale or tampered
-     * NBT can never cause an out-of-bounds slot access.
+     * Reads the stored priority slot, clamped into the quiver's slot range so stale or tampered NBT
+     * can never cause an out-of-bounds slot access.
      */
     private static int getQuiverPrioritySlot(ItemStack quiver, IQuiverItemHandler quiverHandler) {
         int prioritySlot =

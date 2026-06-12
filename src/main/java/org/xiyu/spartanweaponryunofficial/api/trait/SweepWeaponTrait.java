@@ -16,8 +16,7 @@ import org.xiyu.spartanweaponryunofficial.api.SpartanWeaponryAPI;
 
 public class SweepWeaponTrait extends WeaponTraitWithMagnitude implements IMeleeTraitCallback {
     public static final ResourceLocation SWEEP_DAMAGE_RATIO_MODIFIER =
-            ResourceLocation.fromNamespaceAndPath(
-                    SpartanWeaponryAPI.MOD_ID, "sweep_damage_ratio");
+            ResourceLocation.fromNamespaceAndPath(SpartanWeaponryAPI.MOD_ID, "sweep_damage_ratio");
 
     public SweepWeaponTrait(String propType, String propModId) {
         super(propType, propModId, TraitQuality.POSITIVE);

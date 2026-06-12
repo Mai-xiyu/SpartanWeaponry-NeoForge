@@ -24,8 +24,7 @@ public class OilHelper {
 
     public static OilEffect getOilFromStack(ItemStack stackIn) {
         CompoundTag tag = ItemStackDataHelper.getTag(stackIn).getCompound(OilHandler.NBT_OIL);
-        ResourceLocation oil =
-                ResourceLocation.tryParse(tag.getString(OilHandler.NBT_OIL_EFFECT));
+        ResourceLocation oil = ResourceLocation.tryParse(tag.getString(OilHandler.NBT_OIL_EFFECT));
         Registry<OilEffect> registry = OilEffects.registry();
         if (oil != null && registry.containsKey(oil)) return registry.get(oil);
         return OilEffects.NONE.get();

@@ -583,9 +583,7 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
                     tag ->
                             tag.putInt(
                                     ThrowingWeaponItem.NBT_AMMO_USED,
-                                    Math.max(
-                                            0,
-                                            tag.getInt(ThrowingWeaponItem.NBT_AMMO_USED) - 1)));
+                                    Math.max(0, tag.getInt(ThrowingWeaponItem.NBT_AMMO_USED) - 1)));
         }
         targetStack.setDamageValue(Mth.clamp(itemDamage, 0, targetStack.getMaxDamage()));
     }

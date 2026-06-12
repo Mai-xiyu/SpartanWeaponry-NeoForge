@@ -9,7 +9,7 @@
   <img src="https://img.shields.io/badge/Minecraft-1.21.1-62b47a?style=for-the-badge" alt="Minecraft 1.21.1">
   <img src="https://img.shields.io/badge/Loader-NeoForge-f16436?style=for-the-badge" alt="NeoForge">
   <img src="https://img.shields.io/badge/Java-21-007396?style=for-the-badge" alt="Java 21">
-  <img src="https://img.shields.io/badge/API-v14-6f42c1?style=for-the-badge" alt="API version 14">
+  <img src="https://img.shields.io/badge/API-v15-6f42c1?style=for-the-badge" alt="API version 15">
   <a href="LICENSE"><img src="https://img.shields.io/github/license/Mai-xiyu/SpartanWeaponry-NeoForge?style=for-the-badge" alt="License"></a>
 </p>
 
@@ -26,7 +26,7 @@ datapack friendliness, and maintainable behavior-preserving updates.
 - Loader: `NeoForge 21.1.x`
 - Java: `21`
 - Mod ID: `spartan_weaponry_unofficial`
-- API version: `14`
+- API version: `15`
 - License: Apache License 2.0
 
 This is a community port and is not the original Spartan Weaponry project.

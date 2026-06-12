@@ -20,7 +20,8 @@ public class WeaponOilSubtypeInterpreter implements ISubtypeInterpreter<ItemStac
     private WeaponOilSubtypeInterpreter() {}
 
     @Override
-    public @Nullable Object getSubtypeData(@NotNull ItemStack itemStack, @NotNull UidContext context) {
+    public @Nullable Object getSubtypeData(
+            @NotNull ItemStack itemStack, @NotNull UidContext context) {
         String subtype = buildSubtypeString(itemStack);
         return subtype.isEmpty() ? null : subtype;
     }
