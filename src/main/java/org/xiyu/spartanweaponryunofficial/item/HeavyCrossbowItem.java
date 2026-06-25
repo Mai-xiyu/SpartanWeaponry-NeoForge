@@ -12,6 +12,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -147,9 +148,14 @@ public class HeavyCrossbowItem extends CrossbowItem
                 ItemStackDataHelper.updateTag(stack, tag -> tag.putBoolean(NBT_CHARGED, true));
                 ItemStack bolt;
                 int count =
-                        ModEnchantments.getLevel(registryAccess, Enchantments.MULTISHOT, stack) > 0
-                                ? 3
-                                : 1;
+                        levelIn instanceof ServerLevel serverLevel
+                                ? EnchantmentHelper.processProjectileCount(
+                                        serverLevel, stack, entityLiving, 1)
+                                : ModEnchantments.getLevel(
+                                                registryAccess, Enchantments.MULTISHOT, stack)
+                                        > 0
+                                        ? 3
+                                        : 1;
 
                 bolt = entityLiving.getProjectile(stack);
                 if (bolt.isEmpty()
@@ -227,17 +233,30 @@ public class HeavyCrossbowItem extends CrossbowItem
                         if (inaccuracy != 0) // Apply inaccuracy if there is any.
                         inaccuracyModifier = 12.0f * ((float) inaccuracy / stackAimTicks);
 
-                        // Fire projectiles.
-                        this.spawnProjectile(
-                                stack,
-                                itemBolt,
-                                itemstack,
-                                levelIn,
-                                player,
-                                flag1,
-                                inaccuracyModifier,
-                                0.0f);
-                        if (itemstack.getCount() > 1) {
+                        ServerLevel serverLevel = (ServerLevel) levelIn;
+                        int projectileCount =
+                                EnchantmentHelper.processProjectileCount(
+                                        serverLevel, stack, player, 1);
+                        float spread =
+                                EnchantmentHelper.processProjectileSpread(
+                                        serverLevel, stack, player, 0.0F);
+                        float spreadStep =
+                                projectileCount == 1
+                                        ? 0.0F
+                                        : 2.0F * spread / (projectileCount - 1);
+                        float spreadOffset =
+                                (float) ((projectileCount - 1) % 2) * spreadStep / 2.0F;
+                        float spreadDirection = 1.0F;
+
+                        for (int projectileIndex = 0;
+                                projectileIndex < projectileCount;
+                                projectileIndex++) {
+                            float projectileAngle =
+                                    spreadOffset
+                                            + spreadDirection
+                                                    * (float) ((projectileIndex + 1) / 2)
+                                                    * spreadStep;
+                            spreadDirection = -spreadDirection;
                             this.spawnProjectile(
                                     stack,
                                     itemBolt,
@@ -246,18 +265,9 @@ public class HeavyCrossbowItem extends CrossbowItem
                                     player,
                                     flag1,
                                     inaccuracyModifier,
-                                    -10.0f);
-                            this.spawnProjectile(
-                                    stack,
-                                    itemBolt,
-                                    itemstack,
-                                    levelIn,
-                                    player,
-                                    flag1,
-                                    inaccuracyModifier,
-                                    10.0f);
+                                    projectileAngle);
                         }
-                        int damage = itemstack.getCount() > 1 ? 3 : 1;
+                        int damage = projectileCount > 1 ? 3 : 1;
                         EquipmentSlot breakSlot =
                                 player.getUsedItemHand() == InteractionHand.MAIN_HAND
                                         ? EquipmentSlot.MAINHAND
