@@ -152,8 +152,10 @@ public class HeavyCrossbowItem extends CrossbowItem
                                 ? EnchantmentHelper.processProjectileCount(
                                         serverLevel, stack, entityLiving, 1)
                                 : ModEnchantments.getLevel(
-                                                registryAccess, Enchantments.MULTISHOT, stack)
-                                        > 0
+                                                        registryAccess,
+                                                        Enchantments.MULTISHOT,
+                                                        stack)
+                                                > 0
                                         ? 3
                                         : 1;
 
@@ -241,9 +243,7 @@ public class HeavyCrossbowItem extends CrossbowItem
                                 EnchantmentHelper.processProjectileSpread(
                                         serverLevel, stack, player, 0.0F);
                         float spreadStep =
-                                projectileCount == 1
-                                        ? 0.0F
-                                        : 2.0F * spread / (projectileCount - 1);
+                                projectileCount == 1 ? 0.0F : 2.0F * spread / (projectileCount - 1);
                         float spreadOffset =
                                 (float) ((projectileCount - 1) % 2) * spreadStep / 2.0F;
                         float spreadDirection = 1.0F;
