@@ -7,7 +7,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.resources.ResourceLocation;
@@ -22,8 +21,10 @@ import org.xiyu.spartanweaponryunofficial.util.QuiverHelper;
 import org.xiyu.spartanweaponryunofficial.util.QuiverHelper.IQuiverInfo;
 
 public class HudQuiverAmmo {
-    protected static final ResourceLocation WIDGETS =
-            ResourceLocation.parse("textures/gui/widgets.png");
+    private static final ResourceLocation SLOT_BACKGROUND =
+            ResourceLocation.withDefaultNamespace("hud/hotbar_offhand_left");
+    private static final int BACKGROUND_WIDTH = 29;
+    private static final int BACKGROUND_HEIGHT = 24;
 
     public static void render(GuiGraphics guiGraphics, DeltaTracker deltaTracker) {
         RenderSystem.assertOnRenderThread();
@@ -71,10 +72,10 @@ public class HudQuiverAmmo {
         ammoStr = Integer.toString(ammoCount);
         offsetX =
                 AlignmentHelper.getAlignedX(
-                        align, ClientConfig.INSTANCE.quiverHudOffsetX.get(), 22);
+                        align, ClientConfig.INSTANCE.quiverHudOffsetX.get(), BACKGROUND_WIDTH);
         offsetY =
                 AlignmentHelper.getAlignedY(
-                        align, ClientConfig.INSTANCE.quiverHudOffsetY.get(), 22);
+                        align, ClientConfig.INSTANCE.quiverHudOffsetY.get(), BACKGROUND_HEIGHT);
 
         PoseStack poseStack = guiGraphics.pose();
         poseStack.pushPose();
@@ -82,17 +83,17 @@ public class HudQuiverAmmo {
         // MultiBufferSource.immediate(Tesselator.getInstance().getBuilder());
 
         RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
-        //        RenderSystem.setShaderTexture(0, WIDGETS);
-
-        guiGraphics.blit(WIDGETS, offsetX, offsetY, 24, 23, 22, 22);
-        guiGraphics.renderFakeItem(quiverStack, offsetX + 3, offsetY + 3);
+        RenderSystem.enableBlend();
+        guiGraphics.blitSprite(
+                SLOT_BACKGROUND, offsetX, offsetY, BACKGROUND_WIDTH, BACKGROUND_HEIGHT);
+        RenderSystem.disableBlend();
+        guiGraphics.renderFakeItem(quiverStack, offsetX + 3, offsetY + 4);
         poseStack.translate(0.0f, 0.0f, 200.0f);
         guiGraphics.drawString(
                 font,
                 ammoStr,
                 offsetX + 20 - font.width(ammoStr),
-                offsetY + 13,
+                offsetY + 14,
                 ammoCount == 0 ? 0xFF6060 : 0xFFC000,
                 true);
         //        font.drawInBatch(ammoStr, offsetX + 20 - font.width(ammoStr), offsetY + 13,
@@ -109,7 +110,8 @@ public class HudQuiverAmmo {
                                     .getString()
                                     .toUpperCase()
                             + "]";
-            int keyTextYOffset = align.getVertical() == VerticalAlignment.TOP ? 22 : -8;
+            int keyTextYOffset =
+                    align.getVertical() == VerticalAlignment.TOP ? BACKGROUND_HEIGHT : -8;
             guiGraphics.drawString(
                     font,
                     inventoryKey,

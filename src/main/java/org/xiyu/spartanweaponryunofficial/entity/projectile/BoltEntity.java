@@ -1,5 +1,6 @@
 package org.xiyu.spartanweaponryunofficial.entity.projectile;
 
+import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
 import java.util.List;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.Holder;
@@ -31,6 +32,7 @@ import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.entity.IEntityWithComplexSpawn;
@@ -55,6 +57,7 @@ public class BoltEntity extends AbstractArrow implements IEntityWithComplexSpawn
     protected float baseDamage = 1.0f;
     protected float rangeMultiplier = 1.0f;
     protected float armorPiercingFactor = 0.0f;
+    private IntOpenHashSet piercedEntityIds;
 
     public BoltEntity(EntityType<? extends BoltEntity> type, Level level) {
         super(type, level);
@@ -131,6 +134,14 @@ public class BoltEntity extends AbstractArrow implements IEntityWithComplexSpawn
         Level level = this.level();
         RegistryAccess registryAccess = level.registryAccess();
         Entity entity = result.getEntity();
+        if (this.getPierceLevel() > 0) {
+            if (this.piercedEntityIds == null) this.piercedEntityIds = new IntOpenHashSet(5);
+            if (this.piercedEntityIds.size() >= this.getPierceLevel() + 1) {
+                this.discard();
+                return;
+            }
+            this.piercedEntityIds.add(entity.getId());
+        }
         float velocity = (float) this.getDeltaMovement().length();
         int damage =
                 Mth.ceil(Mth.clamp((double) velocity * this.getBaseDamage(), 0.0D, 2.147483647E9D));
@@ -207,6 +218,19 @@ public class BoltEntity extends AbstractArrow implements IEntityWithComplexSpawn
                 this.discard();
             }
         }
+    }
+
+    @Override
+    protected boolean canHitEntity(Entity entity) {
+        return super.canHitEntity(entity)
+                && (this.piercedEntityIds == null
+                        || !this.piercedEntityIds.contains(entity.getId()));
+    }
+
+    @Override
+    protected void onHitBlock(BlockHitResult result) {
+        super.onHitBlock(result);
+        if (this.piercedEntityIds != null) this.piercedEntityIds.clear();
     }
 
     @Override

@@ -112,20 +112,17 @@ public class LongbowItem extends BowItem implements IReloadable {
                 float f = this.getArrowSpeed(i);
 
                 if (f >= 0.1D) {
-                    boolean flag1 =
-                            player.getAbilities().instabuild
-                                    || (itemstack.getItem() instanceof ArrowItem
-                                            && ((ArrowItem) itemstack.getItem())
-                                                    .isInfinite(itemstack, stack, player));
-
                     if (!level.isClientSide) {
+                        ItemStack projectileStack = useAmmo(stack, itemstack, player, false);
+                        if (projectileStack.isEmpty()) return;
+
                         ArrowItem itemarrow =
                                 ((ArrowItem)
-                                        (itemstack.getItem() instanceof ArrowItem
-                                                ? itemstack.getItem()
+                                        (projectileStack.getItem() instanceof ArrowItem
+                                                ? projectileStack.getItem()
                                                 : Items.ARROW));
                         AbstractArrow entityarrow =
-                                itemarrow.createArrow(level, itemstack, player, stack);
+                                itemarrow.createArrow(level, projectileStack, player, stack);
                         entityarrow.shootFromRotation(
                                 player, player.xRotO, player.yRotO, 0.0f, f * 3.0f, 0.5f);
 
@@ -171,12 +168,6 @@ public class LongbowItem extends BowItem implements IReloadable {
                                         : EquipmentSlot.OFFHAND;
                         stack.hurtAndBreak(1, player, breakSlot);
 
-                        if (flag1
-                                || player.getAbilities().instabuild
-                                        && (itemstack.getItem() == Items.SPECTRAL_ARROW
-                                                || itemstack.getItem() == Items.TIPPED_ARROW))
-                            entityarrow.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
-
                         level.addFreshEntity(entityarrow);
                     }
 
@@ -189,11 +180,6 @@ public class LongbowItem extends BowItem implements IReloadable {
                             SoundSource.NEUTRAL,
                             1.0F,
                             1.0F / (level.random.nextFloat() * 0.4f + 1.2f) + f * 0.5f);
-
-                    if (!flag1) {
-                        itemstack.shrink(1);
-                        if (itemstack.isEmpty()) player.getInventory().removeItem(itemstack);
-                    }
 
                     player.awardStat(Stats.ITEM_USED.get(this));
                 }

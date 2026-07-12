@@ -5,7 +5,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -14,7 +13,6 @@ import org.xiyu.spartanweaponryunofficial.api.APIConfigValues;
 import org.xiyu.spartanweaponryunofficial.api.SpartanWeaponryAPI;
 import org.xiyu.spartanweaponryunofficial.api.WeaponMaterial;
 import org.xiyu.spartanweaponryunofficial.api.WeaponTraits;
-import org.xiyu.spartanweaponryunofficial.init.ModDamageTypes;
 
 public class DamageBonusWeaponTrait extends MeleeCallbackWeaponTrait {
     /**
@@ -89,11 +87,7 @@ public class DamageBonusWeaponTrait extends MeleeCallbackWeaponTrait {
 
     public static final DamageCalculationFunc DAMAGE_BACKSTAB =
             (material, baseDamage, bonusDamage, source, attacker, victim) -> {
-                Entity immediateEntity = source.getEntity();
-                float yaw =
-                        source.is(ModDamageTypes.KEY_THROWN_WEAPON_PLAYER)
-                                ? -immediateEntity.yRotO
-                                : immediateEntity.yRotO;
+                float yaw = attacker.yRotO;
                 float victimYaw = victim.yRotO;
                 float difference = victimYaw - yaw;
                 difference = posMod(difference + 180.0f, 360.0f) - 180.0f;

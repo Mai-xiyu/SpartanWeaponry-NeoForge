@@ -62,7 +62,7 @@ public class ArrowBaseItem extends ArrowItem {
             ItemStack stack,
             @NotNull LivingEntity shooter,
             ItemStack weapon) {
-        ArrowBaseEntity arrow = new ArrowBaseEntity(levelIn, shooter, weapon);
+        ArrowBaseEntity arrow = new ArrowBaseEntity(levelIn, shooter, stack, weapon);
         ItemStack arrowStack = stack.copy();
         arrowStack.setCount(1);
         arrow.initEntity(this.damageModifier, this.rangeModifier, arrowStack);
