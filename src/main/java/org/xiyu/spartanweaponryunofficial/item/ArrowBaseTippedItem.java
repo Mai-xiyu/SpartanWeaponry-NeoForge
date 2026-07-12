@@ -30,7 +30,7 @@ public class ArrowBaseTippedItem extends ArrowBaseItem {
             ItemStack stack,
             @NotNull LivingEntity shooter,
             ItemStack weapon) {
-        ArrowBaseEntity arrow = new ArrowBaseEntity(level, shooter, weapon);
+        ArrowBaseEntity arrow = new ArrowBaseEntity(level, shooter, stack, weapon);
         ItemStack arrowStack = stack.copy();
         arrowStack.setCount(1);
         arrow.initEntity(this.damageModifier, this.rangeModifier, arrowStack);

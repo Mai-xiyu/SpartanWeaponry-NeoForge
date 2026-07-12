@@ -48,11 +48,14 @@ import org.xiyu.spartanweaponryunofficial.util.WeaponOilConfig;
 
 public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithComplexSpawn {
     public static final String NBT_WEAPON = "Weapon";
+    private static final String NBT_DEALT_DAMAGE = "DealtDamage";
     protected static final EntityDataAccessor<ItemStack> DATA_WEAPON =
             SynchedEntityData.defineId(
                     ThrowingWeaponEntity.class, EntityDataSerializers.ITEM_STACK);
     protected static final EntityDataAccessor<Byte> DATA_RETURN =
             SynchedEntityData.defineId(ThrowingWeaponEntity.class, EntityDataSerializers.BYTE);
+    private static final EntityDataAccessor<Boolean> DATA_DEALT_DAMAGE =
+            SynchedEntityData.defineId(ThrowingWeaponEntity.class, EntityDataSerializers.BOOLEAN);
     protected int ticksInAir = 0;
     protected float waterInertia = 0.0f;
     protected boolean isReturning = false;
@@ -86,6 +89,7 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
         super.defineSynchedData(builder);
         builder.define(DATA_WEAPON, ItemStack.EMPTY);
         builder.define(DATA_RETURN, (byte) 0);
+        builder.define(DATA_DEALT_DAMAGE, false);
     }
 
     @Override
@@ -122,7 +126,7 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
         if (returnLevel > 0 && thrower != null) {
             // Check if we should start returning (after being in ground for a short time, or
             // already returning)
-            if (this.inGroundTime > 4 || this.isReturning) {
+            if (this.inGroundTime > 4 || this.hasDealtDamage() || this.isReturning) {
                 if (thrower.isAlive()
                         && (!(thrower instanceof ServerPlayer) || !thrower.isSpectator())) {
                     // Return to thrower - ensure we're in the returning state
@@ -216,6 +220,7 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
                 && entity instanceof Player player) {
             if (this.attemptCatch(player)) return;
         }
+        this.setDealtDamage(true);
         if (shooter == null)
             //                src = new IndirectEntityDamageSource("mob", this,
             // this).setProjectile();
@@ -323,14 +328,10 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
                     this.getMobHitSound(), 1.0F, 1.2F / (this.random.nextFloat() * 0.2F + 0.9F));
 
             if (!isEnderman) {
-                this.setDeltaMovement(this.getDeltaMovement().scale(-0.1d));
-                this.setYRot(this.getYRot() + 180.0f);
-                this.yRotO += 180.0F;
+                this.setDeltaMovement(this.getDeltaMovement().multiply(-0.01d, -0.1d, -0.01d));
             }
         } else {
-            this.setDeltaMovement(this.getDeltaMovement().scale(-0.1d));
-            this.setYRot(this.getYRot() + 180.0f);
-            this.yRotO += 180.0F;
+            this.setDeltaMovement(this.getDeltaMovement().multiply(-0.01d, -0.1d, -0.01d));
             this.ticksInAir = 0;
 
             if (!level.isClientSide && this.getDeltaMovement().lengthSqr() < 1.0e-7d) {
@@ -342,6 +343,11 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
                 }
             }
         }
+    }
+
+    @Override
+    protected EntityHitResult findHitEntity(Vec3 start, Vec3 end) {
+        return this.hasDealtDamage() ? null : super.findHitEntity(start, end);
     }
 
     @Override
@@ -411,6 +417,7 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
     @Override
     public void readAdditionalSaveData(@NotNull CompoundTag compound) {
         super.readAdditionalSaveData(compound);
+        this.setDealtDamage(compound.getBoolean(NBT_DEALT_DAMAGE));
         if (compound.contains(NBT_WEAPON)) {
             CompoundTag weaponTag = compound.getCompound(NBT_WEAPON);
             ItemStack weapon =
@@ -461,6 +468,7 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
             compound.put(NBT_WEAPON, weaponTag);
         }
         compound.putByte("ReturnLevel", this.getEntityData().get(DATA_RETURN));
+        compound.putBoolean(NBT_DEALT_DAMAGE, this.hasDealtDamage());
     }
 
     // New Methods
@@ -470,6 +478,14 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
 
     public boolean isValidThrowingWeapon() {
         return !this.getWeaponItem().isEmpty();
+    }
+
+    protected boolean hasDealtDamage() {
+        return this.getEntityData().get(DATA_DEALT_DAMAGE);
+    }
+
+    protected void setDealtDamage(boolean dealtDamage) {
+        this.getEntityData().set(DATA_DEALT_DAMAGE, dealtDamage);
     }
 
     public void setWeapon(ItemStack weaponStack) {

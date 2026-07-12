@@ -265,7 +265,8 @@ public class HeavyCrossbowItem extends CrossbowItem
                                     player,
                                     flag1,
                                     inaccuracyModifier,
-                                    projectileAngle);
+                                    projectileAngle,
+                                    projectileIndex);
                         }
                         int damage = projectileCount > 1 ? 3 : 1;
                         EquipmentSlot breakSlot =
@@ -312,6 +313,28 @@ public class HeavyCrossbowItem extends CrossbowItem
             boolean creativeOrInfinite,
             float inaccuracyModifier,
             float projectileAngle) {
+        this.spawnProjectile(
+                crossbow,
+                boltItem,
+                boltStack,
+                levelIn,
+                player,
+                creativeOrInfinite,
+                inaccuracyModifier,
+                projectileAngle,
+                projectileAngle == 0.0f ? 0 : 1);
+    }
+
+    protected void spawnProjectile(
+            ItemStack crossbow,
+            BoltItem boltItem,
+            ItemStack boltStack,
+            Level levelIn,
+            Player player,
+            boolean creativeOrInfinite,
+            float inaccuracyModifier,
+            float projectileAngle,
+            int projectileIndex) {
         BoltEntity bolt = boltItem.createBolt(levelIn, boltStack, player, crossbow);
 
         if (bolt == null) return; // Safety check in case bolt creation fails
@@ -352,7 +375,7 @@ public class HeavyCrossbowItem extends CrossbowItem
             bolt.igniteForSeconds(5.0F);
         }
 
-        if (creativeOrInfinite || projectileAngle != 0.0f) {
+        if (creativeOrInfinite || projectileIndex > 0) {
             bolt.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
         }
 

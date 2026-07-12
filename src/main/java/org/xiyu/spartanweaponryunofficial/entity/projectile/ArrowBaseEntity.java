@@ -53,8 +53,18 @@ public class ArrowBaseEntity extends AbstractArrow implements IEntityWithComplex
         super(ModEntities.ARROW_SW.get(), x, y, z, level, Items.ARROW.getDefaultInstance(), weapon);
     }
 
+    public ArrowBaseEntity(
+            Level level, double x, double y, double z, ItemStack arrowStack, ItemStack weapon) {
+        super(ModEntities.ARROW_SW.get(), x, y, z, level, arrowStack, weapon);
+    }
+
     public ArrowBaseEntity(Level level, LivingEntity shooter, ItemStack weapon) {
         super(ModEntities.ARROW_SW.get(), shooter, level, Items.ARROW.getDefaultInstance(), weapon);
+    }
+
+    public ArrowBaseEntity(
+            Level level, LivingEntity shooter, ItemStack arrowStack, ItemStack weapon) {
+        super(ModEntities.ARROW_SW.get(), shooter, level, arrowStack, weapon);
     }
 
     public void initEntity(float baseDamage, float rangeMultiplier, ItemStack arrowStack) {

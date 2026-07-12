@@ -29,6 +29,10 @@ public class ThrowableMeleeWeaponTrait extends WeaponTrait implements IActionTra
     @Override
     public InteractionResultHolder<ItemStack> use(
             ItemStack usingStackIn, Level levelIn, Player playerIn, InteractionHand handIn) {
+        if (handIn == InteractionHand.MAIN_HAND
+                && playerIn.getOffhandItem().getUseAnimation() != UseAnim.NONE) {
+            return InteractionResultHolder.pass(usingStackIn);
+        }
         playerIn.startUsingItem(handIn);
         return InteractionResultHolder.consume(usingStackIn);
     }
