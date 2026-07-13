@@ -14,6 +14,7 @@ public class ReachWeaponTrait extends MeleeCallbackWeaponTrait {
 
     public ReachWeaponTrait(String propType, String propModId) {
         super(propType, propModId, TraitQuality.POSITIVE);
+        this.isThrowing = true;
     }
 
     @Override

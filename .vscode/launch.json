@@ -6,19 +6,19 @@
       "request": "launch",
       "name": "Client",
       "presentation": {
-        "group": "Mod Development - Spartan Weaponry",
+        "group": "Mod Development - SpartanWeaponry-NeoForge",
         "order": 0
       },
-      "projectName": "Spartan Weaponry",
+      "projectName": "SpartanWeaponry-NeoForge",
       "mainClass": "net.neoforged.devlaunch.Main",
       "args": [
-        "@/home/xiyu/下载/Spartan Weaponry/build/moddev/clientRunProgramArgs.txt"
+        "@C:\\Users\\25463\\Desktop\\SpartanWeaponry-NeoForge\\build\\moddev\\clientRunProgramArgs.txt"
       ],
       "vmArgs": [
-        "@/home/xiyu/下载/Spartan Weaponry/build/moddev/clientRunVmArgs.txt",
-        "-Dfml.modFolders\u003dspartan_weaponry_unofficial%%/home/xiyu/下载/Spartan Weaponry/bin/main"
+        "@C:\\Users\\25463\\Desktop\\SpartanWeaponry-NeoForge\\build\\moddev\\clientRunVmArgs.txt",
+        "-Dfml.modFolders\u003dspartan_weaponry_unofficial%%C:\\Users\\25463\\Desktop\\SpartanWeaponry-NeoForge\\bin\\main"
       ],
-      "cwd": "${workspaceFolder}/run",
+      "cwd": "${workspaceFolder}\\run",
       "env": {},
       "console": "internalConsole",
       "shortenCommandLine": "none"
@@ -28,19 +28,19 @@
       "request": "launch",
       "name": "Data",
       "presentation": {
-        "group": "Mod Development - Spartan Weaponry",
+        "group": "Mod Development - SpartanWeaponry-NeoForge",
         "order": 1
       },
-      "projectName": "Spartan Weaponry",
+      "projectName": "SpartanWeaponry-NeoForge",
       "mainClass": "net.neoforged.devlaunch.Main",
       "args": [
-        "@/home/xiyu/下载/Spartan Weaponry/build/moddev/dataRunProgramArgs.txt"
+        "@C:\\Users\\25463\\Desktop\\SpartanWeaponry-NeoForge\\build\\moddev\\dataRunProgramArgs.txt"
       ],
       "vmArgs": [
-        "@/home/xiyu/下载/Spartan Weaponry/build/moddev/dataRunVmArgs.txt",
-        "-Dfml.modFolders\u003dspartan_weaponry_unofficial%%/home/xiyu/下载/Spartan Weaponry/bin/main"
+        "@C:\\Users\\25463\\Desktop\\SpartanWeaponry-NeoForge\\build\\moddev\\dataRunVmArgs.txt",
+        "-Dfml.modFolders\u003dspartan_weaponry_unofficial%%C:\\Users\\25463\\Desktop\\SpartanWeaponry-NeoForge\\bin\\main"
       ],
-      "cwd": "${workspaceFolder}/run",
+      "cwd": "${workspaceFolder}\\run",
       "env": {},
       "console": "internalConsole",
       "shortenCommandLine": "none"
@@ -50,19 +50,19 @@
       "request": "launch",
       "name": "GameTestServer",
       "presentation": {
-        "group": "Mod Development - Spartan Weaponry",
+        "group": "Mod Development - SpartanWeaponry-NeoForge",
         "order": 2
       },
-      "projectName": "Spartan Weaponry",
+      "projectName": "SpartanWeaponry-NeoForge",
       "mainClass": "net.neoforged.devlaunch.Main",
       "args": [
-        "@/home/xiyu/下载/Spartan Weaponry/build/moddev/gameTestServerRunProgramArgs.txt"
+        "@C:\\Users\\25463\\Desktop\\SpartanWeaponry-NeoForge\\build\\moddev\\gameTestServerRunProgramArgs.txt"
       ],
       "vmArgs": [
-        "@/home/xiyu/下载/Spartan Weaponry/build/moddev/gameTestServerRunVmArgs.txt",
-        "-Dfml.modFolders\u003dspartan_weaponry_unofficial%%/home/xiyu/下载/Spartan Weaponry/bin/main"
+        "@C:\\Users\\25463\\Desktop\\SpartanWeaponry-NeoForge\\build\\moddev\\gameTestServerRunVmArgs.txt",
+        "-Dfml.modFolders\u003dspartan_weaponry_unofficial%%C:\\Users\\25463\\Desktop\\SpartanWeaponry-NeoForge\\bin\\main"
       ],
-      "cwd": "${workspaceFolder}/run",
+      "cwd": "${workspaceFolder}\\run",
       "env": {},
       "console": "internalConsole",
       "shortenCommandLine": "none"
@@ -72,19 +72,19 @@
       "request": "launch",
       "name": "Server",
       "presentation": {
-        "group": "Mod Development - Spartan Weaponry",
+        "group": "Mod Development - SpartanWeaponry-NeoForge",
         "order": 3
       },
-      "projectName": "Spartan Weaponry",
+      "projectName": "SpartanWeaponry-NeoForge",
       "mainClass": "net.neoforged.devlaunch.Main",
       "args": [
-        "@/home/xiyu/下载/Spartan Weaponry/build/moddev/serverRunProgramArgs.txt"
+        "@C:\\Users\\25463\\Desktop\\SpartanWeaponry-NeoForge\\build\\moddev\\serverRunProgramArgs.txt"
       ],
       "vmArgs": [
-        "@/home/xiyu/下载/Spartan Weaponry/build/moddev/serverRunVmArgs.txt",
-        "-Dfml.modFolders\u003dspartan_weaponry_unofficial%%/home/xiyu/下载/Spartan Weaponry/bin/main"
+        "@C:\\Users\\25463\\Desktop\\SpartanWeaponry-NeoForge\\build\\moddev\\serverRunVmArgs.txt",
+        "-Dfml.modFolders\u003dspartan_weaponry_unofficial%%C:\\Users\\25463\\Desktop\\SpartanWeaponry-NeoForge\\bin\\main"
       ],
-      "cwd": "${workspaceFolder}/run",
+      "cwd": "${workspaceFolder}\\run",
       "env": {},
       "console": "internalConsole",
       "shortenCommandLine": "none"
