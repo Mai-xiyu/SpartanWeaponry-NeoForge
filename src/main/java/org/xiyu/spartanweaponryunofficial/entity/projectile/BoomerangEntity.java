@@ -16,6 +16,7 @@ import net.minecraft.world.entity.EntitySelector;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -90,7 +91,12 @@ public class BoomerangEntity extends ThrowingWeaponEntity {
     public void onSyncedDataUpdated(EntityDataAccessor<?> key) {
         super.onSyncedDataUpdated(key);
         if (DATA_BOOMERANG_RETURNING.equals(key)) {
-            this.isReturning = this.getEntityData().get(DATA_BOOMERANG_RETURNING);
+            boolean returning = this.getEntityData().get(DATA_BOOMERANG_RETURNING);
+            this.isReturning = returning;
+            if (!returning) {
+                this.returnPos = null;
+                this.playedReturnSound = false;
+            }
         } else if (DATA_MAX_DISTANCE.equals(key)) {
             this.maxDistance = this.getEntityData().get(DATA_MAX_DISTANCE);
         }
@@ -115,6 +121,7 @@ public class BoomerangEntity extends ThrowingWeaponEntity {
     }
 
     private void setBoomerangReturning(boolean returning) {
+        if (this.level().isClientSide) return;
         this.isReturning = returning;
         this.getEntityData().set(DATA_BOOMERANG_RETURNING, returning);
     }
@@ -131,7 +138,7 @@ public class BoomerangEntity extends ThrowingWeaponEntity {
         Entity owner = this.getOwner();
 
         // Check for spectator BEFORE calling super.tick() to prevent parent class from interfering
-        if (owner != null && owner.isSpectator()) {
+        if (!level.isClientSide && owner != null && owner.isSpectator()) {
             // Owner is spectating - stop all returning behavior and let it drop
             if (this.isNoGravity()) this.setNoGravity(false);
             this.clearBoomerangReturnState();
@@ -142,7 +149,7 @@ public class BoomerangEntity extends ThrowingWeaponEntity {
 
         // Do nothing more if the Boomerang is in the ground
         if (this.inGround) {
-            this.clearBoomerangReturnState();
+            if (!level.isClientSide) this.clearBoomerangReturnState();
             this.setDeltaMovement(Vec3.ZERO);
             this.setNoPhysics(false);
             this.setNoGravity(false);
@@ -165,15 +172,28 @@ public class BoomerangEntity extends ThrowingWeaponEntity {
 
         // Check that the Boomerang is still in flight (either going out or coming back)
         if (this.isNoGravity()) {
+            boolean reachedOwner =
+                    distance >= 0.0d && distance < 1.0d && this.isBoomerangReturning();
+            if (reachedOwner) {
+                if (!level.isClientSide
+                        && owner instanceof Player player
+                        && this.attemptCatch(player)) return;
+                if (level.isClientSide) {
+                    this.setDeltaMovement(Vec3.ZERO);
+                    return;
+                }
+            }
+
             // Start dropping when the boomerang is close to the player and when it's returning
             // Or if it's return position is invalid
-            if ((distance < 1.0d && this.isBoomerangReturning())
-                    || (this.isInWater() && this.waterInertia <= 0.0f)
-                    || this.returnPos == null) {
+            if (!level.isClientSide
+                    && (reachedOwner
+                            || (this.isInWater() && this.waterInertia <= 0.0f)
+                            || this.returnPos == null)) {
                 this.setNoGravity(false);
                 this.clearBoomerangReturnState();
             }
-            if (distance > this.maxDistance && !this.isBoomerangReturning())
+            if (!level.isClientSide && distance > this.maxDistance && !this.isBoomerangReturning())
                 this.setBoomerangReturning(true);
 
             // Override motion for Boomerang when returning to the thrower

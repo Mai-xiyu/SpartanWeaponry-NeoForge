@@ -2,6 +2,7 @@ package org.xiyu.spartanweaponryunofficial.item;
 
 import java.util.List;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
@@ -9,6 +10,8 @@ import net.minecraft.world.item.ArrowItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 import org.xiyu.spartanweaponryunofficial.ModSpartanWeaponry;
@@ -54,6 +57,18 @@ public class ArrowBaseItem extends ArrowItem {
                                                 this.rangeModifier)
                                         .withStyle(ChatFormatting.GRAY))
                         .withStyle(ChatFormatting.DARK_AQUA));
+    }
+
+    @Override
+    public boolean isInfinite(ItemStack stack, ItemStack bow, LivingEntity shooter) {
+        int infinityLevel =
+                EnchantmentHelper.getItemEnchantmentLevel(
+                        shooter.level()
+                                .registryAccess()
+                                .registryOrThrow(Registries.ENCHANTMENT)
+                                .getHolderOrThrow(Enchantments.INFINITY),
+                        bow);
+        return infinityLevel > 0 && this.getClass() == ArrowBaseItem.class;
     }
 
     @Override

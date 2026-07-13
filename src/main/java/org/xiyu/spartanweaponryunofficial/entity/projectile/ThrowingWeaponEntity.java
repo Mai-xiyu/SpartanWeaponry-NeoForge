@@ -216,9 +216,10 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
 
         // Try and catch the throwing weapon if possible.
         if (shooter != null
-                && (this.canBeCaughtInMidair(shooter, entity) || this.isReturning)
+                && this.canBeCaughtInMidair(shooter, entity)
                 && entity instanceof Player player) {
-            if (this.attemptCatch(player)) return;
+            this.attemptCatch(player);
+            return;
         }
         this.setDealtDamage(true);
         if (shooter == null)
@@ -346,8 +347,12 @@ public class ThrowingWeaponEntity extends AbstractArrow implements IEntityWithCo
     }
 
     @Override
-    protected EntityHitResult findHitEntity(Vec3 start, Vec3 end) {
-        return this.hasDealtDamage() ? null : super.findHitEntity(start, end);
+    protected boolean canHitEntity(Entity entity) {
+        Entity owner = this.getOwner();
+        if (this.isReturning && owner != null && entity.is(owner))
+            return entity.canBeHitByProjectile();
+
+        return !this.hasDealtDamage() && super.canHitEntity(entity);
     }
 
     @Override
