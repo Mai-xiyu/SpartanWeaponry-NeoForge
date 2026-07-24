@@ -63,8 +63,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         final ModelGenerator generator = new ModelGenerator(this);
 
         // Generate the models
-        generator.createSimpleModel(ModItems.SIMPLE_HANDLE.get());
-        generator.createSimpleModel(ModItems.HANDLE.get());
+        generator.createSimpleModel(ModItems.SIMPLE_HANDLE.get(), this.mcLoc("item/handheld"));
+        generator.createSimpleModel(ModItems.HANDLE.get(), this.mcLoc("item/handheld"));
         generator.createSimpleModel(ModItems.SIMPLE_POLE.get(), BaseModels.POLE);
         generator.createSimpleModel(ModItems.POLE.get(), BaseModels.POLE);
         generator.createSimpleModel(ModItems.EXPLOSIVE_CHARGE.get());
