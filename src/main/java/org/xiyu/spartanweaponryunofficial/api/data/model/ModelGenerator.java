@@ -268,6 +268,7 @@ public class ModelGenerator {
         return this.itemModelProvider
                 .withExistingParent(itemPath, baseModel)
                 .texture("layer0", texturePath + textureName)
+                .texture("particle", texturePath + textureName)
                 .override()
                 .predicate(ModelOverrides.BLOCKING, 1.0f)
                 .model(
