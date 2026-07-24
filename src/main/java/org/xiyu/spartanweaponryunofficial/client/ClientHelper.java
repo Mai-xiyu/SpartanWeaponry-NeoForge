@@ -133,7 +133,7 @@ public class ClientHelper {
                     if (living == null
                             || !meleeWeapon.hasWeaponTrait(WeaponTraits.THROWABLE.get())
                             || !stack.is(living.getUseItem().getItem())) return 0.0f;
-                    return living.getTicksUsingItem() > 0 ? 1.0f : 0.0f;
+                    return living.isUsingItem() ? 1.0f : 0.0f;
                 });
     }
 
@@ -187,7 +187,7 @@ public class ClientHelper {
                 ModelOverrides.THROWING,
                 (stack, world, living, value) -> {
                     if (living == null || !stack.is(living.getUseItem().getItem())) return 0.0f;
-                    return living.getTicksUsingItem() > 0 ? 1.0f : 0.0f;
+                    return living.isUsingItem() ? 1.0f : 0.0f;
                 });
         ItemProperties.register(
                 throwingWeapon,
