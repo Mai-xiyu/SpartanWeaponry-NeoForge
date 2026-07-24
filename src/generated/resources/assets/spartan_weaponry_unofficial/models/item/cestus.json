@@ -15,6 +15,7 @@
     }
   ],
   "textures": {
-    "layer0": "spartan_weaponry_unofficial:item/cestus"
+    "layer0": "spartan_weaponry_unofficial:item/cestus",
+    "particle": "spartan_weaponry_unofficial:item/cestus"
   }
 }
