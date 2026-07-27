@@ -2,7 +2,7 @@
 	// 物品栏 (创造模式列表)
 	"itemGroup.spartan_weaponry_unofficial.basic": "斯巴达武器:原版材料",
 	"itemGroup.spartan_weaponry_unofficial.modded": "斯巴达武器:模组材料",
-	"itemGroup.spartan_weaponry_unofficial.arrows_bolts": "斯巴达武器:箭与弩箭",
+	"itemGroup.spartan_weaponry_unofficial.arrows_bolts": "斯巴达武器:箭&弩箭",
 
 	// 物品
 
@@ -1108,7 +1108,7 @@
 	"tooltip.spartan_weaponry_unofficial.handle.desc": "用于大多数武器的高品质手柄",
 	"tooltip.spartan_weaponry_unofficial.simple_pole.desc": "一种基础的杆，足够用于制作基本长柄武器",
 	"tooltip.spartan_weaponry_unofficial.pole.desc": "用于长柄武器的高品质杆",
-	"tooltip.spartan_weaponry_unofficial.explosive_charge.desc": "用于爆炸箭和炸药的易爆载体",
+	"tooltip.spartan_weaponry_unofficial.explosive_charge.desc": "用于爆炸箭&炸药的易爆载体",
 	"tooltip.spartan_weaponry_unofficial.grease_ball.desc": "制作油的基础材料。放入瓶中以制油",
 	"tooltip.spartan_weaponry_unofficial.dynamite.desc": "投掷%f秒后，引起比TNT小的爆炸",
 	"tooltip.spartan_weaponry_unofficial.dynamite.terrain_damage": "如果启用了怪物破坏，会对地形造成伤害",
@@ -1132,7 +1132,7 @@
 	"tooltip.spartan_weaponry_unofficial.large_quiver_brace.desc": "在锻造台中用于将中型箭袋升级为大型箭袋的材料",
 	"tooltip.spartan_weaponry_unofficial.huge_quiver_brace.desc": "在锻造台中用于将大型箭袋升级为巨型箭袋的材料",
 
-	"tooltip.spartan_weaponry_unofficial.quiver_compartment.applies_to": "适用于：箭袋与弩箭袋",
+	"tooltip.spartan_weaponry_unofficial.quiver_compartment.applies_to": "适用于：箭袋&弩箭袋",
 	"tooltip.spartan_weaponry_unofficial.quiver_compartment.ingredients": "所需材料：下一级箭袋支架",
 	"tooltip.spartan_weaponry_unofficial.quiver_compartment.upgrade_description": "箭袋容量升级",
 	"tooltip.spartan_weaponry_unofficial.quiver_compartment.base_slot_description": "基础槽位说明：箭袋槽位",
@@ -1143,7 +1143,7 @@
 	"tooltip.spartan_weaponry_unofficial.showing_description": "[正在显示描述]",
 	"tooltip.spartan_weaponry_unofficial.longbow.desc": "标准弓的远程版本",
 	"tooltip.spartan_weaponry_unofficial.longbow.desc_2": "完全拉开需要更长时间",
-	"tooltip.spartan_weaponry_unofficial.heavy_crossbow.desc": "高伤害和远程射程",
+	"tooltip.spartan_weaponry_unofficial.heavy_crossbow.desc": "高伤害&远程射程",
 	"tooltip.spartan_weaponry_unofficial.heavy_crossbow.desc_2": "装填后瞄准提高准确性",
 	"tooltip.spartan_weaponry_unofficial.heavy_crossbow.desc_3": "保持瞄准进行精准射击",
 	"tooltip.spartan_weaponry_unofficial.heavy_crossbow.loaded_bolt": "装填：%s",
@@ -1203,7 +1203,7 @@
 	"tooltip.spartan_weaponry_unofficial.quiver_ammo": "- %d个 %s",
 	"tooltip.spartan_weaponry_unofficial.quiver_none": "- 无!",
 	"tooltip.spartan_weaponry_unofficial.quiver_collect_status": "弹药收集: ",
-	"tooltip.spartan_weaponry_unofficial.quiver_upgrade": "使用锻造台中的箭袋升级工具升级",
+	"tooltip.spartan_weaponry_unofficial.quiver_upgrade": "在锻造台中用箭筒&下一级箭袋支架升级",
 
 	"tooltip.spartan_weaponry_unofficial.enabled": "已启用",
 	"tooltip.spartan_weaponry_unofficial.disabled": "已禁用",
@@ -1227,7 +1227,7 @@
 	"command.spartan_weaponry_unofficial.apply_oil.error.no_item": "无法应用油；玩家'%s'没有手持物品",
 	"command.spartan_weaponry_unofficial.apply_oil.error.incompatible_item": "无法将油应用到物品'%s'；不兼容的物品不属于'spartan_weaponry_unofficial:oilable_weapons'标签",
 
-	// 信息 (覆盖层 & 聊天)
+	// 信息 (覆盖层&聊天)
 	"message.spartan_weaponry_unofficial.ammo_collect_toggle": "弹药收集：%s",
 	"message.spartan_weaponry_unofficial.quiver_not_found": "未找到箭袋！",
 	"message.spartan_weaponry_unofficial.oil_applied": "已在您的%s上应用%s",
@@ -1303,7 +1303,7 @@
 	"advancement.spartan_weaponry_unofficial.craft_quarterstaff.title": "不那么尖锐的棍子！",
 	"advancement.spartan_weaponry_unofficial.craft_quarterstaff.desc": "获得一根长棍",
 	"advancement.spartan_weaponry_unofficial.craft_quiver.title": "满载弹药的背包！",
-	"advancement.spartan_weaponry_unofficial.craft_quiver.desc": "获得任何箭袋或弩箭袋",
+	"advancement.spartan_weaponry_unofficial.craft_quiver.desc": "获得任意箭袋或弩箭袋",
 	"advancement.spartan_weaponry_unofficial.upgrade_quiver.title": "更大的袋？",
 	"advancement.spartan_weaponry_unofficial.upgrade_quiver.desc": "使用适当的箭袋升级工具升级任何箭袋",
 	"advancement.spartan_weaponry_unofficial.upgrade_quiver_max.title": "最大容量",
@@ -1311,7 +1311,7 @@
 	"advancement.spartan_weaponry_unofficial.craft_scythe.title": "收割你所种植的",
 	"advancement.spartan_weaponry_unofficial.craft_scythe.desc": "获得一把镰刀",
 	"advancement.spartan_weaponry_unofficial.collect_heads.title": "斩断他们的头颅！",
-	"advancement.spartan_weaponry_unofficial.collect_heads.desc": "使用镰刀收集除了玩家和末影龙头颅以外的所有头颅和骷髅",
+	"advancement.spartan_weaponry_unofficial.collect_heads.desc": "使用镰刀收集所有头颅和骷髅(除了玩家头颅&末影龙头颅)",
 	"advancement.spartan_weaponry_unofficial.upgrade_netherite.title": "残骸裹器",
 	"advancement.spartan_weaponry_unofficial.upgrade_netherite.desc": "将任何钻石武器升级为其下界合金等级武器",
 	"advancement.spartan_weaponry_unofficial.brew_oil.title": "白狼炼金术",
