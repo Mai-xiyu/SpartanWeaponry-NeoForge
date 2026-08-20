@@ -315,10 +315,6 @@ public class ThrowingWeaponItem extends Item
             @NotNull Level levelIn, Player player, @NotNull InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
         this.normalizeStackState(stack, levelIn, true);
-        if (hand == InteractionHand.MAIN_HAND
-                && player.getOffhandItem().getUseAnimation() != UseAnim.NONE) {
-            return InteractionResultHolder.pass(stack);
-        }
         // Check if we have ammo left
         if (ThrowingWeaponStackState.hasAmmoRemaining(stack, this.getMaxAmmo(stack, levelIn))) {
             player.startUsingItem(hand);
