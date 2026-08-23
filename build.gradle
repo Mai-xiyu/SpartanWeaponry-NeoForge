@@ -13,14 +13,12 @@ repositories {
     mavenLocal()
     mavenCentral()
     maven {
-        // JEI
-        name = "Progwml6 maven"
-        url = "https://dvs1.progwml6.com/files/maven/"
-    }
-    maven {
-        // JEI mirror
+        // JEI mirror; the upstream Progwml6 endpoint is currently unavailable.
         name = "ModMaven"
-        url = "https://modmaven.k-4u.nl"
+        url = "https://modmaven.dev"
+        content {
+            includeGroup "mezz.jei"
+        }
     }
     maven {
         // Curios
