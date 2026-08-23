@@ -23,6 +23,7 @@ public class ZombieMixin extends MobMixin {
             RandomSource randomIn, DifficultyInstance difficultyIn, CallbackInfo callback) {
         this.spartanWeaponry$attemptReplacingMainHandItemRandom(
                 ModItemTags.ZOMBIE_SPAWN_WEAPONS,
+                randomIn,
                 difficultyIn,
                 Config.INSTANCE.disableSpawningZombieWithWeapon.get(),
                 Config.INSTANCE.zombieWithMeleeSpawnChanceNormal.get().floatValue(),

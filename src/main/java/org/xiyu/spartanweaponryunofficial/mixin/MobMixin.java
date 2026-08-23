@@ -4,6 +4,7 @@ import java.util.List;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.TagKey;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.Mob;
@@ -37,12 +38,13 @@ public class MobMixin extends LivingEntityMixin {
 
     @Unique protected void spartanWeaponry$attemptReplacingMainHandItemRandom(
             @NotNull TagKey<Item> itemTagIn,
+            RandomSource randomIn,
             DifficultyInstance difficultyIn,
             boolean disabledIn,
             float chanceNormalIn,
             float chanceHardIn) {
         if (!disabledIn) {
-            float rand = this.random.nextFloat();
+            float rand = randomIn.nextFloat();
             float chance = difficultyIn.isHard() ? chanceHardIn : chanceNormalIn;
 
             if (rand > 1 - chance) {
@@ -56,7 +58,7 @@ public class MobMixin extends LivingEntityMixin {
                                         ItemStack weapon;
                                         List<Item> possibleWeapons =
                                                 tag.stream().map(Holder::value).toList();
-                                        weapon = ItemRandomizer.generate(level, possibleWeapons);
+                                        weapon = ItemRandomizer.generate(randomIn, possibleWeapons);
                                         this.setItemSlot(EquipmentSlot.MAINHAND, weapon);
                                     }
                                 });
