@@ -26,6 +26,7 @@ public class PiglinMixin extends MobMixin {
             RandomSource randomIn, DifficultyInstance difficultyIn, CallbackInfo callback) {
         this.spartanWeaponry$attemptReplacingMainHandItemRandom(
                 ModItemTags.PIGLIN_SPAWN_WEAPONS,
+                randomIn,
                 difficultyIn,
                 this.isBaby()
                         || !this.getItemBySlot(EquipmentSlot.MAINHAND).is(Items.GOLDEN_SWORD)

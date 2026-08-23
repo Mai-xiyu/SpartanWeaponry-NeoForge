@@ -47,6 +47,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.util.TriState;
 import net.neoforged.neoforge.event.AnvilUpdateEvent;
+import net.neoforged.neoforge.event.ItemAttributeModifierEvent;
 import net.neoforged.neoforge.event.LootTableLoadEvent;
 import net.neoforged.neoforge.event.brewing.PlayerBrewedPotionEvent;
 import net.neoforged.neoforge.event.entity.EntityTeleportEvent;
@@ -68,6 +69,8 @@ import org.xiyu.spartanweaponryunofficial.capability.IOilHandler;
 import org.xiyu.spartanweaponryunofficial.capability.IQuiverItemHandler;
 import org.xiyu.spartanweaponryunofficial.entity.projectile.ThrowingWeaponEntity;
 import org.xiyu.spartanweaponryunofficial.init.*;
+import org.xiyu.spartanweaponryunofficial.item.HeavyCrossbowItem;
+import org.xiyu.spartanweaponryunofficial.item.LongbowItem;
 import org.xiyu.spartanweaponryunofficial.item.QuiverBaseItem;
 import org.xiyu.spartanweaponryunofficial.item.SwordBaseItem;
 import org.xiyu.spartanweaponryunofficial.item.ThrowingWeaponItem;
@@ -80,6 +83,28 @@ import org.xiyu.spartanweaponryunofficial.util.QuiverHelper.IQuiverInfo;
 @EventBusSubscriber(modid = ModSpartanWeaponry.ID, bus = EventBusSubscriber.Bus.GAME)
 public class CommonEventHandler {
     private static final Random rand = new Random();
+
+    /**
+     * Keeps reloadable Spartan attributes authoritative when another mod adds a default attribute
+     * component. A non-empty component otherwise bypasses {@link
+     * net.minecraft.world.item.Item#getDefaultAttributeModifiers(ItemStack)} entirely.
+     */
+    @SubscribeEvent
+    public static void restoreWeaponAttributeModifiers(ItemAttributeModifierEvent event) {
+        ItemStack stack = event.getItemStack();
+        if (!(stack.getItem() instanceof SwordBaseItem)
+                && !(stack.getItem() instanceof ThrowingWeaponItem)
+                && !(stack.getItem() instanceof LongbowItem)
+                && !(stack.getItem() instanceof HeavyCrossbowItem)) return;
+
+        stack.getItem()
+                .getDefaultAttributeModifiers(stack)
+                .modifiers()
+                .forEach(
+                        entry ->
+                                event.replaceModifier(
+                                        entry.attribute(), entry.modifier(), entry.slot()));
+    }
 
     @SubscribeEvent
     public static void onLivingHurt(LivingIncomingDamageEvent ev) {

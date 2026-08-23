@@ -26,6 +26,7 @@ public class WitherSkeletonMixin extends MobMixin {
             RandomSource randomIn, DifficultyInstance difficultyIn, CallbackInfo callback) {
         this.spartanWeaponry$attemptReplacingMainHandItemRandom(
                 ModItemTags.WITHER_SKELETON_SPAWN_WEAPONS,
+                randomIn,
                 difficultyIn,
                 !this.getItemBySlot(EquipmentSlot.MAINHAND).is(Items.STONE_SWORD)
                         || Config.INSTANCE.disableSpawningWitherSkeletonWithWeapon.get(),

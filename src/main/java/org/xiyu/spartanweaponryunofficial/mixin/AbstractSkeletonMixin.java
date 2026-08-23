@@ -75,6 +75,7 @@ public class AbstractSkeletonMixin extends MobMixin {
             RandomSource randomIn, DifficultyInstance difficultyIn, CallbackInfo callback) {
         this.spartanWeaponry$attemptReplacingMainHandItemRandom(
                 ModItemTags.SKELETON_SPAWN_LONGBOWS,
+                randomIn,
                 difficultyIn,
                 Config.INSTANCE.disableSpawningSkeletonWithLongbow.get(),
                 Config.INSTANCE.skeletonWithLongbowSpawnChanceNormal.get().floatValue(),

@@ -24,6 +24,7 @@ public class PiglinBruteMixin extends MobMixin {
             RandomSource randomIn, DifficultyInstance difficultyIn, CallbackInfo callback) {
         this.spartanWeaponry$attemptReplacingMainHandItemRandom(
                 ModItemTags.PIGLIN_BRUTE_SPAWN_WEAPONS,
+                randomIn,
                 difficultyIn,
                 Config.INSTANCE.disableSpawningPiglinWithWeapon.get(),
                 Config.INSTANCE.piglinWithMeleeSpawnChanceNormal.get().floatValue(),
