@@ -1024,7 +1024,7 @@
 	"tooltip.spartan_weaponry_unofficial.trait.reach.desc": "增加近战攻击距离, 等级越高攻击范围越大",
 	"tooltip.spartan_weaponry_unofficial.trait.sweep_damage": "横扫 %s",
 	"tooltip.spartan_weaponry_unofficial.trait.sweep_damage.desc": "在横扫距离内的所有目标受到 %d%% 点基础伤害",
-	"tooltip.spartan_weaponry_unofficial.trait.sweep_damage.fixed.desc": "在横扫距离内的所有目标受到 %f 伤害",
+	"tooltip.spartan_weaponry_unofficial.trait.sweep_damage.fixed.desc": "在横扫距离内的所有目标受到 %f%% 伤害",
 	"tooltip.spartan_weaponry_unofficial.trait.knockback": "强化击退",
 	"tooltip.spartan_weaponry_unofficial.trait.knockback.desc": "能把目标击退倒更远的距离",
 	"tooltip.spartan_weaponry_unofficial.trait.nausea": "眩晕",
