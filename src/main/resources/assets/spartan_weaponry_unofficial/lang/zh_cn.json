@@ -554,7 +554,7 @@
 	// 喷溅效果
 	// 原版
 	"item.spartan_weaponry_unofficial.proj_tipped": "药水%s",
-	"item.spartan_weaponry_unofficial.proj_tipped.effect.empty": "蘸药%s",
+	"item.spartan_weaponry_unofficial.proj_tipped.effect.empty": "涂药%s",
 	"item.spartan_weaponry_unofficial.proj_tipped.effect.water": "喷溅%s",
 	"item.spartan_weaponry_unofficial.proj_tipped.effect.night_vision": "夜视%s",
 	"item.spartan_weaponry_unofficial.proj_tipped.effect.long_night_vision": "长效夜视%s",
