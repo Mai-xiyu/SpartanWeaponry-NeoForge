@@ -6,76 +6,241 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 39.0,
+                "min": 20.0
+              },
+              "treasure": false
+            }
+          ],
           "name": "spartan_weaponry_unofficial:diamond_dagger",
           "weight": 5
         },
         {
           "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 39.0,
+                "min": 20.0
+              },
+              "treasure": false
+            }
+          ],
           "name": "spartan_weaponry_unofficial:diamond_parrying_dagger",
           "weight": 5
         },
         {
           "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 39.0,
+                "min": 20.0
+              },
+              "treasure": false
+            }
+          ],
           "name": "spartan_weaponry_unofficial:diamond_longsword",
           "weight": 5
         },
         {
           "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 39.0,
+                "min": 20.0
+              },
+              "treasure": false
+            }
+          ],
           "name": "spartan_weaponry_unofficial:diamond_katana",
           "weight": 5
         },
         {
           "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 39.0,
+                "min": 20.0
+              },
+              "treasure": false
+            }
+          ],
           "name": "spartan_weaponry_unofficial:diamond_saber",
           "weight": 5
         },
         {
           "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 39.0,
+                "min": 20.0
+              },
+              "treasure": false
+            }
+          ],
           "name": "spartan_weaponry_unofficial:diamond_rapier",
           "weight": 5
         },
         {
           "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 39.0,
+                "min": 20.0
+              },
+              "treasure": false
+            }
+          ],
           "name": "spartan_weaponry_unofficial:diamond_greatsword",
           "weight": 5
         },
         {
           "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 39.0,
+                "min": 20.0
+              },
+              "treasure": false
+            }
+          ],
           "name": "spartan_weaponry_unofficial:diamond_battle_hammer",
           "weight": 5
         },
         {
           "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 39.0,
+                "min": 20.0
+              },
+              "treasure": false
+            }
+          ],
           "name": "spartan_weaponry_unofficial:diamond_warhammer",
           "weight": 5
         },
         {
           "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 39.0,
+                "min": 20.0
+              },
+              "treasure": false
+            }
+          ],
           "name": "spartan_weaponry_unofficial:diamond_spear",
           "weight": 5
         },
         {
           "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 39.0,
+                "min": 20.0
+              },
+              "treasure": false
+            }
+          ],
           "name": "spartan_weaponry_unofficial:diamond_halberd",
           "weight": 5
         },
         {
           "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 39.0,
+                "min": 20.0
+              },
+              "treasure": false
+            }
+          ],
           "name": "spartan_weaponry_unofficial:diamond_pike",
           "weight": 5
         },
         {
           "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 39.0,
+                "min": 20.0
+              },
+              "treasure": false
+            }
+          ],
           "name": "spartan_weaponry_unofficial:diamond_lance",
           "weight": 5
         },
         {
           "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 39.0,
+                "min": 20.0
+              },
+              "treasure": false
+            }
+          ],
           "name": "spartan_weaponry_unofficial:longbow_diamond_strengthened",
           "weight": 5
         },
         {
           "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 39.0,
+                "min": 20.0
+              },
+              "treasure": false
+            }
+          ],
           "name": "spartan_weaponry_unofficial:heavy_crossbow_diamond_strengthened",
           "weight": 5
         },
@@ -97,46 +262,145 @@
         },
         {
           "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 39.0,
+                "min": 20.0
+              },
+              "treasure": false
+            }
+          ],
           "name": "spartan_weaponry_unofficial:throwing_knife_diamond",
           "weight": 5
         },
         {
           "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 39.0,
+                "min": 20.0
+              },
+              "treasure": false
+            }
+          ],
           "name": "spartan_weaponry_unofficial:tomahawk_diamond",
           "weight": 5
         },
         {
           "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 39.0,
+                "min": 20.0
+              },
+              "treasure": false
+            }
+          ],
           "name": "spartan_weaponry_unofficial:javelin_diamond",
           "weight": 5
         },
         {
           "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 39.0,
+                "min": 20.0
+              },
+              "treasure": false
+            }
+          ],
           "name": "spartan_weaponry_unofficial:boomerang_diamond",
           "weight": 5
         },
         {
           "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 39.0,
+                "min": 20.0
+              },
+              "treasure": false
+            }
+          ],
           "name": "spartan_weaponry_unofficial:diamond_battleaxe",
           "weight": 5
         },
         {
           "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 39.0,
+                "min": 20.0
+              },
+              "treasure": false
+            }
+          ],
           "name": "spartan_weaponry_unofficial:diamond_flanged_mace",
           "weight": 5
         },
         {
           "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 39.0,
+                "min": 20.0
+              },
+              "treasure": false
+            }
+          ],
           "name": "spartan_weaponry_unofficial:diamond_glaive",
           "weight": 5
         },
         {
           "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 39.0,
+                "min": 20.0
+              },
+              "treasure": false
+            }
+          ],
           "name": "spartan_weaponry_unofficial:diamond_quarterstaff",
           "weight": 5
         },
         {
           "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 39.0,
+                "min": 20.0
+              },
+              "treasure": false
+            }
+          ],
           "name": "spartan_weaponry_unofficial:diamond_scythe",
           "weight": 5
         }

@@ -4,6 +4,7 @@
   },
   "exclusive_set": [],
   "supported_items": "#spartan_weaponry_unofficial:throwing_weapons",
+  "primary_items": "#spartan_weaponry_unofficial:throwing_weapons",
   "weight": 2,
   "max_level": 3,
   "min_cost": {
