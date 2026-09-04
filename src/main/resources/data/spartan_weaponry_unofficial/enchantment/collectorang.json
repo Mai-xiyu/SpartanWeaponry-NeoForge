@@ -3,7 +3,8 @@
     "translate": "enchantment.spartan_weaponry_unofficial.collectorang"
   },
   "exclusive_set": [],
-  "supported_items": "#spartan_weaponry_unofficial:boomerangs",
+  "supported_items": "#spartan_weaponry_unofficial:boomerang",
+  "primary_items": "#spartan_weaponry_unofficial:boomerang",
   "weight": 2,
   "max_level": 3,
   "min_cost": {
