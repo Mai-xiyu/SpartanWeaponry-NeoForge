@@ -1,8 +1,8 @@
 {
 	// 物品栏 (创造模式列表)
-	"itemGroup.spartan_weaponry_unofficial.basic": "斯巴达武器:原版材料",
-	"itemGroup.spartan_weaponry_unofficial.modded": "斯巴达武器:模组材料",
-	"itemGroup.spartan_weaponry_unofficial.arrows_bolts": "斯巴达武器:箭&弩箭",
+	"itemGroup.spartan_weaponry_unofficial.basic": "斯巴达的武器:原版材料",
+	"itemGroup.spartan_weaponry_unofficial.modded": "斯巴达的武器:模组材料",
+	"itemGroup.spartan_weaponry_unofficial.arrows_bolts": "斯巴达的武器:箭&弩箭",
 
 	// 物品
 
@@ -554,7 +554,7 @@
 	// 喷溅效果
 	// 原版
 	"item.spartan_weaponry_unofficial.proj_tipped": "药水%s",
-	"item.spartan_weaponry_unofficial.proj_tipped.effect.empty": "蘸药%s",
+	"item.spartan_weaponry_unofficial.proj_tipped.effect.empty": "涂药%s",
 	"item.spartan_weaponry_unofficial.proj_tipped.effect.water": "喷溅%s",
 	"item.spartan_weaponry_unofficial.proj_tipped.effect.night_vision": "夜视%s",
 	"item.spartan_weaponry_unofficial.proj_tipped.effect.long_night_vision": "长效夜视%s",
@@ -1024,7 +1024,7 @@
 	"tooltip.spartan_weaponry_unofficial.trait.reach.desc": "增加近战攻击距离, 等级越高攻击范围越大",
 	"tooltip.spartan_weaponry_unofficial.trait.sweep_damage": "横扫 %s",
 	"tooltip.spartan_weaponry_unofficial.trait.sweep_damage.desc": "在横扫距离内的所有目标受到 %d%% 点基础伤害",
-	"tooltip.spartan_weaponry_unofficial.trait.sweep_damage.fixed.desc": "在横扫距离内的所有目标受到 %f 伤害",
+	"tooltip.spartan_weaponry_unofficial.trait.sweep_damage.fixed.desc": "在横扫距离内的所有目标受到 %f%% 伤害",
 	"tooltip.spartan_weaponry_unofficial.trait.knockback": "强化击退",
 	"tooltip.spartan_weaponry_unofficial.trait.knockback.desc": "能把目标击退倒更远的距离",
 	"tooltip.spartan_weaponry_unofficial.trait.nausea": "眩晕",
@@ -1083,11 +1083,11 @@
 	"tooltip.spartan_weaponry_unofficial.large_quiver_brace.desc": "在锻造台中用于将中型箭袋升级为大型箭袋的材料",
 	"tooltip.spartan_weaponry_unofficial.huge_quiver_brace.desc": "在锻造台中用于将大型箭袋升级为巨型箭袋的材料",
 
-	"tooltip.spartan_weaponry_unofficial.quiver_compartment.applies_to": "适用于：箭袋&弩箭袋",
-	"tooltip.spartan_weaponry_unofficial.quiver_compartment.ingredients": "所需材料：下一级箭袋支架",
+	"tooltip.spartan_weaponry_unofficial.quiver_compartment.applies_to": "箭袋&弩箭袋",
+	"tooltip.spartan_weaponry_unofficial.quiver_compartment.ingredients": "下一级箭袋支架",
 	"tooltip.spartan_weaponry_unofficial.quiver_compartment.upgrade_description": "箭袋容量升级",
-	"tooltip.spartan_weaponry_unofficial.quiver_compartment.base_slot_description": "基础槽位说明：箭袋槽位",
-	"tooltip.spartan_weaponry_unofficial.quiver_compartment.additonal_slot_description": "附加槽位说明：箭袋支架槽位",
+	"tooltip.spartan_weaponry_unofficial.quiver_compartment.base_slot_description": "箭袋槽位",
+	"tooltip.spartan_weaponry_unofficial.quiver_compartment.additonal_slot_description": "箭袋支架槽位",
 
 	"tooltip.spartan_weaponry_unofficial.description": "描述：%s",
 	"tooltip.spartan_weaponry_unofficial.show_description": "[按%s键显示描述]",
@@ -1191,7 +1191,7 @@
 	"effect.spartan_weaponry_unofficial.ender_disruption.description": "阻止受影响的生物使用末影珍珠、紫颂果和末影生物的自然能力传送",
 
 	// 绑定的键位
-	"key.spartan_weaponry_unofficial.category.title": "斯巴达武器",
+	"key.spartan_weaponry_unofficial.category.title": "斯巴达的武器",
 	"key.spartan_weaponry_unofficial.access_quiver": "访问已装备箭袋",
 
 	// 属性
@@ -1201,7 +1201,7 @@
 	"dev.spartan_weaponry_unofficial.wip": "目前正在进行中（WIP）",
 
 	// 进度
-	"advancement.spartan_weaponry_unofficial.root.title": "斯巴达武器",
+	"advancement.spartan_weaponry_unofficial.root.title": "斯巴达的武器",
 	"advancement.spartan_weaponry_unofficial.root.desc": "其乐武穷！",
 	"advancement.spartan_weaponry_unofficial.craft_dagger.title": "盗贼最好的朋友",
 	"advancement.spartan_weaponry_unofficial.craft_dagger.desc": "获得一把匕首",
@@ -1273,30 +1273,30 @@
 	"advancement.spartan_weaponry_unofficial.return_kill.title": "当心飞回来的回旋镖!",
 	"advancement.spartan_weaponry_unofficial.return_kill.desc": "当回旋镖朝你飞回来时，用它击杀一个怪物",
 
-	// 音效字幕
-	"subtitle.spartan_weaponry_unofficial.thrown_weapon_throw": "武器：投出",
-	"subtitle.spartan_weaponry_unofficial.thrown_weapon_hit_mob": "武器：击中目标",
+	// 字幕
+	"subtitle.spartan_weaponry_unofficial.thrown_weapon_throw": "武器：投掷",
+	"subtitle.spartan_weaponry_unofficial.thrown_weapon_hit_mob": "武器：击中生物",
 	"subtitle.spartan_weaponry_unofficial.thrown_weapon_hit_ground": "武器：击中地面",
-	"subtitle.spartan_weaponry_unofficial.throwing_knife_throw": "飞刀：投出",
-	"subtitle.spartan_weaponry_unofficial.throwing_knife_hit_mob": "飞刀：击中目标",
+	"subtitle.spartan_weaponry_unofficial.throwing_knife_throw": "飞刀：投掷",
+	"subtitle.spartan_weaponry_unofficial.throwing_knife_hit_mob": "飞刀：击中生物",
 	"subtitle.spartan_weaponry_unofficial.throwing_knife_hit_ground": "飞刀：击中地面",
-	"subtitle.spartan_weaponry_unofficial.tomahawk_throw": "印第安战斧：投出",
-	"subtitle.spartan_weaponry_unofficial.tomahawk_hit_mob": "印第安战斧：击中目标",
+	"subtitle.spartan_weaponry_unofficial.tomahawk_throw": "印第安战斧：投掷",
+	"subtitle.spartan_weaponry_unofficial.tomahawk_hit_mob": "印第安战斧：击中生物",
 	"subtitle.spartan_weaponry_unofficial.tomahawk_hit_ground": "印第安战斧：击中地面",
-	"subtitle.spartan_weaponry_unofficial.javelin_throw": "标枪：投出",
-	"subtitle.spartan_weaponry_unofficial.javelin_hit_mob": "标枪：击中目标",
+	"subtitle.spartan_weaponry_unofficial.javelin_throw": "标枪：投掷",
+	"subtitle.spartan_weaponry_unofficial.javelin_hit_mob": "标枪：击中生物",
 	"subtitle.spartan_weaponry_unofficial.javelin_hit_ground": "标枪：击中地面",
-	"subtitle.spartan_weaponry_unofficial.boomerang_throw": "回旋镖：投出",
+	"subtitle.spartan_weaponry_unofficial.boomerang_throw": "回旋镖：投掷",
 	"subtitle.spartan_weaponry_unofficial.boomerang_fly": "回旋镖：飞行",
 	"subtitle.spartan_weaponry_unofficial.boomerang_bounce": "回旋镖：反弹",
-	"subtitle.spartan_weaponry_unofficial.boomerang_hit_mob": "回旋镖：击中目标",
+	"subtitle.spartan_weaponry_unofficial.boomerang_hit_mob": "回旋镖：击中生物",
 	"subtitle.spartan_weaponry_unofficial.boomerang_hit_ground": "回旋镖：击中地面",
-	"subtitle.spartan_weaponry_unofficial.throwing_weapon_loyalty_return": "武器：拾取",
-	"subtitle.spartan_weaponry_unofficial.oil_applied": "油：涂抹于武器上",
-	"subtitle.spartan_weaponry_unofficial.hammer_slams_into_ground": "锤子：猛砸地面",
+	"subtitle.spartan_weaponry_unofficial.throwing_weapon_loyalty_return": "投掷武器：收回",
+	"subtitle.spartan_weaponry_unofficial.oil_applied": "武器：涂油",
+	"subtitle.spartan_weaponry_unofficial.hammer_slams_into_ground": "锤：猛击地面",
 
 	// 配置
-	"config.spartan_weaponry_unofficial.title": "斯巴达武器 (非官方版) 客户端配置",
+	"config.spartan_weaponry_unofficial.title": "斯巴达的武器 (非官方版) 客户端配置",
 	"config.spartan_weaponry_unofficial.client.force_disable_uncraftable_tooltips": "强制禁用不可合成提示",
 	"config.spartan_weaponry_unofficial.client.disable_shoulder_surfing_integration": "禁用越肩视角联动",
 	"config.spartan_weaponry_unofficial.client.disable_new_crosshairs_crossbow": "禁用新版弩准星",
@@ -1574,6 +1574,9 @@
 	"item.spartan_weaponry_unofficial.proj_tipped.effect.berserking": "狂战%s",
 	"item.spartan_weaponry_unofficial.proj_tipped.effect.long_berserking": "长效狂战%s",
 	"item.spartan_weaponry_unofficial.proj_tipped.effect.strong_berserking": "强效狂战%s",
+	"item.spartan_weaponry_unofficial.proj_tipped.effect.intimidation": "恐吓%s",
+	"item.spartan_weaponry_unofficial.proj_tipped.effect.long_intimidation": "长效恐吓%s",
+	"item.spartan_weaponry_unofficial.proj_tipped.effect.remedy_potion": "治愈%s",
 	"item.spartan_weaponry_unofficial.quarterstaff_wooden": "木长棍",
 	"item.spartan_weaponry_unofficial.rapier_wooden": "木迅捷剑",
 	"item.spartan_weaponry_unofficial.saber_wooden": "木军刀",
