@@ -1,7 +1,7 @@
 {
-  "values": [
-    "#minecraft:raiders",
-    "minecraft:villager",
-    "minecraft:player"
-  ]
+	"values": [
+		"#minecraft:raiders",
+		"minecraft:villager",
+		"minecraft:player"
+	]
 }

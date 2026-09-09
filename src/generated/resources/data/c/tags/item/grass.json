@@ -1,7 +1,7 @@
 {
-  "values": [
-    "minecraft:short_grass",
-    "minecraft:seagrass",
-    "minecraft:fern"
-  ]
+	"values": [
+		"minecraft:short_grass",
+		"minecraft:seagrass",
+		"minecraft:fern"
+	]
 }

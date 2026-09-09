@@ -1,15 +1,16 @@
-{ 
+{
 	"type": "apotheosis:fletching",
 	"conditions": [
-    {
-    	"modid": "apotheosis",
-    	"type": "forge:mod_loaded"
-    },
-    { 
-		"type": "apotheosis:module",
-		"module": "village"
-	}],
-	"ingredients":[ 
+		{
+			"modid": "apotheosis",
+			"type": "forge:mod_loaded"
+		},
+		{
+			"type": "apotheosis:module",
+			"module": "village"
+		}
+	],
+	"ingredients": [
 		{
 			"item": "spartan_weaponry_unofficial:explosive_charge"
 		},
@@ -21,7 +22,7 @@
 		}
 	],
 	"result": {
-	  "item": "spartan_weaponry_unofficial:explosive_arrow",
-	  "count": 2
+		"item": "spartan_weaponry_unofficial:explosive_arrow",
+		"count": 2
 	}
 }
