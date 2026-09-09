@@ -75,7 +75,10 @@ public class HudQuiverAmmo {
                         align, ClientConfig.INSTANCE.quiverHudOffsetX.get(), BACKGROUND_WIDTH);
         offsetY =
                 AlignmentHelper.getAlignedY(
-                        align, ClientConfig.INSTANCE.quiverHudOffsetY.get(), BACKGROUND_HEIGHT);
+                                align,
+                                ClientConfig.INSTANCE.quiverHudOffsetY.get(),
+                                BACKGROUND_HEIGHT)
+                        + 1;
 
         PoseStack poseStack = guiGraphics.pose();
         poseStack.pushPose();
@@ -93,7 +96,7 @@ public class HudQuiverAmmo {
                 font,
                 ammoStr,
                 offsetX + 20 - font.width(ammoStr),
-                offsetY + 14,
+                offsetY + 13,
                 ammoCount == 0 ? 0xFF6060 : 0xFFC000,
                 true);
         //        font.drawInBatch(ammoStr, offsetX + 20 - font.width(ammoStr), offsetY + 13,

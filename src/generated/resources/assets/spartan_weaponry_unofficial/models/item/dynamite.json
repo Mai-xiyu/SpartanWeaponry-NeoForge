@@ -1,6 +1,6 @@
 {
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "spartan_weaponry_unofficial:item/dynamite"
-  }
+	"parent": "minecraft:item/generated",
+	"textures": {
+		"layer0": "spartan_weaponry_unofficial:item/dynamite"
+	}
 }

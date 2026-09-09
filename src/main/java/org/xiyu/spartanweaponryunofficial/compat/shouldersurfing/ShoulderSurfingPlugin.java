@@ -1,4 +1,9 @@
 package org.xiyu.spartanweaponryunofficial.compat.shouldersurfing;
 
-// Placeholder to avoid hard dependency on ShoulderSurfing API at compile time.
-public class ShoulderSurfingPlugin {}
+import com.github.exopandora.shouldersurfing.api.plugin.IShoulderSurfingPlugin;
+import com.github.exopandora.shouldersurfing.api.plugin.IShoulderSurfingRegistrar;
+
+public class ShoulderSurfingPlugin implements IShoulderSurfingPlugin {
+    @Override
+    public void register(IShoulderSurfingRegistrar registrar) {}
+}

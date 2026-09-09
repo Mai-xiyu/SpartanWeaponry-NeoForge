@@ -128,7 +128,7 @@ low-level weapon behavior changes.
 
 - Original Spartan Weaponry author: **ObliviousSpartan**
 - Original weapon ideas and art credits remain with the original project credits.
-- NeoForge 1.21.1 port maintained by **Mai-xiyu** and contributors.
+- NeoForge 1.21.1 port maintained by **Mai_xiyu** and contributors.
 
 Original project pages:
 

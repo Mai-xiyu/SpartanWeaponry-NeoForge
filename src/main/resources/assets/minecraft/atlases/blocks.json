@@ -1,9 +1,9 @@
 {
-	"sources": [ 
-		{ 
+	"sources": [
+		{
 			"type": "directory",
 			"source": "slots",
 			"prefix": "slots/"
 		}
-	] 
+	]
 }

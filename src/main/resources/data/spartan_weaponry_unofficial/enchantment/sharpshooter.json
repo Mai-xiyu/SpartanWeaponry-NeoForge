@@ -1,22 +1,23 @@
 {
-  "description": {
-    "translate": "enchantment.spartan_weaponry_unofficial.sharpshooter"
-  },
-  "exclusive_set": [],
-  "supported_items": "#spartan_weaponry_unofficial:heavy_crossbows",
-  "weight": 5,
-  "max_level": 3,
-  "min_cost": {
-    "base": 1,
-    "per_level_above_first": 10
-  },
-  "max_cost": {
-    "base": 16,
-    "per_level_above_first": 10
-  },
-  "anvil_cost": 2,
-  "slots": [
-    "mainhand"
-  ],
-  "effects": {}
+	"description": {
+		"translate": "enchantment.spartan_weaponry_unofficial.sharpshooter"
+	},
+	"exclusive_set": [],
+	"supported_items": "#spartan_weaponry_unofficial:heavy_crossbow",
+	"primary_items": "#spartan_weaponry_unofficial:heavy_crossbow",
+	"weight": 5,
+	"max_level": 3,
+	"min_cost": {
+		"base": 1,
+		"per_level_above_first": 10
+	},
+	"max_cost": {
+		"base": 16,
+		"per_level_above_first": 10
+	},
+	"anvil_cost": 2,
+	"slots": [
+		"mainhand"
+	],
+	"effects": {}
 }

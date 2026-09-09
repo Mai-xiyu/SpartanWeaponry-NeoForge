@@ -1,22 +1,23 @@
-{ 
+{
 	"type": "apotheosis:fletching",
 	"conditions": [
-    {
-    	"modid": "apotheosis",
-    	"type": "forge:mod_loaded"
-    },
-    {
-      	"disabled": [
-        	"bolts",
-        	"diamond_ammo"
-      	],
-      	"type": "spartan_weaponry_unofficial:type_disabled"
-    },
-    { 
-		"type": "apotheosis:module",
-		"module": "village"
-	}],
-	"ingredients":[ 
+		{
+			"modid": "apotheosis",
+			"type": "forge:mod_loaded"
+		},
+		{
+			"disabled": [
+				"bolts",
+				"diamond_ammo"
+			],
+			"type": "spartan_weaponry_unofficial:type_disabled"
+		},
+		{
+			"type": "apotheosis:module",
+			"module": "village"
+		}
+	],
+	"ingredients": [
 		{
 			"tag": "forge:gems/diamond"
 		},
@@ -28,7 +29,7 @@
 		}
 	],
 	"result": {
-	  "item": "spartan_weaponry_unofficial:diamond_bolt",
-	  "count": 6
+		"item": "spartan_weaponry_unofficial:diamond_bolt",
+		"count": 6
 	}
 }
