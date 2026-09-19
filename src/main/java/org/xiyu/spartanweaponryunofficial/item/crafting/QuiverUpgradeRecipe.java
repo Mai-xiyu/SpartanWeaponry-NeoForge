@@ -13,7 +13,6 @@ import org.xiyu.spartanweaponryunofficial.capability.IQuiverItemHandler;
 import org.xiyu.spartanweaponryunofficial.init.ModCapabilities;
 import org.xiyu.spartanweaponryunofficial.init.ModRecipeSerializers;
 import org.xiyu.spartanweaponryunofficial.item.QuiverBaseItem;
-import org.xiyu.spartanweaponryunofficial.util.ItemStackDataHelper;
 
 public class QuiverUpgradeRecipe extends SmithingTransformRecipe {
     private final Ingredient template;
@@ -33,19 +32,12 @@ public class QuiverUpgradeRecipe extends SmithingTransformRecipe {
     @Override
     public @NotNull ItemStack assemble(
             @NotNull SmithingRecipeInput inv, HolderLookup.@NotNull Provider registryAccessIn) {
-        ItemStack origOutputStack = this.getResultItem(registryAccessIn);
         ItemStack outputStack = super.assemble(inv, registryAccessIn);
-        // Resize the output tag
-        // NOTE: More consistent, but inefficient
-        IQuiverItemHandler itemHandler =
-                outputStack.getCapability(ModCapabilities.QUIVER_ITEM_CAPABILITY);
-        if (itemHandler != null)
-            itemHandler.resize(
-                    ItemStackDataHelper.getTag(origOutputStack)
-                            .getCompound(QuiverBaseItem.NBT_AMMO)
-                            .getInt("Size"));
-        //        outputStack.getOrCreateTagElement(QuiverBaseItem.NBT_AMMO).putInt("Size",
-        // origOutputStack.getOrCreateTagElement(QuiverBaseItem.NBT_AMMO).getInt("Size"));
+        if (outputStack.getItem() instanceof QuiverBaseItem quiverItem) {
+            IQuiverItemHandler itemHandler =
+                    outputStack.getCapability(ModCapabilities.QUIVER_ITEM_CAPABILITY);
+            if (itemHandler != null) itemHandler.resize(quiverItem.getAmmoSlots());
+        }
 
         return outputStack;
     }

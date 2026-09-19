@@ -14,6 +14,8 @@ import org.xiyu.spartanweaponryunofficial.capability.QuiverItemStackHandler;
 import org.xiyu.spartanweaponryunofficial.init.ModCapabilities;
 import org.xiyu.spartanweaponryunofficial.item.QuiverBaseItem;
 import org.xiyu.spartanweaponryunofficial.util.Defaults;
+import org.xiyu.spartanweaponryunofficial.util.ItemStackDataHelper;
+import org.xiyu.spartanweaponryunofficial.util.ItemStackDataHelper;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotResult;
 
@@ -96,6 +98,15 @@ public abstract class QuiverBaseMenu extends AbstractContainerMenu {
                 this.quiverStack.getCapability(ModCapabilities.QUIVER_ITEM_CAPABILITY);
         if (handlerTmp == null && this.quiverStack.getItem() instanceof QuiverBaseItem quiverItem)
             handlerTmp = new QuiverItemStackHandler(this.quiverStack, quiverItem.getAmmoSlots());
+
+        if (handlerTmp != null && this.quiverStack.getItem() instanceof QuiverBaseItem quiverItem) {
+            int currentSize =
+                    ItemStackDataHelper.getOrCreateTagElement(
+                                    this.quiverStack, QuiverBaseItem.NBT_AMMO)
+                            .getInt("Size");
+            if (currentSize != quiverItem.getAmmoSlots())
+                handlerTmp.resize(quiverItem.getAmmoSlots());
+        }
         if (handlerTmp == null) handlerTmp = new QuiverItemStackHandler(ItemStack.EMPTY, 0);
         this.handler = handlerTmp;
 

@@ -46,6 +46,8 @@ public class DataGenEventHandler {
         gen.addProvider(
                 true, new ModWeaponTraitTagsProvider(output, lookupProvider, existingFileHelper));
         gen.addProvider(
+                true, new ModEnchantmentTagsProvider(output, lookupProvider, existingFileHelper));
+        gen.addProvider(
                 true, new ModAdvancementProvider(output, lookupProvider, existingFileHelper));
         gen.addProvider(true, new ModRecipeProvider(output, lookupProvider));
         gen.addProvider(true, new ModLootTablesProvider(output, Set.of(), lookupProvider));
