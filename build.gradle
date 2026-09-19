@@ -34,6 +34,14 @@ repositories {
         name = "CurseMaven"
         url = "https://cursemaven.com/"
     }
+    maven {
+        // Shoulder Surfing compile-time API
+        name = "Modrinth"
+        url = "https://api.modrinth.com/maven"
+        content {
+            includeGroup "maven.modrinth"
+        }
+    }
 }
 
 base {
@@ -136,9 +144,8 @@ dependencies {
     compileOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}+${minecraft_version}:api"
 //    runtimeOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}+${minecraft_version}"
 
-    // Shoulder Surfing (NeoForge)
-    // compileOnly "curse.maven:shoulder-surfing-reloaded-243190:7446754"
-	implementation fileTree(dir: 'lib', include: 'ShoulderSurfing-NeoForge-1.21.1-4.18.2.jar')
+    // Shoulder Surfing API (optional at runtime)
+    compileOnly "maven.modrinth:shoulder-surfing-reloaded:${shoulder_surfing_version}"
 
     // EMI (NeoForge)
     compileOnly "dev.emi:emi-neoforge:${emi_version}:api"

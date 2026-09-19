@@ -2,8 +2,10 @@ package org.xiyu.spartanweaponryunofficial.data;
 
 import java.util.concurrent.CompletableFuture;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.TagsProvider;
+import net.minecraft.tags.EnchantmentTags;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.NotNull;
@@ -17,29 +19,12 @@ public class ModEnchantmentTagsProvider extends TagsProvider<Enchantment> {
             PackOutput output,
             CompletableFuture<HolderLookup.Provider> registry,
             @Nullable ExistingFileHelper existingFileHelper) {
-        super(
-                output,
-                net.minecraft.core.registries.Registries.ENCHANTMENT,
-                registry,
-                ModSpartanWeaponry.ID,
-                existingFileHelper);
+        super(output, Registries.ENCHANTMENT, registry, ModSpartanWeaponry.ID, existingFileHelper);
     }
 
     @Override
     protected void addTags(HolderLookup.@NotNull Provider registry) {
-        tag(net.minecraft.tags.EnchantmentTags.IN_ENCHANTING_TABLE)
-                .add(
-                        ModEnchantments.PROPEL,
-                        ModEnchantments.RAZORS_EDGE,
-                        ModEnchantments.INCENDIARY,
-                        ModEnchantments.LUCKY_THROW,
-                        ModEnchantments.HYDRODYNAMIC,
-                        ModEnchantments.SUPERCHARGE,
-                        ModEnchantments.EXPANSE,
-                        ModEnchantments.SHARPSHOOTER,
-                        ModEnchantments.COLLECTORANG);
-
-        tag(net.minecraft.tags.EnchantmentTags.TRADEABLE)
+        tag(EnchantmentTags.NON_TREASURE)
                 .add(
                         ModEnchantments.PROPEL,
                         ModEnchantments.RAZORS_EDGE,
