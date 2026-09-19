@@ -3,7 +3,8 @@
     "translate": "enchantment.spartan_weaponry_unofficial.sharpshooter"
   },
   "exclusive_set": [],
-  "supported_items": "#spartan_weaponry_unofficial:heavy_crossbows",
+  "supported_items": "#spartan_weaponry_unofficial:heavy_crossbow",
+  "primary_items": "#spartan_weaponry_unofficial:heavy_crossbow",
   "weight": 5,
   "max_level": 3,
   "min_cost": {
