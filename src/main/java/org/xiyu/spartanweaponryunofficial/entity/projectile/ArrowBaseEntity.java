@@ -237,10 +237,13 @@ public class ArrowBaseEntity extends AbstractArrow implements IEntityWithComplex
         CompoundTag nbt = compound.getCompound(this.NBT_ARROW);
         this.setArrowStack(ItemStack.parseOptional(this.level().registryAccess(), nbt));
 
-        if (compound.contains(this.NBT_POTION, 8))
-            this.potion =
-                    BuiltInRegistries.POTION.get(
-                            ResourceLocation.parse(compound.getString(this.NBT_POTION)));
+        this.potion = null;
+        if (compound.contains(this.NBT_POTION, 8)) {
+            ResourceLocation potionLocation =
+                    ResourceLocation.tryParse(compound.getString(this.NBT_POTION));
+            if (potionLocation != null)
+                this.potion = BuiltInRegistries.POTION.get(potionLocation);
+        }
 
         this.getEntityData()
                 .set(
@@ -252,6 +255,10 @@ public class ArrowBaseEntity extends AbstractArrow implements IEntityWithComplex
 
     public boolean isValid() {
         return !this.getPickupItem().isEmpty();
+    }
+
+    public float getRangeMultiplier() {
+        return this.rangeMultiplier;
     }
 
     public ResourceLocation getTexture() {

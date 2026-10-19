@@ -16,6 +16,7 @@ import org.xiyu.spartanweaponryunofficial.capability.CuriosHelper;
 import org.xiyu.spartanweaponryunofficial.item.QuiverBaseItem;
 import org.xiyu.spartanweaponryunofficial.util.QuiverHelper;
 import org.xiyu.spartanweaponryunofficial.util.QuiverHelper.IQuiverInfo;
+import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotResult;
 
 public record QuiverAccessPacket() implements CustomPacketPayload {
@@ -41,20 +42,28 @@ public record QuiverAccessPacket() implements CustomPacketPayload {
                     QuiverBaseItem quiverItem = null;
                     QuiverBaseItem.SlotType slotType = QuiverBaseItem.SlotType.UNDEFINED;
                     int slot = -1;
+                    String curioIdentifier = null;
+                    int curioIndex = -1;
 
                     // TODO: Merge Quiver searching functionality to helper methods
                     // Look in the weapon slot to find the appropriate quiver type to look for
                     // first.
                     for (IQuiverInfo info : QuiverHelper.info) {
-                        if (info.isWeapon(player.getMainHandItem())) {
+                        ItemStack weapon = player.getMainHandItem();
+                        if (!info.isWeapon(weapon)) weapon = player.getOffhandItem();
+                        if (info.isWeapon(weapon)) {
                             // Find a quiver, if possible.
                             // Via the Curios slots
                             if (quiver.isEmpty() && CuriosHelper.LOADED) {
-                                Optional<SlotResult> opt = QuiverHelper.getQuiverCurio(player);
+                                Optional<SlotResult> opt =
+                                        CuriosApi.getCuriosInventory(player)
+                                                .flatMap(handler -> handler.findFirstCurio(info::isQuiver));
                                 if (opt.isPresent() && info.isQuiver(opt.get().stack())) {
                                     quiver = opt.get().stack();
                                     quiverItem = (QuiverBaseItem) quiver.getItem();
                                     slotType = QuiverBaseItem.SlotType.CURIO;
+                                    curioIdentifier = opt.get().slotContext().identifier();
+                                    curioIndex = opt.get().slotContext().index();
                                     break;
                                 }
                             }
@@ -81,6 +90,8 @@ public record QuiverAccessPacket() implements CustomPacketPayload {
                             quiver = opt.get().stack();
                             quiverItem = (QuiverBaseItem) quiver.getItem();
                             slotType = QuiverBaseItem.SlotType.CURIO;
+                            curioIdentifier = opt.get().slotContext().identifier();
+                            curioIndex = opt.get().slotContext().index();
                         }
                     }
                     if (quiver.isEmpty() || quiverItem == null) {
@@ -108,7 +119,13 @@ public record QuiverAccessPacket() implements CustomPacketPayload {
                         return;
                     }
 
-                    quiverItem.openGui(quiver, player, slotType, slot);
+                    quiverItem.openGui(
+                            quiver,
+                            player,
+                            slotType,
+                            slot,
+                            curioIdentifier,
+                            curioIndex);
                 });
     }
 }

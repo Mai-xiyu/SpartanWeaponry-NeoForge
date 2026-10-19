@@ -41,9 +41,13 @@ public class ModWeaponTraitTagsProvider extends IntrinsicHolderTagsProvider<Weap
         this.tag(ModWeaponTraitTags.DAGGER)
                 .add(WeaponTraits.THROWABLE.get(), WeaponTraits.DAMAGE_BONUS_BACKSTAB.get());
         this.tag(ModWeaponTraitTags.PARRYING_DAGGER).add(WeaponTraits.BLOCK_MELEE.get());
-        this.tag(ModWeaponTraitTags.LONGSWORD).add(WeaponTraits.SWEEP_1.get());
+        this.tag(ModWeaponTraitTags.LONGSWORD)
+                .add(WeaponTraits.TWO_HANDED_1.get(), WeaponTraits.SWEEP_1.get());
         this.tag(ModWeaponTraitTags.KATANA)
-                .add(WeaponTraits.DAMAGE_BONUS_CHEST.get(), WeaponTraits.SWEEP_1.get());
+                .add(
+                        WeaponTraits.TWO_HANDED_1.get(),
+                        WeaponTraits.DAMAGE_BONUS_CHEST.get(),
+                        WeaponTraits.SWEEP_1.get());
         this.tag(ModWeaponTraitTags.SABER)
                 .add(
                         WeaponTraits.DAMAGE_ABSORB.get(),
@@ -52,7 +56,10 @@ public class ModWeaponTraitTagsProvider extends IntrinsicHolderTagsProvider<Weap
         this.tag(ModWeaponTraitTags.RAPIER)
                 .add(WeaponTraits.DAMAGE_ABSORB.get(), WeaponTraits.DAMAGE_BONUS_UNARMORED.get());
         this.tag(ModWeaponTraitTags.GREATSWORD)
-                .add(WeaponTraits.REACH_1.get(), WeaponTraits.SWEEP_3.get());
+                .add(
+                        WeaponTraits.TWO_HANDED_2.get(),
+                        WeaponTraits.REACH_1.get(),
+                        WeaponTraits.SWEEP_3.get());
         this.tag(ModWeaponTraitTags.CLUB).add(WeaponTraits.NAUSEA.get());
         this.tag(ModWeaponTraitTags.CESTUS).add(WeaponTraits.QUICK_STRIKE.get());
         this.tag(ModWeaponTraitTags.BATTLE_HAMMER)
@@ -60,11 +67,16 @@ public class ModWeaponTraitTagsProvider extends IntrinsicHolderTagsProvider<Weap
                         WeaponTraits.KNOCKBACK.get(),
                         WeaponTraits.NAUSEA.get(),
                         WeaponTraits.HAMMER_SLAM.get());
-        this.tag(ModWeaponTraitTags.WARHAMMER).add(WeaponTraits.ARMOR_PIERCING.get());
+        this.tag(ModWeaponTraitTags.WARHAMMER)
+                .add(WeaponTraits.TWO_HANDED_1.get(), WeaponTraits.ARMOR_PIERCING.get());
         this.tag(ModWeaponTraitTags.SPEAR).add(WeaponTraits.REACH_2.get());
         this.tag(ModWeaponTraitTags.HALBERD)
-                .add(WeaponTraits.REACH_1_5.get(), WeaponTraits.SHIELD_BREACH.get());
-        this.tag(ModWeaponTraitTags.PIKE).add(WeaponTraits.REACH_2_5.get());
+                .add(
+                        WeaponTraits.TWO_HANDED_2.get(),
+                        WeaponTraits.REACH_1_5.get(),
+                        WeaponTraits.SHIELD_BREACH.get());
+        this.tag(ModWeaponTraitTags.PIKE)
+                .add(WeaponTraits.TWO_HANDED_1.get(), WeaponTraits.REACH_2_5.get());
         this.tag(ModWeaponTraitTags.LANCE)
                 .add(
                         WeaponTraits.REACH_2.get(),
@@ -75,12 +87,19 @@ public class ModWeaponTraitTagsProvider extends IntrinsicHolderTagsProvider<Weap
         this.tag(ModWeaponTraitTags.JAVELIN)
                 .add(WeaponTraits.DAMAGE_BONUS_THROWN_2.get(), WeaponTraits.REACH_1.get());
         this.tag(ModWeaponTraitTags.BOOMERANG);
-        this.tag(ModWeaponTraitTags.BATTLEAXE).add(WeaponTraits.VERSATILE_AXE.get());
+        this.tag(ModWeaponTraitTags.BATTLEAXE)
+                .add(WeaponTraits.TWO_HANDED_1.get(), WeaponTraits.VERSATILE_AXE.get());
         this.tag(ModWeaponTraitTags.FLANGED_MACE).add(WeaponTraits.DAMAGE_BONUS_UNDEAD.get());
         this.tag(ModWeaponTraitTags.GLAIVE)
-                .add(WeaponTraits.REACH_1_5.get(), WeaponTraits.SWEEP_2.get());
+                .add(
+                        WeaponTraits.TWO_HANDED_1.get(),
+                        WeaponTraits.REACH_1_5.get(),
+                        WeaponTraits.SWEEP_2.get());
         this.tag(ModWeaponTraitTags.QUARTERSTAFF)
-                .add(WeaponTraits.SWEEP_2.get(), WeaponTraits.REACH_1.get());
+                .add(
+                        WeaponTraits.TWO_HANDED_1.get(),
+                        WeaponTraits.SWEEP_2.get(),
+                        WeaponTraits.REACH_1.get());
         this.tag(ModWeaponTraitTags.SCYTHE)
                 .add(
                         WeaponTraits.DAMAGE_BONUS_HEAD.get(),

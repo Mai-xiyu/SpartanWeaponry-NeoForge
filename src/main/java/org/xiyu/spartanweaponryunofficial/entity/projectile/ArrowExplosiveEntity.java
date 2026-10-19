@@ -20,8 +20,39 @@ public class ArrowExplosiveEntity extends ArrowEntitySW {
         super(ModEntities.ARROW_EXPLOSIVE.get(), level, x, y, z, weapon);
     }
 
+    public ArrowExplosiveEntity(
+            Level level,
+            double x,
+            double y,
+            double z,
+            ItemStack pickupItem,
+            ItemStack weapon) {
+        super(ModEntities.ARROW_EXPLOSIVE.get(), level, x, y, z, pickupItem, weapon);
+    }
+
     public ArrowExplosiveEntity(Level level, LivingEntity shooter, ItemStack weapon) {
         super(ModEntities.ARROW_EXPLOSIVE.get(), level, shooter, weapon);
+    }
+
+    public ArrowExplosiveEntity(
+            Level level, LivingEntity shooter, ItemStack pickupItem, ItemStack weapon) {
+        super(ModEntities.ARROW_EXPLOSIVE.get(), level, shooter, pickupItem, weapon);
+    }
+
+    public ArrowExplosiveEntity(
+            Level level, LivingEntity shooter, ItemStack weapon, float rangeMultiplier) {
+        this(level, shooter, weapon);
+        this.rangeMultiplier = rangeMultiplier;
+    }
+
+    public ArrowExplosiveEntity(
+            Level level,
+            LivingEntity shooter,
+            ItemStack pickupItem,
+            ItemStack weapon,
+            float rangeMultiplier) {
+        this(level, shooter, pickupItem, weapon);
+        this.rangeMultiplier = rangeMultiplier;
     }
 
     @Override

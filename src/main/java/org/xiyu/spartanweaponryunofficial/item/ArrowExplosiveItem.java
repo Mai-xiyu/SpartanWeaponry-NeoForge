@@ -25,7 +25,7 @@ public class ArrowExplosiveItem extends ArrowItemSW {
             @NotNull ItemStack stack,
             @NotNull LivingEntity shooter,
             ItemStack weapon) {
-        return new ArrowExplosiveEntity(level, shooter, weapon);
+        return new ArrowExplosiveEntity(level, shooter, stack, weapon, this.rangeModifier);
     }
 
     @Override

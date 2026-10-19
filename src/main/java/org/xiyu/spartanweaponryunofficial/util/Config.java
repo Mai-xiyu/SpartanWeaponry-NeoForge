@@ -18,6 +18,7 @@ import org.xiyu.spartanweaponryunofficial.ModSpartanWeaponry;
 import org.xiyu.spartanweaponryunofficial.api.*;
 import org.xiyu.spartanweaponryunofficial.api.crafting.condition.TypeDisabledCondition;
 import org.xiyu.spartanweaponryunofficial.api.oil.OilEffect;
+import org.xiyu.spartanweaponryunofficial.api.trait.WeaponTrait;
 import org.xiyu.spartanweaponryunofficial.init.ModItems;
 import org.xiyu.spartanweaponryunofficial.merchant.villager.WeaponsmithTrades;
 
@@ -76,7 +77,8 @@ public class Config {
             disableCopperAmmoRecipes,
             disableDiamondAmmoRecipes,
             disableNetheriteAmmoRecipes,
-            disableQuiverRecipes;
+            disableQuiverRecipes,
+            useBoltsForCrossbows;
     public ProjectileCategory arrowWood, arrowCopper, arrowIron, arrowDiamond, arrowNetherite;
     public DoubleValue arrowExplosiveExplosionStrength, arrowExplosiveRangeMultiplier;
     public BoltCategory bolt, boltCopper, boltDiamond, boltNetherite;
@@ -104,6 +106,7 @@ public class Config {
     public BooleanValue disableVillagerTrading;
 
     // Trait settings
+    public BooleanValue enableTwoHanded;
     public DoubleValue damageBonusChestMultiplier,
             damageBonusHeadMultiplier,
             damageBonusRidingMultiplier, // damageBonusRidingVelocityForMaxBonus,
@@ -532,6 +535,14 @@ public class Config {
                                         + ".projectile.disable_quiver_recipes")
                         .worldRestart()
                         .define("disable_quiver_recipes", false);
+        this.useBoltsForCrossbows =
+                builder.comment(
+                                "When true, Spartan heavy crossbows use bolts. When false, they use arrows. Defaults to true to preserve the current crossbow behavior.|设为 true 时，Spartan 重型弩使用弩箭；设为 false 时使用箭。默认值为 true，以保持当前重弩行为。")
+                        .translation(
+                                "config."
+                                        + ModSpartanWeaponry.ID
+                                        + ".projectile.use_bolts_for_crossbows")
+                        .define("use_bolts_for_crossbows", true);
 
         this.arrowWood =
                 new ProjectileCategory(
@@ -810,6 +821,12 @@ public class Config {
         builder.pop();
 
         builder.push("traits");
+        this.enableTwoHanded =
+                builder.comment(
+                                "Enables the Two-Handed weapon trait and its damage penalty when both hands are occupied. Disabled by default to preserve the current port's behavior.|启用“双手”武器特性及双手都持有物品时的伤害惩罚。默认禁用以保持当前移植版的行为。")
+                        .translation(
+                                "config." + ModSpartanWeaponry.ID + ".traits.enable_two_handed")
+                        .define("enable_two_handed", false);
         builder.push("damage_bonus");
         this.damageBonusChestMultiplier =
                 builder.comment(
@@ -1331,6 +1348,8 @@ public class Config {
         //        APIConfigValues.damageBonusRidingVelocityForMaxBonus =
         // INSTANCE.damageBonusRidingVelocityForMaxBonus.get().floatValue();
 
+        if (ReloadableHandler.areTagsLoaded()) ReloadableHandler.reloadAll();
+
         WeaponsmithTrades.initTradeLists();
 
         // Debug crap
@@ -1347,6 +1366,16 @@ public class Config {
         boolean containsValue = TypeDisabledCondition.disabledRecipeTypes.contains(type);
         if (!containsValue && disabled) TypeDisabledCondition.disabledRecipeTypes.add(type);
         else if (containsValue) TypeDisabledCondition.disabledRecipeTypes.remove(type);
+    }
+
+    public static boolean isTwoHandedEnabled() {
+        return INSTANCE != null
+                && INSTANCE.enableTwoHanded != null
+                && INSTANCE.enableTwoHanded.get();
+    }
+
+    public static boolean isTraitEnabled(WeaponTrait trait) {
+        return !WeaponTraits.TYPE_TWO_HANDED.equals(trait.getType()) || isTwoHandedEnabled();
     }
 
     private static void updateMaterialValues(WeaponMaterial material, MaterialCategory category) {

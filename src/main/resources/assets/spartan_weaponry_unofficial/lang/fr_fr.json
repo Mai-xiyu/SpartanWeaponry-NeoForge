@@ -589,6 +589,8 @@
 	"tooltip.spartan_weaponry_unofficial.trait.throwable.desc": "Cette arme peut être jetée sur vos ennemis",
 	"tooltip.spartan_weaponry_unofficial.trait.melee_block": "Parrer",
 	"tooltip.spartan_weaponry_unofficial.trait.melee_block.desc": "Peut parrer les attaques de mêlée",
+	"tooltip.spartan_weaponry_unofficial.trait.two_handed": "Deux-mains %s",
+	"tooltip.spartan_weaponry_unofficial.trait.two_handed.desc": "Tout objet dans la main opposée réduit les dégâts de %s%%",
 	"tooltip.spartan_weaponry_unofficial.trait.extra_damage_chest": "Bonus de dégâts plastron",
 	"tooltip.spartan_weaponry_unofficial.trait.extra_damage_chest.desc": "+%f%% de dégâts lorsque l'ennemi n'a pas de plastron",
 	"tooltip.spartan_weaponry_unofficial.trait.extra_damage_unarmored": "Bonus de dégâts sans-armure",
@@ -652,6 +654,7 @@
 	"tooltip.spartan_weaponry_unofficial.heavy_crossbow.desc_2": "Les tirs non-chargés au maximum affectent la précision",
 	"tooltip.spartan_weaponry_unofficial.heavy_crossbow.desc_3": "Charger le tir au maximum pour une bonne précision.",
 	"tooltip.spartan_weaponry_unofficial.heavy_crossbow.loaded_bolt": "Chargée avec : %s",
+	"tooltip.spartan_weaponry_unofficial.heavy_crossbow.loaded_arrow": "Chargée avec : %s",
 	
 	//"tooltip.spartan_weaponry_unofficial.tipped_arrow.crafting": "Place 8 arrows in with a Lingering Potion to craft Tipped Arrows with that Potion effect.",
 	//"tooltip.spartan_weaponry_unofficial.tipped_bolt.crafting": "Place 8 bolts in with a Lingering Potion to craft Tipped Bolts with that Potion effect.",
@@ -860,5 +863,7 @@
 	"config.spartan_weaponry_unofficial.weapon.speed.tooltip": "Modificateur de vitesse d'attaque de base pour ce type d'arme.",
 	"config.spartan_weaponry_unofficial.weapon.base_damage.tooltip": "Dégâts d'attaque de base pour ce type d'arme.",
 	"config.spartan_weaponry_unofficial.weapon.damage_multiplier.tooltip": "Multiplicateur de dégâts appliqué aux dégâts de base.",
-	"config.spartan_weaponry_unofficial.potion_oil_blacklist.tooltip": "Les huiles de potion avec ces effets ne peuvent pas être fabriquées."
+    "config.spartan_weaponry_unofficial.potion_oil_blacklist.tooltip": "Les huiles de potion avec ces effets ne peuvent pas être fabriquées.",
+    "config.spartan_weaponry_unofficial.projectile.use_bolts_for_crossbows": "Utiliser des carreaux pour les arbalètes lourdes Spartan",
+    "config.spartan_weaponry_unofficial.traits.enable_two_handed": "Activer le trait Deux-mains"
 }

@@ -400,6 +400,11 @@ public class WeaponArchetype implements IReloadable {
 
     @Override
     public void reload() {
+        this.isValidTag = false;
+        this.traits = ImmutableList.of();
+        this.actionTrait = Optional.empty();
+        this.invalidTraits = Optional.empty();
+
         RegistryAccess registryAccess =
                 RegistryAccess.fromRegistryOfRegistries(BuiltInRegistries.REGISTRY);
         Registry<WeaponTrait> registry =
@@ -433,6 +438,7 @@ public class WeaponArchetype implements IReloadable {
         List<WeaponTrait> traitList = new ArrayList<>();
         for (Holder<WeaponTrait> holder : tag) {
             WeaponTrait trait = holder.value();
+            if (!Config.isTraitEnabled(trait)) continue;
             boolean isValid = this.type.getTraitFilter().test(trait);
             if (isValid && trait.isActionTrait()) {
                 if (actionTraitRef.get() == null) actionTraitRef.set(trait);
@@ -482,7 +488,7 @@ public class WeaponArchetype implements IReloadable {
     }
 
     public List<WeaponTrait> getTraits() {
-        return this.traits;
+        return this.traits.stream().filter(Config::isTraitEnabled).toList();
     }
 
     public Optional<List<Pair<WeaponTrait, WeaponTrait.InvalidReason>>> getInvalidTraits() {

@@ -43,7 +43,8 @@ public class OilHelper {
         CompoundTag tag = ItemStackDataHelper.getTag(stackIn).getCompound(OilHandler.NBT_OIL);
         String potionId = tag.getString(OilHandler.NBT_POTION);
         if (potionId.isEmpty()) return null;
-        return BuiltInRegistries.POTION.get(ResourceLocation.parse(potionId));
+        ResourceLocation potionLocation = ResourceLocation.tryParse(potionId);
+        return potionLocation == null ? null : BuiltInRegistries.POTION.get(potionLocation);
     }
 
     public static ItemStack makePotionOilStack(Potion potionIn) {
@@ -100,6 +101,7 @@ public class OilHelper {
     private static Potion getPotionFromTag(CompoundTag tag) {
         String potionId = tag.getString(OilHandler.NBT_POTION);
         if (potionId.isEmpty()) return null;
-        return BuiltInRegistries.POTION.get(ResourceLocation.parse(potionId));
+        ResourceLocation potionLocation = ResourceLocation.tryParse(potionId);
+        return potionLocation == null ? null : BuiltInRegistries.POTION.get(potionLocation);
     }
 }

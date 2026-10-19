@@ -44,9 +44,12 @@ import org.xiyu.spartanweaponryunofficial.api.trait.WeaponTrait;
 import org.xiyu.spartanweaponryunofficial.client.ClientHelper;
 import org.xiyu.spartanweaponryunofficial.client.gui.HudCrosshairHeavyCrossbow;
 import org.xiyu.spartanweaponryunofficial.client.gui.ICrosshairOverlay;
+import org.xiyu.spartanweaponryunofficial.entity.projectile.ArrowBaseEntity;
+import org.xiyu.spartanweaponryunofficial.entity.projectile.ArrowEntitySW;
 import org.xiyu.spartanweaponryunofficial.entity.projectile.BoltEntity;
 import org.xiyu.spartanweaponryunofficial.init.ModEnchantments;
 import org.xiyu.spartanweaponryunofficial.init.ModItems;
+import org.xiyu.spartanweaponryunofficial.util.Config;
 import org.xiyu.spartanweaponryunofficial.util.Defaults;
 import org.xiyu.spartanweaponryunofficial.util.ItemStackDataHelper;
 import org.xiyu.spartanweaponryunofficial.util.WeaponType;
@@ -69,6 +72,7 @@ public class HeavyCrossbowItem extends CrossbowItem
     public static final String NBT_CHARGED = "Charged";
     public static final String NBT_PROJECTILE = "Projectile";
     public static final Predicate<ItemStack> BOLT = (stack) -> stack.is(ModItemTags.BOLTS);
+    public static final Predicate<ItemStack> ARROW = ProjectileWeaponItem.ARROW_ONLY;
 
     public HeavyCrossbowItem(Item.Properties prop, WeaponMaterial material) {
         super(prop.durability((int) (material.getUses() * 1.5f)));
@@ -121,12 +125,31 @@ public class HeavyCrossbowItem extends CrossbowItem
 
     @Override
     public @NotNull Predicate<ItemStack> getAllSupportedProjectiles() {
-        return BOLT;
+        return isUsingBolts() ? BOLT : ARROW;
     }
 
     @Override
     public @NotNull Predicate<ItemStack> getSupportedHeldProjectiles() {
-        return BOLT;
+        return isUsingBolts() ? BOLT : ARROW;
+    }
+
+    @Override
+    public @NotNull ItemStack getDefaultCreativeAmmo(Player player, ItemStack crossbow) {
+        return isUsingBolts()
+                ? new ItemStack(ModItems.BOLT.get())
+                : Items.ARROW.getDefaultInstance();
+    }
+
+    public static boolean isUsingBolts() {
+        return Config.INSTANCE == null
+                || Config.INSTANCE.useBoltsForCrossbows == null
+                || Config.INSTANCE.useBoltsForCrossbows.get();
+    }
+
+    private ItemStack getDefaultProjectile(int count) {
+        return isUsingBolts()
+                ? new ItemStack(ModItems.BOLT.get(), count)
+                : new ItemStack(Items.ARROW, count);
     }
 
     @Override
@@ -146,7 +169,7 @@ public class HeavyCrossbowItem extends CrossbowItem
             if (this.getLoadProgress(stack, entityLiving) == 1.0f) {
                 // Load the Crossbow
                 ItemStackDataHelper.updateTag(stack, tag -> tag.putBoolean(NBT_CHARGED, true));
-                ItemStack bolt;
+                ItemStack projectile;
                 int count =
                         levelIn instanceof ServerLevel serverLevel
                                 ? EnchantmentHelper.processProjectileCount(
@@ -159,24 +182,23 @@ public class HeavyCrossbowItem extends CrossbowItem
                                         ? 3
                                         : 1;
 
-                bolt = entityLiving.getProjectile(stack);
-                if (bolt.isEmpty()
-                        || !BOLT.test(
-                                bolt)) // Fix: When in Creative Mode, the player will return an
-                    // Arrow item as ammo, which is invalid; replace it with a
-                    // Bolt
-                    bolt = new ItemStack(ModItems.BOLT.get(), count);
+                projectile = entityLiving.getProjectile(stack);
+                boolean hasSupportedProjectile = getAllSupportedProjectiles(stack).test(projectile);
+                if (!hasSupportedProjectile) projectile = this.getDefaultProjectile(count);
+                boolean consumesProjectile =
+                        hasSupportedProjectile
+                                && !player.getAbilities().instabuild
+                                && !isInfiniteProjectile(projectile, stack, player);
 
-                // Create a copy of the bolt, then save it to NBT.
-                ItemStack boltToStore = bolt.copy();
-                boltToStore.setCount(count);
-                CompoundTag nbtBolt = new CompoundTag();
-                boltToStore.save(levelIn.registryAccess(), nbtBolt);
-                ItemStackDataHelper.updateTag(stack, tag -> tag.put(NBT_PROJECTILE, nbtBolt));
+                ItemStack projectileToStore = projectile.copy();
+                projectileToStore.setCount(count);
+                CompoundTag nbtProjectile = new CompoundTag();
+                projectileToStore.save(levelIn.registryAccess(), nbtProjectile);
+                ItemStackDataHelper.updateTag(stack, tag -> tag.put(NBT_PROJECTILE, nbtProjectile));
 
-                if (!player.getAbilities().instabuild) {
-                    bolt.shrink(1);
-                    if (bolt.isEmpty()) player.getInventory().removeItem(bolt);
+                if (consumesProjectile) {
+                    projectile.shrink(1);
+                    if (projectile.isEmpty()) player.getInventory().removeItem(projectile);
                 }
                 levelIn.playSound(
                         null,
@@ -202,10 +224,7 @@ public class HeavyCrossbowItem extends CrossbowItem
                 if (!tag.isEmpty())
                     itemstack = ItemStack.parseOptional(levelIn.registryAccess(), tag);
 
-                // If parsed itemstack is empty but crossbow is charged, use default bolt
-                if (itemstack.isEmpty()) {
-                    itemstack = new ItemStack(ModItems.BOLT.get());
-                }
+                if (!isProjectile(itemstack)) itemstack = this.getDefaultProjectile(1);
 
                 int i = this.getUseDuration(stack, player) - timeLeft;
 
@@ -215,17 +234,9 @@ public class HeavyCrossbowItem extends CrossbowItem
                 // fire)
                 if (!itemstack.isEmpty()) {
                     if (!levelIn.isClientSide) {
-                        BoltItem itemBolt =
-                                ((BoltItem)
-                                        (itemstack.getItem() instanceof BoltItem
-                                                ? itemstack.getItem()
-                                                : ModItems.BOLT.get()));
-
                         boolean flag1 =
                                 player.getAbilities().instabuild
-                                        || (itemstack.getItem() instanceof BoltItem
-                                                && ((BoltItem) itemstack.getItem())
-                                                        .isInfinite(itemstack, stack, player));
+                                        || isInfiniteProjectile(itemstack, stack, player);
 
                         // Account for lack of accuracy.
                         int stackAimTicks = this.getAimTicks(stack, levelIn);
@@ -257,16 +268,39 @@ public class HeavyCrossbowItem extends CrossbowItem
                                                     * (float) ((projectileIndex + 1) / 2)
                                                     * spreadStep;
                             spreadDirection = -spreadDirection;
-                            this.spawnProjectile(
-                                    stack,
-                                    itemBolt,
-                                    itemstack,
-                                    levelIn,
-                                    player,
-                                    flag1,
-                                    inaccuracyModifier,
-                                    projectileAngle,
-                                    projectileIndex);
+                            if (itemstack.getItem() instanceof BoltItem boltItem) {
+                                this.spawnProjectile(
+                                        stack,
+                                        boltItem,
+                                        itemstack,
+                                        levelIn,
+                                        player,
+                                        flag1,
+                                        inaccuracyModifier,
+                                        projectileAngle,
+                                        projectileIndex);
+                            } else if (BOLT.test(itemstack)) {
+                                this.spawnProjectile(
+                                        stack,
+                                        ModItems.BOLT.get(),
+                                        itemstack,
+                                        levelIn,
+                                        player,
+                                        flag1,
+                                        inaccuracyModifier,
+                                        projectileAngle,
+                                        projectileIndex);
+                            } else {
+                                this.spawnProjectile(
+                                        stack,
+                                        itemstack,
+                                        levelIn,
+                                        player,
+                                        flag1,
+                                        inaccuracyModifier,
+                                        projectileAngle,
+                                        projectileIndex);
+                            }
                         }
                         int damage = projectileCount > 1 ? 3 : 1;
                         EquipmentSlot breakSlot =
@@ -304,6 +338,10 @@ public class HeavyCrossbowItem extends CrossbowItem
         return 4.5f * bolt.getRangeMultiplier(); // 1.5f * 3.0f * rangeMultiplier
     }
 
+    /**
+     * Compatibility overload for addons that extend HeavyCrossbowItem and used the bolt-only firing
+     * hook before configurable ammunition was added.
+     */
     protected void spawnProjectile(
             ItemStack crossbow,
             BoltItem boltItem,
@@ -325,6 +363,7 @@ public class HeavyCrossbowItem extends CrossbowItem
                 projectileAngle == 0.0f ? 0 : 1);
     }
 
+    /** Compatibility overload retaining the pre-configurable ammunition hook signature. */
     protected void spawnProjectile(
             ItemStack crossbow,
             BoltItem boltItem,
@@ -335,13 +374,65 @@ public class HeavyCrossbowItem extends CrossbowItem
             float inaccuracyModifier,
             float projectileAngle,
             int projectileIndex) {
-        BoltEntity bolt = boltItem.createBolt(levelIn, boltStack, player, crossbow);
+        this.spawnProjectile(
+                crossbow,
+                boltStack,
+                levelIn,
+                player,
+                creativeOrInfinite,
+                inaccuracyModifier,
+                projectileAngle,
+                projectileIndex);
+    }
 
-        if (bolt == null) return; // Safety check in case bolt creation fails
+    protected void spawnProjectile(
+            ItemStack crossbow,
+            ItemStack projectileStack,
+            Level levelIn,
+            Player player,
+            boolean creativeOrInfinite,
+            float inaccuracyModifier,
+            float projectileAngle) {
+        this.spawnProjectile(
+                crossbow,
+                projectileStack,
+                levelIn,
+                player,
+                creativeOrInfinite,
+                inaccuracyModifier,
+                projectileAngle,
+                projectileAngle == 0.0f ? 0 : 1);
+    }
+
+    protected void spawnProjectile(
+            ItemStack crossbow,
+            ItemStack projectileStack,
+            Level levelIn,
+            Player player,
+            boolean creativeOrInfinite,
+            float inaccuracyModifier,
+            float projectileAngle,
+            int projectileIndex) {
+        AbstractArrow projectile;
+        if (projectileStack.getItem() instanceof BoltItem boltItem) {
+            projectile = boltItem.createBolt(levelIn, projectileStack, player, crossbow);
+        } else if (projectileStack.getItem() instanceof ArrowItem arrowItem) {
+            projectile = arrowItem.createArrow(levelIn, projectileStack, player, crossbow);
+        } else if (BOLT.test(projectileStack)) {
+            projectile = ModItems.BOLT.get().createBolt(levelIn, projectileStack, player, crossbow);
+        } else if (ARROW.test(projectileStack)) {
+            projectile =
+                    ((ArrowItem) Items.ARROW)
+                            .createArrow(levelIn, projectileStack, player, crossbow);
+        } else {
+            return;
+        }
+
+        if (projectile == null) return;
 
         RegistryAccess registryAccess = levelIn.registryAccess();
-        bolt.setCritArrow(true);
-        bolt.setSoundEvent(SoundEvents.CROSSBOW_HIT);
+        projectile.setCritArrow(true);
+        projectile.setSoundEvent(SoundEvents.CROSSBOW_HIT);
 
         Vec3 upVector = player.getUpVector(1.0f);
         Quaternionf quat =
@@ -352,34 +443,63 @@ public class HeavyCrossbowItem extends CrossbowItem
                                 upVector.y,
                                 upVector.z);
         Vector3f velocityVec = player.getViewVector(1.0f).toVector3f().rotate(quat);
-        bolt.shoot(
+        projectile.shoot(
                 velocityVec.x,
                 velocityVec.y,
                 velocityVec.z,
-                getBoltVelocity(bolt),
+                getProjectileVelocity(projectile),
                 inaccuracyModifier);
 
         for (WeaponTrait trait : this.rangedTraits)
             trait.getRangedCallback()
-                    .ifPresent((callback) -> callback.onProjectileSpawn(this.material, bolt));
+                    .ifPresent((callback) -> callback.onProjectileSpawn(this.material, projectile));
 
         int powerLevel = ModEnchantments.getLevel(registryAccess, Enchantments.POWER, crossbow);
         if (powerLevel > 0) {
-            bolt.setBaseDamage(bolt.getBaseDamage() + powerLevel * 0.5D + 0.5D);
+            projectile.setBaseDamage(projectile.getBaseDamage() + powerLevel * 0.5D + 0.5D);
         }
 
         // Piercing is applied automatically by the AbstractArrow constructor from the weapon
-        // stack; Punch knockback is handled by the bolt entity on hit.
+        // stack; projectile-specific hit effects are handled by the projectile entity.
 
         if (ModEnchantments.getLevel(registryAccess, Enchantments.FLAME, crossbow) > 0) {
-            bolt.igniteForSeconds(5.0F);
+            projectile.igniteForSeconds(5.0F);
         }
 
         if (creativeOrInfinite || projectileIndex > 0) {
-            bolt.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
+            projectile.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
         }
 
-        levelIn.addFreshEntity(bolt);
+        levelIn.addFreshEntity(projectile);
+    }
+
+    private static boolean isInfiniteProjectile(
+            ItemStack projectile, ItemStack crossbow, Player player) {
+        if (projectile.is(Items.ARROW)) {
+            return ModEnchantments.getLevel(
+                            player.level().registryAccess(), Enchantments.INFINITY, crossbow)
+                    > 0;
+        }
+        if (projectile.getItem() instanceof ArrowItem arrow)
+            return arrow.isInfinite(projectile, crossbow, player);
+        if (!BOLT.test(projectile)) return false;
+        BoltItem bolt =
+                projectile.getItem() instanceof BoltItem boltItem
+                        ? boltItem
+                        : ModItems.BOLT.get();
+        return bolt.isInfinite(projectile, crossbow, player);
+    }
+
+    private static boolean isProjectile(ItemStack stack) {
+        // Preserve already-charged crossbows when the ammunition mode is changed or reloaded.
+        return BOLT.test(stack) || ARROW.test(stack);
+    }
+
+    private static float getProjectileVelocity(AbstractArrow projectile) {
+        if (projectile instanceof BoltEntity bolt) return getBoltVelocity(bolt);
+        if (projectile instanceof ArrowBaseEntity arrow) return 3.15f * arrow.getRangeMultiplier();
+        if (projectile instanceof ArrowEntitySW arrow) return 3.15f * arrow.getRangeMultiplier();
+        return 3.15f;
     }
 
     @Override
@@ -393,7 +513,7 @@ public class HeavyCrossbowItem extends CrossbowItem
             Level levelIn, Player playerIn, @NotNull InteractionHand handIn) {
         ItemStack stack = playerIn.getItemInHand(handIn);
         ItemStack ammoStack = playerIn.getProjectile(stack);
-        boolean hasAmmo = !ammoStack.isEmpty();
+        boolean hasAmmo = getAllSupportedProjectiles(stack).test(ammoStack);
 
         RegistryAccess registryAccess = levelIn.registryAccess();
         if (!playerIn.getAbilities().instabuild
@@ -482,22 +602,23 @@ public class HeavyCrossbowItem extends CrossbowItem
                     levelIn != null
                             ? levelIn.registryAccess()
                             : RegistryAccess.fromRegistryOfRegistries(BuiltInRegistries.REGISTRY);
-            ItemStack bolt =
+            ItemStack projectile =
                     ItemStack.parseOptional(
                             registryAccess,
                             ItemStackDataHelper.getTag(stack).getCompound(NBT_PROJECTILE));
-            if (!bolt.isEmpty()) {
+            if (!projectile.isEmpty()) {
                 tooltip.add(
                         Component.translatable(
                                 String.format(
-                                        "tooltip.%s.heavy_crossbow.loaded_bolt",
-                                        ModSpartanWeaponry.ID),
+                                        "tooltip.%s.heavy_crossbow.%s",
+                                        ModSpartanWeaponry.ID,
+                                        BOLT.test(projectile) ? "loaded_bolt" : "loaded_arrow"),
                                 String.format(
                                         "[%s x%d]",
                                         ChatFormatting.AQUA
-                                                + bolt.getHoverName().getString()
+                                                + projectile.getHoverName().getString()
                                                 + ChatFormatting.WHITE,
-                                        bolt.getCount())));
+                                        projectile.getCount())));
                 tooltip.add(Component.empty());
             }
         }
@@ -562,8 +683,9 @@ public class HeavyCrossbowItem extends CrossbowItem
                                         "tooltip.%s.modifiers.ammo.type", ModSpartanWeaponry.ID),
                                 Component.translatable(
                                                 String.format(
-                                                        "tooltip.%s.modifiers.ammo.bolt",
-                                                        ModSpartanWeaponry.ID))
+                                                        "tooltip.%s.modifiers.ammo.%s",
+                                                        ModSpartanWeaponry.ID,
+                                                        isUsingBolts() ? "bolt" : "arrow"))
                                         .withStyle(ChatFormatting.GRAY))
                         .withStyle(ChatFormatting.DARK_AQUA));
         tooltip.add(

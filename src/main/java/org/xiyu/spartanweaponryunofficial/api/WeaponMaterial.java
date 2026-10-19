@@ -29,6 +29,7 @@ import org.xiyu.spartanweaponryunofficial.ModSpartanWeaponry;
 import org.xiyu.spartanweaponryunofficial.api.tags.ModItemTags;
 import org.xiyu.spartanweaponryunofficial.api.tags.ModWeaponTraitTags;
 import org.xiyu.spartanweaponryunofficial.api.trait.WeaponTrait;
+import org.xiyu.spartanweaponryunofficial.util.Config;
 import org.xiyu.spartanweaponryunofficial.util.Log;
 import org.xiyu.spartanweaponryunofficial.util.WeaponType;
 
@@ -343,6 +344,13 @@ public class WeaponMaterial implements Tier, IReloadable {
 
     @Override
     public void reload() {
+        this.isValidTag = false;
+        this.traits = ImmutableList.of();
+        this.meleeTraits = ImmutableList.of();
+        this.rangedTraits = ImmutableList.of();
+        this.throwingTraits = ImmutableList.of();
+        this.invalidTraits = Optional.empty();
+
         RegistryAccess registryAccess =
                 RegistryAccess.fromRegistryOfRegistries(BuiltInRegistries.REGISTRY);
         Registry<WeaponTrait> registry =
@@ -374,6 +382,7 @@ public class WeaponMaterial implements Tier, IReloadable {
         List<String> invalidTraitValues = new ArrayList<>();
         for (Holder<WeaponTrait> holder : tag) {
             WeaponTrait trait = holder.value();
+            if (!Config.isTraitEnabled(trait)) continue;
             boolean isActionTrait = trait.isActionTrait();
             if (isActionTrait) {
                 invalidTraitList.add(
@@ -518,7 +527,8 @@ public class WeaponMaterial implements Tier, IReloadable {
      */
     @Deprecated(since = "3.1.1", forRemoval = true)
     public boolean hasAnyBonusTraits() {
-        return this.traits != null && (!this.traits.isEmpty() || this.invalidTraits.isPresent());
+        return this.traits != null
+                && (!this.getBonusTraits().isEmpty() || this.invalidTraits.isPresent());
     }
 
     public boolean hasAnyBonusTraits(WeaponType type) {
@@ -528,15 +538,17 @@ public class WeaponMaterial implements Tier, IReloadable {
 
     @Deprecated(since = "3.1.1", forRemoval = true)
     public List<WeaponTrait> getBonusTraits() {
-        return this.traits;
+        return this.traits.stream().filter(Config::isTraitEnabled).toList();
     }
 
     public List<WeaponTrait> getBonusTraits(WeaponType type) {
-        return switch (type) {
-            case MELEE -> this.meleeTraits;
-            case RANGED -> this.rangedTraits;
-            case THROWING -> this.throwingTraits;
-        };
+        List<WeaponTrait> traits =
+                switch (type) {
+                    case MELEE -> this.meleeTraits;
+                    case RANGED -> this.rangedTraits;
+                    case THROWING -> this.throwingTraits;
+                };
+        return traits.stream().filter(Config::isTraitEnabled).toList();
     }
 
     public void addTagErrorTooltip(ItemStack stack, List<Component> tooltip) {
@@ -564,7 +576,7 @@ public class WeaponMaterial implements Tier, IReloadable {
                                             "tooltip.%s.trait.material_bonus",
                                             ModSpartanWeaponry.ID))
                             .withStyle(ChatFormatting.AQUA));
-            this.traits.forEach(
+            this.getBonusTraits(type).forEach(
                     (trait) ->
                             trait.addTooltip(
                                     stack,
@@ -592,7 +604,7 @@ public class WeaponMaterial implements Tier, IReloadable {
     public void addTraitsToTooltip(
             ItemStack stack, List<Component> tooltip, boolean isShiftPressed) {
         if (this.hasAnyBonusTraits()) {
-            this.traits.forEach(
+            this.getBonusTraits().forEach(
                     (trait) ->
                             trait.addTooltip(
                                     stack,

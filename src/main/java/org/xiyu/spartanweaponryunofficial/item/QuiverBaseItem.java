@@ -64,9 +64,17 @@ public abstract class QuiverBaseItem extends Item {
                         .getCompound(NBT_AMMO)
                         .getList("Items", Tag.TAG_COMPOUND);
 
+        boolean[] occupiedSlots = new boolean[this.ammoSlots];
         for (int i = 0; i < list.size(); i++) {
-            ItemStack item = ItemStack.parseOptional(getRegistryAccess(), list.getCompound(i));
-            if (!item.isEmpty()) ammo++;
+            CompoundTag itemTag = list.getCompound(i);
+            int slot = itemTag.getInt(NBT_ITEM_SLOT);
+            if (slot < 0 || slot >= this.ammoSlots || occupiedSlots[slot]) continue;
+
+            ItemStack item = ItemStack.parseOptional(getRegistryAccess(), itemTag);
+            if (!item.isEmpty()) {
+                occupiedSlots[slot] = true;
+                ammo++;
+            }
         }
 
         // Have 6 separate states for the Heavy Arrow Quiver, instead of 4
@@ -74,6 +82,27 @@ public abstract class QuiverBaseItem extends Item {
         else ammo = Mth.clamp(ammo, 0, 3);
 
         return ammo;
+    }
+
+    public int getTotalAmmoCount(ItemStack stack) {
+        ListTag list =
+                ItemStackDataHelper.getTag(stack)
+                        .getCompound(NBT_AMMO)
+                        .getList("Items", Tag.TAG_COMPOUND);
+        boolean[] occupiedSlots = new boolean[this.ammoSlots];
+        long ammo = 0;
+        for (int i = 0; i < list.size(); i++) {
+            CompoundTag itemTag = list.getCompound(i);
+            int slot = itemTag.getInt(NBT_ITEM_SLOT);
+            if (slot < 0 || slot >= this.ammoSlots || occupiedSlots[slot]) continue;
+
+            ItemStack item = ItemStack.parseOptional(getRegistryAccess(), itemTag);
+            if (!item.isEmpty()) {
+                occupiedSlots[slot] = true;
+                ammo += item.getCount();
+            }
+        }
+        return (int) Math.min(Integer.MAX_VALUE, ammo);
     }
 
     public int getAmmoSlots() {
@@ -163,11 +192,18 @@ public abstract class QuiverBaseItem extends Item {
         int prioritySlot = ItemStackDataHelper.getTag(stackIn).getInt(NBT_PRIORITY_SLOT);
 
         NonNullList<ItemStack> items = NonNullList.withSize(this.ammoSlots, ItemStack.EMPTY);
+        boolean[] occupiedSlots = new boolean[this.ammoSlots];
         for (int i = 0; i < list.size(); i++) {
             CompoundTag tag = list.getCompound(i);
-            ItemStack slotStack = ItemStack.parseOptional(getRegistryAccess(), tag);
             int slot = tag.getInt(NBT_ITEM_SLOT);
-            items.set(slot, slotStack);
+            if (slot < 0 || slot >= items.size() || occupiedSlots[slot]) continue;
+            ItemStack.parse(getRegistryAccess(), tag)
+                    .filter(item -> !item.isEmpty())
+                    .ifPresent(
+                            item -> {
+                                occupiedSlots[slot] = true;
+                                items.set(slot, item);
+                            });
         }
         return Optional.of(new QuiverTooltip(items, prioritySlot, isBoltQuiver));
     }
@@ -180,6 +216,16 @@ public abstract class QuiverBaseItem extends Item {
     public abstract @NotNull Optional<TooltipComponent> getTooltipImage(@NotNull ItemStack stackIn);
 
     public abstract void openGui(ItemStack stack, Player player, SlotType slotType, int slot);
+
+    public void openGui(
+            ItemStack stack,
+            Player player,
+            SlotType slotType,
+            int slot,
+            String curioIdentifier,
+            int curioIndex) {
+        this.openGui(stack, player, slotType, slot);
+    }
 
     public abstract boolean isAmmoValid(ItemStack pickedUpStack, ItemStack quiver);
 }

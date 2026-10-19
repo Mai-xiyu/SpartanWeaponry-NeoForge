@@ -44,7 +44,8 @@ public class MobMixin extends LivingEntityMixin {
             float chanceNormalIn,
             float chanceHardIn) {
         if (!disabledIn) {
-            float rand = randomIn.nextFloat();
+            RandomSource equipmentRandom = getEquipmentRandom(randomIn);
+            float rand = equipmentRandom.nextFloat();
             float chance = difficultyIn.isHard() ? chanceHardIn : chanceNormalIn;
 
             if (rand > 1 - chance) {
@@ -58,11 +59,18 @@ public class MobMixin extends LivingEntityMixin {
                                         ItemStack weapon;
                                         List<Item> possibleWeapons =
                                                 tag.stream().map(Holder::value).toList();
-                                        weapon = ItemRandomizer.generate(randomIn, possibleWeapons);
+                                        weapon = ItemRandomizer.generate(equipmentRandom, possibleWeapons);
                                         this.setItemSlot(EquipmentSlot.MAINHAND, weapon);
                                     }
                                 });
             }
         }
+    }
+
+    @Unique
+    private static RandomSource getEquipmentRandom(RandomSource random) {
+        return random.getClass().getName().contains("CheckedThreadLocalRandom")
+                ? RandomSource.create()
+                : random;
     }
 }

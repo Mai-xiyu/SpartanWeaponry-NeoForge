@@ -9,6 +9,7 @@ import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.xiyu.spartanweaponryunofficial.capability.IQuiverItemHandler;
+import org.xiyu.spartanweaponryunofficial.capability.CuriosHelper;
 import org.xiyu.spartanweaponryunofficial.capability.QuiverItemStackHandler;
 import org.xiyu.spartanweaponryunofficial.init.ModCapabilities;
 import org.xiyu.spartanweaponryunofficial.item.QuiverBaseItem;
@@ -18,6 +19,10 @@ import top.theillusivec4.curios.api.SlotResult;
 
 public abstract class QuiverBaseMenu extends AbstractContainerMenu {
     protected final ItemStack quiverStack;
+    protected final QuiverBaseItem.SlotType sourceType;
+    protected final int sourceSlot;
+    protected final String sourceCurioIdentifier;
+    protected final int sourceCurioIndex;
 
     protected final IQuiverItemHandler handler;
     protected final Predicate<ItemStack> slotFilter;
@@ -32,14 +37,66 @@ public abstract class QuiverBaseMenu extends AbstractContainerMenu {
             ItemStack quiverStackIn,
             Predicate<ItemStack> slotFilterIn,
             ResourceLocation emptySlotTextureIn) {
+        this(
+                type,
+                id,
+                inventory,
+                quiverStackIn,
+                slotFilterIn,
+                emptySlotTextureIn,
+                QuiverBaseItem.SlotType.UNDEFINED,
+                -1,
+                null,
+                -1);
+    }
+
+    protected QuiverBaseMenu(
+            MenuType<?> type,
+            int id,
+            Inventory inventory,
+            ItemStack quiverStackIn,
+            Predicate<ItemStack> slotFilterIn,
+            ResourceLocation emptySlotTextureIn,
+            QuiverBaseItem.SlotType sourceTypeIn,
+            int sourceSlotIn) {
+        this(
+                type,
+                id,
+                inventory,
+                quiverStackIn,
+                slotFilterIn,
+                emptySlotTextureIn,
+                sourceTypeIn,
+                sourceSlotIn,
+                null,
+                -1);
+    }
+
+    protected QuiverBaseMenu(
+            MenuType<?> type,
+            int id,
+            Inventory inventory,
+            ItemStack quiverStackIn,
+            Predicate<ItemStack> slotFilterIn,
+            ResourceLocation emptySlotTextureIn,
+            QuiverBaseItem.SlotType sourceTypeIn,
+            int sourceSlotIn,
+            String sourceCurioIdentifierIn,
+            int sourceCurioIndexIn) {
         super(type, id);
         this.slotFilter = slotFilterIn;
-        this.quiverStack = quiverStackIn;
+        this.quiverStack = quiverStackIn == null ? ItemStack.EMPTY : quiverStackIn;
+        this.sourceType =
+                sourceTypeIn == null ? QuiverBaseItem.SlotType.UNDEFINED : sourceTypeIn;
+        this.sourceSlot = sourceSlotIn;
+        this.sourceCurioIdentifier = sourceCurioIdentifierIn;
+        this.sourceCurioIndex = sourceCurioIndexIn;
         this.emptySlotTexture = emptySlotTextureIn;
         IQuiverItemHandler handlerTmp =
                 this.quiverStack.getCapability(ModCapabilities.QUIVER_ITEM_CAPABILITY);
         if (handlerTmp == null && this.quiverStack.getItem() instanceof QuiverBaseItem quiverItem)
             handlerTmp = new QuiverItemStackHandler(this.quiverStack, quiverItem.getAmmoSlots());
+        if (handlerTmp == null) handlerTmp = new QuiverItemStackHandler(ItemStack.EMPTY, 0);
         this.handler = handlerTmp;
 
         this.playerInvStart = this.handler.getSlots();
@@ -49,6 +106,64 @@ public abstract class QuiverBaseMenu extends AbstractContainerMenu {
 
         this.addQuiverSlots();
         this.addPlayerSlots(inventory);
+    }
+
+    @Override
+    public boolean stillValid(@NotNull Player player) {
+        if (!(this.quiverStack.getItem() instanceof QuiverBaseItem)) return false;
+
+        if (this.sourceType == QuiverBaseItem.SlotType.UNDEFINED) {
+            if (isQuiverStack(player.getMainHandItem())
+                    || isQuiverStack(player.getOffhandItem())) return true;
+            for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
+                if (isQuiverStack(player.getInventory().getItem(i))) return true;
+            }
+            if (CuriosHelper.LOADED) {
+                Optional<SlotResult> opt =
+                        CuriosApi.getCuriosInventory(player)
+                                .flatMap(
+                                        handler ->
+                                                handler.findFirstCurio(
+                                                        stack -> isQuiverStack(stack)));
+                if (opt.isPresent()) return true;
+            }
+            return false;
+        }
+
+        ItemStack currentStack =
+                switch (this.sourceType) {
+                    case HOTBAR ->
+                            this.sourceSlot >= 0
+                                            && this.sourceSlot
+                                                    < 9
+                                    ? player.getInventory().getItem(this.sourceSlot)
+                                    : ItemStack.EMPTY;
+                    case MAIN_HAND -> player.getMainHandItem();
+                    case OFF_HAND -> player.getOffhandItem();
+                    case CURIO ->
+                            CuriosHelper.LOADED
+                                    ? CuriosApi.getCuriosInventory(player)
+                                            .flatMap(
+                                                    handler ->
+                                                            this.sourceCurioIdentifier != null
+                                                                            && this.sourceCurioIndex
+                                                                                    >= 0
+                                                                    ? handler.findCurio(
+                                                                            this.sourceCurioIdentifier,
+                                                                            this.sourceCurioIndex)
+                                                                    : handler.findFirstCurio(
+                                                                            this::isQuiverStack))
+                                            .map(SlotResult::stack)
+                                            .filter(this::isQuiverStack)
+                                            .orElse(ItemStack.EMPTY)
+                                    : ItemStack.EMPTY;
+                    case UNDEFINED -> ItemStack.EMPTY;
+                };
+        return isQuiverStack(currentStack);
+    }
+
+    private boolean isQuiverStack(ItemStack candidate) {
+        return candidate == this.quiverStack;
     }
 
     protected void addQuiverSlots() {
@@ -118,6 +233,8 @@ public abstract class QuiverBaseMenu extends AbstractContainerMenu {
 
     @Override
     public @NotNull ItemStack quickMoveStack(@NotNull Player player, int slotIdx) {
+        if (slotIdx < 0 || slotIdx >= this.slots.size()) return ItemStack.EMPTY;
+
         ItemStack stack = ItemStack.EMPTY;
         Slot slot = this.slots.get(slotIdx);
 
@@ -155,8 +272,8 @@ public abstract class QuiverBaseMenu extends AbstractContainerMenu {
     @Override
     public void clicked(
             int slot, int dragType, @NotNull ClickType clickType, @NotNull Player player) {
+        if (slot >= this.slots.size()) return;
         if (slot >= 0) {
-            this.getSlot(slot);
             if (ItemStack.isSameItemSameComponents(this.getSlot(slot).getItem(), this.quiverStack))
                 return;
         }
@@ -174,22 +291,41 @@ public abstract class QuiverBaseMenu extends AbstractContainerMenu {
 
     protected static ItemStack findQuiverStack(
             Inventory inventory, QuiverBaseItem.SlotType slotType, int slot) {
+        return findQuiverStack(
+                inventory,
+                slotType,
+                slot,
+                null,
+                -1,
+                candidate -> candidate.getItem() instanceof QuiverBaseItem);
+    }
+
+    protected static ItemStack findQuiverStack(
+            Inventory inventory,
+            QuiverBaseItem.SlotType slotType,
+            int slot,
+            String curioIdentifier,
+            int curioIndex,
+            Predicate<ItemStack> quiverFilter) {
         ItemStack quiverStack = ItemStack.EMPTY;
         switch (slotType) {
             case HOTBAR:
-                quiverStack = inventory.getItem(slot);
+                if (slot >= 0 && slot < 9)
+                    quiverStack = inventory.getItem(slot);
                 break;
             case CURIO:
-                Optional<SlotResult> opt =
-                        CuriosApi.getCuriosInventory(inventory.player)
-                                .flatMap(
-                                        handler ->
-                                                handler.findFirstCurio(
-                                                        (stack) ->
-                                                                stack.getItem()
-                                                                        instanceof QuiverBaseItem));
-                if (opt.isPresent()) {
-                    quiverStack = opt.get().stack();
+                if (CuriosHelper.LOADED) {
+                    Optional<SlotResult> opt =
+                            CuriosApi.getCuriosInventory(inventory.player)
+                                    .flatMap(
+                                            handler ->
+                                                    curioIdentifier != null && curioIndex >= 0
+                                                            ? handler.findCurio(
+                                                                    curioIdentifier, curioIndex)
+                                                            : handler.findFirstCurio(quiverFilter));
+                    if (opt.isPresent()) {
+                        quiverStack = opt.get().stack();
+                    }
                 }
                 break;
             case MAIN_HAND:
@@ -201,6 +337,8 @@ public abstract class QuiverBaseMenu extends AbstractContainerMenu {
             default:
                 break;
         }
-        return quiverStack;
+        return !quiverStack.isEmpty() && quiverFilter.test(quiverStack)
+                ? quiverStack
+                : ItemStack.EMPTY;
     }
 }

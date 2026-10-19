@@ -4,6 +4,9 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.Tag;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import org.xiyu.spartanweaponryunofficial.item.QuiverBaseItem;
@@ -36,6 +39,28 @@ public class QuiverItemStackHandler extends ItemStackHandler implements IQuiverI
     @Override
     protected void onContentsChanged(int slot) {
         this.syncToStack();
+    }
+
+    @Override
+    public void deserializeNBT(HolderLookup.Provider provider, CompoundTag nbt) {
+        int slotCount = this.getSlots();
+        this.stacks = NonNullList.withSize(slotCount, ItemStack.EMPTY);
+        boolean[] occupiedSlots = new boolean[slotCount];
+
+        ListTag items = nbt.getList("Items", Tag.TAG_COMPOUND);
+        for (int i = 0; i < items.size(); i++) {
+            CompoundTag itemTag = items.getCompound(i);
+            int slot = itemTag.getInt("Slot");
+            if (slot < 0 || slot >= slotCount || occupiedSlots[slot]) continue;
+            ItemStack.parse(provider, itemTag)
+                    .filter(item -> !item.isEmpty())
+                    .ifPresent(
+                            item -> {
+                                occupiedSlots[slot] = true;
+                                this.stacks.set(slot, item);
+                            });
+        }
+        this.onLoad();
     }
 
     private void syncToStack() {

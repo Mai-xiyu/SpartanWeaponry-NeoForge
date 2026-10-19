@@ -42,12 +42,16 @@ public class QuiverHelper {
 
                         @Override
                         public boolean isWeapon(ItemStack stack) {
-                            return !stack.isEmpty() && HEAVY_CROSSBOW.test(stack);
+                            return !stack.isEmpty()
+                                    && HeavyCrossbowItem.isUsingBolts()
+                                    && HEAVY_CROSSBOW.test(stack);
                         }
 
                         @Override
                         public boolean isAmmo(ItemStack stack) {
-                            return !stack.isEmpty() && HeavyCrossbowItem.BOLT.test(stack);
+                            return !stack.isEmpty()
+                                    && HeavyCrossbowItem.isUsingBolts()
+                                    && HeavyCrossbowItem.BOLT.test(stack);
                         }
                     },
                     new IQuiverInfo() {
@@ -60,12 +64,14 @@ public class QuiverHelper {
                         public boolean isWeapon(ItemStack stack) {
                             return !stack.isEmpty()
                                     && (stack.getItem() instanceof ProjectileWeaponItem
-                                            && !(stack.getItem() instanceof HeavyCrossbowItem));
+                                            && (!(stack.getItem() instanceof HeavyCrossbowItem)
+                                                    || !HeavyCrossbowItem.isUsingBolts()));
                         }
 
                         @Override
                         public boolean isAmmo(ItemStack stack) {
-                            return !stack.isEmpty() && ProjectileWeaponItem.ARROW_ONLY.test(stack);
+                            return !stack.isEmpty()
+                                    && ProjectileWeaponItem.ARROW_ONLY.test(stack);
                         }
                     });
 
@@ -73,7 +79,9 @@ public class QuiverHelper {
         // Find a quiver, if possible.
         // Via a Curios slot...
         if (CuriosHelper.LOADED) {
-            Optional<SlotResult> opt = getQuiverCurio(player);
+            Optional<SlotResult> opt =
+                    CuriosApi.getCuriosInventory(player)
+                            .flatMap(handler -> handler.findFirstCurio(info::isQuiver));
             if (opt.isPresent() && info.isQuiver(opt.get().stack())) return opt.get().stack();
         }
         // ... or via the hotbar
@@ -97,8 +105,15 @@ public class QuiverHelper {
         // Find a quiver, if possible.
         // Via the Curios back slot
         if (CuriosHelper.LOADED) {
-            Optional<SlotResult> opt = getQuiverCurio(player);
-            opt.ifPresent(slotResult -> result.add(slotResult.stack()));
+            CuriosApi.getCuriosInventory(player)
+                    .ifPresent(
+                            handler ->
+                                    handler.findCurios(
+                                                    stack ->
+                                                            !stack.isEmpty()
+                                                                    && stack.getItem()
+                                                                            instanceof QuiverBaseItem)
+                                            .forEach(slotResult -> result.add(slotResult.stack())));
         }
         // ... or via the hotbar
         for (int i = 0; i < 9; i++) {

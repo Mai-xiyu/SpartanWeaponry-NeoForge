@@ -659,6 +659,8 @@
     "tooltip.spartan_weaponry_unofficial.trait.throwable.desc": "Essa arma pode ser arremessada em inimigos",
     "tooltip.spartan_weaponry_unofficial.trait.block_melee": "Melee Block",
     "tooltip.spartan_weaponry_unofficial.trait.block_melee.desc": "Can block melee attacks, but will not block projectiles",
+    "tooltip.spartan_weaponry_unofficial.trait.two_handed": "De duas mãos %s",
+    "tooltip.spartan_weaponry_unofficial.trait.two_handed.desc": "Qualquer item na outra mão reduz o dano em %s%%",
     "tooltip.spartan_weaponry_unofficial.trait.extra_damage_chest": "Dano Bônus em Torso",
     "tooltip.spartan_weaponry_unofficial.trait.extra_damage_chest.desc": "+%f%% de dano quando o inimigo está sem peitoral",
     "tooltip.spartan_weaponry_unofficial.trait.extra_damage_chest.desc.armor_points": "+%f%% damage when the foe has no Chest Armor and has less than %f armor points",
@@ -738,6 +740,7 @@
     "tooltip.spartan_weaponry_unofficial.heavy_crossbow.desc_2": "Mirar após recarga aumenta a precisão",
     "tooltip.spartan_weaponry_unofficial.heavy_crossbow.desc_3": "Segure a mira para apontar melhor",
     "tooltip.spartan_weaponry_unofficial.heavy_crossbow.loaded_bolt": "Carregado com: %s",
+    "tooltip.spartan_weaponry_unofficial.heavy_crossbow.loaded_arrow": "Carregado com: %s",
     "tooltip.spartan_weaponry_unofficial.modifiers": "Modificadores:",
     "tooltip.spartan_weaponry_unofficial.modifiers.ammo.type": "Tipo de munição: %s",
     "tooltip.spartan_weaponry_unofficial.modifiers.ammo.arrow": "Flechas",
@@ -972,5 +975,7 @@
     "config.spartan_weaponry_unofficial.weapon.speed.tooltip": "Modificador base de velocidade de ataque para este tipo de arma.",
     "config.spartan_weaponry_unofficial.weapon.base_damage.tooltip": "Dano base de ataque para este tipo de arma.",
     "config.spartan_weaponry_unofficial.weapon.damage_multiplier.tooltip": "Multiplicador de dano aplicado ao dano base.",
-    "config.spartan_weaponry_unofficial.potion_oil_blacklist.tooltip": "Óleos de poção com estes efeitos não podem ser fabricados."
+    "config.spartan_weaponry_unofficial.potion_oil_blacklist.tooltip": "Óleos de poção com estes efeitos não podem ser fabricados.",
+    "config.spartan_weaponry_unofficial.projectile.use_bolts_for_crossbows": "Usar virotes nas bestas pesadas Spartan",
+    "config.spartan_weaponry_unofficial.traits.enable_two_handed": "Ativar o traço de duas mãos"
 }

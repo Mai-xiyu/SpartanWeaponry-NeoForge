@@ -39,16 +39,36 @@ public class QuiverBoltItem extends QuiverBaseItem {
 
     @Override
     public void openGui(ItemStack stack, Player player, SlotType slotType, int slot) {
+        this.openGui(stack, player, slotType, slot, null, -1);
+    }
+
+    @Override
+    public void openGui(
+            ItemStack stack,
+            Player player,
+            SlotType slotType,
+            int slot,
+            String curioIdentifier,
+            int curioIndex) {
         if (!(player instanceof ServerPlayer serverPlayer)) return;
 
         serverPlayer.openMenu(
                 new ContainerProvider(
                         Component.translatable(
                                 "gui." + ModSpartanWeaponry.ID + ".quiver_bolt.title"),
-                        stack),
+                        stack,
+                        slotType,
+                        slot,
+                        curioIdentifier,
+                        curioIndex),
                 buf -> {
                     buf.writeEnum(slotType);
                     buf.writeInt(slot);
+                    buf.writeBoolean(curioIdentifier != null && curioIndex >= 0);
+                    if (curioIdentifier != null && curioIndex >= 0) {
+                        buf.writeUtf(curioIdentifier);
+                        buf.writeVarInt(curioIndex);
+                    }
                 });
     }
 
@@ -73,16 +93,37 @@ public class QuiverBoltItem extends QuiverBaseItem {
     protected static class ContainerProvider implements MenuProvider {
         private final Component displayName;
         private final ItemStack quiverStack;
+        private final SlotType slotType;
+        private final int slot;
+        private final String curioIdentifier;
+        private final int curioIndex;
 
-        protected ContainerProvider(Component displayName, ItemStack quiverStack) {
+        protected ContainerProvider(
+                Component displayName,
+                ItemStack quiverStack,
+                SlotType slotType,
+                int slot,
+                String curioIdentifier,
+                int curioIndex) {
             this.displayName = displayName;
             this.quiverStack = quiverStack;
+            this.slotType = slotType;
+            this.slot = slot;
+            this.curioIdentifier = curioIdentifier;
+            this.curioIndex = curioIndex;
         }
 
         @Override
         public AbstractContainerMenu createMenu(
                 int id, @NotNull Inventory inventory, @NotNull Player player) {
-            return new QuiverBoltMenu(id, inventory, this.quiverStack);
+            return new QuiverBoltMenu(
+                    id,
+                    inventory,
+                    this.quiverStack,
+                    this.slotType,
+                    this.slot,
+                    this.curioIdentifier,
+                    this.curioIndex);
         }
 
         @Override

@@ -54,18 +54,30 @@ public class OilHandler implements IOilHandler {
 
     @Override
     public void setEffect(OilEffect effectIn, ItemStack oilStackIn) {
+        if (effectIn == null) {
+            this.clearEffect();
+            return;
+        }
         this.effect = Optional.of(effectIn);
         this.usesLeft = effectIn.getMaxUses();
         this.potion =
                 effectIn == OilEffects.POTION.get()
                         ? Optional.ofNullable(OilHelper.getPotionFromStack(oilStackIn))
                         : Optional.empty();
+        if (effectIn == OilEffects.POTION.get() && this.potion.isEmpty()) {
+            this.clearEffect();
+            return;
+        }
         ItemStackDataHelper.updateTag(
                 this.stack, tag -> tag.put(NBT_OIL, this.serializeNBT(getRegistryAccess())));
     }
 
     @Override
     public void setPotion(Potion potionIn, ItemStack oilStackIn) {
+        if (potionIn == null) {
+            this.clearEffect();
+            return;
+        }
         this.effect = Optional.of(OilEffects.POTION.get());
         this.usesLeft = OilEffects.POTION.get().getMaxUses();
         this.potion = Optional.of(potionIn);
@@ -76,6 +88,7 @@ public class OilHandler implements IOilHandler {
     @Override
     public void clearEffect() {
         this.effect = Optional.empty();
+        this.potion = Optional.empty();
         this.usesLeft = 0;
         ItemStackDataHelper.updateTag(this.stack, tag -> tag.remove(NBT_OIL));
     }
@@ -92,7 +105,10 @@ public class OilHandler implements IOilHandler {
         if (this.effect.isEmpty()) return baseDamageIn;
         OilEffect oilEffect = this.effect.get();
         boolean isPotionOil = oilEffect == OilEffects.POTION.get();
-        if (isPotionOil && this.potion.isEmpty()) return baseDamageIn;
+        if (isPotionOil && this.potion.isEmpty()) {
+            this.clearEffect();
+            return baseDamageIn;
+        }
         ItemStack oilStack =
                 isPotionOil
                         ? OilHelper.makePotionOilStack(this.potion.get())
@@ -145,25 +161,34 @@ public class OilHandler implements IOilHandler {
 
     @Override
     public void deserializeNBT(HolderLookup.@NotNull Provider provider, CompoundTag nbt) {
+        this.effect = Optional.empty();
+        this.potion = Optional.empty();
+        this.usesLeft = 0;
+
         String oilEffectReg = nbt.getString(NBT_OIL_EFFECT);
         Registry<OilEffect> registry = getOilRegistry();
         if (registry != null) {
+            ResourceLocation oilLocation = ResourceLocation.tryParse(oilEffectReg);
             this.effect =
-                    !oilEffectReg.isEmpty()
-                            ? Optional.ofNullable(
-                                    registry.get(ResourceLocation.parse(oilEffectReg)))
-                            : Optional.empty();
-            if (nbt.contains(NBT_POTION)) {
+                    oilLocation == null ? Optional.empty() : Optional.ofNullable(registry.get(oilLocation));
+            if (this.effect.orElse(null) == OilEffects.POTION.get() && nbt.contains(NBT_POTION)) {
                 String potionReg = nbt.getString(NBT_POTION);
+                ResourceLocation potionLocation = ResourceLocation.tryParse(potionReg);
                 this.potion =
-                        !potionReg.isEmpty()
-                                ? Optional.ofNullable(
-                                        BuiltInRegistries.POTION.get(
-                                                ResourceLocation.parse(potionReg)))
-                                : Optional.empty();
+                        potionLocation == null
+                                ? Optional.empty()
+                                : Optional.ofNullable(BuiltInRegistries.POTION.get(potionLocation));
             }
         }
-        this.usesLeft = nbt.getInt(NBT_USES_LEFT);
+        this.usesLeft = Math.max(0, nbt.getInt(NBT_USES_LEFT));
+        if (this.usesLeft <= 0
+                || this.effect.isEmpty()
+                || (this.effect.orElse(null) == OilEffects.POTION.get()
+                        && this.potion.isEmpty())) {
+            this.effect = Optional.empty();
+            this.potion = Optional.empty();
+            this.usesLeft = 0;
+        }
     }
 
     private static Registry<OilEffect> getOilRegistry() {

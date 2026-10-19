@@ -7,8 +7,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.nbt.ListTag;
-import net.minecraft.nbt.Tag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import org.xiyu.spartanweaponryunofficial.client.KeyBinds;
@@ -16,7 +14,6 @@ import org.xiyu.spartanweaponryunofficial.client.gui.AlignmentHelper.Alignment;
 import org.xiyu.spartanweaponryunofficial.client.gui.AlignmentHelper.VerticalAlignment;
 import org.xiyu.spartanweaponryunofficial.item.QuiverBaseItem;
 import org.xiyu.spartanweaponryunofficial.util.ClientConfig;
-import org.xiyu.spartanweaponryunofficial.util.ItemStackDataHelper;
 import org.xiyu.spartanweaponryunofficial.util.QuiverHelper;
 import org.xiyu.spartanweaponryunofficial.util.QuiverHelper.IQuiverInfo;
 
@@ -42,7 +39,9 @@ public class HudQuiverAmmo {
 
         // Check and see if the weapon equipped has an appropriate quiver first  [first pass]
         for (IQuiverInfo info : QuiverHelper.info) {
-            if (info.isWeapon(player.getMainHandItem())) {
+            ItemStack weapon = player.getMainHandItem();
+            if (!info.isWeapon(weapon)) weapon = player.getOffhandItem();
+            if (info.isWeapon(weapon)) {
                 quiverStack = QuiverHelper.findFirstOfType(player, info);
                 break;
             }
@@ -56,18 +55,8 @@ public class HudQuiverAmmo {
 
         if (quiverStack.isEmpty()) return;
 
-        ListTag list =
-                ItemStackDataHelper.getTag(quiverStack)
-                        .getCompound(QuiverBaseItem.NBT_AMMO)
-                        .getList("Items", Tag.TAG_COMPOUND);
-
-        for (int i = 0; i < list.size(); i++) {
-            ItemStack ammoStack =
-                    ItemStack.parseOptional(mc.level.registryAccess(), list.getCompound(i));
-            if (!ammoStack.isEmpty() && ammoStack.getCount() != 0) {
-                ammoCount += ammoStack.getCount();
-            }
-        }
+        if (quiverStack.getItem() instanceof QuiverBaseItem quiverItem)
+            ammoCount = quiverItem.getTotalAmmoCount(quiverStack);
 
         ammoStr = Integer.toString(ammoCount);
         offsetX =
