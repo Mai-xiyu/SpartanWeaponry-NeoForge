@@ -192,8 +192,9 @@ public class HeavyCrossbowItem extends CrossbowItem
 
                 ItemStack projectileToStore = projectile.copy();
                 projectileToStore.setCount(count);
-                CompoundTag nbtProjectile = new CompoundTag();
-                projectileToStore.save(levelIn.registryAccess(), nbtProjectile);
+                CompoundTag nbtProjectile =
+                        (CompoundTag)
+                                projectileToStore.save(levelIn.registryAccess(), new CompoundTag());
                 ItemStackDataHelper.updateTag(stack, tag -> tag.put(NBT_PROJECTILE, nbtProjectile));
 
                 if (consumesProjectile) {
