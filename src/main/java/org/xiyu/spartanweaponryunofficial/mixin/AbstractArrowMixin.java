@@ -1,8 +1,10 @@
 package org.xiyu.spartanweaponryunofficial.mixin;
 
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import java.util.List;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.AbstractArrow.Pickup;
@@ -15,6 +17,8 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.xiyu.spartanweaponryunofficial.capability.IQuiverItemHandler;
 import org.xiyu.spartanweaponryunofficial.init.ModCapabilities;
+import org.xiyu.spartanweaponryunofficial.init.ModDamageTypes;
+import org.xiyu.spartanweaponryunofficial.item.HeavyCrossbowItem;
 import org.xiyu.spartanweaponryunofficial.item.QuiverBaseItem;
 import org.xiyu.spartanweaponryunofficial.util.ItemStackDataHelper;
 import org.xiyu.spartanweaponryunofficial.util.QuiverHelper;
@@ -26,6 +30,24 @@ import org.xiyu.spartanweaponryunofficial.util.QuiverHelper;
  */
 @Mixin(AbstractArrow.class)
 public abstract class AbstractArrowMixin extends ProjectileMixin {
+    /** Preserve bolt armor penetration when a heavy crossbow is configured to fire arrows. */
+    @ModifyExpressionValue(
+            method = "onHitEntity",
+            at =
+                    @At(
+                            value = "INVOKE",
+                            target =
+                                    "Lnet/minecraft/world/damagesource/DamageSources;arrow(Lnet/minecraft/world/entity/projectile/AbstractArrow;Lnet/minecraft/world/entity/Entity;)Lnet/minecraft/world/damagesource/DamageSource;"))
+    private DamageSource spartanWeaponry$heavyCrossbowDamage(DamageSource original) {
+        AbstractArrow arrow = (AbstractArrow) (Object) this;
+        // Vanilla persists the firing weapon on the projectile, including after a world reload.
+        ItemStack weapon = arrow.getWeaponItem();
+        if (weapon != null && weapon.getItem() instanceof HeavyCrossbowItem) {
+            return ModDamageTypes.armorPiercingProjectile(arrow, original.getEntity());
+        }
+        return original;
+    }
+
     /** Mixin method to collect the arrow entity and put the item in a Quiver */
     @Inject(
             at = @At("HEAD"),

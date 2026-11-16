@@ -2,7 +2,7 @@
   "description": {
     "translate": "enchantment.spartan_weaponry_unofficial.hydrodynamic"
   },
-  "exclusive_set": [],
+  "exclusive_set": ["spartan_weaponry_unofficial:incendiary"],
   "supported_items": "#spartan_weaponry_unofficial:throwing_weapons",
   "primary_items": "#spartan_weaponry_unofficial:throwing_weapons",
   "weight": 2,

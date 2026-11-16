@@ -65,8 +65,7 @@ public final class HeavyCrossbowGameTests {
                                                             ModItems.TIPPED_NETHERITE_ARROW.get(),
                                                             "Arrow",
                                                             () -> {
-                                                                Config.INSTANCE
-                                                                        .useBoltsForCrossbows
+                                                                Config.INSTANCE.useBoltsForCrossbows
                                                                         .set(originalMode);
                                                                 helper.succeed();
                                                             }));
@@ -87,7 +86,10 @@ public final class HeavyCrossbowGameTests {
         player.setItemInHand(InteractionHand.MAIN_HAND, crossbow);
         player.setItemInHand(InteractionHand.OFF_HAND, ammo);
 
-        if (!crossbowItem.use(player.level(), player, InteractionHand.MAIN_HAND).getResult().consumesAction()) {
+        if (!crossbowItem
+                .use(player.level(), player, InteractionHand.MAIN_HAND)
+                .getResult()
+                .consumesAction()) {
             helper.fail("Heavy crossbow refused supported projectile " + ammoItem);
             return;
         }
@@ -119,18 +121,16 @@ public final class HeavyCrossbowGameTests {
                                     entityData.getCompound(entityNbtKey));
                     if (!fired.is(ammoItem)) {
                         helper.fail(
-                                "Crossbow fired "
-                                        + fired.getItem()
-                                        + " instead of "
-                                        + ammoItem);
+                                "Crossbow fired " + fired.getItem() + " instead of " + ammoItem);
                         return;
                     }
-                    projectile.discard();
+                    WeaponBehaviorGameTests.hitArmoredTarget(helper, projectile, true);
                     next.run();
                 });
     }
 
-    private static void assertStoredProjectile(GameTestHelper helper, ItemStack crossbow, Item item) {
+    private static void assertStoredProjectile(
+            GameTestHelper helper, ItemStack crossbow, Item item) {
         CompoundTag crossbowTag = ItemStackDataHelper.getTag(crossbow);
         ItemStack stored =
                 ItemStack.parseOptional(
@@ -151,7 +151,8 @@ public final class HeavyCrossbowGameTests {
         AABB searchBox = player.getBoundingBox().inflate(64.0);
         if (ammoItem.getClass().getSimpleName().contains("Bolt")) {
             List<BoltEntity> bolts =
-                    helper.getLevel().getEntitiesOfClass(BoltEntity.class, searchBox, Entity::isAlive);
+                    helper.getLevel()
+                            .getEntitiesOfClass(BoltEntity.class, searchBox, Entity::isAlive);
             if (!bolts.isEmpty()) return bolts.get(0);
         } else {
             List<ArrowBaseEntity> arrows =

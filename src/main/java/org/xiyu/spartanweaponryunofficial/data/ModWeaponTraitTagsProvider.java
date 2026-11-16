@@ -69,7 +69,7 @@ public class ModWeaponTraitTagsProvider extends IntrinsicHolderTagsProvider<Weap
                         WeaponTraits.HAMMER_SLAM.get());
         this.tag(ModWeaponTraitTags.WARHAMMER)
                 .add(WeaponTraits.TWO_HANDED_1.get(), WeaponTraits.ARMOR_PIERCING.get());
-        this.tag(ModWeaponTraitTags.SPEAR).add(WeaponTraits.REACH_2.get());
+        this.tag(ModWeaponTraitTags.SPEAR).add(WeaponTraits.REACH_1.get());
         this.tag(ModWeaponTraitTags.HALBERD)
                 .add(
                         WeaponTraits.TWO_HANDED_2.get(),
