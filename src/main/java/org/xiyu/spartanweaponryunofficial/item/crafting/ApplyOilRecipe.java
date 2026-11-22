@@ -22,7 +22,7 @@ import org.xiyu.spartanweaponryunofficial.util.OilHelper;
 public class ApplyOilRecipe extends CustomRecipe {
 
     public static final MapCodec<ApplyOilRecipe> CODEC = MapCodec.unit(ApplyOilRecipe::new);
-    public static final StreamCodec<RegistryFriendlyByteBuf, ApplyOilRecipe> STREAM_CODEC = StreamCodec.unit(new ApplyOilRecipe());
+    public static final StreamCodec<RegistryFriendlyByteBuf, ApplyOilRecipe> STREAM_CODEC = StreamCodec.of((buf, recipe) -> {}, buf -> new ApplyOilRecipe());
 
     public ApplyOilRecipe() {
         super();
