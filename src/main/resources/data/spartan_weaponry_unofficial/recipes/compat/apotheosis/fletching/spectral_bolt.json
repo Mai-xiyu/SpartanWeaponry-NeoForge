@@ -1,9 +1,9 @@
-{ 
-	"type": "apotheosis:fletching",
-	"conditions": [
+{
+  "type": "apotheosis:fletching",
+  "conditions": [
     {
-    	"modid": "apotheosis",
-    	"type": "forge:mod_loaded"
+      "modid": "apotheosis",
+      "type": "forge:mod_loaded"
     },
     {
       "disabled": [
@@ -11,23 +11,18 @@
       ],
       "type": "spartan_weaponry_unofficial:type_disabled"
     },
-    { 
-		"type": "apotheosis:module",
-		"module": "village"
-	}],
-	"ingredients":[ 
-		{
-			"tag": "forge:dusts/glowstone"
-		},
-		{
-			"item": "spartan_weaponry_unofficial:bolt"
-		},
-		{
-			"tag": "forge:dusts/glowstone"
-		}
-	],
-	"result": {
-	  "item": "spartan_weaponry_unofficial:spectral_bolt",
-	  "count": 2
-	}
+    {
+      "type": "apotheosis:module",
+      "module": "village"
+    }
+  ],
+  "ingredients": [
+    "#forge:dusts/glowstone",
+    "spartan_weaponry_unofficial:bolt",
+    "#forge:dusts/glowstone"
+  ],
+  "result": {
+    "item": "spartan_weaponry_unofficial:spectral_bolt",
+    "count": 2
+  }
 }

@@ -289,7 +289,7 @@ public class Config {
                 .define("check_armor_value", false);
         this.damageBonusMaxArmorValue = builder.comment("Max armor value allowed for any damage bonus that checks for armor to apply, without any armor equipped|允许触发护甲判定伤害加成的最大护甲值")
                 .translation("config." + ModSpartanWeaponry.ID + ".traits.damage_bonus.max_armor_value")
-                .defineInRange("max_armor_value", Defaults.DamageBonusMaxArmorValue, 1.0, 50.0);
+                .defineInRange("max_armor_value", Defaults.DamageBonusMaxArmorValue, 0.0, 50.0);
         this.damageBonusUndeadMultiplier = builder.comment("Changes the \"Undead Damage Bonus\" Weapon Trait multiplier value|调整“亡灵伤害加成”特性的倍率")
                 .translation("config." + ModSpartanWeaponry.ID + ".traits.damage_bonus.undead_multiplier")
                 .defineInRange("undead_multiplier", Defaults.DamageBonusUndeadMultiplier, 1.0, 50.0);

@@ -19,15 +19,9 @@
   "category": "equipment",
   "group": "spartan_weaponry_unofficial:flanged_mace",
   "key": {
-    "#": {
-      "tag": "c:ingots/silver"
-    },
-    "/": {
-      "tag": "c:rods/wooden"
-    },
-    "|": {
-      "item": "spartan_weaponry_unofficial:handle"
-    }
+    "#": "#c:ingots/silver",
+    "/": "#c:rods/wooden",
+    "|": "spartan_weaponry_unofficial:handle"
   },
   "pattern": [
     " ##",

@@ -19,12 +19,8 @@
   "category": "equipment",
   "group": "spartan_weaponry_unofficial:longsword",
   "key": {
-    "#": {
-      "tag": "c:ingots/aluminum"
-    },
-    "|": {
-      "item": "spartan_weaponry_unofficial:handle"
-    }
+    "#": "#c:ingots/aluminum",
+    "|": "spartan_weaponry_unofficial:handle"
   },
   "pattern": [
     " # ",

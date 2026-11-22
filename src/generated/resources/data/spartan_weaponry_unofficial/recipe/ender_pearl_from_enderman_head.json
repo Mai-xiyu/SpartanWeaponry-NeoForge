@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "spartan_weaponry_unofficial:enderman_head"
-    }
+    "spartan_weaponry_unofficial:enderman_head"
   ],
   "result": {
     "count": 2,

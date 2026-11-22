@@ -11,12 +11,8 @@
   "category": "equipment",
   "group": "spartan_weaponry_unofficial:spear",
   "key": {
-    "#": {
-      "tag": "c:ingots/iron"
-    },
-    "/": {
-      "tag": "spartan_weaponry_unofficial:poles"
-    }
+    "#": "#c:ingots/iron",
+    "/": "#spartan_weaponry_unofficial:poles"
   },
   "pattern": [
     "#",

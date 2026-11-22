@@ -11,12 +11,8 @@
   "category": "equipment",
   "group": "spartan_weaponry_unofficial:throwing_knife",
   "key": {
-    "#": {
-      "tag": "c:cobblestones"
-    },
-    "|": {
-      "tag": "spartan_weaponry_unofficial:handles"
-    }
+    "#": "#c:cobblestones",
+    "|": "#spartan_weaponry_unofficial:handles"
   },
   "pattern": [
     "|#"

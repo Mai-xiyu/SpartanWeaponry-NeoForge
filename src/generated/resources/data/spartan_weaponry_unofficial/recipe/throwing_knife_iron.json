@@ -11,12 +11,8 @@
   "category": "equipment",
   "group": "spartan_weaponry_unofficial:throwing_knife",
   "key": {
-    "#": {
-      "tag": "c:ingots/iron"
-    },
-    "|": {
-      "tag": "spartan_weaponry_unofficial:handles"
-    }
+    "#": "#c:ingots/iron",
+    "|": "#spartan_weaponry_unofficial:handles"
   },
   "pattern": [
     "|#"

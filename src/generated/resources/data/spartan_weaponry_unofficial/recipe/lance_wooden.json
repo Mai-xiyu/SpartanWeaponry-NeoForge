@@ -11,15 +11,9 @@
   "category": "equipment",
   "group": "spartan_weaponry_unofficial:lance",
   "key": {
-    "#": {
-      "tag": "minecraft:planks"
-    },
-    "/": {
-      "item": "spartan_weaponry_unofficial:pole"
-    },
-    "|": {
-      "item": "spartan_weaponry_unofficial:handle"
-    }
+    "#": "#minecraft:planks",
+    "/": "spartan_weaponry_unofficial:pole",
+    "|": "spartan_weaponry_unofficial:handle"
   },
   "pattern": [
     "  #",

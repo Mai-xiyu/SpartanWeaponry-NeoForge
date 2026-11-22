@@ -19,12 +19,8 @@
   "category": "equipment",
   "group": "spartan_weaponry_unofficial:greatsword",
   "key": {
-    "#": {
-      "tag": "c:ingots/platinum"
-    },
-    "|": {
-      "item": "spartan_weaponry_unofficial:handle"
-    }
+    "#": "#c:ingots/platinum",
+    "|": "spartan_weaponry_unofficial:handle"
   },
   "pattern": [
     " # ",

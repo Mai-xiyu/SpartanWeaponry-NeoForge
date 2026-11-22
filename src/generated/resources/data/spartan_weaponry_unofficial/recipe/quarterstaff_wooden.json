@@ -11,12 +11,8 @@
   "category": "equipment",
   "group": "spartan_weaponry_unofficial:quarterstaff",
   "key": {
-    "#": {
-      "tag": "minecraft:planks"
-    },
-    "/": {
-      "item": "spartan_weaponry_unofficial:pole"
-    }
+    "#": "#minecraft:planks",
+    "/": "spartan_weaponry_unofficial:pole"
   },
   "pattern": [
     "  #",

@@ -10,12 +10,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "#": {
-      "item": "spartan_weaponry_unofficial:explosive_charge"
-    },
-    "~": {
-      "tag": "c:strings"
-    }
+    "#": "spartan_weaponry_unofficial:explosive_charge",
+    "~": "#c:strings"
   },
   "pattern": [
     "  ~",

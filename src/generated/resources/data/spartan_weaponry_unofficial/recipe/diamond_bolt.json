@@ -11,15 +11,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "#": {
-      "tag": "c:gems/diamond"
-    },
-    "F": {
-      "tag": "c:feathers"
-    },
-    "|": {
-      "tag": "c:nuggets/iron"
-    }
+    "#": "#c:gems/diamond",
+    "F": "#c:feathers",
+    "|": "#c:nuggets/iron"
   },
   "pattern": [
     "  #",

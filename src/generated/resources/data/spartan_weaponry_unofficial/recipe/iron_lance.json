@@ -11,15 +11,9 @@
   "category": "equipment",
   "group": "spartan_weaponry_unofficial:lance",
   "key": {
-    "#": {
-      "tag": "c:ingots/iron"
-    },
-    "/": {
-      "item": "spartan_weaponry_unofficial:pole"
-    },
-    "|": {
-      "item": "spartan_weaponry_unofficial:handle"
-    }
+    "#": "#c:ingots/iron",
+    "/": "spartan_weaponry_unofficial:pole",
+    "|": "spartan_weaponry_unofficial:handle"
   },
   "pattern": [
     "  #",

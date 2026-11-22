@@ -19,12 +19,8 @@
   "category": "equipment",
   "group": "spartan_weaponry_unofficial:glaive",
   "key": {
-    "#": {
-      "tag": "c:ingots/aluminum"
-    },
-    "/": {
-      "item": "spartan_weaponry_unofficial:pole"
-    }
+    "#": "#c:ingots/aluminum",
+    "/": "spartan_weaponry_unofficial:pole"
   },
   "pattern": [
     " #",

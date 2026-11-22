@@ -11,12 +11,8 @@
   "category": "equipment",
   "group": "spartan_weaponry_unofficial:halberd",
   "key": {
-    "#": {
-      "tag": "c:cobblestones"
-    },
-    "/": {
-      "item": "spartan_weaponry_unofficial:pole"
-    }
+    "#": "#c:cobblestones",
+    "/": "spartan_weaponry_unofficial:pole"
   },
   "pattern": [
     " #",

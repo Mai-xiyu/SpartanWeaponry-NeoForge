@@ -19,12 +19,8 @@
   "category": "equipment",
   "group": "spartan_weaponry_unofficial:scythe",
   "key": {
-    "#": {
-      "tag": "c:ingots/steel"
-    },
-    "/": {
-      "item": "spartan_weaponry_unofficial:pole"
-    }
+    "#": "#c:ingots/steel",
+    "/": "spartan_weaponry_unofficial:pole"
   },
   "pattern": [
     "## ",

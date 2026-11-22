@@ -1,16 +1,10 @@
 {
   "type": "minecraft:smithing_transform",
-  "addition": {
-    "tag": "c:ingots/netherite"
-  },
-  "base": {
-    "item": "spartan_weaponry_unofficial:diamond_quarterstaff"
-  },
+  "addition": "#c:ingots/netherite",
+  "base": "spartan_weaponry_unofficial:diamond_quarterstaff",
   "result": {
     "count": 1,
     "id": "spartan_weaponry_unofficial:netherite_quarterstaff"
   },
-  "template": {
-    "item": "minecraft:netherite_upgrade_smithing_template"
-  }
+  "template": "minecraft:netherite_upgrade_smithing_template"
 }

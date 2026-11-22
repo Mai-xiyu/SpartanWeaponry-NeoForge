@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shapeless",
   "category": "equipment",
   "ingredients": [
-    {
-      "tag": "c:rods/wooden"
-    },
-    {
-      "tag": "c:grass"
-    }
+    "#c:rods/wooden",
+    "#c:grass"
   ],
   "result": {
     "count": 1,

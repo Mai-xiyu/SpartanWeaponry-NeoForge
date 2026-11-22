@@ -69,7 +69,8 @@ public class ModSpartanWeaponry {
         modContainer.registerConfig(ModConfig.Type.CLIENT, ClientConfig.CONFIG_SPEC);
 //        ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, ServerConfig.CONFIG_SPEC);
         // Register extension points
-        ClientHelper.registerConfigScreen(modContainer);
+        if (net.neoforged.fml.loading.FMLEnvironment.getDist().isClient())
+            ClientHelper.registerConfigScreen(modContainer);
         // NeoForge 1.21: Removed register(this) as it requires @SubscribeEvent methods
     }
 

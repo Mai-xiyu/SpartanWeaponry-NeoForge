@@ -27,7 +27,11 @@ public class DecapitateLootModifier extends LootModifier {
     private final Item skull;
 
     public DecapitateLootModifier(LootItemCondition[] conditionsIn, Item skullItem) {
-        super(conditionsIn);
+        this(conditionsIn, IGlobalLootModifier.DEFAULT_PRIORITY, skullItem);
+    }
+
+    public DecapitateLootModifier(LootItemCondition[] conditionsIn, int priority, Item skullItem) {
+        super(conditionsIn, priority);
         this.skull = skullItem;
     }
 

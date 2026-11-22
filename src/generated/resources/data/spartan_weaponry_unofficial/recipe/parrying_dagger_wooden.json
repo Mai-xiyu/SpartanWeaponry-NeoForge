@@ -11,12 +11,8 @@
   "category": "equipment",
   "group": "spartan_weaponry_unofficial:parrying_dagger",
   "key": {
-    "#": {
-      "tag": "minecraft:planks"
-    },
-    "|": {
-      "item": "spartan_weaponry_unofficial:handle"
-    }
+    "#": "#minecraft:planks",
+    "|": "spartan_weaponry_unofficial:handle"
   },
   "pattern": [
     " #",
