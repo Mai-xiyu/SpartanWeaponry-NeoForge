@@ -19,12 +19,8 @@
   "category": "equipment",
   "group": "spartan_weaponry_unofficial:dagger",
   "key": {
-    "#": {
-      "tag": "c:ingots/silver"
-    },
-    "|": {
-      "tag": "spartan_weaponry_unofficial:handles"
-    }
+    "#": "#c:ingots/silver",
+    "|": "#spartan_weaponry_unofficial:handles"
   },
   "pattern": [
     "#",

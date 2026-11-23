@@ -19,12 +19,8 @@
   "category": "equipment",
   "group": "spartan_weaponry_unofficial:tomahawk",
   "key": {
-    "#": {
-      "tag": "c:ingots/electrum"
-    },
-    "|": {
-      "item": "spartan_weaponry_unofficial:handle"
-    }
+    "#": "#c:ingots/electrum",
+    "|": "spartan_weaponry_unofficial:handle"
   },
   "pattern": [
     "|#",

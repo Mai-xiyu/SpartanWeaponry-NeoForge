@@ -19,21 +19,11 @@
   "category": "equipment",
   "group": "spartan_weaponry_unofficial:heavy_crossbow",
   "key": {
-    "#": {
-      "tag": "c:ingots/nickel"
-    },
-    "D": {
-      "item": "minecraft:bow"
-    },
-    "H": {
-      "item": "minecraft:tripwire_hook"
-    },
-    "P": {
-      "tag": "minecraft:planks"
-    },
-    "|": {
-      "item": "spartan_weaponry_unofficial:handle"
-    }
+    "#": "#c:ingots/nickel",
+    "D": "minecraft:bow",
+    "H": "minecraft:tripwire_hook",
+    "P": "#minecraft:planks",
+    "|": "spartan_weaponry_unofficial:handle"
   },
   "pattern": [
     "#D#",

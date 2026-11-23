@@ -11,12 +11,8 @@
   "category": "equipment",
   "group": "spartan_weaponry_unofficial:spear",
   "key": {
-    "#": {
-      "tag": "minecraft:planks"
-    },
-    "/": {
-      "tag": "spartan_weaponry_unofficial:poles"
-    }
+    "#": "#minecraft:planks",
+    "/": "#spartan_weaponry_unofficial:poles"
   },
   "pattern": [
     "#",

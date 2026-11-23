@@ -11,12 +11,8 @@
   "category": "equipment",
   "group": "spartan_weaponry_unofficial:battle_hammer",
   "key": {
-    "#": {
-      "tag": "c:ingots/gold"
-    },
-    "|": {
-      "item": "spartan_weaponry_unofficial:handle"
-    }
+    "#": "#c:ingots/gold",
+    "|": "spartan_weaponry_unofficial:handle"
   },
   "pattern": [
     "###",

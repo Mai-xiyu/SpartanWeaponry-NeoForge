@@ -11,12 +11,8 @@
   "category": "equipment",
   "group": "spartan_weaponry_unofficial:explosive",
   "key": {
-    "#": {
-      "tag": "c:gunpowders"
-    },
-    "-": {
-      "tag": "c:nuggets/iron"
-    }
+    "#": "#c:gunpowders",
+    "-": "#c:nuggets/iron"
   },
   "pattern": [
     "###",

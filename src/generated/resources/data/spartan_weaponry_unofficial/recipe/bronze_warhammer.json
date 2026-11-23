@@ -19,12 +19,8 @@
   "category": "equipment",
   "group": "spartan_weaponry_unofficial:warhammer",
   "key": {
-    "#": {
-      "tag": "c:ingots/bronze"
-    },
-    "|": {
-      "item": "spartan_weaponry_unofficial:handle"
-    }
+    "#": "#c:ingots/bronze",
+    "|": "spartan_weaponry_unofficial:handle"
   },
   "pattern": [
     " #",

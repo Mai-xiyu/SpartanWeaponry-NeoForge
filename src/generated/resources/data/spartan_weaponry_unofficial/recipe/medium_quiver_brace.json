@@ -10,12 +10,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "#": {
-      "tag": "c:ingots/gold"
-    },
-    "~": {
-      "tag": "c:strings"
-    }
+    "#": "#c:ingots/gold",
+    "~": "#c:strings"
   },
   "pattern": [
     "#~#",

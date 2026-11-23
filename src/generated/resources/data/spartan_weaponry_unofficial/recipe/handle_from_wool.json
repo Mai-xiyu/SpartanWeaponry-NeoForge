@@ -3,21 +3,11 @@
   "category": "equipment",
   "group": "spartan_weaponry_unofficial:handle",
   "ingredients": [
-    {
-      "tag": "c:rods/wooden"
-    },
-    {
-      "tag": "c:rods/wooden"
-    },
-    {
-      "tag": "c:rods/wooden"
-    },
-    {
-      "tag": "c:rods/wooden"
-    },
-    {
-      "tag": "minecraft:wool"
-    }
+    "#c:rods/wooden",
+    "#c:rods/wooden",
+    "#c:rods/wooden",
+    "#c:rods/wooden",
+    "#minecraft:wool"
   ],
   "result": {
     "count": 4,

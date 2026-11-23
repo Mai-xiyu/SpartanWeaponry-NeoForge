@@ -11,33 +11,15 @@
   "type": "minecraft:crafting_shapeless",
   "category": "equipment",
   "ingredients": [
-    {
-      "tag": "c:ingots/netherite"
-    },
-    {
-      "item": "spartan_weaponry_unofficial:diamond_arrow"
-    },
-    {
-      "item": "spartan_weaponry_unofficial:diamond_arrow"
-    },
-    {
-      "item": "spartan_weaponry_unofficial:diamond_arrow"
-    },
-    {
-      "item": "spartan_weaponry_unofficial:diamond_arrow"
-    },
-    {
-      "item": "spartan_weaponry_unofficial:diamond_arrow"
-    },
-    {
-      "item": "spartan_weaponry_unofficial:diamond_arrow"
-    },
-    {
-      "item": "spartan_weaponry_unofficial:diamond_arrow"
-    },
-    {
-      "item": "spartan_weaponry_unofficial:diamond_arrow"
-    }
+    "#c:ingots/netherite",
+    "spartan_weaponry_unofficial:diamond_arrow",
+    "spartan_weaponry_unofficial:diamond_arrow",
+    "spartan_weaponry_unofficial:diamond_arrow",
+    "spartan_weaponry_unofficial:diamond_arrow",
+    "spartan_weaponry_unofficial:diamond_arrow",
+    "spartan_weaponry_unofficial:diamond_arrow",
+    "spartan_weaponry_unofficial:diamond_arrow",
+    "spartan_weaponry_unofficial:diamond_arrow"
   ],
   "result": {
     "count": 8,

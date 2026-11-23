@@ -11,12 +11,8 @@
   "type": "minecraft:crafting_shapeless",
   "category": "equipment",
   "ingredients": [
-    {
-      "item": "minecraft:arrow"
-    },
-    {
-      "item": "spartan_weaponry_unofficial:explosive_charge"
-    }
+    "minecraft:arrow",
+    "spartan_weaponry_unofficial:explosive_charge"
   ],
   "result": {
     "count": 1,

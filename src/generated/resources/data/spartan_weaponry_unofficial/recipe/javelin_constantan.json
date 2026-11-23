@@ -19,12 +19,8 @@
   "category": "equipment",
   "group": "spartan_weaponry_unofficial:javelin",
   "key": {
-    "#": {
-      "tag": "c:ingots/constantan"
-    },
-    "/": {
-      "item": "spartan_weaponry_unofficial:pole"
-    }
+    "#": "#c:ingots/constantan",
+    "/": "spartan_weaponry_unofficial:pole"
   },
   "pattern": [
     "/#"

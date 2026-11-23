@@ -1,34 +1,28 @@
-{ 
-	"type": "apotheosis:fletching",
-	"conditions": [
+{
+  "type": "apotheosis:fletching",
+  "conditions": [
     {
-    	"modid": "apotheosis",
-    	"type": "forge:mod_loaded"
+      "modid": "apotheosis",
+      "type": "forge:mod_loaded"
     },
     {
-      	"disabled": [
-        	"arrows"
-      	],
-      	"type": "spartan_weaponry_unofficial:type_disabled"
+      "disabled": [
+        "arrows"
+      ],
+      "type": "spartan_weaponry_unofficial:type_disabled"
     },
-    { 
-		"type": "apotheosis:module",
-		"module": "village"
-	}],
-	"ingredients":[ 
-		
-		{
-			"tag": "forge:feathers"
-		},
-		{
-			"tag": "forge:rods/wooden"
-		},
-		{
-			"tag": "forge:ingots/iron"
-		}
-	],
-	"result": {
-	  "item": "spartan_weaponry_unofficial:iron_arrow",
-	  "count": 6
-	}
+    {
+      "type": "apotheosis:module",
+      "module": "village"
+    }
+  ],
+  "ingredients": [
+    "#forge:feathers",
+    "#forge:rods/wooden",
+    "#forge:ingots/iron"
+  ],
+  "result": {
+    "item": "spartan_weaponry_unofficial:iron_arrow",
+    "count": 6
+  }
 }

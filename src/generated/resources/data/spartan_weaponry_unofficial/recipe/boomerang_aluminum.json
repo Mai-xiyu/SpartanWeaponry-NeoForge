@@ -19,12 +19,8 @@
   "category": "equipment",
   "group": "spartan_weaponry_unofficial:boomerang",
   "key": {
-    "#": {
-      "tag": "c:ingots/aluminum"
-    },
-    "P": {
-      "tag": "minecraft:planks"
-    }
+    "#": "#c:ingots/aluminum",
+    "P": "#minecraft:planks"
   },
   "pattern": [
     "#PP",

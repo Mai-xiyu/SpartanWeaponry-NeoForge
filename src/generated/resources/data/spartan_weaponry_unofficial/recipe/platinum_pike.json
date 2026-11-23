@@ -19,12 +19,8 @@
   "category": "equipment",
   "group": "spartan_weaponry_unofficial:pike",
   "key": {
-    "#": {
-      "tag": "c:ingots/platinum"
-    },
-    "/": {
-      "item": "spartan_weaponry_unofficial:pole"
-    }
+    "#": "#c:ingots/platinum",
+    "/": "spartan_weaponry_unofficial:pole"
   },
   "pattern": [
     "#",

@@ -11,12 +11,8 @@
   "category": "equipment",
   "group": "spartan_weaponry_unofficial:throwing_knife",
   "key": {
-    "#": {
-      "tag": "c:gems/diamond"
-    },
-    "|": {
-      "tag": "spartan_weaponry_unofficial:handles"
-    }
+    "#": "#c:gems/diamond",
+    "|": "#spartan_weaponry_unofficial:handles"
   },
   "pattern": [
     "|#"

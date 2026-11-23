@@ -11,12 +11,8 @@
   "category": "equipment",
   "group": "spartan_weaponry_unofficial:cestus",
   "key": {
-    "l": {
-      "tag": "c:leathers"
-    },
-    "o": {
-      "tag": "minecraft:wool"
-    }
+    "l": "#c:leathers",
+    "o": "#minecraft:wool"
   },
   "pattern": [
     "lo"

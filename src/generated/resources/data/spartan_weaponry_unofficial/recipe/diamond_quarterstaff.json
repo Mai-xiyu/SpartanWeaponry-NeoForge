@@ -11,12 +11,8 @@
   "category": "equipment",
   "group": "spartan_weaponry_unofficial:quarterstaff",
   "key": {
-    "#": {
-      "tag": "c:gems/diamond"
-    },
-    "/": {
-      "item": "spartan_weaponry_unofficial:pole"
-    }
+    "#": "#c:gems/diamond",
+    "/": "spartan_weaponry_unofficial:pole"
   },
   "pattern": [
     "  #",

@@ -10,15 +10,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "#": {
-      "tag": "minecraft:planks"
-    },
-    "F": {
-      "tag": "c:feathers"
-    },
-    "|": {
-      "tag": "c:rods/wooden"
-    }
+    "#": "#minecraft:planks",
+    "F": "#c:feathers",
+    "|": "#c:rods/wooden"
   },
   "pattern": [
     "#",

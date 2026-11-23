@@ -19,12 +19,8 @@
   "category": "equipment",
   "group": "spartan_weaponry_unofficial:saber",
   "key": {
-    "#": {
-      "tag": "c:ingots/invar"
-    },
-    "|": {
-      "item": "spartan_weaponry_unofficial:handle"
-    }
+    "#": "#c:ingots/invar",
+    "|": "spartan_weaponry_unofficial:handle"
   },
   "pattern": [
     " #",

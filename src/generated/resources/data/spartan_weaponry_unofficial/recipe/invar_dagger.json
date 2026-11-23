@@ -19,12 +19,8 @@
   "category": "equipment",
   "group": "spartan_weaponry_unofficial:dagger",
   "key": {
-    "#": {
-      "tag": "c:ingots/invar"
-    },
-    "|": {
-      "tag": "spartan_weaponry_unofficial:handles"
-    }
+    "#": "#c:ingots/invar",
+    "|": "#spartan_weaponry_unofficial:handles"
   },
   "pattern": [
     "#",

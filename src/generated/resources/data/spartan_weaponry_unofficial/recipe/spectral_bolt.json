@@ -10,15 +10,9 @@
   "type": "minecraft:crafting_shapeless",
   "category": "equipment",
   "ingredients": [
-    {
-      "item": "spartan_weaponry_unofficial:bolt"
-    },
-    {
-      "item": "minecraft:glowstone_dust"
-    },
-    {
-      "item": "minecraft:glowstone_dust"
-    }
+    "spartan_weaponry_unofficial:bolt",
+    "minecraft:glowstone_dust",
+    "minecraft:glowstone_dust"
   ],
   "result": {
     "count": 1,

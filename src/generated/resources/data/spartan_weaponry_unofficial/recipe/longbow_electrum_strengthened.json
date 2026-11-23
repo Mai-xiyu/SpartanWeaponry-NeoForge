@@ -19,18 +19,10 @@
   "category": "equipment",
   "group": "spartan_weaponry_unofficial:longbow",
   "key": {
-    "#": {
-      "tag": "c:ingots/electrum"
-    },
-    "/": {
-      "tag": "c:rods/wooden"
-    },
-    "|": {
-      "item": "spartan_weaponry_unofficial:handle"
-    },
-    "~": {
-      "tag": "c:strings"
-    }
+    "#": "#c:ingots/electrum",
+    "/": "#c:rods/wooden",
+    "|": "spartan_weaponry_unofficial:handle",
+    "~": "#c:strings"
   },
   "pattern": [
     "|/#",

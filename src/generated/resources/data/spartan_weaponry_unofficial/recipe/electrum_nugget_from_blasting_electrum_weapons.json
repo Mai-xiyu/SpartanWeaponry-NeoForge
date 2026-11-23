@@ -2,78 +2,30 @@
   "type": "spartan_weaponry_unofficial:tag_blasting",
   "experience": 0.1,
   "ingredient": [
-    {
-      "item": "spartan_weaponry_unofficial:electrum_dagger"
-    },
-    {
-      "item": "spartan_weaponry_unofficial:electrum_parrying_dagger"
-    },
-    {
-      "item": "spartan_weaponry_unofficial:electrum_longsword"
-    },
-    {
-      "item": "spartan_weaponry_unofficial:electrum_katana"
-    },
-    {
-      "item": "spartan_weaponry_unofficial:electrum_saber"
-    },
-    {
-      "item": "spartan_weaponry_unofficial:electrum_rapier"
-    },
-    {
-      "item": "spartan_weaponry_unofficial:electrum_greatsword"
-    },
-    {
-      "item": "spartan_weaponry_unofficial:electrum_battle_hammer"
-    },
-    {
-      "item": "spartan_weaponry_unofficial:electrum_warhammer"
-    },
-    {
-      "item": "spartan_weaponry_unofficial:electrum_spear"
-    },
-    {
-      "item": "spartan_weaponry_unofficial:electrum_halberd"
-    },
-    {
-      "item": "spartan_weaponry_unofficial:electrum_pike"
-    },
-    {
-      "item": "spartan_weaponry_unofficial:electrum_lance"
-    },
-    {
-      "item": "spartan_weaponry_unofficial:longbow_electrum_strengthened"
-    },
-    {
-      "item": "spartan_weaponry_unofficial:heavy_crossbow_electrum_strengthened"
-    },
-    {
-      "item": "spartan_weaponry_unofficial:throwing_knife_electrum"
-    },
-    {
-      "item": "spartan_weaponry_unofficial:tomahawk_electrum"
-    },
-    {
-      "item": "spartan_weaponry_unofficial:javelin_electrum"
-    },
-    {
-      "item": "spartan_weaponry_unofficial:boomerang_electrum"
-    },
-    {
-      "item": "spartan_weaponry_unofficial:electrum_battleaxe"
-    },
-    {
-      "item": "spartan_weaponry_unofficial:electrum_flanged_mace"
-    },
-    {
-      "item": "spartan_weaponry_unofficial:electrum_glaive"
-    },
-    {
-      "item": "spartan_weaponry_unofficial:electrum_quarterstaff"
-    },
-    {
-      "item": "spartan_weaponry_unofficial:electrum_scythe"
-    }
+    "spartan_weaponry_unofficial:electrum_dagger",
+    "spartan_weaponry_unofficial:electrum_parrying_dagger",
+    "spartan_weaponry_unofficial:electrum_longsword",
+    "spartan_weaponry_unofficial:electrum_katana",
+    "spartan_weaponry_unofficial:electrum_saber",
+    "spartan_weaponry_unofficial:electrum_rapier",
+    "spartan_weaponry_unofficial:electrum_greatsword",
+    "spartan_weaponry_unofficial:electrum_battle_hammer",
+    "spartan_weaponry_unofficial:electrum_warhammer",
+    "spartan_weaponry_unofficial:electrum_spear",
+    "spartan_weaponry_unofficial:electrum_halberd",
+    "spartan_weaponry_unofficial:electrum_pike",
+    "spartan_weaponry_unofficial:electrum_lance",
+    "spartan_weaponry_unofficial:longbow_electrum_strengthened",
+    "spartan_weaponry_unofficial:heavy_crossbow_electrum_strengthened",
+    "spartan_weaponry_unofficial:throwing_knife_electrum",
+    "spartan_weaponry_unofficial:tomahawk_electrum",
+    "spartan_weaponry_unofficial:javelin_electrum",
+    "spartan_weaponry_unofficial:boomerang_electrum",
+    "spartan_weaponry_unofficial:electrum_battleaxe",
+    "spartan_weaponry_unofficial:electrum_flanged_mace",
+    "spartan_weaponry_unofficial:electrum_glaive",
+    "spartan_weaponry_unofficial:electrum_quarterstaff",
+    "spartan_weaponry_unofficial:electrum_scythe"
   ],
   "result_tag": "c:nuggets/electrum"
 }

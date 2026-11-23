@@ -11,33 +11,15 @@
   "type": "minecraft:crafting_shapeless",
   "category": "equipment",
   "ingredients": [
-    {
-      "tag": "c:ingots/netherite"
-    },
-    {
-      "item": "spartan_weaponry_unofficial:diamond_bolt"
-    },
-    {
-      "item": "spartan_weaponry_unofficial:diamond_bolt"
-    },
-    {
-      "item": "spartan_weaponry_unofficial:diamond_bolt"
-    },
-    {
-      "item": "spartan_weaponry_unofficial:diamond_bolt"
-    },
-    {
-      "item": "spartan_weaponry_unofficial:diamond_bolt"
-    },
-    {
-      "item": "spartan_weaponry_unofficial:diamond_bolt"
-    },
-    {
-      "item": "spartan_weaponry_unofficial:diamond_bolt"
-    },
-    {
-      "item": "spartan_weaponry_unofficial:diamond_bolt"
-    }
+    "#c:ingots/netherite",
+    "spartan_weaponry_unofficial:diamond_bolt",
+    "spartan_weaponry_unofficial:diamond_bolt",
+    "spartan_weaponry_unofficial:diamond_bolt",
+    "spartan_weaponry_unofficial:diamond_bolt",
+    "spartan_weaponry_unofficial:diamond_bolt",
+    "spartan_weaponry_unofficial:diamond_bolt",
+    "spartan_weaponry_unofficial:diamond_bolt",
+    "spartan_weaponry_unofficial:diamond_bolt"
   ],
   "result": {
     "count": 8,

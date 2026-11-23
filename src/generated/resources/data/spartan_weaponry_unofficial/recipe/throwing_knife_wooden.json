@@ -11,12 +11,8 @@
   "category": "equipment",
   "group": "spartan_weaponry_unofficial:throwing_knife",
   "key": {
-    "#": {
-      "tag": "minecraft:planks"
-    },
-    "|": {
-      "tag": "spartan_weaponry_unofficial:handles"
-    }
+    "#": "#minecraft:planks",
+    "|": "#spartan_weaponry_unofficial:handles"
   },
   "pattern": [
     "|#"

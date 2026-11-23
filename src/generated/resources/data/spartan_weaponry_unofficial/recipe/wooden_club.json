@@ -11,9 +11,7 @@
   "category": "equipment",
   "group": "spartan_weaponry_unofficial:club",
   "key": {
-    "#": {
-      "tag": "minecraft:logs"
-    }
+    "#": "#minecraft:logs"
   },
   "pattern": [
     " #",

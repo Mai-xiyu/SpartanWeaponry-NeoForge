@@ -1,34 +1,29 @@
-{ 
-	"type": "apotheosis:fletching",
-	"conditions": [
+{
+  "type": "apotheosis:fletching",
+  "conditions": [
     {
-    	"modid": "apotheosis",
-    	"type": "forge:mod_loaded"
+      "modid": "apotheosis",
+      "type": "forge:mod_loaded"
     },
     {
-      	"disabled": [
-        	"arrows",
-        	"diamond_ammo"
-      	],
-      	"type": "spartan_weaponry_unofficial:type_disabled"
+      "disabled": [
+        "arrows",
+        "diamond_ammo"
+      ],
+      "type": "spartan_weaponry_unofficial:type_disabled"
     },
-    { 
-		"type": "apotheosis:module",
-		"module": "village"
-	}],
-	"ingredients":[ 
-		{
-			"tag": "forge:gems/diamond"
-		},
-		{
-			"tag": "forge:rods/wooden"
-		},
-		{
-			"tag": "forge:feathers"
-		}
-	],
-	"result": {
-	  "item": "spartan_weaponry_unofficial:diamond_arrow",
-	  "count": 6
-	}
+    {
+      "type": "apotheosis:module",
+      "module": "village"
+    }
+  ],
+  "ingredients": [
+    "#forge:gems/diamond",
+    "#forge:rods/wooden",
+    "#forge:feathers"
+  ],
+  "result": {
+    "item": "spartan_weaponry_unofficial:diamond_arrow",
+    "count": 6
+  }
 }

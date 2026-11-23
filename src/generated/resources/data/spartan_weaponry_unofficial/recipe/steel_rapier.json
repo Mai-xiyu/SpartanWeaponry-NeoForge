@@ -19,12 +19,8 @@
   "category": "equipment",
   "group": "spartan_weaponry_unofficial:rapier",
   "key": {
-    "#": {
-      "tag": "c:ingots/steel"
-    },
-    "|": {
-      "item": "spartan_weaponry_unofficial:handle"
-    }
+    "#": "#c:ingots/steel",
+    "|": "spartan_weaponry_unofficial:handle"
   },
   "pattern": [
     "  #",

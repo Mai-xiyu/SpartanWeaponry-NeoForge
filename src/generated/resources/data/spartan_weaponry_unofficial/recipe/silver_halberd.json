@@ -19,12 +19,8 @@
   "category": "equipment",
   "group": "spartan_weaponry_unofficial:halberd",
   "key": {
-    "#": {
-      "tag": "c:ingots/silver"
-    },
-    "/": {
-      "item": "spartan_weaponry_unofficial:pole"
-    }
+    "#": "#c:ingots/silver",
+    "/": "spartan_weaponry_unofficial:pole"
   },
   "pattern": [
     " #",

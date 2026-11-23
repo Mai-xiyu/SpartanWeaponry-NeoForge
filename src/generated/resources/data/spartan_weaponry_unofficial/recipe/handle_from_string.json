@@ -3,12 +3,8 @@
   "category": "equipment",
   "group": "spartan_weaponry_unofficial:handle",
   "ingredients": [
-    {
-      "tag": "c:rods/wooden"
-    },
-    {
-      "tag": "c:strings"
-    }
+    "#c:rods/wooden",
+    "#c:strings"
   ],
   "result": {
     "count": 1,
