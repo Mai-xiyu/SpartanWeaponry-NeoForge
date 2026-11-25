@@ -29,7 +29,9 @@ import org.xiyu.spartanweaponryunofficial.api.tags.ModDamageTypeTags;
 import org.xiyu.spartanweaponryunofficial.init.ModEnchantments;
 import org.xiyu.spartanweaponryunofficial.init.ModItems;
 import org.xiyu.spartanweaponryunofficial.item.SwordBaseItem;
+import org.xiyu.spartanweaponryunofficial.item.ThrowingWeaponItem;
 import org.xiyu.spartanweaponryunofficial.util.Config;
+import org.xiyu.spartanweaponryunofficial.util.ItemStackDataHelper;
 
 @GameTestHolder(ModSpartanWeaponry.ID)
 @PrefixGameTestTemplate(false)
@@ -177,6 +179,24 @@ public final class WeaponBehaviorGameTests {
                     Math.abs(bonus - (Config.INSTANCE.reach1Value.get() - 5.0)) < 0.001,
                     "Incorrect reach modifier for " + spear);
         }
+        helper.succeed();
+    }
+
+    @GameTest(templateNamespace = ModSpartanWeaponry.ID, template = "empty")
+    public static void throwing_weapon_normalization_preserves_expanded_ammo(GameTestHelper helper) {
+        ThrowingWeaponItem weapon = ModItems.THROWING_KNIVES.iron.get();
+        ItemStack stack = weapon.getDefaultInstance();
+        int expandedAmmoUsed = weapon.getMaxAmmoBase() + 1;
+        ItemStackDataHelper.updateTag(
+                stack, tag -> tag.putInt(ThrowingWeaponItem.NBT_AMMO_USED, expandedAmmoUsed));
+
+        weapon.normalizeStackState(stack, null, false);
+
+        int normalizedAmmoUsed =
+                ItemStackDataHelper.getTag(stack).getInt(ThrowingWeaponItem.NBT_AMMO_USED);
+        helper.assertTrue(
+                normalizedAmmoUsed == expandedAmmoUsed,
+                "Normalization without registry access must preserve expanded ammo usage");
         helper.succeed();
     }
 }

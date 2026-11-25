@@ -11,16 +11,15 @@ final class ThrowingWeaponStackState {
     private ThrowingWeaponStackState() {}
 
     static void init(ItemStack stack, boolean initUuid) {
-        normalize(stack, Integer.MAX_VALUE, initUuid);
+        normalize(stack, initUuid);
     }
 
-    static void normalize(ItemStack stack, int maxAmmo, boolean ensureUuid) {
-        int safeMaxAmmo = Math.max(0, maxAmmo);
+    static void normalize(ItemStack stack, boolean ensureUuid) {
         ItemStackDataHelper.updateTag(
                 stack,
                 tag -> {
-                    int ammoUsed =
-                            Mth.clamp(tag.getInt(ThrowingWeaponItem.NBT_AMMO_USED), 0, safeMaxAmmo);
+                    // Capacity is dynamic and registry access is not always available (e.g. tooltips).
+                    int ammoUsed = Math.max(0, tag.getInt(ThrowingWeaponItem.NBT_AMMO_USED));
                     tag.putInt(ThrowingWeaponItem.NBT_AMMO_USED, ammoUsed);
 
                     if (ensureUuid && !tag.hasUUID(ThrowingWeaponItem.NBT_UUID)) {
