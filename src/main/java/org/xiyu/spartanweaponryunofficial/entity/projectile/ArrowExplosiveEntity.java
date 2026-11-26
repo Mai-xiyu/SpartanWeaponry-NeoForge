@@ -21,12 +21,7 @@ public class ArrowExplosiveEntity extends ArrowEntitySW {
     }
 
     public ArrowExplosiveEntity(
-            Level level,
-            double x,
-            double y,
-            double z,
-            ItemStack pickupItem,
-            ItemStack weapon) {
+            Level level, double x, double y, double z, ItemStack pickupItem, ItemStack weapon) {
         super(ModEntities.ARROW_EXPLOSIVE.get(), level, x, y, z, pickupItem, weapon);
     }
 

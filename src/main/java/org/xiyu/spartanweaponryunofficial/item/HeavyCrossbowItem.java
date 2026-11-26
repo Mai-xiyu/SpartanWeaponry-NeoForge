@@ -485,9 +485,7 @@ public class HeavyCrossbowItem extends CrossbowItem
             return arrow.isInfinite(projectile, crossbow, player);
         if (!BOLT.test(projectile)) return false;
         BoltItem bolt =
-                projectile.getItem() instanceof BoltItem boltItem
-                        ? boltItem
-                        : ModItems.BOLT.get();
+                projectile.getItem() instanceof BoltItem boltItem ? boltItem : ModItems.BOLT.get();
         return bolt.isInfinite(projectile, crossbow, player);
     }
 

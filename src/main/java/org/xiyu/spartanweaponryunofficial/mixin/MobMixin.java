@@ -59,7 +59,9 @@ public class MobMixin extends LivingEntityMixin {
                                         ItemStack weapon;
                                         List<Item> possibleWeapons =
                                                 tag.stream().map(Holder::value).toList();
-                                        weapon = ItemRandomizer.generate(equipmentRandom, possibleWeapons);
+                                        weapon =
+                                                ItemRandomizer.generate(
+                                                        equipmentRandom, possibleWeapons);
                                         this.setItemSlot(EquipmentSlot.MAINHAND, weapon);
                                     }
                                 });
@@ -67,8 +69,7 @@ public class MobMixin extends LivingEntityMixin {
         }
     }
 
-    @Unique
-    private static RandomSource getEquipmentRandom(RandomSource random) {
+    @Unique private static RandomSource getEquipmentRandom(RandomSource random) {
         return random.getClass().getName().contains("CheckedThreadLocalRandom")
                 ? RandomSource.create()
                 : random;

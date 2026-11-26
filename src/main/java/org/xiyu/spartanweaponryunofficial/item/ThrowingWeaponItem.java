@@ -579,7 +579,8 @@ public class ThrowingWeaponItem extends Item
     }
 
     public void normalizeStackState(ItemStack stack, Level level, boolean ensureUuid) {
-        ThrowingWeaponStackState.normalize(stack, ensureUuid);
+        int maxAmmo = level == null ? Integer.MAX_VALUE : this.getMaxAmmo(stack, level);
+        ThrowingWeaponStackState.normalize(stack, maxAmmo, ensureUuid);
     }
 
     public int getMaxAmmo(ItemStack stack, RegistryAccess access) {

@@ -70,8 +70,7 @@ public class QuiverHelper {
 
                         @Override
                         public boolean isAmmo(ItemStack stack) {
-                            return !stack.isEmpty()
-                                    && ProjectileWeaponItem.ARROW_ONLY.test(stack);
+                            return !stack.isEmpty() && ProjectileWeaponItem.ARROW_ONLY.test(stack);
                         }
                     });
 
@@ -112,7 +111,8 @@ public class QuiverHelper {
                                                     stack ->
                                                             !stack.isEmpty()
                                                                     && stack.getItem()
-                                                                            instanceof QuiverBaseItem)
+                                                                            instanceof
+                                                                            QuiverBaseItem)
                                             .forEach(slotResult -> result.add(slotResult.stack())));
         }
         // ... or via the hotbar

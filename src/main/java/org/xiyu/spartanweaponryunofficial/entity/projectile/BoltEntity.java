@@ -302,8 +302,7 @@ public class BoltEntity extends AbstractArrow implements IEntityWithComplexSpawn
         if (compound.contains(this.NBT_POTION, 8)) {
             ResourceLocation potionLocation =
                     ResourceLocation.tryParse(compound.getString(this.NBT_POTION));
-            if (potionLocation != null)
-                this.potion = BuiltInRegistries.POTION.get(potionLocation);
+            if (potionLocation != null) this.potion = BuiltInRegistries.POTION.get(potionLocation);
         }
 
         this.getEntityData()
