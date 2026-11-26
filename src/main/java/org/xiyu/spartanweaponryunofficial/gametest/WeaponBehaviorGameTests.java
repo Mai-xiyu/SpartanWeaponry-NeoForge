@@ -12,6 +12,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Husk;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.inventory.GrindstoneMenu;
 import net.minecraft.world.item.ArrowItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -29,7 +30,9 @@ import org.xiyu.spartanweaponryunofficial.api.tags.ModDamageTypeTags;
 import org.xiyu.spartanweaponryunofficial.init.ModEnchantments;
 import org.xiyu.spartanweaponryunofficial.init.ModItems;
 import org.xiyu.spartanweaponryunofficial.item.SwordBaseItem;
+import org.xiyu.spartanweaponryunofficial.item.ThrowingWeaponItem;
 import org.xiyu.spartanweaponryunofficial.util.Config;
+import org.xiyu.spartanweaponryunofficial.util.ItemStackDataHelper;
 
 @GameTestHolder(ModSpartanWeaponry.ID)
 @PrefixGameTestTemplate(false)
@@ -177,6 +180,49 @@ public final class WeaponBehaviorGameTests {
                     Math.abs(bonus - (Config.INSTANCE.reach1Value.get() - 5.0)) < 0.001,
                     "Incorrect reach modifier for " + spear);
         }
+        helper.succeed();
+    }
+
+    @GameTest(templateNamespace = ModSpartanWeaponry.ID, template = "empty")
+    public static void throwing_weapon_normalization_handles_expanse(GameTestHelper helper) {
+        ThrowingWeaponItem weapon = ModItems.THROWING_KNIVES.iron.get();
+        ItemStack stack = weapon.getDefaultInstance();
+        var level = helper.getLevel();
+        var enchantments = level.registryAccess().registryOrThrow(Registries.ENCHANTMENT);
+        stack.enchant(enchantments.getHolderOrThrow(ModEnchantments.EXPANSE), 1);
+        int expandedAmmoUsed = weapon.getMaxAmmo(stack, level);
+        helper.assertTrue(
+                expandedAmmoUsed > weapon.getMaxAmmoBase(), "Expanse must increase capacity");
+        ItemStackDataHelper.updateTag(
+                stack, tag -> tag.putInt(ThrowingWeaponItem.NBT_AMMO_USED, expandedAmmoUsed));
+
+        weapon.normalizeStackState(stack, null, false);
+
+        int normalizedAmmoUsed =
+                ItemStackDataHelper.getTag(stack).getInt(ThrowingWeaponItem.NBT_AMMO_USED);
+        helper.assertTrue(
+                normalizedAmmoUsed == expandedAmmoUsed,
+                "Normalization without registry access must preserve expanded ammo usage");
+
+        weapon.normalizeStackState(stack, level, false);
+        helper.assertTrue(
+                ItemStackDataHelper.getTag(stack).getInt(ThrowingWeaponItem.NBT_AMMO_USED)
+                        == expandedAmmoUsed,
+                "Normalization must respect the capacity granted by Expanse");
+
+        Player player = helper.makeMockPlayer(GameType.SURVIVAL);
+        GrindstoneMenu grindstone = new GrindstoneMenu(0, player.getInventory());
+        grindstone.getSlot(0).set(stack);
+        ItemStack disenchanted = grindstone.getSlot(2).getItem();
+        helper.assertTrue(
+                disenchanted.is(weapon)
+                        && weapon.getMaxAmmo(disenchanted, level) == weapon.getMaxAmmoBase(),
+                "The grindstone must remove Expanse and restore base capacity");
+        weapon.normalizeStackState(disenchanted, level, false);
+        helper.assertTrue(
+                ItemStackDataHelper.getTag(disenchanted).getInt(ThrowingWeaponItem.NBT_AMMO_USED)
+                        == weapon.getMaxAmmoBase(),
+                "After disenchanting, ammo used must be clamped to base capacity");
         helper.succeed();
     }
 }

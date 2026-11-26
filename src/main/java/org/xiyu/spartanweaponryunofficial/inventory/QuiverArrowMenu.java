@@ -68,12 +68,6 @@ public class QuiverArrowMenu extends QuiverBaseMenu {
                         curioIndex,
                         stack -> stack.is(ModItemTags.ARROW_QUIVERS));
         return new QuiverArrowMenu(
-                id,
-                inventory,
-                quiverStack,
-                slotType,
-                slot,
-                curioIdentifier,
-                curioIndex);
+                id, inventory, quiverStack, slotType, slot, curioIdentifier, curioIndex);
     }
 }

@@ -576,13 +576,14 @@ public class WeaponMaterial implements Tier, IReloadable {
                                             "tooltip.%s.trait.material_bonus",
                                             ModSpartanWeaponry.ID))
                             .withStyle(ChatFormatting.AQUA));
-            this.getBonusTraits(type).forEach(
-                    (trait) ->
-                            trait.addTooltip(
-                                    stack,
-                                    tooltip,
-                                    isShiftPressed,
-                                    WeaponTrait.InvalidReason.NONE));
+            this.getBonusTraits(type)
+                    .forEach(
+                            (trait) ->
+                                    trait.addTooltip(
+                                            stack,
+                                            tooltip,
+                                            isShiftPressed,
+                                            WeaponTrait.InvalidReason.NONE));
         }
         if (this.invalidTraits.isPresent()) {
             tooltip.add(Component.empty());
@@ -604,13 +605,14 @@ public class WeaponMaterial implements Tier, IReloadable {
     public void addTraitsToTooltip(
             ItemStack stack, List<Component> tooltip, boolean isShiftPressed) {
         if (this.hasAnyBonusTraits()) {
-            this.getBonusTraits().forEach(
-                    (trait) ->
-                            trait.addTooltip(
-                                    stack,
-                                    tooltip,
-                                    isShiftPressed,
-                                    WeaponTrait.InvalidReason.NONE));
+            this.getBonusTraits()
+                    .forEach(
+                            (trait) ->
+                                    trait.addTooltip(
+                                            stack,
+                                            tooltip,
+                                            isShiftPressed,
+                                            WeaponTrait.InvalidReason.NONE));
         }
         this.invalidTraits.ifPresent(
                 pairs ->

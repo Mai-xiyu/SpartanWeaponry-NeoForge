@@ -170,7 +170,9 @@ public class OilHandler implements IOilHandler {
         if (registry != null) {
             ResourceLocation oilLocation = ResourceLocation.tryParse(oilEffectReg);
             this.effect =
-                    oilLocation == null ? Optional.empty() : Optional.ofNullable(registry.get(oilLocation));
+                    oilLocation == null
+                            ? Optional.empty()
+                            : Optional.ofNullable(registry.get(oilLocation));
             if (this.effect.orElse(null) == OilEffects.POTION.get() && nbt.contains(NBT_POTION)) {
                 String potionReg = nbt.getString(NBT_POTION);
                 ResourceLocation potionLocation = ResourceLocation.tryParse(potionReg);
@@ -183,8 +185,7 @@ public class OilHandler implements IOilHandler {
         this.usesLeft = Math.max(0, nbt.getInt(NBT_USES_LEFT));
         if (this.usesLeft <= 0
                 || this.effect.isEmpty()
-                || (this.effect.orElse(null) == OilEffects.POTION.get()
-                        && this.potion.isEmpty())) {
+                || (this.effect.orElse(null) == OilEffects.POTION.get() && this.potion.isEmpty())) {
             this.effect = Optional.empty();
             this.potion = Optional.empty();
             this.usesLeft = 0;

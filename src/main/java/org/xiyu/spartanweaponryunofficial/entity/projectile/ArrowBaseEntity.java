@@ -241,8 +241,7 @@ public class ArrowBaseEntity extends AbstractArrow implements IEntityWithComplex
         if (compound.contains(this.NBT_POTION, 8)) {
             ResourceLocation potionLocation =
                     ResourceLocation.tryParse(compound.getString(this.NBT_POTION));
-            if (potionLocation != null)
-                this.potion = BuiltInRegistries.POTION.get(potionLocation);
+            if (potionLocation != null) this.potion = BuiltInRegistries.POTION.get(potionLocation);
         }
 
         this.getEntityData()

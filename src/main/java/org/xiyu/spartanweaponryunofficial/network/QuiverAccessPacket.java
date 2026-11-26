@@ -57,7 +57,10 @@ public record QuiverAccessPacket() implements CustomPacketPayload {
                             if (quiver.isEmpty() && CuriosHelper.LOADED) {
                                 Optional<SlotResult> opt =
                                         CuriosApi.getCuriosInventory(player)
-                                                .flatMap(handler -> handler.findFirstCurio(info::isQuiver));
+                                                .flatMap(
+                                                        handler ->
+                                                                handler.findFirstCurio(
+                                                                        info::isQuiver));
                                 if (opt.isPresent() && info.isQuiver(opt.get().stack())) {
                                     quiver = opt.get().stack();
                                     quiverItem = (QuiverBaseItem) quiver.getItem();
@@ -119,13 +122,7 @@ public record QuiverAccessPacket() implements CustomPacketPayload {
                         return;
                     }
 
-                    quiverItem.openGui(
-                            quiver,
-                            player,
-                            slotType,
-                            slot,
-                            curioIdentifier,
-                            curioIndex);
+                    quiverItem.openGui(quiver, player, slotType, slot, curioIdentifier, curioIndex);
                 });
     }
 }

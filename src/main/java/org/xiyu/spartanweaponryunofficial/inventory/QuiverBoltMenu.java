@@ -68,12 +68,6 @@ public class QuiverBoltMenu extends QuiverBaseMenu {
                         curioIndex,
                         stack -> stack.is(ModItemTags.BOLT_QUIVERS));
         return new QuiverBoltMenu(
-                id,
-                inventory,
-                quiverStack,
-                slotType,
-                slot,
-                curioIdentifier,
-                curioIndex);
+                id, inventory, quiverStack, slotType, slot, curioIdentifier, curioIndex);
     }
 }
